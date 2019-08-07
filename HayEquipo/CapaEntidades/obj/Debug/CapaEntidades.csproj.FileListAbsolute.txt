@@ -1,0 +1,10 @@
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb

@@ -1,0 +1,14 @@
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\bin\Debug\CapaDao.dll
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\bin\Debug\CapaDao.pdb
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\bin\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
+C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
