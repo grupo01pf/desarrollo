@@ -17,10 +17,7 @@
       color: white;
       padding: 15px;
     }
-
-/*asjlfsdsfj 
-    
-    probando el commit*/
+    /* primer commit */
     body {
         background-color: #0b3107;
     }
