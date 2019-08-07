@@ -11,5 +11,6 @@ namespace CapaDao
 {
     public class Class1
     {
+        public int atributoDePrueba;
     }
 }
