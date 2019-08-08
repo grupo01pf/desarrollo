@@ -56,7 +56,7 @@
   
 <div class="container text-center">    
   <div class="row">
-    <div class="col-sm-3 well" style="background-color:#d7dbd3;">
+    <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
         <p><a href="#">Ignacio Monetto</a></p>
         <img src="Imagenes/nene.png" class="img-circle" height="65" width="65" alt="Avatar">
@@ -73,7 +73,7 @@
         Tienes una invitación de Pedro García. <p><strong>Ver Invitación</strong></p>
       </div>
     </div>
-    <div class="col-sm-7" style="background-color:#d7dbd3;">
+    <div class="col-sm-7" <%--style="background-color:#d7dbd3;"--%>>
     
       <div class="row">
           
@@ -181,7 +181,7 @@
         </div>
       </div>     --%>
     </div>
-    <div class="col-sm-2 well" style="background-color:#d7dbd3;">
+    <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="thumbnail">
         <p>Próximo encuentro</p>
         <img src="Imagenes/futbol.jpg" alt="Paris" width="400" height="300">
