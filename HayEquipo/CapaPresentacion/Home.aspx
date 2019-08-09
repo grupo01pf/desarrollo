@@ -92,15 +92,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="Imagenes/netshoes.jpg" width="1000" height="1500">
+        <img src="Imagenes/cerveza.jpg" width="1000" height="1500">
       </div>
 
       <div class="item">
-        <img src="Imagenes/pepsi.jpg" width="1000" height="1500">
+        <img src="Imagenes/adidas.jpg" width="1000" height="1500">
       </div>
     
       <div class="item">
-        <img src="Imagenes/redbull.jpg" width="1000" height="1500">
+        <img src="Imagenes/nike.jpg" width="1000" height="1500">
       </div>
     </div>
 
