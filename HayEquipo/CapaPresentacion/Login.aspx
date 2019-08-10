@@ -14,28 +14,7 @@
     <link href="css/Style.css" rel="stylesheet" type="text/css" />
 
     <style>
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #000000;
-            color: white;
-            padding: 15px;
-        }
-
-        .jumbotron {
-            background-color: white;
-            color: #000000;
-            padding: 100px 25px;
-            font-family: Montserrat, sans-serif;
-        }
-        /* segundo commit  */
-        body {
-            background-color: #0b3107;
-        }
-
-        .fondo {
-            overflow: hidden;
-            background-color: #525252;
-        }
+       
     </style>
     <title></title>
 </head>

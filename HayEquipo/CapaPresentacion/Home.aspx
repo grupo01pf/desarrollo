@@ -48,7 +48,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</a></li>
+        <li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>
+           <%--<asp:Button ID="btn_Login" runat="server" Text="Cerrar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" BackColor="Transparent" ForeColor="White" />--%>
       </ul>
     </div>
   </div>
