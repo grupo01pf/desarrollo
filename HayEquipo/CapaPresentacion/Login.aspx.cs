@@ -13,5 +13,10 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void btn_Login_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }
