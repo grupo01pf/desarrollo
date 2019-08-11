@@ -18,8 +18,9 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT * FROM Usuario
-                                WHERE nombre = @usuario ADN contraseña = @clave";
+            cmd.CommandText = @"SELECT * 
+                                FROM Usuario u
+                                WHERE u.nombre = @usuario AND u.contraseña = @clave";
             cmd.Parameters.AddWithValue("@usuario", usuario);
             cmd.Parameters.AddWithValue("@clave",clave);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -42,9 +43,17 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT r.nombre as nombrePermiso
-                                FROM Usuario u, Rol r
-                                WHERE u.id";
-
+                                FROM Usuario u, Rol r, RolesPorUsuarios rpu
+                                WHERE u.id = rpu.idUsuario AND r.id = rpu.idRol
+                                        AND u.nombre = @usuario";
+            cmd.Parameters.AddWithValue("@usuario",usuario);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                permiso = dr["nombrePermiso"].ToString();
+            }
+            dr.Close();
+            cn.Close();
 
             return permiso;
         }

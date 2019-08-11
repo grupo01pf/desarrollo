@@ -48,8 +48,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
-        <li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>
+        <%--<li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>--%>
            <%--<asp:Button ID="btn_Login" runat="server" Text="Cerrar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" BackColor="Transparent" ForeColor="White" />--%>
+          <asp:LinkButton ID="btn_Logout" runat="server"    Text="Cerrar Sesión" OnClick="btn_Logout_Click" ></asp:LinkButton>
       </ul>
     </div>
   </div>
@@ -59,7 +60,8 @@
   <div class="row">
     <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
-        <p><a href="#">Ignacio Monetto</a></p>
+        <%--<p><a href="#">Ignacio Monetto</a></p>--%>
+         <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
         <img src="Imagenes/nene.png" class="img-circle" height="65" width="65" alt="Avatar">
       </div>
       
