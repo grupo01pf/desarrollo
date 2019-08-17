@@ -16,10 +16,31 @@
         <div class="row" id="datos">
 
         </div>
-        <div class="row" id="tabla">
+        <div class="row" id="contenido">
+            <div class="col-8">
+                 <asp:GridView ID="gdv_UsuariosUnidos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                                <Columns>
+                                   
+                                    <asp:BoundField DataField="Hora" HeaderText="Hora" Visible="true" />
+                                    <asp:BoundField DataField="Disponibilidad" HeaderText="Disponibilidad" Visible="true" />
+                                </Columns>
+                            </asp:GridView>
+                <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
+
+            </div>
+            <div class="col-4">
+                <asp:Table ID="tbl_Chat" runat="server" ></asp:Table>
+            </div>
 
         </div>
-
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" BackColor="Red" ForeColor="White"/>
+                <asp:Button ID="btn_Unirsr" runat="server" Text="Unirse" OnClick="btn_Unirsr_Click" BackColor="Green" ForeColor="White" />
+            </div>
+            <div class="col-md-4"></div>
+        </div>
 
     
     </div>

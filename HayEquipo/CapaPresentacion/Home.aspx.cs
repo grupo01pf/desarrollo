@@ -12,7 +12,7 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            link_nombreUsuario.Text = Session["Usuario"].ToString();
+           // link_nombreUsuario.Text = Session["Usuario"].ToString();
 
         }
 

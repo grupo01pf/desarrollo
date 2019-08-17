@@ -13,5 +13,15 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void btn_Salir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_Unirsr_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

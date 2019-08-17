@@ -126,7 +126,7 @@
 
                         </div>
                        <div class="row">
-                           <asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" CssClass="alert-info"/>
+                           <asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" BackColor="Blue" ForeColor="White"/>
                        </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -152,8 +152,8 @@
             <div class="row">
                 <div class="col-lg-10"></div>
                 <div class="col-lg-2">
-                <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" CssClass="alert-danger"/>
-                <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" CssClass="alert-success"/>
+                <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" BackColor="Red" ForeColor="White"/>
+                <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" BackColor="Green" ForeColor="White"/>
             </div>
             </div>
 
