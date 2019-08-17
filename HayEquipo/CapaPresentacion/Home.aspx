@@ -44,7 +44,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Principal</a></li>
-        <li><a href="#">Crear Encuentro</a></li>
+        <%--<li><a href="#">Crear Encuentro</a></li>--%>
+        <li> <asp:LinkButton ID="btn_CrearEncuentro" runat="server"    Text="Crear Encuentro" OnClick="btn_CrearEncuentro_Click" ></asp:LinkButton></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
