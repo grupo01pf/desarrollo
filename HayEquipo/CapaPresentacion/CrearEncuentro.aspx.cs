@@ -13,5 +13,20 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void btn_Crear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_BuscarHorarios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
