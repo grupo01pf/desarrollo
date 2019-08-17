@@ -86,6 +86,15 @@
                         <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion"></asp:TextBox>
                     </div>
                         </div>
+
+                    <div class="row">
+                       <div class="col-md-3">
+                        <asp:Label ID="lbl_CantidadParticipantes" runat="server" Text="Cantidad de participantes"></asp:Label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txt_CapacidadParticipantes" runat="server" placeHolder="Ingrese un nurmero"></asp:TextBox>
+                    </div>
+                        </div>
                     
               
                         <div class="row">

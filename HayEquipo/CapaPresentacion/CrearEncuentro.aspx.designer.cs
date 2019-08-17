@@ -130,6 +130,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_Direccion;
         
         /// <summary>
+        /// Control lbl_CantidadParticipantes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CantidadParticipantes;
+        
+        /// <summary>
+        /// Control txt_CapacidadParticipantes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_CapacidadParticipantes;
+        
+        /// <summary>
         /// Control rdb_Privado.
         /// </summary>
         /// <remarks>

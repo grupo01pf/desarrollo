@@ -16,7 +16,13 @@ namespace CapaPresentacion
 
         protected void btn_Crear_Click(object sender, EventArgs e)
         {
-
+            if (rdb_Publico.Checked)
+            {
+                Response.Redirect("EncuentroPublico.aspx");
+            }else
+            {
+                Response.Redirect("EncuentroPrivado.aspx");
+            }
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
