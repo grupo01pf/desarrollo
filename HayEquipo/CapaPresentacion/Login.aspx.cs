@@ -18,6 +18,8 @@ namespace CapaPresentacion
 
         protected void btn_Login_Click(object sender, EventArgs e)
         {
+            //****NO BORRAR****
+
             //if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text)) {
 
             //    Session["Usuario"] = txt_NombreUsuario.Text;

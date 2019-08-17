@@ -142,6 +142,23 @@
           <div class="well">
            <p>Aquí los datos del encuentro</p>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
+              <div class="row">
+
+                  <asp:GridView ID="gdv_EncuentroVigentes" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                                <Columns>
+                                    <asp:CommandField HeaderText="Entrar" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" Visible="true" />
+                                    <asp:BoundField DataField="Deporte" HeaderText="Deporte" Visible="true" />
+                                    <asp:BoundField DataField="Lugar" HeaderText="Lugar" Visible="true" />
+                                    <asp:BoundField DataField="Direccion" HeaderText="Direccion" Visible="true" />
+                                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" Visible="true" />
+                                    <asp:BoundField DataField="Estado" HeaderText="Estado" Visible="true" />
+                                </Columns>
+                            </asp:GridView>
+                    
+              </div>
+
           </div>
         </div>
       </div>

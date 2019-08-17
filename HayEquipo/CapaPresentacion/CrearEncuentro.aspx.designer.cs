@@ -58,31 +58,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Fecha;
         
         /// <summary>
-        /// Control asp_Calendario.
+        /// Control cld_Fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar asp_Calendario;
-        
-        /// <summary>
-        /// Control lbl_Hora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Hora;
-        
-        /// <summary>
-        /// Control txt_Hora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Hora;
+        protected global::System.Web.UI.WebControls.Calendar cld_Fecha;
         
         /// <summary>
         /// Control lbl_Zona.
@@ -112,22 +94,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.RadioButton rdb_Publico;
         
         /// <summary>
-        /// Control lbl_Direccion.
+        /// Control lbl_Hora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Direccion;
+        protected global::System.Web.UI.WebControls.Label lbl_Hora;
         
         /// <summary>
-        /// Control txt_Direccion.
+        /// Control txt_Hora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Direccion;
+        protected global::System.Web.UI.WebControls.TextBox txt_Hora;
         
         /// <summary>
         /// Control lbl_CantidadParticipantes.
@@ -146,6 +128,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_CapacidadParticipantes;
+        
+        /// <summary>
+        /// Control lbl_Direccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Direccion;
+        
+        /// <summary>
+        /// Control txt_Direccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Direccion;
         
         /// <summary>
         /// Control rdb_Privado.
@@ -193,24 +193,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cmb_TipoCancha;
         
         /// <summary>
-        /// Control btn_BuscarHorarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_BuscarHorarios;
-        
-        /// <summary>
-        /// Control gdv_Horario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdv_Horario;
-        
-        /// <summary>
         /// Control chk_EncuentroPrivado.
         /// </summary>
         /// <remarks>
@@ -227,6 +209,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_ClaveEncuentro;
+        
+        /// <summary>
+        /// Control btn_BuscarHorarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_BuscarHorarios;
+        
+        /// <summary>
+        /// Control gdv_Horario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_Horario;
         
         /// <summary>
         /// Control btn_Cancelar.

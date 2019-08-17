@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaEntidades;
+using CapaDao;
 
 namespace CapaPresentacion
 {
@@ -11,6 +13,10 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) {
+                cargarDeportes();
+                cargarZonas();
+            }
 
         }
 
@@ -32,6 +38,33 @@ namespace CapaPresentacion
 
         protected void btn_BuscarHorarios_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cargarGrilla() {
+
+        }
+
+        private void cargarDeportes() {
+            cmb_Deporte.DataSource = DeporteDao.obtenerDeportes();
+            cmb_Deporte.DataValueField = "idDeporte";
+            cmb_Deporte.DataValueField = "nombre";
+            cmb_Deporte.DataBind();
+
+        }
+
+        private void cargarZonas() {
+
+            cmb_Zona.DataSource = ZonaDao.obtenerZonas();
+            cmb_Zona.DataValueField = "IdZOna";
+            cmb_Zona.DataValueField = "nombre";
+            cmb_Zona.DataBind();
+        }
+        private void cargarComplejos() {
+
+        }
+
+        private void cargarTipoCanchas() {
 
         }
     }

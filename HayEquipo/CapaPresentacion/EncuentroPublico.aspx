@@ -18,6 +18,7 @@
         </div>
         <div class="row" id="contenido">
             <div class="col-8">
+                 <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
                  <asp:GridView ID="gdv_UsuariosUnidos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                    

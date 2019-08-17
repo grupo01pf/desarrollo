@@ -11,6 +11,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //****NO BORRAR****
             
            // link_nombreUsuario.Text = Session["Usuario"].ToString();
 
@@ -25,8 +26,9 @@ namespace CapaPresentacion
 
         protected void link_nombreUsuario_Click(object sender, EventArgs e)
         {
+            //****NO BORRAR****
 
-          //  Response.Redirect("");
+            //  Response.Redirect("");
         }
 
         protected void btn_CrearEncuentro_Click(object sender, EventArgs e)
@@ -34,11 +36,5 @@ namespace CapaPresentacion
             Response.Redirect("CrearEncuentro.aspx");
         }
 
-        //protected void btn_Login_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("Login.aspx");
-        //    Session["Usuario"] = String.Empty;
-        //    Session["Rol"] = String.Empty;
-        //}
     }
 }
