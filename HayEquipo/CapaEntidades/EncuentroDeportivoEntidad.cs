@@ -9,7 +9,7 @@ namespace CapaEntidades
     public class EncuentroDeportivoEntidad
     {
         public int? idEncuentroDeportivo { get; set; }
-        public int idAdministrador { get; set; }
+        public int idAUsuario{ get; set; }
         public DateTime fechaCreacionEncuentro { get; set; }
         public DateTime fechaDestruccionEncuentro { get; set; }
         public int idDeporte { get; set; }
@@ -20,8 +20,11 @@ namespace CapaEntidades
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
-        public DateTime horaIncio { get; set; }
-        public DateTime horaFIn { get;  set; }
         public int tipoEncuentro { get; set; }
+        public int accesibilidad { get; set; }
+        public String clave { get; set; }
+        public DateTime horaIncio { get; set; }
+        public DateTime horaFIn { get; set; }
+
     }
 }

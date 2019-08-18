@@ -94,22 +94,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.RadioButton rdb_Publico;
         
         /// <summary>
-        /// Control lbl_Hora.
+        /// Control lbl_HoraInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Hora;
+        protected global::System.Web.UI.WebControls.Label lbl_HoraInicio;
         
         /// <summary>
-        /// Control txt_Hora.
+        /// Control txt_HoraInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Hora;
+        protected global::System.Web.UI.WebControls.TextBox txt_HoraInicio;
+        
+        /// <summary>
+        /// Control lbl_HoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_HoraFin;
+        
+        /// <summary>
+        /// Control txt_HoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HoraFin;
         
         /// <summary>
         /// Control lbl_CantidadParticipantes.

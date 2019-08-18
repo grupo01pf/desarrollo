@@ -21,9 +21,10 @@
                  <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
                  <asp:GridView ID="gdv_UsuariosUnidos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
-                                   
-                                    <asp:BoundField DataField="Hora" HeaderText="Hora" Visible="true" />
-                                    <asp:BoundField DataField="Disponibilidad" HeaderText="Disponibilidad" Visible="true" />
+                                   <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" /> 
+                                    
                                 </Columns>
                             </asp:GridView>
                 <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>

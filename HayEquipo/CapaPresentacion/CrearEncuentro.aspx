@@ -89,12 +89,22 @@
                         </div>
                         
                         <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="lbl_Hora" runat="server" Text="Hora"></asp:Label>
+                            <div class="form-inline">
+                                 <div class="col-md-3">
+                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_Hora" runat="server" TextMode="Time"></asp:TextBox>
+                                <asp:TextBox ID="txt_HoraInicio" runat="server" TextMode="Time"></asp:TextBox>
                             </div>
+                                 <div class="col-md-3">
+                                     <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
+                                 <//div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_HoraFin" runat="server" TextMode="Time"></asp:TextBox>
+                                <//div>
+
+                            </div>
+                           
 
                         </div>
 

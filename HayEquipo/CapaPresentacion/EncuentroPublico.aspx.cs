@@ -24,6 +24,14 @@ namespace CapaPresentacion
 
         }
 
+        private void cargarTabla() {
+
+            gdv_EncuentroVigentes.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
+            gdv_EncuentroVigentes.DataKeyNames = new string[] { "Id" };
+            gdv_EncuentroVigentes.DataBind();
+        }
+        
+
 
     }
 }

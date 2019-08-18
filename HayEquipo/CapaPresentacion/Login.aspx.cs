@@ -14,6 +14,8 @@ namespace CapaPresentacion
         {
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
+            Session["ID"] = String.Empty;
+            
         }
 
         protected void btn_Login_Click(object sender, EventArgs e)
@@ -40,6 +42,7 @@ namespace CapaPresentacion
             {
                 flag = true;
                 Session["Rol"] = UsuarioDao.Permiso(usuario);
+                Session["ID"] = UsuarioDao.ID(usuario);
             }
 
             return flag;

@@ -58,6 +58,29 @@ namespace CapaDao
             return permiso;
         }
 
+        public static int ID(string usuario)
+        {
+            int id = 0;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT u.id as id
+                                FROM Usuario u
+                                WHERE  u.nombre = @usuario";
+            cmd.Parameters.AddWithValue("@usuario", usuario);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                id = int.Parse(dr["id"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return id;
+        }
+
 
     }
 }
