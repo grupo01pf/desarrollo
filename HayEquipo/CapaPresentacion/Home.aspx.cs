@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaDao;
 
 namespace CapaPresentacion
 {
@@ -12,9 +13,12 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             //****NO BORRAR****
-            
-           // link_nombreUsuario.Text = Session["Usuario"].ToString();
 
+            // link_nombreUsuario.Text = Session["Usuario"].ToString();
+            if (!IsPostBack)
+            {
+                cargarEncuentrosVigentes();
+            }
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)
@@ -36,5 +40,12 @@ namespace CapaPresentacion
             Response.Redirect("CrearEncuentro.aspx");
         }
 
+        protected void cargarEncuentrosVigentes() {
+
+            gdv_EncuentroVigentes.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
+            gdv_EncuentroVigentes.DataKeyNames = new string[] { "Id" };
+            gdv_EncuentroVigentes.DataBind();
+
+        }
     }
 }

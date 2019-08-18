@@ -53,6 +53,7 @@
     <Compile Include="DeportistasPorEquiposEntidad.cs" />
     <Compile Include="DetalleValoracionEntidad.cs" />
     <Compile Include="EncuentroDeportivoEntidad.cs" />
+    <Compile Include="EncuentroDeportivoQueryEntidad.cs" />
     <Compile Include="EquipoEntidad.cs" />
     <Compile Include="EstadoEntidad.cs" />
     <Compile Include="HorarioEntidad.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="TipoComplejoEntidad.cs" />
     <Compile Include="TipoDeporteEntidad.cs" />
     <Compile Include="TipoDocumentoEntidad.cs" />
+    <Compile Include="TipoEncuentroDeportivoEntidad.cs" />
     <Compile Include="TiposPorDeportesEntidad.cs" />
     <Compile Include="TipoValoracionEntidad.cs" />
     <Compile Include="UsuarioEntidad.cs" />

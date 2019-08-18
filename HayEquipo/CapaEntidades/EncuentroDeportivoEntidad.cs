@@ -20,5 +20,8 @@ namespace CapaEntidades
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
+        public DateTime horaIncio { get; set; }
+        public DateTime horaFIn { get;  set; }
+        public int tipoEncuentro { get; set; }
     }
 }
