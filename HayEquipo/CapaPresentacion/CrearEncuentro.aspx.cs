@@ -16,6 +16,7 @@ namespace CapaPresentacion
             if (!IsPostBack) {
                 cargarDeportes();
                 cargarZonas();
+                cargarComplejos();
             }
 
         }
@@ -56,12 +57,16 @@ namespace CapaPresentacion
         private void cargarZonas() {
 
             cmb_Zona.DataSource = ZonaDao.obtenerZonas();
-            cmb_Zona.DataValueField = "IdZOna";
+            cmb_Zona.DataValueField = "IdZona";
             cmb_Zona.DataValueField = "nombre";
             cmb_Zona.DataBind();
         }
         private void cargarComplejos() {
 
+            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejos();
+            cmb_Complejo.DataValueField = "idComplejoDeportivo";
+            cmb_Complejo.DataValueField = "nombre";
+            cmb_Complejo.DataBind();
         }
 
         private void cargarTipoCanchas() {
