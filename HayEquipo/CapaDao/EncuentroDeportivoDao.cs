@@ -71,7 +71,7 @@ namespace CapaDao
              cmd.Parameters.AddWithValue("@tipoEncuentro",ed.tipoEncuentro);
              cmd.Parameters.AddWithValue("@accesibilidad",ed.accesibilidad);
              cmd.Parameters.AddWithValue("@clave",ed.clave);
-             cmd.Parameters.AddWithValue("@horaInicio",ed.horaIncio);
+             cmd.Parameters.AddWithValue("@horaInicio",ed.horaInicio);
              cmd.Parameters.AddWithValue("@horaFin",ed.horaFIn);
             // cmd.Parameters.AddWithValue("@ ",);
             //  cmd.Transaction = tr;

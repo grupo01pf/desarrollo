@@ -43,35 +43,15 @@ namespace CapaDao
                 eq.calle = dr["calle"].ToString();
                 eq.nombreTipoEncuentroDeportivo = dr["tipo"].ToString();
 
-                //  eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
+                //eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
                 //eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());
-                // eq.fechaInicioEncuentro = (DateTime)dr["fechaInicioEncuentro"];
-
-                //DateTime hf;
-                //if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
-
-                //DateTime calendario = cld_Fecha.SelectedDate;
-                //DateTime fi;
-                //if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
-                //    ed.fechaInicioEncuentro = fi;
+                //eq.fechaInicioEncuentro = (DateTime)dr["fechaInicioEncuentro"];
                 DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { eq.fechaInicioEncuentro =fi; }
-              //  eq.fechaInicioEncuentro = dr["fechaInicioEncuentro"].ToString();
-
+ 
                 //  eq.nombreAccesibilidad = dr["accesibilidad"].ToString();
                 // eq.horaIncio = DateTime.Parse(dr["horaInicio"].ToString());
                 eq.nombreEstado = dr["nombreEstado"].ToString();
-
-
-                /* idEncuentroDeportivo = int.Parse(dr["id"].ToString()),
-                 calle = dr["calle"].ToString(),
-                // fechaInicioEncuentro = (DateTime)dr["fechaInicioEncuentro"],
-                 nombreUsuario = dr["Usuario"].ToString(),
-                 nombreDeporte = dr["nombreDeporte"].ToString(),
-                 nombreTipoEncuentroDeportivo = dr["tipo"].ToString(),
-             //  eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());
-
-             // eq.accesibilidad = int.Parse(dr["accesibilidad"].ToString());
-             // eq.horaIncio = DateTime.Parse(dr["horaInicio"].ToString());*/
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { eq.horaInicio = hi; } // ok
 
                 ListaEQ.Add(eq);
             }

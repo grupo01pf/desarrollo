@@ -22,7 +22,7 @@ namespace CapaEntidades
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
-        public DateTime horaIncio { get; set; }
+        public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
         public int tipoEncuentro { get; set; }
         public int accesibilidad { get; set; }
@@ -88,7 +88,7 @@ namespace CapaEntidades
 
         public EncuentroDeportivoQueryEntidad(int? idEncuentroDeportivo, int idAdministrador, DateTime fechaCreacionEncuentro, DateTime fechaDestruccionEncuentro,
         int idDeporte, int idComplejo, string calle, int numeroCalle, int idEquipo, DateTime fechaInicioEncuentro, DateTime fechaFinEncuentro,
-        int idEstado, DateTime horaIncio, DateTime horaFIn, int tipoEncuentro, int accesibilidad, string clave,
+        int idEstado, DateTime horaInicio, DateTime horaFIn, int tipoEncuentro, int accesibilidad, string clave,
         int? idComplejoDeportivo, string nombreComplejo, string descripcion, int idTipoComplejo, string calleComplejo, int numeroCalleComplejo,
         int idBarrio, int numeroTelefono, int idResponsable, int idUsuario, float promedioEstrellas, int idEstadoComplejo,
         int? idDeporteDeporte, string nombreDeporte,
@@ -112,7 +112,7 @@ namespace CapaEntidades
             this.fechaInicioEncuentro = fechaInicioEncuentro;
             this.fechaFinEncuentro = fechaFinEncuentro;
             this.idEstado = idEstado;
-            this.horaIncio = horaIncio;
+            this.horaInicio = horaInicio;
             this.horaFIn = horaFIn;
             this.tipoEncuentro = tipoEncuentro;
             this.accesibilidad = accesibilidad;

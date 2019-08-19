@@ -72,7 +72,7 @@ namespace CapaPresentacion
 
            // string hi = txt_HoraInicio.Text;
            DateTime hi;
-            if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaIncio = hi; }
+            if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
             
 
            DateTime hf;

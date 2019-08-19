@@ -23,7 +23,7 @@ namespace CapaEntidades
         public int tipoEncuentro { get; set; }
         public int accesibilidad { get; set; }
         public String clave { get; set; }
-        public DateTime horaIncio { get; set; }
+        public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
 
     }
