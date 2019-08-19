@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaDao;
 
 namespace CapaPresentacion
 {
@@ -26,11 +27,11 @@ namespace CapaPresentacion
 
         private void cargarTabla() {
 
-            gdv_EncuentroVigentes.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
-            gdv_EncuentroVigentes.DataKeyNames = new string[] { "Id" };
-            gdv_EncuentroVigentes.DataBind();
+            gdv_UsuariosUnidos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
+            gdv_UsuariosUnidos.DataKeyNames = new string[] { "Id" };
+            gdv_UsuariosUnidos.DataBind();
         }
-        
+
 
 
     }

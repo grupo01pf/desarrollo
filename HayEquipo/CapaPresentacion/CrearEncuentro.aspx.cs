@@ -44,7 +44,7 @@ namespace CapaPresentacion
         {
             EncuentroDeportivoEntidad ed = new EncuentroDeportivoEntidad();
 
-
+            
             // ed.idEncuentroDeportivo = null;
             //  ed.idAUsuario = int.Parse(Session["ID"].ToString());
             ed.idAUsuario = 1;
@@ -53,19 +53,19 @@ namespace CapaPresentacion
             // ed.fechaDestruccionEncuentro = ;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
           //  ed.idComplejo = cmb_Complejo.SelectedIndex;
-            ed.calle = txt_Direccion.ToString();
+            ed.calle = txt_Direccion.Text;
           //  ed.numeroCalle = 0;
            // ed.idEquipo 
           //  ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
             //  ed.fechaFinEncuentro 
           //  ed.idEstado = 1; //habilitado
 
-            DateTime hi;
-            if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { }
+          //  DateTime hi;
+          //  if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { }
            //     ed.horaIncio = hi;
 
-            DateTime hf;
-            if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { }
+           // DateTime hf;
+          //  if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { }
            //    ed.horaFIn = hf;
 
             if (rdb_Publico.Checked)
@@ -73,12 +73,13 @@ namespace CapaPresentacion
             else
                 ed.tipoEncuentro = 2;
 
-            if (chk_EncuentroPrivado.Checked) { }
+           // if (chk_EncuentroPrivado.Checked) { }
             //   ed.accesibilidad = 2;
-            else { }
+           // else { }
              //   ed.accesibilidad = 1;
 
           //  ed.clave = String.Empty;
+         
 
             EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
 
