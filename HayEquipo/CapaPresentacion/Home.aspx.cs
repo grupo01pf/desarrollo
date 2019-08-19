@@ -44,7 +44,7 @@ namespace CapaPresentacion
         protected void cargarLugaresPublicos() {
 
             gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
+          //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
             gdv_LugaresPublicos.DataBind();
 
         }

@@ -61,7 +61,7 @@ namespace CapaEntidades
 
         // Tipo Cancha
         public int? idTipoCancha { get; set; }
-        public string nombreTIpoCancha { get; set; }
+        public string nombreTipoCancha { get; set; }
         public string descripcionTipoCancha { get; set; }
 
         // Usuario
@@ -74,11 +74,127 @@ namespace CapaEntidades
         public DateTime fechaBaja { get; set; }
 
         // TipoEncuentroDeportivo
-        public int? id { get; set; }
+        public int? idTipoEncuentroDeportivo { get; set; }
         public string nombreTipoEncuentroDeportivo { get; set; }
         public string descripcionTipoEncuentroDeportivo { get; set; }
 
+        // Accesibilidad
+        public int? idAccesibilidad { get; set; }
+        public string nombreAccesibilidad { get; set; }
+        public string descripcionAccesibilidad { get; set; }
 
+
+        public EncuentroDeportivoQueryEntidad() { }
+
+        public EncuentroDeportivoQueryEntidad(int? idEncuentroDeportivo, int idAdministrador, DateTime fechaCreacionEncuentro, DateTime fechaDestruccionEncuentro,
+        int idDeporte, int idComplejo, string calle, int numeroCalle, int idEquipo, DateTime fechaInicioEncuentro, DateTime fechaFinEncuentro,
+        int idEstado, DateTime horaIncio, DateTime horaFIn, int tipoEncuentro, int accesibilidad, string clave,
+        int? idComplejoDeportivo, string nombreComplejo, string descripcion, int idTipoComplejo, string calleComplejo, int numeroCalleComplejo,
+        int idBarrio, int numeroTelefono, int idResponsable, int idUsuario, float promedioEstrellas, int idEstadoComplejo,
+        int? idDeporteDeporte, string nombreDeporte,
+        int? idEstadoEstado, string nombreEstado, string descripcionEstado,
+        int? idHorario, DateTime fecha, DateTime horaInicioHorario, DateTime horaFinHorario, int idEstadoHorario,
+        int? idTipoCancha, string nombreTipoCancha, string descripcionTipoCancha,
+        int? idUsuarioUsuario, string nombreUsuario, string contraseña, string email, byte[] avatar, DateTime fechaAlta, DateTime fechaBaja,
+        int? idTipoEncuentroDeportivo, string nombreTipoEncuentroDeportivo, string descripcionTipoEncuentroDeportivo,
+        int? idAccesibilidad, string nombreAccesibilidad, string descripcionAccesibilidad)
+        {
+            // Encuentro Deportivo
+            this.idEncuentroDeportivo = idEncuentroDeportivo;
+            this.idAdministrador = idAdministrador;
+            this.fechaCreacionEncuentro = fechaCreacionEncuentro;
+            this.fechaDestruccionEncuentro = fechaDestruccionEncuentro;
+            this.idDeporte = idDeporte;
+            this.idComplejo = idComplejo;
+            this.calle = calle;
+            this.numeroCalle = numeroCalle;
+            this.idEquipo = idEquipo;
+            this.fechaInicioEncuentro = fechaInicioEncuentro;
+            this.fechaFinEncuentro = fechaFinEncuentro;
+            this.idEstado = idEstado;
+            this.horaIncio = horaIncio;
+            this.horaFIn = horaFIn;
+            this.tipoEncuentro = tipoEncuentro;
+            this.accesibilidad = accesibilidad;
+            this.clave = clave;
+
+            // Complejo Deportivo
+            this.idComplejoDeportivo = idComplejoDeportivo;
+            this.nombreComplejo = nombreComplejo;
+            this.descripcion = descripcion;
+            this.idTipoComplejo = idTipoComplejo;
+            this.calleComplejo = calleComplejo;
+            this.numeroCalleComplejo = numeroCalleComplejo;
+            this.idBarrio = idBarrio;
+            this.numeroTelefono = numeroTelefono;
+            this.idResponsable = idResponsable;
+            this.idUsuario = idUsuario;
+            this.promedioEstrellas = promedioEstrellas;
+            this.idEstadoComplejo = idEstadoComplejo;
+
+            // Deporte
+            this.idDeporteDeporte = idDeporteDeporte;
+            this.nombreDeporte = nombreDeporte;
+
+            // Estado
+            this.idEstadoEstado = idEstadoEstado;
+            this.nombreEstado = nombreEstado;
+            this.descripcionEstado = descripcionEstado;
+
+            // Horario
+            this.idHorario = idHorario;
+            this.nombreHorario = nombreHorario;
+            this.fecha = fecha;
+            this.horaInicioHorario = horaInicioHorario;
+            this.horaFinHorario = horaFinHorario;
+            this.idEstadoHorario = idEstadoHorario;
+
+            // Tipo Cancha
+            this.idTipoCancha = idTipoCancha;
+            this.nombreTipoCancha = nombreTipoCancha;
+            this.descripcionTipoCancha = descripcionTipoCancha;
+
+            // Usuario
+            this.idUsuarioUsuario = idUsuarioUsuario;
+            this.nombreUsuario = nombreUsuario;
+            this.contraseña = contraseña;
+            this.email = email;
+            this.avatar = avatar;
+            this.fechaAlta = fechaAlta;
+            this.fechaBaja = fechaBaja;
+
+            // TipoEncuentroDeportivo
+            this.idTipoEncuentroDeportivo = idTipoEncuentroDeportivo;
+            this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
+            this.descripcionTipoEncuentroDeportivo = descripcionTipoEncuentroDeportivo;
+
+            //Accesibilidad
+            this.idAccesibilidad = idAccesibilidad;
+            this.nombreAccesibilidad = nombreAccesibilidad;
+            this.descripcionAccesibilidad = descripcionAccesibilidad;
+
+    }
+
+        public EncuentroDeportivoQueryEntidad(int? idEncuentroDeportivo, string calle, string nombreUsuario,
+            string nombreDeporte, string nombreTipoEncuentroDeportivo)
+        {
+            //DateTime fechaInicioEncuentro,
+            // Encuentro Deportivo
+            this.idEncuentroDeportivo = idEncuentroDeportivo;
+            this.calle = calle;
+           // this.fechaInicioEncuentro = fechaInicioEncuentro;
+
+            // Usuario
+            this.nombreUsuario = nombreUsuario;
+
+            // Deporte
+            this.nombreDeporte = nombreDeporte;
+
+            // TipoEncuentroDeportivo
+            this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
+            
+
+        }
 
 
     }

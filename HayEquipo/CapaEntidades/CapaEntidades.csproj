@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accesibilidad.cs" />
     <Compile Include="AdministradorEntidad.cs" />
     <Compile Include="AmigosPorDeportistasEntidad.cs" />
     <Compile Include="BarrioEntidad.cs" />

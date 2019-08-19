@@ -149,15 +149,16 @@
                   <asp:GridView ID="gdv_LugaresPublicos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                     <asp:CommandField HeaderText="Entrar" ShowSelectButton="true" />                                    
-                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />  
-                                    <%--<asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" />--%>  
+                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
                                     <%--<asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" />--%>
                                     <%--<asp:BoundField DataField="nombreComplejo" HeaderText="Lugar" Visible="true" />--%>
-                                    <asp:BoundField DataField="calleComplejo" HeaderText="Direccion" Visible="true" />
+                                    <asp:BoundField DataField="calle" HeaderText="Direccion" Visible="true" />
                                     <%--<asp:BoundField DataField="numeroCalleComplejo" HeaderText="Numero" Visible="true" />--%>
                                     <asp:BoundField DataField="nombreTipoEncuentroDeportivo" HeaderText="Tipo" Visible="true" />
                                     <%--<asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />--%>
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
 
                                 </Columns>
                             </asp:GridView>
