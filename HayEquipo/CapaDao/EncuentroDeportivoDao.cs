@@ -45,32 +45,34 @@ namespace CapaDao
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
             /*  cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                  fechaDestruccionEncuentro,idDeporte,idComplejo,calle,nroCalle,idEquipo,
-                                  fechaInicioEncuentro,FechaFinEncuentro,idEstado,tipoEncuentro,accesibilidad,
+                                   fechaDestruccionEncuentro,idDeporte,idComplejo,calle,nroCalle,idEquipo,
+                                   fechaInicioEncuentro,FechaFinEncuentro,idEstado,tipoEncuentro,accesibilidad,
+                                   clave,horaInicio,horaFin) 
+                                   VALUES (@idUsuario,@fechaCreacionEncuentrol,@fechaDestruccionEncuentro,@idDeporte,
+                                   @idComplejo,@calle,@nroCalle,@idEquipo,@fechaInicioEncuentro,@FechaFinEncuentro,
+                                   @idEstado,@tipoEncuentro,@accesibilidad,@clave,@horaInicio,@horaFin);
+                                   select Scope_Identity() as ID";*/
+            cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
+                                  idDeporte,calle,fechaInicioEncuentro,idEstado,tipoEncuentro,accesibilidad,
                                   clave,horaInicio,horaFin) 
-                                  VALUES (@idUsuario,@fechaCreacionEncuentrol,@fechaDestruccionEncuentro,@idDeporte,
-                                  @idComplejo,@calle,@nroCalle,@idEquipo,@fechaInicioEncuentro,@FechaFinEncuentro,
-                                  @idEstado,@tipoEncuentro,@accesibilidad,@clave,@horaInicio,@horaFin);
-                                  select Scope_Identity() as ID";*/
-              cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,idDeporte,calle,tipoEncuentro) 
-                                  VALUES (@idUsuario,@idDeporte,@calle,@tipoEncuentro)";
-           // cmd.CommandText = "INSERT INTO EncuentroDeportivo (idUsuario,idDeporte,calle,tipoEncuentro)  VALUES (1,2,'aa',4)";
-              cmd.Parameters.AddWithValue("@idUsuario",ed.idAUsuario);
-            // cmd.Parameters.AddWithValue("@fechaCreacionEncuentro",ed.fechaCreacionEncuentro);
+                                  VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@calle,@fechaInicioEncuentro,
+                                  @idEstado,@tipoEncuentro,@accesibilidad,@clave,@horaInicio,@horaFin)";
+             cmd.Parameters.AddWithValue("@idUsuario",ed.idAUsuario);
+             cmd.Parameters.AddWithValue("@fechaCreacionEncuentro",ed.fechaCreacionEncuentro);
             // cmd.Parameters.AddWithValue("@fechaDestruccionEncuentro",ed.fechaDestruccionEncuentro);
-              cmd.Parameters.AddWithValue("@idDeporte",ed.idDeporte);
+             cmd.Parameters.AddWithValue("@idDeporte",ed.idDeporte);
             //  cmd.Parameters.AddWithValue("@idComplejo",ed.idComplejo);
-              cmd.Parameters.AddWithValue("@calle",ed.calle);
+             cmd.Parameters.AddWithValue("@calle",ed.calle);
             // cmd.Parameters.AddWithValue("@nroCalle",ed.numeroCalle);
             // cmd.Parameters.AddWithValue("@idEquipo",ed.idEquipo);
-            // cmd.Parameters.AddWithValue("@fechaInicioEncuentro",ed.fechaInicioEncuentro);
-            // cmd.Parameters.AddWithValue("@FechaFinEncuentro",ed.fechaFinEncuentro);
-            // cmd.Parameters.AddWithValue("@idEstado",ed.idEstado);
-               cmd.Parameters.AddWithValue("@tipoEncuentro",ed.tipoEncuentro);
-            // cmd.Parameters.AddWithValue("@accesibilidad",ed.accesibilidad);
-            // cmd.Parameters.AddWithValue("@clave",ed.clave);
-            // cmd.Parameters.AddWithValue("@horaInicio",ed.horaIncio);
-            // cmd.Parameters.AddWithValue("@horaFin",ed.horaFIn);
+             cmd.Parameters.AddWithValue("@fechaInicioEncuentro",ed.fechaInicioEncuentro);
+           //  cmd.Parameters.AddWithValue("@FechaFinEncuentro",ed.fechaFinEncuentro);
+             cmd.Parameters.AddWithValue("@idEstado",ed.idEstado);
+             cmd.Parameters.AddWithValue("@tipoEncuentro",ed.tipoEncuentro);
+             cmd.Parameters.AddWithValue("@accesibilidad",ed.accesibilidad);
+             cmd.Parameters.AddWithValue("@clave",ed.clave);
+             cmd.Parameters.AddWithValue("@horaInicio",ed.horaIncio);
+             cmd.Parameters.AddWithValue("@horaFin",ed.horaFIn);
             // cmd.Parameters.AddWithValue("@ ",);
             //  cmd.Transaction = tr;
             // ed.idEncuentroDeportivo = Convert.ToInt32(cmd.ExecuteScalar());

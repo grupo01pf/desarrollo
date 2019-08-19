@@ -85,6 +85,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cmb_Zona;
         
         /// <summary>
+        /// Control chk_EncuentroPrivado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_EncuentroPrivado;
+        
+        /// <summary>
+        /// Control txt_ClaveEncuentro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_ClaveEncuentro;
+        
+        /// <summary>
         /// Control rdb_Publico.
         /// </summary>
         /// <remarks>
@@ -209,24 +227,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmb_TipoCancha;
-        
-        /// <summary>
-        /// Control chk_EncuentroPrivado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_EncuentroPrivado;
-        
-        /// <summary>
-        /// Control txt_ClaveEncuentro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_ClaveEncuentro;
         
         /// <summary>
         /// Control btn_BuscarHorarios.

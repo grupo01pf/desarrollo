@@ -48,37 +48,46 @@ namespace CapaPresentacion
             // ed.idEncuentroDeportivo = null;
             //  ed.idAUsuario = int.Parse(Session["ID"].ToString());
             ed.idAUsuario = 1;
+            
+            DateTime hoy = DateTime.Now;
+           // string fechaHoy = hoy.ToString("dd/MM/yyyy");
+            DateTime fecha;
+            if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
+            ed.fechaCreacionEncuentro = fecha;
 
-           // ed.fechaCreacionEncuentro = System.DateTime.Now;
-            // ed.fechaDestruccionEncuentro = ;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
           //  ed.idComplejo = cmb_Complejo.SelectedIndex;
             ed.calle = txt_Direccion.Text;
-          //  ed.numeroCalle = 0;
-           // ed.idEquipo 
-          //  ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
+            //  ed.numeroCalle = 0;
+            // ed.idEquipo 
+
+            DateTime calendario = cld_Fecha.SelectedDate;
+            DateTime fi;
+            if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
+                ed.fechaInicioEncuentro = fi;
+           
             //  ed.fechaFinEncuentro 
-          //  ed.idEstado = 1; //habilitado
 
-          //  DateTime hi;
-          //  if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { }
-           //     ed.horaIncio = hi;
+            ed.idEstado = 1; //habilitado
 
-           // DateTime hf;
-          //  if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { }
-           //    ed.horaFIn = hf;
+           // string hi = txt_HoraInicio.Text;
+           DateTime hi;
+            if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaIncio = hi; }
+            
 
-            if (rdb_Publico.Checked)
-                ed.tipoEncuentro = 1;
-            else
-                ed.tipoEncuentro = 2;
+           DateTime hf;
+            if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
+               
 
-           // if (chk_EncuentroPrivado.Checked) { }
-            //   ed.accesibilidad = 2;
-           // else { }
-             //   ed.accesibilidad = 1;
+            if (rdb_Publico.Checked) { ed.tipoEncuentro = 1; }
+            else { ed.tipoEncuentro = 2; }
+                
 
-          //  ed.clave = String.Empty;
+            if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = 2; }
+            else { ed.accesibilidad = 1; }
+
+
+            ed.clave = txt_ClaveEncuentro.Text;
          
 
             EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
