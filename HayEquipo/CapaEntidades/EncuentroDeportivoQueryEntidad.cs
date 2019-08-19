@@ -25,6 +25,8 @@ namespace CapaEntidades
         public DateTime horaIncio { get; set; }
         public DateTime horaFIn { get; set; }
         public int tipoEncuentro { get; set; }
+        public int accesibilidad { get; set; }
+        public string clave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }
@@ -53,8 +55,8 @@ namespace CapaEntidades
         public int? idHorario { get; set; }
         public string nombreHorario { get; set; }
         public DateTime fecha { get; set; }
-        public DateTime horaInicio { get; set; }
-        public DateTime horaFin { get; set; }
+        public DateTime horaInicioHorario { get; set; }
+        public DateTime horaFinHorario { get; set; }
         public int idEstadoHorario { get; set; }
 
         // Tipo Cancha

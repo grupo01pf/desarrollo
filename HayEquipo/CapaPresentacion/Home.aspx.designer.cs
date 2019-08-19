@@ -49,12 +49,21 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.LinkButton link_nombreUsuario;
         
         /// <summary>
-        /// Control gdv_EncuentroVigentes.
+        /// Control gdv_LugaresPublicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdv_EncuentroVigentes;
+        protected global::System.Web.UI.WebControls.GridView gdv_LugaresPublicos;
+        
+        /// <summary>
+        /// Control gdv_LugaresPrivados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_LugaresPrivados;
     }
 }

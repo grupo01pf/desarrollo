@@ -142,9 +142,32 @@
           <div class="well">
            <p>Encuentros Vigentes</p>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
-              <div class="row">
+             
+              <%-- GRILLA LUGARES PUBLICOS --%>
+               <div class="row">
 
-                  <asp:GridView ID="gdv_EncuentroVigentes" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                  <asp:GridView ID="gdv_LugaresPublicos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                                <Columns>
+                                    <asp:CommandField HeaderText="Entrar" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />  
+                                    <%--<asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" />--%>  
+                                    <%--<asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" />--%>
+                                    <%--<asp:BoundField DataField="nombreComplejo" HeaderText="Lugar" Visible="true" />--%>
+                                    <asp:BoundField DataField="calleComplejo" HeaderText="Direccion" Visible="true" />
+                                    <%--<asp:BoundField DataField="numeroCalleComplejo" HeaderText="Numero" Visible="true" />--%>
+                                    <asp:BoundField DataField="nombreTipoEncuentroDeportivo" HeaderText="Tipo" Visible="true" />
+                                    <%--<asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />--%>
+
+                                </Columns>
+                            </asp:GridView>
+                    
+              </div>
+
+              <%-- GRILLA LUGARES PRIVADOS --%>
+               <div class="row">
+
+                  <asp:GridView ID="gdv_LugaresPrivados" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                     <asp:CommandField HeaderText="Entrar" ShowSelectButton="true" />                                    
                                     <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />

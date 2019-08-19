@@ -27,9 +27,11 @@ namespace CapaPresentacion
 
         private void cargarTabla() {
 
-            gdv_UsuariosUnidos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
+          /*  gdv_UsuariosUnidos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivos();
             gdv_UsuariosUnidos.DataKeyNames = new string[] { "Id" };
             gdv_UsuariosUnidos.DataBind();
+            
+           */
         }
 
 
