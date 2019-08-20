@@ -17,7 +17,7 @@
       color: white;
       padding: 15px;
     }
-    /* segundo commit  */
+    
     body {
         background-color: #0b3107;
     }
@@ -51,7 +51,7 @@
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
         <%--<li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>--%>
            <%--<asp:Button ID="btn_Login" runat="server" Text="Cerrar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" BackColor="Transparent" ForeColor="White" />--%>
-          <asp:LinkButton ID="btn_Logout" runat="server"    Text="Cerrar Sesión" OnClick="btn_Logout_Click" ></asp:LinkButton>
+          <li><asp:LinkButton ID="btn_Logout" runat="server"    Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
       </ul>
     </div>
   </div>
