@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
-
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
+<%--le agregue la propiedad EnableEventValidation="false" porque me tiraba un bronca con el postback. Soy Nacho--%>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,32 +14,14 @@
     <link href="css/Style.css" rel="stylesheet" type="text/css" />
 
     <style>
-       
+       .alinearIzq { text-align: left; }
+       .fondoDeImagen {background-image: url("Imagenes/sports.jpg");}
     </style>
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-
-            <%--<div class="row">
-                <div class="col-md-2">
-
-                </div>
-                <div class="col-md-5">
-
-                </div>
-                <div class="col-md-2">
-
-                </div>
-                <div class="col-md-2">
-
-                </div>
-                <div class="col-md-1">
-
-                </div>
-
-            </div>--%>
 
             <nav class="navbar navbar-inverse">
 
@@ -54,62 +36,53 @@
                         <img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100">
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
-                        <%--<ul class="nav navbar-nav">
-        <li class="active"><a href="#">Principal</a></li>
-        <li><a href="#">Crear Encuentro</a></li>
-      </ul>--%>
-                        <%--<ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span> Registrarse</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Iniciar Sesión</a></li>
-      </ul>--%>
-                         <fieldset id="LoginBox">
-                            <%--<legend>Login</legend>--%>
-                            <div class="form-group">
-                                <table>
-                                    <tr>
-                                        <th>
-                                            <asp:TextBox ID="txt_NombreUsuario" runat="server" placeholder="Nombre de Usuario" Columns="20"></asp:TextBox>
-                                        </th>
-                                        <th>
-                                            <asp:TextBox ID="txt_Password" runat="server" placeholder="Password" TextMode="Password" Columns="20"></asp:TextBox>
-                                        </th>
-                                        <th>
-                                            <asp:Button ID="btn_Login" runat="server" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" />
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <%--<asp:RequiredFieldValidator ID="rfv_NombreUsuario" runat="server"
-                                                ControlToValidate="txt_NombreUsuario" Text="Falta el nombre de usuario" ErrorMessage="Falta el nombre de usuario"
-                                                ValidationGroup="E" ForeColor="Red" Columns="20"></asp:RequiredFieldValidator>--%>
-
-                                        </td>
-                                        <td>
-                                            <%--<asp:RequiredFieldValidator ID="rfv_Password" runat="server"
-                                            ControlValidate="txt_Password" Text="Falta el password" ErrorMessage="Falta el password"
-                                            ValidatioGroup="E" ForeColor="Red" Columns="20"></asp:RequiredFieldValidator>--%>
-                                        </td>
-                                        <td>
-                                            <%--<asp:ValidationSummary ID="vsSummary" runat="server" ShowMessageBox="false" ValidationGroup="E" ForeColor="Red" />--%>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </fieldset>
- 
-
-
+               
                     </div>
                 </div>
             </nav>
-            <div class="jumbotron text-center">
-                <h1>HAY EQUIPO !</h1>
+  <div class="jumbotron text-center" style="background-color:black">
+                <div class="row">
+                    <div class="col-sm-6 well">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h1>HAY EQUIPO !</h1>
                 <p>Unidos por el deporte</p>
-
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="col-sm-6">
+                         <div class="well">
+                        <div class="container">
+  <h2>Iniciar Sesión</h2>
+  
+  <form>
+    <div class="form-group">
+      <label>Usuario</label>
+        <asp:TextBox ID="txt_NombreUsuario" class="form-control" runat="server" placeholder="Ingrese Usuario"></asp:TextBox>
+      
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+        <asp:TextBox ID="txt_Password" runat="server" class="form-control" placeholder="Ingrese Contraseña" TextMode="Password"></asp:TextBox>
+        
+    </div>
+    <asp:Button ID="btn_Login" runat="server" class="btn btn-default" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
+      <br />
+      <div class="alinearIzq">
+    <label>¿No tenés una cuenta?</label> <br />
+    <button type="button" class="btn btn-primary">Registrarme</button></div>
+  </form>
+      </div>
+</div>
+                       
+                        
+                    </div>
+                </div>
             </div>
-
-
-
         </div>
     </form>
 </body>
