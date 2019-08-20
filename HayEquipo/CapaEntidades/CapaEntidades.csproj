@@ -60,6 +60,7 @@
     <Compile Include="HorarioEntidad.cs" />
     <Compile Include="InvitacionEncuentroEntidad.cs" />
     <Compile Include="LocalidadEntidad.cs" />
+    <Compile Include="LugarPublicoEntidad.cs" />
     <Compile Include="MensajeEntidad.cs" />
     <Compile Include="PaisEntidad.cs" />
     <Compile Include="PermisoEntidad.cs" />

@@ -14,17 +14,19 @@ namespace CapaEntidades
         public DateTime fechaDestruccionEncuentro { get; set; }
         public int idDeporte { get; set; }
         public int idComplejo { get; set; }
-        public string calle { get; set; }
-        public int numeroCalle { get; set; }
         public int idEquipo { get; set; }
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
-        public int tipoEncuentro { get; set; }
-        public int accesibilidad { get; set; }
-        public String clave { get; set; }
+        public int idTipoEncuentro { get; set; }
+        public int idAccesibilidad { get; set; }
         public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
+        public int idLugarPublico { get; set; }
+
+        // public string calle { get; set; }
+        // public int numeroCalle { get; set; }
+        //  public String clave { get; set; }
 
     }
 }

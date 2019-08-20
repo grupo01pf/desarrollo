@@ -17,6 +17,7 @@ namespace CapaPresentacion
                 cargarDeportes();
                 cargarZonas();
                 cargarComplejos();
+                cargarBarrios();
             }
 
         }
@@ -26,16 +27,10 @@ namespace CapaPresentacion
             if (rdb_Publico.Checked)
             {
                 crearEventoPublico();
-
-
-
                 Response.Redirect("EncuentroPublico.aspx");
             }else
             {
-
                 crearEventoPrivado();
-
-
                 Response.Redirect("EncuentroPrivado.aspx");
             }
         }
@@ -43,23 +38,21 @@ namespace CapaPresentacion
         private void crearEventoPublico()
         {
             EncuentroDeportivoEntidad ed = new EncuentroDeportivoEntidad();
-
+            LugarPublicoEntidad lp = new LugarPublicoEntidad();
             
-            // ed.idEncuentroDeportivo = null;
-            //  ed.idAUsuario = int.Parse(Session["ID"].ToString());
+           //  ed.idAUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
             ed.idAUsuario = 1;
-            
             DateTime hoy = DateTime.Now;
            // string fechaHoy = hoy.ToString("dd/MM/yyyy");
             DateTime fecha;
             if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
             ed.fechaCreacionEncuentro = fecha;
-
             ed.idDeporte = cmb_Deporte.SelectedIndex;
-          //  ed.idComplejo = cmb_Complejo.SelectedIndex;
-            ed.calle = txt_Direccion.Text;
+            //  ed.idComplejo = cmb_Complejo.SelectedIndex;
+           // ed.idComplejo = 0;
+            //  ed.calle = txt_Direccion.Text;
             //  ed.numeroCalle = 0;
-            // ed.idEquipo 
+           // ed.idEquipo = 0;
 
             DateTime calendario = cld_Fecha.SelectedDate;
             DateTime fi;
@@ -68,7 +61,7 @@ namespace CapaPresentacion
            
             //  ed.fechaFinEncuentro 
 
-            ed.idEstado = 1; //habilitado
+            ed.idEstado = 1; // (habilitado)
 
            // string hi = txt_HoraInicio.Text;
            DateTime hi;
@@ -79,20 +72,48 @@ namespace CapaPresentacion
             if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
                
 
-            if (rdb_Publico.Checked) { ed.tipoEncuentro = 1; }
-            else { ed.tipoEncuentro = 2; }
+            if (rdb_Publico.Checked) { ed.idTipoEncuentro = 1; }
+            else { ed.idTipoEncuentro = 2; }
                 
 
-            if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = 2; }
-            else { ed.accesibilidad = 1; }
+            if (chk_EncuentroPrivado.Checked) { ed.idTipoEncuentro = 2; }
+            else { ed.idAccesibilidad = 1; }
+
+            // ed.clave = txt_ClaveEncuentro.Text;
 
 
-            ed.clave = txt_ClaveEncuentro.Text;
-         
+            if (string.IsNullOrEmpty(txt_NombreLugar.Text))
+                lp.nombre = string.Empty;
+            else { lp.nombre = txt_NombreLugar.Text; }
+            if (string.IsNullOrEmpty(txt_Calle.Text))
+                lp.calle = string.Empty;
+            else { lp.calle = txt_Calle.Text; }
 
-            EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
+            lp.descripcion = string.Empty;
 
-    }
+            int nro;
+            if (int.TryParse(txt_Calle.Text, out nro))
+            lp.nroCalle = nro;
+            lp.idBarrio = cmb_Barrio.SelectedIndex;
+
+            ed.idLugarPublico = LugarPublicoDao.insertarLugarPublico(lp);
+            EncuentroDeportivoDao.InsertarEncuentro(ed);
+
+
+            /* //  ( EJEMPLOS )
+             int nro;
+            if (int.TryParse(txtNroCalle.Text, out nro))
+                paciente.NroCalle = nro;
+
+            if (string.IsNullOrEmpty(txtTelefono.Text))
+                paciente.Telefono = string.Empty;
+            // paciente.Telefono = null;
+            else { paciente.Telefono = txtTelefono.Text; }
+             
+             
+             */
+
+        }
 
         private void crearEventoPrivado()
         {
@@ -139,6 +160,15 @@ namespace CapaPresentacion
 
         private void cargarTipoCanchas() {
 
+        }
+
+        private void cargarBarrios()
+        {
+
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            cmb_Barrio.DataValueField = "IdBarrio";
+            cmb_Barrio.DataValueField = "nombre";
+            cmb_Barrio.DataBind();
         }
 
 

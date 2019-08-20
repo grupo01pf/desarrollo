@@ -11,22 +11,22 @@ namespace CapaEntidades
 
         // Encuentro Deportivo
         public int? idEncuentroDeportivo { get; set; }
-        public int idAdministrador { get; set; }
+       // public int idAdministrador { get; set; }
         public DateTime fechaCreacionEncuentro { get; set; }
         public DateTime fechaDestruccionEncuentro { get; set; }
         public int idDeporte { get; set; }
         public int idComplejo { get; set; }
-        public string calle { get; set; }
-        public int numeroCalle { get; set; }
+       // public string calle { get; set; }
+       // public int numeroCalle { get; set; }
         public int idEquipo { get; set; }
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
         public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
-        public int tipoEncuentro { get; set; }
-        public int accesibilidad { get; set; }
-        public string clave { get; set; }
+        public int idTipoEncuentro { get; set; }
+        public int idAccesibilidad { get; set; }
+      //  public string clave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }
@@ -79,9 +79,17 @@ namespace CapaEntidades
         public string descripcionTipoEncuentroDeportivo { get; set; }
 
         // Accesibilidad
-        public int? idAccesibilidad { get; set; }
+        public int? idAccesibilidadAccesibilidad { get; set; }
         public string nombreAccesibilidad { get; set; }
         public string descripcionAccesibilidad { get; set; }
+
+        // LugarPublico
+        public int? idLugarPublico { get; set; }
+        public string nombreLugarPublico { get; set; }
+        public string descripcionLugarPublico { get; set; }
+        public string calleLugarPublico { get; set; }
+        public int nroCalleLugarPublico { get; set; }
+        public int idBarrioLugarPublico { get; set; }
 
 
         public EncuentroDeportivoQueryEntidad() { }
@@ -101,22 +109,22 @@ namespace CapaEntidades
         {
             // Encuentro Deportivo
             this.idEncuentroDeportivo = idEncuentroDeportivo;
-            this.idAdministrador = idAdministrador;
+          //  this.idAdministrador = idAdministrador;
             this.fechaCreacionEncuentro = fechaCreacionEncuentro;
             this.fechaDestruccionEncuentro = fechaDestruccionEncuentro;
             this.idDeporte = idDeporte;
             this.idComplejo = idComplejo;
-            this.calle = calle;
-            this.numeroCalle = numeroCalle;
+           // this.calle = calle;
+          //  this.numeroCalle = numeroCalle;
             this.idEquipo = idEquipo;
             this.fechaInicioEncuentro = fechaInicioEncuentro;
             this.fechaFinEncuentro = fechaFinEncuentro;
             this.idEstado = idEstado;
             this.horaInicio = horaInicio;
             this.horaFIn = horaFIn;
-            this.tipoEncuentro = tipoEncuentro;
-            this.accesibilidad = accesibilidad;
-            this.clave = clave;
+         //   this.tipoEncuentro = tipoEncuentro;
+         //   this.accesibilidad = accesibilidad;
+         //   this.clave = clave;
 
             // Complejo Deportivo
             this.idComplejoDeportivo = idComplejoDeportivo;
@@ -169,7 +177,7 @@ namespace CapaEntidades
             this.descripcionTipoEncuentroDeportivo = descripcionTipoEncuentroDeportivo;
 
             //Accesibilidad
-            this.idAccesibilidad = idAccesibilidad;
+          //  this.idAccesibilidad = idAccesibilidad;
             this.nombreAccesibilidad = nombreAccesibilidad;
             this.descripcionAccesibilidad = descripcionAccesibilidad;
 
@@ -181,7 +189,7 @@ namespace CapaEntidades
             //DateTime fechaInicioEncuentro,
             // Encuentro Deportivo
             this.idEncuentroDeportivo = idEncuentroDeportivo;
-            this.calle = calle;
+          //  this.calle = calle;
            // this.fechaInicioEncuentro = fechaInicioEncuentro;
 
             // Usuario

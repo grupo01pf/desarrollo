@@ -13,13 +13,15 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             //****NO BORRAR****
+           
+                //link_nombreUsuario.Text = Session["Usuario"].ToString();
+                if (!IsPostBack)
+                {
 
-            // link_nombreUsuario.Text = Session["Usuario"].ToString();
-            if (!IsPostBack)
-            {
-                cargarLugaresPublicos();
-                // cargarLugaresPrivados();
-            }
+                    cargarLugaresPublicos();
+                    // cargarLugaresPrivados();
+                }
+            
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)
@@ -27,6 +29,8 @@ namespace CapaPresentacion
             Response.Redirect("Login.aspx");
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
+            
+
         }
 
         protected void link_nombreUsuario_Click(object sender, EventArgs e)
@@ -52,7 +56,7 @@ namespace CapaPresentacion
         {
 
             gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
-            gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
+          //  gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
             gdv_LugaresPrivados.DataBind();
 
         }

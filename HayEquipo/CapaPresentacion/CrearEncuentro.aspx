@@ -121,23 +121,57 @@
                         </div>
                         <br />
 
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="lbl_CantidadParticipantes" runat="server" Text="Cantidad de participantes"></asp:Label>
                             </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_CapacidadParticipantes" runat="server" placeHolder="Ingrese un nurmero"></asp:TextBox>
                             </div>
-                        </div>
+                        </div>--%>
+
+                        <div class="row">
+                            <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>
+                            </div>
+                        <br />
+                        <div class="row">
+                            <asp:TextBox ID="txt_NombreLugar" runat="server" placeHolder="Lugar" Columns="50" MaxLength="40"></asp:TextBox>
+                            </div>
+
                         <br />
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:Label ID="lbl_Direccion" runat="server" Text="Dirección"></asp:Label>
+                                <asp:Label ID="lbl_Calle" runat="server" Text="Calle"></asp:Label>
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" TextMode="MultiLine"></asp:TextBox>
+                                
+                                <asp:Label ID="lbl_NroCalle" runat="server" Text="Nro"></asp:Label>
+                               
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txt_Calle" runat="server" placeHolder="Ingrese una direccion" Columns="20" MaxLength="50"></asp:TextBox>
+                                </div>
+                            <div class="col-md-3">
+                                 <asp:TextBox ID="txt_NroCalle" runat="server" placeHolder="#####" Columns="5" MaxLength="5"></asp:TextBox>
+
+                            </div>
+                            </div>
+                        <br />
+                         <div class="row">
+                            <div class="col-md-3">
+                                <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            
+                        </div>
+
                         <br />
                     </fieldset>
                     <br />
