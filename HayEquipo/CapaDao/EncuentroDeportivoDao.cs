@@ -142,9 +142,9 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                idDeporte,idComplejo,fechaInicioEncuentro,idEstado,tidTipoEncuentro,accesibilidad)
+                                idDeporte,idComplejo,fechaInicioEncuentro,idEstado,tipoEncuentro,accesibilidad,clave)
                                 VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@idComplejo,@fechaInicioEncuentro,
-                                @idEstado,@tipoEncuentro,@accesibilidad)";
+                                @idEstado,@tipoEncuentro,@accesibilidad,@clave)";
 
             cmd.Parameters.AddWithValue("@idUsuario", ed.idAUsuario);
             cmd.Parameters.AddWithValue("@fechaCreacionEncuentro", ed.fechaCreacionEncuentro);

@@ -162,6 +162,34 @@ namespace CapaPresentacion
             if (rdb_Publico.Checked) { ed.tipoEncuentro = false; }
             else { ed.tipoEncuentro = true; }
 
+            if (chk_Accesibilidad.Checked) { ed.accesibilidad = true; }
+            else { ed.accesibilidad = false; }
+
+            if (string.IsNullOrEmpty(txt_Clave.Text))
+                ed.clave = string.Empty;
+            else
+                ed.clave = txt_Clave.Text;
+
+            if (string.IsNullOrEmpty(txt_NombreLugar.Text))
+                ed.nombreLP = string.Empty;
+            else { ed.nombreLP = txt_NombreLugar.Text; }
+
+            if (string.IsNullOrEmpty(txt_Direccion.Text))
+                ed.direccion = string.Empty;
+            else { ed.direccion = txt_Direccion.Text; }
+
+
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text)) {
+                DateTime hi;
+                if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
+            }
+
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
+            {
+                DateTime hf;
+                if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
+            }
+
             //if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = true; }
             // else{ ed.accesibilidad = false; }
 
@@ -185,7 +213,7 @@ namespace CapaPresentacion
             lp.idBarrio = cmb_Barrio.SelectedIndex;
             */
 
-           // ed.idLugarPublico = null;
+            // ed.idLugarPublico = null;
 
             // EncuentroDeportivoDao.actualizarLugarPublico(ed.idLugarPublico,idED);
             EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
