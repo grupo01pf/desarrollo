@@ -69,5 +69,20 @@ namespace CapaPresentacion
             gdv_LugaresPrivados.DataBind();
 
         }
+
+        protected void gdv_LugaresPublicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            GridViewRow fila = gdv_LugaresPublicos.SelectedRow;
+
+            string tipoEncuentro = fila.Cells[7].Text;
+
+            //  lbl_Prueba.Text = tipoEncuentro;
+
+            if (tipoEncuentro.Equals("Publico"))
+                Response.Redirect("EncuentroPublico.aspx");
+            else
+                Response.Redirect("EncuentroPrivado.aspx");
+        }
     }
 }

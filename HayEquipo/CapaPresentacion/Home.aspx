@@ -145,8 +145,9 @@
              
               <%-- GRILLA LUGARES PUBLICOS --%>
                <div class="row">
+                   <asp:Label ID="lbl_Prueba" runat="server" ></asp:Label>
                     <div style="width: 30; height: 400px; overflow: scroll">
-                  <asp:GridView ID="gdv_LugaresPublicos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                  <asp:GridView ID="gdv_LugaresPublicos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered" OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Entrar" ShowSelectButton="true" />                                    
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />

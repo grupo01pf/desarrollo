@@ -165,8 +165,8 @@
             </div>
             <div class="col-md-4"></div>
                     <div class="row" id="contenido">
-            <%--<div class="col-8">--%>
-                 <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
+            <div class="col-8">
+                 <div style="width: 180%; height: 400px; overflow: scroll">
                  <asp:GridView ID="gdv_UsuariosUnidos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                    <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />                                    
@@ -177,9 +177,11 @@
                             </asp:GridView>
                 <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
 
-           
 
-        </div>
+
+
+
+                    </div>
             <br />
              <%--</div>--%>
             <%--<div class="col-4">
