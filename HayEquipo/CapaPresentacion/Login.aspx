@@ -105,12 +105,68 @@
             <div class="jumbotron text-center">
                 <h1>HAY EQUIPO !</h1>
                 <p>Unidos por el deporte</p>
-
-            </div>
+          <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i>Registrarme como Usuario</button>&nbsp;
+               </div>
 
 
 
         </div>
+
+
+        
+
+    <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Registrarme</h4>                 
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nombre de usuario</label>
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox ID="txtNombre" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox ID="txtEmail" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                  <asp:TextBox ID="txtPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                    </div>
+                     <div class="form-group">
+                        <label>Repetir Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                  <asp:TextBox ID="txtRPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                    </div>
+                
+             <!--   <div class="form-group">
+                        <label>Jugador o Establecimiento</label>
+                 </div>
+                  <div class="form-group">
+                <asp:RadioButton ID="radioJugador" Text="Jugador" runat="server" />
+                <asp:RadioButton ID="radioEstablecimiento" Text="Establecimiento" runat="server" />
+                 </div>
+                    </div> -->
+                  <div class="modal-footer">
+                   <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />        
+
+                  </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
     </form>
+
+
 </body>
 </html>
