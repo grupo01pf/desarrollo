@@ -20,7 +20,9 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "SELECT TOP 1000 id, nombre, descripcion, idTipoComplejo, calle, nroCalle, idBarrio, nroTelefono, idResponsable, idUsuario, promedioEstrellas, idEstado FROM ComplejoDeportivo ";
+            cmd.CommandText = @"SELECT TOP 1000 id, nombre, descripcion, idTipoComplejo, calle, nroCalle, idBarrio, 
+                                nroTelefono, idResponsable, idUsuario, promedioEstrellas, idEstado 
+                                FROM ComplejoDeportivo ";
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -32,7 +34,7 @@ namespace CapaDao
                // complejo.idTipoComplejo = int.Parse(dr["idTipoComplejo"].ToString());
                 complejo.calle = dr["calle"].ToString();
                // complejo.idBarrio = int.Parse(dr["idBarrio"].ToString());
-                complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
+               // complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
                 complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
               //  complejo.idResponsable = int.Parse(dr["idResponsable"].ToString());
               //  complejo.idUsuario = int.Parse(dr["idUsuario"].ToString());

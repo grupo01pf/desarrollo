@@ -18,9 +18,10 @@ namespace CapaPresentacion
                 if (!IsPostBack)
                 {
 
-                    cargarLugaresPublicos();
-                    // cargarLugaresPrivados();
-                }
+                cargarEventosDisponibles();
+                   // cargarLugaresPublicos();
+                   // cargarLugaresPrivados();
+            }
             
         }
 
@@ -45,6 +46,14 @@ namespace CapaPresentacion
             Response.Redirect("CrearEncuentro.aspx");
         }
 
+        protected void cargarEventosDisponibles()
+        {
+
+            gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
+            gdv_LugaresPublicos.DataBind();
+
+        }
         protected void cargarLugaresPublicos() {
 
             gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
