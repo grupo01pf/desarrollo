@@ -38,7 +38,7 @@ namespace CapaDao
                */
             cmd.CommandText = @"SELECT DISTINCT  ed.id,u.nombre as Usuario, d.nombre as nombreDeporte,ted.nombre as tipo,
                                 ed.fechaInicioEncuentro, a.nombre as accesibilidad,ed.horaInicio, e.nombre as nombreEstado,
-                                lp.nombre as LugarP, cd.nombre as complejo
+                                lp.nombre as nombreLP, cd.nombre as complejo
                                 FROM EncuentroDeportivo ed, ComplejoDeportivo cd, TipoEncuentroDeportivo ted, 
                                 Deporte d, Accesibilidad a, Usuario u, Estado e, LugarPublico lp
                                 WHERE  d.id = ed.idDeporte AND  a.id = ed.idAccesibilidad 
@@ -51,7 +51,7 @@ namespace CapaDao
                 eq = new EncuentroDeportivoQueryEntidad();
 
 
-                eq.nombreTipoEncuentroDeportivo = dr["tipo"].ToString();
+                eq.tipoEncuentro = bool.Parse(dr["tipo"].ToString());
                 eq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
                 eq.nombreUsuario = dr["Usuario"].ToString();
                 eq.nombreDeporte = dr["nombreDeporte"].ToString();
@@ -62,11 +62,11 @@ namespace CapaDao
                 //eq.fechaInicioEncuentro = (DateTime)dr["fechaInicioEncuentro"];
                 DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { eq.fechaInicioEncuentro =fi; }
  
-                eq.nombreAccesibilidad = dr["accesibilidad"].ToString();
+                eq.accesibilidad = bool.Parse(dr["accesibilidad"].ToString());
                 // eq.horaIncio = DateTime.Parse(dr["horaInicio"].ToString());
                 eq.nombreEstado = dr["nombreEstado"].ToString();
                 DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { eq.horaInicio = hi; } // ok
-                eq.nombreLugarPublico = dr["LugarP"].ToString();
+                eq.nombreLP = dr["nombreLP"].ToString();
                 eq.nombreComplejo = dr["complejo"].ToString();
                 ListaEQ.Add(eq);
             }
@@ -99,7 +99,7 @@ namespace CapaDao
                 eq.nombreComplejo = dr["nombreComplejo"].ToString();
                 eq.calleComplejo = dr["calleComplejo"].ToString();
                 eq.numeroCalleComplejo = int.Parse(dr["nroComplejo"].ToString());
-                eq.nombreTipoEncuentroDeportivo = dr["tipo"].ToString();
+                eq.tipoEncuentro = bool.Parse( dr["tipo"].ToString());
                 ListaEQ.Add(eq);
             }
             dr.Close();

@@ -18,7 +18,7 @@ namespace CapaPresentacion
                 if (!IsPostBack)
                 {
 
-                cargarEventosDisponibles();
+               // cargarEventosDisponibles();
                    // cargarLugaresPublicos();
                    // cargarLugaresPrivados();
             }

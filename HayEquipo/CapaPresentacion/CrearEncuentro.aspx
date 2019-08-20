@@ -78,10 +78,10 @@
                         <br />
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:CheckBox ID="chk_EncuentroPrivado" runat="server" Text=" Clave" />
+                                <asp:CheckBox ID="chk_Accesibilidad" runat="server" Text=" Clave" />
                             </div>
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_ClaveEncuentro" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="10" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="txt_Clave" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="10" MaxLength="10"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
@@ -141,21 +141,21 @@
                         <br />
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:Label ID="lbl_Calle" runat="server" Text="Calle"></asp:Label>
+                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
                             </div>
                             <div class="col-md-3">
                                 
-                                <asp:Label ID="lbl_NroCalle" runat="server" Text="Nro"></asp:Label>
+                                <%--<asp:Label ID="lbl_NroCalle" runat="server" Text="Nro"></asp:Label>--%>
                                
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:TextBox ID="txt_Calle" runat="server" placeHolder="Ingrese una direccion" Columns="20" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" Columns="20" MaxLength="50"></asp:TextBox>
                                 </div>
                             <div class="col-md-3">
-                                 <asp:TextBox ID="txt_NroCalle" runat="server" placeHolder="#####" Columns="5" MaxLength="5"></asp:TextBox>
+                                 <%--<asp:TextBox ID="txt_NroCalle" runat="server" placeHolder="#####" Columns="5" MaxLength="5"></asp:TextBox>--%>
 
                             </div>
                             </div>

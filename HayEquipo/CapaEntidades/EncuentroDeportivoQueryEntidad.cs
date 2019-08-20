@@ -10,23 +10,26 @@ namespace CapaEntidades
     {
 
         // Encuentro Deportivo
+
         public int? idEncuentroDeportivo { get; set; }
-       // public int idAdministrador { get; set; }
+        public int idAUsuario { get; set; }
         public DateTime fechaCreacionEncuentro { get; set; }
         public DateTime fechaDestruccionEncuentro { get; set; }
         public int idDeporte { get; set; }
         public int idComplejo { get; set; }
-       // public string calle { get; set; }
-       // public int numeroCalle { get; set; }
         public int idEquipo { get; set; }
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
+        public bool? tipoEncuentro { get; set; }
+        public bool? accesibilidad { get; set; }
         public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
-        public int idTipoEncuentro { get; set; }
-        public int idAccesibilidad { get; set; }
-      //  public string clave { get; set; }
+        public string nombreLP { get; set; }
+
+        public string direccion { get; set; }
+        // public int numeroCalle { get; set; }
+        public String clave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }
@@ -73,23 +76,23 @@ namespace CapaEntidades
         public DateTime fechaAlta { get; set; }
         public DateTime fechaBaja { get; set; }
 
-        // TipoEncuentroDeportivo
-        public int? idTipoEncuentroDeportivo { get; set; }
-        public string nombreTipoEncuentroDeportivo { get; set; }
-        public string descripcionTipoEncuentroDeportivo { get; set; }
+        //// TipoEncuentroDeportivo
+        //public int? idTipoEncuentroDeportivo { get; set; }
+        //public string nombreTipoEncuentroDeportivo { get; set; }
+        //public string descripcionTipoEncuentroDeportivo { get; set; }
 
-        // Accesibilidad
-        public int? idAccesibilidadAccesibilidad { get; set; }
-        public string nombreAccesibilidad { get; set; }
-        public string descripcionAccesibilidad { get; set; }
+        //// Accesibilidad
+        //public int? idAccesibilidadAccesibilidad { get; set; }
+        //public string nombreAccesibilidad { get; set; }
+        //public string descripcionAccesibilidad { get; set; }
 
-        // LugarPublico
-        public int? idLugarPublico { get; set; }
-        public string nombreLugarPublico { get; set; }
-        public string descripcionLugarPublico { get; set; }
-        public string calleLugarPublico { get; set; }
-        public int nroCalleLugarPublico { get; set; }
-        public int idBarrioLugarPublico { get; set; }
+        //// LugarPublico
+        //public int? idLugarPublico { get; set; }
+        //public string nombreLugarPublico { get; set; }
+        //public string descripcionLugarPublico { get; set; }
+        //public string calleLugarPublico { get; set; }
+        //public int nroCalleLugarPublico { get; set; }
+        //public int idBarrioLugarPublico { get; set; }
 
 
         public EncuentroDeportivoQueryEntidad() { }
@@ -172,14 +175,14 @@ namespace CapaEntidades
             this.fechaBaja = fechaBaja;
 
             // TipoEncuentroDeportivo
-            this.idTipoEncuentroDeportivo = idTipoEncuentroDeportivo;
-            this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
-            this.descripcionTipoEncuentroDeportivo = descripcionTipoEncuentroDeportivo;
+            //this.idTipoEncuentroDeportivo = idTipoEncuentroDeportivo;
+            //this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
+            //this.descripcionTipoEncuentroDeportivo = descripcionTipoEncuentroDeportivo;
 
             //Accesibilidad
           //  this.idAccesibilidad = idAccesibilidad;
-            this.nombreAccesibilidad = nombreAccesibilidad;
-            this.descripcionAccesibilidad = descripcionAccesibilidad;
+            //this.nombreAccesibilidad = nombreAccesibilidad;
+            //this.descripcionAccesibilidad = descripcionAccesibilidad;
 
     }
 
@@ -199,7 +202,7 @@ namespace CapaEntidades
             this.nombreDeporte = nombreDeporte;
 
             // TipoEncuentroDeportivo
-            this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
+           // this.nombreTipoEncuentroDeportivo = nombreTipoEncuentroDeportivo;
             
 
         }

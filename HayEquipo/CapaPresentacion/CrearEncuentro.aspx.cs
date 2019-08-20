@@ -15,9 +15,9 @@ namespace CapaPresentacion
         {
             if (!IsPostBack) {
                 cargarDeportes();
-                cargarZonas();
+               // cargarZonas();
                 cargarComplejos();
-                cargarBarrios();
+               // cargarBarrios();
             }
 
         }
@@ -48,7 +48,7 @@ namespace CapaPresentacion
             if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
             ed.fechaCreacionEncuentro = fecha;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
-            ed.idComplejo = 5;
+           // ed.idComplejo = 5;
            // ed.idComplejo = 0;
             //  ed.calle = txt_Direccion.Text;
             //  ed.numeroCalle = 0;
@@ -70,34 +70,42 @@ namespace CapaPresentacion
            DateTime hf;
             if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
                
-            if (rdb_Publico.Checked) { ed.idTipoEncuentro = 1; }
-            else { ed.idTipoEncuentro = 2; }
+            if (rdb_Publico.Checked) { ed.tipoEncuentro = false; }
+            else { ed.tipoEncuentro = true; }
                 
-            if (chk_EncuentroPrivado.Checked) { ed.idTipoEncuentro = 2; }
-            else { ed.idAccesibilidad = 1; }
+            if (chk_Accesibilidad.Checked) { ed.accesibilidad = true; }
+            else{ ed.accesibilidad = false; }
 
-            // ed.clave = txt_ClaveEncuentro.Text;
+            if (string.IsNullOrEmpty(txt_Clave.Text))
+                ed.clave = string.Empty;
+            else
+                ed.clave = txt_Clave.Text;
 
             
 
-            LugarPublicoEntidad lp = new LugarPublicoEntidad();
+           // LugarPublicoEntidad lp = new LugarPublicoEntidad();
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
-                lp.nombre = string.Empty;
-            else { lp.nombre = txt_NombreLugar.Text; }
-            if (string.IsNullOrEmpty(txt_Calle.Text))
-                lp.calle = string.Empty;
-            else { lp.calle = txt_Calle.Text; }
+                ed.nombreLP = string.Empty;
+            else { ed.nombreLP = txt_NombreLugar.Text; }
 
-            lp.descripcion = string.Empty;
+            if (string.IsNullOrEmpty(txt_Direccion.Text))
+                ed.direccion = string.Empty;
+            else { ed.direccion = txt_Direccion.Text; }
 
-            int nro;
-            if (int.TryParse(txt_Calle.Text, out nro))
-                lp.nroCalle = nro;
-            lp.idBarrio = cmb_Barrio.SelectedIndex;
+           
 
-            ed.idLugarPublico = LugarPublicoDao.insertarLugarPublico(lp);
+            //  lp.descripcion = string.Empty;
 
-           // EncuentroDeportivoDao.actualizarLugarPublico(ed.idLugarPublico,idED);
+            // int nro;
+            // if (int.TryParse(txt_Calle.Text, out nro))
+            //     lp.nroCalle = nro;
+
+            // lp.idBarrio = cmb_Barrio.SelectedIndex;
+
+            //   ed.nombreLP = LugarPublicoDao.insertarLugarPublico(lp);
+
+
+            // EncuentroDeportivoDao.actualizarLugarPublico(ed.idLugarPublico,idED);
             EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
 
             /* //  ( EJEMPLOS )
@@ -151,11 +159,11 @@ namespace CapaPresentacion
             //DateTime hf;
             //if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
 
-            if (rdb_Publico.Checked) { ed.idTipoEncuentro = 1; }
-            else { ed.idTipoEncuentro = 2; }
+            if (rdb_Publico.Checked) { ed.tipoEncuentro = false; }
+            else { ed.tipoEncuentro = true; }
 
-            if (chk_EncuentroPrivado.Checked) { ed.idTipoEncuentro = 2; }
-            else { ed.idAccesibilidad = 1; }
+            //if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = true; }
+            // else{ ed.accesibilidad = false; }
 
             // ed.clave = txt_ClaveEncuentro.Text;
 
