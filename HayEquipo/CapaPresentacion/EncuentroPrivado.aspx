@@ -21,6 +21,21 @@
             </div>
         </div>
         <br />
+
+       <div class="row">
+                        <div class="col-md-1"></div>
+                        <%--<div class="col-md-2">--%>
+                            <asp:CheckBox ID="chk_Accesibilidad" runat="server" Text=" Clave" />
+                        <%--</div>--%>
+                        <%--<div class="col-md-3">--%>
+                            <asp:TextBox ID="txt_Clave" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
+
+
+                            <asp:Button ID="btn_Ingresar" runat="server" Text="Ingresar" OnClick="btn_Ingresar_Click" />
+                        <%--</div>--%>
+                        <%--<div class="col-md-1"></div>--%>
+                    </div>
+        <br />
         <div class="row">
 
             
@@ -60,7 +75,7 @@
                  <div class="row"></div>
             </div>
                 </div>
-
+            
 
             <div class="col-md-6">
             <div class="col-md-1"></div>
@@ -70,7 +85,7 @@
                          <legend>Equipo A</legend>
                         <div class="row" id="contenido">
                             <%--<div class="col-8">--%>
-                            <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
+                            <div style="width: 80%; height: 400px; overflow: scroll">
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                    <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />                                    
@@ -81,6 +96,12 @@
                             </asp:GridView>
                             <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
                         </div>
+                        <div class="row">
+                        <%-- <div class="col-md-4"></div>
+                            <div class="col-md-4">--%>
+                        <%--<asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" BackColor="Red" ForeColor="White" />--%>
+                        <asp:Button ID="UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" BackColor="Green" ForeColor="White" />
+                    </div>
                     </fieldset>
                 </div>
             </div>
@@ -90,7 +111,7 @@
                          <legend>Equipo B</legend>
                         <div class="row" id="contenido">
                             <%--<div class="col-8">--%>
-                            <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
+                            <div style="width: 80%; height: 400px; overflow: scroll">
                             <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                 <Columns>
                                     <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />
@@ -101,6 +122,12 @@
                             </asp:GridView>
                             <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
                         </div>
+                         <div class="row">
+                        <%-- <div class="col-md-4"></div>
+                            <div class="col-md-4">--%>
+                        <%--<asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" BackColor="Red" ForeColor="White" />--%>
+                        <asp:Button ID="btn_UnirseEquipoB" runat="server" Text="Unirse" OnClick="btn_UnirseEquipoB_Click" BackColor="Green" ForeColor="White" />
+                    </div>
                     </fieldset>
                 </div>
             </div>
@@ -232,38 +259,14 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-                        <%--<legend>Equipo A</legend>--%>
-                        <div class="row" id="contenido">
-                            <%--<div class="col-8">--%>
-                            <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
-                            <%--<asp:GridView ID="gdv_EquipoA" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
-                                <Columns>
-                                   <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />                                    
-                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" /> 
-                                    
-                                </Columns>
-                            </asp:GridView>--%>
-                            <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
+                        
+                    </div>                    
                         </div>
-                    </div>
                     <div class="col-md-4">
-                        <%--<legend>Equipo B</legend>--%>
-                        <div class="row" id="contenido">
-                            <%--<div class="col-8">--%>
-                            <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
-                            <%--<asp:GridView ID="gdv_EquipoB" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
-                                <Columns>
-                                    <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />
-                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
-
-                                </Columns>
-                            </asp:GridView>--%>
-                            <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
-                        </div>
                     </div>
                     <div class="col-md-1"></div>
+                    
+
                 </div>
     </form>
 </body>
