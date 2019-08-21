@@ -1,62 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CapaPresentacion.Home" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CapaPresentacion.Home" %>
 
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <style>    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #000000;
-      color: white;
-      padding: 15px;
-    }
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
-    body {
-        background-color: #0b3107;
-    }
-    .fondo {
-  overflow: hidden;
-  background-color: #525252;
-}
-  </style>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-       <img class="img-responsive" src="Imagenes/logoconnombre2.png"  width="135" height="100">
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Principal</a></li>
-        <li><a href="#">Crear Encuentro</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
-        <%--<li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>--%>
-           <%--<asp:Button ID="btn_Login" runat="server" Text="Cerrar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" BackColor="Transparent" ForeColor="White" />--%>
-          <li><asp:LinkButton ID="btn_Logout" runat="server"    Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
-<div class="container text-center">    
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container text-center">    
   <div class="row">
     <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
@@ -144,45 +93,7 @@
           </div>
         </div>
       </div>
-      <%--<div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Tenis Dobles</p>
-           <img src="Imagenes/tenisdobles.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Datos del encuentro</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Running</p>
-           <img src="Imagenes/running.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Datos del encuentro</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Basket</p>
-           <img src="Imagenes/basket.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Datos del encuentro.</p>
-          </div>
-        </div>
-      </div>     --%>
+      
     </div>
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="thumbnail">
@@ -212,12 +123,7 @@
     </div>
   </div>
 </div>
+</asp:Content>
 
-<footer class="container-fluid text-center">
-  <p>Pie de Página</p>
-</footer>
 
-    </div>
-    </form>
-</body>
-</html>
+
