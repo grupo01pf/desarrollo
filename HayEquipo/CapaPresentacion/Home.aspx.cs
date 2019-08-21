@@ -75,7 +75,7 @@ namespace CapaPresentacion
 
             GridViewRow fila = gdv_EncuentrosDisponibles.SelectedRow;
 
-            string tipoEncuentro = fila.Cells[7].Text;
+            string tipoEncuentro = fila.Cells[2].Text;
 
             //  lbl_Prueba.Text = tipoEncuentro;
 
@@ -84,5 +84,7 @@ namespace CapaPresentacion
             else
                 Response.Redirect("EncuentroPrivado.aspx");
         }
+
+       
     }
 }

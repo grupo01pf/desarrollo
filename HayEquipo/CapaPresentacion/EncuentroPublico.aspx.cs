@@ -20,10 +20,7 @@ namespace CapaPresentacion
 
         }
 
-        protected void btn_Unirsr_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void cargarTabla() {
 
@@ -34,7 +31,14 @@ namespace CapaPresentacion
            */
         }
 
+        protected void btn_Ingresar_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        protected void btn_Unirse_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

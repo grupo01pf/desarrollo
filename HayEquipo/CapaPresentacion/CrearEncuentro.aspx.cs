@@ -60,7 +60,7 @@ namespace CapaPresentacion
 
             ed.idEstado = 1; // (habilitado)
 
-            
+
             DateTime hi;
             if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
 
@@ -133,12 +133,13 @@ namespace CapaPresentacion
             else { ed.direccion = txt_Direccion.Text; }
 
 
-            if (string.IsNullOrEmpty(txt_HoraInicio.Text)) {
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
+            {
                 DateTime hi;
                 if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
             }
 
-            if (string.IsNullOrEmpty(txt_HoraInicio.Text)){
+            if (string.IsNullOrEmpty(txt_HoraFin.Text)){
                 DateTime hf;
                 if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
             }
@@ -243,6 +244,11 @@ namespace CapaPresentacion
             txt_HoraFin.Enabled = false;
 
             cmb_Complejo.Enabled = true;
+
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
 
         }
     }

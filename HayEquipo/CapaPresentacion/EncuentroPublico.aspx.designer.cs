@@ -22,6 +22,33 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Control chk_Accesibilidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_Accesibilidad;
+        
+        /// <summary>
+        /// Control txt_Clave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Clave;
+        
+        /// <summary>
+        /// Control btn_Ingresar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Ingresar;
+        
+        /// <summary>
         /// Control lbl_Fecha.
         /// </summary>
         /// <remarks>
@@ -148,12 +175,12 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btn_Salir;
         
         /// <summary>
-        /// Control btn_Unirsr.
+        /// Control btn_Unirse.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Unirsr;
+        protected global::System.Web.UI.WebControls.Button btn_Unirse;
     }
 }
