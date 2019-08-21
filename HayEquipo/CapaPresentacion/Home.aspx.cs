@@ -18,7 +18,7 @@ namespace CapaPresentacion
                 if (!IsPostBack)
                 {
 
-               // cargarEventosDisponibles();
+                cargarEventosDisponibles();
                    // cargarLugaresPublicos();
                    // cargarLugaresPrivados();
             }
@@ -49,31 +49,31 @@ namespace CapaPresentacion
         protected void cargarEventosDisponibles()
         {
 
-            gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
-            gdv_LugaresPublicos.DataBind();
+            gdv_EncuentrosDisponibles.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            //  gdv_EncuentrosDisponibles.DataKeyNames = new string[] { "id" };
+            gdv_EncuentrosDisponibles.DataBind();
 
         }
         protected void cargarLugaresPublicos() {
 
-            gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+          //  gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
           //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
-            gdv_LugaresPublicos.DataBind();
+          //  gdv_LugaresPublicos.DataBind();
 
         }
         protected void cargarLugaresPrivados()
         {
 
-            gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
+          //  gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
           //  gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
-            gdv_LugaresPrivados.DataBind();
+         //   gdv_LugaresPrivados.DataBind();
 
         }
 
         protected void gdv_LugaresPublicos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            GridViewRow fila = gdv_LugaresPublicos.SelectedRow;
+            GridViewRow fila = gdv_EncuentrosDisponibles.SelectedRow;
 
             string tipoEncuentro = fila.Cells[7].Text;
 

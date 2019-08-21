@@ -69,12 +69,13 @@ namespace CapaPresentacion
             
            DateTime hf;
             if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
-               
-            if (rdb_Publico.Checked) { ed.tipoEncuentro = false; }
-            else { ed.tipoEncuentro = true; }
-                
-            if (chk_Accesibilidad.Checked) { ed.accesibilidad = true; }
-            else{ ed.accesibilidad = false; }
+
+            // if (rdb_Publico.Checked) { ed.tipoEncuentro = "Publico"; }
+            // else { ed.tipoEncuentro = "Privado"; }
+            ed.tipoEncuentro = "Publico";
+
+            if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
+            else{ ed.accesibilidad = "Abierto"; }
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
                 ed.clave = string.Empty;
@@ -102,24 +103,11 @@ namespace CapaPresentacion
 
             // lp.idBarrio = cmb_Barrio.SelectedIndex;
 
-            //   ed.nombreLP = LugarPublicoDao.insertarLugarPublico(lp);
 
 
-            // EncuentroDeportivoDao.actualizarLugarPublico(ed.idLugarPublico,idED);
+            
             EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
 
-            /* //  ( EJEMPLOS )
-             int nro;
-            if (int.TryParse(txtNroCalle.Text, out nro))
-                paciente.NroCalle = nro;
-
-            if (string.IsNullOrEmpty(txtTelefono.Text))
-                paciente.Telefono = string.Empty;
-            // paciente.Telefono = null;
-            else { paciente.Telefono = txtTelefono.Text; }
-             
-             
-             */
 
         }
 
@@ -138,32 +126,19 @@ namespace CapaPresentacion
                 ed.fechaCreacionEncuentro = fecha;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
            ed.idComplejo = cmb_Complejo.SelectedIndex;
-           //  ed.idComplejo = 7;
-            //  ed.calle = txt_Direccion.Text;
-            //  ed.numeroCalle = 0;
-            // ed.idEquipo = 0;
+
 
             DateTime calendario = cld_Fecha.SelectedDate;
             DateTime fi;
             if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
                 ed.fechaInicioEncuentro = fi;
 
-            //  ed.fechaFinEncuentro 
-
             ed.idEstado = 1; // (habilitado)
 
-            // string hi = txt_HoraInicio.Text;
-            //DateTime hi;
-            //if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
+            ed.tipoEncuentro = "Privado";
 
-            //DateTime hf;
-            //if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
-
-            if (rdb_Publico.Checked) { ed.tipoEncuentro = false; }
-            else { ed.tipoEncuentro = true; }
-
-            if (chk_Accesibilidad.Checked) { ed.accesibilidad = true; }
-            else { ed.accesibilidad = false; }
+            if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
+            else { ed.accesibilidad = "Abierto"; }
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
                 ed.clave = string.Empty;
@@ -190,6 +165,8 @@ namespace CapaPresentacion
                 if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
             }
 
+            EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
+
             //if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = true; }
             // else{ ed.accesibilidad = false; }
 
@@ -213,10 +190,6 @@ namespace CapaPresentacion
             lp.idBarrio = cmb_Barrio.SelectedIndex;
             */
 
-            // ed.idLugarPublico = null;
-
-            // EncuentroDeportivoDao.actualizarLugarPublico(ed.idLugarPublico,idED);
-            EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
 
         }
 

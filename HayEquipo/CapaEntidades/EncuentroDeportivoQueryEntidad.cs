@@ -21,15 +21,15 @@ namespace CapaEntidades
         public DateTime fechaInicioEncuentro { get; set; }
         public DateTime fechaFinEncuentro { get; set; }
         public int idEstado { get; set; }
-        public bool? tipoEncuentro { get; set; }
-        public bool? accesibilidad { get; set; }
+        public string tipoEncuentro { get; set; }
+        public string accesibilidad { get; set; }
         public DateTime horaInicio { get; set; }
         public DateTime horaFIn { get; set; }
         public string nombreLP { get; set; }
 
         public string direccion { get; set; }
         // public int numeroCalle { get; set; }
-        public String clave { get; set; }
+        public string clave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }

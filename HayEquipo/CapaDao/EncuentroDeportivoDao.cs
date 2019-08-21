@@ -67,10 +67,10 @@ namespace CapaDao
                                 VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@fechaInicioEncuentro,
                                 @idEstado,@idTipoEncuentro,@idAccesibilidad,@horaInicio,@horaFin,@idLugarPublico)";*/
             cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                idDeporte,fechaInicioEncuentro,idEstado, horaFin,horaInicio,nombreLP,
-                                tipoEncuentro,accesibilidad,direccion,clave)
+                                idDeporte,fechaInicioEncuentro,idEstado, horaFin,nombreLP,
+                                direccion,clave,horaInicio,tipoEncuentro,accesibilidad)
                                 VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@fechaInicioEncuentro,
-                                @idEstado,@horaFin,@horaInicio,@nombreLP,@tipoEncuentro,@accesibilidad,@direccion,@clave);"; 
+                                @idEstado,@horaFin,@nombreLP,@direccion,@clave,@horaInicio,@tipoEncuentro,@accesibilidad);"; 
                                 //select Scope_Identity() as ID";
 
             cmd.Parameters.AddWithValue("@idUsuario", ed.idAUsuario);
