@@ -94,6 +94,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CrearEncuentro.aspx" />
+    <Content Include="css\Style.css" />
+    <Content Include="EncuentroPrivado.aspx" />
+    <Content Include="EncuentroPublico.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -133,6 +137,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrearEncuentro.aspx.cs">
+      <DependentUpon>CrearEncuentro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearEncuentro.aspx.designer.cs">
+      <DependentUpon>CrearEncuentro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncuentroPrivado.aspx.cs">
+      <DependentUpon>EncuentroPrivado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncuentroPrivado.aspx.designer.cs">
+      <DependentUpon>EncuentroPrivado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncuentroPublico.aspx.cs">
+      <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncuentroPublico.aspx.designer.cs">
+      <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

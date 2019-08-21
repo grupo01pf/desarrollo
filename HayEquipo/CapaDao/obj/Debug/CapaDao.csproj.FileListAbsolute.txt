@@ -12,3 +12,10 @@ C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntid
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\bin\Debug\CapaDao.dll
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\bin\Debug\CapaDao.pdb
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\bin\Debug\CapaEntidades.dll
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\bin\Debug\CapaEntidades.pdb
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb

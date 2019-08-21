@@ -40,14 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BarrioDao.cs" />
+    <Compile Include="ComplejoDeportivoDao.cs" />
+    <Compile Include="ConnectionString.cs" />
+    <Compile Include="DeporteDao.cs" />
+    <Compile Include="EncuentroDeportivioQueryDao.cs" />
+    <Compile Include="EncuentroDeportivoDao.cs" />
+    <Compile Include="LugarPublicoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioDao.cs" />
+    <Compile Include="ZonaDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
       <Project>{216e5a1d-be09-40c7-b38d-7b47954aac07}</Project>
       <Name>CapaEntidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
