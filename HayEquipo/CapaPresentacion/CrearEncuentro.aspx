@@ -60,15 +60,17 @@
                         <br />
                         <div class="row">
                             <div class="col-md-3">
-                                <asp:Label ID="lbl_Zona" runat="server" Text="Zona"></asp:Label>
-                                <%--NO BORRAR--%>
+                                 <%--NO BORRAR--%>
+                                <%--<asp:Label ID="lbl_Zona" runat="server" Text="Zona"></asp:Label>--%>
+                               
                                 <%--<asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>--%>
                             </div>
                             <div class="col-md-3">
-                                <asp:DropDownList ID="cmb_Zona" runat="server" AppendDataBoundItems>
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>
                                 <%--NO BORRAR--%>
+                               <%-- <asp:DropDownList ID="cmb_Zona" runat="server" AppendDataBoundItems>
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>--%>
+                                
                                 <%--<asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                 </asp:DropDownList>--%>
@@ -133,34 +135,22 @@
                         <div class="row">
                             <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>
                             </div>
-                        <br />
+                        
                         <div class="row">
                             <asp:TextBox ID="txt_NombreLugar" runat="server" placeHolder="Lugar" Columns="50" MaxLength="40"></asp:TextBox>
                             </div>
 
                         <br />
-                        <div class="row">
-                            <div class="col-md-3">
-                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
-                            </div>
-                            <div class="col-md-3">
-                                
-                                <%--<asp:Label ID="lbl_NroCalle" runat="server" Text="Nro"></asp:Label>--%>
-                               
-                            </div>
+                        <div class="row">                      
+                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>     
                         </div>
                         
                         <div class="row">
-                            <div class="col-md-3">
-                                <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" Columns="20" MaxLength="50"></asp:TextBox>
-                                </div>
-                            <div class="col-md-3">
-                                 <%--<asp:TextBox ID="txt_NroCalle" runat="server" placeHolder="#####" Columns="5" MaxLength="5"></asp:TextBox>--%>
+                                <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="40"></asp:TextBox>
+                            </div>
 
-                            </div>
-                            </div>
                         <br />
-                         <div class="row">
+                        <%-- <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
                             </div>
@@ -170,9 +160,7 @@
                                 </asp:DropDownList>
                             </div>
                             
-                        </div>
-
-                        <br />
+                        </div>--%>
                     </fieldset>
                     <br />
 
@@ -198,13 +186,13 @@
 
                             <div class="col-md-3">
                                 <div class="row">
-                                    <asp:Label ID="lbl_TipoCancha" runat="server" Text="Canchas"></asp:Label>
+                                    <%--<asp:Label ID="lbl_TipoCancha" runat="server" Text="Canchas"></asp:Label>--%>
                                 </div>
                                 <br />
                                 <div class="row">
-                                    <asp:DropDownList ID="cmb_TipoCancha" runat="server" AppendDataBoundItems>
+                                    <%--<asp:DropDownList ID="cmb_TipoCancha" runat="server" AppendDataBoundItems>
                                         <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                    </asp:DropDownList>
+                                    </asp:DropDownList>--%>
                                 </div>
 
                             </div>
@@ -213,23 +201,23 @@
                         <br />
 
                         <div class="row">
-                            <asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" BackColor="Blue" ForeColor="White" />
+                            <%--<asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" BackColor="Blue" ForeColor="White" />--%>
                         </div>
                         <div class="row">
 
                             <%-- GRILLA HORARIOS DISPONIBLES --%>
                             <fieldset>
-                                <legend>Horarios</legend>
+                                <%--<legend>Horarios</legend>--%>
                                 <div class="col-md-6">
 
                                     <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
-                                    <asp:GridView ID="gdv_Horario" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                                    <%--<asp:GridView ID="gdv_Horario" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
                                         <Columns>
                                             <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />
                                             <asp:BoundField DataField="Hora" HeaderText="Hora" Visible="true" />
                                             <asp:BoundField DataField="Disponibilidad" HeaderText="Disponibilidad" Visible="true" />
                                         </Columns>
-                                    </asp:GridView>
+                                    </asp:GridView>--%>
                                 </div>
 
                             </fieldset>

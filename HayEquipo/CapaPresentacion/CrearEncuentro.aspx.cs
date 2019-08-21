@@ -48,30 +48,21 @@ namespace CapaPresentacion
             if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
             ed.fechaCreacionEncuentro = fecha;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
-           // ed.idComplejo = 5;
-           // ed.idComplejo = 0;
-            //  ed.calle = txt_Direccion.Text;
-            //  ed.numeroCalle = 0;
            // ed.idEquipo = 0;
 
             DateTime calendario = cld_Fecha.SelectedDate;
             DateTime fi;
             if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
                 ed.fechaInicioEncuentro = fi;
-           
-            //  ed.fechaFinEncuentro 
 
             ed.idEstado = 1; // (habilitado)
 
-           // string hi = txt_HoraInicio.Text;
            DateTime hi;
             if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
-            
-           DateTime hf;
+
+            DateTime hf;
             if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
 
-            // if (rdb_Publico.Checked) { ed.tipoEncuentro = "Publico"; }
-            // else { ed.tipoEncuentro = "Privado"; }
             ed.tipoEncuentro = "Publico";
 
             if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
@@ -81,10 +72,7 @@ namespace CapaPresentacion
                 ed.clave = string.Empty;
             else
                 ed.clave = txt_Clave.Text;
-
             
-
-           // LugarPublicoEntidad lp = new LugarPublicoEntidad();
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
             else { ed.nombreLP = txt_NombreLugar.Text; }
@@ -92,19 +80,6 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Direccion.Text))
                 ed.direccion = string.Empty;
             else { ed.direccion = txt_Direccion.Text; }
-
-           
-
-            //  lp.descripcion = string.Empty;
-
-            // int nro;
-            // if (int.TryParse(txt_Calle.Text, out nro))
-            //     lp.nroCalle = nro;
-
-            // lp.idBarrio = cmb_Barrio.SelectedIndex;
-
-
-
             
             EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
 
@@ -124,9 +99,9 @@ namespace CapaPresentacion
             DateTime fecha;
             if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
                 ed.fechaCreacionEncuentro = fecha;
-            ed.idDeporte = cmb_Deporte.SelectedIndex;
-           ed.idComplejo = cmb_Complejo.SelectedIndex;
 
+            ed.idDeporte = cmb_Deporte.SelectedIndex;
+            ed.idComplejo = cmb_Complejo.SelectedIndex;
 
             DateTime calendario = cld_Fecha.SelectedDate;
             DateTime fi;
@@ -159,37 +134,12 @@ namespace CapaPresentacion
                 if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
             }
 
-            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
-            {
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text)){
                 DateTime hf;
                 if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
             }
 
             EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
-
-            //if (chk_EncuentroPrivado.Checked) { ed.accesibilidad = true; }
-            // else{ ed.accesibilidad = false; }
-
-            // ed.clave = txt_ClaveEncuentro.Text;
-
-            /*
-
-            LugarPublicoEntidad lp = new LugarPublicoEntidad();
-            if (string.IsNullOrEmpty(txt_NombreLugar.Text))
-                lp.nombre = string.Empty;
-            else { lp.nombre = txt_NombreLugar.Text; }
-            if (string.IsNullOrEmpty(txt_Calle.Text))
-                lp.calle = string.Empty;
-            else { lp.calle = txt_Calle.Text; }
-
-            lp.descripcion = string.Empty;
-
-            int nro;
-            if (int.TryParse(txt_Calle.Text, out nro))
-                lp.nroCalle = nro;
-            lp.idBarrio = cmb_Barrio.SelectedIndex;
-            */
-
 
         }
 
@@ -217,10 +167,10 @@ namespace CapaPresentacion
 
         private void cargarZonas() {
 
-            cmb_Zona.DataSource = ZonaDao.obtenerZonas();
-            cmb_Zona.DataValueField = "IdZona";
-            cmb_Zona.DataValueField = "nombre";
-            cmb_Zona.DataBind();
+            //cmb_Zona.DataSource = ZonaDao.obtenerZonas();
+            //cmb_Zona.DataValueField = "IdZona";
+            //cmb_Zona.DataValueField = "nombre";
+            //cmb_Zona.DataBind();
         }
         private void cargarComplejos() {
 
@@ -237,10 +187,10 @@ namespace CapaPresentacion
         private void cargarBarrios()
         {
 
-            cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
-            cmb_Barrio.DataValueField = "IdBarrio";
-            cmb_Barrio.DataValueField = "nombre";
-            cmb_Barrio.DataBind();
+            //cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            //cmb_Barrio.DataValueField = "IdBarrio";
+            //cmb_Barrio.DataValueField = "nombre";
+            //cmb_Barrio.DataBind();
         }
 
 
