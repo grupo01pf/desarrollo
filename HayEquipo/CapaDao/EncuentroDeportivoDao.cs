@@ -47,25 +47,6 @@ namespace CapaDao
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            /*  cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                   fechaDestruccionEncuentro,idDeporte,idComplejo,calle,nroCalle,idEquipo,
-                                   fechaInicioEncuentro,FechaFinEncuentro,idEstado,tipoEncuentro,accesibilidad,
-                                   clave,horaInicio,horaFin) 
-                                   VALUES (@idUsuario,@fechaCreacionEncuentrol,@fechaDestruccionEncuentro,@idDeporte,
-                                   @idComplejo,@calle,@nroCalle,@idEquipo,@fechaInicioEncuentro,@FechaFinEncuentro,
-                                   @idEstado,@tipoEncuentro,@accesibilidad,@clave,@horaInicio,@horaFin);
-                                   select Scope_Identity() as ID";*/
-            /* cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                   idDeporte,calle,fechaInicioEncuentro,idEstado,tipoEncuentro,accesibilidad,
-                                   clave,horaInicio,horaFin) 
-                                   VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@calle,@fechaInicioEncuentro,
-                                   @idEstado,@tipoEncuentro,@accesibilidad,@clave,@horaInicio,@horaFin)";*/
-
-            /*  cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
-                                idDeporte,fechaInicioEncuentro,idEstado,idTipoEncuentro,idAccesibilidad,
-                                horaInicio,horaFin,idLugarPublico)
-                                VALUES (@idUsuario,@fechaCreacionEncuentro,@idDeporte,@fechaInicioEncuentro,
-                                @idEstado,@idTipoEncuentro,@idAccesibilidad,@horaInicio,@horaFin,@idLugarPublico)";*/
             cmd.CommandText = @"INSERT INTO EncuentroDeportivo (idUsuario,fechaCreacionEncuentro,
                                 idDeporte,fechaInicioEncuentro,idEstado, horaFin,nombreLP,
                                 direccion,clave,horaInicio,tipoEncuentro,accesibilidad)

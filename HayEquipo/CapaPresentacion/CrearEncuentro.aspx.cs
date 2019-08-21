@@ -57,7 +57,8 @@ namespace CapaPresentacion
 
             ed.idEstado = 1; // (habilitado)
 
-           DateTime hi;
+            
+            DateTime hi;
             if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
 
             DateTime hf;

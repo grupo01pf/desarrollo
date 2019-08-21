@@ -106,7 +106,7 @@
                                 <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio" ></asp:Label>
                             </div>
                             <div class="col-md-1">
-                                <asp:TextBox ID="txt_HoraInicio" runat="server" placeholder="HH:MM" Columns="5" MaxLength="5"></asp:TextBox>
+                                <asp:TextBox ID="txt_HoraInicio" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
                                
                             </div>
                         <%--</div>--%>
@@ -117,7 +117,7 @@
                                 <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
                             </div>
                             <div class="col-md-1">
-                                <asp:TextBox ID="txt_HoraFin" runat="server" placeholder="HH:MM" Columns="5" MaxLength="5"></asp:TextBox>
+                                <asp:TextBox ID="txt_HoraFin" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
                             </div>
 
                         </div>
