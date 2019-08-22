@@ -103,7 +103,11 @@
                     <%--  LUGAR PUBLICO--%>
                     <fieldset>
                         <div class="row">
+<<<<<<< HEAD
                             <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
+=======
+                            <asp:RadioButton ID="rdb_Publico" runat="server" Text="Lugar Público" GroupName="tipoEncuentro" value="0" />
+>>>>>>> parent of fe3928b... frontedn publico privado
                         </div>
                         <%--<br />--%>
                         <div class="row">
@@ -174,7 +178,11 @@
                     <fieldset>
 
                         <div class="row">
+<<<<<<< HEAD
                             <asp:RadioButton ID="rdb_Privado" runat="server" Text=" Lugar Privado" GroupName="tipoEncuentro" value="1" OnCheckedChanged="rdb_Privado_CheckedChanged" AutoPostBack="true" />
+=======
+                            <asp:RadioButton ID="rdb_Privado" runat="server" Text="Lugar Privado" GroupName="tipoEncuentro" value="1" />
+>>>>>>> parent of fe3928b... frontedn publico privado
                         </div>
                         <div class="row">
                             <div class="col-md-3">
