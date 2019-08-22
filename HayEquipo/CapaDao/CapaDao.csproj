@@ -41,8 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeportistaDao.cs" />
+    <Compile Include="BarrioDao.cs" />
+    <Compile Include="ComplejoDeportivoDao.cs" />
+    <Compile Include="ConnectionString.cs" />
+    <Compile Include="DeporteDao.cs" />
+    <Compile Include="EncuentroDeportivioQueryDao.cs" />
+    <Compile Include="EncuentroDeportivoDao.cs" />
+    <Compile Include="LugarPublicoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioDao.cs" />
+    <Compile Include="ZonaDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
@@ -50,8 +58,11 @@
       <Name>CapaEntidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

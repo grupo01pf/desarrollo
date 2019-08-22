@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    public class ResponsableEntidad :PersonaEntidad
+    public class ResponsableEntidad:PersonaEntidad
     {
         public int? idResponsable { get; set; }
         public string email { get; set; }

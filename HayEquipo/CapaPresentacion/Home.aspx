@@ -44,11 +44,14 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Principal</a></li>
-        <li><a href="#">Crear Encuentro</a></li>
+        <%--<li><a href="#">Crear Encuentro</a></li>--%>
+        <li> <asp:LinkButton ID="btn_CrearEncuentro" runat="server"    Text="Crear Encuentro" OnClick="btn_CrearEncuentro_Click" BackColor="Yellow" ForeColor="Black"></asp:LinkButton></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</a></li>
+        <%--<li><a href="Login.aspx"><span class="glyphicon glyphicon-off" ></span> Cerrar Sesión</a></li>--%>
+           <%--<asp:Button ID="btn_Login" runat="server" Text="Cerrar Sesión" ValidationGroup="E" OnClick="btn_Login_Click" BackColor="Transparent" ForeColor="White" />--%>
+          <asp:LinkButton ID="btn_Logout" runat="server"    Text="Cerrar Sesión" OnClick="btn_Logout_Click" ></asp:LinkButton>
       </ul>
     </div>
   </div>
@@ -58,7 +61,8 @@
   <div class="row">
     <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
-        <p><a href="#">Ignacio Monetto</a></p>
+        <%--<p><a href="#">Ignacio Monetto</a></p>--%>
+         <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
         <img src="Imagenes/nene.png" class="img-circle" height="65" width="65" alt="Avatar">
       </div>
       
@@ -136,8 +140,34 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-           <p>Aquí los datos del encuentro</p>
+           <p>Encuentros Vigentes</p>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
+             
+              <%-- GRILLA LUGARES PUBLICOS --%>
+               <div class="row">
+                   <asp:Label ID="lbl_Prueba" runat="server" ></asp:Label>
+                    <div style="width: 30; height: 400px; overflow: scroll">
+                  <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered"
+                      OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
+                                <Columns>
+                                    <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
+                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
+                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
+                                    <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
+                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
+                                    <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
+                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                </Columns>
+                            </asp:GridView>
+                    
+              </div>
+                   </div>
+
+
           </div>
         </div>
       </div>
