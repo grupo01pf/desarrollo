@@ -11,34 +11,31 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            btn_UnirseEquipoA.Enabled = false;
+            btn_UnirseEquipoA.Enabled = false;
 
         }
 
         protected void btn_Ingresar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btn_Salir_Click(object sender, EventArgs e)
-        {
-
+            btn_UnirseEquipoA.Enabled = true;
+            btn_UnirseEquipoA.Enabled = true;
         }
 
 
 
-        protected void btn_Unirse_Click(object sender, EventArgs e)
-        {
-
-        }
        
 
         protected void UnirseEquipoA_Click(object sender, EventArgs e)
         {
-
+            btn_UnirseEquipoA.Enabled = false;
+            btn_UnirseEquipoA.Enabled = true;
         }
 
         protected void btn_UnirseEquipoB_Click(object sender, EventArgs e)
         {
+            btn_UnirseEquipoA.Enabled = true;
+            btn_UnirseEquipoA.Enabled = false;
 
         }
     }

@@ -12,7 +12,8 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            btn_Unirse.Enabled = false;
+            btn_Salir.Enabled = false;
         }
 
         protected void btn_Salir_Click(object sender, EventArgs e)
@@ -34,7 +35,12 @@ namespace CapaPresentacion
         protected void btn_Ingresar_Click(object sender, EventArgs e)
         {
 
+            btn_Unirse.Enabled = true;
+            btn_Salir.Enabled = true;
+
         }
+
+        
 
         protected void btn_Unirse_Click(object sender, EventArgs e)
         {

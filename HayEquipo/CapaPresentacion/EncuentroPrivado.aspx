@@ -100,7 +100,7 @@
                         <%-- <div class="col-md-4"></div>
                             <div class="col-md-4">--%>
                         <%--<asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" BackColor="Red" ForeColor="White" />--%>
-                        <asp:Button ID="UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" BackColor="Green" ForeColor="White" />
+                        <asp:Button ID="btn_UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" BackColor="Green" ForeColor="White" />
                     </div>
                     </fieldset>
                 </div>
