@@ -22,17 +22,12 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-<<<<<<< HEAD
         /// Control chk_Accesibilidad.
-=======
-        /// Control lbl_Deporte.
->>>>>>> parent of fe3928b... frontedn publico privado
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.CheckBox chk_Accesibilidad;
         
         /// <summary>
@@ -52,9 +47,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Ingresar;
-=======
-        protected global::System.Web.UI.WebControls.Label lbl_Deporte;
->>>>>>> parent of fe3928b... frontedn publico privado
         
         /// <summary>
         /// Control lbl_Fecha.
@@ -66,13 +58,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Fecha;
         
         /// <summary>
-        /// Control cmb_Deporte.
+        /// Control lbl_Deporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
+        protected global::System.Web.UI.WebControls.Label lbl_Deporte;
         
         /// <summary>
         /// Control cld_Fecha.
@@ -84,22 +76,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Calendar cld_Fecha;
         
         /// <summary>
-        /// Control lbl_Zona.
+        /// Control cmb_Deporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Zona;
-        
-        /// <summary>
-        /// Control cmb_Zona.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Zona;
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
         
         /// <summary>
         /// Control lbl_HoraInicio.
@@ -156,58 +139,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_NombreLugar;
         
         /// <summary>
-        /// Control lbl_Calle.
+        /// Control lbl_Direccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Calle;
+        protected global::System.Web.UI.WebControls.Label lbl_Direccion;
         
         /// <summary>
-        /// Control lbl_NroCalle.
+        /// Control txt_Direccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_NroCalle;
-        
-        /// <summary>
-        /// Control txt_Calle.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Calle;
-        
-        /// <summary>
-        /// Control txt_NroCalle.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_NroCalle;
-        
-        /// <summary>
-        /// Control lbl_Barrio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Barrio;
-        
-        /// <summary>
-        /// Control cmb_Barrio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Barrio;
+        protected global::System.Web.UI.WebControls.TextBox txt_Direccion;
         
         /// <summary>
         /// Control gdv_UsuariosUnidos.
