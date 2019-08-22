@@ -17,7 +17,7 @@
         <div class="row">
 
             <div class="row">
-                <h1 style="text-align: center">Encuentro Privad</h1>
+                <h1 style="text-align: center">Encuentro Privado</h1>
             </div>
         </div>
         <br />
