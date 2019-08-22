@@ -22,12 +22,17 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+<<<<<<< HEAD
         /// Control chk_Accesibilidad.
+=======
+        /// Control lbl_Deporte.
+>>>>>>> parent of fe3928b... frontedn publico privado
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
+<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.CheckBox chk_Accesibilidad;
         
         /// <summary>
@@ -47,6 +52,9 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Ingresar;
+=======
+        protected global::System.Web.UI.WebControls.Label lbl_Deporte;
+>>>>>>> parent of fe3928b... frontedn publico privado
         
         /// <summary>
         /// Control lbl_Fecha.
@@ -58,6 +66,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Fecha;
         
         /// <summary>
+        /// Control cmb_Deporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
+        
+        /// <summary>
         /// Control cld_Fecha.
         /// </summary>
         /// <remarks>
@@ -65,6 +82,51 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar cld_Fecha;
+        
+        /// <summary>
+        /// Control lbl_Zona.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Zona;
+        
+        /// <summary>
+        /// Control cmb_Zona.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Zona;
+        
+        /// <summary>
+        /// Control lbl_Barrio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Barrio;
+        
+        /// <summary>
+        /// Control cmb_Barrio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Barrio;
+        
+        /// <summary>
+        /// Control rdb_Privado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_Privado;
         
         /// <summary>
         /// Control lbl_Complejo.
@@ -85,33 +147,43 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cmb_Complejo;
         
         /// <summary>
-        /// Control lbl_Deporte.
+        /// Control lbl_TipoCancha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Deporte;
+        protected global::System.Web.UI.WebControls.Label lbl_TipoCancha;
         
         /// <summary>
-        /// Control cmb_Deporte.
+        /// Control cmb_TipoCancha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
+        protected global::System.Web.UI.WebControls.DropDownList cmb_TipoCancha;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control gdv_Horario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gdv_Horario;
         
         /// <summary>
+        /// Control gdv_EquipoA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_EquipoA;
+        
+        /// <summary>
+<<<<<<< HEAD
         /// Control UnirseEquipoA.
         /// </summary>
         /// <remarks>
@@ -122,11 +194,15 @@ namespace CapaPresentacion {
         
         /// <summary>
         /// Control GridView2.
+=======
+        /// Control gdv_EquipoB.
+>>>>>>> parent of fe3928b... frontedn publico privado
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
+<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
@@ -137,5 +213,8 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_UnirseEquipoB;
+=======
+        protected global::System.Web.UI.WebControls.GridView gdv_EquipoB;
+>>>>>>> parent of fe3928b... frontedn publico privado
     }
 }

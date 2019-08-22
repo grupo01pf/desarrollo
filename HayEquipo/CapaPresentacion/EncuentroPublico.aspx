@@ -23,6 +23,7 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-7">
+<<<<<<< HEAD
                 <%--DATOS--%>
                 <fieldset>
                     <div class="row">
@@ -80,6 +81,49 @@
                                 </asp:DropDownList>--%>
                             <%--NO BORRAR--%>
                             <%--<asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
+=======
+                  <%--DATOS--%>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <asp:Label ID="lbl_Deporte" runat="server" Text="Deporte"></asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+                                </div>
+                            
+                               
+                            
+                            
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                             <asp:DropDownList ID="cmb_Deporte" runat="server" AppendDataBoundItems>
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-4">
+                                <%--NO BORRAR--%>
+                                <asp:Calendar ID="cld_Fecha" runat="server"></asp:Calendar>
+                                <%--<asp:TextBox ID="txt_Fecha" runat="server" TextMode="Date"></asp:TextBox>--%>
+                            </div>
+                        </div>
+                        
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <asp:Label ID="lbl_Zona" runat="server" Text="Zona"></asp:Label>
+                                <%--NO BORRAR--%>
+                                <%--<asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>--%>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="cmb_Zona" runat="server" AppendDataBoundItems>
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>
+                                <%--NO BORRAR--%>
+                                <%--<asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
+>>>>>>> parent of fe3928b... frontedn publico privado
                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                 </asp:DropDownList>--%>
                         </div>
@@ -93,19 +137,28 @@
                 <div class="col-md-6">
                     <%--  LUGAR PUBLICO--%>
                     <fieldset>
+<<<<<<< HEAD
 
                         <%--<div class="row">
                             <asp:RadioButton ID="rdb_Publico" runat="server" Text="Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true"/>
                         </div>
                         <br />--%>
+=======
+                        
+>>>>>>> parent of fe3928b... frontedn publico privado
                         <div class="row">
 
                             <div class="col-md-1">
                                 <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
                             </div>
                             <div class="col-md-1">
+<<<<<<< HEAD
                                 <asp:TextBox ID="txt_HoraInicio" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
 
+=======
+                                <asp:TextBox ID="txt_HoraInicio" runat="server" placeholder="HH:MM" Columns="5" MaxLength="5"></asp:TextBox>
+                               
+>>>>>>> parent of fe3928b... frontedn publico privado
                             </div>
                             <%--</div>--%>
                             <%--<br />--%>
@@ -115,7 +168,7 @@
                                 <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
                             </div>
                             <div class="col-md-1">
-                                <asp:TextBox ID="txt_HoraFin" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
+                                <asp:TextBox ID="txt_HoraFin" runat="server" placeholder="HH:MM" Columns="5" MaxLength="5"></asp:TextBox>
                             </div>
 
                         </div>
@@ -140,14 +193,38 @@
 
                         <br />
                         <div class="row">
+<<<<<<< HEAD
                             <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
+=======
+                            <div class="col-md-4">
+                                <asp:Label ID="lbl_Calle" runat="server" Text="Calle"></asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <asp:Label ID="lbl_NroCalle" runat="server" Text="Nro"></asp:Label>
+                               
+                            </div>
+>>>>>>> parent of fe3928b... frontedn publico privado
                         </div>
 
                         <div class="row">
+<<<<<<< HEAD
                             <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="40"></asp:TextBox>
                         </div>
                         <br />
                         <%--<div class="row">
+=======
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txt_Calle" runat="server" placeHolder="Ingrese una direccion" Columns="20" MaxLength="50"></asp:TextBox>
+                                </div>
+                            <div class="col-md-4">
+                                 <asp:TextBox ID="txt_NroCalle" runat="server" placeHolder="#####" Columns="5" MaxLength="5"></asp:TextBox>
+
+                            </div>
+                            </div>
+                        <br />
+                         <div class="row">
+>>>>>>> parent of fe3928b... frontedn publico privado
                             <div class="col-md-4">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
                             </div>
@@ -157,7 +234,7 @@
                                 </asp:DropDownList>
                             </div>
                             
-                        </div>--%>
+                        </div>
 
                         <br />
                     </fieldset>
@@ -166,7 +243,24 @@
 
 
 
+<<<<<<< HEAD
                 <br />
+=======
+            </div>
+            <div class="col-md-4"></div>
+                    <div class="row" id="contenido">
+            <div class="col-8">
+                 <div style="width: 180%; height: 400px; overflow: scroll">
+                 <asp:GridView ID="gdv_UsuariosUnidos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
+                                <Columns>
+                                   <asp:CommandField HeaderText="Unirse" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" /> 
+                                    
+                                </Columns>
+                            </asp:GridView>
+                <%--<asp:DataList ID="dtl_UsuariosUnidos" runat="server" ></asp:DataList>--%>
+>>>>>>> parent of fe3928b... frontedn publico privado
 
             </div>
             <div class="col-md-4">

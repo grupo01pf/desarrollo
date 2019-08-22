@@ -14,9 +14,6 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
-
-                deshabilitarControles();
-
                 cargarDeportes();
                // cargarZonas();
                 cargarComplejos();
@@ -198,16 +195,6 @@ namespace CapaPresentacion
             //cmb_Barrio.DataBind();
         }
 
-        private void deshabilitarControles() {
-
-
-            txt_Direccion.Enabled = false;
-            txt_NombreLugar.Enabled = false;
-            txt_HoraInicio.Enabled = false;
-            txt_HoraFin.Enabled = false;
-
-            cmb_Complejo.Enabled = false;
-        }
 
 
         protected int? ID
@@ -222,15 +209,8 @@ namespace CapaPresentacion
             set { ViewState["ID"] = value; }
         }
 
-        protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
-        {
 
-
-            txt_Direccion.Enabled = true;
-            txt_NombreLugar.Enabled = true;
-            txt_HoraInicio.Enabled = true;
-            txt_HoraFin.Enabled = true;
-
+<<<<<<< HEAD
             cmb_Complejo.Enabled = false;
 
         }
@@ -251,5 +231,7 @@ namespace CapaPresentacion
         {
 
         }
+=======
+>>>>>>> parent of fe3928b... frontedn publico privado
     }
 }
