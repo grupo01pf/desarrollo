@@ -4,8 +4,13 @@
     
 </asp:Content>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container text-center">    
+       
+
+  
+<div class="container text-center">    
+
   <div class="row">
     <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
@@ -88,8 +93,34 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-           <p>Aquí los datos del encuentro</p>
+           <p>Encuentros Vigentes</p>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
+             
+              <%-- GRILLA LUGARES PUBLICOS --%>
+               <div class="row">
+                   <asp:Label ID="lbl_Prueba" runat="server" ></asp:Label>
+                    <div style="width: 30; height: 400px; overflow: scroll">
+                  <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered"
+                      OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
+                                <Columns>
+                                    <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />                                    
+                                    <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
+                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
+                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
+                                    <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
+                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
+                                    <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
+                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                </Columns>
+                            </asp:GridView>
+                    
+              </div>
+                   </div>
+
+
           </div>
         </div>
       </div>

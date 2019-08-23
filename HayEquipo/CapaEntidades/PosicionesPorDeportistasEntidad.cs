@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    class PosicionesPorDeportistasEntidad
+    public class PosicionesPorDeportistasEntidad
     {
         public int? idPosicionesPorDeportistas { get; set; }
         public int idPosicion { get; set; }

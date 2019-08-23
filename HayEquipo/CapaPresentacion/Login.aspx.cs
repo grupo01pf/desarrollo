@@ -14,21 +14,29 @@ namespace CapaPresentacion
         {
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
+            Session["ID"] = String.Empty;
+            
         }
 
         protected void btn_Login_Click(object sender, EventArgs e)
         {
-            if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text)) {
+            //****NO BORRAR****
 
-                Session["Usuario"] = txt_NombreUsuario.Text;
-            }
+            //if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+            //{
 
-            if (Session["Rol"].ToString() == "Administrador")
-                 Response.Redirect("Home.aspx");
-            if (Session["Rol"].ToString() == "UsuarioDeportista")
-                Response.Redirect("Home.aspx");
-            if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                Response.Redirect("Home.aspx");
+            //    Session["Usuario"] = txt_NombreUsuario.Text;
+                
+
+            //    if (Session["Rol"].ToString() == "Administrador")
+            //        Response.Redirect("Home.aspx");
+            //    if (Session["Rol"].ToString() == "UsuarioDeportista")
+            //        Response.Redirect("Home.aspx");
+            //    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+            //        Response.Redirect("Home.aspx");
+            //}
+
+           
         }
 
         public bool validarUsuario(string usuario, string clave) {
@@ -38,6 +46,7 @@ namespace CapaPresentacion
             {
                 flag = true;
                 Session["Rol"] = UsuarioDao.Permiso(usuario);
+                Session["ID"] = UsuarioDao.ID(usuario);
             }
 
             return flag;

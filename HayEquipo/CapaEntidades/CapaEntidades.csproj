@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accesibilidad.cs" />
     <Compile Include="AdministradorEntidad.cs" />
     <Compile Include="AmigosPorDeportistasEntidad.cs" />
     <Compile Include="BarrioEntidad.cs" />
@@ -53,11 +54,13 @@
     <Compile Include="DeportistasPorEquiposEntidad.cs" />
     <Compile Include="DetalleValoracionEntidad.cs" />
     <Compile Include="EncuentroDeportivoEntidad.cs" />
+    <Compile Include="EncuentroDeportivoQueryEntidad.cs" />
     <Compile Include="EquipoEntidad.cs" />
     <Compile Include="EstadoEntidad.cs" />
     <Compile Include="HorarioEntidad.cs" />
     <Compile Include="InvitacionEncuentroEntidad.cs" />
     <Compile Include="LocalidadEntidad.cs" />
+    <Compile Include="LugarPublicoEntidad.cs" />
     <Compile Include="MensajeEntidad.cs" />
     <Compile Include="PaisEntidad.cs" />
     <Compile Include="PermisoEntidad.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="TipoComplejoEntidad.cs" />
     <Compile Include="TipoDeporteEntidad.cs" />
     <Compile Include="TipoDocumentoEntidad.cs" />
+    <Compile Include="TipoEncuentroDeportivoEntidad.cs" />
     <Compile Include="TiposPorDeportesEntidad.cs" />
     <Compile Include="TipoValoracionEntidad.cs" />
     <Compile Include="UsuarioEntidad.cs" />
