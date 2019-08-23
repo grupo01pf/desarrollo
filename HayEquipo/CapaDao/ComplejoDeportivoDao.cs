@@ -52,7 +52,7 @@ namespace CapaDao
             cmd.CommandText = @"UPDATE ComplejoDeportivo SET nombre=@nomb, descripcion=@desc, idTipoComplejo=@idTipoComp,
                                                              calle=@calle, nroCalle=@nroCalle, idBarrio=@idBarr,                        
                                                              nroTelefono=@nroTel, idResponsable=@idResp, 
-                                                             promedioEstrellas=@promEstr, idEstado=@idEst
+                                                             promedioEstrellas=@promEstr
                                                        WHERE id=@idComplejo";
 
             cmd.Parameters.AddWithValue("@idComplejo", complejo.idComplejoDeportivo);
@@ -65,7 +65,8 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@nroTel", complejo.numeroTelefono);
             cmd.Parameters.AddWithValue("@idResp", complejo.idResponsable);
             cmd.Parameters.AddWithValue("@promEstr", complejo.promedioEstrellas);
-            cmd.Parameters.AddWithValue("@idEst", complejo.idEstado);
+            //          cmd.Parameters.AddWithValue("@idEst", complejo.idEstado);
+           // idEstado = @idEst
 
             cmd.ExecuteNonQuery();
 
