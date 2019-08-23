@@ -7,12 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class MasterPage : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            link_nombreUsuario.Text = Session["Usuario"].ToString();
+
+           
 
         }
 
@@ -26,7 +26,7 @@ namespace CapaPresentacion
         protected void link_nombreUsuario_Click(object sender, EventArgs e)
         {
 
-          //  Response.Redirect("");
+            //  Response.Redirect("");
         }
 
         //protected void btn_Login_Click(object sender, EventArgs e)
