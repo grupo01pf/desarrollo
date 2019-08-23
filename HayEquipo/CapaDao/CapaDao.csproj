@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="BarrioDao.cs" />
     <Compile Include="ComplejoDeportivoDao.cs" />
     <Compile Include="ConnectionString.cs" />
@@ -50,13 +49,10 @@
     <Compile Include="EncuentroDeportivioQueryDao.cs" />
     <Compile Include="EncuentroDeportivoDao.cs" />
     <Compile Include="LugarPublicoDao.cs" />
-	<Compile Include="DeportistaDao.cs" />
-	<Compile Include="Properties\AssemblyInfo.cs" />
-	<Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoComplejoDao.cs" />
-	<Compile Include="UsuarioDao.cs" />
+    <Compile Include="UsuarioDao.cs" />
     <Compile Include="ZonaDao.cs" />
-    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
