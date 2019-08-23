@@ -11,17 +11,12 @@ namespace CapaDao
 {
     public class TipoComplejoDao
     {
-        public static string stringConexion()
-        {
-            return ConfigurationManager.ConnectionStrings["cadenaHayEquipo"].ConnectionString;
-        }
-
         public static List<TipoComplejoEntidad> ObtenerTodosTiposComplejo()
         {
             List<TipoComplejoEntidad> tiposComplejo = new List<TipoComplejoEntidad>();
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();

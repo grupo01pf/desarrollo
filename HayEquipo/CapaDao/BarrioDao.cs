@@ -11,18 +11,12 @@ namespace CapaDao
 {
     public class BarrioDao
     {
-        public static string stringConexion()
-        {
-            return ConfigurationManager.ConnectionStrings["cadenaHayEquipo"].ConnectionString;
-        }
-
         public static List<BarrioEntidad> obtenerBarrios()
         {
-
             BarrioEntidad barrio = null;
             List<BarrioEntidad> ListaBarrio = new List<BarrioEntidad>();
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;

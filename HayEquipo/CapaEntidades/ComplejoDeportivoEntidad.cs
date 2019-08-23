@@ -23,7 +23,7 @@ namespace CapaEntidades
 
         public static int int_NullValue = 1;
         public static float float_NullValue;
-        public static string string_NullValue = "";
+        public static string string_NullValue = string.Empty;
         public bool IsNew { get; set; }
 
         public ComplejoDeportivoEntidad()

@@ -52,7 +52,7 @@
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="lblTel" runat="server" Text="Télefono"></asp:Label>
+        <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
 &nbsp;
         <asp:TextBox ID="txtTel" runat="server" Width="227px"></asp:TextBox>
         <br />

@@ -11,15 +11,10 @@ namespace CapaDao
 {
     public class ComplejoDeportivoDao
     {
-        public static string stringConexion()
-        {
-            return ConfigurationManager.ConnectionStrings["cadenaHayEquipo"].ConnectionString;
-        }
-
         public static void InsertarComplejo(ComplejoDeportivoEntidad complejo)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -49,7 +44,7 @@ namespace CapaDao
         public static void ActualizarComplejo(ComplejoDeportivoEntidad complejo)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -80,7 +75,7 @@ namespace CapaDao
         public static void EliminarComplejo(int id)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -99,7 +94,7 @@ namespace CapaDao
             ComplejoDeportivoEntidad complejo = null;
             List<ComplejoDeportivoEntidad> ListaComplejos = new List<ComplejoDeportivoEntidad>();
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -118,7 +113,7 @@ namespace CapaDao
                 complejo.calle = dr["calle"].ToString();
                 // complejo.idBarrio = int.Parse(dr["idBarrio"].ToString());
                 //complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
-                complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                //complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
               //  complejo.idResponsable = int.Parse(dr["idResponsable"].ToString());
               //  complejo.idUsuario = int.Parse(dr["idUsuario"].ToString());
               //  complejo.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
@@ -136,7 +131,7 @@ namespace CapaDao
             ComplejoDeportivoEntidad complejo = null;
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -157,7 +152,7 @@ namespace CapaDao
                 complejo.calle = dr["calle"].ToString();
                 // complejo.idBarrio = int.Parse(dr["idBarrio"].ToString());
                 //complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
-                complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                //complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 //  complejo.idResponsable = int.Parse(dr["idResponsable"].ToString());
                 //  complejo.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 //  complejo.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());

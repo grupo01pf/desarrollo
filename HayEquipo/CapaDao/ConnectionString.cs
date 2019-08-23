@@ -13,14 +13,14 @@ namespace CapaDao
         {
 
             //*****Nico_BD
-            string cadeana = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
-
-            return cadeana;
-
-            //*****Agu_BD
-            //string cadena = "Data Source=DESKTOP-23N56UG;Initial Catalog=HayEquipo;Integrated Security=True";
+            //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //return cadena;
+
+            //*****Agu_BD
+            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
+
+            return cadena;
         }
 
 
