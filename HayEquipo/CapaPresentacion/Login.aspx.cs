@@ -26,17 +26,17 @@ namespace CapaPresentacion
             //{
 
             //    Session["Usuario"] = txt_NombreUsuario.Text;
-                
+
 
             //    if (Session["Rol"].ToString() == "Administrador")
-            //        Response.Redirect("Home.aspx");
+            Response.Redirect("Home.aspx");
             //    if (Session["Rol"].ToString() == "UsuarioDeportista")
             //        Response.Redirect("Home.aspx");
             //    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
             //        Response.Redirect("Home.aspx");
             //}
 
-           
+
         }
 
         public bool validarUsuario(string usuario, string clave) {

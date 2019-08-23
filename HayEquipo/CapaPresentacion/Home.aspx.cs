@@ -13,16 +13,16 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             //****NO BORRAR****
-           
-                //link_nombreUsuario.Text = Session["Usuario"].ToString();
-                if (!IsPostBack)
-                {
+
+            //link_nombreUsuario.Text = Session["Usuario"].ToString();
+            if (!IsPostBack)
+            {
 
                 cargarEventosDisponibles();
-                   // cargarLugaresPublicos();
-                   // cargarLugaresPrivados();
+                // cargarLugaresPublicos();
+                // cargarLugaresPrivados();
             }
-            
+
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)

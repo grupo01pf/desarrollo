@@ -65,7 +65,7 @@ $(window).load(function() {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Principal</a></li>
+        <li class="active"><a href="CrearEncuentro.aspx">Principal</a></li>
         <li><a href="#">Crear Encuentro</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
