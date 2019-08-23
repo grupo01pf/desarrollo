@@ -15,6 +15,34 @@ namespace CapaPresentacion
         {
             cargarTiposComplejos();
             cargarBarrios();
+            CargarGrillaComplejos();
+        }
+        protected int? ID
+        {
+            get
+            {
+                if (ViewState["ID"] != null)
+                    return (int)ViewState["ID"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["ID"] = value; }
+        }
+        private void Limpiar()
+        {
+            txtNomb.Text = string.Empty;
+            txtDesc.Text = string.Empty;
+            ddlTipo.SelectedIndex = 0;
+            txtCalle.Text = string.Empty;
+            txtNro.Text = null;
+            ddlBarrio.SelectedIndex = 0;
+            txtTel.Text = null;
+
+            ID = null;
+            btnEliminar.Enabled = false;
+            btnEliminar.CssClass = "btn btn-warning";
         }
         private void cargarTiposComplejos()
         {
@@ -71,17 +99,62 @@ namespace CapaPresentacion
                 complejo.numeroTelefono = tel;
 
 
-            //if (ID.HasValue)
-            //{
-            //    cliente.idCliente = ID.Value;
-            //    ClienteDao.ActualizarCliente(cliente);
-            //}
-            //else
-            //{
+            if (ID.HasValue)
+            {
+                complejo.idComplejoDeportivo = ID.Value;
+                ComplejoDeportivoDao.ActualizarComplejo(complejo);
+            }
+            else
+            {
 
-            //    ClienteDao.InsertarCliente(cliente);
-            //}
-            ComplejoDeportivoDao.InsertarComplejo(complejo);
+                ComplejoDeportivoDao.InsertarComplejo(complejo);
+            }
+           
+            CargarGrillaComplejos();
+            Limpiar();
+        }
+
+        protected void CargarGrillaComplejos()
+        {
+            gvComplejos.DataSource = null;
+
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejos()
+                                     orderby comp.nombre
+                                     select comp);
+
+            gvComplejos.DataKeyNames = new string[] { "idComplejoDeportivo" };
+            gvComplejos.DataBind();
+        }
+
+        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Limpiar();
+            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+            ID = idSeleccionado;
+            ComplejoDeportivoEntidad compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+
+            //string[] cadenasNyA = compSelec.nombre.Split(' ');
+            txtNomb.Text = compSelec.nombre;
+            txtDesc.Text = compSelec.descripcion;
+            ddlTipo.SelectedIndex = compSelec.idTipoComplejo;
+            txtCalle.Text = compSelec.calle;
+            txtNro.Text = compSelec.numeroCalle.ToString();
+            ddlBarrio.SelectedIndex = compSelec.idBarrio;
+            txtTel.Text = compSelec.numeroTelefono.ToString();
+
+            btnEliminar.Enabled = true;
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ComplejoDeportivoDao.EliminarComplejo(ID.Value);
+            CargarGrillaComplejos();
+            Limpiar();
         }
     }
 }
