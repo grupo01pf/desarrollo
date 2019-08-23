@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaEntidades;
+using System.Configuration;
 
 namespace CapaDao
 {
@@ -12,7 +13,6 @@ namespace CapaDao
     {
         public static List<BarrioEntidad> obtenerBarrios()
         {
-
             BarrioEntidad barrio = null;
             List<BarrioEntidad> ListaBarrio = new List<BarrioEntidad>();
             SqlConnection cn = new SqlConnection();
@@ -20,7 +20,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "SELECT TOP 100 id, nombre FROM Barrio";
+            cmd.CommandText = "SELECT * FROM Barrio";
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {

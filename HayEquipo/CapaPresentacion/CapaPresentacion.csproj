@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ComplejosWF.aspx" />
     <Content Include="CrearEncuentro.aspx" />
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
@@ -138,6 +139,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplejosWF.aspx.cs">
+      <DependentUpon>ComplejosWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComplejosWF.aspx.designer.cs">
+      <DependentUpon>ComplejosWF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CrearEncuentro.aspx.cs">
       <DependentUpon>CrearEncuentro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

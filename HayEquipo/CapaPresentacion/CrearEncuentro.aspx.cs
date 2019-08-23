@@ -181,7 +181,7 @@ namespace CapaPresentacion
         }
         private void cargarComplejos() {
 
-            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejos();
+            cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
             cmb_Complejo.DataValueField = "idComplejoDeportivo";
             cmb_Complejo.DataValueField = "nombre";
             cmb_Complejo.DataBind();
