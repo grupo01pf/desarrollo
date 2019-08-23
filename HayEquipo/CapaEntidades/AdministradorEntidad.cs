@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
+
     public class AdministradorEntidad:PersonaEntidad
+
     {
         public int? idAdministrador { get; set; }
         public int numeroLegajo { get; set; }
