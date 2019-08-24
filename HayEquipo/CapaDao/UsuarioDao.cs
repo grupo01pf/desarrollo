@@ -96,6 +96,7 @@ namespace CapaDao
             cn.Close();
 
             return id;
+        }
 
         public bool RegistrarUsuario(UsuarioEntidad objUsuario)
         {

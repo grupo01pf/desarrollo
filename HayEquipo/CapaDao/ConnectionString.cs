@@ -11,8 +11,7 @@ namespace CapaDao
     {
 
 
-        public static string Cadena()
-        {
+       
 
         #region "Patron Singleton"
         private static ConnectionString conexion = null;
@@ -69,3 +68,5 @@ namespace CapaDao
 
         }
     }
+
+

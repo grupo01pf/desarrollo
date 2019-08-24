@@ -65,8 +65,8 @@ $(window).load(function() {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="CrearEncuentro.aspx">Principal</a></li>
-        <li><a href="#">Crear Encuentro</a></li>
+        <li class="active"><a href="Home.aspx">Principal</a></li>
+        <li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
@@ -75,13 +75,14 @@ $(window).load(function() {
     </div>
   </div>
 </nav>
+  
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
     </div>
-    </form>
-
+   
+</form>
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
 
