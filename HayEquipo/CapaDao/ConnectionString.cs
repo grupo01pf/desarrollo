@@ -28,8 +28,12 @@ namespace CapaDao
 
             //*****Nico_BD
             //string cadeana = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+
             //FrancoR BD
             String cadeana = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
+
+           // string cadeana = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
+
             return cadeana;
 
         }
