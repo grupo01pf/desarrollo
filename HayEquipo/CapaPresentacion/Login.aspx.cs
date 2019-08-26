@@ -46,11 +46,11 @@ namespace CapaPresentacion
                 Session["Usuario"] = txt_NombreUsuario.Text;
             }
 
-            if (Session["Rol"].ToString() == "Administrador")
+            if (Session["Rol"].ToString() == "administrador")
                 Response.Redirect("Home.aspx");
-            if (Session["Rol"].ToString() == "UsuarioDeportista")
+            if (Session["Rol"].ToString() == "deportista")
                 Response.Redirect("Home.aspx");
-            if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+            if (Session["Rol"].ToString() == "invitado")
                 Response.Redirect("Home.aspx");
 
         }
