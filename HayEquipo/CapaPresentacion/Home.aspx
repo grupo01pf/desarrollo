@@ -5,7 +5,12 @@
      .mydatagrid
 {
 	width: 80%;
-	border: solid 2px black;
+	border: solid 4px black;
+    border-radius: 12px;
+    border-top-style: dotted;
+    border-right-style: solid;
+    border-bottom-style: dotted;
+    border-left-style: solid;
 	min-width: 80%;
 }
 .header
@@ -29,7 +34,7 @@
 }
 .rows:hover
 {
-	background-color: #22c81a;
+	background-color: #0b3107;
 }
 
 .mydatagrid a /** FOR THE PAGING ICONS  **/
@@ -43,7 +48,7 @@
 
 .mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/
 {
-	background-color: #fff;
+	background-color: #0026ff;
 	color: #000;
 }
 .mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
@@ -55,7 +60,7 @@
 }
 .pager
 {
-		background-color: #22c81a;
+	background-color: #22c81a;
 	font-family: Arial;
 	color: White;
 	height: 30px;
@@ -69,6 +74,10 @@
 .mydatagrid th
 {
 	padding: 5px;
+}
+.round3 {
+  border: 2px solid #0b3107;
+  border-radius: 12px;
 }
 
     </style>
@@ -164,7 +173,7 @@
         
           <div class="well">
             
-           <h3>Encuentros Vigentes</h3>
+           <h3 class="round3">Encuentros Vigentes</h3>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
              
               <%-- GRILLA LUGARES PUBLICOS --%>
