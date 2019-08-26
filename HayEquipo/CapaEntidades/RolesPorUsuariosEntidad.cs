@@ -9,7 +9,10 @@ namespace CapaEntidades
     public class RolesPorUsuariosEntidad
     {
         public int? idRolesPorUsuarios { get; set; }
-        public int idRol { get; set; }
-        public int idUsuario { get; set; }
+        public RolEntidad idRol { get; set; }
+
+
+
+
     }
 }

@@ -18,3 +18,8 @@ C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\Cap
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb

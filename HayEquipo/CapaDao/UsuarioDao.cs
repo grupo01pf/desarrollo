@@ -4,11 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using CapaEntidades;
+using System.Data;
 
 namespace CapaDao
 {
    public class UsuarioDao
     {
+
+        #region "Patron Singleton"
+        private static UsuarioDao objUsuario = null;
+        private UsuarioDao() { }
+        public static UsuarioDao getInstance()
+        {
+            if (objUsuario == null)
+            {
+                objUsuario = new UsuarioDao();
+            }
+            return objUsuario;
+        }
+        #endregion
+
 
         public static bool Usuario(string usuario, string clave) {
 
@@ -18,7 +34,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT * 
+            cmd.CommandText = @"SELECT *
                                 FROM Usuario u
                                 WHERE u.nombre = @usuario AND u.contraseña = @clave";
             cmd.Parameters.AddWithValue("@usuario", usuario);
@@ -31,7 +47,7 @@ namespace CapaDao
             dr.Close();
             cn.Close();
             return flag;
-            
+
         }
 
         public static string Permiso(string usuario)
@@ -58,6 +74,7 @@ namespace CapaDao
             return permiso;
         }
 
+
         public static int ID(string usuario)
         {
             int id = 0;
@@ -79,6 +96,38 @@ namespace CapaDao
             cn.Close();
 
             return id;
+        }
+
+        public bool RegistrarUsuario(UsuarioEntidad objUsuario)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarUsuario", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombre", objUsuario.nombreUsuario);
+                cmd.Parameters.AddWithValue("@prmEmail", objUsuario.email);
+                cmd.Parameters.AddWithValue("@prmContraseña", objUsuario.contraseña);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
         }
 
 

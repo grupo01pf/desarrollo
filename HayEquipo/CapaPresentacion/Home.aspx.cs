@@ -14,7 +14,7 @@ namespace CapaPresentacion
         {
             //****NO BORRAR****
 
-            //link_nombreUsuario.Text = Session["Usuario"].ToString();
+            link_nombreUsuario.Text = Session["Usuario"].ToString();
             if (!IsPostBack)
             {
 
