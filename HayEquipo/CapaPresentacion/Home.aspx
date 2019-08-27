@@ -7,15 +7,11 @@
 	width: 80%;
 	border: solid 4px black;
     border-radius: 12px;
-    border-top-style: dotted;
-    border-right-style: solid;
-    border-bottom-style: dotted;
-    border-left-style: solid;
 	min-width: 80%;
 }
 .header
 {
-	background-color: #000;
+	background-color: #0b3107;
 	font-family: Arial;
 	color: White;
 	height: 25px;
@@ -34,7 +30,8 @@
 }
 .rows:hover
 {
-	background-color: #0b3107;
+	background-color: #000;
+    color:White;
 }
 
 .mydatagrid a /** FOR THE PAGING ICONS  **/
@@ -49,7 +46,7 @@
 .mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/
 {
 	background-color: #0026ff;
-	color: #000;
+	color: #fff;
 }
 .mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
 {

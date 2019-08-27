@@ -7,6 +7,9 @@
             text-align: center;
             color:white;
         }
+        .fondoPalJumbotron{
+            background-color:#000000
+        }
     </style>
 </asp:Content>
 
@@ -16,7 +19,7 @@
                 <asp:Label ID="lbl_Titulo" runat="server" Text="Crear Encuentro"></asp:Label>
             </h1>
                  
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center fondoPalJumbotron">
         
             <div class="row">
 
@@ -29,11 +32,11 @@
                             
                                 <asp:Label ID="lbl_Deporte" runat="server" Text="Deporte"></asp:Label>
                             <br />
-                            
-                                <asp:DropDownList ID="cmb_Deporte" runat="server" AppendDataBoundItems>
+                            <div class="dropdown">
+                                <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems>
                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                 </asp:DropDownList>
-                            
+                            </div>
 
                         
                         <br />
@@ -221,8 +224,8 @@
                                         </Columns>
                                     </asp:GridView>--%>
                                 </div>
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" BackColor="Red" ForeColor="White" />
-                        <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" BackColor="Green" ForeColor="White" />
+
+                    
                             
 
 
@@ -230,6 +233,8 @@
                         
                     </div>
                     
+                        <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
                 </div>
             </div>
             <br />
