@@ -51,6 +51,7 @@
     <Compile Include="EncuentroDeportivoDao.cs" />
     <Compile Include="LugarPublicoDao.cs" />
     <Compile Include="TipoComplejoDao.cs" />
+    <Compile Include="TipoDocumentoDao.cs" />
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="ZonaDao.cs" />
   </ItemGroup>

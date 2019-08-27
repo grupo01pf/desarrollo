@@ -11,22 +11,18 @@ namespace CapaDao
 {
     public class DeportistaDao
     {
-        public static string stringConexion()
-        {
-            return ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
-        }
-
+      
         public static void InsertarDeportista(DeportistaEntidad deportista)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT into Deportista(apellido, nombres, idTipoDoc, nroDoc, sexo, fechaNacimiento,
                                                        nroTelefono, idUsuario, promedioEstrellas, idEstado)   
-                                values(@ape, @nom, @idTipoDoc, @nroDoc, @sex,
+                                values(@ape, @nombres, @idTipoDoc, @nroDoc, @sex,
                                        @fechaNac, @nroTel, @idUs, @promEstr, @idEst);
                                 select Scope_Identity() as ID";
 
@@ -49,7 +45,7 @@ namespace CapaDao
         public static void ActualizarDeportista(DeportistaEntidad deportista)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -80,7 +76,7 @@ namespace CapaDao
         public static void EliminarDeportista(int id)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -99,7 +95,7 @@ namespace CapaDao
             List<DeportistaEntidad> deportistas = new List<DeportistaEntidad>();
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -135,7 +131,7 @@ namespace CapaDao
             DeportistaEntidad d = null;
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = stringConexion();
+            cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand();
