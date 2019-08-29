@@ -69,6 +69,8 @@
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
                 <asp:BoundField DataField="calle" HeaderText="Calle" />
+                <asp:BoundField DataField="nroCalle" HeaderText="Nº" />
+                <asp:BoundField DataField="nroTelefono" HeaderText="Télefono" />
                 <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="True" />
             </Columns>
         </asp:GridView>

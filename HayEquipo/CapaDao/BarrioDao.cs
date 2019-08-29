@@ -11,29 +11,38 @@ namespace CapaDao
 {
     public class BarrioDao
     {
-        public static List<BarrioEntidad> obtenerBarrios()
+        //public static List<BarrioEntidad> obtenerBarrios()
+        //{
+        //    BarrioEntidad barrio = null;
+        //    List<BarrioEntidad> ListaBarrio = new List<BarrioEntidad>();
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = "SELECT * FROM Barrio";
+        //    SqlDataReader dr = cmd.ExecuteReader();
+        //    while (dr.Read())
+        //    {
+
+        //        barrio = new BarrioEntidad();
+        //        barrio.idBarrio = int.Parse(dr["id"].ToString());
+        //        barrio.nombre = dr["nombre"].ToString();
+        //        ListaBarrio.Add(barrio);
+
+        //    }
+        //    dr.Close();
+        //    cn.Close();
+        //    return ListaBarrio;
+        //}
+
+        public static List<Barrio> obtenerBarrios()
         {
-            BarrioEntidad barrio = null;
-            List<BarrioEntidad> ListaBarrio = new List<BarrioEntidad>();
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = ConnectionString.Cadena();
-            cn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = "SELECT * FROM Barrio";
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            using(HayEquipoEntities db=new HayEquipoEntities())
             {
-
-                barrio = new BarrioEntidad();
-                barrio.idBarrio = int.Parse(dr["id"].ToString());
-                barrio.nombre = dr["nombre"].ToString();
-                ListaBarrio.Add(barrio);
-
+                return db.Barrio.ToList();
             }
-            dr.Close();
-            cn.Close();
-            return ListaBarrio;
         }
+
     }
 }

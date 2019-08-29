@@ -11,32 +11,41 @@ namespace CapaDao
 {
     public class TipoComplejoDao
     {
-        public static List<TipoComplejoEntidad> ObtenerTodosTiposComplejo()
+        //public static List<TipoComplejoEntidad> ObtenerTodosTiposComplejo()
+        //{
+        //    List<TipoComplejoEntidad> tiposComplejo = new List<TipoComplejoEntidad>();
+
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = @"SELECT * FROM TipoComplejo";
+        //    SqlDataReader dr = cmd.ExecuteReader();
+
+        //    while (dr.Read())
+        //    {
+        //        TipoComplejoEntidad t = new TipoComplejoEntidad();
+
+        //        t.idTipoComplejo = int.Parse(dr["id"].ToString());
+        //        t.nombre = dr["nombre"].ToString();
+        //        t.descripcion = dr["descripcion"].ToString();
+
+        //        tiposComplejo.Add(t);
+        //    }
+        //    dr.Close();
+        //    cn.Close();
+        //    return tiposComplejo;
+        //}
+
+        public static List<TipoComplejo> ObtenerTodosTiposComplejo()
         {
-            List<TipoComplejoEntidad> tiposComplejo = new List<TipoComplejoEntidad>();
-
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = ConnectionString.Cadena();
-            cn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = @"SELECT * FROM TipoComplejo";
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            using(HayEquipoEntities db=new HayEquipoEntities())
             {
-                TipoComplejoEntidad t = new TipoComplejoEntidad();
-
-                t.idTipoComplejo = int.Parse(dr["id"].ToString());
-                t.nombre = dr["nombre"].ToString();
-                t.descripcion = dr["descripcion"].ToString();
-
-                tiposComplejo.Add(t);
+               return db.TipoComplejo.ToList();
             }
-            dr.Close();
-            cn.Close();
-            return tiposComplejo;
         }
+
     }
 }

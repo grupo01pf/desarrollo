@@ -13,9 +13,12 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
             cargarTiposComplejos();
             cargarBarrios();
             CargarGrillaComplejos();
+            }
         }
         protected int? ID
         {
@@ -46,13 +49,13 @@ namespace CapaPresentacion
         }
         private void cargarTiposComplejos()
         {
-            List<TipoComplejoEntidad> tiposComplejos = TipoComplejoDao.ObtenerTodosTiposComplejo();
+            List<TipoComplejo> tiposComplejos = TipoComplejoDao.ObtenerTodosTiposComplejo();
         
             ddlTipo.DataSource = null;
 
             ddlTipo.DataTextField = "nombre";
 
-            ddlTipo.DataValueField = "idTipoComplejo";
+            ddlTipo.DataValueField = "id";
 
             ddlTipo.DataSource = tiposComplejos;
 
@@ -61,13 +64,13 @@ namespace CapaPresentacion
 
         private void cargarBarrios()
         {
-            List<BarrioEntidad> barrios = BarrioDao.obtenerBarrios();
+            List<Barrio> barrios = BarrioDao.obtenerBarrios();
 
             ddlBarrio.DataSource = null;
 
             ddlBarrio.DataTextField = "nombre";
 
-            ddlBarrio.DataValueField = "idBarrio";
+            ddlBarrio.DataValueField = "id";
 
             ddlBarrio.DataSource = barrios;
 
@@ -122,7 +125,7 @@ namespace CapaPresentacion
                                      orderby comp.nombre
                                      select comp);
 
-            gvComplejos.DataKeyNames = new string[] { "idComplejoDeportivo" };
+            gvComplejos.DataKeyNames = new string[] { "id" };
             gvComplejos.DataBind();
         }
 
@@ -131,16 +134,15 @@ namespace CapaPresentacion
             Limpiar();
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
-            ComplejoDeportivoEntidad compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
-            //string[] cadenasNyA = compSelec.nombre.Split(' ');
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            ddlTipo.SelectedIndex = compSelec.idTipoComplejo;
+            ddlTipo.SelectedIndex = (compSelec.id)-1;
             txtCalle.Text = compSelec.calle;
-            txtNro.Text = compSelec.numeroCalle.ToString();
-            ddlBarrio.SelectedIndex = compSelec.idBarrio;
-            txtTel.Text = compSelec.numeroTelefono.ToString();
+            txtNro.Text = compSelec.nroCalle.ToString();
+            ddlBarrio.SelectedIndex = (compSelec.id)-1;
+            txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;
         }
