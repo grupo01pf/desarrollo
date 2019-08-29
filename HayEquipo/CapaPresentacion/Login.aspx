@@ -216,6 +216,9 @@ $(window).load(function() {
 </footer>
 <!-- Footer -->
 
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+
 
 
 </body>

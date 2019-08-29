@@ -154,6 +154,7 @@
     <Compile Include="CrearEncuentro.aspx.designer.cs">
       <DependentUpon>CrearEncuentro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs" />
     <Compile Include="EncuentroPrivado.aspx.cs">
       <DependentUpon>EncuentroPrivado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

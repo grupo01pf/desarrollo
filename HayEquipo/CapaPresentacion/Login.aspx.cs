@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
 using CapaEntidades;
+using System.Text.RegularExpressions;
+using System.Web.Security;
 
 namespace CapaPresentacion
 {
@@ -31,7 +33,7 @@ namespace CapaPresentacion
 
 
             //    if (Session["Rol"].ToString() == "Administrador")
-          //  Response.Redirect("Home.aspx");
+            //  Response.Redirect("Home.aspx");
             //    if (Session["Rol"].ToString() == "UsuarioDeportista")
             //        Response.Redirect("Home.aspx");
             //    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
@@ -41,16 +43,20 @@ namespace CapaPresentacion
 
 
             if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
-            {
-
+                {
+               
                 Session["Usuario"] = txt_NombreUsuario.Text;
-            }
+                 }
+               
 
             if (Session["Rol"].ToString() == "Administrador")
-                Response.Redirect("Home.aspx");
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
+                 Response.Redirect("Home.aspx");
             if (Session["Rol"].ToString() == "UsuarioDeportista")
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
                 Response.Redirect("Home.aspx");
             if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
                 Response.Redirect("Home.aspx");
 
         }
@@ -71,37 +77,87 @@ namespace CapaPresentacion
 
         private UsuarioEntidad GetEntity()
         {
+
             UsuarioEntidad objUsuario = new UsuarioEntidad();
-            objUsuario.idUsuario = 0;
-            objUsuario.nombreUsuario = txtNombre.Text;
-            objUsuario.email = txtEmail.Text;
-            objUsuario.contraseña = txtPassword.Text;
-            return objUsuario;
+           
+                //aqui tu codigo si el correo es valido
+
+                objUsuario.idUsuario = 0;
+                objUsuario.nombreUsuario = txtNombre.Text;
+                objUsuario.email = txtEmail.Text;
+                objUsuario.contraseña = txtPassword.Text;
+                return objUsuario;
+           
+            
         }
 
         protected void btn_Registrar_Click(object sender, EventArgs e)
         {
-
-            UsuarioEntidad objUsuario = GetEntity();
-
-            bool response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
-            if (response == true)
+            if (!UsuarioDao.Existe(txtNombre.Text))
             {
-
-                Response.Write("<script>alert('Registro Correcto')</script>");
-                if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                if (txtNombre.Text != "" && txtEmail.Text != "" && txtPassword.Text != "" && txtRPassword.Text != "")
                 {
+                    if (validar(txtEmail.Text))
+                    {
+                        if (txtPassword.Text == txtRPassword.Text)
+                        {
+                            UsuarioEntidad objUsuario = GetEntity();
 
-                    Session["Usuario"] = txtNombre.Text;
+                            bool response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
+                            if (response == true)
+                            {
+
+                                Response.Write("<script>alert('Registro Correcto')</script>");
+                                if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                                {
+
+                                    Session["Usuario"] = txtNombre.Text;
+                                }
+                                enviarcorreo();
+                                FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                Response.Redirect("Home.aspx");
+                            }
+                            else
+                            {
+
+                                Response.Write("<script>alert('Registro Incorrecto')</script>");
+                            }
+                        }
+                        else
+                        {
+
+                            Response.Write("<script>alert('Contraseñas no coinciden!!')</script>");
+                        }
+                    }
+                    else
+                    {
+
+                        Response.Write("<script>alert('Email no valido!!')</script>");
+                    }
                 }
-
-                Response.Redirect("Home.aspx");
-            }
-            else
+                else
+                {
+                    Response.Write("<script>alert('No debe haber campos vacios')</script>");
+                }
+            }else
             {
-                Response.Write("<script>alert('Registro Incorrecto')</script>");
+                Response.Write("<script>alert('El nombre de usuario ya existe,coloque otro')</script>");
             }
 
         }
+
+        public void enviarcorreo()
+        {
+            string from = "hayequipoteam2019@gmail.com";
+            string pass = "hayequipo123..";
+            string to = txtEmail.Text;
+            string mensaje = "Usted se ha logueado en el sistema HayEquipo con exito";
+            new Email().enviarcorreo(from,pass,to,mensaje);
+        }
+        public bool validar(string correo)
+        {
+            return Regex.IsMatch(correo, "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+        }
+
     }
 }

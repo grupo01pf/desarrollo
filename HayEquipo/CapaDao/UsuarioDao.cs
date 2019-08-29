@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaEntidades;
 using System.Data;
+using System.Configuration;
 
 namespace CapaDao
 {
@@ -130,6 +131,27 @@ namespace CapaDao
 
         }
 
+       
+        public static bool Existe(string nombre)
+        {
 
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT * FROM Usuario WHERE nombre=@nombre";
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
     }
 }

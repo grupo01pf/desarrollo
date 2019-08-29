@@ -16,7 +16,6 @@ namespace CapaDao
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
-
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT into ComplejoDeportivo(nombre, descripcion, idTipoComplejo, calle, nroCalle,
