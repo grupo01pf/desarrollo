@@ -18,6 +18,7 @@ namespace CapaPresentacion
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
             Session["ID"] = String.Empty;
+            
 
         }
 
@@ -93,57 +94,74 @@ namespace CapaPresentacion
 
         protected void btn_Registrar_Click(object sender, EventArgs e)
         {
-            if (!UsuarioDao.Existe(txtNombre.Text))
+
+            bool response = false;
+            if (checkPrivacidad.Checked)
             {
-                if (txtNombre.Text != "" && txtEmail.Text != "" && txtPassword.Text != "" && txtRPassword.Text != "")
+                if (!UsuarioDao.Existe(txtNombre.Text))
                 {
-                    if (validar(txtEmail.Text))
+                    if (txtNombre.Text != "" && txtEmail.Text != "" && txtPassword.Text != "" && txtRPassword.Text != "")
                     {
-                        if (txtPassword.Text == txtRPassword.Text)
+                        if (validar(txtEmail.Text))
                         {
-                            UsuarioEntidad objUsuario = GetEntity();
 
-                            bool response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
-                            if (response == true)
+                            if (txtPassword.Text == txtRPassword.Text)
                             {
-
-                                Response.Write("<script>alert('Registro Correcto')</script>");
-                                if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                                UsuarioEntidad objUsuario = GetEntity();
+                                if (radioLogin.SelectedValue.ToString() == "2")
+                                {
+                                    response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
+                                }
+                                if (radioLogin.SelectedValue.ToString() == "3")
+                                {
+                                    response = UsuarioDao.getInstance().RegistrarUsuarioEstablecimiento(objUsuario);
+                                }
+                                if (response == true)
                                 {
 
-                                    Session["Usuario"] = txtNombre.Text;
+                                    Response.Write("<script>alert('Registro Correcto')</script>");
+                                    if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                                    {
+
+                                        Session["Usuario"] = txtNombre.Text;
+                                    }
+                                    enviarcorreo();
+                                    FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                    Response.Redirect("Home.aspx");
                                 }
-                                enviarcorreo();
-                                FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
-                                Response.Redirect("Home.aspx");
+                                else
+                                {
+
+                                    Response.Write("<script>alert('Registro Incorrecto')</script>");
+                                }
                             }
                             else
                             {
 
-                                Response.Write("<script>alert('Registro Incorrecto')</script>");
+                                Response.Write("<script>alert('Contraseñas no coinciden!!')</script>");
                             }
                         }
                         else
                         {
 
-                            Response.Write("<script>alert('Contraseñas no coinciden!!')</script>");
+                            Response.Write("<script>alert('Email no valido!!')</script>");
                         }
                     }
                     else
                     {
-
-                        Response.Write("<script>alert('Email no valido!!')</script>");
+                        Response.Write("<script>alert('No debe haber campos vacios')</script>");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>alert('No debe haber campos vacios')</script>");
+                    Response.Write("<script>alert('El nombre de usuario ya existe,coloque otro')</script>");
                 }
-            }else
-            {
-                Response.Write("<script>alert('El nombre de usuario ya existe,coloque otro')</script>");
-            }
 
+            }
+            else
+            {
+                Response.Write("<script>alert('Debes Aceptar los Terminos y condiciones!!')</script>");
+            }
         }
 
         public void enviarcorreo()
@@ -158,6 +176,8 @@ namespace CapaPresentacion
         {
             return Regex.IsMatch(correo, "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
         }
+
+        
 
     }
 }

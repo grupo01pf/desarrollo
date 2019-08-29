@@ -85,22 +85,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtRPassword;
         
         /// <summary>
-        /// Control radioJugador.
+        /// Control checkPrivacidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton radioJugador;
+        protected global::System.Web.UI.WebControls.CheckBox checkPrivacidad;
         
         /// <summary>
-        /// Control radioEstablecimiento.
+        /// Control radioLogin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton radioEstablecimiento;
+        protected global::System.Web.UI.WebControls.RadioButtonList radioLogin;
         
         /// <summary>
         /// Control btnRegistrar.

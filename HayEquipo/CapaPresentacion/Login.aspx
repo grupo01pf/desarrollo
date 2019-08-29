@@ -18,6 +18,7 @@
     <style>
        .alinearIzq { text-align: left; }
        .fondoDeImagen {background-image: url("Imagenes/sports.jpg");}
+       .centrar{margin-left:180px; }
       h1 {
   text-shadow: 2px 2px 5px green;
 }
@@ -96,7 +97,7 @@ $(window).load(function() {
       <br />
       <div class="alinearIzq">
     <label>¿No tenés una cuenta?</label> <br />
-   <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i>Registrarme</button>&nbsp;
+   <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i> Registrarme</button>&nbsp;
 
 
       </div>
@@ -148,15 +149,20 @@ $(window).load(function() {
                     <div class="form-group">
                   <asp:TextBox ID="txtRPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
                     </div>
+                    <div class="form-group">
+                       <asp:CheckBox runat="server" ID="checkPrivacidad"/><a data-dismiss="imodal" data-toggle="modal" href="#imodal2" > Acepto Terminos y condiciones</a>
 
-             <!--   <div class="form-group">
-                        <label>Jugador o Establecimiento</label>
                  </div>
-                  <div class="form-group">
-                <asp:RadioButton ID="radioJugador" Text="Jugador" runat="server" />
-                <asp:RadioButton ID="radioEstablecimiento" Text="Establecimiento" runat="server" />
-                 </div>
-                    </div> -->
+
+               <div class="form-group">
+                <label>Deportista o Establecimiento ? </label>
+                   <asp:RadioButtonList ID="radioLogin" runat="server" CssClass="alinearIzq centrar">
+                       <asp:ListItem Text ="Deportista" Value="2" Selected="True"/>
+                       <asp:ListItem Text ="Establecimiento" Value="3" />
+                   </asp:RadioButtonList>
+                
+                    </div>
+                
                   <div class="modal-footer">
                    <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
@@ -165,6 +171,82 @@ $(window).load(function() {
 
       </div>
      </div>
+          </div>
+
+      <div class="modal fade" id="imodal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel2">Terminos y Condiciones de uso de HayEquipo</h4>
+                </div>
+                  <div class="modal-body">
+                 <div class="form-group">
+    
+1. Tienes que tener 13 o más años. <br />
+2. No publiques nada que muestre violencia, que pueda asustar a otras personas o que contenga 
+imágenes con desnudos.  <br />
+3. No uses la cuenta de nadie sin permiso, ni intentes descubrir sus datos de login.  <br />
+4. No permitas que nadie use tu cuenta.  <br />
+5. Mantén tu contraseña en secreto.  <br />
+6. No acoses a nadie ni publiques nada feo sobre ninguna persona.  <br />
+7. No publiques información privada de otra persona.  <br />
+8. No uses HayEquipo para hacer nada ilegal ni nada que nosotros hayamos prohibido.  <br />
+9. Si quieres añadir un sitio web a tu nombre de usuario, asegúrate primero de que tienes permiso de 
+HayEquipo.  <br /> 
+10. No cambies nada de nuestro sitio web o de nuestras aplicaciones, ni subas ningún tipo de virus, ni 
+hagas nada que pueda interferir con la forma en que HayEquipo funciona.  <br />
+11. No utilices ningún tipo de software o robot para crear cuentas de acceso a HayEquipo, ni envíes 
+spam o emails no deseados.  <br />
+12. Lee nuestras normas de uso y obedécelas cuando uses HayEquipo.  <br />
+13. No hagas nada que pueda afectar al modo en que otras personas usan y disfrutan de HayEquipo.  <br />
+14. No incites a nadie a saltarse estas reglas.  <br />
+
+<h4>Tus derechos y nuestros derechos: </h4>
+1. Tienes derecho a sentirte seguro usando Instagram. <br />
+2. Oficialmente eres el dueño de cualquier imagen o vídeo original que publiques, pero nosotros tenemos permiso para usarlos,
+así como para permitir que otros los usen en cualquier parte del mundo. 
+Aunque otros nos paguen por ese uso nosotros no tenemos que pagarte a tí por eso.  <br />
+3. Tú eres el responsable de todo lo que hagas en HayEquipo y de todo lo que publiques, incluyendo 
+cosas inesperadas como nombres de usuario, datos y música de otra gente.  <br />
+4. Se asumirá que eres el propietario de lo que publicas, y que lo que publicas no incumple la ley. Si 
+incumples la ley y te multan, tendrás que pagar la multa.  <br />
+5. Aunque eres el responsable de la información que pones en HayEquipo, 
+nosotros podemos almacenar, usar y compartir tu información personal con compañías conectadas a HayEquipo.
+Esta información incluye tu nombre, tu email,dónde vives, tus imágenes, tu número de teléfono,
+los sitios que visitas y cualquier otra información personal que encontremos, como tu fecha cumpleaños o con quien chateas en los foros 
+No somos responsables de lo que otras empresas hagan con esta información. 
+No venderemos o alquilaremos tu información a nadie más sin tu permiso. 
+Cuando borres tu cuenta mantendremos esta información personal sobre tí, 
+así como tus fotos tanto tiempo como sea necesario para nuestros intereses.  <br />
+6. HayEquipo tampoco es responsable de:  <br />
+a. Los links que aparezcan en Instagram de otras compañías o personas que no controlamos, 
+incluso si esos links te los hemos enviado nosotros mismos.  <br />
+b. Lo que ocurra si te conectas a tu cuenta de Instagram desde otra aplicación o sitio Web, 
+por ejemplo para compartir una imagen, y la otra app hace algo con ella o se queda con tus datos personales. <br />
+7. Aunque HayEquipo no es responsable de lo que ocurra contigo o con tus datos mientras los usas, 
+tenemos muchos poderes:  <br />
+a. Podemos enviarte publicidad que coincida con tus intereses (que previamente habremos investigado). 
+No puedes evitar que hagamos esto y no siempre será obvio que lo que te mostremos sea publicidad.  <br />
+b. Podemos cambiar o cerrar HayEquipo, o cerrar tu acceso al mismo en cualquier momento, 
+por cualquier razón y sin previo aviso. También podemos borrar posts y comentarios de forma aleatoria,
+por cualquier razón y sin decírtelo. Si lo hacemos no seremos responsables de pagar nada
+y tú no tendrás derecho a quejarte.  <br />
+c. Podemos obligarte a cambiar de nombre de usuario por cualquier razón.  <br />
+d. Podemos, pero no tenemos que, eliminar, editar, bloquear y / o supervisar cualquier cosa publicada
+o cualquier cuenta que creamos que incumple cualquiera de estas reglas. 
+No somos responsables si alguien infringe la ley o estas reglas, pero tú sí serás responsable si lo haces. 
+Debes utilizar el sentido común y tu mejor juicio cuando utilizas HayEquipo.  <br />
+8. Aunque tú no seas propietario de tus datos, nosotros sí lo somos de los nuestros.
+No puedes copiar y pegar los logos de HayEquipo o cualquier otra cosa que hayamos creado,
+ni eliminarlos ni intentar cambiarlos.  <br />
+9. En caso de realizar deportes extremos y se realizen encuentros a travez de la platarforma, HayEquipo no se
+se hacer responsable por posibles daños ni traumas psicologicos. <br />
+
+                    </div>
+                  </div>
+            </div>
+            </div>
           </div>
         </div>
         </form>

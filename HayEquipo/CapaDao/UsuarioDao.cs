@@ -131,7 +131,39 @@ namespace CapaDao
 
         }
 
-       
+        public bool RegistrarUsuarioEstablecimiento(UsuarioEntidad objUsuario)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarUsuarioEstablecimiento", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombre", objUsuario.nombreUsuario);
+                cmd.Parameters.AddWithValue("@prmEmail", objUsuario.email);
+                cmd.Parameters.AddWithValue("@prmContraseña", objUsuario.contraseña);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
+
+
         public static bool Existe(string nombre)
         {
 
