@@ -7,9 +7,11 @@
             text-align: center;
             color:white;
         }
+        .alinearCentro { text-align: center; }
         .fondoPalJumbotron{
             background-color:#000000
         }
+        
     </style>
 </asp:Content>
 
@@ -29,30 +31,27 @@
                     <%--DATOS--%>
                     
                        
+                            <div class="form-group">
+                                <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
                             
-                                <asp:Label ID="lbl_Deporte" runat="server" Text="Deporte"></asp:Label>
-                            <br />
                             <div class="dropdown">
                                 <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems>
                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-
-                        
-                        <br />
-                        <br />
-                            
-                            
+                            </div>
+                             
+                            <div class="form-group">                                                         
                                 <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <br />
+                            
                             
                                 <%--NO BORRAR--%>
                                 <asp:Calendar ID="cld_Fecha" runat="server"></asp:Calendar>
                                 <%--<asp:TextBox ID="txt_Fecha" runat="server" TextMode="Date"></asp:TextBox>--%>
-                            
+                            </div>   
 
                         
-                        <%--<br />--%>
+                       
                         
                             
                             
@@ -73,15 +72,14 @@
                            
 
                         
-                        <br />
-                        
+                     
+                            
+                            <div class="form-group">
+                                <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" />
                             
                             
-                                <asp:CheckBox ID="chk_Accesibilidad" runat="server" Text=" Clave" />
-                            
-                            
-                                <asp:TextBox ID="txt_Clave" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
-                            
+                                <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
+                            </div>
                         
                         
                     
@@ -94,35 +92,27 @@
                         <div class="col-md-6">
                     <%--  LUGAR PUBLICO--%>
                     
-                        
+                        <div class="form-group">
                             <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
-                        
-                        <%--<br />--%>
-                        
-                    <br />
-                    <br />
+                        </div>
+                                
+                            <div class="form-group">
+                             <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
                             
-                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
-                            <br />
-                            <br />
-                                <asp:TextBox ID="txt_HoraInicio" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
-                                 
-                            <br />
-                             <br />                                                             
+                                <asp:TextBox ID="txt_HoraInicio" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
+                                 </div>
+                                                                                      
                             
-                            <%--<br />--%>
-                            
-                            <%--<div class="row">--%>
+                           <div class="form-group">
                             
                                 <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
-                            <br />
-                    <br />
+                    
                             
-                                <asp:TextBox ID="txt_HoraFin" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
-                            
+                                <asp:TextBox ID="txt_HoraFin" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
+                            </div>
 
                         
-                        <br />
+                       
 
                         <%--<div class="row">
                             <div class="col-md-3">
@@ -133,25 +123,25 @@
                             </div>
                         </div>--%>
 
-                        
+                        <div class="form-group">
                             <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>
                         
-                    <br />
+                    
 
                         
-                            <asp:TextBox ID="txt_NombreLugar" runat="server" placeHolder="Lugar" Columns="50" MaxLength="40"></asp:TextBox>
-                        
+                            <asp:TextBox ID="txt_NombreLugar" CssClass="form-control" runat="server" placeHolder="Lugar" Columns="50" MaxLength="40"></asp:TextBox>
+                        </div>
 
-                        <br />
                         
+                        <div class="form-group">
                             <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
                         
-                    <br />
+                    
                         
-                            <asp:TextBox ID="txt_Direccion" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="40"></asp:TextBox>
-                        
+                            <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="40"></asp:TextBox>
+                        </div>
 
-                        <br />
+                        
                         <%-- <div class="row">
                             <div class="col-md-3">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
@@ -164,36 +154,28 @@
                             
                         </div>--%>
                     
-                    <br />
-
-                    <br />
+          
                     <%-- LUGAR PRIVADO --%>
                     </div>
                     <div class="col-md-6">
                         
+                        <div class="form-group">
                             <asp:RadioButton ID="rdb_Privado" runat="server" Text=" Lugar Privado" GroupName="tipoEncuentro" value="1" OnCheckedChanged="rdb_Privado_CheckedChanged" AutoPostBack="true" />
-                        
-                        <br />
-                    <br />
-                            
-                                
-                                    <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
-                                <br />
-                    <br />
-                                <%--<br />--%>
-                                
-                                    <asp:DropDownList ID="cmb_Complejo" runat="server" AppendDataBoundItems>
+                        </div>                      
+                         <div class="form-group">
+                                    <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>                          
+                                                             
+                                    <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AppendDataBoundItems>
                                         <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                     </asp:DropDownList>
-                                
-                            <br />
-                    <br />
+                                </div>
+                     
 
                             
                                 
                                     <%--<asp:Label ID="lbl_TipoCancha" runat="server" Text="Canchas"></asp:Label>--%>
                                 
-                                <br />
+                                
                                 
                                     <%--<asp:DropDownList ID="cmb_TipoCancha" runat="server" AppendDataBoundItems>
                                         <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
@@ -203,7 +185,7 @@
                             
 
                         
-                        <br />
+                        
 
                         
                             <%--<asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" BackColor="Blue" ForeColor="White" />--%>
