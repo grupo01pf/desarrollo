@@ -79,7 +79,7 @@ namespace CapaPresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            ComplejoDeportivoEntidad complejo = new ComplejoDeportivoEntidad();
+            ComplejoDeportivo complejo = new ComplejoDeportivo();
 
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
@@ -91,7 +91,7 @@ namespace CapaPresentacion
             complejo.calle = txtCalle.Text;
             int nroCalle;
             if (int.TryParse(txtNro.Text, out nroCalle))
-                complejo.numeroCalle = nroCalle;
+                complejo.nroCalle = nroCalle;
 
             int barrio;
             if (int.TryParse(ddlBarrio.Text, out barrio))
@@ -99,12 +99,12 @@ namespace CapaPresentacion
 
             int tel;
             if (int.TryParse(txtTel.Text, out tel))
-                complejo.numeroTelefono = tel;
+                complejo.nroTelefono = tel;
 
 
             if (ID.HasValue)
             {
-                complejo.idComplejoDeportivo = ID.Value;
+                complejo.id = ID.Value;
                 ComplejoDeportivoDao.ActualizarComplejo(complejo);
             }
             else
@@ -138,10 +138,10 @@ namespace CapaPresentacion
 
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            ddlTipo.SelectedIndex = (compSelec.id)-1;
+            ddlTipo.SelectedIndex = (compSelec.idTipoComplejo-1);
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
-            ddlBarrio.SelectedIndex = (compSelec.id)-1;
+            ddlBarrio.SelectedIndex = (compSelec.idBarrio-1);
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;

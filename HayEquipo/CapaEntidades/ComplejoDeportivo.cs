@@ -26,10 +26,10 @@ namespace CapaEntidades
         public int id { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public Nullable<int> idTipoComplejo { get; set; }
+        public int idTipoComplejo { get; set; }
         public string calle { get; set; }
         public Nullable<int> nroCalle { get; set; }
-        public Nullable<int> idBarrio { get; set; }
+        public int idBarrio { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<int> idResponsable { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
