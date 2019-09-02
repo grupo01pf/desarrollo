@@ -99,6 +99,8 @@
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
+    <Content Include="HomeAdministrador.aspx" />
+    <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -107,6 +109,8 @@
     <Content Include="PerfilDeportistas.aspx" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
+    <Content Include="MasterPageEstablecimiento.Master" />
+    <Content Include="MasterPageAdministrador.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,6 +180,20 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HomeAdministrador.aspx.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeAdministrador.aspx.designer.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.designer.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,6 +207,20 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageAdministrador.Master.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdministrador.Master.designer.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.designer.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
     </Compile>
     <Compile Include="PerfilDeportistas.aspx.cs">
       <DependentUpon>PerfilDeportistas.aspx</DependentUpon>

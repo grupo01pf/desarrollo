@@ -48,17 +48,23 @@ namespace CapaPresentacion
                
                 Session["Usuario"] = txt_NombreUsuario.Text;
                  }
-               
+
 
             if (Session["Rol"].ToString() == "Administrador")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
-                 Response.Redirect("Home.aspx");
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                Response.Redirect("HomeAdministrador.aspx");
+            }
             if (Session["Rol"].ToString() == "UsuarioDeportista")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
                 Response.Redirect("Home.aspx");
+            }
             if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
-                Response.Redirect("Home.aspx");
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                Response.Redirect("HomeEstablecimiento.aspx");
+            }
 
         }
 
@@ -126,8 +132,17 @@ namespace CapaPresentacion
                                         Session["Usuario"] = txtNombre.Text;
                                     }
                                     enviarcorreo();
-                                    FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
-                                    Response.Redirect("Home.aspx");
+                                    if (Session["Rol"].ToString() == "UsuarioDeportista")
+                                    {
+                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                        Response.Redirect("Home.aspx");
+                                    }
+                                    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                                    {
+                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                        Response.Redirect("HomeEstablecimiento.aspx");
+                                    }
+
                                 }
                                 else
                                 {
