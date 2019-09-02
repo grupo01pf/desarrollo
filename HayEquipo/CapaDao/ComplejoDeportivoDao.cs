@@ -86,27 +86,49 @@ namespace CapaDao
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-                db.ComplejoDeportivo.Find(complejo.id);
-                db.Entry(complejo).State = System.Data.Entity.EntityState.Modified;
+                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+                comp.id = complejo.id;
+                comp.nombre = complejo.nombre;
+                comp.descripcion = complejo.descripcion;
+                comp.idTipoComplejo = complejo.idTipoComplejo;
+                comp.calle = complejo.calle;
+                comp.nroCalle = complejo.nroCalle;
+                comp.idBarrio = complejo.idBarrio;
+                comp.nroTelefono = complejo.nroTelefono;
+                comp.idResponsable = complejo.idResponsable;
+                comp.promedioEstrellas = complejo.promedioEstrellas;
+                comp.idEstado = complejo.idEstado;
+
+                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
+        //public static void EliminarComplejo(int id)
+        //{
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = @"DELETE from ComplejoDeportivo WHERE id=@idComplejo";
+
+        //    cmd.Parameters.AddWithValue("@idComplejo", id);
+
+        //    cmd.ExecuteNonQuery();
+
+        //    cn.Close();
+        //}
+
         public static void EliminarComplejo(int id)
         {
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = ConnectionString.Cadena();
-            cn.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = @"DELETE from ComplejoDeportivo WHERE id=@idComplejo";
-
-            cmd.Parameters.AddWithValue("@idComplejo", id);
-
-            cmd.ExecuteNonQuery();
-
-            cn.Close();
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                ComplejoDeportivo complejo = db.ComplejoDeportivo.Find(id);
+                db.ComplejoDeportivo.Remove(complejo);
+                db.SaveChanges();
+            }
         }
 
         //public static List<ComplejoDeportivoEntidad> ObtenerComplejos() {
