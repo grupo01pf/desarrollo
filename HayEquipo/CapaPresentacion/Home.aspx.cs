@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
+using System.Web.Security;
 
 namespace CapaPresentacion
 {
@@ -27,10 +28,12 @@ namespace CapaPresentacion
 
         protected void btn_Logout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
+
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
-            
+            Response.Redirect("Login.aspx");
+
+
 
         }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaEntidades;
 using System.Data;
+using System.Configuration;
 
 namespace CapaDao
 {
@@ -130,6 +131,59 @@ namespace CapaDao
 
         }
 
+        public bool RegistrarUsuarioEstablecimiento(UsuarioEntidad objUsuario)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarUsuarioEstablecimiento", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombre", objUsuario.nombreUsuario);
+                cmd.Parameters.AddWithValue("@prmEmail", objUsuario.email);
+                cmd.Parameters.AddWithValue("@prmContraseña", objUsuario.contraseña);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
 
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
+
+
+        public static bool Existe(string nombre)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT * FROM Usuario WHERE nombre=@nombre";
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
     }
 }

@@ -39,12 +39,12 @@ namespace CapaDao
 
 
             //FrancoR BD
-            String cadeana = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
+            //String cadeana = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
 
            // string cadeana = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 
 
-            return cadeana;
+            //return cadeana;
 
             //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
@@ -52,9 +52,9 @@ namespace CapaDao
 
 
             //*****Agu_BD
-            //string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
+            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
 
-            //return cadena;
+            return cadena;
         }
 
         public SqlConnection ConexionDB()

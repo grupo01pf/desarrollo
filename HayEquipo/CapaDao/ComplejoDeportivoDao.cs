@@ -20,7 +20,7 @@ namespace CapaDao
         //    SqlCommand cmd = new SqlCommand();
         //    cmd.Connection = cn;
         //    cmd.CommandText = @"INSERT into ComplejoDeportivo(nombre, descripcion, idTipoComplejo, calle, nroCalle,
-        //                                                      idBarrio, nroTelefono, idResponsable, promedioEstrellas, idEstado)   
+        //                                                      idBarrio, nroTelefono, idResponsable, promedioEstrellas, idEstado)
         //                                        values(@nom, @descrip, @idTipoComp, @calle, @nroCalle,
         //                                               @idBarr, @nroTel, @idResp, @promEstr, @idEst);
         //                        select Scope_Identity() as ID";
@@ -59,8 +59,8 @@ namespace CapaDao
         //    SqlCommand cmd = new SqlCommand();
         //    cmd.Connection = cn;
         //    cmd.CommandText = @"UPDATE ComplejoDeportivo SET nombre=@nomb, descripcion=@desc, idTipoComplejo=@idTipoComp,
-        //                                                     calle=@calle, nroCalle=@nroCalle, idBarrio=@idBarr,                        
-        //                                                     nroTelefono=@nroTel, idResponsable=@idResp, 
+        //                                                     calle=@calle, nroCalle=@nroCalle, idBarrio=@idBarr,
+        //                                                     nroTelefono=@nroTel, idResponsable=@idResp,
         //                                                     promedioEstrellas=@promEstr
         //                                               WHERE id=@idComplejo";
 
@@ -140,8 +140,8 @@ namespace CapaDao
         //    cn.Open();
         //    SqlCommand cmd = new SqlCommand();
         //    cmd.Connection = cn;
-        //    cmd.CommandText = @"SELECT TOP 1000 id, nombre, descripcion, idTipoComplejo, calle, nroCalle, idBarrio, 
-        //                        nroTelefono, idResponsable, idUsuario, promedioEstrellas, idEstado 
+        //    cmd.CommandText = @"SELECT TOP 1000 id, nombre, descripcion, idTipoComplejo, calle, nroCalle, idBarrio,
+        //                        nroTelefono, idResponsable, idUsuario, promedioEstrellas, idEstado
         //                        FROM ComplejoDeportivo ";
         //    SqlDataReader dr = cmd.ExecuteReader();
         //    while (dr.Read())
