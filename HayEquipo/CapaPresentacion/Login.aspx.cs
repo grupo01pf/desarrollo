@@ -18,7 +18,7 @@ namespace CapaPresentacion
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
             Session["ID"] = String.Empty;
-            
+
 
         }
 
@@ -45,20 +45,26 @@ namespace CapaPresentacion
 
             if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
                 {
-               
+
                 Session["Usuario"] = txt_NombreUsuario.Text;
                  }
-               
+
 
             if (Session["Rol"].ToString() == "Administrador")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
-                 Response.Redirect("Home.aspx");
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                Response.Redirect("HomeAdministrador.aspx");
+            }
             if (Session["Rol"].ToString() == "UsuarioDeportista")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
                 Response.Redirect("Home.aspx");
+            }
             if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text,false);
-                Response.Redirect("Home.aspx");
+            {
+                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                Response.Redirect("HomeEstablecimiento.aspx");
+            }
 
         }
 
@@ -80,7 +86,7 @@ namespace CapaPresentacion
         {
 
             UsuarioEntidad objUsuario = new UsuarioEntidad();
-           
+
                 //aqui tu codigo si el correo es valido
 
                 objUsuario.idUsuario = 0;
@@ -88,8 +94,8 @@ namespace CapaPresentacion
                 objUsuario.email = txtEmail.Text;
                 objUsuario.contraseña = txtPassword.Text;
                 return objUsuario;
-           
-            
+
+
         }
 
         protected void btn_Registrar_Click(object sender, EventArgs e)
@@ -126,8 +132,17 @@ namespace CapaPresentacion
                                         Session["Usuario"] = txtNombre.Text;
                                     }
                                     enviarcorreo();
-                                    FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
-                                    Response.Redirect("Home.aspx");
+                                    if (Session["Rol"].ToString() == "UsuarioDeportista")
+                                    {
+                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                        Response.Redirect("Home.aspx");
+                                    }
+                                    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                                    {
+                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                        Response.Redirect("HomeEstablecimiento.aspx");
+                                    }
+
                                 }
                                 else
                                 {
@@ -177,7 +192,7 @@ namespace CapaPresentacion
             return Regex.IsMatch(correo, "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
         }
 
-        
+
 
     }
 }

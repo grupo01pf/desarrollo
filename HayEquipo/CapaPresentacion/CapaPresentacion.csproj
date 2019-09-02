@@ -107,6 +107,8 @@
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
+    <Content Include="HomeAdministrador.aspx" />
+    <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -115,6 +117,8 @@
     <Content Include="PerfilDeportistas.aspx" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
+    <Content Include="MasterPageEstablecimiento.Master" />
+    <Content Include="MasterPageAdministrador.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -184,6 +188,20 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HomeAdministrador.aspx.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeAdministrador.aspx.designer.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.designer.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +215,20 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageAdministrador.Master.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdministrador.Master.designer.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.designer.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
     </Compile>
     <Compile Include="PerfilDeportistas.aspx.cs">
       <DependentUpon>PerfilDeportistas.aspx</DependentUpon>
@@ -249,7 +281,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
