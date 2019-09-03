@@ -1,7 +1,83 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CapaPresentacion.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+    <style>
+     .mydatagrid
+{
+	width: 80%;
+	border: solid 4px black;
+    border-radius: 12px;
+	min-width: 80%;
+}
+.header
+{
+	background-color: #0b3107;
+	font-family: Arial;
+	color: White;
+	height: 25px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.rows
+{
+	background-color: #fff;
+	font-family: Arial;
+	font-size: 14px;
+	color: #000;
+	min-height: 25px;
+	text-align: left;
+}
+.rows:hover
+{
+	background-color: #000;
+    color:White;
+}
+
+.mydatagrid a /** FOR THE PAGING ICONS  **/
+{
+	background-color: Transparent;
+	padding: 5px 5px 5px 5px;
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/
+{
+	background-color: #0026ff;
+	color: #fff;
+}
+.mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
+{
+	
+	padding: 5px 5px 5px 5px;
+	background-color: #000;
+	color: #fff;
+}
+.pager
+{
+	background-color: #22c81a;
+	font-family: Arial;
+	color: White;
+	height: 30px;
+	text-align: left;
+}
+
+.mydatagrid td
+{
+	padding: 5px;
+}
+.mydatagrid th
+{
+	padding: 5px;
+}
+.round3 {
+  border: 2px solid #0b3107;
+  border-radius: 12px;
+}
+
+    </style>
 </asp:Content>
 
 
@@ -90,18 +166,20 @@
             </button>
           </span>        
         </div>
-      <div class="row">
-        <div class="col-sm-12">
+      
+        
           <div class="well">
-           <p>Encuentros Vigentes</p>
+            
+           <h3 class="round3">Encuentros Vigentes</h3>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
              
               <%-- GRILLA LUGARES PUBLICOS --%>
-               <div class="row">
-                   <asp:Label ID="lbl_Prueba" runat="server" ></asp:Label>
-                    <div style="width: 30; height: 400px; overflow: scroll">
-                  <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered"
-                      OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
+               
+                   
+                    <div class="table-responsive">
+                  <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />                                    
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
@@ -118,12 +196,12 @@
                             </asp:GridView>
                     
               </div>
-                   </div>
+                   
 
 
           </div>
-        </div>
-      </div>
+        
+      
       
     </div>
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
