@@ -34,8 +34,8 @@ namespace CapaEntidades
         public Nullable<System.DateTime> fechaFinEncuentro { get; set; }
         public Nullable<int> idEstado { get; set; }
         public Nullable<int> idUsuario { get; set; }
-        public Nullable<System.TimeSpan> horaInicio { get; set; }
-        public Nullable<System.TimeSpan> horaFin { get; set; }
+        public Nullable<System.DateTime> horaInicio { get; set; }
+        public Nullable<System.DateTime> horaFin { get; set; }
         public string tipoEncuentro { get; set; }
         public string accesibilidad { get; set; }
         public string clave { get; set; }

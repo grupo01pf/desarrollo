@@ -95,11 +95,11 @@ namespace CapaPresentacion
 
         private void crearEventoPrivado()
         {
-            EncuentroDeportivoEntidad ed = new EncuentroDeportivoEntidad();
+            EncuentroDeportivo ed = new EncuentroDeportivo();
 
 
             //  ed.idAUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
-            ed.idAUsuario = 1;
+            ed.idAdmin = 1;
             // string fechaHoy = hoy.ToString("dd/MM/yyyy");
             DateTime hoy = DateTime.Now;
             DateTime fecha;
@@ -143,7 +143,7 @@ namespace CapaPresentacion
 
             if (string.IsNullOrEmpty(txt_HoraFin.Text)){
                 DateTime hf;
-                if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
+                if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFin = hf; }
             }
 
             EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);

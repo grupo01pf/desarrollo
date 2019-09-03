@@ -141,10 +141,10 @@ namespace CapaPresentacion
 
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            ddlTipo.SelectedIndex = (compSelec.idTipoComplejo-1);
+            ddlTipo.SelectedIndex = (compSelec.idTipoComplejo);
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
-            ddlBarrio.SelectedIndex = (compSelec.idBarrio-1);
+            ddlBarrio.SelectedIndex = (compSelec.idBarrio);
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;

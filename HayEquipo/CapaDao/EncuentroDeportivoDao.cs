@@ -88,47 +88,54 @@ namespace CapaDao
         }
 
 
-        public static int InsertarEncuentroPrivado(EncuentroDeportivoEntidad ed)
+        //public static int InsertarEncuentroPrivado(EncuentroDeportivoEntidad ed)
+        //{
+        //    int nroID = 0;
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+        //    // SqlTransaction tr = cn.BeginTransaction();
+        //    // try {
+
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = @"INSERT INTO EncuentroDeportivo (fechaCreacionEncuentro,idDeporte,
+        //                        idComplejo,fechaInicioEncuentro,idEstado,idUsuario,tipoEncuentro,accesibilidad,clave)
+        //                        VALUES (@fechaCreacionEncuentro,@idDeporte,@idComplejo,@fechaInicioEncuentro,
+        //                        @idEstado,@idUsuario,@tipoEncuentro,@accesibilidad,@clave)";
+
+        //    cmd.Parameters.AddWithValue("@fechaCreacionEncuentro", ed.fechaCreacionEncuentro);
+        //    // cmd.Parameters.AddWithValue("@fechaDestruccionEncuentro",ed.fechaDestruccionEncuentro);
+        //    cmd.Parameters.AddWithValue("@idDeporte", ed.idDeporte);
+        //    cmd.Parameters.AddWithValue("@idComplejo",ed.idComplejo);
+        //    // cmd.Parameters.AddWithValue("@calle",ed.calle);
+        //    // cmd.Parameters.AddWithValue("@nroCalle",ed.numeroCalle);
+        //    // cmd.Parameters.AddWithValue("@idEquipo",ed.idEquipo);
+        //    cmd.Parameters.AddWithValue("@fechaInicioEncuentro", ed.fechaInicioEncuentro);
+        //    //  cmd.Parameters.AddWithValue("@FechaFinEncuentro",ed.fechaFinEncuentro);
+        //    cmd.Parameters.AddWithValue("@idEstado", ed.idEstado);
+        //    cmd.Parameters.AddWithValue("@idUsuario", ed.idAUsuario);
+        //    cmd.Parameters.AddWithValue("@tipoEncuentro", ed.tipoEncuentro);
+        //    cmd.Parameters.AddWithValue("@accesibilidad", ed.accesibilidad);
+        //    cmd.Parameters.AddWithValue("@clave",ed.clave);
+        //    //  cmd.Parameters.AddWithValue("@horaInicio", ed.horaInicio); //( uSAR DESPUES )
+        //    //  cmd.Parameters.AddWithValue("@horaFin", ed.horaFIn); //( uSAR DESPUES )
+        //    // cmd.Parameters.AddWithValue("@idLugarPublico", ed.idLugarPublico);
+        //    // nroID = (int)Convert.ToInt32(cmd.ExecuteScalar());
+        //    cmd.ExecuteNonQuery();
+        //    cn.Close();
+
+        //   // actualizarLugarPublico(ed.idLugarPublico, nroID);
+        //    return nroID;
+        //}
+        public static void InsertarEncuentroPrivado(EncuentroDeportivo encuentro)
         {
-            int nroID = 0;
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = ConnectionString.Cadena();
-            cn.Open();
-            // SqlTransaction tr = cn.BeginTransaction();
-            // try {
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = @"INSERT INTO EncuentroDeportivo (fechaCreacionEncuentro,idDeporte,
-                                idComplejo,fechaInicioEncuentro,idEstado,idUsuario,tipoEncuentro,accesibilidad,clave)
-                                VALUES (@fechaCreacionEncuentro,@idDeporte,@idComplejo,@fechaInicioEncuentro,
-                                @idEstado,@idUsuario,@tipoEncuentro,@accesibilidad,@clave)";
-
-            cmd.Parameters.AddWithValue("@fechaCreacionEncuentro", ed.fechaCreacionEncuentro);
-            // cmd.Parameters.AddWithValue("@fechaDestruccionEncuentro",ed.fechaDestruccionEncuentro);
-            cmd.Parameters.AddWithValue("@idDeporte", ed.idDeporte);
-            cmd.Parameters.AddWithValue("@idComplejo",ed.idComplejo);
-            // cmd.Parameters.AddWithValue("@calle",ed.calle);
-            // cmd.Parameters.AddWithValue("@nroCalle",ed.numeroCalle);
-            // cmd.Parameters.AddWithValue("@idEquipo",ed.idEquipo);
-            cmd.Parameters.AddWithValue("@fechaInicioEncuentro", ed.fechaInicioEncuentro);
-            //  cmd.Parameters.AddWithValue("@FechaFinEncuentro",ed.fechaFinEncuentro);
-            cmd.Parameters.AddWithValue("@idEstado", ed.idEstado);
-            cmd.Parameters.AddWithValue("@idUsuario", ed.idAUsuario);
-            cmd.Parameters.AddWithValue("@tipoEncuentro", ed.tipoEncuentro);
-            cmd.Parameters.AddWithValue("@accesibilidad", ed.accesibilidad);
-            cmd.Parameters.AddWithValue("@clave",ed.clave);
-            //  cmd.Parameters.AddWithValue("@horaInicio", ed.horaInicio); //( uSAR DESPUES )
-            //  cmd.Parameters.AddWithValue("@horaFin", ed.horaFIn); //( uSAR DESPUES )
-            // cmd.Parameters.AddWithValue("@idLugarPublico", ed.idLugarPublico);
-            // nroID = (int)Convert.ToInt32(cmd.ExecuteScalar());
-            cmd.ExecuteNonQuery();
-            cn.Close();
-
-           // actualizarLugarPublico(ed.idLugarPublico, nroID);
-            return nroID;
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.EncuentroDeportivo.Add(encuentro);
+                db.SaveChanges();
+            }
         }
-    
 
     }
 }
