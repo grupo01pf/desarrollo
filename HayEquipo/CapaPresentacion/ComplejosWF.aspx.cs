@@ -13,11 +13,14 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
             cargarTiposComplejos();
             cargarBarrios();
             CargarGrillaComplejos();
+            btnEliminar.Enabled = false;
+            btnEliminar.CssClass = "btn btn-warning";
             }
         }
         protected int? ID

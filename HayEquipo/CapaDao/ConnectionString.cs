@@ -35,7 +35,7 @@ namespace CapaDao
             //string cadeana = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
-            string cadeana = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
+            //string cadeana = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
 
 
             //FrancoR BD
@@ -66,7 +66,7 @@ namespace CapaDao
             //conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
-            conexion.ConnectionString = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
+            //conexion.ConnectionString = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
 
             //Cadena de conexion de Agus
             conexion.ConnectionString = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
