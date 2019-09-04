@@ -127,7 +127,7 @@
                 <asp:BoundField DataField="calle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Calle" />
                 <asp:BoundField DataField="nroCalle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nº" />
                 <asp:BoundField DataField="nroTelefono" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Télefono" />--%>
-                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" />
+                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" />
             </Columns>
         </asp:GridView>
         <br />

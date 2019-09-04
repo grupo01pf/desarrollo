@@ -14,9 +14,9 @@ namespace CapaEntidades
         public string Tipo { get; set; }
         public string Direccion { get; set; }
         public string Barrio { get; set; }
-        public int Telefono { get; set; }
+        public int? Telefono { get; set; }
         public string Responsable { get; set; }
-        public double Valoracion { get; set; }
+        public double? Valoracion { get; set; }
         public string Estado { get; set; }
     }
 }

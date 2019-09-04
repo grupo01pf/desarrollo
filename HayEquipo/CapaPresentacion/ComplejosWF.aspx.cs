@@ -86,6 +86,9 @@ namespace CapaPresentacion
 
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
+            complejo.idResponsable = 2;
+            complejo.promedioEstrellas = 0;
+            complejo.idEstado = 1;
 
             int tipoComp;
             if (int.TryParse(ddlTipo.Text, out tipoComp))
@@ -127,7 +130,7 @@ namespace CapaPresentacion
             gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
                                      orderby comp.Nombre
                                      select comp);
-
+ 
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
