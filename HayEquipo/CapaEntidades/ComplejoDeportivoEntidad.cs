@@ -17,7 +17,6 @@ namespace CapaEntidades
         public int idBarrio { get; set; }
         public int numeroTelefono { get; set; }
         public int idResponsable { get; set; }
-        public int idUsuario { get; set; }
         public float promedioEstrellas { get; set; }
         public int idEstado { get; set; }
 
@@ -37,7 +36,6 @@ namespace CapaEntidades
             idBarrio = int_NullValue;
             numeroTelefono = int_NullValue;
             idResponsable = int_NullValue;
-            idUsuario = int_NullValue;
             promedioEstrellas = float_NullValue;
             idEstado = int_NullValue;
 

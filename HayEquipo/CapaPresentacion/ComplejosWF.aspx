@@ -120,13 +120,13 @@
         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" Width="116px" />
         <br />
 &nbsp;<br />
-        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="False" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
+        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
-                <asp:BoundField DataField="nombre" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nombre" />
+            <%--    <asp:BoundField DataField="nombre" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nombre" />
                 <asp:BoundField DataField="descripcion" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Descripción" />
                 <asp:BoundField DataField="calle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Calle" />
                 <asp:BoundField DataField="nroCalle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nº" />
-                <asp:BoundField DataField="nroTelefono" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Télefono" />
+                <asp:BoundField DataField="nroTelefono" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Télefono" />--%>
                 <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" />
             </Columns>
         </asp:GridView>

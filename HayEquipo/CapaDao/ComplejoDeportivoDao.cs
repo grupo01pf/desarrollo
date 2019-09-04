@@ -176,6 +176,14 @@ namespace CapaDao
             }
         }
 
+        public static List<ComplejoDeportivoQueryEntidad> ObtenerComplejosJoin()
+        {
+            using (var db = new HayEquipoEntities())
+            {
+                return db.Database.SqlQuery<ComplejoDeportivoQueryEntidad>("spObtenerComplejosJoin").ToList();
+            }
+        }
+
         //public static ComplejoDeportivoEntidad ObtenerComplejosPorID(int id)
         //{
         //    ComplejoDeportivoEntidad complejo = null;

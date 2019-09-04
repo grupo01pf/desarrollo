@@ -119,5 +119,45 @@ namespace CapaEntidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertComplejos", nombParameter, descParameter, idTipoCompParameter, calleParameter, nroCalleParameter, idBarrParameter, nroTelParameter, idRespParameter, promEstrParameter, idEstParameter);
         }
+  
+    
+        public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var prmEmailParameter = prmEmail != null ?
+                new ObjectParameter("prmEmail", prmEmail) :
+                new ObjectParameter("prmEmail", typeof(string));
+    
+            var prmContraseñaParameter = prmContraseña != null ?
+                new ObjectParameter("prmContraseña", prmContraseña) :
+                new ObjectParameter("prmContraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuario", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
+        }
+    
+        public virtual int spRegistrarUsuarioEstablecimiento(string prmNombre, string prmEmail, string prmContraseña)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var prmEmailParameter = prmEmail != null ?
+                new ObjectParameter("prmEmail", prmEmail) :
+                new ObjectParameter("prmEmail", typeof(string));
+    
+            var prmContraseñaParameter = prmContraseña != null ?
+                new ObjectParameter("prmContraseña", prmContraseña) :
+                new ObjectParameter("prmContraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuarioEstablecimiento", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
+        }
+    
+        public virtual ObjectResult<ComplejoDeportivoQueryEntidad> spObtenerComplejosJoin()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ComplejoDeportivoQueryEntidad>("spObtenerComplejosJoin");
+        }
     }
 }

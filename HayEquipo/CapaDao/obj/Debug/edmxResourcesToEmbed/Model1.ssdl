@@ -1236,17 +1236,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="spInsertComplejos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nomb" Type="nvarchar" Mode="In" />
-    <Parameter Name="desc" Type="nvarchar" Mode="In" />
-    <Parameter Name="idTipoComp" Type="int" Mode="In" />
-    <Parameter Name="calle" Type="nvarchar" Mode="In" />
-    <Parameter Name="nroCalle" Type="int" Mode="In" />
-    <Parameter Name="idBarr" Type="int" Mode="In" />
-    <Parameter Name="nroTel" Type="int" Mode="In" />
-    <Parameter Name="idResp" Type="int" Mode="In" />
-    <Parameter Name="promEstr" Type="float" Mode="In" />
-    <Parameter Name="idEst" Type="int" Mode="In" />
+  <Function Name="spObtenerComplejosJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spRegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+    <Parameter Name="prmEmail" Type="varchar" Mode="In" />
+    <Parameter Name="prmContraseña" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRegistrarUsuarioEstablecimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+    <Parameter Name="prmEmail" Type="varchar" Mode="In" />
+    <Parameter Name="prmContraseña" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="HayEquipoModelStoreContainer">
     <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />

@@ -109,7 +109,6 @@ C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.Cod
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
-
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\ApplicationInsights.config
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn\csc.exe

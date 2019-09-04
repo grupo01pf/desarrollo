@@ -1686,5 +1686,41 @@
       <Parameter Name="promEstr" Mode="In" Type="Double" />
       <Parameter Name="idEst" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="obtenerComplejosJoin" ReturnType="Collection(HayEquipoModel.obtenerComplejosJoin_Result)" />
+    <FunctionImport Name="spRegistrarUsuario">
+      <Parameter Name="prmNombre" Mode="In" Type="String" />
+      <Parameter Name="prmEmail" Mode="In" Type="String" />
+      <Parameter Name="prmContraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spRegistrarUsuarioEstablecimiento">
+      <Parameter Name="prmNombre" Mode="In" Type="String" />
+      <Parameter Name="prmEmail" Mode="In" Type="String" />
+      <Parameter Name="prmContraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spObtenerComplejosJoin" ReturnType="Collection(HayEquipoModel.spObtenerComplejosJoin_Result)" />
   </EntityContainer>
+  <ComplexType Name="obtenerComplejosJoin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
+    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
+    <Property Type="Double" Name="Valoración" Nullable="true" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spObtenerComplejosJoin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
+    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
+    <Property Type="Double" Name="Valoración" Nullable="true" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+  </ComplexType>
 </Schema>

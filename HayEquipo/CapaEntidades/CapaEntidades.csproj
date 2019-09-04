@@ -78,6 +78,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ComplejoDeportivoEntidad.cs" />
+    <Compile Include="ComplejoDeportivoQueryEntidad.cs" />
     <Compile Include="Deporte.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

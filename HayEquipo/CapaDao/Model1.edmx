@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="id" />
@@ -1241,17 +1241,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="spInsertComplejos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nomb" Type="nvarchar" Mode="In" />
-          <Parameter Name="desc" Type="nvarchar" Mode="In" />
-          <Parameter Name="idTipoComp" Type="int" Mode="In" />
-          <Parameter Name="calle" Type="nvarchar" Mode="In" />
-          <Parameter Name="nroCalle" Type="int" Mode="In" />
-          <Parameter Name="idBarr" Type="int" Mode="In" />
-          <Parameter Name="nroTel" Type="int" Mode="In" />
-          <Parameter Name="idResp" Type="int" Mode="In" />
-          <Parameter Name="promEstr" Type="float" Mode="In" />
-          <Parameter Name="idEst" Type="int" Mode="In" />
+        <Function Name="spObtenerComplejosJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spRegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+          <Parameter Name="prmEmail" Type="varchar" Mode="In" />
+          <Parameter Name="prmContraseña" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spRegistrarUsuarioEstablecimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+          <Parameter Name="prmEmail" Type="varchar" Mode="In" />
+          <Parameter Name="prmContraseña" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="HayEquipoModelStoreContainer">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
@@ -1562,8 +1561,7 @@
             <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HayEquipoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -3253,7 +3251,43 @@
             <Parameter Name="promEstr" Mode="In" Type="Double" />
             <Parameter Name="idEst" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="obtenerComplejosJoin" ReturnType="Collection(HayEquipoModel.obtenerComplejosJoin_Result)" />
+          <FunctionImport Name="spRegistrarUsuario">
+            <Parameter Name="prmNombre" Mode="In" Type="String" />
+            <Parameter Name="prmEmail" Mode="In" Type="String" />
+            <Parameter Name="prmContraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spRegistrarUsuarioEstablecimiento">
+            <Parameter Name="prmNombre" Mode="In" Type="String" />
+            <Parameter Name="prmEmail" Mode="In" Type="String" />
+            <Parameter Name="prmContraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spObtenerComplejosJoin" ReturnType="Collection(HayEquipoModel.spObtenerComplejosJoin_Result)" />
         </EntityContainer>
+        <ComplexType Name="obtenerComplejosJoin_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripción" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
+          <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Teléfono" Nullable="true" />
+          <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
+          <Property Type="Double" Name="Valoración" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spObtenerComplejosJoin_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripción" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
+          <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Teléfono" Nullable="true" />
+          <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
+          <Property Type="Double" Name="Valoración" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3763,7 +3797,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spInsertComplejos" FunctionName="HayEquipoModel.Store.spInsertComplejos" />
+          <FunctionImportMapping FunctionImportName="spRegistrarUsuario" FunctionName="HayEquipoModel.Store.spRegistrarUsuario" />
+          <FunctionImportMapping FunctionImportName="spRegistrarUsuarioEstablecimiento" FunctionName="HayEquipoModel.Store.spRegistrarUsuarioEstablecimiento" />
+          <FunctionImportMapping FunctionImportName="spObtenerComplejosJoin" FunctionName="HayEquipoModel.Store.spObtenerComplejosJoin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerComplejosJoin_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="Valoración" ColumnName="Valoración" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

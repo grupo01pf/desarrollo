@@ -124,11 +124,11 @@ namespace CapaPresentacion
         {
             gvComplejos.DataSource = null;
 
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejos()
-                                     orderby comp.nombre
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                     orderby comp.Nombre
                                      select comp);
 
-            gvComplejos.DataKeyNames = new string[] { "id" };
+            gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
 
