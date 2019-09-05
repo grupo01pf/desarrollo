@@ -78,11 +78,11 @@
             ErrorMessage="Ingrese Calle"
             CssClass="alert-danger" Display="Dynamic"
             Text="*" ValidationGroup="A" />
-        <asp:RegularExpressionValidator ID="rvCalle"
+ <%--       <asp:RegularExpressionValidator ID="rvCalle"
              runat="server" ErrorMessage="Ingrese una Calle válida"
              ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
-             Display="Dynamic"></asp:RegularExpressionValidator>
+             Display="Dynamic"></asp:RegularExpressionValidator>--%>
         <br />
 &nbsp;
         <asp:Label ID="lblNum" runat="server" Text="Número" ForeColor="White"></asp:Label>
@@ -95,8 +95,8 @@
             CssClass="alert-danger" Display="Dynamic"
             Text="*" ValidationGroup="A" />
         <asp:RegularExpressionValidator ID="rvNro"
-             runat="server" ErrorMessage="Ingrese un Número válido"
-             ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
+             runat="server" ErrorMessage="Ingrese un Numero válido"
+             ControlToValidate="txtNro" ValidationExpression="^[0-9]*"
              CssClass="alert-danger"
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
@@ -122,9 +122,9 @@
             ErrorMessage="Ingrese Número"
             CssClass="alert-danger" Display="Dynamic"
             Text="*" ValidationGroup="A" />
-        <asp:RegularExpressionValidator ID="rvTel"
-             runat="server" ErrorMessage="Ingrese un Número válido"
-             ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
+         <asp:RegularExpressionValidator ID="rvTel"
+             runat="server" ErrorMessage="Ingrese un Numero válido"
+             ControlToValidate="txtTel" ValidationExpression="^[0-9]*"
              CssClass="alert-danger"
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
