@@ -20,11 +20,11 @@
             ErrorMessage="Ingrese Nombre"
             CssClass="alert-danger" Display="Dynamic"
             Text="*" ValidationGroup="A" />
-        <asp:RegularExpressionValidator ID="rvNomb"
+<%--        <asp:RegularExpressionValidator ID="rvNomb"
              runat="server" ErrorMessage="Ingrese un Nombre válido"
              ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
-             Display="Dynamic"></asp:RegularExpressionValidator>
+             Display="Dynamic"></asp:RegularExpressionValidator>--%>
         <br />
 &nbsp;
         <asp:Label ID="lblDesc" runat="server" Text="Descripcion" ForeColor="White"></asp:Label>
@@ -36,11 +36,11 @@
             ErrorMessage="Ingrese Descripción"
             CssClass="alert-danger" Display="Dynamic"
             Text="*" ValidationGroup="A" />
-        <asp:RegularExpressionValidator ID="rvDesc"
+ <%--       <asp:RegularExpressionValidator ID="rvDesc"
              runat="server" ErrorMessage="Ingrese una Descripción válida"
              ControlToValidate="txtDesc" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
-             Display="Dynamic"></asp:RegularExpressionValidator>
+             Display="Dynamic"></asp:RegularExpressionValidator>--%>
         <br />
 &nbsp;
         <asp:Label ID="lblDep1" runat="server" Text="Deporte 1" ForeColor="White"></asp:Label>

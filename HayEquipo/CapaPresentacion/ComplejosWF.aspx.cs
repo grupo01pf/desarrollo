@@ -128,15 +128,30 @@ namespace CapaPresentacion
             if (int.TryParse(ddlDep1.Text, out dep1))
                 complejo.idDeporte1 = dep1;
 
-            int dep2;
-            if (int.TryParse(ddlDep2.Text, out dep2))
+            if(ddlDep2.SelectedIndex == 0)
+            {
+                complejo.idDeporte2 = null;
+            }
+            else
+            {
+                int dep2;
+                if (int.TryParse(ddlDep2.Text, out dep2))
                 complejo.idDeporte2 = dep2;
+            }
 
-            int dep3;
-            if (int.TryParse(ddlDep3.Text, out dep3))
-                complejo.idDeporte3 = dep3;
+            if (ddlDep3.SelectedIndex == 0)
+            {
+                complejo.idDeporte3 = null;
+            }
+            else
+            {
+                int dep3;
+                if (int.TryParse(ddlDep3.Text, out dep3))
+                    complejo.idDeporte3 = dep3;
+            }
 
             complejo.calle = txtCalle.Text;
+
             int nroCalle;
             if (int.TryParse(txtNro.Text, out nroCalle))
                 complejo.nroCalle = nroCalle;

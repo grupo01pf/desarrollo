@@ -49,15 +49,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rvfNomb;
         
         /// <summary>
-        /// Control rvNomb.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rvNomb;
-        
-        /// <summary>
         /// Control lblDesc.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rvfDesc;
-        
-        /// <summary>
-        /// Control rvDesc.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rvDesc;
         
         /// <summary>
         /// Control lblDep1.
