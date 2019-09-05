@@ -71,7 +71,6 @@
     <Compile Include="EncuentroDeportivioQueryDao.cs" />
     <Compile Include="EncuentroDeportivoDao.cs" />
     <Compile Include="LugarPublicoDao.cs" />
-    <Compile Include="TipoComplejoDao.cs" />
     <Compile Include="TipoDocumentoDao.cs" />
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="ZonaDao.cs" />
@@ -97,15 +96,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <CustomToolNamespace>CapaEntidades</CustomToolNamespace>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

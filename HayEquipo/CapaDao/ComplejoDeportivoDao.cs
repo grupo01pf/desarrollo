@@ -90,7 +90,9 @@ namespace CapaDao
                 comp.id = complejo.id;
                 comp.nombre = complejo.nombre;
                 comp.descripcion = complejo.descripcion;
-                comp.idTipoComplejo = complejo.idTipoComplejo;
+                comp.idDeporte1 = complejo.idDeporte1;
+                comp.idDeporte2 = complejo.idDeporte2;
+                comp.idDeporte3 = complejo.idDeporte3;
                 comp.calle = complejo.calle;
                 comp.nroCalle = complejo.nroCalle;
                 comp.idBarrio = complejo.idBarrio;
@@ -176,11 +178,11 @@ namespace CapaDao
             }
         }
 
-        public static List<ComplejoDeportivoQueryEntidad> ObtenerComplejosJoin()
+        public static List<spObtenerComplejosJoin_Result> ObtenerComplejosJoin()
         {
             using (var db = new HayEquipoEntities())
             {
-                return db.Database.SqlQuery<ComplejoDeportivoQueryEntidad>("spObtenerComplejosJoin").ToList();
+                return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosJoin").ToList();
             }
         }
 

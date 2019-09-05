@@ -40,7 +40,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idDeporte" Type="int" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="idTipoCancha" Type="int" />
@@ -68,7 +67,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
-    <Property Name="idTipoComplejo" Type="int" />
     <Property Name="calle" Type="nvarchar" MaxLength="50" />
     <Property Name="nroCalle" Type="int" />
     <Property Name="idBarrio" Type="int" />
@@ -76,6 +74,9 @@
     <Property Name="idResponsable" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="idEstado" Type="int" />
+    <Property Name="idDeporte1" Type="int" />
+    <Property Name="idDeporte2" Type="int" />
+    <Property Name="idDeporte3" Type="int" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -359,15 +360,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="TipoComplejo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="idDeporte" Type="int" />
   </EntityType>
   <EntityType Name="TipoDeporte">
     <Key>
@@ -528,18 +521,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Cancha_Deporte">
-    <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
-    <End Role="Cancha" Type="Self.Cancha" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deporte">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Cancha">
-        <PropertyRef Name="idDeporte" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Cancha_TipoCancha">
     <End Role="TipoCancha" Type="Self.TipoCancha" Multiplicity="0..1" />
     <End Role="Cancha" Type="Self.Cancha" Multiplicity="*" />
@@ -612,6 +593,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ComplejoDeportivo_Deporte">
+    <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
+    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deporte">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ComplejoDeportivo">
+        <PropertyRef Name="idDeporte1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplejoDeportivo_Deporte1">
+    <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
+    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deporte">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ComplejoDeportivo">
+        <PropertyRef Name="idDeporte2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplejoDeportivo_Deporte2">
+    <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
+    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deporte">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ComplejoDeportivo">
+        <PropertyRef Name="idDeporte3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ComplejoDeportivo_Estado">
     <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
     <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
@@ -633,18 +650,6 @@
       </Principal>
       <Dependent Role="ComplejoDeportivo">
         <PropertyRef Name="idResponsable" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ComplejoDeportivo_TipoComplejo">
-    <End Role="TipoComplejo" Type="Self.TipoComplejo" Multiplicity="0..1" />
-    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoComplejo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ComplejoDeportivo">
-        <PropertyRef Name="idTipoComplejo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1152,6 +1157,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TipoCancha_Deporte">
+    <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
+    <End Role="TipoCancha" Type="Self.TipoCancha" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deporte">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoCancha">
+        <PropertyRef Name="idDeporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TiposPorDeportes_Deporte">
     <End Role="Deporte" Type="Self.Deporte" Multiplicity="0..1" />
     <End Role="TiposPorDeportes" Type="Self.TiposPorDeportes" Multiplicity="*" />
@@ -1284,7 +1301,6 @@
     <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sponsor" EntityType="Self.Sponsor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TipoComplejo" EntityType="Self.TipoComplejo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TiposPorDeportes" EntityType="Self.TiposPorDeportes" Schema="dbo" store:Type="Tables" />
@@ -1319,10 +1335,6 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="Barrio" EntitySet="Barrio" />
     </AssociationSet>
-    <AssociationSet Name="FK_Cancha_Deporte" Association="Self.FK_Cancha_Deporte">
-      <End Role="Deporte" EntitySet="Deporte" />
-      <End Role="Cancha" EntitySet="Cancha" />
-    </AssociationSet>
     <AssociationSet Name="FK_Cancha_TipoCancha" Association="Self.FK_Cancha_TipoCancha">
       <End Role="TipoCancha" EntitySet="TipoCancha" />
       <End Role="Cancha" EntitySet="Cancha" />
@@ -1347,16 +1359,24 @@
       <End Role="Barrio" EntitySet="Barrio" />
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
     </AssociationSet>
+    <AssociationSet Name="FK_ComplejoDeportivo_Deporte" Association="Self.FK_ComplejoDeportivo_Deporte">
+      <End Role="Deporte" EntitySet="Deporte" />
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplejoDeportivo_Deporte1" Association="Self.FK_ComplejoDeportivo_Deporte1">
+      <End Role="Deporte" EntitySet="Deporte" />
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplejoDeportivo_Deporte2" Association="Self.FK_ComplejoDeportivo_Deporte2">
+      <End Role="Deporte" EntitySet="Deporte" />
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+    </AssociationSet>
     <AssociationSet Name="FK_ComplejoDeportivo_Estado" Association="Self.FK_ComplejoDeportivo_Estado">
       <End Role="Estado" EntitySet="Estado" />
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
     </AssociationSet>
     <AssociationSet Name="FK_ComplejoDeportivo_Responsable" Association="Self.FK_ComplejoDeportivo_Responsable">
       <End Role="Responsable" EntitySet="Responsable" />
-      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ComplejoDeportivo_TipoComplejo" Association="Self.FK_ComplejoDeportivo_TipoComplejo">
-      <End Role="TipoComplejo" EntitySet="TipoComplejo" />
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
     </AssociationSet>
     <AssociationSet Name="FK_DeportesPorDeportistas_Deporte" Association="Self.FK_DeportesPorDeportistas_Deporte">
@@ -1526,6 +1546,10 @@
     <AssociationSet Name="FK_Sponsor_Rubro" Association="Self.FK_Sponsor_Rubro">
       <End Role="Rubro" EntitySet="Rubro" />
       <End Role="Sponsor" EntitySet="Sponsor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoCancha_Deporte" Association="Self.FK_TipoCancha_Deporte">
+      <End Role="Deporte" EntitySet="Deporte" />
+      <End Role="TipoCancha" EntitySet="TipoCancha" />
     </AssociationSet>
     <AssociationSet Name="FK_TiposPorDeportes_Deporte" Association="Self.FK_TiposPorDeportes_Deporte">
       <End Role="Deporte" EntitySet="Deporte" />

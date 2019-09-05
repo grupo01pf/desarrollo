@@ -166,7 +166,7 @@ namespace CapaPresentacion
         }
 
         private void cargarDeportes() {
-            cmb_Deporte.DataSource = DeporteDao.obtenerDeportes();
+            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
             cmb_Deporte.DataValueField = "idDeporte";
             cmb_Deporte.DataValueField = "nombre";
             cmb_Deporte.DataBind();

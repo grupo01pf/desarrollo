@@ -63,7 +63,6 @@ namespace CapaEntidades
         public virtual DbSet<Sesion> Sesion { get; set; }
         public virtual DbSet<Sponsor> Sponsor { get; set; }
         public virtual DbSet<TipoCancha> TipoCancha { get; set; }
-        public virtual DbSet<TipoComplejo> TipoComplejo { get; set; }
         public virtual DbSet<TipoDeporte> TipoDeporte { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
         public virtual DbSet<TiposPorDeportes> TiposPorDeportes { get; set; }
@@ -75,51 +74,10 @@ namespace CapaEntidades
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
     
-        public virtual int spInsertComplejos(string nomb, string desc, Nullable<int> idTipoComp, string calle, Nullable<int> nroCalle, Nullable<int> idBarr, Nullable<int> nroTel, Nullable<int> idResp, Nullable<double> promEstr, Nullable<int> idEst)
+        public virtual ObjectResult<spObtenerComplejosJoin_Result> spObtenerComplejosJoin()
         {
-            var nombParameter = nomb != null ?
-                new ObjectParameter("nomb", nomb) :
-                new ObjectParameter("nomb", typeof(string));
-    
-            var descParameter = desc != null ?
-                new ObjectParameter("desc", desc) :
-                new ObjectParameter("desc", typeof(string));
-    
-            var idTipoCompParameter = idTipoComp.HasValue ?
-                new ObjectParameter("idTipoComp", idTipoComp) :
-                new ObjectParameter("idTipoComp", typeof(int));
-    
-            var calleParameter = calle != null ?
-                new ObjectParameter("calle", calle) :
-                new ObjectParameter("calle", typeof(string));
-    
-            var nroCalleParameter = nroCalle.HasValue ?
-                new ObjectParameter("nroCalle", nroCalle) :
-                new ObjectParameter("nroCalle", typeof(int));
-    
-            var idBarrParameter = idBarr.HasValue ?
-                new ObjectParameter("idBarr", idBarr) :
-                new ObjectParameter("idBarr", typeof(int));
-    
-            var nroTelParameter = nroTel.HasValue ?
-                new ObjectParameter("nroTel", nroTel) :
-                new ObjectParameter("nroTel", typeof(int));
-    
-            var idRespParameter = idResp.HasValue ?
-                new ObjectParameter("idResp", idResp) :
-                new ObjectParameter("idResp", typeof(int));
-    
-            var promEstrParameter = promEstr.HasValue ?
-                new ObjectParameter("promEstr", promEstr) :
-                new ObjectParameter("promEstr", typeof(double));
-    
-            var idEstParameter = idEst.HasValue ?
-                new ObjectParameter("idEst", idEst) :
-                new ObjectParameter("idEst", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertComplejos", nombParameter, descParameter, idTipoCompParameter, calleParameter, nroCalleParameter, idBarrParameter, nroTelParameter, idRespParameter, promEstrParameter, idEstParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerComplejosJoin_Result>("spObtenerComplejosJoin");
         }
-  
     
         public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)
         {
@@ -153,11 +111,6 @@ namespace CapaEntidades
                 new ObjectParameter("prmContraseña", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuarioEstablecimiento", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
-        }
-    
-        public virtual ObjectResult<ComplejoDeportivoQueryEntidad> spObtenerComplejosJoin()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ComplejoDeportivoQueryEntidad>("spObtenerComplejosJoin");
         }
     }
 }

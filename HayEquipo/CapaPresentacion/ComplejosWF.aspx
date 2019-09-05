@@ -43,16 +43,30 @@
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
 &nbsp;
-        <asp:Label ID="lblTipo" runat="server" Text="Tipo" ForeColor="White"></asp:Label>
+        <asp:Label ID="lblDep1" runat="server" Text="Deporte 1" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlTipo" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlDep1" CssClass="form-control" runat="server" AppendDataBoundItems="true">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
-        <asp:RequiredFieldValidator ID="rfvTipo"
-            runat="server" ControlToValidate="ddlTipo"
-            ErrorMessage="Seleccione un Tipo" InitialValue="0"
+        <asp:RequiredFieldValidator ID="rfvDep1"
+            runat="server" ControlToValidate="ddlDep1"
+            ErrorMessage="Seleccione un Deporte" InitialValue="0"
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>
+        <br />
+&nbsp;
+            <asp:Label ID="lblDep2" runat="server" Text="Deporte 2" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:DropDownList ID="ddlDep2" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+        </asp:DropDownList>
+        <br />
+&nbsp;
+            <asp:Label ID="lblDep3" runat="server" Text="Deporte 3" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:DropDownList ID="ddlDep3" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+        </asp:DropDownList>
         <br />
 &nbsp;
         <asp:Label ID="lblCalle" runat="server" Text="Calle" ForeColor="White"></asp:Label>
@@ -89,7 +103,7 @@
 &nbsp;
         <asp:Label ID="lblBarrio" runat="server" Text="Barrio" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlBarrio" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlBarrio" CssClass="form-control" runat="server" AppendDataBoundItems="true" Height="35px" Width="1374px">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="rfvBarrio"
@@ -114,12 +128,37 @@
              CssClass="alert-danger"
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnCanYServ" runat="server" CssClass="btn btn-primary" OnClick="btnCanYServ_Click" Text="Canchas y Servicios &gt;&gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
         <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="119px" />
         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" Width="116px" />
         <br />
 &nbsp;<br />
+        <asp:Panel ID="Panel1" runat="server" Visible="False">
+                <asp:Label ID="LblDeporte" runat="server" Text="Deporte" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:DropDownList ID="ddlDeporte" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RequiredFieldValidator ID="rfvDeporte"
+            runat="server" ControlToValidate="ddlDeporte"
+            ErrorMessage="Seleccione un Deporte" InitialValue="0"
+            CssClass="alert-danger"
+            Display="Dynamic"></asp:RequiredFieldValidator>
+        <br />
+&nbsp;
+        <asp:Label ID="lblTipoDep" runat="server" Text="Tipo" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:DropDownList ID="ddlTipoDep" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RequiredFieldValidator ID="rfvTipoDep"
+            runat="server" ControlToValidate="ddlTipoDep"
+            ErrorMessage="Seleccione un Tipo" InitialValue="0"
+            CssClass="alert-danger"
+            Display="Dynamic"></asp:RequiredFieldValidator>
+    </asp:Panel>
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
             <%--    <asp:BoundField DataField="nombre" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nombre" />

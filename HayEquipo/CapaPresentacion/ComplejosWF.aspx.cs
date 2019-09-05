@@ -16,11 +16,13 @@ namespace CapaPresentacion
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-            cargarTiposComplejos();
-            cargarBarrios();
-            CargarGrillaComplejos();
-            btnEliminar.Enabled = false;
-            btnEliminar.CssClass = "btn btn-warning";
+                CargarDeporte1();
+                CargarDeporte2();
+                CargarDeporte3();
+                cargarBarrios();
+                CargarGrillaComplejos();
+                btnEliminar.Enabled = false;
+                btnEliminar.CssClass = "btn btn-warning";
             }
         }
         protected int? ID
@@ -40,7 +42,9 @@ namespace CapaPresentacion
         {
             txtNomb.Text = string.Empty;
             txtDesc.Text = string.Empty;
-            ddlTipo.SelectedIndex = 0;
+            ddlDep1.SelectedIndex = 0;
+            ddlDep2.SelectedIndex = 0;
+            ddlDep3.SelectedIndex = 0;
             txtCalle.Text = string.Empty;
             txtNro.Text = null;
             ddlBarrio.SelectedIndex = 0;
@@ -50,19 +54,49 @@ namespace CapaPresentacion
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
         }
-        private void cargarTiposComplejos()
+        private void CargarDeporte1()
         {
-            List<TipoComplejo> tiposComplejos = TipoComplejoDao.ObtenerTodosTiposComplejo();
+            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
         
-            ddlTipo.DataSource = null;
+            ddlDep1.DataSource = null;
 
-            ddlTipo.DataTextField = "nombre";
+            ddlDep1.DataTextField = "nombre";
 
-            ddlTipo.DataValueField = "id";
+            ddlDep1.DataValueField = "id";
 
-            ddlTipo.DataSource = tiposComplejos;
+            ddlDep1.DataSource = Deportes;
 
-            ddlTipo.DataBind();
+            ddlDep1.DataBind();
+        }
+
+        private void CargarDeporte2()
+        {
+            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
+
+            ddlDep2.DataSource = null;
+
+            ddlDep2.DataTextField = "nombre";
+
+            ddlDep2.DataValueField = "id";
+
+            ddlDep2.DataSource = Deportes;
+
+            ddlDep2.DataBind();
+        }
+
+        private void CargarDeporte3()
+        {
+            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
+
+            ddlDep3.DataSource = null;
+
+            ddlDep3.DataTextField = "nombre";
+
+            ddlDep3.DataValueField = "id";
+
+            ddlDep3.DataSource = Deportes;
+
+            ddlDep3.DataBind();
         }
 
         private void cargarBarrios()
@@ -79,7 +113,7 @@ namespace CapaPresentacion
 
             ddlBarrio.DataBind();
         }
-
+        //HAY PROBLEMAS PARA GUARDAR Y ACTUALIZAR LOS COMPLEJOS
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             ComplejoDeportivo complejo = new ComplejoDeportivo();
@@ -90,9 +124,17 @@ namespace CapaPresentacion
             complejo.promedioEstrellas = 0;
             complejo.idEstado = 1;
 
-            int tipoComp;
-            if (int.TryParse(ddlTipo.Text, out tipoComp))
-                complejo.idTipoComplejo = tipoComp;
+            int dep1;
+            if (int.TryParse(ddlDep1.Text, out dep1))
+                complejo.idDeporte1 = dep1;
+
+            int dep2;
+            if (int.TryParse(ddlDep2.Text, out dep2))
+                complejo.idDeporte2 = dep2;
+
+            int dep3;
+            if (int.TryParse(ddlDep3.Text, out dep3))
+                complejo.idDeporte3 = dep3;
 
             complejo.calle = txtCalle.Text;
             int nroCalle;
@@ -144,10 +186,26 @@ namespace CapaPresentacion
 
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            ddlTipo.SelectedIndex = (compSelec.idTipoComplejo);
+            ddlDep1.SelectedIndex = int.Parse((compSelec.idDeporte1).ToString());
+            if (compSelec.idDeporte2 == null)
+            {
+                ddlDep2.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlDep2.SelectedIndex = int.Parse((compSelec.idDeporte2).ToString());
+            }
+            if (compSelec.idDeporte3 == null)
+            {
+                ddlDep3.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlDep3.SelectedIndex = int.Parse((compSelec.idDeporte3).ToString());
+            }
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
-            ddlBarrio.SelectedIndex = (compSelec.idBarrio);
+            ddlBarrio.SelectedIndex = compSelec.idBarrio;
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;
@@ -163,6 +221,11 @@ namespace CapaPresentacion
             ComplejoDeportivoDao.EliminarComplejo(ID.Value);
             CargarGrillaComplejos();
             Limpiar();
+        }
+
+        protected void btnCanYServ_Click(object sender, EventArgs e)
+        {
+            btnCanYServ.Visible = true;
         }
     }
 }
