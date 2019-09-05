@@ -301,13 +301,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnEliminar;
         
         /// <summary>
-        /// Control Panel1.
+        /// Control pnlCyS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel pnlCyS;
         
         /// <summary>
         /// Control LblDeporte.
@@ -319,22 +319,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label LblDeporte;
         
         /// <summary>
-        /// Control ddlDeporte.
+        /// Control ddlDep4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDeporte;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDep4;
         
         /// <summary>
-        /// Control rfvDeporte.
+        /// Control rfvDep4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDeporte;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDep4;
         
         /// <summary>
         /// Control lblTipoDep.

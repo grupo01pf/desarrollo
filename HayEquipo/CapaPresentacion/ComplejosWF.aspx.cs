@@ -19,6 +19,8 @@ namespace CapaPresentacion
                 CargarDeporte1();
                 CargarDeporte2();
                 CargarDeporte3();
+                //ddlDep2.Enabled = false;
+                //ddlDep3.Enabled = false;
                 cargarBarrios();
                 CargarGrillaComplejos();
                 btnEliminar.Enabled = false;
@@ -54,49 +56,40 @@ namespace CapaPresentacion
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
         }
-        private void CargarDeporte1()
+
+        private void CargarDeporte(DropDownList ddl)
         {
             List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
-        
-            ddlDep1.DataSource = null;
 
-            ddlDep1.DataTextField = "nombre";
+            ddl.DataSource = null;
 
-            ddlDep1.DataValueField = "id";
+            ddl.DataTextField = "nombre";
 
-            ddlDep1.DataSource = Deportes;
+            ddl.DataValueField = "id";
 
-            ddlDep1.DataBind();
+            ddl.DataSource = Deportes;
+
+            ddl.DataBind();
+        }
+
+        private void CargarDeporte1()
+        {
+            CargarDeporte(ddlDep1);
         }
 
         private void CargarDeporte2()
         {
-            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
-
-            ddlDep2.DataSource = null;
-
-            ddlDep2.DataTextField = "nombre";
-
-            ddlDep2.DataValueField = "id";
-
-            ddlDep2.DataSource = Deportes;
-
-            ddlDep2.DataBind();
+            CargarDeporte(ddlDep2);
         }
 
         private void CargarDeporte3()
         {
-            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
+            CargarDeporte(ddlDep3);
+        }
 
-            ddlDep3.DataSource = null;
-
-            ddlDep3.DataTextField = "nombre";
-
-            ddlDep3.DataValueField = "id";
-
-            ddlDep3.DataSource = Deportes;
-
-            ddlDep3.DataBind();
+        private void CargarDeporte4()
+        {
+            CargarDeporte(ddlDep4);
         }
 
         private void cargarBarrios()
@@ -240,7 +233,20 @@ namespace CapaPresentacion
 
         protected void btnCanYServ_Click(object sender, EventArgs e)
         {
-            btnCanYServ.Visible = true;
+            CargarDeporte4();
+            pnlCyS.Visible = true;
+        }
+
+        protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if(ddlDep1.SelectedIndex != 0)
+            //ddlDep2.Enabled = true;
+        }
+
+        protected void ddlDep2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (ddlDep2.SelectedIndex != 0)
+            //ddlDep3.Enabled = true;
         }
     }
 }

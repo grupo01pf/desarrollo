@@ -19,8 +19,8 @@
             ControlToValidate="txtNomb"
             ErrorMessage="Ingrese Nombre"
             CssClass="alert-danger" Display="Dynamic"
-            Text="*" ValidationGroup="A" />
-<%--        <asp:RegularExpressionValidator ID="rvNomb"
+            Text="*Ingrese Nombre" ValidationGroup="A" />
+    <%--        <asp:RegularExpressionValidator ID="rvNomb"
              runat="server" ErrorMessage="Ingrese un Nombre válido"
              ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
@@ -35,8 +35,8 @@
             ControlToValidate="txtDesc"
             ErrorMessage="Ingrese Descripción"
             CssClass="alert-danger" Display="Dynamic"
-            Text="*" ValidationGroup="A" />
- <%--       <asp:RegularExpressionValidator ID="rvDesc"
+            Text="*Ingrese Descripción" ValidationGroup="A" />
+    <%--       <asp:RegularExpressionValidator ID="rvDesc"
              runat="server" ErrorMessage="Ingrese una Descripción válida"
              ControlToValidate="txtDesc" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
@@ -45,7 +45,7 @@
 &nbsp;
         <asp:Label ID="lblDep1" runat="server" Text="Deporte 1" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlDep1" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlDep1" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep1_SelectedIndexChanged">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="rfvDep1"
@@ -57,7 +57,7 @@
 &nbsp;
             <asp:Label ID="lblDep2" runat="server" Text="Deporte 2" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlDep2" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlDep2" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep2_SelectedIndexChanged">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
         <br />
@@ -77,8 +77,8 @@
             ControlToValidate="txtCalle"
             ErrorMessage="Ingrese Calle"
             CssClass="alert-danger" Display="Dynamic"
-            Text="*" ValidationGroup="A" />
- <%--       <asp:RegularExpressionValidator ID="rvCalle"
+            Text="*Ingrese Calle" ValidationGroup="A" />
+    <%--       <asp:RegularExpressionValidator ID="rvCalle"
              runat="server" ErrorMessage="Ingrese una Calle válida"
              ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
              CssClass="alert-danger"
@@ -93,7 +93,7 @@
             ControlToValidate="txtNro"
             ErrorMessage="Ingrese Número"
             CssClass="alert-danger" Display="Dynamic"
-            Text="*" ValidationGroup="A" />
+            Text="*Ingrese Número" ValidationGroup="A" />
         <asp:RegularExpressionValidator ID="rvNro"
              runat="server" ErrorMessage="Ingrese un Numero válido"
              ControlToValidate="txtNro" ValidationExpression="^[0-9]*"
@@ -121,7 +121,7 @@
             ControlToValidate="txtTel"
             ErrorMessage="Ingrese Número"
             CssClass="alert-danger" Display="Dynamic"
-            Text="*" ValidationGroup="A" />
+            Text="*Ingrese Número" ValidationGroup="A" />
          <asp:RegularExpressionValidator ID="rvTel"
              runat="server" ErrorMessage="Ingrese un Numero válido"
              ControlToValidate="txtTel" ValidationExpression="^[0-9]*"
@@ -135,14 +135,14 @@
         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" Width="116px" />
         <br />
 &nbsp;<br />
-        <asp:Panel ID="Panel1" runat="server" Visible="False">
+        <asp:Panel ID="pnlCyS" runat="server" Visible="False">
                 <asp:Label ID="LblDeporte" runat="server" Text="Deporte" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlDeporte" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlDep4" CssClass="form-control" runat="server" AppendDataBoundItems="true">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
-        <asp:RequiredFieldValidator ID="rfvDeporte"
-            runat="server" ControlToValidate="ddlDeporte"
+        <asp:RequiredFieldValidator ID="rfvDep4"
+            runat="server" ControlToValidate="ddlDep4"
             ErrorMessage="Seleccione un Deporte" InitialValue="0"
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>
@@ -159,6 +159,7 @@
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>
     </asp:Panel>
+    <br />
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
             <%--    <asp:BoundField DataField="nombre" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nombre" />
