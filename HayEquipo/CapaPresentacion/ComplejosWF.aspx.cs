@@ -291,16 +291,16 @@ namespace CapaPresentacion
         {
             if (ddlDep4.SelectedIndex != 0)
             {
-                ddlTipoCancha.Items.Clear();         
+                ddlTipoCancha.Items.Clear();
                 CargarTipoCancha();
-                ddlTipoCancha.SelectedIndex = 0;
+                //ddlTipoCancha.SelectedIndex = 0;
                 ddlTipoCancha.Enabled = true;
             }
             else
             {
                 ddlTipoCancha.Items.Clear();
                 ddlTipoCancha.Enabled = false;
-            }   
+            }
         }
 
         protected void CargarGrillaCanchas()
@@ -308,7 +308,7 @@ namespace CapaPresentacion
             gvCanchas.DataSource = null;
 
             gvCanchas.DataSource = (from can in CanchaDao.ObtenerCanchasPorComplejos(ID.Value)
-                                      orderby can.Deporte
+                                      orderby can.Deporte, can.Nombre
                                       select can);
 
             gvCanchas.DataKeyNames = new string[] { "ID" };
@@ -352,7 +352,7 @@ namespace CapaPresentacion
             txtNomCan.Text = string.Empty;
             txtDesCan.Text = string.Empty;
             ddlDep4.SelectedIndex = 0;
-            ddlTipoCancha.SelectedIndex = 0;
+            ddlTipoCancha.Enabled=false;
 
             IDCan = null;
             btnEliminarCan.Enabled = false;
@@ -366,11 +366,15 @@ namespace CapaPresentacion
             IDCan = idSeleccionado;
             Cancha canSelec = CanchaDao.ObtenerCanchasPorID(idSeleccionado);
 
+            ddlTipoCancha.Enabled = true;
             txtNomCan.Text = canSelec.nombre;
             txtDesCan.Text = canSelec.descripcion;
-            ddlTipoCancha.SelectedIndex = int.Parse((canSelec.idTipoCancha).ToString())-1;
-            TipoCancha tc = TipoCanchaDao.ObtenerTipoPorID(ddlTipoCancha.SelectedIndex);
+            TipoCancha tc = TipoCanchaDao.ObtenerTipoPorID(int.Parse((canSelec.idTipoCancha).ToString()));
             ddlDep4.SelectedIndex = int.Parse((tc.idDeporte).ToString());
+            ddlTipoCancha.Items.Clear();
+            CargarTipoCancha();
+            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString())-1;
+            
 
             btnEliminarCan.Enabled = true;
         }

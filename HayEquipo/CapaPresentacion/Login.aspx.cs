@@ -25,23 +25,6 @@ namespace CapaPresentacion
         protected void btn_Login_Click(object sender, EventArgs e)
         {
 
-            //****NO BORRAR****
-
-            //if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
-            //{
-
-            //    Session["Usuario"] = txt_NombreUsuario.Text;
-
-
-            //    if (Session["Rol"].ToString() == "Administrador")
-            //  Response.Redirect("Home.aspx");
-            //    if (Session["Rol"].ToString() == "UsuarioDeportista")
-            //        Response.Redirect("Home.aspx");
-            //    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-            //        Response.Redirect("Home.aspx");
-            //}
-
-
 
             if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
                 {
@@ -62,7 +45,7 @@ namespace CapaPresentacion
             }
             if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
             {
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                //FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
                 Response.Redirect("HomeEstablecimiento.aspx");
             }
 
