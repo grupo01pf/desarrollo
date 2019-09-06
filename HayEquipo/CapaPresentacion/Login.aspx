@@ -32,6 +32,9 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+      .margenWell{
+          margin: 20px;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -61,7 +64,8 @@ $(window).load(function() {
             </nav>
   <div class="jumbotron text-center" style="background-color:black">
                 <div class="row">
-                    <div class="col-sm-6 well">
+                    <div class="col-sm-6">
+                        <div class="well">
                         <br />
                         <br />
                         <br />
@@ -72,8 +76,10 @@ $(window).load(function() {
                         <br />
                         <br />
                         <br />
+                            </div>
                     </div>
-                    <div class="col-sm-6 well">
+                    <div class="col-sm-6">
+                        <div class="well">
                          
                         
   <h2>Iniciar Sesión</h2>
@@ -97,6 +103,7 @@ $(window).load(function() {
 
 
       </div> 
+                            </div>
                 </div>
 
             </div>

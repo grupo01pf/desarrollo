@@ -34,3 +34,12 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.p
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.dll.config
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntidades.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.xml
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.SqlServer.xml
