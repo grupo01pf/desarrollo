@@ -337,31 +337,31 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDep4;
         
         /// <summary>
-        /// Control lblTipoDep.
+        /// Control lblTipoCancha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoDep;
+        protected global::System.Web.UI.WebControls.Label lblTipoCancha;
         
         /// <summary>
-        /// Control ddlTipoDep.
+        /// Control ddlTipoCancha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDep;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoCancha;
         
         /// <summary>
-        /// Control rfvTipoDep.
+        /// Control rfvTipoCancha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTipoDep;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTipoCancha;
         
         /// <summary>
         /// Control gvComplejos.

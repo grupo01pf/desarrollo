@@ -19,12 +19,16 @@ namespace CapaPresentacion
                 CargarDeporte1();
                 CargarDeporte2();
                 CargarDeporte3();
-                //ddlDep2.Enabled = false;
-                //ddlDep3.Enabled = false;
+                ddlDep2.Enabled = false;
+                ddlDep3.Enabled = false;
+                ddlTipoCancha.Enabled = false;
                 cargarBarrios();
                 CargarGrillaComplejos();
                 btnEliminar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-warning";
+                ddlDep1.AutoPostBack = true;
+                ddlDep2.AutoPostBack = true;
+                ddlDep4.AutoPostBack = true;
             }
         }
         protected int? ID
@@ -198,6 +202,7 @@ namespace CapaPresentacion
             if (compSelec.idDeporte2 == null)
             {
                 ddlDep2.SelectedIndex = 0;
+                ddlDep3.Enabled = false;
             }
             else
             {
@@ -240,13 +245,50 @@ namespace CapaPresentacion
         protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if(ddlDep1.SelectedIndex != 0)
-            //ddlDep2.Enabled = true;
+            ddlDep2.Enabled = true;
         }
 
         protected void ddlDep2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (ddlDep2.SelectedIndex != 0)
-            //ddlDep3.Enabled = true;
+            ddlDep3.Enabled = true;
+        }
+
+        //protected void ddlDep1_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    //if(ddlDep1.SelectedIndex != 0)
+        //    ddlDep2.Enabled = true;
+        //}
+
+        private void CargarTipoCancha()
+        {
+            List<TipoCancha> TiposCanchas = TipoCanchaDao.ObtenerTipoPorIdDeporte(ddlDep4.SelectedIndex);
+
+            ddlTipoCancha.DataSource = null;
+
+            ddlTipoCancha.DataTextField = "nombre";
+
+            ddlTipoCancha.DataValueField = "id";
+
+            ddlTipoCancha.DataSource = TiposCanchas;
+
+            ddlTipoCancha.DataBind();
+        }
+
+        protected void ddlDep4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDep4.SelectedIndex != 0)
+            {
+                ddlTipoCancha.Items.Clear();         
+                CargarTipoCancha();
+                ddlTipoCancha.SelectedIndex = 0;
+                ddlTipoCancha.Enabled = true;
+            }
+            else
+            {
+                ddlTipoCancha.Items.Clear();
+                ddlTipoCancha.Enabled = false;
+            }   
         }
     }
 }

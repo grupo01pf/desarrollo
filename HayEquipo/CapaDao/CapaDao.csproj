@@ -71,6 +71,7 @@
     <Compile Include="EncuentroDeportivioQueryDao.cs" />
     <Compile Include="EncuentroDeportivoDao.cs" />
     <Compile Include="LugarPublicoDao.cs" />
+    <Compile Include="TipoCanchaDao.cs" />
     <Compile Include="TipoDocumentoDao.cs" />
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="ZonaDao.cs" />

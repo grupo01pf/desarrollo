@@ -138,7 +138,7 @@
         <asp:Panel ID="pnlCyS" runat="server" Visible="False">
                 <asp:Label ID="LblDeporte" runat="server" Text="Deporte" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlDep4" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlDep4" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep4_SelectedIndexChanged">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
         <asp:RequiredFieldValidator ID="rfvDep4"
@@ -148,13 +148,13 @@
             Display="Dynamic"></asp:RequiredFieldValidator>
         <br />
 &nbsp;
-        <asp:Label ID="lblTipoDep" runat="server" Text="Tipo" ForeColor="White"></asp:Label>
+        <asp:Label ID="lblTipoCancha" runat="server" Text="Tipo" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlTipoDep" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+        <asp:DropDownList ID="ddlTipoCancha" CssClass="form-control" runat="server" AppendDataBoundItems="true">
         <asp:ListItem Value="0">Seleccione..</asp:ListItem>
         </asp:DropDownList>
-        <asp:RequiredFieldValidator ID="rfvTipoDep"
-            runat="server" ControlToValidate="ddlTipoDep"
+        <asp:RequiredFieldValidator ID="rfvTipoCancha"
+            runat="server" ControlToValidate="ddlTipoCancha"
             ErrorMessage="Seleccione un Tipo" InitialValue="0"
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>
