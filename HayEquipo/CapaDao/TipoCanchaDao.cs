@@ -22,5 +22,14 @@ namespace CapaDao
                 return tipos;
             }
         }
+
+        public static TipoCancha ObtenerTipoPorID(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.TipoCancha.First(c => c.id == id);
+            }
+        }
+
     }
 }

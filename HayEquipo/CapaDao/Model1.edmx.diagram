@@ -4,53 +4,52 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1d8061575618436badafcf68c7370af4" Name="Diagram1">
-        <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="9.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.AmigosPorDeportistas" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Cancha" Width="1.5" PointX="6" PointY="47.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.CanchasPorComplejos" Width="1.5" PointX="8.25" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.CanchasPorHorarios" Width="1.5" PointX="5.25" PointY="40.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ComplejoDeportivo" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Deporte" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.DeportesPorDeportistas" Width="1.5" PointX="11.25" PointY="25.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Deportista" Width="1.5" PointX="6" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.DeportistasPorEquipos" Width="1.5" PointX="11.25" PointY="35.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.DetalleValoracionComplejo" Width="1.5" PointX="7.5" PointY="39.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.DetalleValoracionDeportista" Width="1.5" PointX="10.5" PointY="38" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.EncuentroDeportivo" Width="1.5" PointX="11.25" PointY="28.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Equipo" Width="1.5" PointX="3" PointY="37" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Estado" Width="1.5" PointX="0.75" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Horario" Width="1.5" PointX="3" PointY="40.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.InvitacionEncuentro" Width="1.5" PointX="13.5" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Localidad" Width="1.5" PointX="1.5" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Mensaje" Width="1.5" PointX="13.5" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Pais" Width="1.5" PointX="1.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Permiso" Width="1.5" PointX="9.5" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.PermisosPorRoles" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Posicion" Width="1.5" PointX="9" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.PosicionesPorDeportistas" Width="1.5" PointX="11.25" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Provincia" Width="1.5" PointX="1.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Publicacion" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Responsable" Width="1.5" PointX="6.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Rol" Width="1.5" PointX="9.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.RolesPorUsuarios" Width="1.5" PointX="11.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Rubro" Width="1.5" PointX="6.75" PointY="44.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ServicioExtra" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ServiciosPorComplejos" Width="1.5" PointX="5.25" PointY="21.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Sesion" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Sponsor" Width="1.5" PointX="9" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoCancha" Width="1.5" PointX="3.75" PointY="47.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoDeporte" Width="1.5" PointX="3.75" PointY="44.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="4.5" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TiposPorDeportes" Width="1.5" PointX="6" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracionComplejo" Width="1.5" PointX="5.25" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracionDeportista" Width="1.5" PointX="8.25" PointY="47.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="4.5" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ValoracionComplejo" Width="1.5" PointX="5.25" PointY="37.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ValoracionDeportista" Width="1.5" PointX="8.25" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Zona" Width="1.5" PointX="1.5" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.ZonasPorDeportistas" Width="1.5" PointX="14.25" PointY="26.625" IsExpanded="true" />
+      <Diagram DiagramId="ec4312902c5a491b88e36087700291b1" Name="Diagram1">
+        <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.AmigosPorDeportistas" Width="1.5" PointX="8.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Cancha" Width="1.5" PointX="8.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.CanchasPorHorarios" Width="1.5" PointX="13.5" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ComplejoDeportivo" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Deporte" Width="1.5" PointX="0.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.DeportesPorDeportistas" Width="1.5" PointX="11.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Deportista" Width="1.5" PointX="6" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.DeportistasPorEquipos" Width="1.5" PointX="11.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.DetalleValoracionComplejo" Width="1.5" PointX="7.5" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.DetalleValoracionDeportista" Width="1.5" PointX="10.5" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.EncuentroDeportivo" Width="1.5" PointX="11.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Equipo" Width="1.5" PointX="3" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Estado" Width="1.5" PointX="0.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Horario" Width="1.5" PointX="3" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.InvitacionEncuentro" Width="1.5" PointX="13.5" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Localidad" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Mensaje" Width="1.5" PointX="13.5" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Pais" Width="1.5" PointX="1.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Permiso" Width="1.5" PointX="9.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.PermisosPorRoles" Width="1.5" PointX="11.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Posicion" Width="1.5" PointX="9" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.PosicionesPorDeportistas" Width="1.5" PointX="11.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Provincia" Width="1.5" PointX="1.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Publicacion" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Responsable" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Rol" Width="1.5" PointX="9.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.RolesPorUsuarios" Width="1.5" PointX="11.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Rubro" Width="1.5" PointX="6.75" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ServicioExtra" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ServiciosPorComplejos" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Sesion" Width="1.5" PointX="3" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Sponsor" Width="1.5" PointX="9" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoCancha" Width="1.5" PointX="6" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoDeporte" Width="1.5" PointX="7.75" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="4.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TiposPorDeportes" Width="1.5" PointX="10" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracionComplejo" Width="1.5" PointX="5.25" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracionDeportista" Width="1.5" PointX="8.25" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="4.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ValoracionComplejo" Width="1.5" PointX="5.25" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ValoracionDeportista" Width="1.5" PointX="8.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Zona" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ZonasPorDeportistas" Width="1.5" PointX="14.25" PointY="26.875" IsExpanded="true" />
         <AssociationConnector Association="HayEquipoModel.FK_Administrador_Barrio" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Administrador_TipoDocumento" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Administrador_Usuario" ManuallyRouted="false" />
@@ -58,10 +57,9 @@
         <AssociationConnector Association="HayEquipoModel.FK_AmigosPorDeportistas_Deportista1" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Barrio_Zona" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Barrio" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_Cancha_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Cancha_TipoCancha" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_CanchasPorComplejos_Cancha" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_CanchasPorHorarios_Cancha" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_CanchasPorComplejos_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_CanchasPorHorarios_Horario" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Deporte" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Deporte1" ManuallyRouted="false" />

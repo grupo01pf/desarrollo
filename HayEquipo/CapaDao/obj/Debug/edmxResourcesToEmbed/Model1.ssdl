@@ -43,14 +43,7 @@
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="idTipoCancha" Type="int" />
-  </EntityType>
-  <EntityType Name="CanchasPorComplejos">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idComplejo" Type="int" />
-    <Property Name="idCancha" Type="int" />
   </EntityType>
   <EntityType Name="CanchasPorHorarios">
     <Key>
@@ -521,6 +514,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Cancha_ComplejoDeportivo">
+    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="0..1" />
+    <End Role="Cancha" Type="Self.Cancha" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComplejoDeportivo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cancha">
+        <PropertyRef Name="idComplejo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Cancha_TipoCancha">
     <End Role="TipoCancha" Type="Self.TipoCancha" Multiplicity="0..1" />
     <End Role="Cancha" Type="Self.Cancha" Multiplicity="*" />
@@ -530,30 +535,6 @@
       </Principal>
       <Dependent Role="Cancha">
         <PropertyRef Name="idTipoCancha" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CanchasPorComplejos_Cancha">
-    <End Role="Cancha" Type="Self.Cancha" Multiplicity="0..1" />
-    <End Role="CanchasPorComplejos" Type="Self.CanchasPorComplejos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cancha">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="CanchasPorComplejos">
-        <PropertyRef Name="idCancha" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CanchasPorComplejos_ComplejoDeportivo">
-    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="0..1" />
-    <End Role="CanchasPorComplejos" Type="Self.CanchasPorComplejos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ComplejoDeportivo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="CanchasPorComplejos">
-        <PropertyRef Name="idComplejo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1253,6 +1234,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="spObtenerCanchasPorComplejos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComp" Type="int" Mode="In" />
+  </Function>
   <Function Name="spObtenerComplejosJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="spRegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="prmNombre" Type="varchar" Mode="In" />
@@ -1269,7 +1253,6 @@
     <EntitySet Name="AmigosPorDeportistas" EntityType="Self.AmigosPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Barrio" EntityType="Self.Barrio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cancha" EntityType="Self.Cancha" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CanchasPorHorarios" EntityType="Self.CanchasPorHorarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ComplejoDeportivo" EntityType="Self.ComplejoDeportivo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deporte" EntityType="Self.Deporte" Schema="dbo" store:Type="Tables" />
@@ -1335,17 +1318,13 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="Barrio" EntitySet="Barrio" />
     </AssociationSet>
+    <AssociationSet Name="FK_Cancha_ComplejoDeportivo" Association="Self.FK_Cancha_ComplejoDeportivo">
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+      <End Role="Cancha" EntitySet="Cancha" />
+    </AssociationSet>
     <AssociationSet Name="FK_Cancha_TipoCancha" Association="Self.FK_Cancha_TipoCancha">
       <End Role="TipoCancha" EntitySet="TipoCancha" />
       <End Role="Cancha" EntitySet="Cancha" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CanchasPorComplejos_Cancha" Association="Self.FK_CanchasPorComplejos_Cancha">
-      <End Role="Cancha" EntitySet="Cancha" />
-      <End Role="CanchasPorComplejos" EntitySet="CanchasPorComplejos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CanchasPorComplejos_ComplejoDeportivo" Association="Self.FK_CanchasPorComplejos_ComplejoDeportivo">
-      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
-      <End Role="CanchasPorComplejos" EntitySet="CanchasPorComplejos" />
     </AssociationSet>
     <AssociationSet Name="FK_CanchasPorHorarios_Cancha" Association="Self.FK_CanchasPorHorarios_Cancha">
       <End Role="Cancha" EntitySet="Cancha" />

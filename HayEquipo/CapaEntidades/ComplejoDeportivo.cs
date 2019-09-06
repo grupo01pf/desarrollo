@@ -17,7 +17,7 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ComplejoDeportivo()
         {
-            this.CanchasPorComplejos = new HashSet<CanchasPorComplejos>();
+            this.Cancha = new HashSet<Cancha>();
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
             this.ServiciosPorComplejos = new HashSet<ServiciosPorComplejos>();
             this.ValoracionComplejo = new HashSet<ValoracionComplejo>();
@@ -28,7 +28,7 @@ namespace CapaEntidades
         public string descripcion { get; set; }
         public string calle { get; set; }
         public Nullable<int> nroCalle { get; set; }
-        public int idBarrio { get; set; }
+        public Nullable<int> idBarrio { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<int> idResponsable { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
@@ -39,7 +39,7 @@ namespace CapaEntidades
     
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CanchasPorComplejos> CanchasPorComplejos { get; set; }
+        public virtual ICollection<Cancha> Cancha { get; set; }
         public virtual Deporte Deporte { get; set; }
         public virtual Deporte Deporte1 { get; set; }
         public virtual Deporte Deporte2 { get; set; }

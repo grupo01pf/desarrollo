@@ -46,15 +46,7 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="idTipoCancha" ColumnName="idTipoCancha" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CanchasPorComplejos">
-      <EntityTypeMapping TypeName="HayEquipoModel.CanchasPorComplejos">
-        <MappingFragment StoreEntitySet="CanchasPorComplejos">
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
-          <ScalarProperty Name="idCancha" ColumnName="idCancha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -496,6 +488,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerCanchasPorComplejos" FunctionName="HayEquipoModel.Store.spObtenerCanchasPorComplejos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerCanchasPorComplejos_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Deporte" ColumnName="Deporte" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spObtenerComplejosJoin" FunctionName="HayEquipoModel.Store.spObtenerComplejosJoin">
       <ResultMapping>
         <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerComplejosJoin_Result">

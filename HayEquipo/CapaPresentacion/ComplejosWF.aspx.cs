@@ -29,6 +29,8 @@ namespace CapaPresentacion
                 ddlDep1.AutoPostBack = true;
                 ddlDep2.AutoPostBack = true;
                 ddlDep4.AutoPostBack = true;
+                btnCan.Enabled = false;
+                btnServ.Enabled = false;
             }
         }
         protected int? ID
@@ -44,6 +46,21 @@ namespace CapaPresentacion
             }
             set { ViewState["ID"] = value; }
         }
+
+        protected int? IDCan
+        {
+            get
+            {
+                if (ViewState["IDCan"] != null)
+                    return (int)ViewState["IDCan"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["IDCan"] = value; }
+        }
+
         private void Limpiar()
         {
             txtNomb.Text = string.Empty;
@@ -110,7 +127,7 @@ namespace CapaPresentacion
 
             ddlBarrio.DataBind();
         }
-        //HAY PROBLEMAS PARA GUARDAR Y ACTUALIZAR LOS COMPLEJOS
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             ComplejoDeportivo complejo = new ComplejoDeportivo();
@@ -218,10 +235,12 @@ namespace CapaPresentacion
             }
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
-            ddlBarrio.SelectedIndex = compSelec.idBarrio;
+            ddlBarrio.SelectedIndex = int.Parse((compSelec.idBarrio).ToString());
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;
+            btnCan.Enabled = true;
+            btnServ.Enabled = true;
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -236,29 +255,22 @@ namespace CapaPresentacion
             Limpiar();
         }
 
-        protected void btnCanYServ_Click(object sender, EventArgs e)
+        protected void btnCan_Click(object sender, EventArgs e)
         {
             CargarDeporte4();
-            pnlCyS.Visible = true;
+            CargarGrillaCanchas();
+            pnlCan.Visible = true;
         }
 
         protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(ddlDep1.SelectedIndex != 0)
             ddlDep2.Enabled = true;
         }
 
         protected void ddlDep2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (ddlDep2.SelectedIndex != 0)
             ddlDep3.Enabled = true;
         }
-
-        //protected void ddlDep1_SelectionChangeCommitted(object sender, EventArgs e)
-        //{
-        //    //if(ddlDep1.SelectedIndex != 0)
-        //    ddlDep2.Enabled = true;
-        //}
 
         private void CargarTipoCancha()
         {
@@ -290,5 +302,89 @@ namespace CapaPresentacion
                 ddlTipoCancha.Enabled = false;
             }   
         }
+
+        protected void CargarGrillaCanchas()
+        {
+            gvCanchas.DataSource = null;
+
+            gvCanchas.DataSource = (from can in CanchaDao.ObtenerCanchasPorComplejos(ID.Value)
+                                      orderby can.Deporte
+                                      select can);
+
+            gvCanchas.DataKeyNames = new string[] { "ID" };
+            gvCanchas.DataBind();
+        }
+
+        protected void btnServ_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarCan_Click(object sender, EventArgs e)
+        {
+            Cancha cancha = new Cancha();
+
+            cancha.nombre = txtNomCan.Text;
+            cancha.descripcion = txtDesCan.Text;
+
+            int tipoCan;
+            if (int.TryParse(ddlTipoCancha.Text, out tipoCan))
+                cancha.idTipoCancha = tipoCan;
+
+            cancha.idComplejo = ID.Value;
+
+            if (IDCan.HasValue)
+            {
+                cancha.id = IDCan.Value;
+                CanchaDao.ActualizarCancha(cancha);
+            }
+            else
+            {
+                CanchaDao.InsertarCancha(cancha);
+            }
+
+            CargarGrillaCanchas();
+            LimpiarCanchas();
+        }
+
+        private void LimpiarCanchas()
+        {
+            txtNomCan.Text = string.Empty;
+            txtDesCan.Text = string.Empty;
+            ddlDep4.SelectedIndex = 0;
+            ddlTipoCancha.SelectedIndex = 0;
+
+            IDCan = null;
+            btnEliminarCan.Enabled = false;
+            btnEliminarCan.CssClass = "btn btn-warning";
+        }
+//REVISAR EL TEMA DE LOS INDEX DE LOS DDL TIPO Y DEP4
+        protected void gvCanchas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LimpiarCanchas();
+            int idSeleccionado = int.Parse(gvCanchas.SelectedDataKey.Value.ToString());
+            IDCan = idSeleccionado;
+            Cancha canSelec = CanchaDao.ObtenerCanchasPorID(idSeleccionado);
+
+            txtNomCan.Text = canSelec.nombre;
+            txtDesCan.Text = canSelec.descripcion;
+            ddlTipoCancha.SelectedIndex = int.Parse((canSelec.idTipoCancha).ToString())-1;
+            TipoCancha tc = TipoCanchaDao.ObtenerTipoPorID(ddlTipoCancha.SelectedIndex);
+            ddlDep4.SelectedIndex = int.Parse((tc.idDeporte).ToString());
+
+            btnEliminarCan.Enabled = true;
+        }
+        protected void btnNuevoCan_Click(object sender, EventArgs e)
+        {
+            LimpiarCanchas();
+        }
+
+        protected void btnEliminarCan_Click(object sender, EventArgs e)
+        {
+            CanchaDao.EliminarCancha(IDCan.Value);
+            CargarGrillaCanchas();
+            LimpiarCanchas();
+        }
+           
     }
 }

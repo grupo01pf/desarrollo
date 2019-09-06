@@ -31,7 +31,6 @@ namespace CapaEntidades
         public virtual DbSet<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }
         public virtual DbSet<Barrio> Barrio { get; set; }
         public virtual DbSet<Cancha> Cancha { get; set; }
-        public virtual DbSet<CanchasPorComplejos> CanchasPorComplejos { get; set; }
         public virtual DbSet<CanchasPorHorarios> CanchasPorHorarios { get; set; }
         public virtual DbSet<ComplejoDeportivo> ComplejoDeportivo { get; set; }
         public virtual DbSet<Deporte> Deporte { get; set; }
@@ -73,6 +72,15 @@ namespace CapaEntidades
         public virtual DbSet<ValoracionDeportista> ValoracionDeportista { get; set; }
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
+    
+        public virtual ObjectResult<spObtenerCanchasPorComplejos_Result> spObtenerCanchasPorComplejos(Nullable<int> idComp)
+        {
+            var idCompParameter = idComp.HasValue ?
+                new ObjectParameter("idComp", idComp) :
+                new ObjectParameter("idComp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerCanchasPorComplejos_Result>("spObtenerCanchasPorComplejos", idCompParameter);
+        }
     
         public virtual ObjectResult<spObtenerComplejosJoin_Result> spObtenerComplejosJoin()
         {

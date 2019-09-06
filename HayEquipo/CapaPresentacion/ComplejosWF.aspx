@@ -20,11 +20,6 @@
             ErrorMessage="Ingrese Nombre"
             CssClass="alert-danger" Display="Dynamic"
             Text="*Ingrese Nombre" ValidationGroup="A" />
-    <%--        <asp:RegularExpressionValidator ID="rvNomb"
-             runat="server" ErrorMessage="Ingrese un Nombre válido"
-             ControlToValidate="txtNomb" ValidationExpression="^[a-zA-Z ]*$"
-             CssClass="alert-danger"
-             Display="Dynamic"></asp:RegularExpressionValidator>--%>
         <br />
 &nbsp;
         <asp:Label ID="lblDesc" runat="server" Text="Descripcion" ForeColor="White"></asp:Label>
@@ -36,11 +31,6 @@
             ErrorMessage="Ingrese Descripción"
             CssClass="alert-danger" Display="Dynamic"
             Text="*Ingrese Descripción" ValidationGroup="A" />
-    <%--       <asp:RegularExpressionValidator ID="rvDesc"
-             runat="server" ErrorMessage="Ingrese una Descripción válida"
-             ControlToValidate="txtDesc" ValidationExpression="^[a-zA-Z ]*$"
-             CssClass="alert-danger"
-             Display="Dynamic"></asp:RegularExpressionValidator>--%>
         <br />
 &nbsp;
         <asp:Label ID="lblDep1" runat="server" Text="Deporte 1" ForeColor="White"></asp:Label>
@@ -128,14 +118,15 @@
              CssClass="alert-danger"
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
-    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnCanYServ" runat="server" CssClass="btn btn-primary" OnClick="btnCanYServ_Click" Text="Canchas y Servicios &gt;&gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnCan" runat="server" CssClass="btn btn-primary" OnClick="btnCan_Click" Text="Canchas &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
+        &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnServ" runat="server" CssClass="btn btn-primary" OnClick="btnServ_Click" Text="Servicios &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
         <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="119px" />
         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" Width="116px" />
         <br />
-&nbsp;<br />
-        <asp:Panel ID="pnlCyS" runat="server" Visible="False">
+&nbsp;  <br />
+        <asp:Panel ID="pnlCan" runat="server" Visible="False" BorderColor="#339933">
                 <asp:Label ID="LblDeporte" runat="server" Text="Deporte" ForeColor="White"></asp:Label>
 &nbsp;
         <asp:DropDownList ID="ddlDep4" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep4_SelectedIndexChanged">
@@ -158,15 +149,38 @@
             ErrorMessage="Seleccione un Tipo" InitialValue="0"
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>
+        <br />
+&nbsp;
+        <asp:Label ID="lblNomCan" runat="server" Text="Nombre" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:TextBox ID="txtNomCan" placeholder="Ingrese nombre de la cancha" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvNomCan"
+            runat="server"
+            ControlToValidate="txtNomCan"
+            ErrorMessage="Ingrese Nombre"
+            CssClass="alert-danger" Display="Dynamic"
+            Text="*Ingrese Nombre" ValidationGroup="A" />
+        <br />
+&nbsp;
+        <asp:Label ID="lblDesCan" runat="server" Text="Descripcion" ForeColor="White"></asp:Label>
+&nbsp;
+        <asp:TextBox ID="txtDesCan" placeholder="Ingrese una descripción" CssClass="form-control" runat="server" Height="85px" Width="618px"></asp:TextBox>
+        <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
+        <asp:Button ID="btnNuevoCan" runat="server" class="btn btn-default" OnClick="btnNuevoCan_Click" Text="Nuevo" Width="119px" />
+        <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
+        <br />
+        <br />
+                <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="True" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                    <Columns>
+                        <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
     </asp:Panel>
     <br />
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
-            <%--    <asp:BoundField DataField="nombre" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nombre" />
-                <asp:BoundField DataField="descripcion" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Descripción" />
-                <asp:BoundField DataField="calle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Calle" />
-                <asp:BoundField DataField="nroCalle" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Nº" />
-                <asp:BoundField DataField="nroTelefono" ItemStyle-CssClass="col-lg-3 text-center" HeaderText="Télefono" />--%>
                 <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" />
             </Columns>
         </asp:GridView>
