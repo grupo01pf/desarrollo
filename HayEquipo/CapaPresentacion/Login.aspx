@@ -51,11 +51,7 @@ $(window).load(function() {
 
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>--%>
+                       
                         <img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100">
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
@@ -77,9 +73,9 @@ $(window).load(function() {
                         <br />
                         <br />
                     </div>
-                    <div class="col-sm-6">
-                         <div class="well">
-                        <div class="container">
+                    <div class="col-sm-6 well">
+                         
+                        
   <h2>Iniciar Sesión</h2>
 
 
@@ -100,11 +96,7 @@ $(window).load(function() {
    <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i> Registrarme</button>&nbsp;
 
 
-      </div>
-    </div>
-
-
-          </div>
+      </div> 
                 </div>
 
             </div>
