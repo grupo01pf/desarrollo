@@ -118,6 +118,64 @@
              CssClass="alert-danger"
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
+    //PROBANDO DESDE ACA***************************************************************************************
+     <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i> Registrarme</button>&nbsp;
+        <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Registrarme</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nombre de usuario</label>
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox ID="txtNombre" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox ID="txtEmail" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                  <asp:TextBox ID="txtPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                    </div>
+                     <div class="form-group">
+                        <label>Repetir Contraseña</label>
+                    </div>
+                    <div class="form-group">
+                  <asp:TextBox ID="txtRPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                       <asp:CheckBox runat="server" ID="checkPrivacidad"/><a data-dismiss="imodal" data-toggle="modal" href="#imodal2" > Acepto Terminos y condiciones</a>
+
+                 </div>
+
+               <div class="form-group">
+                <label>Deportista o Establecimiento ? </label>
+                   <asp:RadioButtonList ID="radioLogin" runat="server" CssClass="alinearIzq centrar">
+                       <asp:ListItem Text ="Deportista" Value="2" Selected="True"/>
+                       <asp:ListItem Text ="Establecimiento" Value="3" />
+                   </asp:RadioButtonList>
+                
+                    </div>
+                
+                  <div class="modal-footer">
+                   <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
+
+                  </div>
+        </div>
+
+      </div>
+     </div>
+          </div>
+    //HASTA ACA****************************************************************************************************+
         &nbsp;&nbsp;&nbsp;<asp:Button ID="btnCan" runat="server" CssClass="btn btn-primary" OnClick="btnCan_Click" Text="Canchas &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
         &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnServ" runat="server" CssClass="btn btn-primary" OnClick="btnServ_Click" Text="Servicios &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

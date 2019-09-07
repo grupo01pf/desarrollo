@@ -142,7 +142,7 @@ namespace CapaPresentacion
             if (int.TryParse(ddlDep1.Text, out dep1))
                 complejo.idDeporte1 = dep1;
 
-            if(ddlDep2.SelectedIndex == 0)
+            if (ddlDep2.SelectedIndex == 0)
             {
                 complejo.idDeporte2 = null;
             }
@@ -150,7 +150,7 @@ namespace CapaPresentacion
             {
                 int dep2;
                 if (int.TryParse(ddlDep2.Text, out dep2))
-                complejo.idDeporte2 = dep2;
+                    complejo.idDeporte2 = dep2;
             }
 
             if (ddlDep3.SelectedIndex == 0)
@@ -189,7 +189,7 @@ namespace CapaPresentacion
 
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
-           
+
             CargarGrillaComplejos();
             Limpiar();
         }
@@ -199,9 +199,9 @@ namespace CapaPresentacion
             gvComplejos.DataSource = null;
 
             gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                     orderby comp.Nombre
-                                     select comp);
- 
+                                      orderby comp.Nombre
+                                      select comp);
+
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
@@ -308,8 +308,8 @@ namespace CapaPresentacion
             gvCanchas.DataSource = null;
 
             gvCanchas.DataSource = (from can in CanchaDao.ObtenerCanchasPorComplejos(ID.Value)
-                                      orderby can.Deporte, can.Nombre
-                                      select can);
+                                    orderby can.Deporte, can.Nombre
+                                    select can);
 
             gvCanchas.DataKeyNames = new string[] { "ID" };
             gvCanchas.DataBind();
@@ -352,13 +352,13 @@ namespace CapaPresentacion
             txtNomCan.Text = string.Empty;
             txtDesCan.Text = string.Empty;
             ddlDep4.SelectedIndex = 0;
-            ddlTipoCancha.Enabled=false;
+            ddlTipoCancha.Enabled = false;
 
             IDCan = null;
             btnEliminarCan.Enabled = false;
             btnEliminarCan.CssClass = "btn btn-warning";
         }
-//REVISAR EL TEMA DE LOS INDEX DE LOS DDL TIPO Y DEP4
+
         protected void gvCanchas_SelectedIndexChanged(object sender, EventArgs e)
         {
             LimpiarCanchas();
@@ -373,8 +373,8 @@ namespace CapaPresentacion
             ddlDep4.SelectedIndex = int.Parse((tc.idDeporte).ToString());
             ddlTipoCancha.Items.Clear();
             CargarTipoCancha();
-            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString())-1;
-            
+            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString()) - 1;
+
 
             btnEliminarCan.Enabled = true;
         }
@@ -389,6 +389,9 @@ namespace CapaPresentacion
             CargarGrillaCanchas();
             LimpiarCanchas();
         }
-           
+        //PROBANDO*********************************************************************
+        protected void btn_Registrar_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
