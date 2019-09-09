@@ -29,7 +29,7 @@ namespace CapaPresentacion
                 ddlDep1.AutoPostBack = true;
                 ddlDep2.AutoPostBack = true;
                 ddlDep4.AutoPostBack = true;
-                btnCan.Enabled = false;
+                //btnCan.Enabled = false;
                 btnServ.Enabled = false;
             }
         }
@@ -115,15 +115,15 @@ namespace CapaPresentacion
 
         private void cargarBarrios()
         {
-            List<Barrio> barrios = BarrioDao.obtenerBarrios();
-
             ddlBarrio.DataSource = null;
 
             ddlBarrio.DataTextField = "nombre";
 
             ddlBarrio.DataValueField = "id";
 
-            ddlBarrio.DataSource = barrios;
+            ddlBarrio.DataSource = (from bar in BarrioDao.obtenerBarrios()
+                                    orderby bar.nombre
+                                    select bar);
 
             ddlBarrio.DataBind();
         }
@@ -239,8 +239,10 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;
-            btnCan.Enabled = true;
+            //btnCan.Enabled = true;
             btnServ.Enabled = true;
+            CargarDeporte4();
+            CargarGrillaCanchas();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -259,7 +261,7 @@ namespace CapaPresentacion
         {
             CargarDeporte4();
             CargarGrillaCanchas();
-            pnlCan.Visible = true;
+            //pnlCan.Visible = true;
         }
 
         protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
