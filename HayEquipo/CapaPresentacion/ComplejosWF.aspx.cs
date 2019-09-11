@@ -30,7 +30,7 @@ namespace CapaPresentacion
                 ddlDep2.AutoPostBack = true;
                 ddlDep4.AutoPostBack = true;
                 //btnCan.Enabled = false;
-                btnServ.Enabled = false;
+                //btnServ.Enabled = false;
             }
         }
         protected int? ID
@@ -61,6 +61,19 @@ namespace CapaPresentacion
             set { ViewState["IDCan"] = value; }
         }
 
+        protected int? IDServ
+        {
+            get
+            {
+                if (ViewState["IDServ"] != null)
+                    return (int)ViewState["IDServ"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["IDServ"] = value; }
+        }
         private void Limpiar()
         {
             txtNomb.Text = string.Empty;
@@ -80,7 +93,7 @@ namespace CapaPresentacion
 
         private void CargarDeporte(DropDownList ddl)
         {
-            List<Deporte> Deportes = DeporteDao.ObtenerDeportes();
+            List<Deporte> deportes = DeporteDao.ObtenerDeportes();
 
             ddl.DataSource = null;
 
@@ -88,7 +101,7 @@ namespace CapaPresentacion
 
             ddl.DataValueField = "id";
 
-            ddl.DataSource = Deportes;
+            ddl.DataSource = deportes;
 
             ddl.DataBind();
         }
@@ -240,9 +253,11 @@ namespace CapaPresentacion
 
             btnEliminar.Enabled = true;
             //btnCan.Enabled = true;
-            btnServ.Enabled = true;
+            //btnServ.Enabled = true;
             CargarDeporte4();
             CargarGrillaCanchas();
+            CargarServicios();
+            CargarGrillaServicios();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -257,12 +272,12 @@ namespace CapaPresentacion
             Limpiar();
         }
 
-        protected void btnCan_Click(object sender, EventArgs e)
-        {
-            CargarDeporte4();
-            CargarGrillaCanchas();
-            //pnlCan.Visible = true;
-        }
+        //protected void btnCan_Click(object sender, EventArgs e)
+        //{
+        //    CargarDeporte4();
+        //    CargarGrillaCanchas();
+        //    //pnlCan.Visible = true;
+        //}
 
         protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -276,7 +291,7 @@ namespace CapaPresentacion
 
         private void CargarTipoCancha()
         {
-            List<TipoCancha> TiposCanchas = TipoCanchaDao.ObtenerTipoPorIdDeporte(ddlDep4.SelectedIndex);
+            List<TipoCancha> tiposCanchas = TipoCanchaDao.ObtenerTipoPorIdDeporte(ddlDep4.SelectedIndex);
 
             ddlTipoCancha.DataSource = null;
 
@@ -284,9 +299,24 @@ namespace CapaPresentacion
 
             ddlTipoCancha.DataValueField = "id";
 
-            ddlTipoCancha.DataSource = TiposCanchas;
+            ddlTipoCancha.DataSource = tiposCanchas;
 
             ddlTipoCancha.DataBind();
+        }
+
+        private void CargarServicios()
+        {
+            List<ServicioExtra> servicios = ServicioExtraDao.ObtenerServicios();
+
+            ddlServ.DataSource = null;
+
+            ddlServ.DataTextField = "nombre";
+
+            ddlServ.DataValueField = "id";
+
+            ddlServ.DataSource = servicios;
+
+            ddlServ.DataBind();
         }
 
         protected void ddlDep4_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,10 +347,11 @@ namespace CapaPresentacion
             gvCanchas.DataBind();
         }
 
-        protected void btnServ_Click(object sender, EventArgs e)
-        {
-
-        }
+        //protected void btnServ_Click(object sender, EventArgs e)
+        //{
+        //    CargarServicios();
+        //    CargarGrillaServicios();
+        //}
 
         protected void btnGuardarCan_Click(object sender, EventArgs e)
         {
@@ -377,7 +408,6 @@ namespace CapaPresentacion
             CargarTipoCancha();
             ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString()) - 1;
 
-
             btnEliminarCan.Enabled = true;
         }
         protected void btnNuevoCan_Click(object sender, EventArgs e)
@@ -391,6 +421,66 @@ namespace CapaPresentacion
             CargarGrillaCanchas();
             LimpiarCanchas();
         }
+
+        protected void CargarGrillaServicios()
+        {
+            gvServ.DataSource = null;
+
+            gvServ.DataSource = (from serv in ServiciosPorComplejosDao.ObtenerServiciosPorComplejos(ID.Value)
+                                    orderby serv.Servicio
+                                    select serv);
+
+            gvServ.DataKeyNames = new string[] { "ID" };
+            gvServ.DataBind();
+        }
+        private void LimpiarServicios()
+        {
+            ddlServ.SelectedIndex = 0;
+
+            IDServ = null;
+            btnEliminarS.Enabled = false;
+            btnEliminarS.CssClass = "btn btn-warning";
+        }
+        protected void btnGuardarS_Click(object sender, EventArgs e)
+        {
+            ServiciosPorComplejos servPorComp = new ServiciosPorComplejos();
+
+            int serv;
+            if (int.TryParse(ddlServ.Text, out serv))
+                servPorComp.idServicio = serv;
+
+            servPorComp.idComplejo = ID.Value;
+
+            ServiciosPorComplejosDao.InsertarServicioPorComplejo(servPorComp);
+
+            CargarGrillaServicios();
+            LimpiarServicios();
+        }
+
+        protected void btnNuevoS_Click(object sender, EventArgs e)
+        {
+            LimpiarServicios();
+        }
+
+        protected void btnEliminarS_Click(object sender, EventArgs e)
+        {
+            ServiciosPorComplejosDao.EliminarServicioPorComplejo(IDServ.Value);
+            CargarGrillaServicios();
+            LimpiarServicios();
+        }
+
+        protected void gvServ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LimpiarServicios();
+            int idSeleccionado = int.Parse(gvServ.SelectedDataKey.Value.ToString());
+            IDServ = idSeleccionado;
+            ServicioExtra servSelec = ServicioExtraDao.ObtenerServicioPorID(idSeleccionado);
+
+            ddlServ.SelectedIndex = int.Parse((servSelec.id).ToString());
+
+            btnEliminarS.Enabled = true;
+        }
+
         //PROBANDO*********************************************************************
         protected void btn_Registrar_Click(object sender, EventArgs e)
         {

@@ -87,6 +87,15 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerComplejosJoin_Result>("spObtenerComplejosJoin");
         }
     
+        public virtual ObjectResult<spObtenerServiciosPorComplejos_Result> spObtenerServiciosPorComplejos(Nullable<int> idComp)
+        {
+            var idCompParameter = idComp.HasValue ?
+                new ObjectParameter("idComp", idComp) :
+                new ObjectParameter("idComp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerServiciosPorComplejos_Result>("spObtenerServiciosPorComplejos", idCompParameter);
+        }
+    
         public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)
         {
             var prmNombreParameter = prmNombre != null ?

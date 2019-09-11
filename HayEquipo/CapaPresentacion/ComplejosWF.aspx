@@ -173,7 +173,7 @@
                         <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
                         </Columns>
                 </asp:GridView>
-                    </div>
+                    </div>  
 
 <%--                     <div class="form-group">
                         <label>Repetir Contraseña</label>
@@ -206,8 +206,52 @@
      </div>
           </div>
 
+    
+     <button type="button" value="btnServ" title="Administrar Servicios" class="btn btn-primary btn-edit" data-target="#smodal" data-toggle="modal" id="btnServ"><i class="fa fa-check-square-o" aria-hidden="true"></i>Servicios</button>&nbsp;
+        <div class="modal fade" id="smodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelS">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabelS">Mis Servicios</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Servicio</label>
+                    </div>
+                    <div class="form-group">
+                            <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+                            <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvServ"
+                            runat="server" ControlToValidate="ddlServ"
+                            ErrorMessage="Seleccione un Servicio" InitialValue="0"
+                            CssClass="alert-danger"
+                            Display="Dynamic"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-group">
+                        <asp:GridView ID="gvServ" runat="server" AutoGenerateColumns="True" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvServ_SelectedIndexChanged">
+                        <Columns>
+                        <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
+                        </Columns>
+                </asp:GridView>
+                    </div>
+                                      <div class="modal-footer">
+                              <asp:Button ID="btnGuardarS" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarS_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
+                              <asp:Button ID="btnNuevoS" runat="server" class="btn btn-default" OnClick="btnNuevoS_Click" Text="Nuevo" Width="119px" />
+                              <asp:Button ID="btnEliminarS" runat="server" class="btn btn-warning" OnClick="btnEliminarS_Click" Text="Eliminar" Width="116px" />
+
+
+<%--                   <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />--%>
+                  </div>
+                </div>
+
+            </div>
+     </div>
+          </div>
+
 <%--        &nbsp;&nbsp;&nbsp;<asp:Button ID="btnCan" runat="server" CssClass="btn btn-primary" OnClick="btnCan_Click" Text="Canchas &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />--%>
-        &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnServ" runat="server" CssClass="btn btn-primary" OnClick="btnServ_Click" Text="Servicios &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />
+<%--        &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnServ" runat="server" CssClass="btn btn-primary" OnClick="btnServ_Click" Text="Servicios &gt; &gt;" ValidationGroup="A" Width="178px" BackColor="#339933" />--%>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
         <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" Width="119px" />

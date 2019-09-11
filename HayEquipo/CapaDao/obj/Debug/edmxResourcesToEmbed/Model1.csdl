@@ -412,7 +412,6 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ServiciosPorComplejos" Relationship="Self.FK_ServiciosPorComplejos_ServicioExtra" FromRole="ServicioExtra" ToRole="ServiciosPorComplejos" />
   </EntityType>
   <EntityType Name="ServiciosPorComplejos">
@@ -1680,6 +1679,9 @@
       <Parameter Name="idComp" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spObtenerComplejosJoin" ReturnType="Collection(HayEquipoModel.spObtenerComplejosJoin_Result)" />
+    <FunctionImport Name="spObtenerServiciosPorComplejos" ReturnType="Collection(HayEquipoModel.spObtenerServiciosPorComplejos_Result)">
+      <Parameter Name="idComp" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="spRegistrarUsuario">
       <Parameter Name="prmNombre" Mode="In" Type="String" />
       <Parameter Name="prmEmail" Mode="In" Type="String" />
@@ -1709,5 +1711,9 @@
     <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
     <Property Type="Double" Name="Valoracion" Nullable="true" />
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spObtenerServiciosPorComplejos_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Servicio" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>
