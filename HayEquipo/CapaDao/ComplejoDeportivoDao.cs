@@ -186,51 +186,46 @@ namespace CapaDao
             }
         }
 
-        //public static ComplejoDeportivoEntidad ObtenerComplejosPorID(int id)
+        
+    
+        //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         //{
-        //    ComplejoDeportivoEntidad complejo = null;
-
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"SELECT *
-        //                        FROM ComplejoDeportivo where id=@idComp";
-        //    cmd.Parameters.AddWithValue("@idComp", id);
-        //    SqlDataReader dr = cmd.ExecuteReader();
-        //    while (dr.Read())
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
         //    {
-        //        // no acepta numeros en null
-        //        complejo = new ComplejoDeportivoEntidad();
-
-        //        complejo.idComplejoDeportivo = int.Parse(dr["id"].ToString());
-        //        complejo.nombre = dr["nombre"].ToString();
-        //        complejo.descripcion = dr["descripcion"].ToString();
-        //        // complejo.idTipoComplejo = int.Parse(dr["idTipoComplejo"].ToString());
-        //        complejo.calle = dr["calle"].ToString();
-        //        // complejo.idBarrio = int.Parse(dr["idBarrio"].ToString());
-        //        //complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
-        //        //complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
-        //        //  complejo.idResponsable = int.Parse(dr["idResponsable"].ToString());
-        //        //  complejo.idUsuario = int.Parse(dr["idUsuario"].ToString());
-        //        //  complejo.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
-        //        //  complejo.idEstado = int.Parse(dr["idEstado"].ToString());
+        //        return db.ComplejoDeportivo.First(c => c.id == id);
         //    }
-        //    dr.Close();
-        //    cn.Close();
-        //    return complejo;
-
         //}
+
 
         public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
+            ComplejoDeportivo complejo = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                FROM ComplejoDeportivo where id=@idComp";
+            cmd.Parameters.AddWithValue("@idComp", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                return db.ComplejoDeportivo.First(c => c.id == id);
+                complejo = new ComplejoDeportivo();
+                complejo.id = int.Parse(dr["id"].ToString());
+                complejo.nombre = dr["nombre"].ToString();
+                complejo.descripcion = dr["descripcion"].ToString();
+                complejo.calle = dr["calle"].ToString();
+                complejo.mapa = dr["mapa"].ToString();
             }
+            dr.Close();
+            cn.Close();
+            return complejo;
+
         }
+
 
     }
 }

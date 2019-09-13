@@ -173,39 +173,9 @@
 
                             
                                 
-                                    <%--<asp:Label ID="lbl_TipoCancha" runat="server" Text="Canchas"></asp:Label>--%>
-                                
-                                
-                                
-                                    <%--<asp:DropDownList ID="cmb_TipoCancha" runat="server" AppendDataBoundItems>
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                    </asp:DropDownList>--%>
-                                
-
-                            
-
-                        
-                        
-
-                        
-                            <%--<asp:Button ID="btn_BuscarHorarios" runat="server" Text="Buscar Horarios" OnClick="btn_BuscarHorarios_Click" BackColor="Blue" ForeColor="White" />--%>
-                        
-                        
-
-                            <%-- GRILLA HORARIOS DISPONIBLES --%>
-                            
-                                <%--<legend>Horarios</legend>--%>
-                                
-
-                                    <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
-                                    <%--<asp:GridView ID="gdv_Horario" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
-                                        <Columns>
-                                            <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />
-                                            <asp:BoundField DataField="Hora" HeaderText="Hora" Visible="true" />
-                                            <asp:BoundField DataField="Disponibilidad" HeaderText="Disponibilidad" Visible="true" />
-                                        </Columns>
-                                    </asp:GridView>--%>
+                          
                                 </div>
+                       
 
                     
                             
@@ -220,7 +190,11 @@
                 </div>
             </div>
             <br />
-           
+             <%-- ****MAPA**** --%>
+                    <iframe id="frm_map" runat="server" src=""
+                         width="550" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                     <%-- ****MAPA**** --%>
+
 
        
         

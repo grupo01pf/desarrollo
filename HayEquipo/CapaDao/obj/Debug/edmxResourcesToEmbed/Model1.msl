@@ -75,6 +75,7 @@
           <ScalarProperty Name="idDeporte1" ColumnName="idDeporte1" />
           <ScalarProperty Name="idDeporte2" ColumnName="idDeporte2" />
           <ScalarProperty Name="idDeporte3" ColumnName="idDeporte3" />
+          <ScalarProperty Name="mapa" ColumnName="mapa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -445,6 +446,8 @@
           <ScalarProperty Name="avatar" ColumnName="avatar" />
           <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="intentos" ColumnName="intentos" />
+          <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -485,6 +488,27 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idZona" ColumnName="idZona" />
           <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reserva">
+      <EntityTypeMapping TypeName="HayEquipoModel.Reserva">
+        <MappingFragment StoreEntitySet="Reserva">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+          <ScalarProperty Name="horaReserva" ColumnName="horaReserva" />
+          <ScalarProperty Name="idEncuentroDeportivo" ColumnName="idEncuentroDeportivo" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuariosPorEncuentroDeportivo">
+      <EntityTypeMapping TypeName="HayEquipoModel.UsuariosPorEncuentroDeportivo">
+        <MappingFragment StoreEntitySet="UsuariosPorEncuentroDeportivo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuarioEquipoA" ColumnName="idUsuarioEquipoA" />
+          <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
+          <ScalarProperty Name="idUsuarioEquipoB" ColumnName="idUsuarioEquipoB" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

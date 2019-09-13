@@ -36,6 +36,7 @@ namespace CapaEntidades
         public Nullable<int> idDeporte1 { get; set; }
         public Nullable<int> idDeporte2 { get; set; }
         public Nullable<int> idDeporte3 { get; set; }
+        public string mapa { get; set; }
     
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,17 +13,25 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //  Session["IdEncuentro"] = null;
+            Session["IdEncuentro"] = null;
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
 
                 deshabilitarControles();
 
                 cargarDeportes();
-               // cargarZonas();
+                // cargarZonas();
                 cargarComplejos();
-               // cargarBarrios();
+                // cargarBarrios();
             }
+
+            if (cmb_Complejo.SelectedIndex != 0)
+            {
+                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+                frm_map.Src = cd.mapa;
+            }
+
 
         }
 
@@ -33,7 +41,8 @@ namespace CapaPresentacion
             {
                 crearEventoPublico();
                 Response.Redirect("EncuentroPublico.aspx");
-            }else
+            }
+            else
             {
                 crearEventoPrivado();
                 Response.Redirect("EncuentroPrivado.aspx");
@@ -42,43 +51,29 @@ namespace CapaPresentacion
 
         private void crearEventoPublico()
         {
-            EncuentroDeportivoEntidad ed = new EncuentroDeportivoEntidad();
-            
-            
-           //  ed.idAUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
-            ed.idAUsuario = 1;
-            // string fechaHoy = hoy.ToString("dd/MM/yyyy");
-            DateTime hoy = DateTime.Now;
-            DateTime fecha;
-            if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
-            ed.fechaCreacionEncuentro = fecha;
+
+            EncuentroDeportivo ed = new EncuentroDeportivo();
+            ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
+            // ed.idUsuario = 1;  // (Usar cuando No este el login)
+            // ed.fechaCreacionEncuentro = DateTime.Now;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
-           // ed.idEquipo = 0;
-
-            DateTime calendario = cld_Fecha.SelectedDate;
-            DateTime fi;
-            if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
-                ed.fechaInicioEncuentro = fi;
-
+            ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
             ed.idEstado = 1; // (habilitado)
-
-
-            DateTime hi;
-            if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
-
-            DateTime hf;
-            if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
+            TimeSpan? hi = TimeSpan.Parse(txt_HoraInicio.Text);
+            ed.horaInicio = hi;
+            TimeSpan? hf = TimeSpan.Parse(txt_HoraFin.Text);
+            ed.horaFin = hf;
 
             ed.tipoEncuentro = "Publico";
 
             if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
-            else{ ed.accesibilidad = "Abierto"; }
+            else { ed.accesibilidad = "Abierto"; }
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
                 ed.clave = string.Empty;
             else
                 ed.clave = txt_Clave.Text;
-            
+
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
             else { ed.nombreLP = txt_NombreLugar.Text; }
@@ -86,33 +81,31 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Direccion.Text))
                 ed.direccion = string.Empty;
             else { ed.direccion = txt_Direccion.Text; }
-            
-            EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
 
+            Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
+            EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
 
+            Mensaje msg = new Mensaje();
+            msg.idUsuario = int.Parse(Session["ID"].ToString());
+            msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            msg.fechaHora = DateTime.Now;
+            msg.texto = string.Empty;
+            MensajeDao.InsertarMensaje(msg);
         }
 
 
         private void crearEventoPrivado()
         {
-            EncuentroDeportivoEntidad ed = new EncuentroDeportivoEntidad();
 
+            EncuentroDeportivo ed = new EncuentroDeportivo();
 
-            //  ed.idAUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
-            ed.idAUsuario = 1;
-            // string fechaHoy = hoy.ToString("dd/MM/yyyy");
-            DateTime hoy = DateTime.Now;
-            DateTime fecha;
-            if (DateTime.TryParse(hoy.ToString("dd/MM/yyyy"), out fecha))
-                ed.fechaCreacionEncuentro = fecha;
+            ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
+            // ed.idUsuario = 1;
+            // ed.fechaCreacionEncuentro = DateTime.Now; (reserva)
 
             ed.idDeporte = cmb_Deporte.SelectedIndex;
             ed.idComplejo = cmb_Complejo.SelectedIndex;
-
-            DateTime calendario = cld_Fecha.SelectedDate;
-            DateTime fi;
-            if (DateTime.TryParse(calendario.ToString("dd/MM/yyyy"), out fi))
-                ed.fechaInicioEncuentro = fi;
+            ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
 
             ed.idEstado = 1; // (habilitado)
 
@@ -135,19 +128,26 @@ namespace CapaPresentacion
             else { ed.direccion = txt_Direccion.Text; }
 
 
-            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
-            {
-                DateTime hi;
-                if (DateTime.TryParse(txt_HoraInicio.Text, out hi)) { ed.horaInicio = hi; }
-            }
+            Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
+            EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
 
-            if (string.IsNullOrEmpty(txt_HoraFin.Text))
-            {
-                DateTime hf;
-                if (DateTime.TryParse(txt_HoraFin.Text, out hf)) { ed.horaFIn = hf; }
-            }
+           Reserva reserva = new Reserva();
+           reserva.fechaReserva = DateTime.Now;
+           reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());
 
-            EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
+            //string fecha = DateTime.Now.ToString("HHmmss");
+            //TimeSpan hr = TimeSpan.Parse(fecha.ToString());
+            //reserva.horaReserva = hr;
+
+           reserva.idEstado = 1; //(reservado)
+           ReservaDao.InsertarReserva(reserva);
+
+            Mensaje msg = new Mensaje();
+            msg.idUsuario = int.Parse(Session["ID"].ToString());
+            msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            msg.fechaHora = DateTime.Now;
+            msg.texto = string.Empty;
+            MensajeDao.InsertarMensaje(msg);
 
         }
 
@@ -161,34 +161,40 @@ namespace CapaPresentacion
 
         }
 
-        private void cargarGrilla() {
+        private void cargarGrilla()
+        {
 
         }
 
-        private void cargarDeportes() {
+        private void cargarDeportes()
+        {
             cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-            cmb_Deporte.DataValueField = "idDeporte";
+            cmb_Deporte.DataValueField = "id";
             cmb_Deporte.DataValueField = "nombre";
             cmb_Deporte.DataBind();
 
+
         }
 
-        private void cargarZonas() {
+        private void cargarZonas()
+        {
 
             //cmb_Zona.DataSource = ZonaDao.obtenerZonas();
             //cmb_Zona.DataValueField = "IdZona";
             //cmb_Zona.DataValueField = "nombre";
             //cmb_Zona.DataBind();
         }
-        private void cargarComplejos() {
+        private void cargarComplejos()
+        {
 
             cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
-            cmb_Complejo.DataValueField = "idComplejoDeportivo";
+            cmb_Complejo.DataValueField = "id";
             cmb_Complejo.DataValueField = "nombre";
             cmb_Complejo.DataBind();
         }
 
-        private void cargarTipoCanchas() {
+        private void cargarTipoCanchas()
+        {
 
         }
 
@@ -201,7 +207,8 @@ namespace CapaPresentacion
             //cmb_Barrio.DataBind();
         }
 
-        private void deshabilitarControles() {
+        private void deshabilitarControles()
+        {
 
 
             txt_Direccion.Enabled = false;
@@ -212,18 +219,6 @@ namespace CapaPresentacion
             cmb_Complejo.Enabled = false;
         }
 
-
-        protected int? ID
-        {
-            get
-            {
-                if (ViewState["ID"] != null)
-                    return (int)ViewState["ID"];
-                else
-                { return null; }
-            }
-            set { ViewState["ID"] = value; }
-        }
 
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
         {
@@ -250,9 +245,9 @@ namespace CapaPresentacion
 
         }
 
-        protected void Timer1_Tick(object sender, EventArgs e)
-        {
 
-        }
+      
+
+
     }
 }

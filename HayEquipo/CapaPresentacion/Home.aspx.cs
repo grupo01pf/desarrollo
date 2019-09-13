@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
-using System.Web.Security;
 
 namespace CapaPresentacion
 {
@@ -28,11 +27,9 @@ namespace CapaPresentacion
 
         protected void btn_Logout_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Login.aspx");
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
-            Response.Redirect("Login.aspx");
-
 
 
         }
@@ -40,7 +37,7 @@ namespace CapaPresentacion
         protected void link_nombreUsuario_Click(object sender, EventArgs e)
         {
             //****NO BORRAR****
-
+            // redireccionar a MiCuenta o Perfil
             //  Response.Redirect("");
         }
 
@@ -53,41 +50,34 @@ namespace CapaPresentacion
         {
 
             gdv_EncuentrosDisponibles.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            //  gdv_EncuentrosDisponibles.DataKeyNames = new string[] { "id" };
+            gdv_EncuentrosDisponibles.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDisponibles.DataBind();
 
         }
-        protected void cargarLugaresPublicos() {
 
-          //  gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-          //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
-          //  gdv_LugaresPublicos.DataBind();
 
-        }
-        protected void cargarLugaresPrivados()
-        {
-
-          //  gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
-          //  gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
-         //   gdv_LugaresPrivados.DataBind();
-
-        }
-
-        protected void gdv_LugaresPublicos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gdv_EncuentrosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             GridViewRow fila = gdv_EncuentrosDisponibles.SelectedRow;
 
             string tipoEncuentro = fila.Cells[2].Text;
-
-            //  lbl_Prueba.Text = tipoEncuentro;
+            Session["idEncuentro"] = int.Parse(gdv_EncuentrosDisponibles.SelectedDataKey.Value.ToString());
 
             if (tipoEncuentro.Equals("Publico"))
+            {
                 Response.Redirect("EncuentroPublico.aspx");
+
+            }
+
+
             else
+            {
                 Response.Redirect("EncuentroPrivado.aspx");
+            }
+
         }
 
-       
+
     }
 }

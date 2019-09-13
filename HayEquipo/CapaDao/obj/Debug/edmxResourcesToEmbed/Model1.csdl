@@ -83,6 +83,7 @@
     <Property Name="idDeporte1" Type="Int32" />
     <Property Name="idDeporte2" Type="Int32" />
     <Property Name="idDeporte3" Type="Int32" />
+    <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
     <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
     <NavigationProperty Name="Deporte" Relationship="Self.FK_ComplejoDeportivo_Deporte" FromRole="ComplejoDeportivo" ToRole="Deporte" />
@@ -522,6 +523,8 @@
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="fechaAlta" Type="DateTime" Precision="0" />
     <Property Name="fechaBaja" Type="DateTime" Precision="0" />
+    <Property Name="intentos" Type="Int32" />
+    <Property Name="bloqueado" Type="Boolean" />
     <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Usuario" FromRole="Usuario" ToRole="Administrador" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_Deportista_Usuario" FromRole="Usuario" ToRole="Deportista" />
     <NavigationProperty Name="Mensaje" Relationship="Self.FK_Mensaje_Usuario" FromRole="Usuario" ToRole="Mensaje" />
@@ -573,6 +576,25 @@
     <Property Name="idDeportista" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="ZonasPorDeportistas" ToRole="Deportista" />
     <NavigationProperty Name="Zona" Relationship="Self.FK_ZonasPorDeportistas_Zona" FromRole="ZonasPorDeportistas" ToRole="Zona" />
+  </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fechaReserva" Type="DateTime" Precision="0" />
+    <Property Name="horaReserva" Type="Time" Precision="0" />
+    <Property Name="idEncuentroDeportivo" Type="Int32" />
+    <Property Name="idEstado" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UsuariosPorEncuentroDeportivo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuarioEquipoA" Type="Int32" />
+    <Property Name="idEncuentro" Type="Int32" />
+    <Property Name="idUsuarioEquipoB" Type="Int32" />
   </EntityType>
   <Association Name="FK_Administrador_Barrio">
     <End Role="Barrio" Type="Self.Barrio" Multiplicity="0..1" />
@@ -1412,6 +1434,8 @@
     <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" />
     <EntitySet Name="Zona" EntityType="Self.Zona" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+    <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
       <End Role="Barrio" EntitySet="Barrio" />
       <End Role="Administrador" EntitySet="Administrador" />

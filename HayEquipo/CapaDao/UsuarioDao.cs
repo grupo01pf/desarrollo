@@ -185,5 +185,89 @@ namespace CapaDao
             return flag;
 
         }
+
+
+
+        public static List<Usuario> UsuariosUnidosEncuentroEquipoA(int idEncuentro)
+        {
+            Usuario usuario = null;
+            List<Usuario> listaUsuaurios = new List<Usuario>();
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEncuentro", idEncuentro);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                usuario = new Usuario();
+                usuario.nombre = dr["nombreUsuario"].ToString();
+                usuario.id = int.Parse(dr["idUsuario"].ToString());
+                listaUsuaurios.Add(usuario);
+                // id = int.Parse(dr["id"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return listaUsuaurios;
+
+        }
+        public static List<Usuario> UsuariosUnidosEncuentroEquipoB(int idEncuentro)
+        {
+            Usuario usuario = null;
+            List<Usuario> listaUsuaurios = new List<Usuario>();
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEncuentro", idEncuentro);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                usuario = new Usuario();
+                usuario.nombre = dr["nombreUsuario"].ToString();
+                usuario.id = int.Parse(dr["idUsuario"].ToString());
+                listaUsuaurios.Add(usuario);
+                // id = int.Parse(dr["id"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return listaUsuaurios;
+
+        }
+
+        public static List<Usuario> UsuariosUnidosEncuentroPublico(int idEncuentro)
+        {
+            Usuario usuario = null;
+            List<Usuario> listaUsuaurios = new List<Usuario>();
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEncuentro", idEncuentro);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                usuario = new Usuario();
+                usuario.nombre = dr["nombreUsuario"].ToString();
+                listaUsuaurios.Add(usuario);
+                // id = int.Parse(dr["id"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return listaUsuaurios;
+
+        }
+
+
+
     }
 }

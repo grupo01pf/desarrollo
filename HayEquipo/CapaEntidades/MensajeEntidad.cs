@@ -15,3 +15,4 @@ namespace CapaEntidades
         public int idUsuario { get; set; }
     }
 }
+

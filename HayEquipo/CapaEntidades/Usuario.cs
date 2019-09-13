@@ -32,6 +32,8 @@ namespace CapaEntidades
         public byte[] avatar { get; set; }
         public Nullable<System.DateTime> fechaAlta { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
+        public Nullable<int> intentos { get; set; }
+        public Nullable<bool> bloqueado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrador> Administrador { get; set; }

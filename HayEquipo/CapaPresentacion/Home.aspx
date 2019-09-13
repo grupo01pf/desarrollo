@@ -179,7 +179,7 @@
                     <div class="table-responsive">
                   <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                  HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
+                                OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />                                    
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />

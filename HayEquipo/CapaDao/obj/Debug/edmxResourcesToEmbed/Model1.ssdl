@@ -70,6 +70,7 @@
     <Property Name="idDeporte1" Type="int" />
     <Property Name="idDeporte2" Type="int" />
     <Property Name="idDeporte3" Type="int" />
+    <Property Name="mapa" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -269,6 +270,18 @@
     <Property Name="fechaFin" Type="smalldatetime" />
     <Property Name="idEstado" Type="int" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaReserva" Type="smalldatetime" />
+    <Property Name="horaReserva" Type="time" Precision="0" />
+    <Property Name="idEncuentroDeportivo" Type="int" />
+    <Property Name="idEstado" Type="int" />
+  </EntityType>
   <EntityType Name="Responsable">
     <Key>
       <PropertyRef Name="id" />
@@ -405,6 +418,19 @@
     <Property Name="avatar" Type="image" />
     <Property Name="fechaAlta" Type="smalldatetime" />
     <Property Name="fechaBaja" Type="smalldatetime" />
+    <Property Name="intentos" Type="int" />
+    <Property Name="bloqueado" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="UsuariosPorEncuentroDeportivo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuarioEquipoA" Type="int" />
+    <Property Name="idEncuentro" Type="int" />
+    <Property Name="idUsuarioEquipoB" Type="int" />
   </EntityType>
   <EntityType Name="ValoracionComplejo">
     <Key>
@@ -1294,6 +1320,23 @@
     <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Reserva].[id] AS [id], 
+    [Reserva].[fechaReserva] AS [fechaReserva], 
+    [Reserva].[horaReserva] AS [horaReserva], 
+    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo], 
+    [Reserva].[idEstado] AS [idEstado]
+    FROM [dbo].[Reserva] AS [Reserva]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UsuariosPorEncuentroDeportivo].[id] AS [id], 
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA], 
+    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro], 
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
+    FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
       <End Role="Barrio" EntitySet="Barrio" />
       <End Role="Administrador" EntitySet="Administrador" />
