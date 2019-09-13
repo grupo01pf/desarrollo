@@ -10,87 +10,60 @@
 namespace CapaPresentacion {
     
     
-    public partial class PerfilDeportistas {
+    public partial class Restaurar {
         
         /// <summary>
-        /// Control link_nombreUsuario2.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton link_nombreUsuario2;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control txt_Nombres.
+        /// Control txt_ConfirmarEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Nombres;
+        protected global::System.Web.UI.WebControls.TextBox txt_ConfirmarEmail;
         
         /// <summary>
-        /// Control txt_Apellidos.
+        /// Control txt_NuevaPassword.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Apellidos;
+        protected global::System.Web.UI.WebControls.TextBox txt_NuevaPassword;
         
         /// <summary>
-        /// Control ddl_TipoDocumento.
+        /// Control txt_RNuevaPassword.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_TipoDocumento;
+        protected global::System.Web.UI.WebControls.TextBox txt_RNuevaPassword;
         
         /// <summary>
-        /// Control txt_NumeroDocumento.
+        /// Control lblerror.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_NumeroDocumento;
+        protected global::System.Web.UI.WebControls.Label lblerror;
         
         /// <summary>
-        /// Control txt_Sexo.
+        /// Control btn_Restaurar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Sexo;
-        
-        /// <summary>
-        /// Control txt_FechaNacimiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_FechaNacimiento;
-        
-        /// <summary>
-        /// Control txt_Telefono.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Telefono;
-        
-        /// <summary>
-        /// Control btnGuardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.Button btn_Restaurar;
     }
 }

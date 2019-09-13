@@ -59,17 +59,17 @@ namespace CapaPresentacion
         }
         protected void cargarLugaresPublicos() {
 
-          //  gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-          //  gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
-          //  gdv_LugaresPublicos.DataBind();
+            //gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            //gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
+            //gdv_LugaresPublicos.DataBind();
 
         }
         protected void cargarLugaresPrivados()
         {
 
-          //  gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
-          //  gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
-         //   gdv_LugaresPrivados.DataBind();
+            //gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
+            //gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
+            //gdv_LugaresPrivados.DataBind();
 
         }
 
@@ -78,7 +78,7 @@ namespace CapaPresentacion
 
             GridViewRow fila = gdv_EncuentrosDisponibles.SelectedRow;
 
-            string tipoEncuentro = fila.Cells[2].Text;
+            string tipoEncuentro = fila.Cells[2].Text; ;
 
             //  lbl_Prueba.Text = tipoEncuentro;
 
@@ -86,8 +86,9 @@ namespace CapaPresentacion
                 Response.Redirect("EncuentroPublico.aspx");
             else
                 Response.Redirect("EncuentroPrivado.aspx");
+
         }
 
-       
+
     }
 }

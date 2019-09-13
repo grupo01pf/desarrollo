@@ -18,6 +18,7 @@ namespace CapaPresentacion
             {
                 m.From = new MailAddress(from);
                 m.To.Add(new MailAddress(to));
+                m.IsBodyHtml = true;
                 m.Body = msj;
                 m.Subject = "Usted se ha Registrado Correctamente";
                 smtp.Host = "smtp.gmail.com";
@@ -25,6 +26,29 @@ namespace CapaPresentacion
                 smtp.Credentials = new NetworkCredential(from, password);
                 smtp.EnableSsl = true;
                 smtp.Send(m); 
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+        }
+
+        public bool enviarcorreo2(string from, string password, string to, string msj)
+        {
+            try
+            {
+                m.From = new MailAddress(from);
+                m.To.Add(new MailAddress(to));
+                m.IsBodyHtml = true;
+                m.Body = msj;
+                m.Subject = "Restaurar Contraseña";
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new NetworkCredential(from, password);
+                smtp.EnableSsl = true;
+                smtp.Send(m);
                 return true;
             }
             catch (Exception e)

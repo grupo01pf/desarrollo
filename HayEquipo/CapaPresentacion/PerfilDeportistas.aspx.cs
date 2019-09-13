@@ -13,6 +13,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            link_nombreUsuario2.Text = Session["Usuario"].ToString();
             cargarTipoDocumento();
         }
 

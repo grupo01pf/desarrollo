@@ -88,7 +88,7 @@
 <div class="container text-center">    
 
   <div class="row">
-    <div class="col-sm-3 well" <%--style="background-color:#d7dbd3;"--%>>
+    <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
         <%--<p><a href="#">Ignacio Monetto</a></p>--%>
          <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
@@ -106,7 +106,7 @@
         Tienes una invitación de Pedro García. <p><strong>Ver Invitación</strong></p>
       </div>
     </div>
-    <div class="col-sm-7" <%--style="background-color:#d7dbd3;"--%>>
+    <div class="col-sm-8" <%--style="background-color:#d7dbd3;"--%>>
     
       <div class="row">
           
@@ -159,7 +159,7 @@
 
         </div>
       <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Buscar encuentros...">
+          <input type="text" class="form-control" id="myInput" placeholder="Buscar encuentros..."/>
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
@@ -175,13 +175,13 @@
              
               <%-- GRILLA LUGARES PUBLICOS --%>
                
-                   
+                   <div id="myDIV">
                     <div class="table-responsive">
                   <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                  HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                 OnSelectedIndexChanged="gdv_LugaresPublicos_SelectedIndexChanged">
                                 <Columns>
-                                    <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />                                    
+                                    <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
                                     <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
@@ -196,14 +196,40 @@
                             </asp:GridView>
                     
               </div>
+              </div>
+          <%--    <div class="container">
+ 
+  <div class="card img-fluid" style="width:50%;border:black">
+    <h2>Encuentro publico</h2>
+   <img class="card-img-top" src="Imagenes/nene.png"" alt="Card image" style="width:100px;"/>
+    <div class="card-img-overlay">
+      <div class="col-md-6">
+      <h4 class="card-title">Complejo: Don Balon</h4>
+      <h4 class="card-title">Deporte: Futbol</h4>
+           <h4 class="card-title">Direccion: Dorrego 123</h4>
+      </div>
+        </div>
+       <div class="col-md-6">
+      <h4 class="card-title">Fecha Encuentro: 21/10/2019</h4>
+           <h4 class="card-title">Hora Inicio: 15:00</h4>
+            <h4 class="card-title">Accesibilidad: Abierto</h4>
+       </div>
+       <a href="#" class="btn btn-primary">Unirse al Encuentro</a>
+       </div>
+     
+           </div>
+    --%>
+    </div>
+  </div>
+
                    
 
 
-          </div>
+         
         
       
       
-    </div>
+    
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="thumbnail">
         <p>Próximo encuentro</p>
@@ -230,8 +256,19 @@
         </p>
       </div>
     </div>
-  </div>
-</div>
+      </div>
+   </div>
+
+ <%--   <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myDIV ID").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>--%>
 </asp:Content>
 
 

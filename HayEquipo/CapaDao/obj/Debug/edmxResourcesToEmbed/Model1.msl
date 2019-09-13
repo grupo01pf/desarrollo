@@ -80,6 +80,7 @@
           <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
           <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
           <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
         </MappingFragment>
@@ -157,12 +158,14 @@
           <ScalarProperty Name="fechaDestruccionEncuentro" ColumnName="fechaDestruccionEncuentro" />
           <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
-          <ScalarProperty Name="nombreLP" ColumnName="nombreLP" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="nroCalle" ColumnName="nroCalle" />
           <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
           <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
           <ScalarProperty Name="fechaFinEncuentro" ColumnName="fechaFinEncuentro" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="nombreLP" ColumnName="nombreLP" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
           <ScalarProperty Name="horaFin" ColumnName="horaFin" />
@@ -315,7 +318,6 @@
           <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
           <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
           <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -504,6 +506,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="spInsertComplejos" FunctionName="HayEquipoModel.Store.spInsertComplejos" />
   </EntityContainerMapping>
 </Mapping>
