@@ -14,6 +14,8 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IdEncuentro"] = null;
+            contenedorDelMapa.Visible = false;
+            frm_map.Visible = false;
 
             if (!IsPostBack)
             {
@@ -28,9 +30,18 @@ namespace CapaPresentacion
 
             if (cmb_Complejo.SelectedIndex != 0)
             {
+                contenedorDelMapa.Visible = true;
+                frm_map.Visible = true;
                 ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-                frm_map.Src = cd.mapa;
+                frm_map.Src = cd.mapa;          
             }
+            if (cmb_Complejo.SelectedIndex == 0)
+            {
+                contenedorDelMapa.Visible = false;
+                frm_map.Visible = false;
+            }
+           
+            
 
 
         }
@@ -245,9 +256,9 @@ namespace CapaPresentacion
 
         }
 
+        protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)
+        {
 
-      
-
-
+        }
     }
 }
