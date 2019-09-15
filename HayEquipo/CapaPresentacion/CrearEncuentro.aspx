@@ -76,7 +76,7 @@
                             </div>                      
                             <div class="form-group">
                                 <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>                                                                                      
-                                    <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AppendDataBoundItems>
+                                    <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true" AppendDataBoundItems="true">
                                         <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                     </asp:DropDownList>
                             </div>                  
