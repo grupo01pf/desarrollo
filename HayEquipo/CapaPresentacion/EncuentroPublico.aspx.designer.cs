@@ -13,31 +13,13 @@ namespace CapaPresentacion {
     public partial class EncuentroPublico {
         
         /// <summary>
-        /// Control form1.
+        /// Control cld_Fecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// Control lbl_Clave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Clave;
-        
-        /// <summary>
-        /// Control lbl_Fecha.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Fecha;
+        protected global::System.Web.UI.WebControls.Label cld_Fecha;
         
         /// <summary>
         /// Control lbl_Deporte.
@@ -49,13 +31,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Deporte;
         
         /// <summary>
-        /// Control cld_Fecha.
+        /// Control lbl_Clave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cld_Fecha;
+        protected global::System.Web.UI.WebControls.Label lbl_Clave;
         
         /// <summary>
         /// Control cmb_Deporte.
