@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="86a30809fc1a4451bf39d9c34b64f105" Name="Diagram1">
         <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+      <Diagram DiagramId="fc2aec9e76a74720ac634fdc453d3059" Name="Diagram1">
+        <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.AmigosPorDeportistas" Width="1.5" PointX="8.25" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Cancha" Width="1.5" PointX="8.25" PointY="30.625" IsExpanded="true" />
@@ -36,6 +38,9 @@
         <EntityTypeShape EntityType="HayEquipoModel.RolesPorUsuarios" Width="1.5" PointX="11.75" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Rubro" Width="1.5" PointX="6.75" PointY="42.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.ServicioExtra" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.RolesPorUsuarios" Width="1.5" PointX="11.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Rubro" Width="1.5" PointX="6.75" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.ServicioExtra" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.ServiciosPorComplejos" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Sesion" Width="1.5" PointX="3" PointY="31.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Sponsor" Width="1.5" PointX="9" PointY="26.25" IsExpanded="true" />
