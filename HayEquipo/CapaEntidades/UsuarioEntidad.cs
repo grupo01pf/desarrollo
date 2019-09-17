@@ -26,5 +26,11 @@ namespace CapaEntidades
             this.contraseña = contraseña;
             this.email = email;
         }
+
+        public UsuarioEntidad(byte[] avatar)
+        {
+            
+            this.avatar = avatar;
+        }
     }
 }

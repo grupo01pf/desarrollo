@@ -191,3 +191,4 @@ C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.Appli
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\AjaxControlToolkit.dll

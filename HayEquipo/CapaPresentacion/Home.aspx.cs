@@ -16,6 +16,10 @@ namespace CapaPresentacion
             //****NO BORRAR****
 
             link_nombreUsuario.Text = Session["Usuario"].ToString();
+            if (UsuarioDao.existeImagen(Session["ID"].ToString()) != false)
+            {
+                Image1.ImageUrl = "~/imagen.aspx?id=" + Session["ID"].ToString();
+            }
             if (!IsPostBack)
             {
 

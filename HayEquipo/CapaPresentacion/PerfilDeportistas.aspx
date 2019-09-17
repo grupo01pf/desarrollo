@@ -84,21 +84,39 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-sm-2 well text-center">
-
-        
-      
+      <div class="col-sm-4 well text-center">
+   
        <p> <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton></p>
-        <img src="Imagenes/nene.png" class="img-circle" height="65" width="65" alt="Avatar"/>
-  
+       
+          <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
+          <br />
+          <br />
+          <div class="form-group">
+          <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" /> 
+              </div>
+          
+           <div class="form-group">
+             <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click"/>
+            </div>
+             <asp:Label ID="lblestado" runat="server"></asp:Label>
          </div>
-       <div class="col-sm-10 well">
+        <div class="col-sm-8 well">
+         <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
+    <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
+    <li><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
+    <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
+  </ul>
+
+        <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+       
          <div class="form-group">
           <label>Nombres</label>
         <asp:TextBox ID="txt_Nombres" class="form-control" runat="server" placeholder="Ingrese Nombres"></asp:TextBox>
 
     </div>
-              <div class="form-group">
+       <div class="form-group">
       <label>Apellido</label>
         <asp:TextBox ID="txt_Apellidos" runat="server" class="form-control" placeholder="Ingrese Apellido"></asp:TextBox>
         </div>
@@ -128,7 +146,36 @@
              <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" />
  </div>
        </div> 
+   
+
+           
+    <div id="menu1" class="tab-pane fade">
+          <div class="table-responsive">
+                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows"  >
+                             
+                                <Columns>
+                                    <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
+                                    <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
+                                    <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
+                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
+                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
+                                    <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
+                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
+                                    <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
+                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                </Columns>
+                            </asp:GridView>
+                    
+              </div>
+
+          </div> 
+            </div>
    </div>
+        
+    </div>
 
     </div>
 </asp:Content>

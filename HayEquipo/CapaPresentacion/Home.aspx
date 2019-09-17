@@ -92,7 +92,7 @@
       <div class="well">
         <%--<p><a href="#">Ignacio Monetto</a></p>--%>
          <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
-        <img src="Imagenes/nene.png" class="img-circle" height="65" width="65" alt="Avatar">
+        <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
       </div>
       
       <div class="alert alert-success fade in">

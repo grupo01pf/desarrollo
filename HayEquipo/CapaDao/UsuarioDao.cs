@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace CapaDao
 {
-   public class UsuarioDao
+    public class UsuarioDao
     {
 
         #region "Patron Singleton"
@@ -39,7 +39,7 @@ namespace CapaDao
                                 FROM Usuario u
                                 WHERE u.nombre = @usuario AND u.contraseña = @clave";
             cmd.Parameters.AddWithValue("@usuario", usuario);
-            cmd.Parameters.AddWithValue("@clave",clave);
+            cmd.Parameters.AddWithValue("@clave", clave);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -63,7 +63,7 @@ namespace CapaDao
                                 FROM Usuario u, Rol r, RolesPorUsuarios rpu
                                 WHERE u.id = rpu.idUsuario AND r.id = rpu.idRol
                                         AND u.nombre = @usuario";
-            cmd.Parameters.AddWithValue("@usuario",usuario);
+            cmd.Parameters.AddWithValue("@usuario", usuario);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -386,7 +386,7 @@ namespace CapaDao
             return flag;
 
         }
-        public static bool cambiarContraseña(string nombre,string nuevapass)
+        public static bool cambiarContraseña(string nombre, string nuevapass)
         {
 
             bool flag = false;
@@ -409,7 +409,7 @@ namespace CapaDao
 
         }
 
-      
+
 
         public static string CoincideEmail()
         {
@@ -431,6 +431,68 @@ namespace CapaDao
             cn.Close();
 
             return email;
+        }
+
+        public static bool AgregarImagen(string id, Byte[] imagen)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE Usuario SET avatar= @imagen WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@imagen", imagen);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            return flag;
+
+        }
+
+        public static byte[] ObtenerImagen(string id)
+        {
+
+            byte[] imagen = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT u.avatar as avatar FROM Usuario u WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = (byte[])dr["avatar"];
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
+        }
+
+        public static bool existeImagen(string id)
+        {
+
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT * FROM Usuario u WHERE avatar IS NOT NULL and @id=id";      
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
         }
     }
 }

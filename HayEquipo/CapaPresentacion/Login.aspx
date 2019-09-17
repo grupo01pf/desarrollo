@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%--le agregue la propiedad EnableEventValidation="false" porque me tiraba un bronca con el postback. Soy Nacho--%>
 <!DOCTYPE html>
 
@@ -49,6 +51,8 @@ $(window).load(function() {
     <div class="loader"></div>
     <form id="form1" runat="server">
        
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
 
             <nav class="navbar navbar-inverse">
 
@@ -104,8 +108,14 @@ $(window).load(function() {
           <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
           <br />
     <label>¿No tenés una cuenta?</label> <br />
-   <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i> Registrarme</button>&nbsp;
-
+          <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+           <asp:LinkButton ID="btnUsuarioo" runat="server" onclick="btnPopUp_Click" CssClass="btn btn-primary btn-edit">
+               <i class='fa fa-check-square-o' aria-hidden='true'></i> Registrarme
+           </asp:LinkButton>
+                   
+      </ContentTemplate>
+              </asp:UpdatePanel>
 
       </div>
     </div>
@@ -118,17 +128,43 @@ $(window).load(function() {
 
 
 
+      
+    <asp:Button ID="btnInicial" runat="server" Text="Button" style="display:none" />
+      
+            <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server" 
+                Enabled="True" TargetControlID="btnInicial" 
+               PopupControlID="PanelModal">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
+
+            </Animations>
+            </asp:ModalPopupExtender>
+
+          
 
 
+      
 
-
+            <asp:Panel ID="PanelModal" runat="server" style="display:none; background:white; width:40%; height:auto">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
 
      
-    <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"   
+                       onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Registrarme</h4>
                 </div>
                 <div class="modal-body">
@@ -169,16 +205,21 @@ $(window).load(function() {
                    </asp:RadioButtonList>
                 
                     </div>
-                  <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                     </div>
+                  
                   <div class="modal-footer">
+                      <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger" 
+                       onclick="btnClose_Click"/>
+
                    <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
-        </div>
+       
 
-      </div>
-     </div>
-          </div>
+      
+          
+
                
       <div class="modal fade" id="imodal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
@@ -252,11 +293,20 @@ se hacer responsable por posibles daños ni traumas psicologicos. <br />
 
                     </div>
                   </div>
+               
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                    
             </div>
+                 </div>
             </div>
           </div>
         </div>
-        
+   </ContentTemplate>
+                    </asp:UpdatePanel>
+                </asp:Panel>   
+      
+      
         </form>
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">

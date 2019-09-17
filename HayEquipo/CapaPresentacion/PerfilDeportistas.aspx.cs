@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
+using System.Drawing;
 
 namespace CapaPresentacion
 {
@@ -14,7 +15,14 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             link_nombreUsuario2.Text = Session["Usuario"].ToString();
+            if (UsuarioDao.existeImagen(Session["ID"].ToString()) != false)
+            {
+                Image1.ImageUrl = "~/imagen.aspx?id=" + Session["ID"].ToString();
+            }
             cargarTipoDocumento();
+            gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+         
+            gdv_EncuentrosDeportista.DataBind();
         }
 
         private void cargarTipoDocumento()
@@ -84,5 +92,34 @@ namespace CapaPresentacion
 
 
         }
+
+        protected void btnGuardarImagen_Click(object sender, EventArgs e)
+        {
+            if (FileUploadAvatar.HasFile)
+            {
+                //obtener datos de la imagen
+                int tam = FileUploadAvatar.PostedFile.ContentLength;
+                byte[] ImagenOriginal = new byte[tam];
+
+                FileUploadAvatar.PostedFile.InputStream.Read(ImagenOriginal, 0, tam);
+                Bitmap ImagenOriginalBinaria = new Bitmap(FileUploadAvatar.PostedFile.InputStream);
+
+                //insertar en BD
+                UsuarioDao.AgregarImagen(Session["ID"].ToString(), ImagenOriginal);
+                lblestado.Text = "Imagen Guardada Exitosamente";
+                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+                //Image1.ImageUrl = ImagenDataURL64;
+                Image1.ImageUrl = "~/imagen.aspx?id=" + Session["ID"].ToString();
+            }
+            else
+            {
+                lblestado.Text = "Coloque un Archivo de imagen valido";
+            }
+
+        }
+
+       
+
+
     }
 }

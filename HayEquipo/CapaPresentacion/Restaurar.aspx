@@ -66,7 +66,9 @@ $(window).load(function() {
                     </div>
                 </div>
             </nav>
+       
       <div class="jumbotron text-center" style="background-color:black">
+           <div class="container">
                 <div class="row">
                     
               <div class="col-sm-12">
@@ -104,6 +106,7 @@ $(window).load(function() {
             </div>
 
     
+        </div>
         </div>
         </form>
 <!-- Footer -->

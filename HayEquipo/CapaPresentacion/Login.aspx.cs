@@ -238,6 +238,20 @@ namespace CapaPresentacion
             new Email().enviarcorreo2(from, pass, to, mensaje);
         }
 
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender.Hide();
+        }
+
+
+
+        protected void btnPopUp_Click(object sender, EventArgs e)
+        {
+            
+
+            btnPopUp_ModalPopupExtender.Show();
+        }
+
 
 
     }
