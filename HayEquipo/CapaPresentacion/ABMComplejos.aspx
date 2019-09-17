@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ComplejosWF.aspx.cs" Inherits="CapaPresentacion.ComplejosWF" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejos.aspx.cs" Inherits="CapaPresentacion.ComplejosWF" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
