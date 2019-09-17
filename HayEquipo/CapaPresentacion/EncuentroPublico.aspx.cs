@@ -15,28 +15,21 @@ namespace CapaPresentacion
         {
             Session["IdUsuarioEncuentro"] = null;
 
-            cargarDeportes();
+            //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();
             if (validarOrganizador())
             {
-                btn_Unirse.Enabled = false;
-                btn_Salir.Enabled = false;
+                btn_Unirse.Visible = false;
+                btn_Salir.Visible = false;
             }
             else
             {
-                btn_Unirse.Enabled = true;
-                btn_Salir.Enabled = false;
+                btn_Unirse.Visible = true;
+                btn_Salir.Visible = false;
             }
-
             cargarChat();
-
-
         }
-
-
-
-
         private void cargarDatosEncuentroPublico()
         {
 
@@ -48,7 +41,8 @@ namespace CapaPresentacion
 
             Session["IdUsuarioEncuentro"] = edq.idUsuario;
 
-            cmb_Deporte.SelectedValue = edq.nombreDeporte;
+            //cmb_Deporte.SelectedValue = edq.nombreDeporte;
+            lbl_Deporte.Text = edq.nombreDeporte;
 
             cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
 
@@ -91,15 +85,15 @@ namespace CapaPresentacion
 
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Enabled = false;
-            btn_Salir.Enabled = true;
+            btn_Unirse.Visible = false;
+            btn_Salir.Visible = true;
         }
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Enabled = true;
-            btn_Salir.Enabled = false;
+            btn_Unirse.Visible = true;
+            btn_Salir.Visible = false;
         }
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
@@ -119,13 +113,13 @@ namespace CapaPresentacion
             gdv_UsuariosUnidos.DataBind();
         }
 
-        private void cargarDeportes()
-        {
-            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-            cmb_Deporte.DataValueField = "id";
-            cmb_Deporte.DataValueField = "nombre";
-            cmb_Deporte.DataBind();
-        }
+        //private void cargarDeportes()
+        //{
+        //    cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+        //    cmb_Deporte.DataValueField = "id";
+        //    cmb_Deporte.DataValueField = "nombre";
+        //    cmb_Deporte.DataBind();
+        //}
 
         private bool validarOrganizador()
         {
@@ -142,7 +136,7 @@ namespace CapaPresentacion
         private void bloquearBotones()
         {
 
-            cmb_Deporte.Enabled = false;
+            //cmb_Deporte.Enabled = false;
             cld_Fecha.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
