@@ -94,7 +94,7 @@
                     <%--CHAT--%>
                     <legend>Chat</legend>            
                     
-                        <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#ffffff" BorderColor="Black" ForeColor="Black" BorderStyle="Groove"> 
+                        <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff" HeaderStyle-ForeColor="White" hea BorderColor="Black" ForeColor="Black" BorderStyle="Groove"> 
                             <Columns>                             
                                 <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                 <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%"/>
