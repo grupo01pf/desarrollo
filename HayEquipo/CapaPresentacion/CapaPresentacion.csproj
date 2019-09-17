@@ -16,7 +16,7 @@
     <RootNamespace>CapaPresentacion</RootNamespace>
     <AssemblyName>CapaPresentacion</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=19.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.19.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -102,6 +106,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="avatar\nene.png" />
     <Content Include="ComplejosWF.aspx" />
     <Content Include="CrearEncuentro.aspx" />
     <Content Include="css\Style.css" />
@@ -109,12 +114,16 @@
     <Content Include="EncuentroPublico.aspx" />
     <Content Include="HomeAdministrador.aspx" />
     <Content Include="HomeEstablecimiento.aspx" />
+    <Content Include="imagen.aspx" />
+    <Content Include="Imagenes\boton-ir.png" />
+    <Content Include="Imagenes\nene.png" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PerfilDeportistas.aspx" />
+    <Content Include="Restaurar.aspx" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
     <Content Include="MasterPageEstablecimiento.Master" />
@@ -202,6 +211,13 @@
     <Compile Include="HomeEstablecimiento.aspx.designer.cs">
       <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
     </Compile>
+    <Compile Include="imagen.aspx.cs">
+      <DependentUpon>imagen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagen.aspx.designer.cs">
+      <DependentUpon>imagen.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +254,13 @@
       <DependentUpon>PerfilDeportistas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurar.aspx.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurar.aspx.designer.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDao\CapaDao.csproj">
@@ -264,7 +287,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30290</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57579/</IISUrl>
+          <IISUrl>http://localhost/CapaPresentacion</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/CapaPresentacion</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

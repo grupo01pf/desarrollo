@@ -18,9 +18,9 @@ namespace CapaEntidades
         public Usuario()
         {
             this.Administrador = new HashSet<Administrador>();
+            this.ComplejoDeportivo = new HashSet<ComplejoDeportivo>();
             this.Deportista = new HashSet<Deportista>();
             this.Mensaje = new HashSet<Mensaje>();
-            this.Responsable = new HashSet<Responsable>();
             this.RolesPorUsuarios = new HashSet<RolesPorUsuarios>();
             this.Sesion = new HashSet<Sesion>();
         }
@@ -38,11 +38,11 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrador> Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ComplejoDeportivo> ComplejoDeportivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deportista> Deportista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mensaje> Mensaje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Responsable> Responsable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RolesPorUsuarios> RolesPorUsuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

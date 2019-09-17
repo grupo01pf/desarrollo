@@ -13,51 +13,120 @@ namespace CapaPresentacion
 {
     public partial class Login : System.Web.UI.Page
     {
+
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
             Session["ID"] = String.Empty;
-
-
+           
         }
 
+
+
+        
         protected void btn_Login_Click(object sender, EventArgs e)
         {
+            bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
 
 
-            if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+            if (UsuarioDao.Existe(txt_NombreUsuario.Text))
+            {
+                if (txt_Password.Text != "")
                 {
+                    if (bloqueado == false)
+                    {
+                        if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+                        {
+                            UsuarioDao.restaurarintentos(Session["ID"].ToString());
+                            Session["Usuario"] = txt_NombreUsuario.Text;
+                            if (Session["Rol"].ToString() == "Administrador")
+                            {
+                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                                Response.Redirect("HomeAdministrador.aspx");
+                            }
+                            if (Session["Rol"].ToString() == "UsuarioDeportista")
+                            {
+                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                                Response.Redirect("Home.aspx");
+                            }
+                            if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                            {
+                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                                Response.Redirect("HomeEstablecimiento.aspx");
+                            }
+                        }
+                        else
+                        {
+                            Session["ID"] = UsuarioDao.ID(txt_NombreUsuario.Text);
+                            UsuarioDao.intentos(Session["ID"].ToString());
+                            int intentos = UsuarioDao.obtenerintentos(txt_NombreUsuario.Text);
+                            if (intentos == 0)
+                            {
+                                UsuarioDao.bloqueado(Session["ID"].ToString());
+                 
+                                enviarcorreorestauracion();
+                                lblerror.Text = "Usuario bloqueado,se le enviara un email para restaurar su contraseña";
+                               
+                               
 
-                Session["Usuario"] = txt_NombreUsuario.Text;
-                 }
+                            }
+                            else
+                            {
+                                lblerror.Text = "Contraseña Erronea";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblerror.Text = "Usuario bloqueado,por favor acceda a su mail para restaurar su contraseña";
+                    }
+                }
+                else
+                {
+                    lblerror.Text = "Coloca una contraseña, por favor";
+                }
+            }
+            else
+            {
+                lblerror.Text = "usuario no existente, por favor registrate";
+            }
 
 
-            if (Session["Rol"].ToString() == "Administrador")
-            {
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                Response.Redirect("HomeAdministrador.aspx");
-            }
-            if (Session["Rol"].ToString() == "UsuarioDeportista")
-            {
-                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                Response.Redirect("Home.aspx");
-            }
-            if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-            {
-                //FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                Response.Redirect("HomeEstablecimiento.aspx");
-            }
+
+          
+
+
+
 
         }
 
-        public bool validarUsuario(string usuario, string clave) {
+        public bool validarUsuario(string usuario, string clave)
+        {
+
+            bool flag = false;
+            if (UsuarioDao.Usuario(usuario, clave))
+            {
+
+                //FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                Response.Redirect("HomeEstablecimiento.aspx");
+
+                flag = true;
+                Session["Rol"] = UsuarioDao.Permiso(usuario);
+                Session["ID"] = UsuarioDao.ID(usuario);
+
+            }
+
+            return flag;
+
+        }
+        public bool validarUsuarioErroneo(string usuario, string clave) {
 
             bool flag = false;
             if (UsuarioDao.Usuario(usuario, clave))
             {
                 flag = true;
-                Session["Rol"] = UsuarioDao.Permiso(usuario);
                 Session["ID"] = UsuarioDao.ID(usuario);
             }
 
@@ -85,81 +154,72 @@ namespace CapaPresentacion
         {
 
             bool response = false;
-            if (checkPrivacidad.Checked)
+           
+            if (!UsuarioDao.ExisteEmail(txtEmail.Text))
             {
                 if (!UsuarioDao.Existe(txtNombre.Text))
                 {
                     if (txtNombre.Text != "" && txtEmail.Text != "" && txtPassword.Text != "" && txtRPassword.Text != "")
                     {
-                        if (validar(txtEmail.Text))
+                        if (checkPrivacidad.Checked)
                         {
-
-                            if (txtPassword.Text == txtRPassword.Text)
+                            if (validar(txtEmail.Text))
                             {
-                                UsuarioEntidad objUsuario = GetEntity();
-                                if (radioLogin.SelectedValue.ToString() == "2")
+                                if (txtPassword.Text == txtRPassword.Text)
                                 {
-                                    response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
-                                }
-                                if (radioLogin.SelectedValue.ToString() == "3")
-                                {
-                                    response = UsuarioDao.getInstance().RegistrarUsuarioEstablecimiento(objUsuario);
-                                }
-                                if (response == true)
-                                {
-
-                                    Response.Write("<script>alert('Registro Correcto')</script>");
-                                    if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                                    UsuarioEntidad objUsuario = GetEntity();
+                                    if (radioLogin.SelectedValue.ToString() == "2")
+                                    {
+                                        response = UsuarioDao.getInstance().RegistrarUsuario(objUsuario);
+                                    }
+                                    if (radioLogin.SelectedValue.ToString() == "3")
+                                    {
+                                        response = UsuarioDao.getInstance().RegistrarUsuarioEstablecimiento(objUsuario);
+                                    }
+                                    if (response == true)
                                     {
 
-                                        Session["Usuario"] = txtNombre.Text;
-                                    }
-                                    enviarcorreo();
-                                    if (Session["Rol"].ToString() == "UsuarioDeportista")
-                                    {
-                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
-                                        Response.Redirect("Home.aspx");
-                                    }
-                                    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                                    {
-                                        FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
-                                        Response.Redirect("HomeEstablecimiento.aspx");
-                                    }
+                                        Response.Write("<script>alert('Registro Correcto')</script>");
+                                        if (validarUsuario(txtNombre.Text, txtPassword.Text))
+                                        {
 
+                                            Session["Usuario"] = txtNombre.Text;
+                                        }
+                                        enviarcorreo();
+                                        if (Session["Rol"].ToString() == "UsuarioDeportista")
+                                        {
+                                            FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                            Response.Redirect("Home.aspx");
+                                        }
+                                        if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                                        {
+                                            FormsAuthentication.RedirectFromLoginPage(txtNombre.Text, false);
+                                            Response.Redirect("HomeEstablecimiento.aspx");
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+                                       lblerror2.Text= "Registro Incorrecto";
+                                    }
                                 }
                                 else
                                 {
 
-                                    Response.Write("<script>alert('Registro Incorrecto')</script>");
+                                lblerror2.Text = "Contraseñas no coinciden";
                                 }
                             }
-                            else
-                            {
-
-                                Response.Write("<script>alert('Contraseñas no coinciden!!')</script>");
-                            }
+                            else { lblerror2.Text = "Email no valido!!"; }
                         }
-                        else
-                        {
-
-                            Response.Write("<script>alert('Email no valido!!')</script>");
-                        }
+                        else { lblerror2.Text = "Debes Aceptar los Terminos y condiciones!!"; }
                     }
-                    else
-                    {
-                        Response.Write("<script>alert('No debe haber campos vacios')</script>");
-                    }
+                    else { lblerror2.Text = "No debe haber campos vacios"; }
                 }
-                else
-                {
-                    Response.Write("<script>alert('El nombre de usuario ya existe,coloque otro')</script>");
-                }
-
+                else { lblerror2.Text = "El nombre de usuario ya existe,coloque otro"; }
             }
-            else
-            {
-                Response.Write("<script>alert('Debes Aceptar los Terminos y condiciones!!')</script>");
-            }
+            else { lblerror2.Text = "El Email ya existe,coloque otro"; }
+           
         }
 
         public void enviarcorreo()
@@ -173,6 +233,30 @@ namespace CapaPresentacion
         public bool validar(string correo)
         {
             return Regex.IsMatch(correo, "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+        }
+
+        public void enviarcorreorestauracion()
+        {
+            string from = "hayequipoteam2019@gmail.com";
+            string pass = "hayequipo123..";
+            string to = UsuarioDao.obtenerEmail(txt_NombreUsuario.Text);
+            string mensaje = "<p>Acceda a este link para restaurar su contraseña</p></n>"+
+                "<a href='http://localhost/CapaPresentacion/Restaurar.aspx'>Click Aqui</a>";
+            new Email().enviarcorreo2(from, pass, to, mensaje);
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender.Hide();
+        }
+
+
+
+        protected void btnPopUp_Click(object sender, EventArgs e)
+        {
+            
+
+            btnPopUp_ModalPopupExtender.Show();
         }
 
 

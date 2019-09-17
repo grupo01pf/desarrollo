@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%--le agregue la propiedad EnableEventValidation="false" porque me tiraba un bronca con el postback. Soy Nacho--%>
 <!DOCTYPE html>
 
@@ -32,8 +34,13 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+
       .margenWell{
           margin: 20px;
+
+      .error{
+          color:red;
+
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -41,13 +48,16 @@
 $(window).load(function() {
     $(".loader").fadeOut(1000);
 });
+
 </script>
     <title></title>
 </head>
 <body>
     <div class="loader"></div>
     <form id="form1" runat="server">
-
+       
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
 
             <nav class="navbar navbar-inverse">
 
@@ -76,7 +86,10 @@ $(window).load(function() {
                         <br />
                         <br />
                         <br />
+
                             </div>
+
+                        <br />
                     </div>
                     <div class="col-sm-6">
                         <div class="well">
@@ -98,9 +111,17 @@ $(window).load(function() {
     <asp:Button ID="btn_Login" runat="server" class="btn btn-default" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
       <br />
       <div class="alinearIzq">
+          <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
+          <br />
     <label>¿No tenés una cuenta?</label> <br />
-   <button type="button" value="btnUsuario" title="Registrar Jugador" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i> Registrarme</button>&nbsp;
-
+          <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+           <asp:LinkButton ID="btnUsuarioo" runat="server" onclick="btnPopUp_Click" CssClass="btn btn-primary btn-edit">
+               <i class='fa fa-check-square-o' aria-hidden='true'></i> Registrarme
+           </asp:LinkButton>
+                   
+      </ContentTemplate>
+              </asp:UpdatePanel>
 
       </div> 
                             </div>
@@ -110,17 +131,43 @@ $(window).load(function() {
 
 
 
+      
+    <asp:Button ID="btnInicial" runat="server" Text="Button" style="display:none" />
+      
+            <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server" 
+                Enabled="True" TargetControlID="btnInicial" 
+               PopupControlID="PanelModal">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
+
+            </Animations>
+            </asp:ModalPopupExtender>
+
+          
 
 
+      
 
+            <asp:Panel ID="PanelModal" runat="server" style="display:none; background:white; width:40%; height:auto">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
 
-
-
-    <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+     
+    
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"   
+                       onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Registrarme</h4>
                 </div>
                 <div class="modal-body">
@@ -161,17 +208,22 @@ $(window).load(function() {
                    </asp:RadioButtonList>
                 
                     </div>
-                
+                     </div>
+                  
                   <div class="modal-footer">
+                      <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger" 
+                       onclick="btnClose_Click"/>
+
                    <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
-        </div>
+       
 
-      </div>
-     </div>
-          </div>
+      
+          
 
+               
       <div class="modal fade" id="imodal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -202,7 +254,7 @@ spam o emails no deseados.  <br />
 14. No incites a nadie a saltarse estas reglas.  <br />
 
 <h4>Tus derechos y nuestros derechos: </h4>
-1. Tienes derecho a sentirte seguro usando Instagram. <br />
+1. Tienes derecho a sentirte seguro usando HayEquipo. <br />
 2. Oficialmente eres el dueño de cualquier imagen o vídeo original que publiques, pero nosotros tenemos permiso para usarlos,
 así como para permitir que otros los usen en cualquier parte del mundo. 
 Aunque otros nos paguen por ese uso nosotros no tenemos que pagarte a tí por eso.  <br />
@@ -244,10 +296,20 @@ se hacer responsable por posibles daños ni traumas psicologicos. <br />
 
                     </div>
                   </div>
+               
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                    
             </div>
+                 </div>
             </div>
           </div>
         </div>
+   </ContentTemplate>
+                    </asp:UpdatePanel>
+                </asp:Panel>   
+      
+      
         </form>
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
@@ -299,7 +361,7 @@ se hacer responsable por posibles daños ni traumas psicologicos. <br />
 
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-
+    
 
 
 </body>

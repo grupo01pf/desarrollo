@@ -65,6 +65,7 @@
     <Property Name="idBarrio" Type="int" />
     <Property Name="nroTelefono" Type="int" />
     <Property Name="idResponsable" Type="int" />
+    <Property Name="idUsuario" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="idEstado" Type="int" />
     <Property Name="idDeporte1" Type="int" />
@@ -139,12 +140,14 @@
     <Property Name="fechaDestruccionEncuentro" Type="smalldatetime" />
     <Property Name="idDeporte" Type="int" />
     <Property Name="idComplejo" Type="int" />
-    <Property Name="nombreLP" Type="nvarchar" MaxLength="50" />
-    <Property Name="direccion" Type="nvarchar" MaxLength="50" />
+    <Property Name="calle" Type="nvarchar" MaxLength="50" />
+    <Property Name="nroCalle" Type="int" />
     <Property Name="idEquipo" Type="int" />
     <Property Name="fechaInicioEncuentro" Type="smalldatetime" />
     <Property Name="fechaFinEncuentro" Type="smalldatetime" />
     <Property Name="idEstado" Type="int" />
+    <Property Name="nombreLP" Type="nvarchar" MaxLength="50" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="50" />
     <Property Name="idUsuario" Type="int" />
     <Property Name="horaInicio" Type="time" Precision="0" />
     <Property Name="horaFin" Type="time" Precision="0" />
@@ -295,7 +298,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="fechaNacimiento" Type="date" />
     <Property Name="nroTelefono" Type="int" />
     <Property Name="email" Type="nvarchar" MaxLength="50" />
-    <Property Name="idUsuario" Type="int" />
   </EntityType>
   <EntityType Name="Rol">
     <Key>
@@ -657,6 +659,18 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Principal>
       <Dependent Role="ComplejoDeportivo">
         <PropertyRef Name="idResponsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplejoDeportivo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ComplejoDeportivo">
+        <PropertyRef Name="idUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1044,18 +1058,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Responsable_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-    <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Responsable">
-        <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_RolesPorUsuarios_Rol">
     <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
     <End Role="RolesPorUsuarios" Type="Self.RolesPorUsuarios" Multiplicity="*" />
@@ -1401,6 +1403,15 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       <End Role="Responsable" EntitySet="Responsable" />
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
     </AssociationSet>
+
+    <AssociationSet Name="FK_ComplejoDeportivo_TipoComplejo" Association="Self.FK_ComplejoDeportivo_TipoComplejo">
+      <End Role="TipoComplejo" EntitySet="TipoComplejo" />
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplejoDeportivo_Usuario" Association="Self.FK_ComplejoDeportivo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+    </AssociationSet>
     <AssociationSet Name="FK_DeportesPorDeportistas_Deporte" Association="Self.FK_DeportesPorDeportistas_Deporte">
       <End Role="Deporte" EntitySet="Deporte" />
       <End Role="DeportesPorDeportistas" EntitySet="DeportesPorDeportistas" />
@@ -1527,10 +1538,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     </AssociationSet>
     <AssociationSet Name="FK_Responsable_TipoDocumento" Association="Self.FK_Responsable_TipoDocumento">
       <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-      <End Role="Responsable" EntitySet="Responsable" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Responsable_Usuario" Association="Self.FK_Responsable_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Responsable" EntitySet="Responsable" />
     </AssociationSet>
     <AssociationSet Name="FK_RolesPorUsuarios_Rol" Association="Self.FK_RolesPorUsuarios_Rol">
