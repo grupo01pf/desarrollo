@@ -190,7 +190,7 @@
                                     <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
                                     <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
                                     <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  
-                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="false" />
 
                                 </Columns>
                             </asp:GridView>

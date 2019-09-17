@@ -314,6 +314,7 @@
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
                 <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" />
+                <asp:BoundField DataField="idComplejoDeportivo" HeaderText="ID" Visible="false" />
             </Columns>
         </asp:GridView>
         <br />
