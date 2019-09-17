@@ -19,6 +19,7 @@ namespace CapaEntidades
         {
             this.Cancha = new HashSet<Cancha>();
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
+            this.FotosComplejo = new HashSet<FotosComplejo>();
             this.ServiciosPorComplejos = new HashSet<ServiciosPorComplejos>();
             this.ValoracionComplejo = new HashSet<ValoracionComplejo>();
         }
@@ -31,13 +32,13 @@ namespace CapaEntidades
         public Nullable<int> idBarrio { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<int> idResponsable { get; set; }
-        public int idUsuario { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }
         public Nullable<int> idDeporte1 { get; set; }
         public Nullable<int> idDeporte2 { get; set; }
         public Nullable<int> idDeporte3 { get; set; }
         public string mapa { get; set; }
+        public byte[] avatar { get; set; }
     
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -47,10 +48,10 @@ namespace CapaEntidades
         public virtual Deporte Deporte2 { get; set; }
         public virtual Estado Estado { get; set; }
         public virtual Responsable Responsable { get; set; }
-        public virtual TipoComplejo TipoComplejo { get; set; }
-        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EncuentroDeportivo> EncuentroDeportivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FotosComplejo> FotosComplejo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiciosPorComplejos> ServiciosPorComplejos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

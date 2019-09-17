@@ -27,20 +27,19 @@ namespace CapaEntidades
         public Nullable<System.DateTime> fechaDestruccionEncuentro { get; set; }
         public Nullable<int> idDeporte { get; set; }
         public Nullable<int> idComplejo { get; set; }
-        public string calle { get; set; }
-        public Nullable<int> nroCalle { get; set; }
+        public string nombreLP { get; set; }
+        public string direccion { get; set; }
         public Nullable<int> idEquipo { get; set; }
         public Nullable<System.DateTime> fechaInicioEncuentro { get; set; }
         public Nullable<System.DateTime> fechaFinEncuentro { get; set; }
         public Nullable<int> idEstado { get; set; }
-        public string nombreLP { get; set; }
-        public string direccion { get; set; }
         public Nullable<int> idUsuario { get; set; }
         public Nullable<System.TimeSpan> horaInicio { get; set; }
         public Nullable<System.TimeSpan> horaFin { get; set; }
         public string tipoEncuentro { get; set; }
         public string accesibilidad { get; set; }
         public string clave { get; set; }
+        public Nullable<int> capacidad { get; set; }
     
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
         public virtual Deporte Deporte { get; set; }

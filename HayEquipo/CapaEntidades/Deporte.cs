@@ -29,6 +29,7 @@ namespace CapaEntidades
     
         public int id { get; set; }
         public string nombre { get; set; }
+        public byte[] avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComplejoDeportivo> ComplejoDeportivo { get; set; }

@@ -11,9 +11,11 @@ namespace CapaEntidades
 {
     using System;
     
-    public partial class spObtenerServiciosPorComplejos_Result
+    public partial class sp_MensajeQueryDao_MostrarMensajes_Result
     {
-        public int ID { get; set; }
-        public string Servicio { get; set; }
+        public string nombreUsuario { get; set; }
+        public Nullable<System.DateTime> fechaHora { get; set; }
+        public string texto { get; set; }
+        public int idMensaje { get; set; }
     }
 }

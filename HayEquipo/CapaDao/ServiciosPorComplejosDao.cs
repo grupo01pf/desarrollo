@@ -28,19 +28,19 @@ namespace CapaDao
             }
         }
 
-        public static List<spObtenerServiciosPorComplejos_Result> ObtenerServiciosPorComplejos(int idComp)
-        {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                List<spObtenerServiciosPorComplejos_Result> servicios = new List<spObtenerServiciosPorComplejos_Result>();
-                var servicio = db.spObtenerServiciosPorComplejos(idComp);
-                foreach (var item in servicio)
-                {
-                    servicios.Add(item);
-                }
-                return servicios;
-            }
-        }
+        //public static List<spObtenerServiciosPorComplejos_Result> ObtenerServiciosPorComplejos(int idComp)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        List<spObtenerServiciosPorComplejos_Result> servicios = new List<spObtenerServiciosPorComplejos_Result>();
+        //        var servicio = db.spObtenerServiciosPorComplejos(idComp);
+        //        foreach (var item in servicio)
+        //        {
+        //            servicios.Add(item);
+        //        }
+        //        return servicios;
+        //    }
+        //}
 
     }
 }

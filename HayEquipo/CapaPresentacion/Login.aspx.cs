@@ -110,7 +110,7 @@ namespace CapaPresentacion
             {
 
                 //FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                Response.Redirect("HomeEstablecimiento.aspx");
+             //   Response.Redirect("HomeEstablecimiento.aspx");
 
                 flag = true;
                 Session["Rol"] = UsuarioDao.Permiso(usuario);

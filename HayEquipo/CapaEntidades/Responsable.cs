@@ -30,10 +30,12 @@ namespace CapaEntidades
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public string email { get; set; }
+        public Nullable<int> idUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComplejoDeportivo> ComplejoDeportivo { get; set; }
         public virtual TipoDocumento TipoDocumento { get; set; }
+        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sponsor> Sponsor { get; set; }
     }

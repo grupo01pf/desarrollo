@@ -257,7 +257,7 @@ namespace CapaPresentacion
             CargarDeporte4();
             CargarGrillaCanchas();
             CargarServicios();
-            CargarGrillaServicios();
+            //CargarGrillaServicios();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -422,17 +422,17 @@ namespace CapaPresentacion
             LimpiarCanchas();
         }
 
-        protected void CargarGrillaServicios()
-        {
-            gvServ.DataSource = null;
+        //protected void CargarGrillaServicios()
+        //{
+        //    gvServ.DataSource = null;
 
-            gvServ.DataSource = (from serv in ServiciosPorComplejosDao.ObtenerServiciosPorComplejos(ID.Value)
-                                    orderby serv.Servicio
-                                    select serv);
+        //    gvServ.DataSource = (from serv in ServiciosPorComplejosDao.ObtenerServiciosPorComplejos(ID.Value)
+        //                            orderby serv.Servicio
+        //                            select serv);
 
-            gvServ.DataKeyNames = new string[] { "ID" };
-            gvServ.DataBind();
-        }
+        //    gvServ.DataKeyNames = new string[] { "ID" };
+        //    gvServ.DataBind();
+        //}
         private void LimpiarServicios()
         {
             ddlServ.SelectedIndex = 0;
@@ -453,7 +453,7 @@ namespace CapaPresentacion
 
             ServiciosPorComplejosDao.InsertarServicioPorComplejo(servPorComp);
 
-            CargarGrillaServicios();
+            //CargarGrillaServicios();
             LimpiarServicios();
         }
 
@@ -465,7 +465,7 @@ namespace CapaPresentacion
         protected void btnEliminarS_Click(object sender, EventArgs e)
         {
             ServiciosPorComplejosDao.EliminarServicioPorComplejo(IDServ.Value);
-            CargarGrillaServicios();
+            //CargarGrillaServicios();
             LimpiarServicios();
         }
 
