@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    class DeportistaEntidad:PersonaEntidad
+    public class DeportistaEntidad:PersonaEntidad
     {
         public int? idDeportista { get; set; }
         public float promedioEstrellas { get; set; }

@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,52 +49,246 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accesibilidad.cs" />
+    <Compile Include="Administrador.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdministradorEntidad.cs" />
+    <Compile Include="AmigosPorDeportistas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="AmigosPorDeportistasEntidad.cs" />
+    <Compile Include="Barrio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BarrioEntidad.cs" />
+    <Compile Include="Cancha.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="CanchaEntidad.cs" />
     <Compile Include="CanchasPorComplejosEntidad.cs" />
+    <Compile Include="CanchasPorHorarios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="CanchasPorHorariosEntidad.cs" />
+    <Compile Include="ComplejoDeportivo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ComplejoDeportivoEntidad.cs" />
+    <Compile Include="Deporte.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeporteEntidad.cs" />
+    <Compile Include="DeportesPorDeportistas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeportesPorDeportistasEntidad.cs" />
+    <Compile Include="Deportista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeportistaEntidad.cs" />
+    <Compile Include="DeportistasPorEquipos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeportistasPorEquiposEntidad.cs" />
+    <Compile Include="DetalleValoracionComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleValoracionDeportista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetalleValoracionEntidad.cs" />
+    <Compile Include="EncuentroDeportivo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EncuentroDeportivoEntidad.cs" />
+    <Compile Include="EncuentroDeportivoQueryEntidad.cs" />
+    <Compile Include="Equipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EquipoEntidad.cs" />
+    <Compile Include="Estado.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EstadoEntidad.cs" />
+    <Compile Include="FotosComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FotosDeportista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Horario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="HorarioEntidad.cs" />
+    <Compile Include="InvitacionEncuentro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="InvitacionEncuentroEntidad.cs" />
+    <Compile Include="Localidad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="LocalidadEntidad.cs" />
+    <Compile Include="LugarPublicoEntidad.cs" />
+    <Compile Include="Mensaje.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MensajeEntidad.cs" />
+    <Compile Include="MensajeQueryEntidad.cs" />
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pais.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaisEntidad.cs" />
+    <Compile Include="Permiso.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PermisoEntidad.cs" />
+    <Compile Include="PermisosPorRoles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PermisosPorRolesEntidad.cs" />
     <Compile Include="PersonaEntidad.cs" />
+    <Compile Include="Posicion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PosicionEntidad.cs" />
+    <Compile Include="PosicionesPorDeportistas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PosicionesPorDeportistasEntidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provincia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProvinciaEntidad.cs" />
+    <Compile Include="Publicacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PublicacionEntidad.cs" />
+    <Compile Include="Reserva.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ResponsableEntidad.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="RolEntidad.cs" />
+    <Compile Include="RolesPorUsuarios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="RolesPorUsuariosEntidad.cs" />
+    <Compile Include="Rubro.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="RubroEntidad.cs" />
+    <Compile Include="ServicioExtra.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServicioExtraEntidad.cs" />
+    <Compile Include="ServiciosPorComplejos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServiciosPorComplejosEntidad.cs" />
+    <Compile Include="Sesion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="SesionEntidad.cs" />
+    <Compile Include="spObtenerCanchasPorComplejos_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spObtenerComplejosJoin_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sponsor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="SponsorEntidad.cs" />
+    <Compile Include="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_MensajeQueryDao_MostrarMensajes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoCancha.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoCanchaEntidad.cs" />
     <Compile Include="TipoComplejoEntidad.cs" />
+    <Compile Include="TipoDeporte.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoDeporteEntidad.cs" />
+    <Compile Include="TipoDocumento.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoDocumentoEntidad.cs" />
+    <Compile Include="TipoEncuentroDeportivoEntidad.cs" />
+    <Compile Include="TiposPorDeportes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TiposPorDeportesEntidad.cs" />
+    <Compile Include="TipoValoracionComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoValoracionDeportista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoValoracionEntidad.cs" />
+    <Compile Include="Usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioEntidad.cs" />
+    <Compile Include="UsuariosPorEncuentroDeportivo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValoracionComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValoracionDeportista.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ValoracionEntidad.cs" />
+    <Compile Include="Zona.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ZonaEntidad.cs" />
+    <Compile Include="ZonasPorDeportistas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ZonasPorDeportistasEntidad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

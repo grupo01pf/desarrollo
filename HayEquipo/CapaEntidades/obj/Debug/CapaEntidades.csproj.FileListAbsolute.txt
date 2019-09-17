@@ -3,8 +3,38 @@ C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\bin\Debu
 C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\nacho\Documents\UTN-FRC\Proyecto Final\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\Nicolas\Desktop\Repositorios\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll.config
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.dll
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.xml
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll.config
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.xml
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll.config
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.xml
+C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb

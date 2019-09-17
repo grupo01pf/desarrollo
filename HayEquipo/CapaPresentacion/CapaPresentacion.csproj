@@ -43,6 +43,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=19.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.19.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -94,14 +106,29 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="avatar\nene.png" />
+    <Content Include="ABMComplejos.aspx" />
+    <Content Include="Complejos.aspx" />
+    <Content Include="CrearEncuentro.aspx" />
     <Content Include="css\Style.css" />
+    <Content Include="EncuentroPrivado.aspx" />
+    <Content Include="EncuentroPublico.aspx" />
+    <Content Include="HomeAdministrador.aspx" />
+    <Content Include="HomeEstablecimiento.aspx" />
+    <Content Include="imagen.aspx" />
+    <Content Include="Imagenes\boton-ir.png" />
+    <Content Include="Imagenes\nene.png" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="PerfilDeportistas.aspx" />
+    <Content Include="Restaurar.aspx" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
+    <Content Include="MasterPageEstablecimiento.Master" />
+    <Content Include="MasterPageAdministrador.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,12 +162,69 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMComplejos.aspx.cs">
+      <DependentUpon>ABMComplejos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMComplejos.aspx.designer.cs">
+      <DependentUpon>ABMComplejos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Complejos.aspx.cs">
+      <DependentUpon>Complejos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complejos.aspx.designer.cs">
+      <DependentUpon>Complejos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearEncuentro.aspx.cs">
+      <DependentUpon>CrearEncuentro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearEncuentro.aspx.designer.cs">
+      <DependentUpon>CrearEncuentro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="EncuentroPrivado.aspx.cs">
+      <DependentUpon>EncuentroPrivado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncuentroPrivado.aspx.designer.cs">
+      <DependentUpon>EncuentroPrivado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncuentroPublico.aspx.cs">
+      <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EncuentroPublico.aspx.designer.cs">
+      <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeAdministrador.aspx.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeAdministrador.aspx.designer.cs">
+      <DependentUpon>HomeAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeEstablecimiento.aspx.designer.cs">
+      <DependentUpon>HomeEstablecimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="imagen.aspx.cs">
+      <DependentUpon>imagen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagen.aspx.designer.cs">
+      <DependentUpon>imagen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -156,7 +240,35 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterPageAdministrador.Master.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdministrador.Master.designer.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageEstablecimiento.Master.designer.cs">
+      <DependentUpon>MasterPageEstablecimiento.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilDeportistas.aspx.cs">
+      <DependentUpon>PerfilDeportistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfilDeportistas.aspx.designer.cs">
+      <DependentUpon>PerfilDeportistas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurar.aspx.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurar.aspx.designer.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDao\CapaDao.csproj">
@@ -183,7 +295,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30290</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:30290/</IISUrl>
+          <IISUrl>http://localhost:57579/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -200,7 +312,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    class InvitacionEncuentroEntidad
+    public class InvitacionEncuentroEntidad
     {
         public int? idInvitacionEncuentro { get; set; }
         public DateTime fechaHora { get; set; }
