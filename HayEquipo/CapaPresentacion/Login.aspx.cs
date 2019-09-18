@@ -62,7 +62,7 @@ namespace CapaPresentacion
                             Session["ID"] = UsuarioDao.ID(txt_NombreUsuario.Text);
                             UsuarioDao.intentos(Session["ID"].ToString());
                             int intentos = UsuarioDao.obtenerintentos(txt_NombreUsuario.Text);
-                            if (intentos == 0)
+                            if (intentos == 3)
                             {
                                 UsuarioDao.bloqueado(Session["ID"].ToString());
                  

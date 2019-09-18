@@ -234,3 +234,4 @@ C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Micros
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\AjaxControlToolkit.dll
