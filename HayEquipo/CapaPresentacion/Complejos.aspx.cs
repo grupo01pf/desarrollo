@@ -18,6 +18,7 @@ namespace CapaPresentacion
             {
                 //ddlOrdenar.AutoPostBack = true;
                 CargarGrillaComplejos();
+                ddlOrdenar.AutoPostBack = true;
             }
         }
         protected int? ID
@@ -38,11 +39,43 @@ namespace CapaPresentacion
             gvComplejos.DataSource = null;
 
             gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      orderby comp.Nombre
                                       select comp);
 
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();       
+        }
+        protected void CargarGrillaComplejosPorNom()
+        {
+            gvComplejos.DataSource = null;
+
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                      orderby comp.Nombre
+                                      select comp);
+
+            gvComplejos.DataKeyNames = new string[] { "ID" };
+            gvComplejos.DataBind();
+        }
+        protected void CargarGrillaComplejosPorVal()
+        {
+            gvComplejos.DataSource = null;
+
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                      orderby comp.Valoracion descending
+                                      select comp);
+
+            gvComplejos.DataKeyNames = new string[] { "ID" };
+            gvComplejos.DataBind();
+        }
+        protected void CargarGrillaComplejosBuscar(string nomb)
+        {
+            gvComplejos.DataSource = null;
+
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorNomb(nomb)
+                                      orderby comp.Nombre
+                                      select comp);
+
+            gvComplejos.DataKeyNames = new string[] { "ID" };
+            gvComplejos.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -51,13 +84,28 @@ namespace CapaPresentacion
             {
                 CargarGrillaComplejos();
             }
-
+            else
+            {
+                CargarGrillaComplejosBuscar(txtBuscar.Text);
+            }
         }
         protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+        }
+
+        protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlOrdenar.SelectedIndex == 1)
+            {
+                CargarGrillaComplejosPorVal();
+            }
+            if (ddlOrdenar.SelectedIndex == 3)
+            {
+                CargarGrillaComplejosPorNom();
+            }
         }
     }
 }

@@ -23,7 +23,7 @@
     <br />
 &nbsp;<asp:Label ID="lblOrdenar" runat="server" Text="Ordenar por:" ForeColor="White"></asp:Label>
 &nbsp;
-        <asp:DropDownList ID="ddlOrdenar" CssClass="form-control" runat="server" AppendDataBoundItems="true" Height="35px" Width="1374px">
+        <asp:DropDownList ID="ddlOrdenar" CssClass="form-control" runat="server" AppendDataBoundItems="true" Height="35px" Width="1374px" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged">
         <asp:ListItem Value="0" Selected="True">Seleccione..</asp:ListItem>
             <asp:ListItem Value="1">Mejor puntuado</asp:ListItem>
             <asp:ListItem Value="2">Más nuevo</asp:ListItem>
@@ -37,9 +37,14 @@
         <br />
 &nbsp;  <br />
         <br />
-        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
+        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
             <Columns>
-                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" />
+                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" >
+<ItemStyle CssClass="col-lg-3 text-center" ForeColor="#3366CC"></ItemStyle>
+                </asp:CommandField>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                <asp:BoundField DataField="Valoracion" HeaderText="Valoración" />
             </Columns>
         </asp:GridView>
         <br />

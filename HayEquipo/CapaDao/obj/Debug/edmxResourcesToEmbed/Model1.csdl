@@ -1832,6 +1832,9 @@
       <Parameter Name="prmEmail" Mode="In" Type="String" />
       <Parameter Name="prmContraseña" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="spObtenerComplejosPorNomb" ReturnType="Collection(HayEquipoModel.spObtenerComplejosPorNomb_Result)">
+      <Parameter Name="nomb" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -1901,6 +1904,18 @@
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="spObtenerComplejosJoin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Deportes" Nullable="false" MaxLength="154" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
+    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Telefono" Nullable="true" />
+    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
+    <Property Type="Double" Name="Valoracion" Nullable="true" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spObtenerComplejosPorNomb_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />

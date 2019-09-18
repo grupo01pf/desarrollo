@@ -317,5 +317,14 @@ namespace CapaEntidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuarioEstablecimiento", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
         }
+    
+        public virtual ObjectResult<spObtenerComplejosPorNomb_Result> spObtenerComplejosPorNomb(string nomb)
+        {
+            var nombParameter = nomb != null ?
+                new ObjectParameter("nomb", nomb) :
+                new ObjectParameter("nomb", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerComplejosPorNomb_Result>("spObtenerComplejosPorNomb", nombParameter);
+        }
     }
 }

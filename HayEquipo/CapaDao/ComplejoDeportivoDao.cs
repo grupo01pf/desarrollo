@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaEntidades;
 using System.Configuration;
+using System.Data;
 
 namespace CapaDao
 {
@@ -186,7 +187,62 @@ namespace CapaDao
             }
         }
 
+        public static List<spObtenerComplejosJoin_Result> ObtenerComplejosOrdenValor()
+        {
+            using (var db = new HayEquipoEntities())
+            {
+                return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosOrdenValor").ToList();
+            }
+        }
 
+        //public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosPorNomb(string nomb)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        List<spObtenerComplejosPorNomb_Result> complejos = new List<spObtenerComplejosPorNomb_Result>();
+        //        var complejo = db.spObtenerComplejosPorNomb(nomb);
+        //        foreach (var item in complejo)
+        //        {
+        //            complejos.Add(item);
+        //        }
+        //        return complejos;
+        //    }
+        //}
+        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosPorNomb(string nomb)
+        {
+            List<spObtenerComplejosPorNomb_Result> complejos = new List<spObtenerComplejosPorNomb_Result>();
+            spObtenerComplejosPorNomb_Result comp = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spObtenerComplejosPorNomb", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nomb", nomb);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                comp = new spObtenerComplejosPorNomb_Result();
+
+                comp.ID = int.Parse(dr["ID"].ToString());
+                comp.Nombre = dr["Nombre"].ToString();
+                comp.Descripcion = dr["Descripcion"].ToString();
+                comp.Deportes = dr["Deportes"].ToString();
+                comp.Direccion = dr["Direccion"].ToString();
+                comp.Barrio = dr["Barrio"].ToString();
+                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Responsable = dr["Responsable"].ToString();
+                comp.Valoracion = float.Parse(dr["Valoracion"].ToString());
+                comp.Estado = dr["Estado"].ToString();
+
+                complejos.Add(comp);
+
+            }
+            dr.Close();
+            cn.Close();
+
+            return complejos;
+        }
 
         public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         {

@@ -258,7 +258,7 @@
         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" Width="116px" />
         <br />
 &nbsp;  <br />
-        <asp:Panel ID="pnlCan" runat="server" Visible="False" BorderColor="#339933">
+<%--        <asp:Panel ID="pnlCan" runat="server" Visible="False" BorderColor="#339933">--%>
 <%--                <asp:Label ID="LblDeporte" runat="server" Text="Deporte" ForeColor="White"></asp:Label>--%>
 &nbsp;
 <%--        <asp:DropDownList ID="ddlDep4" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep4_SelectedIndexChanged">
@@ -309,12 +309,18 @@
                         <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>--%>
-    </asp:Panel>
+<%--    </asp:Panel>--%>
     <br />
-        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="True" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
+        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="False" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
-                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" />
-                <asp:BoundField DataField="idComplejoDeportivo" HeaderText="ID" Visible="false" />
+                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" >
+<ItemStyle CssClass="col-lg-3 text-center" ForeColor="#3366CC"></ItemStyle>
+                </asp:CommandField>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Deportes" HeaderText="Deportes" />
+                <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
+                <asp:BoundField DataField="Responsable" HeaderText="Responsable" />
             </Columns>
         </asp:GridView>
         <br />
