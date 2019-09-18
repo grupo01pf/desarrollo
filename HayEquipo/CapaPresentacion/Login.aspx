@@ -35,9 +35,9 @@
     opacity: .8;
 }
 
-      .margenWell{
-          margin: 20px;
-
+        .margenWell {
+            margin: 20px;
+        }
       .error{
           color:red;
 

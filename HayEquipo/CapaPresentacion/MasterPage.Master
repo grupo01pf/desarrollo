@@ -17,6 +17,7 @@
 
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
+  
   <style>
     /* Set black background color, white text and some padding */
     footer {
@@ -135,6 +136,8 @@ $(window).load(function() {
 
 </footer>
 <!-- Footer -->
-
+ <script>
+    
+    </script>
 </body>
 </html>

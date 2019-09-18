@@ -76,6 +76,39 @@
   border: 2px solid #0b3107;
   border-radius: 12px;
 }
+
+
+input[type="radio"] {
+  display: none;
+}
+
+label .estrella {
+  color: grey;
+
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  margin-right:70%;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+.estrellalabel{
+    font-size:20px;
+}
+.estrella{
+    transform: scale(2.0);
+    
+}
+
     </style>
 </asp:Content>
 
@@ -172,10 +205,56 @@
               </div>
 
           </div> 
+<div id="menu2" class="tab-pane fade">
+          <div class="table-responsive">
+   <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
+  <p class="clasificacion">
+    <input id="radio1" type="radio" name="estrellas" value="5"/>
+    <label for="radio1" class="estrella">★</label>
+    <input id="radio2" type="radio" name="estrellas" value="4"/>
+    <label for="radio2" class="estrella">★</label>
+    <input id="radio3" type="radio" name="estrellas" value="3"/>
+    <label for="radio3" class="estrella">★</label>
+    <input id="radio4" type="radio" name="estrellas" value="2"/>
+    <label for="radio4" class="estrella">★</label>
+    <input id="radio5" type="radio" name="estrellas" value="1"/>
+    <label for="radio5" class="estrella">★</label>
+  </p>
+      <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>   
+  <p class="clasificacion">
+    <input id="radio6" type="radio" name="estrellas" value="5"/>
+    <label for="radio6" class="estrella">★</label>
+    <input id="radio7" type="radio" name="estrellas" value="4"/>
+    <label for="radio7" class="estrella">★</label>
+    <input id="radio8" type="radio" name="estrellas" value="3"/>
+    <label for="radio8" class="estrella">★</label>
+    <input id="radio9" type="radio" name="estrellas" value="2"/>
+    <label for="radio9" class="estrella">★</label>
+    <input id="radio10" type="radio" name="estrellas" value="1"/>
+    <label for="radio10" class="estrella">★</label>
+  </p>
+             <asp:Label CssClass="estrellalabel" runat="server" Text="No se que"></asp:Label>
+  <p class="clasificacion">
+    <input id="radio11" type="radio" name="estrellas" value="5"/>
+    <label for="radio11" class="estrella">★</label>
+    <input id="radio12" type="radio" name="estrellas" value="4"/>
+    <label for="radio12" class="estrella">★</label>
+    <input id="radio13" type="radio" name="estrellas" value="3"/>
+    <label for="radio13" class="estrella">★</label>
+    <input id="radio14" type="radio" name="estrellas" value="2"/>
+    <label for="radio14" class="estrella">★</label>
+    <input id="radio15" type="radio" name="estrellas" value="1"/>
+    <label for="radio15" class="estrella">★</label>
+  </p>
+             
+            </div>
+   </div>
             </div>
    </div>
         
     </div>
 
     </div>
+
+   
 </asp:Content>

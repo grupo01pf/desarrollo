@@ -12,30 +12,19 @@ namespace CapaEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Responsable
+    public partial class TipoComplejo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Responsable()
+        public TipoComplejo()
         {
             this.ComplejoDeportivo = new HashSet<ComplejoDeportivo>();
-            this.Sponsor = new HashSet<Sponsor>();
         }
     
         public int id { get; set; }
-        public string apellido { get; set; }
-        public string nombres { get; set; }
-        public Nullable<int> idTipoDoc { get; set; }
-        public Nullable<int> nroDoc { get; set; }
-        public string sexo { get; set; }
-        public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public Nullable<int> nroTelefono { get; set; }
-        public string email { get; set; }
-        public Nullable<int> idUsuario { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComplejoDeportivo> ComplejoDeportivo { get; set; }
-        public virtual TipoDocumento TipoDocumento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sponsor> Sponsor { get; set; }
     }
 }
