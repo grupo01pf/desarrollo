@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="avatar\nene.png" />
     <Content Include="ABMComplejos.aspx" />
+    <Content Include="ComplejoInfo.aspx" />
     <Content Include="Complejos.aspx" />
     <Content Include="CrearEncuentro.aspx" />
     <Content Include="css\Style.css" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="ABMComplejos.aspx.designer.cs">
       <DependentUpon>ABMComplejos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComplejoInfo.aspx.cs">
+      <DependentUpon>ComplejoInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComplejoInfo.aspx.designer.cs">
+      <DependentUpon>ComplejoInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Complejos.aspx.cs">
       <DependentUpon>Complejos.aspx</DependentUpon>

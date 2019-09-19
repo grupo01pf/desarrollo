@@ -72,6 +72,7 @@ $(window).load(function() {
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
         <li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>
+        <li><a href="Complejos.aspx">Complejos Deportivos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>

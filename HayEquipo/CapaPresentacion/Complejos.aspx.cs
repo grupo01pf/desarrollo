@@ -88,12 +88,20 @@ namespace CapaPresentacion
             {
                 CargarGrillaComplejosBuscar(txtBuscar.Text);
             }
+            ddlOrdenar.SelectedIndex = 0;
         }
         protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+
+            GridViewRow fila = gvComplejos.SelectedRow;
+
+            Session["id"] = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+
+                Response.Redirect("ComplejoInfo.aspx");
+
         }
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)

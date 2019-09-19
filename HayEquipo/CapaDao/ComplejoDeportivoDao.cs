@@ -12,35 +12,6 @@ namespace CapaDao
 {
     public class ComplejoDeportivoDao
     {
-        //public static void InsertarComplejo(ComplejoDeportivoEntidad complejo)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"INSERT into ComplejoDeportivo(nombre, descripcion, idTipoComplejo, calle, nroCalle,
-        //                                                      idBarrio, nroTelefono, idResponsable, promedioEstrellas, idEstado)
-        //                                        values(@nom, @descrip, @idTipoComp, @calle, @nroCalle,
-        //                                               @idBarr, @nroTel, @idResp, @promEstr, @idEst);
-        //                        select Scope_Identity() as ID";
-
-        //    cmd.Parameters.AddWithValue("@nom", complejo.nombre);
-        //    cmd.Parameters.AddWithValue("@descrip", complejo.descripcion);
-        //    cmd.Parameters.AddWithValue("@idTipoComp", complejo.idTipoComplejo);
-        //    cmd.Parameters.AddWithValue("@calle", complejo.calle);
-        //    cmd.Parameters.AddWithValue("@nroCalle", complejo.numeroCalle);
-        //    cmd.Parameters.AddWithValue("@idBarr", complejo.idBarrio);
-        //    cmd.Parameters.AddWithValue("@nroTel", complejo.numeroTelefono);
-        //    cmd.Parameters.AddWithValue("@idResp", complejo.idResponsable);
-        //    cmd.Parameters.AddWithValue("@promEstr", complejo.promedioEstrellas);
-        //    cmd.Parameters.AddWithValue("@idEst", complejo.idEstado);
-
-        //    complejo.idComplejoDeportivo = Convert.ToInt32(cmd.ExecuteScalar());
-
-        //    cn.Close();
-        //}
 
         public static void InsertarComplejo(ComplejoDeportivo complejo)
         {
@@ -50,38 +21,6 @@ namespace CapaDao
                 db.SaveChanges();
             }
         }
-
-        //public static void ActualizarComplejo(ComplejoDeportivoEntidad complejo)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"UPDATE ComplejoDeportivo SET nombre=@nomb, descripcion=@desc, idTipoComplejo=@idTipoComp,
-        //                                                     calle=@calle, nroCalle=@nroCalle, idBarrio=@idBarr,
-        //                                                     nroTelefono=@nroTel, idResponsable=@idResp,
-        //                                                     promedioEstrellas=@promEstr
-        //                                               WHERE id=@idComplejo";
-
-        //    cmd.Parameters.AddWithValue("@idComplejo", complejo.idComplejoDeportivo);
-        //    cmd.Parameters.AddWithValue("@nomb", complejo.nombre);
-        //    cmd.Parameters.AddWithValue("@desc", complejo.descripcion);
-        //    cmd.Parameters.AddWithValue("@idTipoComp", complejo.idTipoComplejo);
-        //    cmd.Parameters.AddWithValue("@calle", complejo.calle);
-        //    cmd.Parameters.AddWithValue("@nroCalle", complejo.numeroCalle);
-        //    cmd.Parameters.AddWithValue("@idBarr", complejo.idBarrio);
-        //    cmd.Parameters.AddWithValue("@nroTel", complejo.numeroTelefono);
-        //    cmd.Parameters.AddWithValue("@idResp", complejo.idResponsable);
-        //    cmd.Parameters.AddWithValue("@promEstr", complejo.promedioEstrellas);
-        //    //          cmd.Parameters.AddWithValue("@idEst", complejo.idEstado);
-        //   // idEstado = @idEst
-
-        //    cmd.ExecuteNonQuery();
-
-        //    cn.Close();
-        //}
 
         public static void ActualizarComplejo(ComplejoDeportivo complejo)
         {
@@ -107,23 +46,6 @@ namespace CapaDao
             }
         }
 
-        //public static void EliminarComplejo(int id)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"DELETE from ComplejoDeportivo WHERE id=@idComplejo";
-
-        //    cmd.Parameters.AddWithValue("@idComplejo", id);
-
-        //    cmd.ExecuteNonQuery();
-
-        //    cn.Close();
-        //}
-
         public static void EliminarComplejo(int id)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
@@ -133,43 +55,6 @@ namespace CapaDao
                 db.SaveChanges();
             }
         }
-
-        //public static List<ComplejoDeportivoEntidad> ObtenerComplejos() {
-
-        //    ComplejoDeportivoEntidad complejo = null;
-        //    List<ComplejoDeportivoEntidad> ListaComplejos = new List<ComplejoDeportivoEntidad>();
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"SELECT TOP 1000 id, nombre, descripcion, idTipoComplejo, calle, nroCalle, idBarrio,
-        //                        nroTelefono, idResponsable, idUsuario, promedioEstrellas, idEstado
-        //                        FROM ComplejoDeportivo ";
-        //    SqlDataReader dr = cmd.ExecuteReader();
-        //    while (dr.Read())
-        //    {
-        //        // no acepta numeros en null
-        //        complejo = new ComplejoDeportivoEntidad();
-        //        complejo.idComplejoDeportivo = int.Parse(dr["id"].ToString());
-        //        complejo.nombre = dr["nombre"].ToString();
-        //        complejo.descripcion = dr["descripcion"].ToString();
-        //       // complejo.idTipoComplejo = int.Parse(dr["idTipoComplejo"].ToString());
-        //        complejo.calle = dr["calle"].ToString();
-        //        // complejo.idBarrio = int.Parse(dr["idBarrio"].ToString());
-        //        //complejo.numeroCalle = int.Parse(dr["nroCalle"].ToString());
-        //        //complejo.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
-        //      //  complejo.idResponsable = int.Parse(dr["idResponsable"].ToString());
-        //      //  complejo.idUsuario = int.Parse(dr["idUsuario"].ToString());
-        //      //  complejo.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
-        //      //  complejo.idEstado = int.Parse(dr["idEstado"].ToString());
-        //        ListaComplejos.Add(complejo);
-        //    }
-        //    dr.Close();
-        //    cn.Close();
-        //    return ListaComplejos;
-
-        //}
 
         public static List<ComplejoDeportivo> ObtenerComplejos()
         {
@@ -195,29 +80,35 @@ namespace CapaDao
             }
         }
 
-        //public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosPorNomb(string nomb)
-        //{
-        //    using (HayEquipoEntities db = new HayEquipoEntities())
-        //    {
-        //        List<spObtenerComplejosPorNomb_Result> complejos = new List<spObtenerComplejosPorNomb_Result>();
-        //        var complejo = db.spObtenerComplejosPorNomb(nomb);
-        //        foreach (var item in complejo)
-        //        {
-        //            complejos.Add(item);
-        //        }
-        //        return complejos;
-        //    }
-        //}
         public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosPorNomb(string nomb)
         {
-            List<spObtenerComplejosPorNomb_Result> complejos = new List<spObtenerComplejosPorNomb_Result>();
+            List<spObtenerComplejosPorNomb_Result> listaQuery = new List<spObtenerComplejosPorNomb_Result>();
             spObtenerComplejosPorNomb_Result comp = null;
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
-            SqlCommand cmd = new SqlCommand("spObtenerComplejosPorNomb", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nomb", nomb);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT DISTINCT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion,CONCAT(d1.nombre, ', '+d2.nombre, ', '+d3.nombre) as Deportes,
+                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
+                                cd.promedioEstrellas as Valoracion, e.nombre as Estado
+                                 FROM ComplejoDeportivo cd
+                            LEFT JOIN Deporte d1 ON d1.id=cd.idDeporte1
+                            LEFT JOIN Deporte d2 ON d2.id=cd.idDeporte2
+                            LEFT JOIN Deporte d3 ON d3.id=cd.idDeporte3
+                            LEFT JOIN Barrio b ON b.id=cd.idBarrio
+                            LEFT JOIN Responsable r ON r.id=cd.idResponsable
+                            LEFT JOIN Estado e ON e.id=cd.idEstado
+                                      WHERE 1 = 1";
+
+            if (!string.IsNullOrEmpty(nomb))
+            {
+                cmd.CommandText += " AND cd.nombre LIKE @nom";
+                cmd.Parameters.AddWithValue("@nom", "%" + nomb + "%");
+            }
+
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -232,16 +123,17 @@ namespace CapaDao
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
-                comp.Valoracion = float.Parse(dr["Valoracion"].ToString());
+                comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
                 comp.Estado = dr["Estado"].ToString();
 
-                complejos.Add(comp);
+                listaQuery.Add(comp);
 
             }
+
             dr.Close();
             cn.Close();
+            return listaQuery;
 
-            return complejos;
         }
 
         public static ComplejoDeportivo ObtenerComplejosPorID(int id)
