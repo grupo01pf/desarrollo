@@ -75,13 +75,13 @@ namespace CapaPresentacion
 
             ed.tipoEncuentro = "Publico";
 
-            if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
-            else { ed.accesibilidad = "Abierto"; }
+            //  if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
+            //  else { ed.accesibilidad = "Abierto"; }
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
-                ed.clave = string.Empty;
+            { ed.clave = string.Empty; ed.accesibilidad = "Abierto"; }
             else
-                ed.clave = txt_Clave.Text;
+            { ed.clave = txt_Clave.Text; ed.accesibilidad = "Cerrado"; }
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
@@ -98,7 +98,8 @@ namespace CapaPresentacion
             msg.idUsuario = int.Parse(Session["ID"].ToString());
             msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             msg.fechaHora = DateTime.Now;
-            msg.texto = string.Empty;
+            // msg.texto = string.Empty;
+            msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
         }
 
@@ -120,13 +121,13 @@ namespace CapaPresentacion
 
             ed.tipoEncuentro = "Privado";
 
-            if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
-            else { ed.accesibilidad = "Abierto"; }
+            // if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
+            //  else { ed.accesibilidad = "Abierto"; }
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
-                ed.clave = string.Empty;
+            { ed.clave = string.Empty; ed.accesibilidad = "Abierto"; }
             else
-                ed.clave = txt_Clave.Text;
+            { ed.clave = txt_Clave.Text; ed.accesibilidad = "Cerrado"; }
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
@@ -155,7 +156,8 @@ namespace CapaPresentacion
             msg.idUsuario = int.Parse(Session["ID"].ToString());
             msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             msg.fechaHora = DateTime.Now;
-            msg.texto = string.Empty;
+            // msg.texto = string.Empty;
+            msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
 
         }
@@ -224,7 +226,7 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
-            txt_Clave.Enabled = false;
+            
             cmb_Complejo.Enabled = false;
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
@@ -269,10 +271,6 @@ namespace CapaPresentacion
 
         }
 
-        protected void chk_Accesibilidad_CheckedChanged(object sender, EventArgs e)
-        {
-            txt_Clave.Enabled = true;
-        }
-
+        
     }
 }

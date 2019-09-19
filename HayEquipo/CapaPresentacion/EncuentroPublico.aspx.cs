@@ -20,13 +20,18 @@ namespace CapaPresentacion
             cargarDatosEncuentroPublico();
             if (validarOrganizador())
             {
-                btn_Unirse.Visible = false;
-                btn_Salir.Visible = false;
+                btn_Unirse.Enabled = false;
+                btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = true;
+            }
+            if (true) {
+                // buscarsi el jugador esta en en el encuentro
             }
             else
             {
-                btn_Unirse.Visible = true;
-                btn_Salir.Visible = false;
+                btn_Unirse.Enabled = true;
+                btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = false;
             }
             cargarChat();
         }
@@ -85,15 +90,15 @@ namespace CapaPresentacion
 
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Visible = false;
-            btn_Salir.Visible = true;
+            btn_Unirse.Enabled = false;
+            btn_Salir.Enabled = true;
         }
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Visible = true;
-            btn_Salir.Visible = false;
+            btn_Unirse.Enabled = true;
+            btn_Salir.Enabled = false;
         }
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {

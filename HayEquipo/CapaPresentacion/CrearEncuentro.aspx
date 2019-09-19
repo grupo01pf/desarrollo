@@ -39,7 +39,8 @@
                         </div> 
                     </div>  
                      <div class="form-group">
-                                <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged"/>                           
+                                <%--<asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" />--%>  
+                                <asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>                                                  
                                 <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
                      </div>
                 </div>
@@ -53,12 +54,12 @@
                                 <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
                             </div>                               
                             <div class="form-group">
-                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>                           
-                                <asp:TextBox ID="txt_HoraInicio" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
+                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio" ></asp:Label>                           
+                                <asp:TextBox ID="txt_HoraInicio" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                             </div>                                                                                                               
                             <div class="form-group">                           
                                 <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
-                                <asp:TextBox ID="txt_HoraFin" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5"></asp:TextBox>
+                                <asp:TextBox ID="txt_HoraFin" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                             </div>      
                            <div class="form-group">
                                 <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>                             

@@ -72,7 +72,10 @@ $(window).load(function() {
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
         <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
-         <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" BackColor="Yellow"  ForeColor="Black" OnClick="btn_CrearEncuentro_Click"/>
+         <li><strong>
+             <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" BackColor="Yellow"  ForeColor="Black" OnClick="btn_CrearEncuentro_Click" Height="50px"/>
+            </strong>
+         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
