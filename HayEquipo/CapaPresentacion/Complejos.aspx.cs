@@ -94,13 +94,13 @@ namespace CapaPresentacion
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
-            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+            //ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
-            GridViewRow fila = gvComplejos.SelectedRow;
+            //GridViewRow fila = gvComplejos.SelectedRow;
 
             Session["id"] = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
 
-                Response.Redirect("ComplejoInfo.aspx");
+            Response.Redirect("ComplejoInfo.aspx");
 
         }
 
