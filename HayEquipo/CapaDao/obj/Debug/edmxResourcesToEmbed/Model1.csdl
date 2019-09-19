@@ -1904,7 +1904,6 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Deportes" Nullable="false" MaxLength="154" />
     <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
     <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="Telefono" Nullable="true" />

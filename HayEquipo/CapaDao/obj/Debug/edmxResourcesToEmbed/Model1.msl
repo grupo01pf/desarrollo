@@ -645,7 +645,6 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Deportes" ColumnName="Deportes" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Barrio" ColumnName="Barrio" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />

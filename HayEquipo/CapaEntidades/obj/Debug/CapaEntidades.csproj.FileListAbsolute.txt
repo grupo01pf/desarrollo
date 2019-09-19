@@ -38,3 +38,13 @@ C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\Ent
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll.config
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.xml
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb

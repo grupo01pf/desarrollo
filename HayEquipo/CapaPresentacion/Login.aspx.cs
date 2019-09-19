@@ -28,8 +28,9 @@ namespace CapaPresentacion
         
         protected void btn_Login_Click(object sender, EventArgs e)
         {
-            bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
-
+            /*
+            // bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
+            bool bloqueado = false;
 
             if (UsuarioDao.Existe(txt_NombreUsuario.Text))
             {
@@ -94,9 +95,9 @@ namespace CapaPresentacion
             }
 
 
-
-          
-
+    */
+           // FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+            Response.Redirect("Home.aspx");
 
 
 
