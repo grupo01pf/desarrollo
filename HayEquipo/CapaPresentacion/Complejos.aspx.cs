@@ -66,11 +66,11 @@ namespace CapaPresentacion
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
-        protected void CargarGrillaComplejosBuscar(string nomb)
+        protected void CargarGrillaComplejosBuscar(string nomb, int? idUsuario)
         {
             gvComplejos.DataSource = null;
 
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorNomb(nomb)
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario)
                                       orderby comp.Nombre
                                       select comp);
 
@@ -79,14 +79,16 @@ namespace CapaPresentacion
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
-        {
+        {          
             if (txtBuscar.Text == "")
             {
                 CargarGrillaComplejos();
             }
             else
             {
-                CargarGrillaComplejosBuscar(txtBuscar.Text);
+                int? idUs = null;
+                string nomb = txtBuscar.Text;
+                CargarGrillaComplejosBuscar(nomb, idUs);
             }
             ddlOrdenar.SelectedIndex = 0;
         }
@@ -106,9 +108,21 @@ namespace CapaPresentacion
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtBuscar.Text = string.Empty;
+            if (ddlOrdenar.SelectedIndex == 0)
+            {
+                CargarGrillaComplejos();
+            }
             if (ddlOrdenar.SelectedIndex == 1)
             {
                 CargarGrillaComplejosPorVal();
+            }
+            if (ddlOrdenar.SelectedIndex == 2)
+            {
+                int? idUs = int.Parse(Session["ID"].ToString());
+                string nomb = string.Empty;
+
+                CargarGrillaComplejosBuscar(nomb, idUs);
             }
             if (ddlOrdenar.SelectedIndex == 3)
             {

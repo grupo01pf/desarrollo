@@ -80,7 +80,7 @@ namespace CapaDao
             }
         }
 
-        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosPorNomb(string nomb)
+        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario)
         {
             List<spObtenerComplejosPorNomb_Result> listaQuery = new List<spObtenerComplejosPorNomb_Result>();
             spObtenerComplejosPorNomb_Result comp = null;
@@ -101,12 +101,21 @@ namespace CapaDao
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
                             LEFT JOIN Responsable r ON r.id=cd.idResponsable
                             LEFT JOIN Estado e ON e.id=cd.idEstado
-                                      WHERE 1 = 1";
+                            LEFT JOIN Zona z ON z.id=b.idZona
+		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
+		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
+                                WHERE 1 = 1";
 
             if (!string.IsNullOrEmpty(nomb))
             {
                 cmd.CommandText += " AND cd.nombre LIKE @nom";
                 cmd.Parameters.AddWithValue("@nom", "%" + nomb + "%");
+            }
+
+            if (idUsuario.HasValue)
+            {
+                cmd.CommandText += " AND de.idUsuario = @idUs";
+                cmd.Parameters.AddWithValue("@idUs", idUsuario);
             }
 
             SqlDataReader dr = cmd.ExecuteReader();
