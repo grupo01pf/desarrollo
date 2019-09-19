@@ -14,9 +14,7 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IdEncuentro"] = null;
-            contenedorDelMapa.Visible = false;
-            frm_map.Visible = false;
-
+          
             if (!IsPostBack)
             {
 
@@ -226,8 +224,14 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
-
+            txt_Clave.Enabled = false;
             cmb_Complejo.Enabled = false;
+            btn_Crear.Enabled = false;
+            btn_Cancelar.Enabled = false;
+
+            contenedorDelMapa.Visible = false;
+            frm_map.Visible = false;
+           
         }
 
 
@@ -239,8 +243,10 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = true;
             txt_HoraInicio.Enabled = true;
             txt_HoraFin.Enabled = true;
+            btn_Crear.Enabled = true;
+            btn_Cancelar.Enabled = true;
 
-            cmb_Complejo.Enabled = false;
+            //cmb_Complejo.Enabled = false;
 
         }
 
@@ -251,6 +257,8 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
+            btn_Crear.Enabled = true;
+            btn_Cancelar.Enabled = true;
 
             cmb_Complejo.Enabled = true;
 
@@ -260,5 +268,11 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void chk_Accesibilidad_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_Clave.Enabled = true;
+        }
+
     }
 }

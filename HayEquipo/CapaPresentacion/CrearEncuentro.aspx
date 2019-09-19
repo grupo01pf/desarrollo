@@ -39,7 +39,7 @@
                         </div> 
                     </div>  
                      <div class="form-group">
-                                <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" />                           
+                                <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged"/>                           
                                 <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
                      </div>
                 </div>
