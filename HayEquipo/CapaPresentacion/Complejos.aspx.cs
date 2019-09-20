@@ -103,11 +103,15 @@ namespace CapaPresentacion
 
             //GridViewRow fila = gvComplejos.SelectedRow;
 
-            Session["id"] = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+            //Session["id"] = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
 
-            Response.Redirect("ComplejoInfo.aspx");
+            //Response.Redirect("ComplejoInfo.aspx");
 
         }
+        //protected void lbEdit_Click(object sender, EventArgs e)
+        //{
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        //}
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {

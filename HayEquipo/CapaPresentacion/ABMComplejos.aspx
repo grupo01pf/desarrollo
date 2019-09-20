@@ -6,6 +6,8 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="lblCD" runat="server" Text="Complejos Deportivos" ForeColor="White" Font-Size="Large"></asp:Label>
         <br />
@@ -114,10 +116,42 @@
              Display="Dynamic"></asp:RegularExpressionValidator>
         <br />
 
-     <button type="button" value="btnCan" title="Administrar Canchas" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal" id="btnCan"><i class="fa fa-check-square-o" aria-hidden="true"></i> Canchas</button>&nbsp;
-        <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+           <asp:LinkButton ID="btnUsuarioo" runat="server" onclick="btnPopUp_Click" CssClass="btn btn-primary btn-edit">
+               <i class='fa fa-check-square-o' aria-hidden='true'></i> Registrarme
+           </asp:LinkButton>
+                   
+      </ContentTemplate>
+              </asp:UpdatePanel>
+    
+    <asp:Button ID="btnInicial" runat="server" Text="Button" style="display:none" />
+      
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server" 
+                Enabled="True" TargetControlID="btnInicial" 
+               PopupControlID="PanelModal">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
+
+            </Animations>
+          
+            </ajaxToolkit:ModalPopupExtender>
+ 
+       <asp:Panel ID="PanelModal" runat="server" style="display:none; background:white; width:40%; height:auto">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+     
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Mis Canchas</h4>
@@ -201,10 +235,9 @@
 <%--                   <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />--%>
                   </div>
                 </div>
-
-            </div>
-     </div>
-          </div>
+</ContentTemplate>
+                    </asp:UpdatePanel>
+                </asp:Panel>   
 
     
      <button type="button" value="btnServ" title="Administrar Servicios" class="btn btn-primary btn-edit" data-target="#smodal" data-toggle="modal" id="btnServ"><i class="fa fa-check-square-o" aria-hidden="true"></i>Servicios</button>&nbsp;
