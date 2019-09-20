@@ -27,14 +27,36 @@ namespace CapaPresentacion
                 btn_UnirseEquipoA.Enabled = false;
                 btn_UnirseEquipoB.Enabled = true;
                 btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = true;
             }
             else
             {
-                btn_UnirseEquipoA.Enabled = true;
-                btn_UnirseEquipoB.Enabled = true;
-                btn_Salir.Enabled = false;
-            }
+                if (validarJugadorUnido())
+                {
+                    // verificar en que equipo esta unido el usuario
+                    // equipo A
+                    btn_UnirseEquipoA.Enabled = false;
+                    btn_UnirseEquipoB.Enabled = true;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
 
+                    // equipo B
+                    btn_UnirseEquipoA.Enabled = true;
+                    btn_UnirseEquipoB.Enabled = false;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+
+
+                else
+                {
+                    btn_UnirseEquipoA.Enabled = true;
+                    btn_UnirseEquipoB.Enabled = true;
+                    btn_Salir.Enabled = false;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+            }
+            
             cargarChat();
         }
 
@@ -161,6 +183,12 @@ namespace CapaPresentacion
             return flag;
         }
 
+        private bool validarJugadorUnido()
+        {
+            bool estaUnido = false;
+            
+            return estaUnido;
+        }
 
 
         protected void btn_Invitar_Click(object sender, EventArgs e)

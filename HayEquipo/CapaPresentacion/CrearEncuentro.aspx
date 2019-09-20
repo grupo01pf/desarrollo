@@ -35,7 +35,7 @@
                     <div class="well" style="width:310px; margin: 0 auto;">                           
                         <div class="form-group">                                                         
                                 <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                                <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>                              
+                                <asp:Calendar ID="cld_Fecha" runat="server" Width="270px"></asp:Calendar>                              
                         </div> 
                     </div>  
                      <div class="form-group">
@@ -55,19 +55,23 @@
                             </div>                               
                             <div class="form-group">
                                 <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio" ></asp:Label>                           
-                                <asp:TextBox ID="txt_HoraInicio" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
-                            </div>                                                                                                               
-                            <div class="form-group">                           
+                                <asp:TextBox ID="txt_HoraInicio"   runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                            <%--</div>                                                                                                               
+                            <div class="form-group">--%>                           
                                 <asp:Label ID="lbl_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
-                                <asp:TextBox ID="txt_HoraFin" CssClass="form-control" runat="server" placeholder="00:00" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
-                            </div>      
+                                <asp:TextBox ID="txt_HoraFin"   runat="server"  Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                            </div> 
+                            <div class="form-group">  
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes"></asp:Label>
+                                <asp:TextBox ID="txt_Cantidad"  CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"></asp:TextBox>
+                            </div>     
                            <div class="form-group">
                                 <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>                             
-                                <asp:TextBox ID="txt_NombreLugar" CssClass="form-control" runat="server" placeHolder="Lugar" Columns="50" MaxLength="40"></asp:TextBox>
+                                <asp:TextBox ID="txt_NombreLugar" CssClass="form-control" runat="server" placeHolder="Lugar" Columns="50" MaxLength="45"></asp:TextBox>
                            </div>
                            <div class="form-group">
                                 <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>                      
-                                <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="40"></asp:TextBox>
+                                <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
                            </div>
                        </div>
                         <%-- LUGAR PRIVADO --%>

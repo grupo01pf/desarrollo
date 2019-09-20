@@ -24,14 +24,20 @@ namespace CapaPresentacion
                 btn_Salir.Enabled = false;
                 btn_CancelarEncuentro.Visible = true;
             }
-            if (true) {
-                // buscarsi el jugador esta en en el encuentro
-            }
             else
             {
-                btn_Unirse.Enabled = true;
-                btn_Salir.Enabled = false;
-                btn_CancelarEncuentro.Visible = false;
+                if (validarJugadorUnido())
+                {
+                    btn_Unirse.Enabled = false;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+                else
+                {
+                    btn_Unirse.Enabled = true;
+                    btn_Salir.Enabled = false;
+                    btn_CancelarEncuentro.Visible = false;
+                }
             }
             cargarChat();
         }
@@ -138,6 +144,23 @@ namespace CapaPresentacion
             return flag;
 
         }
+
+        private bool validarJugadorUnido() {
+
+            bool estaUnido = false;
+
+            List<Usuario> listaUsuariosUnidos = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+
+            foreach (Usuario u in listaUsuariosUnidos) {
+
+                if (u.id == int.Parse(Session["ID"].ToString())) {
+                    return estaUnido = true;
+                }
+            }
+                return estaUnido;
+            
+        }
+
         private void bloquearBotones()
         {
 

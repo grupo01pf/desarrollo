@@ -121,6 +121,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_HoraFin;
         
         /// <summary>
+        /// Control lbl_Cantidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cantidad;
+        
+        /// <summary>
+        /// Control txt_Cantidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Cantidad;
+        
+        /// <summary>
         /// Control lbl_NombreLugar.
         /// </summary>
         /// <remarks>

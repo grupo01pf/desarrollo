@@ -101,25 +101,25 @@
                     <legend>Chat</legend>
                             <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff" 
                                 HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
-                                 ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
+                                EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
                                 <Columns>
                                     <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                     <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
                                     <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                                 </Columns>
                             </asp:GridView>
-                       </div>
-                    </div>
-                    <br />
-                    <%--BOTONES CHAT--%>
+                       
+                 <%--BOTONES CHAT--%>
                     <div class="form-group alinearIzquiera">
                         <label for="comment">Mensaje:</label>
                         <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control" MaxLength="50" ></asp:TextBox><br />
                         <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block" />
                     </div>
+                    </div>
+                    <br />
+                   
                 </div>
             </div>
-        </div>
-    </div>
+       </div>
 </asp:Content>
 

@@ -206,7 +206,7 @@ namespace CapaDao
                 usuario.nombre = dr["nombreUsuario"].ToString();
                 usuario.id = int.Parse(dr["idUsuario"].ToString());
                 listaUsuaurios.Add(usuario);
-                // id = int.Parse(dr["id"].ToString());
+               
             }
             dr.Close();
             cn.Close();
@@ -232,7 +232,7 @@ namespace CapaDao
                 usuario.nombre = dr["nombreUsuario"].ToString();
                 usuario.id = int.Parse(dr["idUsuario"].ToString());
                 listaUsuaurios.Add(usuario);
-                // id = int.Parse(dr["id"].ToString());
+              
             }
             dr.Close();
             cn.Close();
@@ -257,8 +257,9 @@ namespace CapaDao
             {
                 usuario = new Usuario();
                 usuario.nombre = dr["nombreUsuario"].ToString();
+                usuario.id = int.Parse(dr["idUsuario"].ToString());
+
                 listaUsuaurios.Add(usuario);
-                // id = int.Parse(dr["id"].ToString());
             }
             dr.Close();
             cn.Close();

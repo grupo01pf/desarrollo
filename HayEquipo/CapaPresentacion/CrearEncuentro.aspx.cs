@@ -14,7 +14,7 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IdEncuentro"] = null;
-          
+
             if (!IsPostBack)
             {
 
@@ -31,15 +31,15 @@ namespace CapaPresentacion
                 contenedorDelMapa.Visible = true;
                 frm_map.Visible = true;
                 ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-                frm_map.Src = cd.mapa;          
+                frm_map.Src = cd.mapa;
             }
             if (cmb_Complejo.SelectedIndex == 0)
             {
                 contenedorDelMapa.Visible = false;
                 frm_map.Visible = false;
             }
-           
-            
+
+
 
 
         }
@@ -141,16 +141,16 @@ namespace CapaPresentacion
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
             EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
 
-           Reserva reserva = new Reserva();
-           reserva.fechaReserva = DateTime.Now;
-           reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());
+            Reserva reserva = new Reserva();
+            reserva.fechaReserva = DateTime.Now;
+            reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());
 
             //string fecha = DateTime.Now.ToString("HHmmss");
             //TimeSpan hr = TimeSpan.Parse(fecha.ToString());
             //reserva.horaReserva = hr;
 
-           reserva.idEstado = 1; //(reservado)
-           ReservaDao.InsertarReserva(reserva);
+            reserva.idEstado = 1; //(reservado)
+            ReservaDao.InsertarReserva(reserva);
 
             Mensaje msg = new Mensaje();
             msg.idUsuario = int.Parse(Session["ID"].ToString());
@@ -226,15 +226,17 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
-            
+
             cmb_Complejo.Enabled = false;
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
+            txt_Cantidad.Enabled = false;
 
             contenedorDelMapa.Visible = false;
             frm_map.Visible = false;
-           
+
         }
+
 
 
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
@@ -245,10 +247,12 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = true;
             txt_HoraInicio.Enabled = true;
             txt_HoraFin.Enabled = true;
+            txt_Cantidad.Enabled = true;
+            cmb_Complejo.Enabled = false;
+
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
 
-            //cmb_Complejo.Enabled = false;
 
         }
 
@@ -259,18 +263,14 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
+            txt_Cantidad.Enabled = false;
+            cmb_Complejo.Enabled = true;
+
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
 
-            cmb_Complejo.Enabled = true;
 
         }
-
-        protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }
+    
