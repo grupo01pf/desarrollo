@@ -18,10 +18,8 @@ namespace CapaDao
 
         public static int InsertarEncuentroPublico(EncuentroDeportivo ed)
         {
-
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-
                 db.EncuentroDeportivo.Add(ed);
                 db.SaveChanges();
                 return ed.id;
@@ -32,7 +30,6 @@ namespace CapaDao
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-
                 db.EncuentroDeportivo.Add(ed);
                 db.SaveChanges();
                 return ed.id;
@@ -57,6 +54,12 @@ namespace CapaDao
 
         public static void insertarUsuarioPorEncuentroEquipoA(int idUsuario, int idEncuentro)
         {
+            //using (HayEquipoEntities db = new HayEquipoEntities())
+            //{
+            //    db.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA(idUsuario,idEncuentro);
+            //    db.SaveChanges();
+            //}
+
 
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();

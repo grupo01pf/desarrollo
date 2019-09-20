@@ -54,9 +54,9 @@
                     <div class="alinearIzquiera elPadding">
                         <span class="glyphicon glyphicon-time"></span>
                         <asp:Label ID="Label2" Style="color: black" runat="server" Text="De: "></asp:Label>
-                        <asp:Label ID="txt_HoraInicio" runat="server" Text=""></asp:Label>
+                       <strong> <asp:Label ID="txt_HoraInicio" runat="server" Text=""></asp:Label></strong>
                         <asp:Label ID="Label3" runat="server" Text=" a "></asp:Label>
-                        <asp:Label ID="txt_HoraFin" runat="server" Text="Hora Fin"></asp:Label>
+                        <strong><asp:Label ID="txt_HoraFin" runat="server" Text="Hora Fin"></asp:Label></strong>
                     </div>
                     <div class="alinearIzquiera elPadding">
                         <span class="glyphicon glyphicon-map-marker"></span>
@@ -65,6 +65,10 @@
                         <asp:Label ID="txt_Direccion" runat="server" Text="Direccion"></asp:Label>
                     </div>
                     <br />
+                     <div class="alinearIzquiera elPadding">  
+                         <asp:Label ID="Label6"   runat="server" Text="Cantidad de Participantes"></asp:Label>                   
+                       <strong> <asp:Label ID="lbl_Cantidad"  runat="server" Text=""></asp:Label>   </strong>                     
+                    </div>
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click" class="btn btn-danger"></asp:Button>
                 </div>
             </div>

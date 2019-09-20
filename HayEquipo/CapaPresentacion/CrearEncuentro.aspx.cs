@@ -91,6 +91,10 @@ namespace CapaPresentacion
                 ed.direccion = string.Empty;
             else { ed.direccion = txt_Direccion.Text; }
 
+            if (string.IsNullOrEmpty(txt_Cantidad.Text))
+                ed.capacidad = 100; // (POR DEFECTO 100 USUARIOS)
+            else { ed.capacidad = int.Parse(txt_Cantidad.Text); }
+
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
             EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
 

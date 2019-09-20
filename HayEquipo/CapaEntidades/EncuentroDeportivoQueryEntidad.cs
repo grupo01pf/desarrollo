@@ -30,6 +30,8 @@ namespace CapaEntidades
         public string direccion { get; set; }
         // public int numeroCalle { get; set; }
         public string clave { get; set; }
+        public int capacidad { get; set; }
+
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }

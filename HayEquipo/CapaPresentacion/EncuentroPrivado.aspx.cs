@@ -15,7 +15,7 @@ namespace CapaPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IdUsuarioEncuentro"] = null;
+            Session["IdOrganizadorEncuentro"] = null;
 
             cargarDeportes();
             cargarComplejos();
@@ -85,7 +85,7 @@ namespace CapaPresentacion
 
             edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
 
-            Session["IdUsuarioEncuentro"] = edq.idUsuario;
+            Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
             cmb_Deporte.SelectedValue = edq.nombreDeporte;
             cmb_Complejo.SelectedValue = edq.nombreComplejo;
@@ -222,7 +222,7 @@ namespace CapaPresentacion
             bool flag = false;
 
             int idUsuarioLogueado = int.Parse(Session["ID"].ToString());
-            int idUsuarioEncuentro = int.Parse(Session["IdUsuarioEncuentro"].ToString());
+            int idUsuarioEncuentro = int.Parse(Session["IdOrganizadorEncuentro"].ToString());
 
             if (idUsuarioLogueado == idUsuarioEncuentro)
             { flag = true; }

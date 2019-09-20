@@ -13,32 +13,13 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IdUsuarioEncuentro"] = null;
+            Session["IdOrganizadorEncuentro"] = null;
+            Session["ListaUsuariosUnidos"] = null;
 
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();
-            if (validarOrganizador())
-            {
-                btn_Unirse.Enabled = false;
-                btn_Salir.Enabled = false;
-                btn_CancelarEncuentro.Visible = true;
-            }
-            else
-            {
-                if (validarJugadorUnido())
-                {
-                    btn_Unirse.Enabled = false;
-                    btn_Salir.Enabled = true;
-                    btn_CancelarEncuentro.Visible = false;
-                }
-                else
-                {
-                    btn_Unirse.Enabled = true;
-                    btn_Salir.Enabled = false;
-                    btn_CancelarEncuentro.Visible = false;
-                }
-            }
+            
             cargarChat();
         }
         private void cargarDatosEncuentroPublico()
@@ -50,7 +31,7 @@ namespace CapaPresentacion
 
             edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
 
-            Session["IdUsuarioEncuentro"] = edq.idUsuario;
+            Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
             //cmb_Deporte.SelectedValue = edq.nombreDeporte;
             lbl_Deporte.Text = edq.nombreDeporte;
@@ -69,9 +50,12 @@ namespace CapaPresentacion
             else { txt_Direccion.Text = edq.direccion.ToString(); }
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
+            
+            bloquearControles();
 
-            bloquearBotones();
+            validacionesDeUsuario();
 
+            calcularCapacidad(edq.capacidad);
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
             //  int idUsuario = int.Parse(Session["ID"].ToString());
@@ -80,6 +64,19 @@ namespace CapaPresentacion
             //  cld_Fecha.SelectedDate = eq.fechaInicioEncuentro;
             //cld_Fecha.Text = eq.fechaInicioEncuentro;
 
+        }
+
+        private void calcularCapacidad(int capacidad) {
+
+            List<Usuario> listaUsuario = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+            if (listaUsuario.Count < capacidad)
+            {
+                lbl_Cantidad.Text = listaUsuario.Count + "/" + capacidad;
+            }
+            else {
+                lbl_Cantidad.Text = listaUsuario.Count + "/" + capacidad;
+                btn_Unirse.Enabled = false;
+            }
         }
 
 
@@ -119,6 +116,8 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
+            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));            
+            //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
             gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
             gdv_UsuariosUnidos.DataBind();
@@ -132,12 +131,38 @@ namespace CapaPresentacion
         //    cmb_Deporte.DataBind();
         //}
 
+        private void validacionesDeUsuario() {
+
+            if (validarOrganizador())
+            {
+                btn_Unirse.Enabled = false;
+                btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = true;
+            }
+            else
+            {
+                if (validarJugadorUnido())
+                {
+                    btn_Unirse.Enabled = false;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+                else
+                {
+                    btn_Unirse.Enabled = true;
+                    btn_Salir.Enabled = false;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+            }
+
+
+        }
         private bool validarOrganizador()
         {
             bool flag = false;
 
             int idUsuarioEncuentro = int.Parse(Session["ID"].ToString());
-            int idUsuarioActual = int.Parse(Session["IdUsuarioEncuentro"].ToString());
+            int idUsuarioActual = int.Parse(Session["IdOrganizadorEncuentro"].ToString());
 
             if (idUsuarioActual == idUsuarioEncuentro)
             { flag = true; }
@@ -161,19 +186,16 @@ namespace CapaPresentacion
             
         }
 
-        private void bloquearBotones()
+        private void bloquearControles()
         {
-
-            //cmb_Deporte.Enabled = false;
+            
             cld_Fecha.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
             txt_NombreLugar.Enabled = false;
             txt_Direccion.Enabled = false;
             txt_Organizador.Enabled = false;
-
-            // btn_Unirse.Enabled = false;
-            // btn_Salir.Enabled = false;
+        
         }
 
         protected void btn_Enviar_Click(object sender, EventArgs e)
