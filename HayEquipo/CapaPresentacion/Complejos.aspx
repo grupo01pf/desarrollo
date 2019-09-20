@@ -36,7 +36,31 @@
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>--%>
         <br />
-&nbsp;  <br />
+&nbsp;  
+    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click">Fútbol</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click">Basket</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbPaddle" runat="server">Paddle</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbTenis" runat="server">Tenis</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbRunning" runat="server">Running</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbCiclismo" runat="server">Ciclismo</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbCaminata" runat="server">Caminata</asp:LinkButton>
+&nbsp;
+    <asp:LinkButton ID="lbVolley" runat="server">Volley</asp:LinkButton>
+&nbsp;<br />
+    <br />
+&nbsp;
+    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+&nbsp;
+    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+&nbsp;
+    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+    <br />
         <br />
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
             <Columns>

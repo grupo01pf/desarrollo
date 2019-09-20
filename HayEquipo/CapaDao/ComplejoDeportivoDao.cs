@@ -80,7 +80,7 @@ namespace CapaDao
             }
         }
 
-        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario)
+        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario, string d1, string d2, string d3)
         {
             List<spObtenerComplejosPorNomb_Result> listaQuery = new List<spObtenerComplejosPorNomb_Result>();
             spObtenerComplejosPorNomb_Result comp = null;
@@ -116,6 +116,28 @@ namespace CapaDao
             {
                 cmd.CommandText += " AND de.idUsuario = @idUs";
                 cmd.Parameters.AddWithValue("@idUs", idUsuario);
+            }
+
+            if (!string.IsNullOrEmpty(d1))
+            {
+                cmd.CommandText += @" AND d1.nombre LIKE @d1
+                                       OR d2.nombre LIKE @d1
+                                       OR d3.nombre LIKE @d1";
+                cmd.Parameters.AddWithValue("@d1", "%" + d1 + "%");
+            }
+            if (!string.IsNullOrEmpty(d2))
+            {
+                cmd.CommandText += @"AND d1.nombre LIKE @d2
+                                      OR d2.nombre LIKE @d2
+                                      OR d3.nombre LIKE @d2";
+                cmd.Parameters.AddWithValue("@d2", "%" + d2 + "%");
+            }
+            if (!string.IsNullOrEmpty(d3))
+            {
+                cmd.CommandText += @" AND d1.nombre LIKE @d3
+                                       OR d2.nombre LIKE @d3
+                                       OR d3.nombre LIKE @d3";
+                cmd.Parameters.AddWithValue("@d3", "%" + d3 + "%");
             }
 
             SqlDataReader dr = cmd.ExecuteReader();
