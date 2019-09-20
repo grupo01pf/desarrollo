@@ -26,6 +26,7 @@ namespace CapaDao
             }
         }
 
+        
         public static int InsertarEncuentroPrivado(EncuentroDeportivo ed)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
@@ -33,6 +34,16 @@ namespace CapaDao
                 db.EncuentroDeportivo.Add(ed);
                 db.SaveChanges();
                 return ed.id;
+            }
+        }
+
+        public static void acutalizarEncuentroDeportivo(int idEncuntro, int estado) {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuntro);
+                ed.idEstado = estado;
+                db.Entry(ed).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
             }
         }
 

@@ -55,7 +55,9 @@ namespace CapaPresentacion
 
             validacionesDeUsuario();
 
-            calcularCapacidad(edq.capacidad);
+            
+            calcularCapacidad(edq.capacidad, idEncuentro);
+
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
             //  int idUsuario = int.Parse(Session["ID"].ToString());
@@ -66,8 +68,9 @@ namespace CapaPresentacion
 
         }
 
-        private void calcularCapacidad(int capacidad) {
+        private void calcularCapacidad(int capacidad, int idEncuentro) {
 
+            //bool completo = false;
             List<Usuario> listaUsuario = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             if (listaUsuario.Count < capacidad)
             {
@@ -76,7 +79,12 @@ namespace CapaPresentacion
             else {
                 lbl_Cantidad.Text = listaUsuario.Count + "/" + capacidad;
                 btn_Unirse.Enabled = false;
+                int estado = 8; // (COMPLETO)
+                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(idEncuentro, estado);
+
+                // completo = true;
             }
+            // return completo;
         }
 
 

@@ -67,12 +67,22 @@ namespace CapaPresentacion
             // ed.fechaCreacionEncuentro = DateTime.Now;
             ed.idDeporte = cmb_Deporte.SelectedIndex;
             ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
-            ed.idEstado = 1; // (habilitado)
-            TimeSpan? hi = TimeSpan.Parse(txt_HoraInicio.Text);
-            ed.horaInicio = hi;
-            TimeSpan? hf = TimeSpan.Parse(txt_HoraFin.Text);
-            ed.horaFin = hf;
+            ed.idEstado = 7; // (habilitado)
 
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
+            { ed.horaInicio = TimeSpan.Parse("00:00"); }
+            else {
+                TimeSpan? hi = TimeSpan.Parse(txt_HoraInicio.Text);
+                ed.horaInicio = hi;
+            }
+
+            if (string.IsNullOrEmpty(txt_HoraFin.Text))
+            { ed.horaFin = TimeSpan.Parse("00:00"); }
+            else
+            {
+                TimeSpan? hf = TimeSpan.Parse(txt_HoraFin.Text);
+                ed.horaFin = hf;
+            }
             ed.tipoEncuentro = "Publico";
 
             //  if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
@@ -121,7 +131,7 @@ namespace CapaPresentacion
             ed.idComplejo = cmb_Complejo.SelectedIndex;
             ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
 
-            ed.idEstado = 1; // (habilitado)
+            ed.idEstado = 7; // (habilitado)
 
             ed.tipoEncuentro = "Privado";
 
