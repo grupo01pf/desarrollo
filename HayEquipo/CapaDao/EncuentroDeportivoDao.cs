@@ -124,11 +124,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static void CancelarEncuentro()
-        {
-            // ToDo
-        }
-
+        
 
 
         private static int idEncuentroCreado(int idUsuario)

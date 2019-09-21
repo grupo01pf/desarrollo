@@ -113,6 +113,7 @@
                 <div class="row">
                     <fieldset>
                          <legend>Equipo A</legend>
+                       <strong> <asp:Label ID="lbl_CantidadEquipoA" runat="server" Text=""></asp:Label></strong>
                         <div class="row" id="contenido">
                             <%--<div class="col-8">--%>
                             <div style="width: 100%; height: 300px; overflow: scroll">
@@ -140,6 +141,7 @@
                 <div class="row">
                     <fieldset>
                          <legend>Equipo B</legend>
+                         <strong> <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text=""></asp:Label></strong>
                         <div class="row" id="contenido">
                             <%--<div class="col-8">--%>
                             <div style="width: 100%; height: 300px; overflow: scroll">

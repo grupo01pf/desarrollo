@@ -14,7 +14,8 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IdOrganizadorEncuentro"] = null;
-            Session["ListaUsuariosUnidos"] = null;
+            Session["CapacidadMaxima"] = null;
+          //  Session["CantidadActual"] = null;
 
             //cargarDeportes();
             cargarTabla();
@@ -27,9 +28,10 @@ namespace CapaPresentacion
 
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
 
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
 
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
+            //  edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
+            edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
 
             Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
@@ -49,14 +51,15 @@ namespace CapaPresentacion
                 txt_Direccion.Text = string.Empty;
             else { txt_Direccion.Text = edq.direccion.ToString(); }
 
+            Session["CapacidadMaxima"] = edq.capacidad;
+
             txt_Organizador.Text = edq.nombreUsuario.ToString();
             
             bloquearControles();
 
             validacionesDeUsuario();
-
             
-            calcularCapacidad(edq.capacidad, idEncuentro);
+            calcularCapacidad();
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
@@ -68,23 +71,24 @@ namespace CapaPresentacion
 
         }
 
-        private void calcularCapacidad(int capacidad, int idEncuentro) {
+
+        //  private void calcularCapacidad(int capacidad, int idEncuentro) {
+        private void calcularCapacidad() {
 
             //bool completo = false;
-            List<Usuario> listaUsuario = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-            if (listaUsuario.Count < capacidad)
+            List<Usuario> listaUsuarios = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+           // Session["CantidadActual"] = listaUsuarios.Count();
+            if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                lbl_Cantidad.Text = listaUsuario.Count + "/" + capacidad;
+                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
             }
             else {
-                lbl_Cantidad.Text = listaUsuario.Count + "/" + capacidad;
+                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
                 int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(idEncuentro, estado);
-
-                // completo = true;
+                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                
             }
-            // return completo;
         }
 
 
@@ -98,9 +102,9 @@ namespace CapaPresentacion
 
         protected void btn_Unirse_Click(object sender, EventArgs e)
         {
-
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
+            calcularCapacidad();
             btn_Unirse.Enabled = false;
             btn_Salir.Enabled = true;
         }
@@ -108,14 +112,16 @@ namespace CapaPresentacion
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
+            calcularCapacidad();
             btn_Unirse.Enabled = true;
             btn_Salir.Enabled = false;
         }
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
-            // cambiar el estado 
-            // chequear que solo el organizador pueda cancelar
-            EncuentroDeportivoDao.CancelarEncuentro();
+            int estado = 6; // (CANCELADO)
+            EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+            // Pedir confirmacion de cancelacion
+            Response.Redirect("Home.aspx");
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
         {

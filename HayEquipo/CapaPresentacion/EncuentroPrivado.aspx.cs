@@ -19,43 +19,12 @@ namespace CapaPresentacion
 
             cargarDeportes();
             cargarComplejos();
-            cargarDatosEncuentroPrivado();
             cargarEquipoA();
             cargarEquipoB();
-            if (validarOrganizador())
-            {
-                btn_UnirseEquipoA.Enabled = false;
-                btn_UnirseEquipoB.Enabled = true;
-                btn_Salir.Enabled = false;
-                btn_CancelarEncuentro.Visible = true;
-            }
-            else
-            {
-                if (validarJugadorUnido())
-                {
-                    // verificar en que equipo esta unido el usuario
-                    // equipo A
-                    btn_UnirseEquipoA.Enabled = false;
-                    btn_UnirseEquipoB.Enabled = true;
-                    btn_Salir.Enabled = true;
-                    btn_CancelarEncuentro.Visible = false;
 
-                    // equipo B
-                    btn_UnirseEquipoA.Enabled = true;
-                    btn_UnirseEquipoB.Enabled = false;
-                    btn_Salir.Enabled = true;
-                    btn_CancelarEncuentro.Visible = false;
-                }
+            cargarDatosEncuentroPrivado();
+            
 
-
-                else
-                {
-                    btn_UnirseEquipoA.Enabled = true;
-                    btn_UnirseEquipoB.Enabled = true;
-                    btn_Salir.Enabled = false;
-                    btn_CancelarEncuentro.Visible = false;
-                }
-            }
             
             cargarChat();
         }
@@ -100,6 +69,8 @@ namespace CapaPresentacion
 
             bloquearBotones();
 
+            validacionesDeUsuario();
+
             // txt_HoraInicio.Text = eq.horaInicio.ToShortTimeString();
             // txt_HoraFin.Text = eq.horaFin.ToShortTimeString();
 
@@ -114,6 +85,86 @@ namespace CapaPresentacion
 
         }
 
+       
+        private void validacionesDeUsuario() {
+            if (validarOrganizador())
+            {
+                btn_UnirseEquipoA.Enabled = false;
+                btn_UnirseEquipoB.Enabled = true;
+                btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = true;
+            }
+            else
+            {
+                if (validarExistenciaEnEquipoA())
+                {
+                    // usuario equipo a
+                    btn_UnirseEquipoA.Enabled = false;
+                    btn_UnirseEquipoB.Enabled = true;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+
+                else
+                {
+                    if (validarExistenciaEnEquipoB())
+                    {
+                        // equipo B
+                        btn_UnirseEquipoA.Enabled = true;
+                        btn_UnirseEquipoB.Enabled = false;
+                        btn_Salir.Enabled = true;
+                        btn_CancelarEncuentro.Visible = false;
+                    }
+                    else
+                    {
+                        // usuario no unido
+                        btn_UnirseEquipoA.Enabled = true;
+                        btn_UnirseEquipoB.Enabled = true;
+                        btn_Salir.Enabled = false;
+                        btn_CancelarEncuentro.Visible = false;
+
+                    }
+                }
+                }
+
+
+                
+            }
+
+
+        
+
+        private void calcularCapacidadEquipoA(int capacidad,int idEncuentro) {
+            List<Usuario> listaUsuariosEuqipoA = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+            if (listaUsuariosEuqipoA.Count < capacidad)
+            {
+                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + capacidad;
+            }
+            else {
+                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + capacidad;
+                btn_UnirseEquipoA.Enabled = false;
+                // actualizar estado
+            }
+        }
+
+        private void calcularCapacidadEquipoB(int capacidad, int idEncuentro) {
+            List<Usuario> listaUsuariosEquipoB = UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString()));
+            if (listaUsuariosEquipoB.Count < capacidad)
+            {
+                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + capacidad;
+            }
+            else {
+                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + capacidad;
+                btn_UnirseEquipoB.Enabled = false;
+                
+            }
+
+        }
+
+        private void calcularCapacidadTotal() {
+
+        }
+
 
         protected void btn_Ingresar_Click(object sender, EventArgs e)
         {
@@ -124,11 +175,9 @@ namespace CapaPresentacion
 
         protected void UnirseEquipoA_Click(object sender, EventArgs e)
         {
-
             if (validarExistenciaEnEquipoB())
             {
                 EncuentroDeportivoDao.SalirDelEncuentroEquipoB(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
-
             }
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
@@ -183,13 +232,19 @@ namespace CapaPresentacion
             return flag;
         }
 
-        private bool validarJugadorUnido()
+        
+        private bool validarOrganizador()
         {
-            bool estaUnido = false;
-            
-            return estaUnido;
-        }
+            bool flag = false;
 
+            int idUsuarioLogueado = int.Parse(Session["ID"].ToString());
+            int idUsuarioEncuentro = int.Parse(Session["IdOrganizadorEncuentro"].ToString());
+
+            if (idUsuarioLogueado == idUsuarioEncuentro)
+            { flag = true; }
+            return flag;
+
+        }
 
         protected void btn_Invitar_Click(object sender, EventArgs e)
         {
@@ -217,18 +272,7 @@ namespace CapaPresentacion
             cmb_Complejo.DataValueField = "nombre";
             cmb_Complejo.DataBind();
         }
-        private bool validarOrganizador()
-        {
-            bool flag = false;
-
-            int idUsuarioLogueado = int.Parse(Session["ID"].ToString());
-            int idUsuarioEncuentro = int.Parse(Session["IdOrganizadorEncuentro"].ToString());
-
-            if (idUsuarioLogueado == idUsuarioEncuentro)
-            { flag = true; }
-            return flag;
-
-        }
+       
 
         private void bloquearBotones()
         {
@@ -275,3 +319,4 @@ namespace CapaPresentacion
         }
     }
 }
+
