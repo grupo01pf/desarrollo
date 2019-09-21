@@ -28,10 +28,10 @@
                             <%--<asp:CheckBox ID="chk_Accesibilidad" runat="server" Text=" Clave" />--%>
                         <%--</div>--%>
                         <%--<div class="col-md-3">--%>
-                           <asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>
+                        <%--   <asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>
                            <asp:TextBox ID="txt_Clave" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
                            
-                            <asp:Button ID="btn_Ingresar" runat="server" Text="Ingresar" OnClick="btn_Ingresar_Click" />
+                            <asp:Button ID="btn_Ingresar" runat="server" Text="Ingresar" OnClick="btn_Ingresar_Click" />--%>
                         <%--</div>--%>
                         <%--<div class="col-md-1"></div>--%>
                     </div>

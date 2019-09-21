@@ -44,7 +44,8 @@
                         </div>
                         <div class="col-sm-9 alinearIzquiera">
                             <strong>
-                                <asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" Style="color: #11398a" runat="server" Text=""></asp:Label></strong><br />
+                                <asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" Style="color: #11398a" runat="server" Text=""></asp:Label></strong>
+                            <%--<br />--%>
                             <asp:Label ID="Label1" Style="color: #808080" runat="server" Text="Público &#183; Organizado por "></asp:Label>
                             <strong>
                                 <asp:Label ID="txt_Organizador" runat="server" Text=""></asp:Label></strong>

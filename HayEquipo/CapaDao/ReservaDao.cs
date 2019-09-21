@@ -40,5 +40,16 @@ namespace CapaDao
             cn.Close();
         }
 
+        public static void acutalizarReserva(int idEncuntro, int estado)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                Reserva reserva = db.Reserva.First(r => r.id == idEncuntro);
+                reserva.idEstado = estado;
+                db.Entry(reserva).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
     }
 }

@@ -16,16 +16,17 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IdOrganizadorEncuentro"] = null;
-
+            Session["CapacidadMaxima"] = null;
             cargarDeportes();
             cargarComplejos();
             cargarEquipoA();
             cargarEquipoB();
 
             cargarDatosEncuentroPrivado();
-            
 
-            
+            calcularCapacidadTotal(calcularCapacidadEquipoA(),calcularCapacidadEquipoB());
+
+
             cargarChat();
         }
 
@@ -64,6 +65,8 @@ namespace CapaPresentacion
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
             txt_Telefono.Text = edq.numeroTelefono.ToString();
+
+            Session["CapacidadMaxima"] = edq.capacidad;
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
@@ -134,35 +137,50 @@ namespace CapaPresentacion
 
         
 
-        private void calcularCapacidadEquipoA(int capacidad,int idEncuentro) {
+        private int calcularCapacidadEquipoA() {
+            int equipoA = 0;
             List<Usuario> listaUsuariosEuqipoA = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
-            if (listaUsuariosEuqipoA.Count < capacidad)
+            if (listaUsuariosEuqipoA.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + capacidad;
+                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+                equipoA = listaUsuariosEuqipoA.Count;
             }
             else {
-                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + capacidad;
+                equipoA = listaUsuariosEuqipoA.Count;
+                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_UnirseEquipoA.Enabled = false;
                 // actualizar estado
+                int estado = 8; // (COMPLETO)
+                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
             }
+            return equipoA;
         }
 
-        private void calcularCapacidadEquipoB(int capacidad, int idEncuentro) {
+        private int calcularCapacidadEquipoB() {
+            int equipoB = 0;
             List<Usuario> listaUsuariosEquipoB = UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString()));
-            if (listaUsuariosEquipoB.Count < capacidad)
+            if (listaUsuariosEquipoB.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + capacidad;
+                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+                equipoB = listaUsuariosEquipoB.Count;
             }
             else {
-                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + capacidad;
+                equipoB = listaUsuariosEquipoB.Count;
+                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_UnirseEquipoB.Enabled = false;
-                
+                int estado = 8; // (COMPLETO)
+                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+
             }
+            return equipoB;
 
         }
 
-        private void calcularCapacidadTotal() {
+        private void calcularCapacidadTotal(int equipoA, int equipoB) {
+            //int total = 0;
 
+            
+            
         }
 
 
