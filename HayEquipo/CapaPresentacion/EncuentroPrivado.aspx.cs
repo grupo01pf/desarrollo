@@ -26,6 +26,7 @@ namespace CapaPresentacion
 
             calcularCapacidadTotal(calcularCapacidadEquipoA(),calcularCapacidadEquipoB());
 
+            cargarMapa();
 
             cargarChat();
             txt_Mensaje.Focus();
@@ -89,6 +90,12 @@ namespace CapaPresentacion
 
         }
 
+        private void cargarMapa() {
+            contenedorDelMapa.Visible = true;
+            frm_map.Visible = true;
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            frm_map.Src = cd.mapa;
+        }
        
         private void validacionesDeUsuario() {
             if (validarOrganizador())

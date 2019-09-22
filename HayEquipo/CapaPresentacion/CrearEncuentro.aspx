@@ -118,10 +118,7 @@
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
-                                                     <%--   <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
-                                                        <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />
-                                                        <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />
-                                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="false" />--%>
+                                                    
 
                                                     </Columns>
                                                 </asp:GridView>

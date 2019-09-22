@@ -219,6 +219,10 @@
              <div class="col-me-1"></div>
 
             </div>
+
+        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
+        </div>
         
             <%--**************************************************--%>
 
@@ -234,49 +238,11 @@
 
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%--NO BORRAR--%>
-                            <%--<asp:Calendar ID="cld_Fecha" runat="server"></asp:Calendar>--%>
-                            <%--<asp:TextBox ID="cld_Fecha" runat="server" ></asp:TextBox>--%>
-                        </div>
-                        <div class="col-md-4">
-
-                            <%--<asp:DropDownList ID="cmb_Deporte" runat="server" AppendDataBoundItems>
-                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                            </asp:DropDownList>--%>
-                        </div>
-                    </div>
+                    
 
                     <br />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%--<asp:Label ID="lbl_Zona" runat="server" Text="Zona"></asp:Label>--%>
-                            <%--NO BORRAR--%>
-                            <%--<asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>--%>
-                        </div>
-                        <div class="col-md-4">
-                            <%--<asp:DropDownList ID="cmb_Zona" runat="server" AppendDataBoundItems>
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>--%>
-
-                            <%--NO BORRAR--%>
-                            <%--<asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>--%>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%--<asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>--%>
-                        </div>
-                        <div class="col-md-4">
-                            <%-- <asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>--%>
-                        </div>
-                    </div>
+                  
+                   
                     <div class="row">
                     </div>
                 </fieldset>
@@ -301,15 +267,8 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div class="row">
-                                    <%--<asp:Label ID="lbl_TipoCancha" runat="server" Text="Canchas"></asp:Label>--%>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <%--<asp:DropDownList ID="cmb_TipoCancha" runat="server" AppendDataBoundItems>
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                    </asp:DropDownList>--%>
-                                </div>
+                                
+                              
 
                             </div>
 
@@ -326,14 +285,7 @@
                                 <%--<legend>Horarios</legend>--%>
                                 <div class="col-md-6">
 
-                                    <%--<div style="width: 180%; height: 400px; overflow: scroll">--%>
-                                    <%--<asp:GridView ID="gdv_Horario" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered">
-                                        <Columns>
-                                            <asp:CommandField HeaderText="Seleccionar" ShowSelectButton="true" />
-                                            <asp:BoundField DataField="Hora" HeaderText="Hora" Visible="true" />
-                                            <asp:BoundField DataField="Disponibilidad" HeaderText="Disponibilidad" Visible="true" />
-                                        </Columns>
-                                    </asp:GridView>--%>
+                           
                                 </div>
 
                             </fieldset>
