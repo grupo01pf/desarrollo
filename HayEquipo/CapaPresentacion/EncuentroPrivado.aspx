@@ -74,8 +74,7 @@
                                 <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                             </asp:DropDownList>
                      <br />
-                     <div class="row">
-                         <asp:Label ID="lbl_Calle" runat="server" Text="Calle"></asp:Label>
+                    <asp:Label ID="lbl_Calle" runat="server" Text="Calle"></asp:Label>
                          <asp:TextBox ID="txt_calle" runat="server" Text=""></asp:TextBox>
                          <br />
                          <asp:Label ID="lbl_nroCalle" runat="server" Text="Nro Calle"></asp:Label> 
@@ -88,7 +87,11 @@
                           <asp:TextBox ID="txt_Organizador" runat="server" placeHolder="Organizador" Columns="50" MaxLength="40"></asp:TextBox>
                          <br />
                           <asp:Button ID="btn_CancelarEncuentro" runat="server" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click" BackColor="Gray" ForeColor="Black"></asp:Button>
-                     </div>
+                     <br />
+                    <asp:Label ID="lbl_CapacidadMaxima" runat="server" Text="Cantidad de Participantes"></asp:Label>
+                    <strong><asp:Label ID="lbl_Cantidad" runat="server" Text=""></asp:Label></strong>
+                     <div class="row">
+                         </div>
                  <br />
                 </div>
                 <br />

@@ -178,7 +178,7 @@ namespace CapaPresentacion
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Home.aspx");
         }
 
         protected void btn_BuscarHorarios_Click(object sender, EventArgs e)
@@ -246,6 +246,8 @@ namespace CapaPresentacion
             btn_Cancelar.Enabled = false;
             txt_Cantidad.Enabled = false;
 
+            btn_Agenda.Visible = false;
+
             contenedorDelMapa.Visible = false;
             frm_map.Visible = false;
 
@@ -282,6 +284,36 @@ namespace CapaPresentacion
 
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
+
+
+        }
+
+       
+
+        private void cargarAgenda() {
+
+
+            // cmb_Complejo.SelectedIndex;
+
+            gdv_Agenda.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            gdv_Agenda.DataKeyNames = new string[] { "idEncuentroDeportivo" };
+            gdv_Agenda.DataBind();
+        }
+
+        protected void cmb_Complejo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargarAgenda();
+            btn_Agenda.Visible = true;
+        }
+
+        protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow fila = gdv_Agenda.SelectedRow;
+
+
+            string tipoEncuentro = fila.Cells[2].Text;
+            Session["idEncuentro"] = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
+
 
 
         }

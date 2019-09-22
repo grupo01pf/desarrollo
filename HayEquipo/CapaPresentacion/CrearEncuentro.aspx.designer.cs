@@ -202,6 +202,33 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cmb_Complejo;
         
         /// <summary>
+        /// Control btn_Agenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Agenda;
+        
+        /// <summary>
+        /// Control gdv_Agenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_Agenda;
+        
+        /// <summary>
+        /// Control lbl_CanchaSeleccionada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CanchaSeleccionada;
+        
+        /// <summary>
         /// Control btn_Crear.
         /// </summary>
         /// <remarks>
