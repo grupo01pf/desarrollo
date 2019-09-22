@@ -49,6 +49,17 @@
           <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="idTipoCancha" Type="int" />
           <Property Name="idComplejo" Type="int" />
+          <Property Name="precio" Type="float" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.CanchasPorComplejos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CanchasPorComplejos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idComplejo" Type="int" />
+          <Property Name="idCancha" Type="int" />
         </EntityType>
         <EntityType Name="CanchasPorHorarios">
           <Key>
@@ -1433,6 +1444,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CanchasPorComplejos].[id] AS [id], 
+    [CanchasPorComplejos].[idComplejo] AS [idComplejo], 
+    [CanchasPorComplejos].[idCancha] AS [idCancha]
+    FROM [dbo].[CanchasPorComplejos] AS [CanchasPorComplejos]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [FotosComplejo].[id] AS [id], 
@@ -1794,6 +1812,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="idTipoCancha" Type="Int32" />
           <Property Name="idComplejo" Type="Int32" />
+          <Property Name="precio" Type="Double" />
           <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="Cancha" ToRole="ComplejoDeportivo" />
           <NavigationProperty Name="TipoCancha" Relationship="Self.FK_Cancha_TipoCancha" FromRole="Cancha" ToRole="TipoCancha" />
           <NavigationProperty Name="CanchasPorHorarios" Relationship="Self.FK_CanchasPorHorarios_Cancha" FromRole="Cancha" ToRole="CanchasPorHorarios" />
@@ -2323,6 +2342,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="idDeportista" Type="Int32" />
           <NavigationProperty Name="Deportista" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="ZonasPorDeportistas" ToRole="Deportista" />
           <NavigationProperty Name="Zona" Relationship="Self.FK_ZonasPorDeportistas_Zona" FromRole="ZonasPorDeportistas" ToRole="Zona" />
+        </EntityType>
+        <EntityType Name="CanchasPorComplejos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idComplejo" Type="Int32" />
+          <Property Name="idCancha" Type="Int32" />
         </EntityType>
         <EntityType Name="FotosComplejo">
           <Key>
@@ -3223,6 +3250,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" />
           <EntitySet Name="Zona" EntityType="Self.Zona" />
           <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
+          <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" />
           <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
           <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
@@ -3620,6 +3648,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="capacidad" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_MensajeQueryDao_MostrarMensajes_Result">
           <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
@@ -3705,6 +3734,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idTipoCancha" ColumnName="idTipoCancha" />
                 <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4152,6 +4182,15 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CanchasPorComplejos">
+            <EntityTypeMapping TypeName="HayEquipoModel.CanchasPorComplejos">
+              <MappingFragment StoreEntitySet="CanchasPorComplejos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+                <ScalarProperty Name="idCancha" ColumnName="idCancha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FotosComplejo">
             <EntityTypeMapping TypeName="HayEquipoModel.FotosComplejo">
               <MappingFragment StoreEntitySet="FotosComplejo">
@@ -4252,6 +4291,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="tipoEncuentro" ColumnName="tipoEncuentro" />
                 <ScalarProperty Name="accesibilidad" ColumnName="accesibilidad" />
                 <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

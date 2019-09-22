@@ -220,13 +220,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.GridView gdv_Agenda;
         
         /// <summary>
-        /// Control lbl_CanchaSeleccionada.
+        /// Control lbl_Reserva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CanchaSeleccionada;
+        protected global::System.Web.UI.WebControls.Label lbl_Reserva;
         
         /// <summary>
         /// Control btn_Crear.
@@ -245,6 +245,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        
+        /// <summary>
+        /// Control lbl_Error.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Error;
         
         /// <summary>
         /// Control contenedorDelMapa.

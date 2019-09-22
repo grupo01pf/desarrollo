@@ -47,6 +47,7 @@
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="idTipoCancha" ColumnName="idTipoCancha" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -494,6 +495,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CanchasPorComplejos">
+      <EntityTypeMapping TypeName="HayEquipoModel.CanchasPorComplejos">
+        <MappingFragment StoreEntitySet="CanchasPorComplejos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+          <ScalarProperty Name="idCancha" ColumnName="idCancha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="FotosComplejo">
       <EntityTypeMapping TypeName="HayEquipoModel.FotosComplejo">
         <MappingFragment StoreEntitySet="FotosComplejo">
@@ -594,6 +604,7 @@
           <ScalarProperty Name="tipoEncuentro" ColumnName="tipoEncuentro" />
           <ScalarProperty Name="accesibilidad" ColumnName="accesibilidad" />
           <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -90,13 +90,11 @@
                                 <br />
 
                                 <%--MODAL--%>
-                                <button ID="btn_Agenda" runat="server" type="button" class="btn btn-primary"
-                                     data-toggle="modal" data-target="#exampleModalScrollable">
+
+                                <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
                                     Ver Agenda del Complejo
                                 </button>
-                                <br />
 
-                                <!-- Modal -->
                                 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -109,37 +107,37 @@
                                             </div>
                                             <div class="modal-body">
 
-
+                                                <center>
                                                 <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                                        <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
-                                                        <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
-                                                        <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />
-                                                        <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
-                                                        <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
-                                                        <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
+                                                        <%--<asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />--%>
+                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
+                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios Disponibles" Visible="true" />
+                                                        <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
+                                                     <%--   <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
                                                         <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />
                                                         <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />
-                                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="false" />
+                                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="false" />--%>
 
                                                     </Columns>
                                                 </asp:GridView>
-
-
+                                                </center>
                                             </div>
                                             <div class="modal-footer">
-                                                <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>--%>
+                                                <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+                                                <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <%--FIN MODAL--%>
 
-                                <asp:Label ID="lbl_CanchaSeleccionada" runat="server" Text=""></asp:Label>
+                                <%--FIN MODAL--%>
+                                <br />
+                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
 
                             </div>
                         </div>
@@ -150,6 +148,8 @@
                     </div>
                     <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
                     <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
+                    <br />
+                    <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </div>
             </div>
         </div>

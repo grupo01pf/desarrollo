@@ -53,8 +53,15 @@ namespace CapaPresentacion
             }
             else
             {
-                crearEventoPrivado();
-                Response.Redirect("EncuentroPrivado.aspx");
+               
+               
+                if (string.IsNullOrEmpty(lbl_Reserva.Text))
+                { lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
+                else
+                {
+                    crearEventoPrivado();
+                    Response.Redirect("EncuentroPrivado.aspx");
+                }
             }
         }
 
@@ -291,12 +298,9 @@ namespace CapaPresentacion
        
 
         private void cargarAgenda() {
-
-
-            // cmb_Complejo.SelectedIndex;
-
-            gdv_Agenda.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            gdv_Agenda.DataKeyNames = new string[] { "idEncuentroDeportivo" };
+            
+            gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
+            gdv_Agenda.DataKeyNames = new string[] { "nombreCancha" };
             gdv_Agenda.DataBind();
         }
 
@@ -304,18 +308,19 @@ namespace CapaPresentacion
         {
             cargarAgenda();
             btn_Agenda.Visible = true;
+          
         }
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
+            string datos = string.Empty;
+            datos = fila.Cells[0].Text + " , " + fila.Cells[1].Text + " , " + fila.Cells[2].Text +" , $" + fila.Cells[3].Text;
+            lbl_Reserva.Text = "Reservar en =" + datos;
 
-            string tipoEncuentro = fila.Cells[2].Text;
-            Session["idEncuentro"] = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
-
-
-
+          
         }
     }
 }

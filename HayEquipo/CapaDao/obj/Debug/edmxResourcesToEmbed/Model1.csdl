@@ -52,6 +52,7 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="idTipoCancha" Type="Int32" />
     <Property Name="idComplejo" Type="Int32" />
+    <Property Name="precio" Type="Double" />
     <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="Cancha" ToRole="ComplejoDeportivo" />
     <NavigationProperty Name="TipoCancha" Relationship="Self.FK_Cancha_TipoCancha" FromRole="Cancha" ToRole="TipoCancha" />
     <NavigationProperty Name="CanchasPorHorarios" Relationship="Self.FK_CanchasPorHorarios_Cancha" FromRole="Cancha" ToRole="CanchasPorHorarios" />
@@ -581,6 +582,14 @@
     <Property Name="idDeportista" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="ZonasPorDeportistas" ToRole="Deportista" />
     <NavigationProperty Name="Zona" Relationship="Self.FK_ZonasPorDeportistas_Zona" FromRole="ZonasPorDeportistas" ToRole="Zona" />
+  </EntityType>
+  <EntityType Name="CanchasPorComplejos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idComplejo" Type="Int32" />
+    <Property Name="idCancha" Type="Int32" />
   </EntityType>
   <EntityType Name="FotosComplejo">
     <Key>
@@ -1481,6 +1490,7 @@
     <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" />
     <EntitySet Name="Zona" EntityType="Self.Zona" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
+    <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
@@ -1878,6 +1888,7 @@
     <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="capacidad" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_MensajeQueryDao_MostrarMensajes_Result">
     <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />

@@ -72,6 +72,7 @@ namespace CapaEntidades
         public virtual DbSet<ValoracionDeportista> ValoracionDeportista { get; set; }
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
+        public virtual DbSet<CanchasPorComplejos> CanchasPorComplejos { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
