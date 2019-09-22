@@ -252,12 +252,8 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.nroTelefono.ToString();
 
             btnEliminar.Enabled = true;
-            //btnCan.Enabled = true;
-            //btnServ.Enabled = true;
-            CargarDeporte4();
-            CargarGrillaCanchas();
-            CargarServicios();
-            //CargarGrillaServicios();
+            btnCanchas.Enabled = true;
+            btnServicios.Enabled = true;
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -391,7 +387,7 @@ namespace CapaPresentacion
             btnEliminarCan.Enabled = false;
             btnEliminarCan.CssClass = "btn btn-warning";
         }
-
+//VER (FALLA AL CARGAR CANCHAS QUE NO SEAN DE FUTBOL)
         protected void gvCanchas_SelectedIndexChanged(object sender, EventArgs e)
         {
             LimpiarCanchas();
@@ -406,7 +402,7 @@ namespace CapaPresentacion
             ddlDep4.SelectedIndex = int.Parse((tc.idDeporte).ToString());
             ddlTipoCancha.Items.Clear();
             CargarTipoCancha();
-            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString()) - 1;
+            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString())-1;
 
             btnEliminarCan.Enabled = true;
         }
@@ -427,8 +423,8 @@ namespace CapaPresentacion
         //    gvServ.DataSource = null;
 
         //    gvServ.DataSource = (from serv in ServiciosPorComplejosDao.ObtenerServiciosPorComplejos(ID.Value)
-        //                            orderby serv.Servicio
-        //                            select serv);
+        //                         orderby serv.Servicio
+        //                         select serv);
 
         //    gvServ.DataKeyNames = new string[] { "ID" };
         //    gvServ.DataBind();
@@ -481,23 +477,30 @@ namespace CapaPresentacion
             btnEliminarS.Enabled = true;
         }
 
-        //PROBANDO*********************************************************************
-        protected void btn_Registrar_Click(object sender, EventArgs e)
-        {
-        }
-
+        //CANCHAS
         protected void btnClose_Click(object sender, EventArgs e)
         {
             btnPopUp_ModalPopupExtender.Hide();
         }
 
-
-
         protected void btnPopUp_Click(object sender, EventArgs e)
         {
-
-
+            LimpiarCanchas();
+            CargarDeporte4();
+            CargarGrillaCanchas();
             btnPopUp_ModalPopupExtender.Show();
+        }
+
+        //SERVICIOS
+        protected void btnClose2_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender2.Hide();
+        }
+
+        protected void btnPopUp2_Click(object sender, EventArgs e)
+        {
+            CargarServicios();
+            btnPopUp_ModalPopupExtender2.Show();
         }
     }
 }
