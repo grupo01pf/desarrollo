@@ -256,6 +256,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.GridView gdv_Pantalla;
         
         /// <summary>
+        /// Control pnl_PanelChat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_PanelChat;
+        
+        /// <summary>
         /// Control txt_Mensaje.
         /// </summary>
         /// <remarks>

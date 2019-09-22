@@ -205,10 +205,14 @@
                             </Columns>
                         </asp:GridView>
                              </div>
-                   
-                        <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" MaxLength="50"></asp:TextBox>
-                        <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="bg-info" />
-                  
+                   <div class="form-group alinearIzquiera">
+                        <label for="comment">Mensaje:</label>
+                        <asp:Panel ID="pnl_PanelChat" runat="server" DefaultButton="btn_Enviar">
+                            <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control" MaxLength="50"  ></asp:TextBox><br />
+                            <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block" />
+                         
+                        </asp:Panel>
+                    </div>
 
             </div>
                  </div>

@@ -28,6 +28,7 @@ namespace CapaPresentacion
 
 
             cargarChat();
+            txt_Mensaje.Focus();
         }
 
 
