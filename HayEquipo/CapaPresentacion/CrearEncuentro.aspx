@@ -116,7 +116,7 @@
                                                         <%--<asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />--%>
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
-                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios Disponibles" Visible="true" />
+                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                      <%--   <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
                                                         <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />

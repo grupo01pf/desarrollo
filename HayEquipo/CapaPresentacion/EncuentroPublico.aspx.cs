@@ -22,6 +22,8 @@ namespace CapaPresentacion
             cargarDatosEncuentroPublico();
             
             cargarChat();
+            // txt_Mensaje.Focus();
+          
         }
         private void cargarDatosEncuentroPublico()
         {
@@ -224,6 +226,7 @@ namespace CapaPresentacion
 
             txt_Mensaje.Text = string.Empty;
             cargarChat();
+            txt_Mensaje.Focus();
         }
 
         private void cargarChat()
