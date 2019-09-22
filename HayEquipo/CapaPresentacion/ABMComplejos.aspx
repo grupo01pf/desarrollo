@@ -257,7 +257,6 @@
        <asp:Panel ID="PanelModal2" runat="server" style="display:none; background:white; width:40%; height:auto">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
- 
     
                 <div class="modal-header">
                      <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
@@ -269,7 +268,7 @@
                         <label>Servicio</label>
                     </div>
                     <div class="form-group">
-                            <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlServ_SelectedIndexChanged">
                             <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                             </asp:DropDownList>
                     <%--        <asp:RequiredFieldValidator ID="rfvServ"
@@ -279,16 +278,18 @@
                             Display="Dynamic"></asp:RequiredFieldValidator>--%>
                     </div>
                     <div class="form-group">
-                        <asp:GridView ID="gvServ" runat="server" AutoGenerateColumns="True" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvServ_SelectedIndexChanged">
+                    <asp:Button ID="btnGuardarS" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarS_Click" Text="Agregar >>" Enabled="false" ValidationGroup="A" Width="140px" />
+                    </div>
+                    <div class="form-group">
+                        <asp:GridView ID="gvServ" runat="server" AutoGenerateColumns="false" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvServ_SelectedIndexChanged">
                         <Columns>
-                        <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
+                        <asp:CommandField HeaderText="Eliminar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" SelectText="Eliminar" />
+                        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                         </Columns>
                 </asp:GridView>
                     </div>
                                       <div class="modal-footer">
-                              <asp:Button ID="btnGuardarS" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarS_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
-                              <asp:Button ID="btnNuevoS" runat="server" class="btn btn-default" OnClick="btnNuevoS_Click" Text="Nuevo" Width="119px" />
-                              <asp:Button ID="btnEliminarS" runat="server" class="btn btn-warning" OnClick="btnEliminarS_Click" Text="Eliminar" Width="116px" />
+                              
                   </div>
                 </div>
                     </ContentTemplate>

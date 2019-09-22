@@ -29,8 +29,7 @@ namespace CapaPresentacion
                 ddlDep1.AutoPostBack = true;
                 ddlDep2.AutoPostBack = true;
                 ddlDep4.AutoPostBack = true;
-                //btnCan.Enabled = false;
-                //btnServ.Enabled = false;
+                ddlServ.AutoPostBack = true;
             }
         }
         protected int? ID
@@ -343,12 +342,6 @@ namespace CapaPresentacion
             gvCanchas.DataBind();
         }
 
-        //protected void btnServ_Click(object sender, EventArgs e)
-        //{
-        //    CargarServicios();
-        //    CargarGrillaServicios();
-        //}
-
         protected void btnGuardarCan_Click(object sender, EventArgs e)
         {
             Cancha cancha = new Cancha();
@@ -418,24 +411,25 @@ namespace CapaPresentacion
             LimpiarCanchas();
         }
 
-        //protected void CargarGrillaServicios()
-        //{
-        //    gvServ.DataSource = null;
+        protected void CargarGrillaServicios()
+        {
+            gvServ.DataSource = null;
 
-        //    gvServ.DataSource = (from serv in ServiciosPorComplejosDao.ObtenerServiciosPorComplejos(ID.Value)
-        //                         orderby serv.Servicio
-        //                         select serv);
+            gvServ.DataSource = (from serv in ServicioExtraDao.ObtenerServiciosPorComp(ID.Value)
+                                 orderby serv.nombre
+                                 select serv);
 
-        //    gvServ.DataKeyNames = new string[] { "ID" };
-        //    gvServ.DataBind();
-        //}
+            gvServ.DataKeyNames = new string[] { "ID" };
+            gvServ.DataBind();
+        }
         private void LimpiarServicios()
         {
             ddlServ.SelectedIndex = 0;
 
             IDServ = null;
-            btnEliminarS.Enabled = false;
-            btnEliminarS.CssClass = "btn btn-warning";
+            btnGuardarS.Enabled = false;
+            //btnEliminarS.Enabled = false;
+            //btnEliminarS.CssClass = "btn btn-warning";
         }
         protected void btnGuardarS_Click(object sender, EventArgs e)
         {
@@ -449,32 +443,29 @@ namespace CapaPresentacion
 
             ServiciosPorComplejosDao.InsertarServicioPorComplejo(servPorComp);
 
-            //CargarGrillaServicios();
-            LimpiarServicios();
-        }
-
-        protected void btnNuevoS_Click(object sender, EventArgs e)
-        {
-            LimpiarServicios();
-        }
-
-        protected void btnEliminarS_Click(object sender, EventArgs e)
-        {
-            ServiciosPorComplejosDao.EliminarServicioPorComplejo(IDServ.Value);
-            //CargarGrillaServicios();
+            CargarGrillaServicios();
             LimpiarServicios();
         }
 
         protected void gvServ_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LimpiarServicios();
             int idSeleccionado = int.Parse(gvServ.SelectedDataKey.Value.ToString());
             IDServ = idSeleccionado;
-            ServicioExtra servSelec = ServicioExtraDao.ObtenerServicioPorID(idSeleccionado);
+            ServiciosPorComplejosDao.EliminarServicioPorComplejo(IDServ.Value);
+            CargarGrillaServicios();
+            LimpiarServicios();
+        }
 
-            ddlServ.SelectedIndex = int.Parse((servSelec.id).ToString());
-
-            btnEliminarS.Enabled = true;
+        protected void ddlServ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlServ.SelectedIndex == 0)
+            {
+                btnGuardarS.Enabled = false;
+            }
+            else
+            {
+                btnGuardarS.Enabled = true;
+            }
         }
 
         //CANCHAS
@@ -500,6 +491,7 @@ namespace CapaPresentacion
         protected void btnPopUp2_Click(object sender, EventArgs e)
         {
             CargarServicios();
+            CargarGrillaServicios();
             btnPopUp_ModalPopupExtender2.Show();
         }
     }

@@ -481,15 +481,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddlServ;
         
         /// <summary>
-        /// Control gvServ.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvServ;
-        
-        /// <summary>
         /// Control btnGuardarS.
         /// </summary>
         /// <remarks>
@@ -499,22 +490,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnGuardarS;
         
         /// <summary>
-        /// Control btnNuevoS.
+        /// Control gvServ.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevoS;
-        
-        /// <summary>
-        /// Control btnEliminarS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarS;
+        protected global::System.Web.UI.WebControls.GridView gvServ;
         
         /// <summary>
         /// Control btnGuardar.
