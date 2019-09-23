@@ -78,6 +78,17 @@ namespace CapaPresentacion
             gvComplejos.DataBind();
         }
 
+        //protected void CargarListServicios(int idComp)
+        //{
+        //    listServicios.DataSource = null;
+
+        //    listServicios.DataSource = (from serv in ServicioExtraDao.ObtenerServiciosPorComp(idComp)
+        //                             orderby serv.nombre
+        //                              select serv);
+
+        //    listServicios.DataBind();
+        //}
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {          
             if (txtBuscar.Text == "")
@@ -125,14 +136,20 @@ namespace CapaPresentacion
             }
             lblDeportes.Text = dep1 + dep2 + dep3;
             lblDescripcion.Text = compSelec.descripcion;
+            //CargarListServicios(compSelec.id);
             lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
             Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
             lblBarrio.Text = "Barrio: " +  bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+            
 
             //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            if(compSelec.avatar != null)
+            {
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            }
+            
 
             img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
             img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();

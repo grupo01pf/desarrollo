@@ -129,6 +129,11 @@
                     <div class="form-group">
                         <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
                     </div>
+                   <%-- <div class="form-group">
+                        <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
+                        <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
+                    </div>--%>
+                    
                     <div class="form-group">
                         <asp:Label ID="lblDireccion" runat="server"></asp:Label>
                     </div>
