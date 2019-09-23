@@ -134,6 +134,10 @@ namespace CapaPresentacion
             //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
             imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
+            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+
             btnPopUp_ModalPopupExtender2.Show();
 
         }

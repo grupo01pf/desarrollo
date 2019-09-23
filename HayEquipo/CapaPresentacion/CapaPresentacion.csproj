@@ -119,6 +119,7 @@
     <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="imagen.aspx" />
     <Content Include="Imagenes\boton-ir.png" />
+    <Content Include="Imagenes\complejo_transparente.png" />
     <Content Include="Imagenes\nene.png" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
