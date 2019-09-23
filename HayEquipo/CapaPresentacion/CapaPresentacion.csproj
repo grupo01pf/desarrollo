@@ -106,6 +106,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AvatarComplejo.aspx" />
     <Content Include="avatar\nene.png" />
     <Content Include="ABMComplejos.aspx" />
     <Content Include="ComplejoInfo.aspx" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="ABMComplejos.aspx.designer.cs">
       <DependentUpon>ABMComplejos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AvatarComplejo.aspx.cs">
+      <DependentUpon>AvatarComplejo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AvatarComplejo.aspx.designer.cs">
+      <DependentUpon>AvatarComplejo.aspx</DependentUpon>
     </Compile>
     <Compile Include="ComplejoInfo.aspx.cs">
       <DependentUpon>ComplejoInfo.aspx</DependentUpon>

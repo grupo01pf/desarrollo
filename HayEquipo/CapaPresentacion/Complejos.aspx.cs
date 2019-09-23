@@ -99,6 +99,7 @@ namespace CapaPresentacion
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
+            Session["ID"] = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
             myModalLabel2.InnerText = compSelec.nombre;
@@ -129,6 +130,9 @@ namespace CapaPresentacion
             lblBarrio.Text = "Barrio: " +  bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+
+            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
+            imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
             btnPopUp_ModalPopupExtender2.Show();
 
