@@ -44,9 +44,9 @@ namespace CapaEntidades
 
         // CanchasPorComplejos
     
-        public int idCanchasPorComplejos { get; set; }
-        public Nullable<int> idComplejoCanchasPorComplejos { get; set; }
-        public Nullable<int> idCanchaCanchasPorComplejos{ get; set; }
+        //public int idCanchasPorComplejos { get; set; }
+        //public Nullable<int> idComplejoCanchasPorComplejos { get; set; }
+        //public Nullable<int> idCanchaCanchasPorComplejos{ get; set; }
 
         
 

@@ -317,7 +317,7 @@ namespace CapaPresentacion
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             string datos = string.Empty;
-            datos = fila.Cells[0].Text + " , " + fila.Cells[1].Text + " , " + fila.Cells[2].Text +" , $" + fila.Cells[3].Text;
+            datos = fila.Cells[1].Text + " , " + fila.Cells[2].Text + " , " + fila.Cells[3].Text +" hs. , $" + fila.Cells[4].Text;
             lbl_Reserva.Text = "Reservar en =" + datos;
 
           

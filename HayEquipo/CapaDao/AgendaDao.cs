@@ -28,7 +28,7 @@ namespace CapaDao
                 a = new AgendaEntidad();
 
                 a.nombreCancha = dr["nombreCancha"].ToString();
-                a.nombreTipoCancha = dr["nombreTipoCancha"].ToString();
+                a.nombreTipoCancha = dr["tipoCancha"].ToString();
                  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
                 a.precioCancha = float.Parse(dr["precio"].ToString());
