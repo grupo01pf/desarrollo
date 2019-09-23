@@ -32,6 +32,7 @@ namespace CapaDao
                  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
                 a.precioCancha = float.Parse(dr["precio"].ToString());
+                a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
                 agenda.Add(a);
             }
             dr.Close();

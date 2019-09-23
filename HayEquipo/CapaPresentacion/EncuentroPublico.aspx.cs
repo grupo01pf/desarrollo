@@ -20,7 +20,9 @@ namespace CapaPresentacion
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();
-            
+            validacionesDeUsuario();
+            calcularCapacidad();
+
             cargarChat();
             // txt_Mensaje.Focus();
           
@@ -59,9 +61,7 @@ namespace CapaPresentacion
             
             bloquearControles();
 
-            validacionesDeUsuario();
             
-            calcularCapacidad();
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();

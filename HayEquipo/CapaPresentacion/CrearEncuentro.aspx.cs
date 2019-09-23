@@ -152,11 +152,15 @@ namespace CapaPresentacion
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
-            else { ed.nombreLP = txt_NombreLugar.Text; }
+           // else { ed.nombreLP = txt_NombreLugar.Text; }
 
             if (string.IsNullOrEmpty(txt_Direccion.Text))
                 ed.direccion = string.Empty;
-            else { ed.direccion = txt_Direccion.Text; }
+            // else { ed.direccion = txt_Direccion.Text; }
+
+            if (string.IsNullOrEmpty(lbl_Capacidad.Text))
+                ed.capacidad = 10; // (POR DEFECTO 100 USUARIOS)
+            else { ed.capacidad = int.Parse(lbl_Capacidad.Text); }
 
 
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
@@ -254,6 +258,7 @@ namespace CapaPresentacion
             txt_Cantidad.Enabled = false;
 
             btn_Agenda.Visible = false;
+            lbl_Capacidad.Visible = false;
 
             contenedorDelMapa.Visible = false;
             frm_map.Visible = false;
@@ -306,6 +311,8 @@ namespace CapaPresentacion
 
         protected void cmb_Complejo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
             cargarAgenda();
             btn_Agenda.Visible = true;
           
@@ -317,10 +324,12 @@ namespace CapaPresentacion
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             string datos = string.Empty;
-            datos = fila.Cells[1].Text + " , " + fila.Cells[2].Text + " , " + fila.Cells[3].Text +" hs. , $" + fila.Cells[4].Text;
-            lbl_Reserva.Text = "Reservar en =" + datos;
+            datos = fila.Cells[1].Text + " , " + fila.Cells[2].Text + " , " + fila.Cells[3].Text +"hs. , $" + fila.Cells[4].Text;
+            lbl_Reserva.Text = "Reservar en: " + datos;
 
-          
+            lbl_Capacidad.Text = fila.Cells[5].Text;
+
+
         }
     }
 }

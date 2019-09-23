@@ -118,6 +118,7 @@
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
                                                     
 
                                                     </Columns>
@@ -135,7 +136,8 @@
                                 <%--FIN MODAL--%>
                                 <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
-
+                                <br />
+                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
 
