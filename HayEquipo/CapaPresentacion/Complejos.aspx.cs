@@ -99,19 +99,41 @@ namespace CapaPresentacion
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
-            //ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
-            //GridViewRow fila = gvComplejos.SelectedRow;
+            myModalLabel2.InnerText = compSelec.nombre;
+            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+            string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
+            string dep2;
+            string dep3;
+            if (compSelec.idDeporte2 != null)
+            {
+                dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
+            }
+            else
+            {
+                dep2 = "";
+            }
+            if (compSelec.idDeporte3 != null)
+            {
+                dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
+            }
+            else
+            {
+                dep3 = "";
+            }
+            lblDeportes.Text = dep1 + dep2 + dep3;
+            lblDescripcion.Text = compSelec.descripcion;
+            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblBarrio.Text = "Barrio: " +  bar.nombre;
+            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
 
-            //Session["id"] = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-
-            //Response.Redirect("ComplejoInfo.aspx");
+            btnPopUp_ModalPopupExtender2.Show();
 
         }
-        //protected void lbEdit_Click(object sender, EventArgs e)
-        //{
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-        //}
+  
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -320,6 +342,11 @@ namespace CapaPresentacion
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
+        }
+
+        protected void btnClose2_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender2.Hide();
         }
     }
 }

@@ -6,6 +6,8 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCD" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White" Font-Size="Large"></asp:Label>
         <br />
         <br />
@@ -75,7 +77,86 @@
         </asp:GridView>
         <br />
         <br />
+     <%--    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+        <ContentTemplate>
+           <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+               <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
+           </asp:LinkButton>
+                   
+      </ContentTemplate>
+              </asp:UpdatePanel>--%>
+    
+    <asp:Button ID="btnInicial2" runat="server" Text="Button" style="display:none" />
+      
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender2" runat="server" 
+                Enabled="True" TargetControlID="btnInicial2" 
+               PopupControlID="PanelModal2">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
 
+            </Animations>
+          
+            </ajaxToolkit:ModalPopupExtender>
+ 
+       <asp:Panel ID="PanelModal2" runat="server" style="display:none; background:white; width:40%; height:auto">
+                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <ContentTemplate>
+    
+                <div class="modal-header">
+                     <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
+                       onclick="btnClose2_Click"/>
+                    <h4 class="modal-title" id="myModalLabel2" runat="server">Servicios</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                    </div>
+                     <div class="form-group">
+                        <asp:Label ID="lblDeportes" runat="server"></asp:Label>
+                    </div>  
+                    <div class="form-group">
+                        <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                    </div>    
+                     <div class="form-group">
+                        <asp:Label ID="lblZona" runat="server"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                    </div>  
+                    <div class="form-group">
+                     <%--       <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlServ_SelectedIndexChanged">
+                            <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                            </asp:DropDownList>--%>
+                    <%--        <asp:RequiredFieldValidator ID="rfvServ"
+                            runat="server" ControlToValidate="ddlServ"
+                            ErrorMessage="Seleccione un Servicio" InitialValue="0"
+                            CssClass="alert-danger"
+                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
+
+                  <div class="modal-footer">
+                              
+                  </div>
+                </div>
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
+                </asp:Panel> 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <</asp:Content>
 

@@ -33,5 +33,12 @@ namespace CapaDao
             cn.Close();
             return ListaZona;
         }
+        public static Zona ObtenerZonasPorID(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.Zona.First(z => z.id == id);
+            }
+        }
     }
 }
