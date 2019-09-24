@@ -35,7 +35,7 @@ namespace CapaPresentacion
                 if (Session["Rol"].ToString() == "Administrador")
                 {
                     FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("HomeAdministrador.aspx");
                 }
                 if (Session["Rol"].ToString() == "UsuarioDeportista")
                 {
@@ -45,7 +45,7 @@ namespace CapaPresentacion
                 if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
                 {
                     FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("HomeEstablecimiento.aspx");
                 }
             }
             //bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
