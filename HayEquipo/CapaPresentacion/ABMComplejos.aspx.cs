@@ -259,7 +259,7 @@ namespace CapaPresentacion
         {
             Limpiar();
         }
-
+        //AGREGAR QUE ELIMINE SUS CANCHAS Y SERVICIOS TAMBIEN
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             ComplejoDeportivoDao.EliminarComplejo(ID.Value);
