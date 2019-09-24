@@ -190,7 +190,7 @@ namespace CapaPresentacion
                 CargarGrillaComplejosPorNom();
             }
         }
-
+        //SI APRETO EN FUTBOL Y BASKET ME TRAE FUTBOL O BASKET (TIENE Q TRAER FUTBOL Y BASQUET)
         protected void lbFutbol_Click(object sender, EventArgs e)
         {
             lbFutbol.Enabled = false;

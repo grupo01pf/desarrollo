@@ -26,7 +26,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-    <h1 class="titulo">Complejos</h1>
+    <h1 class="titulo">Complejos Deportivos</h1>
     <%--<div class="jumbotron text-center" style="background-color: black">--%>
     <div class="container text-center"">
         <div class="row alinearAlCentro">
@@ -63,7 +63,7 @@
                             runat="server" ControlToValidate="ddlDep1"
                             ErrorMessage="Seleccione un Deporte" InitialValue="0"
                             CssClass="alert-danger"
-                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                            Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblDep2" CssClass="alinearIzquiera" runat="server" Text="Deporte 2" ForeColor="black"></asp:Label>
