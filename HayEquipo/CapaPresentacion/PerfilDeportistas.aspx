@@ -82,10 +82,6 @@ input[type="radio"] {
   display: none;
 }
 
-label .estrella {
-  color: grey;
-
-}
 
 .clasificacion {
   direction: rtl;
@@ -98,6 +94,7 @@ label:hover ~ label {
   color: orange;
 }
 
+
 input[type="radio"]:checked ~ label {
   color: orange;
 }
@@ -106,8 +103,10 @@ input[type="radio"]:checked ~ label {
 }
 .estrella{
     transform: scale(2.0);
-    
+     margin-left:20%;
 }
+
+
 
     </style>
 </asp:Content>
@@ -130,62 +129,67 @@ input[type="radio"]:checked ~ label {
           
            <div class="form-group">
              <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click"/>
-            </div>
+              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
+                </div>
              <asp:Label ID="lblestado" runat="server"></asp:Label>
          </div>
         <div class="col-sm-8 well">
          <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
+    <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
     <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
-    <li><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
+    <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
     <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
   </ul>
-
         <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-       
+        <br />
          <div class="form-group">
-          <label>Nombres</label>
+           <asp:Label ID="lbl_Nombres" runat="server" Text="Nombres"></asp:Label>
         <asp:TextBox ID="txt_Nombres" class="form-control" runat="server" placeholder="Ingrese Nombres"></asp:TextBox>
-
+      
     </div>
        <div class="form-group">
-      <label>Apellido</label>
+       <asp:Label ID="lbl_Apellidos" runat="server" Text="Apellido"></asp:Label>
         <asp:TextBox ID="txt_Apellidos" runat="server" class="form-control" placeholder="Ingrese Apellido"></asp:TextBox>
-        </div>
+       
+       </div>
     <div class="form-group">
-      <label>Tipo Documento</label>
+      <asp:Label ID="lbl_TipoDocumento" runat="server" Text="Tipo Documento"></asp:Label>
         <asp:DropDownList ID="ddl_TipoDocumento" runat="server"></asp:DropDownList>
       </div>
           
            <div class="form-group">
-      <label>Numero de Documento</label>
+       <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="Numero de Documento"></asp:Label>
         <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" placeholder="Ingrese Nro Documento"></asp:TextBox>
         </div>
            <div class="form-group">
-      <label>Sexo</label>
+       <asp:Label ID="lbl_Sexo" runat="server" Text="Sexo"></asp:Label>
         <asp:TextBox ID="txt_Sexo" runat="server" class="form-control" placeholder="Ingrese Sexo"></asp:TextBox>
         
            </div>
            <div class="form-group">
-      <label>Fecha de Nacimiento</label>
+       <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento"></asp:Label>
         <asp:TextBox ID="txt_FechaNacimiento" runat="server" class="form-control" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
         </div>
              <div class="form-group">
-      <label>Telefono</label>
+       <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono"></asp:Label>
         <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
         </div>
            <div class="form-group">
-             <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" />
- </div>
+             <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
+              <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />   
+              <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click"  Visible="false" />   
+             <asp:Label ID="lblmsj" runat="server"></asp:Label> 
+           </div>
        </div> 
    
 
            
     <div id="menu1" class="tab-pane fade">
           <div class="table-responsive">
+               <br />
                   <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows"  >
+                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
                              
                                 <Columns>
                                     <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
@@ -207,44 +211,62 @@ input[type="radio"]:checked ~ label {
           </div> 
 <div id="menu2" class="tab-pane fade">
           <div class="table-responsive">
+               <br />
    <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
   <p class="clasificacion">
-    <input id="radio1" type="radio" name="estrellas" value="5"/>
-    <label for="radio1" class="estrella">★</label>
-    <input id="radio2" type="radio" name="estrellas" value="4"/>
+    <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
+    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+    <asp:ListItem Text="★" Value="5"></asp:ListItem>  
+    </asp:RadioButtonList> 
+       <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
+   <%-- <input id="radio1" runat="server" type="radio" name="estrellas" value="5" />
+    <label for="radio1" class="estrella" runat="server" onclick="marcarradio1">★</label>
+    <input id="radio2"  runat="server" type="radio" name="estrellas" value="4"/>
     <label for="radio2" class="estrella">★</label>
-    <input id="radio3" type="radio" name="estrellas" value="3"/>
+    <input id="radio3" runat="server" type="radio" name="estrellas" value="3"/>
     <label for="radio3" class="estrella">★</label>
-    <input id="radio4" type="radio" name="estrellas" value="2"/>
+    <input id="radio4" runat="server" type="radio" name="estrellas" value="2"/>
     <label for="radio4" class="estrella">★</label>
-    <input id="radio5" type="radio" name="estrellas" value="1"/>
-    <label for="radio5" class="estrella">★</label>
+    <input id="radio5" runat="server" type="radio" name="estrellas" value="1"/>
+    <label for="radio5" class="estrella">★</label>--%>
+      
   </p>
       <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>   
   <p class="clasificacion">
-    <input id="radio6" type="radio" name="estrellas" value="5"/>
-    <label for="radio6" class="estrella">★</label>
-    <input id="radio7" type="radio" name="estrellas" value="4"/>
-    <label for="radio7" class="estrella">★</label>
-    <input id="radio8" type="radio" name="estrellas" value="3"/>
-    <label for="radio8" class="estrella">★</label>
-    <input id="radio9" type="radio" name="estrellas" value="2"/>
-    <label for="radio9" class="estrella">★</label>
-    <input id="radio10" type="radio" name="estrellas" value="1"/>
-    <label for="radio10" class="estrella">★</label>
+     <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
+    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+    </asp:RadioButtonList> 
+     <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
   </p>
-             <asp:Label CssClass="estrellalabel" runat="server" Text="No se que"></asp:Label>
+        <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad Deportiva"></asp:Label>
   <p class="clasificacion">
-    <input id="radio11" type="radio" name="estrellas" value="5"/>
-    <label for="radio11" class="estrella">★</label>
-    <input id="radio12" type="radio" name="estrellas" value="4"/>
-    <label for="radio12" class="estrella">★</label>
-    <input id="radio13" type="radio" name="estrellas" value="3"/>
-    <label for="radio13" class="estrella">★</label>
-    <input id="radio14" type="radio" name="estrellas" value="2"/>
-    <label for="radio14" class="estrella">★</label>
-    <input id="radio15" type="radio" name="estrellas" value="1"/>
-    <label for="radio15" class="estrella">★</label>
+     <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
+    <asp:ListItem Text="★" Value="1" ></asp:ListItem>
+    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+    </asp:RadioButtonList> 
+      <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
+  </p>
+
+                <asp:Label CssClass="estrellalabel" runat="server" Text="Promedio General"></asp:Label>   
+  <p class="clasificacion">
+     <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true"  >
+    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+    </asp:RadioButtonList> 
+     <asp:Label ID="lblmsjrb4" runat="server" Text=""></asp:Label>
   </p>
              
             </div>

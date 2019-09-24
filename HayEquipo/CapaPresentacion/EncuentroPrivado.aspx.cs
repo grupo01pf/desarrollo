@@ -17,6 +17,12 @@ namespace CapaPresentacion
         {
             Session["IdUsuarioEncuentro"] = null;
 
+            if (Request.QueryString["Id"] != null)
+            {
+
+                Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
+            }
+
             cargarDeportes();
             cargarComplejos();
             cargarDatosEncuentroPrivado();

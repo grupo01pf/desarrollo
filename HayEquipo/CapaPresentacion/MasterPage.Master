@@ -43,6 +43,17 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+     .moverbuscador{
+         margin-left:10%;
+         margin-top:0.7%;
+     }
+     .tamañobuscador{
+         width:200%;
+     }
+     .moverboton{
+         margin-left:490%;
+        
+     }
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -74,6 +85,14 @@ $(window).load(function() {
         <li class="active"><a href="Home.aspx">Principal</a></li>
         <li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>
       </ul>
+        <ul class="nav navbar-nav moverbuscador">          
+          <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>
+          <li>
+            <button class="btn btn-default moverboton" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </li>             
+       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
