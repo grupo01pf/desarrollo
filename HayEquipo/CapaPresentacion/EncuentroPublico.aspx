@@ -28,17 +28,18 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">   
     <h1 class="titulo">Encuentro</h1>
-    <div class="jumbotron text-center" style="background-color:black">
+    <%--<div class="jumbotron text-center" style="background-color:black">--%>
+    <div class="container text-center""> 
         <div class="row">
             <div class="col-sm-4">
                 <div class="well">
                     <%--DATOS--%>
                     <legend>Datos del Encuentro</legend>
                     <div class="row">
-                        <div class="col-sm-3 alinearIzquiera">                          
+                        <div class="col-sm-4 alinearIzquiera">                          
                                 <strong><asp:Label ID="cld_Fecha" CssClass="tamanoLetra" runat="server" Text=""></asp:Label></strong>                                                                           
                         </div>
-                        <div class="col-sm-9 alinearIzquiera">                                                          
+                        <div class="col-sm-8 alinearIzquiera">                                                          
                                <strong><asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" style="color:#11398a" runat="server" Text=""></asp:Label></strong><br />
                                <asp:Label ID="Label1" style="color:#808080" runat="server" Text="Público &#183; Organizado por "></asp:Label>
                                <strong><asp:Label ID="txt_Organizador" runat="server" Text=""></asp:Label></strong>                                                                            

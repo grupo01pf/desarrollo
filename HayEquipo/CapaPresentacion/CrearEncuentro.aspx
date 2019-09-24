@@ -20,7 +20,8 @@
             <h1>
                 <asp:Label ID="lbl_Titulo" runat="server" Text="Crear Encuentro"></asp:Label>
             </h1>                 
-    <div class="jumbotron text-center fondoPalJumbotron">
+   <%-- <div class="jumbotron text-center fondoPalJumbotron">--%>
+    <div class="container text-center""> 
          <div class="row">
             <div class="col-md-6">
                 <div class="well">
