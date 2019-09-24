@@ -67,9 +67,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CanchaEntidad.cs" />
-    <Compile Include="CanchasPorComplejos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="CanchasPorComplejosEntidad.cs" />
     <Compile Include="CanchasPorHorarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -215,6 +212,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SponsorEntidad.cs" />
+    <Compile Include="sp_AgendaDao_ObtenerAgendaComplejo_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

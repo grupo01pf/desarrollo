@@ -86,6 +86,8 @@
     <Property Name="idDeporte3" Type="Int32" />
     <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="horaApertura" Type="Time" Precision="0" />
+    <Property Name="horaCierre" Type="Time" Precision="0" />
     <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
     <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
     <NavigationProperty Name="Deporte" Relationship="Self.FK_ComplejoDeportivo_Deporte" FromRole="ComplejoDeportivo" ToRole="Deporte" />
@@ -582,14 +584,6 @@
     <Property Name="idDeportista" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="ZonasPorDeportistas" ToRole="Deportista" />
     <NavigationProperty Name="Zona" Relationship="Self.FK_ZonasPorDeportistas_Zona" FromRole="ZonasPorDeportistas" ToRole="Zona" />
-  </EntityType>
-  <EntityType Name="CanchasPorComplejos">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idComplejo" Type="Int32" />
-    <Property Name="idCancha" Type="Int32" />
   </EntityType>
   <EntityType Name="FotosComplejo">
     <Key>
@@ -1490,7 +1484,6 @@
     <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" />
     <EntitySet Name="Zona" EntityType="Self.Zona" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
-    <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
@@ -1767,6 +1760,9 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
     </AssociationSet>
+    <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
+      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_EncuentroDeportivoDao_idEncuentroCreado" ReturnType="Collection(Int32)">
       <Parameter Name="usuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1843,6 +1839,13 @@
       <Parameter Name="prmContraseña" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
+    <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="tipoCancha" Nullable="true" MaxLength="50" />
+    <Property Type="Time" Name="horaInicio" Nullable="true" />
+    <Property Type="Double" Name="precio" Nullable="true" />
+    <Property Type="Int32" Name="capacidad" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />

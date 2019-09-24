@@ -219,6 +219,8 @@ namespace CapaDao
                 complejo.descripcion = dr["descripcion"].ToString();
                 complejo.calle = dr["calle"].ToString();
                 complejo.mapa = dr["mapa"].ToString();
+                complejo.horaApertura = TimeSpan.Parse(dr["horaApertura"].ToString());
+                complejo.horaCierre = TimeSpan.Parse(dr["horaCierre"].ToString());
             }
             dr.Close();
             cn.Close();

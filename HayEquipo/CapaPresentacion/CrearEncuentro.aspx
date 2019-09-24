@@ -103,7 +103,7 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Agenda</h5>
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle"><strong>Agenda</strong></h5>
                                             </div>
                                             <div class="modal-body">
 
@@ -118,7 +118,7 @@
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
-                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="false" />
                                                     
 
                                                     </Columns>

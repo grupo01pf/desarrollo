@@ -46,16 +46,6 @@
     <Property Name="idComplejo" Type="int" />
     <Property Name="precio" Type="float" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'HayEquipo.dbo.CanchasPorComplejos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="CanchasPorComplejos">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idComplejo" Type="int" />
-    <Property Name="idCancha" Type="int" />
-  </EntityType>
   <EntityType Name="CanchasPorHorarios">
     <Key>
       <PropertyRef Name="id" />
@@ -83,6 +73,8 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.CanchasPorComplejos' no tiene 
     <Property Name="idDeporte3" Type="int" />
     <Property Name="mapa" Type="nvarchar(max)" />
     <Property Name="avatar" Type="image" />
+    <Property Name="horaApertura" Type="time" Precision="0" />
+    <Property Name="horaCierre" Type="time" Precision="0" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -1318,6 +1310,9 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_AgendaDao_ObtenerAgendaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComplejo" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_EncuentroDeportivoDao_idEncuentroCreado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usuario" Type="int" Mode="In" />
   </Function>
@@ -1439,13 +1434,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CanchasPorComplejos" EntityType="Self.CanchasPorComplejos" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [CanchasPorComplejos].[id] AS [id], 
-    [CanchasPorComplejos].[idComplejo] AS [idComplejo], 
-    [CanchasPorComplejos].[idCancha] AS [idCancha]
-    FROM [dbo].[CanchasPorComplejos] AS [CanchasPorComplejos]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [FotosComplejo].[id] AS [id], 

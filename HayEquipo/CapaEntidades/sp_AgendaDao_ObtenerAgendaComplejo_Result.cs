@@ -10,12 +10,13 @@
 namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CanchasPorComplejos
+    public partial class sp_AgendaDao_ObtenerAgendaComplejo_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idComplejo { get; set; }
-        public Nullable<int> idCancha { get; set; }
+        public string nombreCancha { get; set; }
+        public string tipoCancha { get; set; }
+        public Nullable<System.TimeSpan> horaInicio { get; set; }
+        public Nullable<double> precio { get; set; }
+        public Nullable<int> capacidad { get; set; }
     }
 }

@@ -72,6 +72,9 @@ namespace CapaEntidades
         public Nullable<int> idDeporte3 { get; set; }
         public string mapa { get; set; }
         public byte[] avatar { get; set; }
+        public Nullable<System.TimeSpan> horaApertura { get; set; }
+        public Nullable<System.TimeSpan> horaCierre { get; set; }
+
 
 
         //EncuentroDeportivo

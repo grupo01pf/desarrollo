@@ -12,7 +12,7 @@ namespace CapaDao
 {
     public class AgendaDao
     {
-        public static List<AgendaEntidad> ObtenerAgendaComplejo(int idComplejo) {
+        public static List<AgendaEntidad> ObtenerAgendaComplejo(int idComplejo,int idDeporte) {
 
             List<AgendaEntidad> agenda = new List<AgendaEntidad>();
             AgendaEntidad a = null;
@@ -22,6 +22,7 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand("sp_AgendaDao_ObtenerAgendaComplejo", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idComplejo", idComplejo);
+            cmd.Parameters.AddWithValue("@idDeporte", idDeporte);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -29,10 +30,12 @@ namespace CapaDao
 
                 a.nombreCancha = dr["nombreCancha"].ToString();
                 a.nombreTipoCancha = dr["tipoCancha"].ToString();
-                 TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
+               //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
                 a.precioCancha = float.Parse(dr["precio"].ToString());
                 a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
+                TimeSpan ha; if (TimeSpan.TryParse(dr["horaApertura"].ToString(), out ha)) { a.horaApertura = ha; } // ok
+                TimeSpan hc; if (TimeSpan.TryParse(dr["horaCierre"].ToString(), out hc)) { a.horaCierre = hc; } // ok
                 agenda.Add(a);
             }
             dr.Close();

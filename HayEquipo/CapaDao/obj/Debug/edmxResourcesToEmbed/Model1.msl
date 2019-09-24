@@ -78,6 +78,8 @@
           <ScalarProperty Name="idDeporte3" ColumnName="idDeporte3" />
           <ScalarProperty Name="mapa" ColumnName="mapa" />
           <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
+          <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -495,15 +497,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CanchasPorComplejos">
-      <EntityTypeMapping TypeName="HayEquipoModel.CanchasPorComplejos">
-        <MappingFragment StoreEntitySet="CanchasPorComplejos">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
-          <ScalarProperty Name="idCancha" ColumnName="idCancha" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FotosComplejo">
       <EntityTypeMapping TypeName="HayEquipoModel.FotosComplejo">
         <MappingFragment StoreEntitySet="FotosComplejo">
@@ -543,6 +536,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgendaDao_ObtenerAgendaComplejo" FunctionName="HayEquipoModel.Store.sp_AgendaDao_ObtenerAgendaComplejo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result">
+          <ScalarProperty Name="nombreCancha" ColumnName="nombreCancha" />
+          <ScalarProperty Name="tipoCancha" ColumnName="tipoCancha" />
+          <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_idEncuentroCreado" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_idEncuentroCreado" />
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentro" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentro" />
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA" />

@@ -72,11 +72,19 @@ namespace CapaEntidades
         public virtual DbSet<ValoracionDeportista> ValoracionDeportista { get; set; }
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
-        public virtual DbSet<CanchasPorComplejos> CanchasPorComplejos { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
+    
+        public virtual ObjectResult<sp_AgendaDao_ObtenerAgendaComplejo_Result> sp_AgendaDao_ObtenerAgendaComplejo(Nullable<int> idComplejo)
+        {
+            var idComplejoParameter = idComplejo.HasValue ?
+                new ObjectParameter("idComplejo", idComplejo) :
+                new ObjectParameter("idComplejo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaDao_ObtenerAgendaComplejo_Result>("sp_AgendaDao_ObtenerAgendaComplejo", idComplejoParameter);
+        }
     
         public virtual ObjectResult<Nullable<int>> sp_EncuentroDeportivoDao_idEncuentroCreado(Nullable<int> usuario)
         {

@@ -53,8 +53,8 @@ namespace CapaPresentacion
             }
             else
             {
-               
-               
+
+
                 if (string.IsNullOrEmpty(lbl_Reserva.Text))
                 { lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
                 else
@@ -78,7 +78,8 @@ namespace CapaPresentacion
 
             if (string.IsNullOrEmpty(txt_HoraInicio.Text))
             { ed.horaInicio = TimeSpan.Parse("00:00"); }
-            else {
+            else
+            {
                 TimeSpan? hi = TimeSpan.Parse(txt_HoraInicio.Text);
                 ed.horaInicio = hi;
             }
@@ -152,14 +153,14 @@ namespace CapaPresentacion
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
-           // else { ed.nombreLP = txt_NombreLugar.Text; }
+            // else { ed.nombreLP = txt_NombreLugar.Text; }
 
             if (string.IsNullOrEmpty(txt_Direccion.Text))
                 ed.direccion = string.Empty;
             // else { ed.direccion = txt_Direccion.Text; }
 
             if (string.IsNullOrEmpty(lbl_Capacidad.Text))
-                ed.capacidad = 10; // (POR DEFECTO 100 USUARIOS)
+                ed.capacidad = 4; // (POR DEFECTO 4 USUARIOS)
             else { ed.capacidad = int.Parse(lbl_Capacidad.Text); }
 
 
@@ -300,11 +301,41 @@ namespace CapaPresentacion
 
         }
 
-       
 
-        private void cargarAgenda() {
-            
-            gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
+
+        private void cargarAgenda()
+        {
+
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
+            DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+            int ha = int.Parse(horaApertura.Hour.ToString());
+
+
+            int horas = int.Parse(horario.Hour.ToString());
+
+            List<AgendaEntidad> datosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex,cmb_Deporte.SelectedIndex);
+            AgendaEntidad agenda = null;
+            List<AgendaEntidad> listaAgenda = new List<AgendaEntidad>();
+            foreach (AgendaEntidad a in datosAgenda)
+            {
+
+                for(int i = 0; i < horas; i++)
+                {
+                    agenda = new AgendaEntidad();
+                    agenda.nombreCancha = a.nombreCancha;
+                    agenda.nombreTipoCancha = a.nombreTipoCancha;                   
+                    agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
+                    agenda.precioCancha = a.precioCancha;
+                    agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+                   
+                    listaAgenda.Add(agenda);
+                }
+            }
+
+            gdv_Agenda.DataSource = listaAgenda;
+
+            //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
             gdv_Agenda.DataKeyNames = new string[] { "nombreCancha" };
             gdv_Agenda.DataBind();
         }
