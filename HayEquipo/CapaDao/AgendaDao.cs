@@ -28,6 +28,7 @@ namespace CapaDao
             {
                 a = new AgendaEntidad();
 
+                a.idCancha = int.Parse(dr["idCancha"].ToString());
                 a.nombreCancha = dr["nombreCancha"].ToString();
                 a.nombreTipoCancha = dr["tipoCancha"].ToString();
                //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
@@ -42,6 +43,41 @@ namespace CapaDao
             cn.Close();
 
             return agenda;
+        }
+
+        public static List<AgendaEntidad> ObtenerHorariosReservados(int idComplejo, DateTime fecha) {
+
+            List<AgendaEntidad> agenda = new List<AgendaEntidad>();
+            AgendaEntidad a = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_AgendaDao_ObtenerHorariosReservados", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idComplejo", idComplejo);
+            cmd.Parameters.AddWithValue("@fecha", fecha);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                a = new AgendaEntidad();
+
+                a.idCancha = int.Parse(dr["idCancha"].ToString());
+                a.fechaHorario = DateTime.Parse(dr["fecha"].ToString());
+                TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
+                a.idEstadoHorario = int.Parse(dr["idEstado"].ToString());
+                //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
+                //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
+               // a.precioCancha = float.Parse(dr["precio"].ToString());
+               // a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
+               
+               // TimeSpan hc; if (TimeSpan.TryParse(dr["horaCierre"].ToString(), out hc)) { a.horaCierre = hc; } // ok
+                agenda.Add(a);
+            }
+            dr.Close();
+            cn.Close();
+
+            return agenda;
+
         }
 
     }

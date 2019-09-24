@@ -129,6 +129,17 @@ namespace CapaPresentacion
         private void crearEventoPrivado()
         {
 
+            /*
+            GridViewRow fila = gdv_Agenda.SelectedRow;
+
+            string datos = string.Empty;
+            datos = fila.Cells[1].Text + " , " + fila.Cells[2].Text + " , " + fila.Cells[3].Text + "hs. , $" + fila.Cells[4].Text;
+            lbl_Error.Text = "Reservar en: " + datos;
+            
+            */
+
+
+
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
             ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
@@ -185,6 +196,11 @@ namespace CapaPresentacion
             // msg.texto = string.Empty;
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
+
+             
+
+
+
 
         }
 
@@ -305,7 +321,8 @@ namespace CapaPresentacion
 
         private void cargarAgenda()
         {
-
+            //******************************************
+            // Generar Horarios
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
             DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
             DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
@@ -314,15 +331,16 @@ namespace CapaPresentacion
 
             int horas = int.Parse(horario.Hour.ToString());
 
-            List<AgendaEntidad> datosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex,cmb_Deporte.SelectedIndex);
+            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex,cmb_Deporte.SelectedIndex);
             AgendaEntidad agenda = null;
             List<AgendaEntidad> listaAgenda = new List<AgendaEntidad>();
-            foreach (AgendaEntidad a in datosAgenda)
+            foreach (AgendaEntidad a in listaDatosAgenda)
             {
 
                 for(int i = 0; i < horas; i++)
                 {
                     agenda = new AgendaEntidad();
+                    agenda.idCancha = a.idCancha;
                     agenda.nombreCancha = a.nombreCancha;
                     agenda.nombreTipoCancha = a.nombreTipoCancha;                   
                     agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
@@ -333,7 +351,38 @@ namespace CapaPresentacion
                 }
             }
 
-            gdv_Agenda.DataSource = listaAgenda;
+            //**************************************************
+            // Quitar Horarios Reservados
+
+
+            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
+            List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
+
+            foreach (AgendaEntidad a in listaAgenda) {
+
+                foreach (AgendaEntidad hr in listaHorariosReservados) {
+
+                    if (!(a.idCancha == hr.idCancha && a.horaInicioHorario == hr.horaInicioHorario)) {
+
+                        agenda = new AgendaEntidad();
+                        agenda.idCancha = a.idCancha;
+                        agenda.nombreCancha = a.nombreCancha;
+                        agenda.nombreTipoCancha = a.nombreTipoCancha;
+                        agenda.horaInicioHorario = a.horaInicioHorario;
+                        agenda.precioCancha = a.precioCancha;
+                        agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+
+                        listaHorariosDisponibles.Add(agenda);
+                    }
+                }
+            }
+
+
+
+            //*************************************************
+            // Cargar Horarios
+            // gdv_Agenda.DataSource = listaAgenda;
+            gdv_Agenda.DataSource = listaHorariosDisponibles;
 
             //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
             gdv_Agenda.DataKeyNames = new string[] { "nombreCancha" };
