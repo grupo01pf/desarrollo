@@ -72,7 +72,8 @@ $(window).load(function() {
                     </div>
                 </div>
             </nav>
-  <div class="jumbotron text-center" style="background-color:black">
+  <%--<div class="jumbotron text-center" style="background-color:black">--%>
+        <div class="container text-center">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="well">

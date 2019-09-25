@@ -36,7 +36,8 @@
                     <%--DATOS--%>
                     <legend>Datos del Encuentro</legend>
                     <div class="row">
-                        <div class="col-sm-4 alinearIzquiera">                          
+                        <div class="col-sm-4 alinearIzquiera">  
+                                <span class="glyphicon glyphicon-calendar tamanoLetra"></span>                        
                                 <strong><asp:Label ID="cld_Fecha" CssClass="tamanoLetra" runat="server" Text=""></asp:Label></strong>                                                                           
                         </div>
                         <div class="col-sm-8 alinearIzquiera">                                                          
