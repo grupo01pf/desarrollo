@@ -37,7 +37,7 @@
                     <div class="well" style="width: 310px; margin: 0 auto;">
                         <div class="form-group">
                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px"></asp:Calendar>
+                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" on></asp:Calendar>
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,29 +91,43 @@
 
                                 <%--MODAL--%>
 
-                                <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+
+                                <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary" 
+                                    data-toggle="modal" data-target="#exampleModalScrollable" visible="false" >
                                     Ver Agenda del Complejo
                                 </button>
 
-                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                <asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
+                                     OnClick="btn_VerAgenda_Click" />
+
+                                
+
+
+                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" 
+                                    aria-hidden="false" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
 
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle"><strong>Agenda</strong></h5>
-                                            </div>
-                                            <div class="modal-body">
 
-                                                <center>
-                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                                            <strong>
+                                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <center>
+                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                                        <%--<asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />--%>
+                                                        <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
@@ -124,14 +138,16 @@
                                                     </Columns>
                                                 </asp:GridView>
                                                 </center>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-                                                <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
-                                            </div>
-                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+                                                        <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
+                                                    </div>
+                                                </div>
+
+
                                     </div>
-                                </div>
+                                </div
 
                                 <%--FIN MODAL--%>
                                 <br />

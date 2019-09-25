@@ -321,6 +321,8 @@ namespace CapaPresentacion
 
         private void cargarAgenda()
         {
+            
+            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
@@ -354,30 +356,36 @@ namespace CapaPresentacion
             //**************************************************
             // Quitar Horarios Reservados
 
-
             List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
             List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
 
             foreach (AgendaEntidad a in listaAgenda) {
+                if (listaHorariosReservados.Count != 0)
+                {
+                    foreach (AgendaEntidad hr in listaHorariosReservados)
+                    {
 
-                foreach (AgendaEntidad hr in listaHorariosReservados) {
+                        if (!(a.idCancha == hr.idCancha && a.horaInicioHorario == hr.horaInicioHorario))
+                        {
 
-                    if (!(a.idCancha == hr.idCancha && a.horaInicioHorario == hr.horaInicioHorario)) {
+                            agenda = new AgendaEntidad();
 
-                        agenda = new AgendaEntidad();
-                        agenda.idCancha = a.idCancha;
-                        agenda.nombreCancha = a.nombreCancha;
-                        agenda.nombreTipoCancha = a.nombreTipoCancha;
-                        agenda.horaInicioHorario = a.horaInicioHorario;
-                        agenda.precioCancha = a.precioCancha;
-                        agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+                            agenda.idCancha = a.idCancha;
+                            agenda.nombreCancha = a.nombreCancha;
+                            agenda.nombreTipoCancha = a.nombreTipoCancha;
+                            agenda.horaInicioHorario = a.horaInicioHorario;
+                            agenda.precioCancha = a.precioCancha;
+                            agenda.capacidadTipoCancha = a.capacidadTipoCancha;
 
-                        listaHorariosDisponibles.Add(agenda);
+                            listaHorariosDisponibles.Add(agenda);
+                        }
+
                     }
                 }
+                else { listaHorariosDisponibles = listaAgenda; }
+
             }
-
-
+            
 
             //*************************************************
             // Cargar Horarios
@@ -393,7 +401,7 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
-            cargarAgenda();
+            // cargarAgenda();
             btn_Agenda.Visible = true;
           
         }
@@ -411,6 +419,17 @@ namespace CapaPresentacion
 
 
         }
+
+       
+        protected void btn_VerAgenda_Click(object sender, EventArgs e)
+        {
+            cargarAgenda();
+           
+
+        }
+
+        
+        
     }
 }
     
