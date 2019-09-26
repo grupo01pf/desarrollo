@@ -379,33 +379,43 @@ namespace CapaPresentacion
                 {
                     foreach (AgendaEntidad lr in listaHorariosReservados) {
 
-                        if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
-                        //if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
+                       // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
+                        if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
                         {
 
+                            lg.idEstadoHorario = lr.idEstadoHorario;
+                            //agenda = new AgendaEntidad();
 
-                            agenda = new AgendaEntidad();
+                            //agenda.idCancha = lg.idCancha;
+                            //agenda.nombreCancha = lg.nombreCancha;
+                            //agenda.nombreTipoCancha = lg.nombreTipoCancha;
+                            //agenda.horaInicioHorario = lg.horaInicioHorario;
+                            //agenda.precioCancha = lg.precioCancha;
+                            //agenda.capacidadTipoCancha = lg.capacidadTipoCancha;
 
-                            agenda.idCancha = lg.idCancha;
-                            agenda.nombreCancha = lg.nombreCancha;
-                            agenda.nombreTipoCancha = lg.nombreTipoCancha;
-                            agenda.horaInicioHorario = lg.horaInicioHorario;
-                            agenda.precioCancha = lg.precioCancha;
-                            agenda.capacidadTipoCancha = lg.capacidadTipoCancha;
-
-                            listaHorariosDisponibles.Add(agenda);
+                            //listaHorariosDisponibles.Add(agenda);
                         }
                     }        
             }
             }
-            else { listaHorariosDisponibles = listaAgendaGenerada; }
+            //else { listaHorariosDisponibles = listaAgendaGenerada; }
 
 
             //*************************************************
             // Cargar Horarios
             // gdv_Agenda.DataSource = listaAgenda;
-            gdv_Agenda.DataSource = listaHorariosDisponibles;
-            // gdv_Agenda.DataSource = listaAgendaGenerada;
+            // gdv_Agenda.DataSource = listaHorariosDisponibles;
+
+            foreach (AgendaEntidad lg in listaAgendaGenerada) {
+                if (lg.idEstadoHorario == null) {
+                    listaHorariosDisponibles.Add(lg);
+                }
+            }
+
+            if (listaHorariosDisponibles.Count > 0 ) {
+                gdv_Agenda.DataSource = listaHorariosDisponibles;
+            } else { gdv_Agenda.DataSource = listaAgendaGenerada; }
+                
 
             //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
             gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
