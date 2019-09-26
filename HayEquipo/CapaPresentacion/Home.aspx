@@ -181,7 +181,11 @@
         
           <div class="well">
             
-           <h3 class="round3">Encuentros Vigentes</h3>
+              <div class="w3-panel w3-black">
+                    <h1 class="w3-opacity">
+                     <b>Encuentros Vigentes</b></h1>
+                    </div>
+           <%--<h3 class="round3">Encuentros Vigentes</h3>--%>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
              
               <%-- GRILLA LUGARES PUBLICOS --%>
