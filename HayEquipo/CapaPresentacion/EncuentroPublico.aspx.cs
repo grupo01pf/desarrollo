@@ -13,8 +13,14 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IdUsuarioEncuentro"] = null;
+           
 
+            Session["IdUsuarioEncuentro"] = null;
+            if (Request.QueryString["Id"] != null)
+            {
+
+                Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
+            }
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();

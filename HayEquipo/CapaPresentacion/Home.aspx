@@ -76,6 +76,10 @@
   border: 2px solid #0b3107;
   border-radius: 12px;
 }
+.botonunirse{
+    margin-bottom:5px;
+    margin-top:5px;
+}
 
     </style>
 </asp:Content>
@@ -175,7 +179,7 @@
              
               <%-- GRILLA LUGARES PUBLICOS --%>
                
-                   <div id="myDIV">
+                  <%-- <div id="myDIV">
                     <div class="table-responsive">
                   <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                  HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
@@ -196,29 +200,37 @@
                             </asp:GridView>
                     
               </div>
-              </div>
-          <%--    <div class="container">
+              </div>--%>
+             
+     <asp:Repeater ID="encuentrosRepeater" runat="server">
+           <ItemTemplate>
+               <div class="container">
  
-  <div class="card img-fluid" style="width:50%;border:black">
-    <h2>Encuentro publico</h2>
+  <div class="card img-fluid" style="width:55%;border: 5px solid #0b3107;margin-bottom:5px;margin-left:3%;">
+    <h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>
    <img class="card-img-top" src="Imagenes/nene.png"" alt="Card image" style="width:100px;"/>
     <div class="card-img-overlay">
       <div class="col-md-6">
-      <h4 class="card-title">Complejo: Don Balon</h4>
-      <h4 class="card-title">Deporte: Futbol</h4>
-           <h4 class="card-title">Direccion: Dorrego 123</h4>
+        
+      <h4 class="card-title">Lugar: <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label></h4>    
+           <h4 class="card-title">Deporte: <asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h4>
+           <h4 class="card-title">Direccion: <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label></h4>
       </div>
         </div>
        <div class="col-md-6">
-      <h4 class="card-title">Fecha Encuentro: 21/10/2019</h4>
-           <h4 class="card-title">Hora Inicio: 15:00</h4>
-            <h4 class="card-title">Accesibilidad: Abierto</h4>
+      <h4 class="card-title">Fecha Encuentro: <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label></h4>
+           <h4 class="card-title">Hora Inicio: <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label></h4>
+            <h4 class="card-title">Accesibilidad: <asp:Label runat="server" text='<%#Eval("accesibilidad") %>'></asp:Label></h4>
        </div>
-       <a href="#" class="btn btn-primary">Unirse al Encuentro</a>
-       </div>
+      <asp:LinkButton runat="server" CommandName="evaluartipo" CommandArgument='<%#Eval("tipoEncuentro") %>' Visible="false"></asp:LinkButton>
+      <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Unirse al encuentro" CssClass="btn btn-primary botonunirse" ></asp:LinkButton>
+      </div>
      
            </div>
-    --%>
+            </ItemTemplate>
+     </asp:Repeater>    
+
+
     </div>
   </div>
 

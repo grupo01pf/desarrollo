@@ -35,9 +35,9 @@
     opacity: .8;
 }
 
-      .margenWell{
-          margin: 20px;
-
+        .margenWell {
+            margin: 20px;
+        }
       .error{
           color:red;
 
@@ -176,25 +176,25 @@ $(window).load(function() {
                         <label>Nombre de usuario</label>
                     </div>
                     <div class="form-group">
-                        <asp:TextBox ID="txtNombre" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtNombre" runat="server" Text="" placeholder="Ingrese Nombre" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
                     </div>
                     <div class="form-group">
-                        <asp:TextBox ID="txtEmail" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" Text="" placeholder="Ingrese Email" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>Contraseña</label>
                     </div>
                     <div class="form-group">
-                  <asp:TextBox ID="txtPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese Contraseña" TextMode="Password"  Columns="20" CssClass="form-control"></asp:TextBox>
                     </div>
                      <div class="form-group">
                         <label>Repetir Contraseña</label>
                     </div>
                     <div class="form-group">
-                  <asp:TextBox ID="txtRPassword" runat="server" placeholder="" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                  <asp:TextBox ID="txtRPassword" runat="server" placeholder="Repetir Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                        <asp:CheckBox runat="server" ID="checkPrivacidad"/><a data-dismiss="imodal" data-toggle="modal" href="#imodal2" > Acepto Terminos y condiciones</a>
@@ -216,7 +216,7 @@ $(window).load(function() {
                       <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger" 
                        onclick="btnClose_Click"/>
 
-                   <asp:Button ID="btnRegistrar" runat="server" Text="Registrarme" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
+                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
        
