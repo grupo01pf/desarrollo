@@ -50,7 +50,7 @@ namespace CapaDao
             {
                 ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
 
-                comp.deportes = complejo.deportes + " ";
+                comp.deportes = complejo.deportes + " " + comp.deportes;
                 
                 db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -266,35 +266,27 @@ namespace CapaDao
             cn.Close();
         }
 
-        //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
-        //{
-        //    ComplejoDeportivo complejo = null;
-
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"SELECT *
-        //                        FROM ComplejoDeportivo where id=@idComp";
-        //    cmd.Parameters.AddWithValue("@idComp", id);
-        //    SqlDataReader dr = cmd.ExecuteReader();
-        //    while (dr.Read())
-        //    {
-        //        complejo = new ComplejoDeportivo();
-        //        complejo.id = int.Parse(dr["id"].ToString());
-        //        complejo.nombre = dr["nombre"].ToString();
-        //        complejo.descripcion = dr["descripcion"].ToString();
-        //        complejo.calle = dr["calle"].ToString();
-        //        complejo.mapa = dr["mapa"].ToString();
-        //    }
-        //    dr.Close();
-        //    cn.Close();
-        //    return complejo;
-
-        //}
-
-
+        public static bool ExistenCanchasPorComplejo(int idComp)
+        {
+            bool canchas = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT count(*) as Cantidad
+                                  FROM Cancha c
+                             LEFT JOIN ComplejoDeportivo cd on cd.id=c.idComplejo
+                                 WHERE cd.id=@idCom";
+            cmd.Parameters.AddWithValue("@idCom", idComp);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                canchas = true;
+            }
+            dr.Close();
+            cn.Close();
+            return canchas;
+        }
     }
 }

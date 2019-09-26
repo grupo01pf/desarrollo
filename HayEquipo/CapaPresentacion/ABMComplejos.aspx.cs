@@ -191,9 +191,17 @@ namespace CapaPresentacion
         {
             Limpiar();
         }
-        //AGREGAR QUE ELIMINE SUS CANCHAS Y SERVICIOS TAMBIEN
+
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (ComplejoDeportivoDao.ExistenCanchasPorComplejo(ID.Value) == true)
+            {
+                CanchaDao.EliminarCanchasPorComplejo(ID.Value);
+            }
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(ID.Value) == true)
+            {
+                ServicioExtraDao.EliminarServiciosPorComplejo(ID.Value);
+            }          
             ComplejoDeportivoDao.EliminarComplejo(ID.Value);
             CargarGrillaComplejos();
             Limpiar();

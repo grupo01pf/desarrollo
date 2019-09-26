@@ -52,5 +52,37 @@ namespace CapaDao
             cn.Close();
             return servicios;
         }
+
+        public static void EliminarServiciosPorComplejo(int idComp)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.ServiciosPorComplejos.RemoveRange(db.ServiciosPorComplejos.Where(spc => spc.idComplejo == idComp));
+                db.SaveChanges();
+            }
+        }
+
+        public static bool ExistenServiciosPorComplejo(int idComp)
+        {
+            bool servicios = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT count(*) as Cantidad
+                                  FROM ServiciosPorComplejos spc
+                             LEFT JOIN ComplejoDeportivo cd on cd.id=spc.idComplejo
+                                 WHERE cd.id=@idCom";
+            cmd.Parameters.AddWithValue("@idCom", idComp);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                servicios = true;
+            }
+            dr.Close();
+            cn.Close();
+            return servicios;
+        }
     }
 }
