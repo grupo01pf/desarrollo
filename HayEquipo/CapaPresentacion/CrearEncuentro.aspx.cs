@@ -401,7 +401,7 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
-            // cargarAgenda();
+            cargarAgenda();
             btn_Agenda.Visible = true;
           
         }
@@ -423,13 +423,15 @@ namespace CapaPresentacion
        
         protected void btn_VerAgenda_Click(object sender, EventArgs e)
         {
-            cargarAgenda();
+           cargarAgenda();
+          
            
-
         }
 
-        
-        
+      
+
+
+
     }
 }
     

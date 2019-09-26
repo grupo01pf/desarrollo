@@ -211,15 +211,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_Agenda;
         
         /// <summary>
-        /// Control btn_VerAgenda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_VerAgenda;
-        
-        /// <summary>
         /// Control lbl_agendaFecha.
         /// </summary>
         /// <remarks>
