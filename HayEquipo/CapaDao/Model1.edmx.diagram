@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d7c5b42a0b7a44479716b5e584740df7" Name="Diagram1">
+      <Diagram DiagramId="b7f3efe4171d43c982d6d8f226b24d90" Name="Diagram1">
         <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="13.75" PointY="26.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.AmigosPorDeportistas" Width="1.5" PointX="8.25" PointY="27" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
@@ -61,22 +61,23 @@
         <AssociationConnector Association="HayEquipoModel.FK_AmigosPorDeportistas_Deportista1" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Barrio_Zona" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Barrio" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_Cancha_Deporte" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_Cancha_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Cancha_TipoCancha" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_CanchasPorComplejos_Cancha" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_CanchasPorHorarios_Cancha" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_CanchasPorComplejos_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_CanchasPorHorarios_Horario" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Deporte" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Deporte1" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Deporte2" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Estado" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Responsable" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_TipoComplejo" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_ComplejoDeportivo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_ComplejoDeportivo" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_FotosComplejo_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ServiciosPorComplejos_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ValoracionComplejo_ComplejoDeportivo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_DeportesPorDeportistas_Deporte" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Deporte" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Posicion_Deporte" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_TipoCancha_Deporte" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_TiposPorDeportes_Deporte" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_DeportesPorDeportistas_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Deportista_Estado" ManuallyRouted="false" />
@@ -84,6 +85,7 @@
         <AssociationConnector Association="HayEquipoModel.FK_Deportista_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_DeportistasPorEquipo_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Deportista" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_FotosDeportista_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_InvitacionEncuentro_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_PosicionesPorDeportistas_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ValoracionDeportista_Deportista" ManuallyRouted="false" />
@@ -111,6 +113,7 @@
         <AssociationConnector Association="HayEquipoModel.FK_PosicionesPorDeportistas_Posicion" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Publicacion_Sponsor" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Responsable_TipoDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK_Responsable_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_Sponsor_Responsable" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_RolesPorUsuarios_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_RolesPorUsuarios_Usuario" ManuallyRouted="false" />

@@ -45,6 +45,5 @@ C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\E
 C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.xml
 C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\Usuario\Documents\GitHub\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb

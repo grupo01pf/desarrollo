@@ -66,9 +66,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CanchaEntidad.cs" />
-    <Compile Include="CanchasPorComplejos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="CanchasPorComplejosEntidad.cs" />
     <Compile Include="CanchasPorHorarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -226,13 +223,16 @@
     <Compile Include="sp_MensajeQueryDao_MostrarMensajes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoCancha.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoCanchaEntidad.cs" />
-    <Compile Include="TipoComplejo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoComplejoEntidad.cs" />
     <Compile Include="TipoDeporte.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -258,6 +258,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioEntidad.cs" />
+    <Compile Include="UsuariosPorEncuentroDeportivo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ValoracionComplejo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

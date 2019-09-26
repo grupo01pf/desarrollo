@@ -31,7 +31,6 @@ namespace CapaEntidades
         public virtual DbSet<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }
         public virtual DbSet<Barrio> Barrio { get; set; }
         public virtual DbSet<Cancha> Cancha { get; set; }
-        public virtual DbSet<CanchasPorComplejos> CanchasPorComplejos { get; set; }
         public virtual DbSet<CanchasPorHorarios> CanchasPorHorarios { get; set; }
         public virtual DbSet<ComplejoDeportivo> ComplejoDeportivo { get; set; }
         public virtual DbSet<Deporte> Deporte { get; set; }
@@ -63,7 +62,6 @@ namespace CapaEntidades
         public virtual DbSet<Sesion> Sesion { get; set; }
         public virtual DbSet<Sponsor> Sponsor { get; set; }
         public virtual DbSet<TipoCancha> TipoCancha { get; set; }
-        public virtual DbSet<TipoComplejo> TipoComplejo { get; set; }
         public virtual DbSet<TipoDeporte> TipoDeporte { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
         public virtual DbSet<TiposPorDeportes> TiposPorDeportes { get; set; }
@@ -77,6 +75,7 @@ namespace CapaEntidades
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+        public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
     
         public virtual ObjectResult<Nullable<int>> sp_EncuentroDeportivoDao_idEncuentroCreado(Nullable<int> usuario)
         {
@@ -235,31 +234,31 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ReservaDao_InsertarRerserva", fechaParameter, idEncuentroParameter, idEstadoParameter);
         }
     
-        public virtual int sp_UsuarioDao_UsuariosUnidosEncuentro(Nullable<int> idEncuentro)
+        public virtual ObjectResult<string> sp_UsuarioDao_UsuariosUnidosEncuentro(Nullable<int> idEncuentro)
         {
             var idEncuentroParameter = idEncuentro.HasValue ?
                 new ObjectParameter("idEncuentro", idEncuentro) :
                 new ObjectParameter("idEncuentro", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UsuarioDao_UsuariosUnidosEncuentro", idEncuentroParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_UsuarioDao_UsuariosUnidosEncuentro", idEncuentroParameter);
         }
     
-        public virtual int sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA(Nullable<int> idEncuentro)
+        public virtual ObjectResult<sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result> sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA(Nullable<int> idEncuentro)
         {
             var idEncuentroParameter = idEncuentro.HasValue ?
                 new ObjectParameter("idEncuentro", idEncuentro) :
                 new ObjectParameter("idEncuentro", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA", idEncuentroParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result>("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA", idEncuentroParameter);
         }
     
-        public virtual int sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB(Nullable<int> idEncuentro)
+        public virtual ObjectResult<sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result> sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB(Nullable<int> idEncuentro)
         {
             var idEncuentroParameter = idEncuentro.HasValue ?
                 new ObjectParameter("idEncuentro", idEncuentro) :
                 new ObjectParameter("idEncuentro", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB", idEncuentroParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result>("sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB", idEncuentroParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_UsuarioID(string usuario)
