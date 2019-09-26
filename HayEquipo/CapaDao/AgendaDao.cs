@@ -80,5 +80,48 @@ namespace CapaDao
 
         }
 
+        public static int InsertarHorario(Horario hr) {
+
+
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.Horario.Add(hr);
+                db.SaveChanges();
+                return hr.id;
+            }
+
+            //SqlConnection cn = new SqlConnection();
+            //cn.ConnectionString = ConnectionString.Cadena();
+            //cn.Open();
+            //SqlCommand cmd = new SqlCommand("sp_MensajeDao_InsertarMensaje", cn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@fechaHora", msg.fechaHora);
+            //// cmd.Parameters.AddWithValue("@hora", r.horaReserva);
+            //cmd.Parameters.AddWithValue("@idEncuentro", msg.idEncuentro);
+            //cmd.Parameters.AddWithValue("@idUsuario", msg.idUsuario);
+            //cmd.Parameters.AddWithValue("@texto", msg.texto);
+
+            //cmd.ExecuteNonQuery();
+            //cn.Close();
+
+
+
+        }
+
+        public static void InsertarCanchasPorHorarios(CanchasPorHorarios cph) {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.CanchasPorHorarios.Add(cph);
+                db.SaveChanges();
+
+            }
+
+
+        }
+
+
+
+
+
     }
 }

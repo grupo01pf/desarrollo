@@ -129,12 +129,12 @@
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                                        <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
+                                                        <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
-                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="false" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
                                                     
 
                                                     </Columns>
@@ -152,6 +152,7 @@
                                 </div
 
                                 <%--FIN MODAL--%>
+                                <br />
                                 <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
                                 <br />
