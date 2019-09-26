@@ -106,58 +106,58 @@ namespace CapaPresentacion
             }
             ddlOrdenar.SelectedIndex = 0;
         }
-        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-            ID = idSeleccionado;
-            Session["ID"] = idSeleccionado;
-            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+        //protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+        //    ID = idSeleccionado;
+        //    Session["ID"] = idSeleccionado;
+        //    ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
-            myModalLabel2.InnerText = compSelec.nombre;
-            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-            string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
-            string dep2;
-            string dep3;
-            if (compSelec.idDeporte2 != null)
-            {
-                dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
-            }
-            else
-            {
-                dep2 = "";
-            }
-            if (compSelec.idDeporte3 != null)
-            {
-                dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
-            }
-            else
-            {
-                dep3 = "";
-            }
-            lblDeportes.Text = dep1 + dep2 + dep3;
-            lblDescripcion.Text = compSelec.descripcion;
-            //CargarListServicios(compSelec.id);
-            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
-            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
-            lblBarrio.Text = "Barrio: " +  bar.nombre;
-            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+        //    myModalLabel2.InnerText = compSelec.nombre;
+        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+        //    string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
+        //    string dep2;
+        //    string dep3;
+        //    if (compSelec.idDeporte2 != null)
+        //    {
+        //        dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
+        //    }
+        //    else
+        //    {
+        //        dep2 = "";
+        //    }
+        //    if (compSelec.idDeporte3 != null)
+        //    {
+        //        dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
+        //    }
+        //    else
+        //    {
+        //        dep3 = "";
+        //    }
+        //    lblDeportes.Text = dep1 + dep2 + dep3;
+        //    lblDescripcion.Text = compSelec.descripcion;
+        //    //CargarListServicios(compSelec.id);
+        //    lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+        //    Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+        //    lblBarrio.Text = "Barrio: " +  bar.nombre;
+        //    lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+        //    lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
             
 
-            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            if(compSelec.avatar != null)
-            {
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            }
+        //    //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
+        //    if(compSelec.avatar != null)
+        //    {
+        //        imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+        //    }
             
 
-            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+        //    img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+        //    img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+        //    img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
-            btnPopUp_ModalPopupExtender2.Show();
+        //    btnPopUp_ModalPopupExtender2.Show();
 
-        }
+        //}
   
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)

@@ -16,18 +16,13 @@ namespace CapaPresentacion
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                CargarDeporte1();
-                CargarDeporte2();
-                CargarDeporte3();
-                ddlDep2.Enabled = false;
-                ddlDep3.Enabled = false;
                 ddlTipoCancha.Enabled = false;
                 cargarBarrios();
                 CargarGrillaComplejos();
                 btnEliminar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-warning";
-                ddlDep1.AutoPostBack = true;
-                ddlDep2.AutoPostBack = true;
+                CargarDeportes();
+                CargarServicios();
                 ddlDep4.AutoPostBack = true;
                 ddlServ.AutoPostBack = true;
             }
@@ -77,52 +72,31 @@ namespace CapaPresentacion
         {
             txtNomb.Text = string.Empty;
             txtDesc.Text = string.Empty;
-            ddlDep1.SelectedIndex = 0;
-            ddlDep2.SelectedIndex = 0;
-            ddlDep3.SelectedIndex = 0;
             txtCalle.Text = string.Empty;
             txtNro.Text = null;
             ddlBarrio.SelectedIndex = 0;
             txtTel.Text = null;
+            lblDeportes.Visible = false;
+            lblDepResultado.Visible = false;
 
             ID = null;
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
         }
 
-        private void CargarDeporte(DropDownList ddl)
+        private void CargarDeportes()
         {
-            List<Deporte> deportes = DeporteDao.ObtenerDeportes();
+            ddlDep4.DataSource = null;
 
-            ddl.DataSource = null;
+            ddlDep4.DataTextField = "nombre";
 
-            ddl.DataTextField = "nombre";
+            ddlDep4.DataValueField = "id";
 
-            ddl.DataValueField = "id";
+            ddlDep4.DataSource = (from Dep in DeporteDao.ObtenerDeportes()
+                                  orderby Dep.nombre
+                                  select Dep);
 
-            ddl.DataSource = deportes;
-
-            ddl.DataBind();
-        }
-
-        private void CargarDeporte1()
-        {
-            CargarDeporte(ddlDep1);
-        }
-
-        private void CargarDeporte2()
-        {
-            CargarDeporte(ddlDep2);
-        }
-
-        private void CargarDeporte3()
-        {
-            CargarDeporte(ddlDep3);
-        }
-
-        private void CargarDeporte4()
-        {
-            CargarDeporte(ddlDep4);
+            ddlDep4.DataBind();
         }
 
         private void cargarBarrios()
@@ -142,40 +116,15 @@ namespace CapaPresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+
             ComplejoDeportivo complejo = new ComplejoDeportivo();
 
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
+            complejo.deportes = lblDepResultado.Text;
             complejo.idResponsable = 2;
             complejo.promedioEstrellas = 0;
             complejo.idEstado = 1;
-
-            int dep1;
-            if (int.TryParse(ddlDep1.Text, out dep1))
-                complejo.idDeporte1 = dep1;
-
-            if (ddlDep2.SelectedIndex == 0)
-            {
-                complejo.idDeporte2 = null;
-            }
-            else
-            {
-                int dep2;
-                if (int.TryParse(ddlDep2.Text, out dep2))
-                    complejo.idDeporte2 = dep2;
-            }
-
-            if (ddlDep3.SelectedIndex == 0)
-            {
-                complejo.idDeporte3 = null;
-            }
-            else
-            {
-                int dep3;
-                if (int.TryParse(ddlDep3.Text, out dep3))
-                    complejo.idDeporte3 = dep3;
-            }
-
             complejo.calle = txtCalle.Text;
 
             int nroCalle;
@@ -190,7 +139,6 @@ namespace CapaPresentacion
             if (int.TryParse(txtTel.Text, out tel))
                 complejo.nroTelefono = tel;
 
-
             if (ID.HasValue)
             {
                 complejo.id = ID.Value;
@@ -198,7 +146,6 @@ namespace CapaPresentacion
             }
             else
             {
-
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
@@ -227,29 +174,14 @@ namespace CapaPresentacion
 
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            ddlDep1.SelectedIndex = int.Parse((compSelec.idDeporte1).ToString());
-            if (compSelec.idDeporte2 == null)
-            {
-                ddlDep2.SelectedIndex = 0;
-                ddlDep3.Enabled = false;
-            }
-            else
-            {
-                ddlDep2.SelectedIndex = int.Parse((compSelec.idDeporte2).ToString());
-            }
-            if (compSelec.idDeporte3 == null)
-            {
-                ddlDep3.SelectedIndex = 0;
-            }
-            else
-            {
-                ddlDep3.SelectedIndex = int.Parse((compSelec.idDeporte3).ToString());
-            }
+            lblDepResultado.Text = compSelec.deportes;
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
             ddlBarrio.SelectedIndex = int.Parse((compSelec.idBarrio).ToString());
             txtTel.Text = compSelec.nroTelefono.ToString();
 
+            lblDeportes.Visible = true;
+            lblDepResultado.Visible = true;
             btnEliminar.Enabled = true;
             btnCanchas.Enabled = true;
             btnServicios.Enabled = true;
@@ -267,26 +199,9 @@ namespace CapaPresentacion
             Limpiar();
         }
 
-        //protected void btnCan_Click(object sender, EventArgs e)
-        //{
-        //    CargarDeporte4();
-        //    CargarGrillaCanchas();
-        //    //pnlCan.Visible = true;
-        //}
-
-        protected void ddlDep1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlDep2.Enabled = true;
-        }
-
-        protected void ddlDep2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlDep3.Enabled = true;
-        }
-
         private void CargarTipoCancha()
         {
-            List<TipoCancha> tiposCanchas = TipoCanchaDao.ObtenerTipoPorIdDeporte(ddlDep4.SelectedIndex);
+            List<TipoCancha> tiposCanchas = TipoCanchaDao.ObtenerTipoPorIdDeporte(int.Parse(ddlDep4.SelectedValue));
 
             ddlTipoCancha.DataSource = null;
 
@@ -316,7 +231,7 @@ namespace CapaPresentacion
 
         protected void ddlDep4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlDep4.SelectedIndex != 0)
+            if (int.Parse(ddlDep4.SelectedValue) != 0)
             {
                 ddlTipoCancha.Items.Clear();
                 CargarTipoCancha();
@@ -365,6 +280,14 @@ namespace CapaPresentacion
                 CanchaDao.InsertarCancha(cancha);
             }
 
+            if(ComplejoDeportivoDao.ExisteDeporte(ID.Value, ddlDep4.SelectedItem.ToString()) == false)
+            {
+                ComplejoDeportivo complejo = new ComplejoDeportivo();
+                complejo.id = ID.Value;
+                complejo.deportes = ddlDep4.SelectedItem.ToString();
+                ComplejoDeportivoDao.ActualizarDeportesComplejo(complejo);          
+            }
+
             CargarGrillaCanchas();
             LimpiarCanchas();
         }
@@ -373,14 +296,17 @@ namespace CapaPresentacion
         {
             txtNomCan.Text = string.Empty;
             txtDesCan.Text = string.Empty;
-            ddlDep4.SelectedIndex = 0;
+            ddlDep4.Items.Clear();
+            CargarDeportes();
+            //ddlDep4.SelectedIndex = 0;
+            ddlTipoCancha.Items.Clear();
             ddlTipoCancha.Enabled = false;
 
             IDCan = null;
             btnEliminarCan.Enabled = false;
             btnEliminarCan.CssClass = "btn btn-warning";
         }
-//VER (FALLA AL CARGAR CANCHAS QUE NO SEAN DE FUTBOL)
+
         protected void gvCanchas_SelectedIndexChanged(object sender, EventArgs e)
         {
             LimpiarCanchas();
@@ -392,13 +318,13 @@ namespace CapaPresentacion
             txtNomCan.Text = canSelec.nombre;
             txtDesCan.Text = canSelec.descripcion;
             TipoCancha tc = TipoCanchaDao.ObtenerTipoPorID(int.Parse((canSelec.idTipoCancha).ToString()));
-            ddlDep4.SelectedIndex = int.Parse((tc.idDeporte).ToString());
-            ddlTipoCancha.Items.Clear();
+            ddlDep4.SelectedValue = (tc.idDeporte).ToString();
             CargarTipoCancha();
-            ddlTipoCancha.SelectedIndex = int.Parse((tc.id).ToString())-1;
+            ddlTipoCancha.SelectedValue = (canSelec.idTipoCancha).ToString();
 
             btnEliminarCan.Enabled = true;
         }
+
         protected void btnNuevoCan_Click(object sender, EventArgs e)
         {
             LimpiarCanchas();
@@ -408,6 +334,11 @@ namespace CapaPresentacion
         {
             CanchaDao.EliminarCancha(IDCan.Value);
             CargarGrillaCanchas();
+           
+            if(ComplejoDeportivoDao.CuantasCanchasPorDeporte(ID.Value, ddlDep4.SelectedIndex) == 0)
+            {
+                ComplejoDeportivoDao.EliminarDeporteComplejo(ID.Value, ddlDep4.SelectedItem.ToString());
+            }
             LimpiarCanchas();
         }
 
@@ -424,13 +355,14 @@ namespace CapaPresentacion
         }
         private void LimpiarServicios()
         {
-            ddlServ.SelectedIndex = 0;
+            ddlServ.Items.Clear();
+            CargarServicios();
+            //ddlServ.SelectedIndex = 0;
 
             IDServ = null;
             btnGuardarS.Enabled = false;
-            //btnEliminarS.Enabled = false;
-            //btnEliminarS.CssClass = "btn btn-warning";
         }
+
         protected void btnGuardarS_Click(object sender, EventArgs e)
         {
             ServiciosPorComplejos servPorComp = new ServiciosPorComplejos();
@@ -471,28 +403,36 @@ namespace CapaPresentacion
         //CANCHAS
         protected void btnClose_Click(object sender, EventArgs e)
         {
+            ComplejoDeportivo complejo = ComplejoDeportivoDao.ObtenerComplejosPorID(ID.Value);
+            lblDepResultado.Text = complejo.deportes;
+            CargarGrillaComplejos();
             btnPopUp_ModalPopupExtender.Hide();
+            LimpiarCanchas();
         }
 
         protected void btnPopUp_Click(object sender, EventArgs e)
         {
-            LimpiarCanchas();
-            CargarDeporte4();
-            CargarGrillaCanchas();
-            btnPopUp_ModalPopupExtender.Show();
+            if (ID.HasValue == true)
+            {
+                CargarGrillaCanchas();
+                btnPopUp_ModalPopupExtender.Show();
+            }        
         }
 
         //SERVICIOS
         protected void btnClose2_Click(object sender, EventArgs e)
         {
             btnPopUp_ModalPopupExtender2.Hide();
+            LimpiarServicios();
         }
 
         protected void btnPopUp2_Click(object sender, EventArgs e)
         {
-            CargarServicios();
-            CargarGrillaServicios();
-            btnPopUp_ModalPopupExtender2.Show();
+            if (ID.HasValue == true)
+            {            
+                CargarGrillaServicios();
+                btnPopUp_ModalPopupExtender2.Show();
+            }
         }
     }
 }

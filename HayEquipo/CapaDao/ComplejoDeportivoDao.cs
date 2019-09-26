@@ -30,9 +30,7 @@ namespace CapaDao
                 comp.id = complejo.id;
                 comp.nombre = complejo.nombre;
                 comp.descripcion = complejo.descripcion;
-                comp.idDeporte1 = complejo.idDeporte1;
-                comp.idDeporte2 = complejo.idDeporte2;
-                comp.idDeporte3 = complejo.idDeporte3;
+                comp.deportes = complejo.deportes;
                 comp.calle = complejo.calle;
                 comp.nroCalle = complejo.nroCalle;
                 comp.idBarrio = complejo.idBarrio;
@@ -45,6 +43,32 @@ namespace CapaDao
                 db.SaveChanges();
             }
         }
+
+        public static void ActualizarDeportesComplejo(ComplejoDeportivo complejo)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+
+                comp.deportes = complejo.deportes + " ";
+                
+                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        //public static void ActualizarDeportesComplejo2(ComplejoDeportivo complejo)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+
+        //        comp.deportes = comp.deportes + " " + complejo.deportes;
+
+        //        db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+        //}
 
         public static void EliminarComplejo(int id)
         {
@@ -174,7 +198,73 @@ namespace CapaDao
                 return db.ComplejoDeportivo.First(c => c.id == id);
             }
         }
+        public static bool ExisteDeporte(int id, string nomb)
+        {
 
+            bool deporte = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT * FROM ComplejoDeportivo cd WHERE @id=id AND cd.deportes LIKE @nom";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@nom", "%" + nomb + "%");
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                deporte = true;
+            }
+            dr.Close();
+            cn.Close();
+            return deporte;
+        }
+
+        public static int CuantasCanchasPorDeporte(int idComp, int idDep)
+        {
+
+            int cantidad = 0;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT count(*) as Cantidad
+                                  FROM Cancha c
+                             LEFT JOIN TipoCancha tc on tc.id=c.idTipoCancha
+                             LEFT JOIN ComplejoDeportivo cd on cd.id=c.idComplejo
+                                 WHERE cd.id=@idCom and tc.idDeporte=@idDe";
+            cmd.Parameters.AddWithValue("@idCom", idComp);
+            cmd.Parameters.AddWithValue("@idDe", idDep);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                cantidad = int.Parse(dr["Cantidad"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+            return cantidad;
+        }
+
+        public static void EliminarDeporteComplejo(int idComp, string dep)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ComplejoDeportivo
+                                   SET deportes = REPLACE(deportes, @dep, '')
+                                 WHERE id=@id";
+
+            cmd.Parameters.AddWithValue("@id", idComp);
+            cmd.Parameters.AddWithValue("@dep", dep);
+
+            cmd.ExecuteNonQuery();
+
+            cn.Close();
+        }
 
         //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         //{

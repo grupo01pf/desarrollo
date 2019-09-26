@@ -55,29 +55,6 @@
                             Text="*Ingrese Descripción" ValidationGroup="A" />
                     </div>
                     <div class="form-group">
-                        <asp:Label ID="lblDep1" CssClass="alinearIzquiera" runat="server" Text="Deporte 1" ForeColor="black"></asp:Label>
-                        <asp:DropDownList ID="ddlDep1" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep1_SelectedIndexChanged">
-                            <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvDep1"
-                            runat="server" ControlToValidate="ddlDep1"
-                            ErrorMessage="Seleccione un Deporte" InitialValue="0"
-                            CssClass="alert-danger"
-                            Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <asp:Label ID="lblDep2" CssClass="alinearIzquiera" runat="server" Text="Deporte 2" ForeColor="black"></asp:Label>
-                        <asp:DropDownList ID="ddlDep2" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDep2_SelectedIndexChanged">
-                            <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div class="form-group">
-                        <asp:Label ID="lblDep3" CssClass="alinearIzquiera" runat="server" Text="Deporte 3" ForeColor="black"></asp:Label>
-                        <asp:DropDownList ID="ddlDep3" CssClass="form-control" runat="server" AppendDataBoundItems="true">
-                            <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div class="form-group">
                         <asp:Label ID="lblCalle" CssClass="alinearIzquiera" runat="server" Text="Calle" ForeColor="black"></asp:Label>
                         <asp:TextBox ID="txtCalle" placeholder="Ingrese una calle" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvCalle"
@@ -127,6 +104,10 @@
                             ControlToValidate="txtTel" ValidationExpression="^[0-9]*"
                             CssClass="alert-danger"
                             Display="Dynamic"></asp:RegularExpressionValidator>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lblDeportes" CssClass="alinearIzquiera" runat="server" Text="Deportes:  " ForeColor="black" Visible="False"></asp:Label>
+                        <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#0066CC" Visible="False"></asp:Label>         
                     </div>
                 </div>
                 <div class="well">
@@ -315,7 +296,7 @@
                             <label>Servicios</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true">
+                            <asp:DropDownList ID="ddlServ" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlServ_SelectedIndexChanged">
                                 <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                             </asp:DropDownList>
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator4"

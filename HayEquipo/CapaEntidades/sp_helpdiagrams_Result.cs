@@ -11,17 +11,12 @@ namespace CapaEntidades
 {
     using System;
     
-    public partial class spObtenerComplejosPorNomb_Result
+    public partial class sp_helpdiagrams_Result
     {
+        public string Database { get; set; }
+        public string Name { get; set; }
         public int ID { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Deportes { get; set; }
-        public string Direccion { get; set; }
-        public string Barrio { get; set; }
-        public Nullable<int> Telefono { get; set; }
-        public string Responsable { get; set; }
-        public Nullable<double> Valoracion { get; set; }
-        public string Estado { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

@@ -10,18 +10,14 @@
 namespace CapaEntidades
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spObtenerComplejosPorNomb_Result
+    public partial class sysdiagrams
     {
-        public int ID { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Deportes { get; set; }
-        public string Direccion { get; set; }
-        public string Barrio { get; set; }
-        public Nullable<int> Telefono { get; set; }
-        public string Responsable { get; set; }
-        public Nullable<double> Valoracion { get; set; }
-        public string Estado { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

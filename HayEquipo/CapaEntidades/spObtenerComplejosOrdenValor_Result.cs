@@ -11,7 +11,7 @@ namespace CapaEntidades
 {
     using System;
     
-    public partial class spObtenerComplejosPorNomb_Result
+    public partial class spObtenerComplejosOrdenValor_Result
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
