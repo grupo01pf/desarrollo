@@ -21,6 +21,7 @@ namespace CapaPresentacion
                 ddlOrdenar.AutoPostBack = true;
             }
         }
+
         protected int? ID
         {
             get
@@ -102,63 +103,64 @@ namespace CapaPresentacion
                 string d1 = string.Empty;
                 string d2 = string.Empty;
                 string d3 = string.Empty;
+
                 CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
             ddlOrdenar.SelectedIndex = 0;
         }
-        //protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-        //    ID = idSeleccionado;
-        //    Session["ID"] = idSeleccionado;
-        //    ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+            ID = idSeleccionado;
+            Session["ID"] = idSeleccionado;
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
-        //    myModalLabel2.InnerText = compSelec.nombre;
-        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-        //    string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
-        //    string dep2;
-        //    string dep3;
-        //    if (compSelec.idDeporte2 != null)
-        //    {
-        //        dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
-        //    }
-        //    else
-        //    {
-        //        dep2 = "";
-        //    }
-        //    if (compSelec.idDeporte3 != null)
-        //    {
-        //        dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
-        //    }
-        //    else
-        //    {
-        //        dep3 = "";
-        //    }
-        //    lblDeportes.Text = dep1 + dep2 + dep3;
-        //    lblDescripcion.Text = compSelec.descripcion;
-        //    //CargarListServicios(compSelec.id);
-        //    lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
-        //    Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
-        //    lblBarrio.Text = "Barrio: " +  bar.nombre;
-        //    lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-        //    lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            
+            myModalLabel2.InnerText = compSelec.nombre;
+            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+            //string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
+            //string dep2;
+            //string dep3;
+            //if (compSelec.idDeporte2 != null)
+            //{
+            //    dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
+            //}
+            //else
+            //{
+            //    dep2 = "";
+            //}
+            //if (compSelec.idDeporte3 != null)
+            //{
+            //    dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
+            //}
+            //else
+            //{
+            //    dep3 = "";
+            //}
+            lblDeportes.Text = compSelec.deportes;
+            lblDescripcion.Text = compSelec.descripcion;
+            //CargarListServicios(compSelec.id);
+            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblBarrio.Text = "Barrio: " + bar.nombre;
+            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
 
-        //    //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-        //    if(compSelec.avatar != null)
-        //    {
-        //        imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-        //    }
-            
 
-        //    img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-        //    img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-        //    img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
+            if (compSelec.avatar != null)
+            {
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            }
 
-        //    btnPopUp_ModalPopupExtender2.Show();
 
-        //}
-  
+            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+
+            btnPopUp_ModalPopupExtender2.Show();
+
+        }
+
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -177,7 +179,8 @@ namespace CapaPresentacion
             if (ddlOrdenar.SelectedIndex == 2)
             {
                 string nomb = txtBuscar.Text;
-                int? idUs = int.Parse(Session["ID"].ToString());
+                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                int? idUs = 2;
                 string d1 = string.Empty;
                 string d2 = string.Empty;
                 string d3 = string.Empty;
@@ -190,7 +193,8 @@ namespace CapaPresentacion
                 CargarGrillaComplejosPorNom();
             }
         }
-        //SI APRETO EN FUTBOL Y BASKET ME TRAE FUTBOL O BASKET (TIENE Q TRAER FUTBOL Y BASQUET)
+        //SI APRETO EN FUTBOL Y BASKET ME TRAE FUTBOL O BASKET (TIENE Q TRAER FUTBOL Y BASQUET) 
+        //ARREGLAR CUANDO string d2 = btnD2.Text.Remove(4); Y BTND2.TEXT ESTA VACIO
         protected void lbFutbol_Click(object sender, EventArgs e)
         {
             lbFutbol.Enabled = false;
@@ -203,10 +207,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = lbFutbol.Text;
-                    string d2 = string.Empty;
-                    string d3 = string.Empty;
+                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                    int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -215,15 +220,15 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = lbFutbol.Text;
-                    string d2 = string.Empty;
-                    string d3 = string.Empty;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
-            if (btnD2.Visible == false && btnD1.Text != "Fútbol  x")
+            else if (btnD2.Visible == false && btnD1.Text !="Fútbol  x" && btnD3.Text != "Fútbol  x")
             {
                 btnD2.Text = lbFutbol.Text + "  x";
                 btnD2.Visible = true;
@@ -231,10 +236,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = string.Empty;
-                    string d2 = lbFutbol.Text;
-                    string d3 = string.Empty;
+                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                    int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -243,15 +249,15 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = string.Empty;
-                    string d2 = lbFutbol.Text; ;
-                    string d3 = string.Empty;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
-            if (btnD3.Visible == false && btnD1.Text != "Fútbol  x" && btnD2.Text != "Fútbol  x")
+            else if (btnD3.Visible == false && btnD1.Text != "Fútbol  x" && btnD2.Text != "Fútbol  x")
             {
                 btnD3.Text = lbFutbol.Text + "  x";
                 btnD3.Visible = true;
@@ -259,10 +265,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = string.Empty;
-                    string d2 = string.Empty;
-                    string d3 = lbFutbol.Text;
+                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                    int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -271,9 +278,9 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = string.Empty;
-                    string d2 = string.Empty;
-                    string d3 = lbFutbol.Text;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -292,10 +299,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = lbBasket.Text;
-                    string d2 = string.Empty;
-                    string d3 = string.Empty;
+                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                    int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -304,15 +312,15 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = lbBasket.Text;
-                    string d2 = string.Empty;
-                    string d3 = string.Empty;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
-            if (btnD2.Visible == false && btnD1.Text != "Basket  x")
+            if (btnD2.Visible == false && btnD1.Text != "Basket  x" && btnD3.Text != "Basket  x")
             {
                 btnD2.Text = lbBasket.Text + "  x";
                 btnD2.Visible = true;
@@ -320,10 +328,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = string.Empty;
-                    string d2 = lbBasket.Text;
-                    string d3 = string.Empty;
+                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                    int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -332,9 +341,9 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = string.Empty;
-                    string d2 = lbBasket.Text; ;
-                    string d3 = string.Empty;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -348,10 +357,11 @@ namespace CapaPresentacion
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    int? idUs = int.Parse(Session["ID"].ToString());
-                    string d1 = string.Empty;
-                    string d2 = string.Empty;
-                    string d3 = lbBasket.Text;
+                     //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                int? idUs = 2;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
@@ -360,9 +370,9 @@ namespace CapaPresentacion
                 {
                     string nomb = txtBuscar.Text;
                     int? idUs = null;
-                    string d1 = string.Empty;
-                    string d2 = string.Empty;
-                    string d3 = lbFutbol.Text;
+                    string d1 = btnD1.Text.Remove(4);
+                    string d2 = btnD2.Text.Remove(4);
+                    string d3 = btnD3.Text.Remove(4);
 
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }

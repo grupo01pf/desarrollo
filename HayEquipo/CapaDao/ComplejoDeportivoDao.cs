@@ -115,13 +115,10 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT DISTINCT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion,CONCAT(d1.nombre, ', '+d2.nombre, ', '+d3.nombre) as Deportes,
+                            SELECT DISTINCT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
                                 cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
                                 cd.promedioEstrellas as Valoracion, e.nombre as Estado
                                  FROM ComplejoDeportivo cd
-                            LEFT JOIN Deporte d1 ON d1.id=cd.idDeporte1
-                            LEFT JOIN Deporte d2 ON d2.id=cd.idDeporte2
-                            LEFT JOIN Deporte d3 ON d3.id=cd.idDeporte3
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
                             LEFT JOIN Responsable r ON r.id=cd.idResponsable
                             LEFT JOIN Estado e ON e.id=cd.idEstado
@@ -144,23 +141,17 @@ namespace CapaDao
 
             if (!string.IsNullOrEmpty(d1))
             {
-                cmd.CommandText += @" AND d1.nombre LIKE @d1
-                                       OR d2.nombre LIKE @d1
-                                       OR d3.nombre LIKE @d1";
+                cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + d1 + "%");
             }
             if (!string.IsNullOrEmpty(d2))
             {
-                cmd.CommandText += @"AND d1.nombre LIKE @d2
-                                      OR d2.nombre LIKE @d2
-                                      OR d3.nombre LIKE @d2";
+                cmd.CommandText += @" AND cd.deportes LIKE @d2";
                 cmd.Parameters.AddWithValue("@d2", "%" + d2 + "%");
             }
             if (!string.IsNullOrEmpty(d3))
             {
-                cmd.CommandText += @" AND d1.nombre LIKE @d3
-                                       OR d2.nombre LIKE @d3
-                                       OR d3.nombre LIKE @d3";
+                cmd.CommandText += @" AND cd.deportes LIKE @d3";
                 cmd.Parameters.AddWithValue("@d3", "%" + d3 + "%");
             }
 

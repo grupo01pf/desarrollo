@@ -57,11 +57,11 @@
 &nbsp;<br />
     <br />
 &nbsp;
-    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False"/>
 &nbsp;
-    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" />
 &nbsp;
-    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Text="Button" Visible="False" />
+    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" />
     <br />
         <br />
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
