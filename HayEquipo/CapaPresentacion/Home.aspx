@@ -2,99 +2,95 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-     .mydatagrid
-{
-	width: 80%;
-	border: solid 4px black;
-    border-radius: 12px;
-	min-width: 80%;
-}
-.header
-{
-	background-color: #0b3107;
-	font-family: Arial;
-	color: White;
-	height: 25px;
-	text-align: center;
-	font-size: 16px;
-}
+        .mydatagrid {
+            width: 80%;
+            border: solid 4px black;
+            border-radius: 12px;
+            min-width: 80%;
+        }
 
-.rows
-{
-	background-color: #fff;
-	font-family: Arial;
-	font-size: 14px;
-	color: #000;
-	min-height: 25px;
-	text-align: left;
-}
-.rows:hover
-{
-	background-color: #000;
-    color:White;
-}
+        .header {
+            background-color: #0b3107;
+            font-family: Arial;
+            color: White;
+            height: 25px;
+            text-align: center;
+            font-size: 16px;
+        }
 
-.mydatagrid a /** FOR THE PAGING ICONS  **/
-{
-	background-color: Transparent;
-	padding: 5px 5px 5px 5px;
-	color: #000;
-	text-decoration: none;
-	font-weight: bold;
-}
+        .rows {
+            background-color: #fff;
+            font-family: Arial;
+            font-size: 14px;
+            color: #000;
+            min-height: 25px;
+            text-align: left;
+        }
 
-.mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/
-{
-	background-color: #0026ff;
-	color: #fff;
-}
-.mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
-{
-	
-	padding: 5px 5px 5px 5px;
-	background-color: #000;
-	color: #fff;
-}
-.pager
-{
-	background-color: #22c81a;
-	font-family: Arial;
-	color: White;
-	height: 30px;
-	text-align: left;
-}
+            .rows:hover {
+                background-color: #000;
+                color: White;
+            }
 
-.mydatagrid td
-{
-	padding: 5px;
-}
-.mydatagrid th
-{
-	padding: 5px;
-}
-.round3 {
-  border: 2px solid #0b3107;
-  border-radius: 12px;
-}
-.botonunirse{
-    margin-bottom:5px;
-    margin-top:5px;
-}
-.alinearIzquiera{
-        text-align:left;
-    }
-.tamanoLetra{
-        font-size:20px;
-        
-    }
+        .mydatagrid a /** FOR THE PAGING ICONS  **/ {
+            background-color: Transparent;
+            padding: 5px 5px 5px 5px;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/ {
+                background-color: #0026ff;
+                color: #fff;
+            }
+
+        .mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/ {
+            padding: 5px 5px 5px 5px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .pager {
+            background-color: #22c81a;
+            font-family: Arial;
+            color: White;
+            height: 30px;
+            text-align: left;
+        }
+
+        .mydatagrid td {
+            padding: 5px;
+        }
+
+        .mydatagrid th {
+            padding: 5px;
+        }
+
+        .round3 {
+            border: 2px solid #0b3107;
+            border-radius: 12px;
+        }
+
+        .botonunirse {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        .alinearIzquiera {
+            text-align: left;
+        }
+
+        .tamanoLetra {
+            font-size: 20px;
+        }
 
 
-.scroll-container {
-  display: block; 
-  height: 340px; 
-  overflow-y: scroll;
-  
-}
+        .scroll-container {
+            display: block;
+            height: 340px;
+            overflow-y: scroll;
+        }
     </style>
 </asp:Content>
 
@@ -226,23 +222,44 @@
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
+          <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="Imagenes/nene.png"" alt="Avatar"/>
       <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>
       <div class="w3-container">
       <p class="tamanoLetra">
           <br />
-          <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
-          <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>       
-      </p>
-          <hr />
-      <img class="w3-left w3-circle w3-margin-right" style="width:80px" src="Imagenes/nene.png"" alt="Avatar"/>
-        <p>
-          <span class="glyphicon glyphicon-map-marker"></span>
-          <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>           
-          <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label><br /><br />                 
+          <div class="row">
+              <div class="col-sm-3">
+                  <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
+                  <br />
+              </div>
+              <div class="col-sm-3">
+                  <span class="glyphicon glyphicon-map-marker"></span>
+                  <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>           
+                  <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>  
+                  <br />               
+              </div>
+              <div class="col-sm-3">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                  <asp:Label runat="server" text='<%#Eval("accesibilidad") %>'></asp:Label>
+                  <br />
+              </div>
+              <div class="col-sm-3">
+                  <i class="fa fa-male"></i>
+                  <i class="fa fa-male"></i>
+                  <i class="fa fa-male"></i>
+                  <asp:Label runat="server" text="Acá se dice se tiene cupo o no"></asp:Label>
+              </div>
+          </div>
+                 
+      <%--</p>--%>
+          <%--<hr />--%>
+      
+        <%--<p>--%>
+          
           <%--<asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label><br />--%>
-          <span class="glyphicon glyphicon-eye-open"></span>
-          <asp:Label runat="server" text='<%#Eval("accesibilidad") %>'></asp:Label>
+          
       </p>
       <br />  
     </div>
@@ -258,15 +275,6 @@
  </div>
     </div>
   </div>
-
-                   
-
-
-         
-        
-      
-      
-    
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="thumbnail">
         <p>Próximo encuentro</p>
