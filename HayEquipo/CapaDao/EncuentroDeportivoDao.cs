@@ -18,24 +18,32 @@ namespace CapaDao
 
         public static int InsertarEncuentroPublico(EncuentroDeportivo ed)
         {
-
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-
                 db.EncuentroDeportivo.Add(ed);
                 db.SaveChanges();
                 return ed.id;
             }
         }
 
+        
         public static int InsertarEncuentroPrivado(EncuentroDeportivo ed)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-
                 db.EncuentroDeportivo.Add(ed);
                 db.SaveChanges();
                 return ed.id;
+            }
+        }
+
+        public static void acutalizarEncuentroDeportivo(int idEncuntro, int estado) {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuntro);
+                ed.idEstado = estado;
+                db.Entry(ed).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
             }
         }
 
@@ -57,6 +65,12 @@ namespace CapaDao
 
         public static void insertarUsuarioPorEncuentroEquipoA(int idUsuario, int idEncuentro)
         {
+            //using (HayEquipoEntities db = new HayEquipoEntities())
+            //{
+            //    db.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA(idUsuario,idEncuentro);
+            //    db.SaveChanges();
+            //}
+
 
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
@@ -110,11 +124,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static void CancelarEncuentro()
-        {
-            // ToDo
-        }
-
+        
 
 
         private static int idEncuentroCreado(int idUsuario)

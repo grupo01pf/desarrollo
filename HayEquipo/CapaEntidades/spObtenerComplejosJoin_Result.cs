@@ -16,7 +16,6 @@ namespace CapaEntidades
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public string Deportes { get; set; }
         public string Direccion { get; set; }
         public string Barrio { get; set; }
         public string Zona { get; set; }

@@ -51,7 +51,7 @@ namespace CapaDao
                 ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
 
                 comp.deportes = complejo.deportes + " " + comp.deportes;
-                
+
                 db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }

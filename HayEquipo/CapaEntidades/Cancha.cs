@@ -25,6 +25,7 @@ namespace CapaEntidades
         public string descripcion { get; set; }
         public Nullable<int> idTipoCancha { get; set; }
         public Nullable<int> idComplejo { get; set; }
+        public Nullable<double> precio { get; set; }
     
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
         public virtual TipoCancha TipoCancha { get; set; }

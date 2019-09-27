@@ -164,6 +164,26 @@ namespace CapaPresentacion
 
 
 
+            if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+            {
+                UsuarioDao.restaurarintentos(Session["ID"].ToString());
+                Session["Usuario"] = txt_NombreUsuario.Text;
+                if (Session["Rol"].ToString() == "Administrador")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("Home.aspx");
+                }
+                if (Session["Rol"].ToString() == "UsuarioDeportista")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("Home.aspx");
+                }
+                if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("Home.aspx");
+                }
+            }
 
         }
 

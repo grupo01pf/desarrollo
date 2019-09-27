@@ -52,6 +52,7 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="idTipoCancha" Type="Int32" />
     <Property Name="idComplejo" Type="Int32" />
+    <Property Name="precio" Type="Double" />
     <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="Cancha" ToRole="ComplejoDeportivo" />
     <NavigationProperty Name="TipoCancha" Relationship="Self.FK_Cancha_TipoCancha" FromRole="Cancha" ToRole="TipoCancha" />
     <NavigationProperty Name="CanchasPorHorarios" Relationship="Self.FK_CanchasPorHorarios_Cancha" FromRole="Cancha" ToRole="CanchasPorHorarios" />
@@ -83,6 +84,8 @@
     <Property Name="idEstado" Type="Int32" />
     <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="horaApertura" Type="Time" Precision="0" />
+    <Property Name="horaCierre" Type="Time" Precision="0" />
     <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
     <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_ComplejoDeportivo_Estado" FromRole="ComplejoDeportivo" ToRole="Estado" />
@@ -1712,6 +1715,7 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
     </AssociationSet>
+
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1727,6 +1731,10 @@
     <FunctionImport Name="sp_dropdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
+
+    <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
+      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
+
     </FunctionImport>
     <FunctionImport Name="sp_EncuentroDeportivoDao_idEncuentroCreado" ReturnType="Collection(Int32)">
       <Parameter Name="usuario" Mode="In" Type="Int32" />
@@ -1826,6 +1834,13 @@
       <Parameter Name="prmContraseña" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
+    <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="tipoCancha" Nullable="true" MaxLength="50" />
+    <Property Type="Time" Name="horaInicio" Nullable="true" />
+    <Property Type="Double" Name="precio" Nullable="true" />
+    <Property Type="Int32" Name="capacidad" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
@@ -1871,6 +1886,7 @@
     <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="capacidad" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />

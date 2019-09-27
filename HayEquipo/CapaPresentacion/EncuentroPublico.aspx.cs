@@ -13,33 +13,31 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IdUsuarioEncuentro"] = null;
+            Session["IdOrganizadorEncuentro"] = null;
+            Session["CapacidadMaxima"] = null;
+          //  Session["CantidadActual"] = null;
 
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();
-            if (validarOrganizador())
-            {
-                btn_Unirse.Visible = false;
-                btn_Salir.Visible = false;
-            }
-            else
-            {
-                btn_Unirse.Visible = true;
-                btn_Salir.Visible = false;
-            }
-            cargarChat();
+            validacionesDeUsuario();
+            calcularCapacidad();
+
+         //   cargarChat();
+            // txt_Mensaje.Focus();
+          
         }
         private void cargarDatosEncuentroPublico()
         {
 
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
 
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
 
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
+            //  edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
+            edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
 
-            Session["IdUsuarioEncuentro"] = edq.idUsuario;
+            Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
             //cmb_Deporte.SelectedValue = edq.nombreDeporte;
             lbl_Deporte.Text = edq.nombreDeporte;
@@ -57,9 +55,13 @@ namespace CapaPresentacion
                 txt_Direccion.Text = string.Empty;
             else { txt_Direccion.Text = edq.direccion.ToString(); }
 
-            txt_Organizador.Text = edq.nombreUsuario.ToString();
+            Session["CapacidadMaxima"] = edq.capacidad;
 
-            bloquearBotones();
+            txt_Organizador.Text = edq.nombreUsuario.ToString();
+            
+            bloquearControles();
+
+            
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
@@ -69,6 +71,26 @@ namespace CapaPresentacion
             //  cld_Fecha.SelectedDate = eq.fechaInicioEncuentro;
             //cld_Fecha.Text = eq.fechaInicioEncuentro;
 
+        }
+
+
+        //  private void calcularCapacidad(int capacidad, int idEncuentro) {
+        private void calcularCapacidad() {
+
+            //bool completo = false;
+            List<Usuario> listaUsuarios = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+           // Session["CantidadActual"] = listaUsuarios.Count();
+            if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
+            {
+                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+            }
+            else {
+                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+                btn_Unirse.Enabled = false;
+                int estado = 8; // (COMPLETO)
+                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                
+            }
         }
 
 
@@ -82,24 +104,26 @@ namespace CapaPresentacion
 
         protected void btn_Unirse_Click(object sender, EventArgs e)
         {
-
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Visible = false;
-            btn_Salir.Visible = true;
+            calcularCapacidad();
+            btn_Unirse.Enabled = false;
+            btn_Salir.Enabled = true;
         }
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarTabla();
-            btn_Unirse.Visible = true;
-            btn_Salir.Visible = false;
+            calcularCapacidad();
+            btn_Unirse.Enabled = true;
+            btn_Salir.Enabled = false;
         }
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
-            // cambiar el estado 
-            // chequear que solo el organizador pueda cancelar
-            EncuentroDeportivoDao.CancelarEncuentro();
+            int estado = 6; // (CANCELADO)
+            EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+            // Pedir confirmacion de cancelacion
+            Response.Redirect("Home.aspx");
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
         {
@@ -108,6 +132,8 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
+            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));            
+            //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
             gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
             gdv_UsuariosUnidos.DataBind();
@@ -121,31 +147,71 @@ namespace CapaPresentacion
         //    cmb_Deporte.DataBind();
         //}
 
+        private void validacionesDeUsuario() {
+
+            if (validarOrganizador())
+            {
+                btn_Unirse.Enabled = false;
+                btn_Salir.Enabled = false;
+                btn_CancelarEncuentro.Visible = true;
+            }
+            else
+            {
+                if (validarJugadorUnido())
+                {
+                    btn_Unirse.Enabled = false;
+                    btn_Salir.Enabled = true;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+                else
+                {
+                    btn_Unirse.Enabled = true;
+                    btn_Salir.Enabled = false;
+                    btn_CancelarEncuentro.Visible = false;
+                }
+            }
+
+
+        }
         private bool validarOrganizador()
         {
             bool flag = false;
 
             int idUsuarioEncuentro = int.Parse(Session["ID"].ToString());
-            int idUsuarioActual = int.Parse(Session["IdUsuarioEncuentro"].ToString());
+            int idUsuarioActual = int.Parse(Session["IdOrganizadorEncuentro"].ToString());
 
             if (idUsuarioActual == idUsuarioEncuentro)
             { flag = true; }
             return flag;
 
         }
-        private void bloquearBotones()
-        {
 
-            //cmb_Deporte.Enabled = false;
+        private bool validarJugadorUnido() {
+
+            bool estaUnido = false;
+
+            List<Usuario> listaUsuariosUnidos = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+
+            foreach (Usuario u in listaUsuariosUnidos) {
+
+                if (u.id == int.Parse(Session["ID"].ToString())) {
+                    return estaUnido = true;
+                }
+            }
+                return estaUnido;
+            
+        }
+
+        private void bloquearControles()
+        {
+            
             cld_Fecha.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
             txt_NombreLugar.Enabled = false;
             txt_Direccion.Enabled = false;
             txt_Organizador.Enabled = false;
-
-            // btn_Unirse.Enabled = false;
-            // btn_Salir.Enabled = false;
+        
         }
 
         protected void btn_Enviar_Click(object sender, EventArgs e)
@@ -160,6 +226,7 @@ namespace CapaPresentacion
 
             txt_Mensaje.Text = string.Empty;
             cargarChat();
+            txt_Mensaje.Focus();
         }
 
         private void cargarChat()
@@ -169,6 +236,20 @@ namespace CapaPresentacion
             gdv_Pantalla.DataSource = MensajeQueryDao.MostrarMensajes(int.Parse(Session["idEncuentro"].ToString()));
             gdv_Pantalla.DataKeyNames = new string[] { "idMensaje" };
             gdv_Pantalla.DataBind();
+        }
+
+        protected void gdv_Pantalla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            
+             cargarChat();
+          //  gdv_Pantalla.DataSource = sqlData.
+
+           // gdv_Pantalla.DataBind();
         }
     }
 }

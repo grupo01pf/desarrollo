@@ -45,10 +45,10 @@ namespace CapaPresentacion
             //  Response.Redirect("");
         }
 
-        protected void btn_CrearEncuentro_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CrearEncuentro.aspx");
-        }
+        //protected void btn_CrearEncuentro_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("CrearEncuentro.aspx");
+        //}
 
         protected void cargarEventosDisponibles()
         {
@@ -59,21 +59,21 @@ namespace CapaPresentacion
 
         }
 
-        protected void cargarLugaresPublicos() {
+        //protected void cargarLugaresPublicos() {
 
-            //gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            //gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
-            //gdv_LugaresPublicos.DataBind();
+        //    //gdv_LugaresPublicos.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+        //    //gdv_LugaresPublicos.DataKeyNames = new string[] { "id" };
+        //    //gdv_LugaresPublicos.DataBind();
 
-        }
-        protected void cargarLugaresPrivados()
-        {
+        //}
+        //protected void cargarLugaresPrivados()
+        //{
 
-            //gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
-            //gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
-            //gdv_LugaresPrivados.DataBind();
+        //    //gdv_LugaresPrivados.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPrivados();
+        //    //gdv_LugaresPrivados.DataKeyNames = new string[] { "Id" };
+        //    //gdv_LugaresPrivados.DataBind();
 
-        }
+        //}
 
 
         protected void gdv_EncuentrosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
