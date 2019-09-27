@@ -92,12 +92,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DeportistasPorEquiposEntidad.cs" />
-    <Compile Include="DetalleValoracionComplejo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DetalleValoracionDeportista.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="DetalleValoracionEntidad.cs" />
     <Compile Include="EncuentroDeportivo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -174,6 +168,9 @@
     <Compile Include="Reserva.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReseñaComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Responsable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -224,6 +221,9 @@
     <Compile Include="sp_AgendaDao_ObtenerAgendaComplejo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_AgendaDao_ObtenerHorariosReservados_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -269,10 +269,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposPorDeportesEntidad.cs" />
-    <Compile Include="TipoValoracionComplejo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TipoValoracionDeportista.cs">
+    <Compile Include="TipoValoracion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoValoracionEntidad.cs" />
@@ -283,10 +280,7 @@
     <Compile Include="UsuariosPorEncuentroDeportivo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ValoracionComplejo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ValoracionDeportista.cs">
+    <Compile Include="Valoracion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ValoracionEntidad.cs" />

@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_MensajeQueryDao_MostrarMensajes_Result
+    public partial class ReseñaComplejo
     {
-        public string nombreUsuario { get; set; }
-        public Nullable<System.DateTime> fechaHora { get; set; }
-        public string texto { get; set; }
-        public int idMensaje { get; set; }
+        public int id { get; set; }
+        public string reseña { get; set; }
+        public Nullable<int> idComplejoValorado { get; set; }
+        public Nullable<int> idUsuarioValorador { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

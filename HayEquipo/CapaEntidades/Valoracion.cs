@@ -7,20 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Sesion
+    public partial class Valoracion
     {
         public int id { get; set; }
-        public Nullable<int> idUsuario { get; set; }
-        public Nullable<System.DateTime> horaInicio { get; set; }
-        public Nullable<System.DateTime> horaFin { get; set; }
-        public Nullable<int> idEstado { get; set; }
+        public Nullable<int> idDeportistaValorado { get; set; }
+        public Nullable<int> idComplejoValorado { get; set; }
+        public Nullable<int> idUsuarioValorador { get; set; }
+        public Nullable<int> valoracion1 { get; set; }
+        public Nullable<int> idTipoValoracion { get; set; }
     
-        public virtual Estado Estado { get; set; }
+        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
+        public virtual Deportista Deportista { get; set; }
+        public virtual TipoValoracion TipoValoracion { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

@@ -79,13 +79,13 @@
     <Property Name="nroCalle" Type="Int32" />
     <Property Name="idBarrio" Type="Int32" />
     <Property Name="nroTelefono" Type="Int32" />
+    <Property Name="horaApertura" Type="Time" Precision="0" />
+    <Property Name="horaCierre" Type="Time" Precision="0" />
     <Property Name="idResponsable" Type="Int32" />
     <Property Name="promedioEstrellas" Type="Double" />
     <Property Name="idEstado" Type="Int32" />
     <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="horaApertura" Type="Time" Precision="0" />
-    <Property Name="horaCierre" Type="Time" Precision="0" />
     <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
     <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_ComplejoDeportivo_Estado" FromRole="ComplejoDeportivo" ToRole="Estado" />
@@ -93,7 +93,7 @@
     <NavigationProperty Name="EncuentroDeportivo" Relationship="Self.FK_EncuentroDeportivo_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="EncuentroDeportivo" />
     <NavigationProperty Name="FotosComplejo" Relationship="Self.FK_FotosComplejo_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="FotosComplejo" />
     <NavigationProperty Name="ServiciosPorComplejos" Relationship="Self.FK_ServiciosPorComplejos_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="ServiciosPorComplejos" />
-    <NavigationProperty Name="ValoracionComplejo" Relationship="Self.FK_ValoracionComplejo_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="ValoracionComplejo" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK_Valoracion_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Valoracion" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -144,7 +144,7 @@
     <NavigationProperty Name="FotosDeportista" Relationship="Self.FK_FotosDeportista_Deportista" FromRole="Deportista" ToRole="FotosDeportista" />
     <NavigationProperty Name="InvitacionEncuentro" Relationship="Self.FK_InvitacionEncuentro_Deportista" FromRole="Deportista" ToRole="InvitacionEncuentro" />
     <NavigationProperty Name="PosicionesPorDeportistas" Relationship="Self.FK_PosicionesPorDeportistas_Deportista" FromRole="Deportista" ToRole="PosicionesPorDeportistas" />
-    <NavigationProperty Name="ValoracionDeportista" Relationship="Self.FK_ValoracionDeportista_Deportista" FromRole="Deportista" ToRole="ValoracionDeportista" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK_Valoracion_Deportista" FromRole="Deportista" ToRole="Valoracion" />
     <NavigationProperty Name="ZonasPorDeportistas" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="Deportista" ToRole="ZonasPorDeportistas" />
   </EntityType>
   <EntityType Name="DeportistasPorEquipos">
@@ -156,28 +156,6 @@
     <Property Name="idEquipo" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_DeportistasPorEquipo_Deportista" FromRole="DeportistasPorEquipos" ToRole="Deportista" />
     <NavigationProperty Name="Equipo" Relationship="Self.FK_DeportistasPorEquipo_Equipo" FromRole="DeportistasPorEquipos" ToRole="Equipo" />
-  </EntityType>
-  <EntityType Name="DetalleValoracionComplejo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nroEstrellas" Type="Int32" />
-    <Property Name="idTipoValoracion" Type="Int32" />
-    <Property Name="idValoracion" Type="Int32" />
-    <NavigationProperty Name="TipoValoracionComplejo" Relationship="Self.FK_DetalleValoracionComplejo_TipoValoracionComplejo" FromRole="DetalleValoracionComplejo" ToRole="TipoValoracionComplejo" />
-    <NavigationProperty Name="ValoracionComplejo" Relationship="Self.FK_DetalleValoracionComplejo_ValoracionComplejo" FromRole="DetalleValoracionComplejo" ToRole="ValoracionComplejo" />
-  </EntityType>
-  <EntityType Name="DetalleValoracionDeportista">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nroEstrellas" Type="Int32" />
-    <Property Name="idTipoValoracion" Type="Int32" />
-    <Property Name="idValoracion" Type="Int32" />
-    <NavigationProperty Name="TipoValoracionDeportista" Relationship="Self.FK_DetalleValoracion_TipoValoracion" FromRole="DetalleValoracionDeportista" ToRole="TipoValoracionDeportista" />
-    <NavigationProperty Name="ValoracionDeportista" Relationship="Self.FK_DetalleValoracion_Valoracion" FromRole="DetalleValoracionDeportista" ToRole="ValoracionDeportista" />
   </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
@@ -359,6 +337,16 @@
     <NavigationProperty Name="Estado" Relationship="Self.FK_Publicacion_Estado" FromRole="Publicacion" ToRole="Estado" />
     <NavigationProperty Name="Sponsor" Relationship="Self.FK_Publicacion_Sponsor" FromRole="Publicacion" ToRole="Sponsor" />
   </EntityType>
+  <EntityType Name="ReseñaComplejo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idComplejoValorado" Type="Int32" />
+    <Property Name="idUsuarioValorador" Type="Int32" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_ReseñaComplejo_Usuario" FromRole="ReseñaComplejo" ToRole="Usuario" />
+  </EntityType>
   <EntityType Name="Responsable">
     <Key>
       <PropertyRef Name="id" />
@@ -504,23 +492,16 @@
     <NavigationProperty Name="Deporte" Relationship="Self.FK_TiposPorDeportes_Deporte" FromRole="TiposPorDeportes" ToRole="Deporte" />
     <NavigationProperty Name="TipoDeporte" Relationship="Self.FK_TiposPorDeportes_TipoDeporte" FromRole="TiposPorDeportes" ToRole="TipoDeporte" />
   </EntityType>
-  <EntityType Name="TipoValoracionComplejo">
+  <EntityType Name="TipoValoracion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DetalleValoracionComplejo" Relationship="Self.FK_DetalleValoracionComplejo_TipoValoracionComplejo" FromRole="TipoValoracionComplejo" ToRole="DetalleValoracionComplejo" />
-  </EntityType>
-  <EntityType Name="TipoValoracionDeportista">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DetalleValoracionDeportista" Relationship="Self.FK_DetalleValoracion_TipoValoracion" FromRole="TipoValoracionDeportista" ToRole="DetalleValoracionDeportista" />
+    <NavigationProperty Name="TipoValoracion1" Relationship="Self.FK_TipoValoracion_TipoValoracion" FromRole="TipoValoracion" ToRole="TipoValoracion1" />
+    <NavigationProperty Name="TipoValoracion2" Relationship="Self.FK_TipoValoracion_TipoValoracion" FromRole="TipoValoracion1" ToRole="TipoValoracion" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK_Valoracion_TipoValoracion" FromRole="TipoValoracion" ToRole="Valoracion" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -538,33 +519,26 @@
     <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Usuario" FromRole="Usuario" ToRole="Administrador" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_Deportista_Usuario" FromRole="Usuario" ToRole="Deportista" />
     <NavigationProperty Name="Mensaje" Relationship="Self.FK_Mensaje_Usuario" FromRole="Usuario" ToRole="Mensaje" />
+    <NavigationProperty Name="ReseñaComplejo" Relationship="Self.FK_ReseñaComplejo_Usuario" FromRole="Usuario" ToRole="ReseñaComplejo" />
     <NavigationProperty Name="Responsable" Relationship="Self.FK_Responsable_Usuario" FromRole="Usuario" ToRole="Responsable" />
     <NavigationProperty Name="RolesPorUsuarios" Relationship="Self.FK_RolesPorUsuarios_Usuario" FromRole="Usuario" ToRole="RolesPorUsuarios" />
     <NavigationProperty Name="Sesion" Relationship="Self.FK_Sesion_Usuario" FromRole="Usuario" ToRole="Sesion" />
+    <NavigationProperty Name="Valoracion" Relationship="Self.FK_Valoracion_Usuario" FromRole="Usuario" ToRole="Valoracion" />
   </EntityType>
-  <EntityType Name="ValoracionComplejo">
+  <EntityType Name="Valoracion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idComplejo" Type="Int32" />
-    <Property Name="reseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="promedioEstrellas" Type="Double" />
-    <Property Name="fechaHora" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_ValoracionComplejo_ComplejoDeportivo" FromRole="ValoracionComplejo" ToRole="ComplejoDeportivo" />
-    <NavigationProperty Name="DetalleValoracionComplejo" Relationship="Self.FK_DetalleValoracionComplejo_ValoracionComplejo" FromRole="ValoracionComplejo" ToRole="DetalleValoracionComplejo" />
-  </EntityType>
-  <EntityType Name="ValoracionDeportista">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idDeportista" Type="Int32" />
-    <Property Name="reseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="promedioEstrellas" Type="Double" />
-    <Property Name="fechaHora" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Deportista" Relationship="Self.FK_ValoracionDeportista_Deportista" FromRole="ValoracionDeportista" ToRole="Deportista" />
-    <NavigationProperty Name="DetalleValoracionDeportista" Relationship="Self.FK_DetalleValoracion_Valoracion" FromRole="ValoracionDeportista" ToRole="DetalleValoracionDeportista" />
+    <Property Name="idDeportistaValorado" Type="Int32" />
+    <Property Name="idComplejoValorado" Type="Int32" />
+    <Property Name="idUsuarioValorador" Type="Int32" />
+    <Property Name="valoracion1" Type="Int32" />
+    <Property Name="idTipoValoracion" Type="Int32" />
+    <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_Valoracion_ComplejoDeportivo" FromRole="Valoracion" ToRole="ComplejoDeportivo" />
+    <NavigationProperty Name="Deportista" Relationship="Self.FK_Valoracion_Deportista" FromRole="Valoracion" ToRole="Deportista" />
+    <NavigationProperty Name="TipoValoracion" Relationship="Self.FK_Valoracion_TipoValoracion" FromRole="Valoracion" ToRole="TipoValoracion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Valoracion_Usuario" FromRole="Valoracion" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Zona">
     <Key>
@@ -816,15 +790,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ValoracionComplejo_ComplejoDeportivo">
+  <Association Name="FK_Valoracion_ComplejoDeportivo">
     <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="0..1" />
-    <End Role="ValoracionComplejo" Type="Self.ValoracionComplejo" Multiplicity="*" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ComplejoDeportivo">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ValoracionComplejo">
-        <PropertyRef Name="idComplejo" />
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idComplejoValorado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -996,15 +970,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ValoracionDeportista_Deportista">
+  <Association Name="FK_Valoracion_Deportista">
     <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="ValoracionDeportista" Type="Self.ValoracionDeportista" Multiplicity="*" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Deportista">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ValoracionDeportista">
-        <PropertyRef Name="idDeportista" />
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idDeportistaValorado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1029,54 +1003,6 @@
       </Principal>
       <Dependent Role="DeportistasPorEquipos">
         <PropertyRef Name="idEquipo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracionComplejo_TipoValoracionComplejo">
-    <End Role="TipoValoracionComplejo" Type="Self.TipoValoracionComplejo" Multiplicity="0..1" />
-    <End Role="DetalleValoracionComplejo" Type="Self.DetalleValoracionComplejo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoValoracionComplejo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionComplejo">
-        <PropertyRef Name="idTipoValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracionComplejo_ValoracionComplejo">
-    <End Role="ValoracionComplejo" Type="Self.ValoracionComplejo" Multiplicity="0..1" />
-    <End Role="DetalleValoracionComplejo" Type="Self.DetalleValoracionComplejo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ValoracionComplejo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionComplejo">
-        <PropertyRef Name="idValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracion_TipoValoracion">
-    <End Role="TipoValoracionDeportista" Type="Self.TipoValoracionDeportista" Multiplicity="0..1" />
-    <End Role="DetalleValoracionDeportista" Type="Self.DetalleValoracionDeportista" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoValoracionDeportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionDeportista">
-        <PropertyRef Name="idTipoValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracion_Valoracion">
-    <End Role="ValoracionDeportista" Type="Self.ValoracionDeportista" Multiplicity="0..1" />
-    <End Role="DetalleValoracionDeportista" Type="Self.DetalleValoracionDeportista" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ValoracionDeportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionDeportista">
-        <PropertyRef Name="idValoracion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1284,6 +1210,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ReseñaComplejo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="ReseñaComplejo" Type="Self.ReseñaComplejo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReseñaComplejo">
+        <PropertyRef Name="idUsuarioValorador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Responsable_TipoDocumento">
     <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
     <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
@@ -1392,6 +1330,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TipoValoracion_TipoValoracion">
+    <End Role="TipoValoracion" Type="Self.TipoValoracion" Multiplicity="1" />
+    <End Role="TipoValoracion1" Type="Self.TipoValoracion" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TipoValoracion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoValoracion1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_TipoValoracion">
+    <End Role="TipoValoracion" Type="Self.TipoValoracion" Multiplicity="0..1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoValoracion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idTipoValoracion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idUsuarioValorador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ZonasPorDeportistas_Zona">
     <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
     <End Role="ZonasPorDeportistas" Type="Self.ZonasPorDeportistas" Multiplicity="*" />
@@ -1415,8 +1389,6 @@
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" />
-    <EntitySet Name="DetalleValoracionComplejo" EntityType="Self.DetalleValoracionComplejo" />
-    <EntitySet Name="DetalleValoracionDeportista" EntityType="Self.DetalleValoracionDeportista" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" />
     <EntitySet Name="Estado" EntityType="Self.Estado" />
@@ -1431,6 +1403,7 @@
     <EntitySet Name="PosicionesPorDeportistas" EntityType="Self.PosicionesPorDeportistas" />
     <EntitySet Name="Provincia" EntityType="Self.Provincia" />
     <EntitySet Name="Publicacion" EntityType="Self.Publicacion" />
+    <EntitySet Name="ReseñaComplejo" EntityType="Self.ReseñaComplejo" />
     <EntitySet Name="Responsable" EntityType="Self.Responsable" />
     <EntitySet Name="Rol" EntityType="Self.Rol" />
     <EntitySet Name="RolesPorUsuarios" EntityType="Self.RolesPorUsuarios" />
@@ -1444,11 +1417,9 @@
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
     <EntitySet Name="TiposPorDeportes" EntityType="Self.TiposPorDeportes" />
-    <EntitySet Name="TipoValoracionComplejo" EntityType="Self.TipoValoracionComplejo" />
-    <EntitySet Name="TipoValoracionDeportista" EntityType="Self.TipoValoracionDeportista" />
+    <EntitySet Name="TipoValoracion" EntityType="Self.TipoValoracion" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-    <EntitySet Name="ValoracionComplejo" EntityType="Self.ValoracionComplejo" />
-    <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" />
+    <EntitySet Name="Valoracion" EntityType="Self.Valoracion" />
     <EntitySet Name="Zona" EntityType="Self.Zona" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
@@ -1519,9 +1490,9 @@
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
       <End Role="ServiciosPorComplejos" EntitySet="ServiciosPorComplejos" />
     </AssociationSet>
-    <AssociationSet Name="FK_ValoracionComplejo_ComplejoDeportivo" Association="Self.FK_ValoracionComplejo_ComplejoDeportivo">
+    <AssociationSet Name="FK_Valoracion_ComplejoDeportivo" Association="Self.FK_Valoracion_ComplejoDeportivo">
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
-      <End Role="ValoracionComplejo" EntitySet="ValoracionComplejo" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
     </AssociationSet>
     <AssociationSet Name="FK_DeportesPorDeportistas_Deporte" Association="Self.FK_DeportesPorDeportistas_Deporte">
       <End Role="Deporte" EntitySet="Deporte" />
@@ -1579,9 +1550,9 @@
       <End Role="Deportista" EntitySet="Deportista" />
       <End Role="PosicionesPorDeportistas" EntitySet="PosicionesPorDeportistas" />
     </AssociationSet>
-    <AssociationSet Name="FK_ValoracionDeportista_Deportista" Association="Self.FK_ValoracionDeportista_Deportista">
+    <AssociationSet Name="FK_Valoracion_Deportista" Association="Self.FK_Valoracion_Deportista">
       <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="ValoracionDeportista" EntitySet="ValoracionDeportista" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
     </AssociationSet>
     <AssociationSet Name="FK_ZonasPorDeportistas_Deportista" Association="Self.FK_ZonasPorDeportistas_Deportista">
       <End Role="Deportista" EntitySet="Deportista" />
@@ -1590,22 +1561,6 @@
     <AssociationSet Name="FK_DeportistasPorEquipo_Equipo" Association="Self.FK_DeportistasPorEquipo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracionComplejo_TipoValoracionComplejo" Association="Self.FK_DetalleValoracionComplejo_TipoValoracionComplejo">
-      <End Role="TipoValoracionComplejo" EntitySet="TipoValoracionComplejo" />
-      <End Role="DetalleValoracionComplejo" EntitySet="DetalleValoracionComplejo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracionComplejo_ValoracionComplejo" Association="Self.FK_DetalleValoracionComplejo_ValoracionComplejo">
-      <End Role="ValoracionComplejo" EntitySet="ValoracionComplejo" />
-      <End Role="DetalleValoracionComplejo" EntitySet="DetalleValoracionComplejo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracion_TipoValoracion" Association="Self.FK_DetalleValoracion_TipoValoracion">
-      <End Role="TipoValoracionDeportista" EntitySet="TipoValoracionDeportista" />
-      <End Role="DetalleValoracionDeportista" EntitySet="DetalleValoracionDeportista" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracion_Valoracion" Association="Self.FK_DetalleValoracion_Valoracion">
-      <End Role="ValoracionDeportista" EntitySet="ValoracionDeportista" />
-      <End Role="DetalleValoracionDeportista" EntitySet="DetalleValoracionDeportista" />
     </AssociationSet>
     <AssociationSet Name="FK_EncuentroDeportivo_Equipo" Association="Self.FK_EncuentroDeportivo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
@@ -1675,6 +1630,10 @@
       <End Role="Sponsor" EntitySet="Sponsor" />
       <End Role="Publicacion" EntitySet="Publicacion" />
     </AssociationSet>
+    <AssociationSet Name="FK_ReseñaComplejo_Usuario" Association="Self.FK_ReseñaComplejo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="ReseñaComplejo" EntitySet="ReseñaComplejo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Responsable_TipoDocumento" Association="Self.FK_Responsable_TipoDocumento">
       <End Role="TipoDocumento" EntitySet="TipoDocumento" />
       <End Role="Responsable" EntitySet="Responsable" />
@@ -1711,11 +1670,30 @@
       <End Role="TipoDeporte" EntitySet="TipoDeporte" />
       <End Role="TiposPorDeportes" EntitySet="TiposPorDeportes" />
     </AssociationSet>
+    <AssociationSet Name="FK_TipoValoracion_TipoValoracion" Association="Self.FK_TipoValoracion_TipoValoracion">
+      <End Role="TipoValoracion" EntitySet="TipoValoracion" />
+      <End Role="TipoValoracion1" EntitySet="TipoValoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_TipoValoracion" Association="Self.FK_Valoracion_TipoValoracion">
+      <End Role="TipoValoracion" EntitySet="TipoValoracion" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Usuario" Association="Self.FK_Valoracion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
     <AssociationSet Name="FK_ZonasPorDeportistas_Zona" Association="Self.FK_ZonasPorDeportistas_Zona">
       <End Role="Zona" EntitySet="Zona" />
       <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
     </AssociationSet>
-
+    <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
+      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
+      <Parameter Name="idDeporte" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgendaDao_ObtenerHorariosReservados" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerHorariosReservados_Result)">
+      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1731,10 +1709,6 @@
     <FunctionImport Name="sp_dropdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
-
-    <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
-      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
-
     </FunctionImport>
     <FunctionImport Name="sp_EncuentroDeportivoDao_idEncuentroCreado" ReturnType="Collection(Int32)">
       <Parameter Name="usuario" Mode="In" Type="Int32" />
@@ -1835,11 +1809,19 @@
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
+    <Property Type="Int32" Name="idCancha" Nullable="false" />
     <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="tipoCancha" Nullable="true" MaxLength="50" />
-    <Property Type="Time" Name="horaInicio" Nullable="true" />
     <Property Type="Double" Name="precio" Nullable="true" />
     <Property Type="Int32" Name="capacidad" Nullable="true" />
+    <Property Type="Time" Name="horaApertura" Nullable="true" />
+    <Property Type="Time" Name="horaCierre" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_AgendaDao_ObtenerHorariosReservados_Result">
+    <Property Type="Int32" Name="idCancha" Nullable="false" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Time" Name="horaInicio" Nullable="true" />
+    <Property Type="Int32" Name="idEstado" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

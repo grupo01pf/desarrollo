@@ -149,9 +149,9 @@ namespace CapaDao
             return flag;
 
         }
-        public static DeportistaEntidad ObtenerDeportistaPorID(string id)
+        public static Deportista ObtenerDeportistaPorID(string id)
         {
-            DeportistaEntidad d = null;
+            Deportista d = null;
 
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
@@ -166,16 +166,16 @@ namespace CapaDao
 
             if (dr.Read())
             {
-                d = new DeportistaEntidad();
+                d = new Deportista();
 
-                d.idDeportista = int.Parse(dr["id"].ToString());
+                d.id = int.Parse(dr["id"].ToString());
                 d.apellido = dr["apellido"].ToString();
                 d.nombres = dr["nombres"].ToString();
-                d.idTipoDocumento = int.Parse(dr["idTipoDoc"].ToString());
-                d.numeroDocumento = int.Parse(dr["nroDoc"].ToString());
+                d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
+                d.nroDoc = int.Parse(dr["nroDoc"].ToString());
                 d.sexo = dr["sexo"].ToString();
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
-                d.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
                 d.idEstado = int.Parse(dr["idEstado"].ToString());

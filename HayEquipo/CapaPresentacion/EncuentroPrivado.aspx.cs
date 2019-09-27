@@ -102,12 +102,13 @@ namespace CapaPresentacion
 
         }
 
-        private void cargarMapa() {
-            contenedorDelMapa.Visible = true;
-            frm_map.Visible = true;
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-            frm_map.Src = cd.mapa;
-        }
+        //private void cargarMapa() {
+        //    contenedorDelMapa.Visible = true;
+        //    frm_map.Visible = true;
+        //    //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+        //    ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(int.Parse(lbl_Complejo.te);
+        //    frm_map.Src = cd.mapa;
+        //}
 
         private void validacionesDeUsuario() {
             if (validarOrganizador())
@@ -171,7 +172,7 @@ namespace CapaPresentacion
                 btn_UnirseEquipoA.Enabled = false;
                 // actualizar estado
                 int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
             }
             return equipoA;
         }
@@ -189,7 +190,7 @@ namespace CapaPresentacion
                 lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_UnirseEquipoB.Enabled = false;
                 int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
             }
             return equipoB;
@@ -318,18 +319,6 @@ namespace CapaPresentacion
         //    cmb_Complejo.DataValueField = "nombre";
         //    cmb_Complejo.DataBind();
         //}
-        private bool validarOrganizador()
-        {
-            bool flag = false;
-
-            int idUsuarioLogueado = int.Parse(Session["ID"].ToString());
-            int idUsuarioEncuentro = int.Parse(Session["IdUsuarioEncuentro"].ToString());
-
-            if (idUsuarioLogueado == idUsuarioEncuentro)
-            { flag = true; }
-            return flag;
-
-        }
 
         private void bloquearBotones()
         {

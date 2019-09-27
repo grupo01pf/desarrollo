@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="id" />
@@ -66,13 +66,13 @@
     <Property Name="nroCalle" Type="int" />
     <Property Name="idBarrio" Type="int" />
     <Property Name="nroTelefono" Type="int" />
+    <Property Name="horaApertura" Type="time" Precision="0" />
+    <Property Name="horaCierre" Type="time" Precision="0" />
     <Property Name="idResponsable" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="idEstado" Type="int" />
     <Property Name="mapa" Type="nvarchar(max)" />
     <Property Name="avatar" Type="image" />
-    <Property Name="horaApertura" Type="time" Precision="0" />
-    <Property Name="horaCierre" Type="time" Precision="0" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -113,24 +113,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idDeportista" Type="int" />
     <Property Name="idEquipo" Type="int" />
-  </EntityType>
-  <EntityType Name="DetalleValoracionComplejo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nroEstrellas" Type="int" />
-    <Property Name="idTipoValoracion" Type="int" />
-    <Property Name="idValoracion" Type="int" />
-  </EntityType>
-  <EntityType Name="DetalleValoracionDeportista">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nroEstrellas" Type="int" />
-    <Property Name="idTipoValoracion" Type="int" />
-    <Property Name="idValoracion" Type="int" />
   </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
@@ -294,6 +276,15 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.FotosDeportista' no tiene defi
     <Property Name="fechaFin" Type="smalldatetime" />
     <Property Name="idEstado" Type="int" />
   </EntityType>
+  <EntityType Name="ReseñaComplejo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reseña" Type="nvarchar" MaxLength="50" />
+    <Property Name="idComplejoValorado" Type="int" />
+    <Property Name="idUsuarioValorador" Type="int" />
+  </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="Reserva">
@@ -425,15 +416,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="idTipoDeporte" Type="int" />
     <Property Name="idDeporte" Type="int" />
   </EntityType>
-  <EntityType Name="TipoValoracionComplejo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="TipoValoracionDeportista">
+  <EntityType Name="TipoValoracion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -466,25 +449,16 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Property Name="idEncuentro" Type="int" />
     <Property Name="idUsuarioEquipoB" Type="int" />
   </EntityType>
-  <EntityType Name="ValoracionComplejo">
+  <EntityType Name="Valoracion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idComplejo" Type="int" />
-    <Property Name="reseña" Type="nvarchar" MaxLength="50" />
-    <Property Name="promedioEstrellas" Type="float" />
-    <Property Name="fechaHora" Type="smalldatetime" />
-  </EntityType>
-  <EntityType Name="ValoracionDeportista">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idDeportista" Type="int" />
-    <Property Name="reseña" Type="nvarchar" MaxLength="50" />
-    <Property Name="promedioEstrellas" Type="float" />
-    <Property Name="fechaHora" Type="smalldatetime" />
+    <Property Name="idDeportistaValorado" Type="int" />
+    <Property Name="idComplejoValorado" Type="int" />
+    <Property Name="idUsuarioValorador" Type="int" />
+    <Property Name="valoracion" Type="int" />
+    <Property Name="idTipoValoracion" Type="int" />
   </EntityType>
   <EntityType Name="Zona">
     <Key>
@@ -739,54 +713,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Principal>
       <Dependent Role="DeportistasPorEquipos">
         <PropertyRef Name="idEquipo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracion_TipoValoracion">
-    <End Role="TipoValoracionDeportista" Type="Self.TipoValoracionDeportista" Multiplicity="0..1" />
-    <End Role="DetalleValoracionDeportista" Type="Self.DetalleValoracionDeportista" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoValoracionDeportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionDeportista">
-        <PropertyRef Name="idTipoValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracion_Valoracion">
-    <End Role="ValoracionDeportista" Type="Self.ValoracionDeportista" Multiplicity="0..1" />
-    <End Role="DetalleValoracionDeportista" Type="Self.DetalleValoracionDeportista" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ValoracionDeportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionDeportista">
-        <PropertyRef Name="idValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracionComplejo_TipoValoracionComplejo">
-    <End Role="TipoValoracionComplejo" Type="Self.TipoValoracionComplejo" Multiplicity="0..1" />
-    <End Role="DetalleValoracionComplejo" Type="Self.DetalleValoracionComplejo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoValoracionComplejo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionComplejo">
-        <PropertyRef Name="idTipoValoracion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DetalleValoracionComplejo_ValoracionComplejo">
-    <End Role="ValoracionComplejo" Type="Self.ValoracionComplejo" Multiplicity="0..1" />
-    <End Role="DetalleValoracionComplejo" Type="Self.DetalleValoracionComplejo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ValoracionComplejo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="DetalleValoracionComplejo">
-        <PropertyRef Name="idValoracion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1054,6 +980,18 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ReseñaComplejo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="ReseñaComplejo" Type="Self.ReseñaComplejo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReseñaComplejo">
+        <PropertyRef Name="idUsuarioValorador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Responsable_TipoDocumento">
     <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
     <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
@@ -1222,27 +1160,63 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ValoracionComplejo_ComplejoDeportivo">
+  <Association Name="FK_TipoValoracion_TipoValoracion">
+    <End Role="TipoValoracion" Type="Self.TipoValoracion" Multiplicity="1" />
+    <End Role="TipoValoracion1" Type="Self.TipoValoracion" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TipoValoracion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoValoracion1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_ComplejoDeportivo">
     <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="0..1" />
-    <End Role="ValoracionComplejo" Type="Self.ValoracionComplejo" Multiplicity="*" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ComplejoDeportivo">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ValoracionComplejo">
-        <PropertyRef Name="idComplejo" />
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idComplejoValorado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ValoracionDeportista_Deportista">
+  <Association Name="FK_Valoracion_Deportista">
     <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="ValoracionDeportista" Type="Self.ValoracionDeportista" Multiplicity="*" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Deportista">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ValoracionDeportista">
-        <PropertyRef Name="idDeportista" />
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idDeportistaValorado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_TipoValoracion">
+    <End Role="TipoValoracion" Type="Self.TipoValoracion" Multiplicity="0..1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoValoracion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idTipoValoracion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Valoracion" Type="Self.Valoracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Valoracion">
+        <PropertyRef Name="idUsuarioValorador" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1282,8 +1256,15 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
-
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_AgendaDao_ObtenerAgendaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComplejo" Type="int" Mode="In" />
+    <Parameter Name="idDeporte" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_AgendaDao_ObtenerHorariosReservados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComplejo" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="smalldatetime" Mode="In" />
+  </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1299,10 +1280,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
-
-  <Function Name="sp_AgendaDao_ObtenerAgendaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="idComplejo" Type="int" Mode="In" />
-
   </Function>
   <Function Name="sp_EncuentroDeportivoDao_idEncuentroCreado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usuario" Type="int" Mode="In" />
@@ -1412,8 +1389,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DetalleValoracionComplejo" EntityType="Self.DetalleValoracionComplejo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DetalleValoracionDeportista" EntityType="Self.DetalleValoracionDeportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
@@ -1428,6 +1403,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="PosicionesPorDeportistas" EntityType="Self.PosicionesPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publicacion" EntityType="Self.Publicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReseñaComplejo" EntityType="Self.ReseñaComplejo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolesPorUsuarios" EntityType="Self.RolesPorUsuarios" Schema="dbo" store:Type="Tables" />
@@ -1441,41 +1417,39 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TiposPorDeportes" EntityType="Self.TiposPorDeportes" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TipoValoracionComplejo" EntityType="Self.TipoValoracionComplejo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TipoValoracionDeportista" EntityType="Self.TipoValoracionDeportista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoValoracion" EntityType="Self.TipoValoracion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ValoracionComplejo" EntityType="Self.ValoracionComplejo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ValoracionDeportista" EntityType="Self.ValoracionDeportista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Valoracion" EntityType="Self.Valoracion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [FotosComplejo].[id] AS [id],
-    [FotosComplejo].[imagen] AS [imagen],
+      <DefiningQuery>SELECT 
+    [FotosComplejo].[id] AS [id], 
+    [FotosComplejo].[imagen] AS [imagen], 
     [FotosComplejo].[idComplejo] AS [idComplejo]
     FROM [dbo].[FotosComplejo] AS [FotosComplejo]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [FotosDeportista].[id] AS [id],
-    [FotosDeportista].[imagen] AS [imagen],
+      <DefiningQuery>SELECT 
+    [FotosDeportista].[id] AS [id], 
+    [FotosDeportista].[imagen] AS [imagen], 
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [Reserva].[id] AS [id],
-    [Reserva].[fechaReserva] AS [fechaReserva],
-    [Reserva].[horaReserva] AS [horaReserva],
-    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo],
+      <DefiningQuery>SELECT 
+    [Reserva].[id] AS [id], 
+    [Reserva].[fechaReserva] AS [fechaReserva], 
+    [Reserva].[horaReserva] AS [horaReserva], 
+    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo], 
     [Reserva].[idEstado] AS [idEstado]
     FROM [dbo].[Reserva] AS [Reserva]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [UsuariosPorEncuentroDeportivo].[id] AS [id],
-    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA],
-    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro],
+      <DefiningQuery>SELECT 
+    [UsuariosPorEncuentroDeportivo].[id] AS [id], 
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA], 
+    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro], 
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
     </EntitySet>
@@ -1558,22 +1532,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <AssociationSet Name="FK_DeportistasPorEquipo_Equipo" Association="Self.FK_DeportistasPorEquipo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracion_TipoValoracion" Association="Self.FK_DetalleValoracion_TipoValoracion">
-      <End Role="TipoValoracionDeportista" EntitySet="TipoValoracionDeportista" />
-      <End Role="DetalleValoracionDeportista" EntitySet="DetalleValoracionDeportista" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracion_Valoracion" Association="Self.FK_DetalleValoracion_Valoracion">
-      <End Role="ValoracionDeportista" EntitySet="ValoracionDeportista" />
-      <End Role="DetalleValoracionDeportista" EntitySet="DetalleValoracionDeportista" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracionComplejo_TipoValoracionComplejo" Association="Self.FK_DetalleValoracionComplejo_TipoValoracionComplejo">
-      <End Role="TipoValoracionComplejo" EntitySet="TipoValoracionComplejo" />
-      <End Role="DetalleValoracionComplejo" EntitySet="DetalleValoracionComplejo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DetalleValoracionComplejo_ValoracionComplejo" Association="Self.FK_DetalleValoracionComplejo_ValoracionComplejo">
-      <End Role="ValoracionComplejo" EntitySet="ValoracionComplejo" />
-      <End Role="DetalleValoracionComplejo" EntitySet="DetalleValoracionComplejo" />
     </AssociationSet>
     <AssociationSet Name="FK_EncuentroDeportivo_ComplejoDeportivo" Association="Self.FK_EncuentroDeportivo_ComplejoDeportivo">
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
@@ -1663,6 +1621,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       <End Role="Sponsor" EntitySet="Sponsor" />
       <End Role="Publicacion" EntitySet="Publicacion" />
     </AssociationSet>
+    <AssociationSet Name="FK_ReseñaComplejo_Usuario" Association="Self.FK_ReseñaComplejo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="ReseñaComplejo" EntitySet="ReseñaComplejo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Responsable_TipoDocumento" Association="Self.FK_Responsable_TipoDocumento">
       <End Role="TipoDocumento" EntitySet="TipoDocumento" />
       <End Role="Responsable" EntitySet="Responsable" />
@@ -1719,13 +1681,25 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       <End Role="TipoDeporte" EntitySet="TipoDeporte" />
       <End Role="TiposPorDeportes" EntitySet="TiposPorDeportes" />
     </AssociationSet>
-    <AssociationSet Name="FK_ValoracionComplejo_ComplejoDeportivo" Association="Self.FK_ValoracionComplejo_ComplejoDeportivo">
-      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
-      <End Role="ValoracionComplejo" EntitySet="ValoracionComplejo" />
+    <AssociationSet Name="FK_TipoValoracion_TipoValoracion" Association="Self.FK_TipoValoracion_TipoValoracion">
+      <End Role="TipoValoracion" EntitySet="TipoValoracion" />
+      <End Role="TipoValoracion1" EntitySet="TipoValoracion" />
     </AssociationSet>
-    <AssociationSet Name="FK_ValoracionDeportista_Deportista" Association="Self.FK_ValoracionDeportista_Deportista">
+    <AssociationSet Name="FK_Valoracion_ComplejoDeportivo" Association="Self.FK_Valoracion_ComplejoDeportivo">
+      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Deportista" Association="Self.FK_Valoracion_Deportista">
       <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="ValoracionDeportista" EntitySet="ValoracionDeportista" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_TipoValoracion" Association="Self.FK_Valoracion_TipoValoracion">
+      <End Role="TipoValoracion" EntitySet="TipoValoracion" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Usuario" Association="Self.FK_Valoracion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Valoracion" EntitySet="Valoracion" />
     </AssociationSet>
     <AssociationSet Name="FK_Zona_Localidad" Association="Self.FK_Zona_Localidad">
       <End Role="Localidad" EntitySet="Localidad" />

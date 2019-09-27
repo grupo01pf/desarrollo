@@ -13,10 +13,12 @@ namespace CapaEntidades
     
     public partial class sp_AgendaDao_ObtenerAgendaComplejo_Result
     {
+        public int idCancha { get; set; }
         public string nombreCancha { get; set; }
         public string tipoCancha { get; set; }
-        public Nullable<System.TimeSpan> horaInicio { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<int> capacidad { get; set; }
+        public Nullable<System.TimeSpan> horaApertura { get; set; }
+        public Nullable<System.TimeSpan> horaCierre { get; set; }
     }
 }

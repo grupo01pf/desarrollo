@@ -98,7 +98,7 @@ namespace CapaPresentacion
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
                 int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
             }
         }
@@ -131,7 +131,7 @@ namespace CapaPresentacion
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
             int estado = 6; // (CANCELADO)
-            EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+            EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
             // Pedir confirmacion de cancelacion
             Response.Redirect("Home.aspx");
         }

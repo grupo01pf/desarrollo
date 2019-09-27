@@ -21,7 +21,7 @@ namespace CapaEntidades
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
             this.FotosComplejo = new HashSet<FotosComplejo>();
             this.ServiciosPorComplejos = new HashSet<ServiciosPorComplejos>();
-            this.ValoracionComplejo = new HashSet<ValoracionComplejo>();
+            this.Valoracion = new HashSet<Valoracion>();
         }
     
         public int id { get; set; }
@@ -32,13 +32,13 @@ namespace CapaEntidades
         public Nullable<int> nroCalle { get; set; }
         public Nullable<int> idBarrio { get; set; }
         public Nullable<int> nroTelefono { get; set; }
+        public Nullable<System.TimeSpan> horaApertura { get; set; }
+        public Nullable<System.TimeSpan> horaCierre { get; set; }
         public Nullable<int> idResponsable { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }
         public string mapa { get; set; }
         public byte[] avatar { get; set; }
-        public Nullable<System.TimeSpan> horaApertura { get; set; }
-        public Nullable<System.TimeSpan> horaCierre { get; set; }
     
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,6 +52,6 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiciosPorComplejos> ServiciosPorComplejos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ValoracionComplejo> ValoracionComplejo { get; set; }
+        public virtual ICollection<Valoracion> Valoracion { get; set; }
     }
 }

@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ZonasPorDeportistas
+    public partial class sp_AgendaDao_ObtenerHorariosReservados_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idZona { get; set; }
-        public Nullable<int> idDeportista { get; set; }
-    
-        public virtual Deportista Deportista { get; set; }
-        public virtual Zona Zona { get; set; }
+        public int idCancha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<System.TimeSpan> horaInicio { get; set; }
+        public Nullable<int> idEstado { get; set; }
     }
 }
