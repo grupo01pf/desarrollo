@@ -98,6 +98,8 @@
                                     OnClick="btn_VerAgenda_Click"  />--%>
 
 
+                               
+
 
                                 <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary" 
                                     data-toggle="modal" data-target="#exampleModalScrollable"
@@ -129,10 +131,10 @@
 
                                                         <center>
 
-                                                             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                                           <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <%--<asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval=""></asp:Timer>--%>
+                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
 
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
@@ -151,10 +153,12 @@
                                                     
 
                                                 </asp:GridView>
-                            <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
+                              <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>
                     </asp:UpdatePanel>
+
+
 
 
 

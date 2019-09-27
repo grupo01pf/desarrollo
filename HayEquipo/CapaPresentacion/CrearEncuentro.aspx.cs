@@ -336,8 +336,8 @@ namespace CapaPresentacion
 
         private void cargarAgenda()
         {
-            
-            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate; 
+
+            lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
@@ -446,17 +446,19 @@ namespace CapaPresentacion
         }
 
        
-        protected void btn_VerAgenda_Click(object sender, EventArgs e)
-        {
-           cargarAgenda();
+        //protected void btn_VerAgenda_Click(object sender, EventArgs e)
+        //{
+        //   cargarAgenda();
           
            
-        }
+        //}
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-
-            cargarAgenda();
+            if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null && cmb_Complejo.SelectedIndex != 0)
+            { cargarAgenda();
+                //lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate;
+            }
         }
     }
 }
