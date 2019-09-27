@@ -17,6 +17,7 @@
 
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     /* Set black background color, white text and some padding */
     footer {
@@ -42,6 +43,17 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+     .moverbuscador{
+         margin-left:10%;
+         margin-top:0.7%;
+     }
+     .tamañobuscador{
+         width:200%;
+     }
+     .moverboton{
+         margin-left:490%;
+        
+     }
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -77,6 +89,14 @@ $(window).load(function() {
             </strong>
          </li>
       </ul>
+        <ul class="nav navbar-nav moverbuscador">          
+          <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>
+          <li>
+            <button class="btn btn-default moverboton" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </li>             
+       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
@@ -139,6 +159,8 @@ $(window).load(function() {
 
 </footer>
 <!-- Footer -->
-
+ <script>
+    
+    </script>
 </body>
 </html>

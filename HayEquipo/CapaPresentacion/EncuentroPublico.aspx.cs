@@ -13,10 +13,20 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             Session["IdOrganizadorEncuentro"] = null;
             Session["CapacidadMaxima"] = null;
           //  Session["CantidadActual"] = null;
 
+
+
+            Session["IdUsuarioEncuentro"] = null;
+            if (Request.QueryString["Id"] != null)
+            {
+
+
+                Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
+            }
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();
@@ -25,7 +35,7 @@ namespace CapaPresentacion
 
          //   cargarChat();
             // txt_Mensaje.Focus();
-          
+
         }
         private void cargarDatosEncuentroPublico()
         {
@@ -58,10 +68,10 @@ namespace CapaPresentacion
             Session["CapacidadMaxima"] = edq.capacidad;
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
-            
+
             bloquearControles();
 
-            
+
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
@@ -89,7 +99,7 @@ namespace CapaPresentacion
                 btn_Unirse.Enabled = false;
                 int estado = 8; // (COMPLETO)
                 EncuentroDeportivoDao.acutalizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-                
+
             }
         }
 
@@ -132,7 +142,7 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
-            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));            
+            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
             gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
@@ -199,19 +209,19 @@ namespace CapaPresentacion
                 }
             }
                 return estaUnido;
-            
+
         }
 
         private void bloquearControles()
         {
-            
+
             cld_Fecha.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
             txt_NombreLugar.Enabled = false;
             txt_Direccion.Enabled = false;
             txt_Organizador.Enabled = false;
-        
+
         }
 
         protected void btn_Enviar_Click(object sender, EventArgs e)
@@ -245,7 +255,7 @@ namespace CapaPresentacion
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            
+
              cargarChat();
           //  gdv_Pantalla.DataSource = sqlData.
 

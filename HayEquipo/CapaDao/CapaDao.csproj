@@ -81,6 +81,7 @@
     <Compile Include="TipoCanchaDao.cs" />
     <Compile Include="TipoDocumentoDao.cs" />
     <Compile Include="UsuarioDao.cs" />
+    <Compile Include="ValoracionDao.cs" />
     <Compile Include="ZonaDao.cs" />
   </ItemGroup>
   <ItemGroup>

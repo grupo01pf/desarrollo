@@ -2,27 +2,23 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .alinearIzquiera {
-            text-align: left;
-        }
+    .alinearIzquiera{
+        text-align:left;
+    }
+    .tamanoLetra{
+        font-size:15px;
 
-        .tamanoLetra {
-            font-size: 20px;
-        }
-
-        .titulo {
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .colorLineaHorizontal {
-            color: #808080;
-        }
-
-        .elPadding {
-            padding: 8px;
-        }
-
+    }
+    .titulo{
+        text-align: center;
+        color: #ffffff;
+    }
+    .colorLineaHorizontal{
+        color: #808080
+    }
+    .elPadding {
+  padding: 8px;
+}
         .Estilotable {
             border-collapse: collapse;
         }
@@ -38,11 +34,11 @@
                     <%--DATOS--%>
                     <legend>Datos del Encuentro</legend>
                     <div class="row">
-                        <div class="col-sm-3 alinearIzquiera">
-                            <strong>
-                                <asp:Label ID="cld_Fecha" CssClass="tamanoLetra" runat="server" Text=""></asp:Label></strong>
+                        <div class="col-sm-4 alinearIzquiera">
+                                <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
+                                <strong><asp:Label ID="cld_Fecha" CssClass="tamanoLetra" runat="server" Text=""></asp:Label></strong>
                         </div>
-                        <div class="col-sm-9 alinearIzquiera">
+                        <div class="col-sm-8 alinearIzquiera">
                             <strong>
                                 <asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" Style="color: #11398a" runat="server" Text=""></asp:Label></strong>
                             <%--<br />--%>

@@ -1,0 +1,34 @@
+1)Borrar model1 de capaDao, model.tt de capaEntidades, y conexiones en el explorador de servidores
+
+2)Comentar en app.config lo q está dentro del connectionString
+
+3)Agregar en CapaDao Elemento: Entity Data Model como Model1
+Nueva Conexion, completar y probar conexion
+Si incluir datos confidenciales...
+Siguiente
+Incluir Tablas y Funciones y SP
+
+4)Hay que pasar Model1.tt de CapaDao a CapaEntidades:
+Abrir Explorador de Archivos de CapaDao para buscarlo.
+Cortar y Pegar en CapaEntidades
+Mostrar todos los archivos (Botón con dibujo de hojitas a la izquierda de la llave)
+Vemos q aparece en amarillo, suprimir.
+Buscamos en CapaEntidades el Model.tt
+Click derecho y incluir en el proyecto
+
+5)Doble click en Model1.tt
+Cambiamos la ruta de const string inputFile con la ruta relativa: @"../CapaDao/Model1.edmx"
+Desplegamos contenido de Model1.tt y deberian aparecer las entidades
+
+6)Abrimos Model1.Context.cs que está dentro de Model1.Context.tt de Moodeel1.edmx y éste dentro de la CapaDao
+Y vemos q tira bronca.
+Ahora nos paramos en Model1.Context.tt y damos en Propiedades
+Ponemos CapaEntidades en Espacio de Nombre de...
+Click derecho en la Solución y limpiar solucion
+Click derecho en la solucion y recompilar 
+Ver si están las referencias, pero ya deberían estar
+
+7)Copiar lo q está dentro de la etiqueta conectionString del app.config de la capaDao
+Pegar denrto de la etiqueta conectionString del web.config de la capaPresentación
+
+8)Actualizar cadena de conexión en los 2 metodos de la Clase no me acuerdo de la CapaDao (comentar la otra y descomentar la mia)

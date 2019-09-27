@@ -42,8 +42,9 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static void ActualizarDeportista(DeportistaEntidad deportista)
+        public static bool ActualizarDeportista(string id,string ape,string nom,string tdoc,string doc,string sexo,string fc,string tel)
         {
+            bool flag = false;
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
@@ -52,25 +53,25 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"UPDATE Deportista SET apellido=@ape, nombres=@nombres, idTipoDoc=@idTipoDoc, 
                                                       nroDoc=@nroDoc, sexo=@sex, fechaNacimiento=@fechaNac,
-                                                      nroTelefono=@nroTel, idUsuario=@idUs, 
-                                                      promedioEstrellas=@promEstr, idEstado=@idEst
-                                                WHERE id=@idDeportista";
-
-            cmd.Parameters.AddWithValue("@idDeportista", deportista.idDeportista);
-            cmd.Parameters.AddWithValue("@ape", deportista.apellido);
-            cmd.Parameters.AddWithValue("@nombres", deportista.nombres);
-            cmd.Parameters.AddWithValue("@idTipoDoc", deportista.idTipoDocumento);
-            cmd.Parameters.AddWithValue("@nroDoc", deportista.numeroDocumento);
-            cmd.Parameters.AddWithValue("@sex", deportista.sexo);
-            cmd.Parameters.AddWithValue("@fechaNac", deportista.fechaNacimiento);
-            cmd.Parameters.AddWithValue("@nroTel", deportista.numeroTelefono);
-            cmd.Parameters.AddWithValue("@idUs", deportista.idUsuario);
-            cmd.Parameters.AddWithValue("@promEstr", deportista.promedioEstrellas);
-            cmd.Parameters.AddWithValue("@idEst", deportista.idEstado);
-
-            cmd.ExecuteNonQuery();
-
+                                                      nroTelefono=@nroTel
+                                                WHERE idUsuario=@idUs;";
+            cmd.Parameters.AddWithValue("@idUs",id);
+            cmd.Parameters.AddWithValue("@ape",ape);
+            cmd.Parameters.AddWithValue("@nombres",nom);
+            cmd.Parameters.AddWithValue("@idTipoDoc",tdoc);
+            cmd.Parameters.AddWithValue("@nroDoc",doc);
+            cmd.Parameters.AddWithValue("@sex",sexo);
+            cmd.Parameters.AddWithValue("@fechaNac",Convert.ToDateTime(fc));
+            cmd.Parameters.AddWithValue("@nroTel",tel);
+           
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
             cn.Close();
+            return flag;
         }
 
         public static void EliminarDeportista(int id)
@@ -126,7 +127,29 @@ namespace CapaDao
             return deportistas;
         }
 
-        public static DeportistaEntidad ObtenerDeportistasPorID(int id)
+        public static bool ExisteDeportista(string id)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                FROM Deportista where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
+        public static DeportistaEntidad ObtenerDeportistaPorID(string id)
         {
             DeportistaEntidad d = null;
 
@@ -137,8 +160,8 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT *
-                                FROM Deportista where id=@idDeportista";
-            cmd.Parameters.AddWithValue("@idDeportista", id);
+                                FROM Deportista where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader dr = cmd.ExecuteReader();
 
             if (dr.Read())
@@ -162,5 +185,7 @@ namespace CapaDao
             cn.Close();
             return d;
         }
+
+
     }
 }

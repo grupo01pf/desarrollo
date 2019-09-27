@@ -112,6 +112,7 @@
     <Content Include="ComplejoInfo.aspx" />
     <Content Include="Complejos.aspx" />
     <Content Include="CrearEncuentro.aspx" />
+    <Content Include="Content\starrr.css" />
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
@@ -176,6 +177,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\starrr.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
