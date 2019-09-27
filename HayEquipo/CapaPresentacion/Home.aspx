@@ -221,7 +221,7 @@
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
-      <header class="w3-container w3-green">
+      <header class="w3-container w3-light-green">
           <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="Imagenes/nene.png"" alt="Avatar"/>
       <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>
@@ -233,16 +233,19 @@
                   <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
                   <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
                   <br />
+                  <br />
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-map-marker"></span>
                   <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>           
                   <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>  
-                  <br />               
+                  <br />  
+                  <br />             
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-eye-open"></span>
                   <asp:Label runat="server" text='<%#Eval("accesibilidad") %>'></asp:Label>
+                  <br />
                   <br />
               </div>
               <div class="col-sm-3">
@@ -292,12 +295,10 @@
         <div class="well">
         <p><a href="#">Algunos links que te pueden interesar...</a></p>
         <p>
-          <span class="label label-default">Link1</span>
-          <span class="label label-primary">Link2</span>
-          <span class="label label-success">Link3</span>
-          <span class="label label-info">Link4</span>
-          <span class="label label-warning">Link5</span>
-          <span class="label label-danger">Link6</span>
+          <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button">Olé</a>
+          <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button">Mundo D</a>
+          <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button">Agencia<br /> Córdoba<br /> Deportes</a>
+          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>         
         </p>
       </div>
     </div>
