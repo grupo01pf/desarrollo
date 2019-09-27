@@ -91,6 +91,9 @@
 
                                 <%--MODAL--%>
 
+
+                                  
+
                                 <%--<asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
                                     OnClick="btn_VerAgenda_Click"  />--%>
 
@@ -98,14 +101,15 @@
 
                                 <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary" 
                                     data-toggle="modal" data-target="#exampleModalScrollable"
-                                     visible="false" >
+                                     visible="false"  >
                                     Ver Agenda del Complejo
                                 </button>
 
-                                          
-                                
 
-                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" 
+                                
+                                    
+
+                                    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" 
                                     aria-hidden="false" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
 
@@ -124,6 +128,13 @@
                                                     <div class="modal-body">
 
                                                         <center>
+
+                                                             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <%--<asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval=""></asp:Timer>--%>
+
+
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
@@ -135,10 +146,18 @@
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
-                                                    
 
                                                     </Columns>
+                                                    
+
                                                 </asp:GridView>
+                            <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+
+
                                                 </center>
                                                     </div>
                                                     <div class="modal-footer">
@@ -149,7 +168,8 @@
 
 
                                     </div>
-                                </div
+                                </div>
+
 
                                 <%--FIN MODAL--%>
                                 <br />

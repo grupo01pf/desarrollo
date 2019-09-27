@@ -23,7 +23,7 @@ namespace CapaPresentacion
             validacionesDeUsuario();
             calcularCapacidad();
 
-            cargarChat();
+         //   cargarChat();
             // txt_Mensaje.Focus();
           
         }
@@ -236,6 +236,20 @@ namespace CapaPresentacion
             gdv_Pantalla.DataSource = MensajeQueryDao.MostrarMensajes(int.Parse(Session["idEncuentro"].ToString()));
             gdv_Pantalla.DataKeyNames = new string[] { "idMensaje" };
             gdv_Pantalla.DataBind();
+        }
+
+        protected void gdv_Pantalla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            
+             cargarChat();
+          //  gdv_Pantalla.DataSource = sqlData.
+
+           // gdv_Pantalla.DataBind();
         }
     }
 }

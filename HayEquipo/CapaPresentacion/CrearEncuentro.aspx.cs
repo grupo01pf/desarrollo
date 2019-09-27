@@ -453,10 +453,11 @@ namespace CapaPresentacion
            
         }
 
-      
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
 
-
-
+            cargarAgenda();
+        }
     }
 }
     
