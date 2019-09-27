@@ -81,6 +81,13 @@
     margin-top:5px;
 }
 
+
+.scroll-container {
+  display: block; 
+  height: 340px; 
+  overflow-y: scroll;
+  
+}
     </style>
 </asp:Content>
 
@@ -201,7 +208,7 @@
                     
               </div>
               </div>--%>
-             
+  <div class="scroll-container">
      <asp:Repeater ID="encuentrosRepeater" runat="server">
            <ItemTemplate>
                <div class="container">
@@ -230,7 +237,7 @@
             </ItemTemplate>
      </asp:Repeater>    
 
-
+ </div>
     </div>
   </div>
 
