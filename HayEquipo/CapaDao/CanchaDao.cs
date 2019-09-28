@@ -45,6 +45,15 @@ namespace CapaDao
             }
         }
 
+        public static void EliminarCanchasPorComplejo(int idComp)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.Cancha.RemoveRange(db.Cancha.Where(c => c.idComplejo == idComp));
+                db.SaveChanges();
+            }
+        }
+
         public static List<spObtenerCanchasPorComplejos_Result> ObtenerCanchasPorComplejos(int idComp)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())

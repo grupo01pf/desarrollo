@@ -12,22 +12,21 @@ namespace CapaEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class ValoracionDeportista
+    public partial class TipoValoracion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ValoracionDeportista()
+        public TipoValoracion()
         {
-            this.DetalleValoracionDeportista = new HashSet<DetalleValoracionDeportista>();
+            this.Valoracion = new HashSet<Valoracion>();
         }
     
         public int id { get; set; }
-        public Nullable<int> idDeportista { get; set; }
-        public string reseña { get; set; }
-        public Nullable<double> promedioEstrellas { get; set; }
-        public Nullable<System.DateTime> fechaHora { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
     
-        public virtual Deportista Deportista { get; set; }
+        public virtual TipoValoracion TipoValoracion1 { get; set; }
+        public virtual TipoValoracion TipoValoracion2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleValoracionDeportista> DetalleValoracionDeportista { get; set; }
+        public virtual ICollection<Valoracion> Valoracion { get; set; }
     }
 }

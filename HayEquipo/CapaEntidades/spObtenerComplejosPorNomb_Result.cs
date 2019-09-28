@@ -10,16 +10,18 @@
 namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DetalleValoracionDeportista
+    public partial class spObtenerComplejosPorNomb_Result
     {
-        public int id { get; set; }
-        public Nullable<int> nroEstrellas { get; set; }
-        public Nullable<int> idTipoValoracion { get; set; }
-        public Nullable<int> idValoracion { get; set; }
-    
-        public virtual TipoValoracionDeportista TipoValoracionDeportista { get; set; }
-        public virtual ValoracionDeportista ValoracionDeportista { get; set; }
+        public int ID { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string Deportes { get; set; }
+        public string Direccion { get; set; }
+        public string Barrio { get; set; }
+        public Nullable<int> Telefono { get; set; }
+        public string Responsable { get; set; }
+        public Nullable<double> Valoracion { get; set; }
+        public string Estado { get; set; }
     }
 }

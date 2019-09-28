@@ -26,5 +26,6 @@ namespace CapaEntidades
         public string tipoEncuentro { get; set; }
         public string accesibilidad { get; set; }
         public string clave { get; set; }
+        public Nullable<int> capacidad { get; set; }
     }
 }

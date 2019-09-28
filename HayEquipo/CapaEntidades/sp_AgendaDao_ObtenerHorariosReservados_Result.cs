@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ServiciosPorComplejos
+    public partial class sp_AgendaDao_ObtenerHorariosReservados_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idComplejo { get; set; }
-        public Nullable<int> idServicio { get; set; }
-    
-        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
-        public virtual ServicioExtra ServicioExtra { get; set; }
+        public int idCancha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<System.TimeSpan> horaInicio { get; set; }
+        public Nullable<int> idEstado { get; set; }
     }
 }

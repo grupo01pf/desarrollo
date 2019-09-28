@@ -47,6 +47,7 @@
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="idTipoCancha" ColumnName="idTipoCancha" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -65,16 +66,16 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="deportes" ColumnName="deportes" />
           <ScalarProperty Name="calle" ColumnName="calle" />
           <ScalarProperty Name="nroCalle" ColumnName="nroCalle" />
           <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
           <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
+          <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
+          <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
           <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
           <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
-          <ScalarProperty Name="idDeporte1" ColumnName="idDeporte1" />
-          <ScalarProperty Name="idDeporte2" ColumnName="idDeporte2" />
-          <ScalarProperty Name="idDeporte3" ColumnName="idDeporte3" />
           <ScalarProperty Name="mapa" ColumnName="mapa" />
           <ScalarProperty Name="avatar" ColumnName="avatar" />
         </MappingFragment>
@@ -121,26 +122,6 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
           <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DetalleValoracionComplejo">
-      <EntityTypeMapping TypeName="HayEquipoModel.DetalleValoracionComplejo">
-        <MappingFragment StoreEntitySet="DetalleValoracionComplejo">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nroEstrellas" ColumnName="nroEstrellas" />
-          <ScalarProperty Name="idTipoValoracion" ColumnName="idTipoValoracion" />
-          <ScalarProperty Name="idValoracion" ColumnName="idValoracion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DetalleValoracionDeportista">
-      <EntityTypeMapping TypeName="HayEquipoModel.DetalleValoracionDeportista">
-        <MappingFragment StoreEntitySet="DetalleValoracionDeportista">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nroEstrellas" ColumnName="nroEstrellas" />
-          <ScalarProperty Name="idTipoValoracion" ColumnName="idTipoValoracion" />
-          <ScalarProperty Name="idValoracion" ColumnName="idValoracion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -300,6 +281,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ReseñaComplejo">
+      <EntityTypeMapping TypeName="HayEquipoModel.ReseñaComplejo">
+        <MappingFragment StoreEntitySet="ReseñaComplejo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="reseña" ColumnName="reseña" />
+          <ScalarProperty Name="idComplejoValorado" ColumnName="idComplejoValorado" />
+          <ScalarProperty Name="idUsuarioValorador" ColumnName="idUsuarioValorador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Responsable">
       <EntityTypeMapping TypeName="HayEquipoModel.Responsable">
         <MappingFragment StoreEntitySet="Responsable">
@@ -385,6 +376,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HayEquipoModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TipoCancha">
       <EntityTypeMapping TypeName="HayEquipoModel.TipoCancha">
         <MappingFragment StoreEntitySet="TipoCancha">
@@ -421,18 +423,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TipoValoracionComplejo">
-      <EntityTypeMapping TypeName="HayEquipoModel.TipoValoracionComplejo">
-        <MappingFragment StoreEntitySet="TipoValoracionComplejo">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TipoValoracionDeportista">
-      <EntityTypeMapping TypeName="HayEquipoModel.TipoValoracionDeportista">
-        <MappingFragment StoreEntitySet="TipoValoracionDeportista">
+    <EntitySetMapping Name="TipoValoracion">
+      <EntityTypeMapping TypeName="HayEquipoModel.TipoValoracion">
+        <MappingFragment StoreEntitySet="TipoValoracion">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -454,25 +447,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ValoracionComplejo">
-      <EntityTypeMapping TypeName="HayEquipoModel.ValoracionComplejo">
-        <MappingFragment StoreEntitySet="ValoracionComplejo">
+    <EntitySetMapping Name="Valoracion">
+      <EntityTypeMapping TypeName="HayEquipoModel.Valoracion">
+        <MappingFragment StoreEntitySet="Valoracion">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
-          <ScalarProperty Name="reseña" ColumnName="reseña" />
-          <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
-          <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ValoracionDeportista">
-      <EntityTypeMapping TypeName="HayEquipoModel.ValoracionDeportista">
-        <MappingFragment StoreEntitySet="ValoracionDeportista">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
-          <ScalarProperty Name="reseña" ColumnName="reseña" />
-          <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
-          <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+          <ScalarProperty Name="idDeportistaValorado" ColumnName="idDeportistaValorado" />
+          <ScalarProperty Name="idComplejoValorado" ColumnName="idComplejoValorado" />
+          <ScalarProperty Name="idUsuarioValorador" ColumnName="idUsuarioValorador" />
+          <ScalarProperty Name="valoracion1" ColumnName="valoracion" />
+          <ScalarProperty Name="idTipoValoracion" ColumnName="idTipoValoracion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -533,6 +516,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgendaDao_ObtenerAgendaComplejo" FunctionName="HayEquipoModel.Store.sp_AgendaDao_ObtenerAgendaComplejo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result">
+          <ScalarProperty Name="idCancha" ColumnName="idCancha" />
+          <ScalarProperty Name="nombreCancha" ColumnName="nombreCancha" />
+          <ScalarProperty Name="tipoCancha" ColumnName="tipoCancha" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
+          <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AgendaDao_ObtenerHorariosReservados" FunctionName="HayEquipoModel.Store.sp_AgendaDao_ObtenerHorariosReservados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.sp_AgendaDao_ObtenerHorariosReservados_Result">
+          <ScalarProperty Name="idCancha" ColumnName="idCancha" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HayEquipoModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HayEquipoModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HayEquipoModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_idEncuentroCreado" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_idEncuentroCreado" />
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentro" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentro" />
     <FunctionImportMapping FunctionImportName="sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA" FunctionName="HayEquipoModel.Store.sp_EncuentroDeportivoDao_insertarUsuarioPorEncuentroEquipoA" />
@@ -594,6 +603,26 @@
           <ScalarProperty Name="tipoEncuentro" ColumnName="tipoEncuentro" />
           <ScalarProperty Name="accesibilidad" ColumnName="accesibilidad" />
           <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HayEquipoModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HayEquipoModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -609,7 +638,9 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_PermisoUsuario" FunctionName="HayEquipoModel.Store.sp_PermisoUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HayEquipoModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_ReservaDao_InsertarRerserva" FunctionName="HayEquipoModel.Store.sp_ReservaDao_InsertarRerserva" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HayEquipoModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="sp_UsuarioDao_UsuariosUnidosEncuentro" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_UsuariosUnidosEncuentro" />
     <FunctionImportMapping FunctionImportName="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA">
       <ResultMapping>
@@ -628,6 +659,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_UsuarioID" FunctionName="HayEquipoModel.Store.sp_UsuarioID" />
+    <FunctionImportMapping FunctionImportName="spInsertarImagen" FunctionName="HayEquipoModel.Store.spInsertarImagen" />
     <FunctionImportMapping FunctionImportName="spObtenerCanchasPorComplejos" FunctionName="HayEquipoModel.Store.spObtenerCanchasPorComplejos">
       <ResultMapping>
         <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerCanchasPorComplejos_Result">
@@ -648,10 +680,53 @@
           <ScalarProperty Name="Deportes" ColumnName="Deportes" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Responsable" ColumnName="Responsable" />
           <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Mapa" ColumnName="Mapa" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerComplejosOrdenValor" FunctionName="HayEquipoModel.Store.spObtenerComplejosOrdenValor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerComplejosOrdenValor_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Deportes" ColumnName="Deportes" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+          <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerComplejosPorNomb" FunctionName="HayEquipoModel.Store.spObtenerComplejosPorNomb">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerComplejosPorNomb_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Deportes" ColumnName="Deportes" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+          <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerServiciosPorComplejos" FunctionName="HayEquipoModel.Store.spObtenerServiciosPorComplejos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HayEquipoModel.spObtenerServiciosPorComplejos_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Servicio" ColumnName="Servicio" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

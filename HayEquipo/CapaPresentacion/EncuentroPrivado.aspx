@@ -26,7 +26,7 @@
         .Estilotable {
             border-collapse: collapse;
         }
-        
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -55,14 +55,14 @@
                         <asp:Label ID="Label4" runat="server" Text=" a "></asp:Label>
                         <asp:Label ID="txt_HoraFin" runat="server" Text="Tal hora"></asp:Label>
                     </div>
-                    <div class="alinearIzquiera elPadding">                     
-                            <span class="glyphicon glyphicon-map-marker"></span>                       
-                            <asp:Label ID="lbl_Complejo" runat="server" Text="Lugar"></asp:Label>                                             
+                    <div class="alinearIzquiera elPadding">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            <asp:Label ID="lbl_Complejo" runat="server" Text="Lugar"></asp:Label>
                             <asp:Label ID="Label5" runat="server" Text=" &#183; "></asp:Label>
                             <asp:Label ID="txt_calle" runat="server" Text="Calle"></asp:Label>
-                            <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>  
-                            <asp:Label ID="txt_nroCalle" runat="server" Text="Nro Calle"></asp:Label>   
-                                      
+                            <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+                            <asp:Label ID="txt_nroCalle" runat="server" Text="Nro Calle"></asp:Label>
+
                     </div>
                     <div class="alinearIzquiera elPadding">
                         <span class="glyphicon glyphicon-search"></span>
@@ -72,8 +72,8 @@
                     <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-earphone"></span>
                             <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
-                    </div>  
-                 
+                    </div>
+
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
                 </div>
                 <div class="well">
@@ -89,7 +89,7 @@
                 <div class="well">
                     <legend>Lista de Participantes</legend>
                     <div class="row">
-                        <div class="col-sm-6">                          
+                        <div class="col-sm-6">
                                 <div class="panel panel-primary">
                             <div class="panel-heading">Equipo A</div>
                                     <div class="panel-body">
@@ -100,15 +100,15 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
                                         </Columns>
                                     </asp:GridView>
-                                </div>                                                                                         
-                                    </div>                                                          
+                                </div>
+                                    </div>
                             <asp:Button ID="btn_UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" class="btn btn-success" />
                         </div>
                         <div class="col-sm-6">
                              <div class="panel panel-primary">
                             <div class="panel-heading">Equipo B</div>
                                     <div class="panel-body">
-                                    <%--Equipo B --%>                                                                                 
+                                    <%--Equipo B --%>
                                     <asp:GridView ID="gdv_Equipo_B" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
                                         <Columns>
                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
@@ -117,7 +117,7 @@
                                     </asp:GridView>
                                 </div>
                                  </div>
-                            
+
                             <asp:Button ID="btn_UnirseEquipoB" runat="server" Text="Unirse" OnClick="btn_UnirseEquipoB_Click" class="btn btn-success" />
                         </div>
                     </div>
@@ -131,7 +131,7 @@
             <div class="col-sm-4">
                 <div class="well">
                     <legend>Chat</legend>
-                    
+
                         <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff" HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove">
                             <Columns>
                                 <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
@@ -144,11 +144,23 @@
                         <div class="form-group alinearIzquiera">
                             <label for="comment">Mensaje:</label>
                              <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control" ></asp:TextBox><br />
-                             <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block"/>                                      
-                        </div> 
+                             <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block"/>
+                        </div>
                 </div>
             </div>
+            <div class="col-me-2"></div>
+
+        </div>
+
+        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
         </div>
     </div>
 </asp:Content>
 
+
+
+
+    </form>
+</body>
+</html>

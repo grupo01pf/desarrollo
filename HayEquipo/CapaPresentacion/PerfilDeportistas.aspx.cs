@@ -187,13 +187,13 @@ namespace CapaPresentacion
 
         public void DatosCargadosDeportista()
         {
-            DeportistaEntidad deportista = DeportistaDao.ObtenerDeportistaPorID(Session["ID"].ToString());
+            Deportista deportista = DeportistaDao.ObtenerDeportistaPorID(Session["ID"].ToString());
             txt_Nombres.Text = deportista.nombres;
             txt_Apellidos.Text = deportista.apellido;
-            txt_NumeroDocumento.Text = deportista.numeroDocumento.ToString();
+            txt_NumeroDocumento.Text = deportista.nroDoc.ToString();
             txt_Sexo.Text = deportista.sexo.ToString();
             txt_FechaNacimiento.Text = deportista.fechaNacimiento.ToString();
-            txt_Telefono.Text = deportista.numeroTelefono.ToString();
+            txt_Telefono.Text = deportista.nroTelefono.ToString();
             txt_Apellidos.Enabled = false;
             txt_Nombres.Enabled = false;
             txt_FechaNacimiento.Enabled = false;

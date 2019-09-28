@@ -7,16 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UsuariosPorEncuentroDeportivo
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idUsuarioEquipoA { get; set; }
-        public Nullable<int> idEncuentro { get; set; }
-        public Nullable<int> idUsuarioEquipoB { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

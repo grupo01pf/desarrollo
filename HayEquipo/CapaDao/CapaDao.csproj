@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendaDao.cs" />
     <Compile Include="CanchaDao.cs" />
     <Compile Include="MensajeDao.cs" />
     <Compile Include="MensajeQueryDao.cs" />

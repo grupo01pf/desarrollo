@@ -10,7 +10,6 @@ namespace CapaDao
 {
     public class DeporteDao
     {
-        
 
         public static List<Deporte> ObtenerDeportes()
         {
@@ -20,5 +19,12 @@ namespace CapaDao
             }
         }
 
+        public static Deporte ObtenerDeportesPorID(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.Deporte.First(d => d.id == id);
+            }
+        }
     }
 }

@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Sesion
+    public partial class sp_AgendaDao_ObtenerAgendaComplejo_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idUsuario { get; set; }
-        public Nullable<System.DateTime> horaInicio { get; set; }
-        public Nullable<System.DateTime> horaFin { get; set; }
-        public Nullable<int> idEstado { get; set; }
-    
-        public virtual Estado Estado { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public int idCancha { get; set; }
+        public string nombreCancha { get; set; }
+        public string tipoCancha { get; set; }
+        public Nullable<double> precio { get; set; }
+        public Nullable<int> capacidad { get; set; }
+        public Nullable<System.TimeSpan> horaApertura { get; set; }
+        public Nullable<System.TimeSpan> horaCierre { get; set; }
     }
 }

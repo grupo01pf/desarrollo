@@ -11,7 +11,7 @@ namespace CapaDao
     {
 
 
-       
+
 
         #region "Patron Singleton"
         private static ConnectionString conexion = null;
@@ -32,20 +32,19 @@ namespace CapaDao
 
             //*****Nico_BD
 
-            //string cadeana = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+            //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
-            //string cadeana = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
+            //string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
 
 
             //FrancoR BD
             //String cadena = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
 
-            string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
-            //Otra cadena de Nacho:
-            //string cadena = @"Data Source=IGNACIOMONETTOP\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
+            //string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 
-            //return cadeana;
+
+            //return cadena;
 
             //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
@@ -54,7 +53,7 @@ namespace CapaDao
 
             //*****Agu_BD
 
-            //string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
+            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
 
 
 
@@ -65,9 +64,10 @@ namespace CapaDao
         {
             SqlConnection conexion = new SqlConnection();
             //Cadena de Conexion de Franco R
-            //conexion.ConnectionString = "Data Source=LAPTOP-N4V2H3NE; Initial Catalog=HayEquipo; User ID=alumnosa; Password=abcd123";
+            // conexion.ConnectionString = "Data Source=LAPTOP-N4V2H3NE; Initial Catalog=HayEquipo; User ID=alumnosa; Password=abcd123";
+
             //Cadena de conescion de nico
-            //conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+            conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
             conexion.ConnectionString = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
@@ -80,5 +80,3 @@ namespace CapaDao
         }
         }
     }
-
-

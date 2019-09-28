@@ -63,10 +63,10 @@ namespace CapaDao
             cn.Close();
             return edq;
         }
-
-        // public static EncuentroDeportivoQueryEntidad datosEncuentroPublico(int idUsuario, int idEncuentro){
+        
         public static EncuentroDeportivoQueryEntidad datosEncuentroPublico(int idEncuentro)
         {
+
 
             //List<EncuentroDeportivoQueryEntidad> ListaEQ = new List<EncuentroDeportivoQueryEntidad>();
             EncuentroDeportivoQueryEntidad edq = null;
@@ -97,6 +97,7 @@ namespace CapaDao
                 edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
+                edq.capacidad = int.Parse(dr["capacidad"].ToString());
 
             }
             dr.Close();

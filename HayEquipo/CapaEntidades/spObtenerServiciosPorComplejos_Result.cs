@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
     
-    public partial class sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result
+    public partial class spObtenerServiciosPorComplejos_Result
     {
-        public string nombreUsuario { get; set; }
-        public int idUsuario { get; set; }
+        public int ID { get; set; }
+        public string Servicio { get; set; }
     }
 }

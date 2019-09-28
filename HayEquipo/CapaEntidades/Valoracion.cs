@@ -12,14 +12,18 @@ namespace CapaEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class DetalleValoracionComplejo
+    public partial class Valoracion
     {
         public int id { get; set; }
-        public Nullable<int> nroEstrellas { get; set; }
+        public Nullable<int> idDeportistaValorado { get; set; }
+        public Nullable<int> idComplejoValorado { get; set; }
+        public Nullable<int> idUsuarioValorador { get; set; }
+        public Nullable<int> valoracion1 { get; set; }
         public Nullable<int> idTipoValoracion { get; set; }
-        public Nullable<int> idValoracion { get; set; }
     
-        public virtual TipoValoracionComplejo TipoValoracionComplejo { get; set; }
-        public virtual ValoracionComplejo ValoracionComplejo { get; set; }
+        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
+        public virtual Deportista Deportista { get; set; }
+        public virtual TipoValoracion TipoValoracion { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

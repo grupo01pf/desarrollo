@@ -83,7 +83,11 @@ $(window).load(function() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
-        <li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>
+        <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
+         <li><strong>
+             <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" BackColor="Yellow"  ForeColor="Black" OnClick="btn_CrearEncuentro_Click" Height="50px"/>
+            </strong>
+         </li>
       </ul>
         <ul class="nav navbar-nav moverbuscador">          
           <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>

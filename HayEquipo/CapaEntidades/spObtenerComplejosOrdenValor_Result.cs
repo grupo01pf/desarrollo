@@ -7,16 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
     
-    public partial class spObtenerCanchasPorComplejos_Result
+    public partial class spObtenerComplejosOrdenValor_Result
     {
         public int ID { get; set; }
-        public string Deporte { get; set; }
-        public string Tipo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string Deportes { get; set; }
+        public string Direccion { get; set; }
+        public string Barrio { get; set; }
+        public Nullable<int> Telefono { get; set; }
+        public string Responsable { get; set; }
+        public Nullable<double> Valoracion { get; set; }
+        public string Estado { get; set; }
     }
 }

@@ -7,18 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ZonasPorDeportistas
+    public partial class sp_helpdiagrams_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idZona { get; set; }
-        public Nullable<int> idDeportista { get; set; }
-    
-        public virtual Deportista Deportista { get; set; }
-        public virtual Zona Zona { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

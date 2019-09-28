@@ -7,15 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDao
+namespace CapaEntidades
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_MensajeQueryDao_MostrarMensajes_Result
+    public partial class sysdiagrams
     {
-        public string nombreUsuario { get; set; }
-        public Nullable<System.DateTime> fechaHora { get; set; }
-        public string texto { get; set; }
-        public int idMensaje { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
