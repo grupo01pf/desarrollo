@@ -83,23 +83,30 @@ $(window).load(function() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
-        <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
-         <li><strong>
-             <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" BackColor="Yellow"  ForeColor="Black" OnClick="btn_CrearEncuentro_Click" Height="50px"/>
-            </strong>
-         </li>
+        <li class="label-warning"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>       
       </ul>
-        <ul class="nav navbar-nav moverbuscador">          
+       <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
+        <%--<ul class="nav navbar-nav moverbuscador">          
           <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>
           <li>
             <button class="btn btn-default moverboton" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </li>             
-       </ul>
+       </ul>--%>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
+      </ul>
+        <ul class="navbar-form navbar-right" role="search">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" placeholder="Buscar jugadores..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+        </div>
       </ul>
     </div>
   </div>
