@@ -114,6 +114,7 @@ namespace CapaPresentacion
             else { ed.capacidad = int.Parse(txt_Cantidad.Text); }
 
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
+            int id = int.Parse(Session["idEncuentro"].ToString());
             EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
 
             Mensaje msg = new Mensaje();
@@ -179,9 +180,9 @@ namespace CapaPresentacion
             { horario.horaInicio = TimeSpan.Parse("00:00"); }
             else
             {
-               TimeSpan? hr = TimeSpan.Parse(fila.Cells[4].Text);
-               horario.horaInicio = hr;
-               // horario.horaInicio =
+                TimeSpan? hr = TimeSpan.Parse(fila.Cells[4].Text);
+                horario.horaInicio = hr;
+                // horario.horaInicio =
             }
             horario.fecha = cld_Fecha.SelectedDate;
             horario.idEstado = 1; // (REESERVADO)
@@ -212,7 +213,7 @@ namespace CapaPresentacion
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
 
-             
+
 
 
 
@@ -290,7 +291,7 @@ namespace CapaPresentacion
             txt_Cantidad.Enabled = false;
 
             btn_Agenda.Visible = false;
-           // lbl_Capacidad.Visible = true;
+            // lbl_Capacidad.Visible = true;
 
             contenedorDelMapa.Visible = false;
             frm_map.Visible = false;
@@ -348,18 +349,18 @@ namespace CapaPresentacion
 
             int horas = int.Parse(horario.Hour.ToString());
 
-            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex,cmb_Deporte.SelectedIndex);
+            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
             AgendaEntidad agenda = null;
             List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
             foreach (AgendaEntidad a in listaDatosAgenda)
             {
 
-                for(int i = 0; i < horas; i++)
+                for (int i = 0; i < horas; i++)
                 {
                     agenda = new AgendaEntidad();
                     agenda.idCancha = a.idCancha;
                     agenda.nombreCancha = a.nombreCancha;
-                    agenda.nombreTipoCancha = a.nombreTipoCancha;                   
+                    agenda.nombreTipoCancha = a.nombreTipoCancha;
                     agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
                     agenda.precioCancha = a.precioCancha;
                     agenda.capacidadTipoCancha = a.capacidadTipoCancha;
@@ -377,9 +378,10 @@ namespace CapaPresentacion
             {
                 foreach (AgendaEntidad lg in listaAgendaGenerada)
                 {
-                    foreach (AgendaEntidad lr in listaHorariosReservados) {
+                    foreach (AgendaEntidad lr in listaHorariosReservados)
+                    {
 
-                       // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
+                        // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
                         if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
                         {
 
@@ -395,8 +397,8 @@ namespace CapaPresentacion
 
                             //listaHorariosDisponibles.Add(agenda);
                         }
-                    }        
-            }
+                    }
+                }
             }
             //else { listaHorariosDisponibles = listaAgendaGenerada; }
 
@@ -406,16 +408,20 @@ namespace CapaPresentacion
             // gdv_Agenda.DataSource = listaAgenda;
             // gdv_Agenda.DataSource = listaHorariosDisponibles;
 
-            foreach (AgendaEntidad lg in listaAgendaGenerada) {
-                if (lg.idEstadoHorario == null) {
+            foreach (AgendaEntidad lg in listaAgendaGenerada)
+            {
+                if (lg.idEstadoHorario == null)
+                {
                     listaHorariosDisponibles.Add(lg);
                 }
             }
 
-            if (listaHorariosDisponibles.Count > 0 ) {
+            if (listaHorariosDisponibles.Count > 0)
+            {
                 gdv_Agenda.DataSource = listaHorariosDisponibles;
-            } else { gdv_Agenda.DataSource = listaAgendaGenerada; }
-                
+            }
+            else { gdv_Agenda.DataSource = listaAgendaGenerada; }
+
 
             //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
             gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
@@ -426,40 +432,44 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             // lbl_Capacidad.Text = string.Empty;
-            cargarAgenda();
+            // cargarAgenda();
             btn_Agenda.Visible = true;
-          
+
         }
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             string datos = string.Empty;
-            datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text +"hs. , $" + fila.Cells[5].Text;
+            datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
 
-            lbl_Capacidad.Text = fila.Cells[6].Text;
+            lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
 
 
         }
 
-       
+
         //protected void btn_VerAgenda_Click(object sender, EventArgs e)
         //{
         //   cargarAgenda();
-          
-           
+
+
         //}
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null && cmb_Complejo.SelectedIndex != 0)
-            { cargarAgenda();
+            {
+
+                cargarAgenda();
+                btn_Agenda.Visible = true;
                 //lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate;
             }
         }
     }
 }
-    
+
+

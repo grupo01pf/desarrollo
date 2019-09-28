@@ -277,3 +277,8 @@ C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Micros
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.ApplicationInsights.xml
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\nacho\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\AjaxControlToolkit.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.SqlServer.dll
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.xml
+C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.SqlServer.xml

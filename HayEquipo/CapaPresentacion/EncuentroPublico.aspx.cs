@@ -13,27 +13,21 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Session["IdOrganizadorEncuentro"] = null;
             Session["CapacidadMaxima"] = null;
-          //  Session["CantidadActual"] = null;
+            //  Session["CantidadActual"] = null;
 
-
-
-            Session["IdUsuarioEncuentro"] = null;
-            if (Request.QueryString["Id"] != null)
-            {
-
-
-                Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
-            }
             //cargarDeportes();
+
+            // if (int.Parse(Session["idEncuentro"].ToString()) != 0) { 
             cargarTabla();
             cargarDatosEncuentroPublico();
             validacionesDeUsuario();
             calcularCapacidad();
 
-         //   cargarChat();
+            //  }
+
+            //   cargarChat();
             // txt_Mensaje.Focus();
 
         }
@@ -85,16 +79,18 @@ namespace CapaPresentacion
 
 
         //  private void calcularCapacidad(int capacidad, int idEncuentro) {
-        private void calcularCapacidad() {
+        private void calcularCapacidad()
+        {
 
             //bool completo = false;
             List<Usuario> listaUsuarios = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-           // Session["CantidadActual"] = listaUsuarios.Count();
+            // Session["CantidadActual"] = listaUsuarios.Count();
             if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
             }
-            else {
+            else
+            {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
                 int estado = 8; // (COMPLETO)
@@ -142,7 +138,10 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
-            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+
+            int id = int.Parse(Session["idEncuentro"].ToString());
+
+            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));            
             //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
             gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
@@ -157,7 +156,8 @@ namespace CapaPresentacion
         //    cmb_Deporte.DataBind();
         //}
 
-        private void validacionesDeUsuario() {
+        private void validacionesDeUsuario()
+        {
 
             if (validarOrganizador())
             {
@@ -196,19 +196,22 @@ namespace CapaPresentacion
 
         }
 
-        private bool validarJugadorUnido() {
+        private bool validarJugadorUnido()
+        {
 
             bool estaUnido = false;
 
             List<Usuario> listaUsuariosUnidos = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
 
-            foreach (Usuario u in listaUsuariosUnidos) {
+            foreach (Usuario u in listaUsuariosUnidos)
+            {
 
-                if (u.id == int.Parse(Session["ID"].ToString())) {
+                if (u.id == int.Parse(Session["ID"].ToString()))
+                {
                     return estaUnido = true;
                 }
             }
-                return estaUnido;
+            return estaUnido;
 
         }
 
@@ -255,11 +258,14 @@ namespace CapaPresentacion
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            if (int.Parse(Session["idEncuentro"].ToString()) != 0)
+            {
+                cargarChat();
+            }
 
-             cargarChat();
-          //  gdv_Pantalla.DataSource = sqlData.
+            //  gdv_Pantalla.DataSource = sqlData.
 
-           // gdv_Pantalla.DataBind();
+            // gdv_Pantalla.DataBind();
         }
     }
 }

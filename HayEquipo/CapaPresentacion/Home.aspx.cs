@@ -29,7 +29,7 @@ namespace CapaPresentacion
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
             }
-           
+
             encuentrosRepeater.DataSource = ObtenerEncuentros();
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
@@ -42,17 +42,22 @@ namespace CapaPresentacion
             if (e.CommandName == "btnUnirseEncuentro")
             {
                 string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+                int id = int.Parse(idEncuentro);
+
+                Session["idEncuentro"] = id;
 
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    //  Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
                 {
-                    Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    // Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPrivado.aspx");
                 }
 
-                }
+            }
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)
@@ -131,11 +136,11 @@ namespace CapaPresentacion
 
 
         //}
-         
+
         public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
         {
             List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro= EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
             //var q = from p in contexto.EncuentroDeportivo
             //        select p;
             //return q.ToList();
