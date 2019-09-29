@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPrivado.aspx.cs" Inherits="CapaPresentacion.EncuentroPrivado" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPrivado.aspx.cs" Inherits="CapaPresentacion.EncuentroPrivado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -130,16 +130,39 @@
             </div>
             <div class="col-sm-4">
                 <div class="well">
+
+                    
+                    <%--CHAT--%>
                     <legend>Chat</legend>
 
-                        <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff" HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove">
-                            <Columns>
+                     <%--AJAX--%>
+
+
+                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                        
+                            <div class="scroll-container">
+
+                         <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
+                                HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
+                                EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large" >
+                                <Columns>
                                 <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                 <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
                                 <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                             </Columns>
                         </asp:GridView>
-                    <br />
+                    
+                                  </div>
+
+                            <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+
                     <%--BOTONES CHAT--%>
                         <div class="form-group alinearIzquiera">
                             <label for="comment">Mensaje:</label>

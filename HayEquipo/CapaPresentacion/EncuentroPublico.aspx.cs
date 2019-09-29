@@ -141,17 +141,12 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
-           // if (Session["idEncuentro"] != null) {
-
-                int id = int.Parse(Session["idEncuentro"].ToString());
-
+           
                 //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));            
                 //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
                 gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
                 gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
-                gdv_UsuariosUnidos.DataBind();
-
-           // }
+                gdv_UsuariosUnidos.DataBind();          
             
         }
 
@@ -258,10 +253,7 @@ namespace CapaPresentacion
             gdv_Pantalla.DataBind();
         }
 
-        protected void gdv_Pantalla_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+   
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
