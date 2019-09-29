@@ -22,6 +22,13 @@
         .Estilotable {
             border-collapse: collapse;
         }
+        .scroll-container {
+        
+            display: block;
+            height = 500px;
+            overflow-y: scroll;        
+        }
+        
     </style>
 </asp:Content>
 
@@ -114,6 +121,8 @@
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
 
 
+                            <div class="scroll-container">
+
                             <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
                                 HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
                                 EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large" OnSelectedIndexChanged="gdv_Pantalla_SelectedIndexChanged" >
@@ -123,6 +132,8 @@
                                     <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                                 </Columns>
                             </asp:GridView>
+
+                                </div>
 
                             <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 

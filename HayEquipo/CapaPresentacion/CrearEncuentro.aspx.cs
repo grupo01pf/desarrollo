@@ -25,20 +25,12 @@ namespace CapaPresentacion
                 // cargarZonas();
                 cargarComplejos();
                 // cargarBarrios();
+                cld_Fecha.SelectedDate = DateTime.Today;
+                
+               // cld_Fecha.SelectedDayStyle.BorderColor
             }
 
-            if (cmb_Complejo.SelectedIndex != 0)
-            {
-                contenedorDelMapa.Visible = true;
-                frm_map.Visible = true;
-                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-                frm_map.Src = cd.mapa;
-            }
-            if (cmb_Complejo.SelectedIndex == 0)
-            {
-                contenedorDelMapa.Visible = false;
-                frm_map.Visible = false;
-            }
+            cargarMapa();
 
 
 
@@ -204,11 +196,6 @@ namespace CapaPresentacion
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
 
-
-
-
-
-
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
@@ -218,10 +205,7 @@ namespace CapaPresentacion
 
 
 
-        private void cargarGrilla()
-        {
-
-        }
+    
 
         private void cargarDeportes()
         {
@@ -250,7 +234,23 @@ namespace CapaPresentacion
             cmb_Complejo.DataBind();
         }
 
-      
+        private void cargarMapa(){
+
+            if (cmb_Complejo.SelectedIndex != 0)
+            {
+                contenedorDelMapa.Visible = true;
+                frm_map.Visible = true;
+                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+                frm_map.Src = cd.mapa;
+                btn_Agenda.Visible = true;
+            }
+            if (cmb_Complejo.SelectedIndex == 0)
+            {
+                contenedorDelMapa.Visible = false;
+                frm_map.Visible = false;
+            }
+
+        }
 
         private void cargarBarrios()
         {
@@ -296,6 +296,8 @@ namespace CapaPresentacion
             txt_Cantidad.Enabled = true;
             cmb_Complejo.Enabled = false;
 
+            btn_Agenda.Visible = false;
+
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
 
@@ -311,6 +313,8 @@ namespace CapaPresentacion
             txt_HoraFin.Enabled = false;
             txt_Cantidad.Enabled = false;
             cmb_Complejo.Enabled = true;
+
+          //  btn_Agenda.Visible = true;
 
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
@@ -417,8 +421,8 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             // lbl_Capacidad.Text = string.Empty;
-            // cargarAgenda();
-            btn_Agenda.Visible = true;
+            cargarAgenda();
+           // btn_Agenda.Visible = true;
 
         }
 
@@ -439,19 +443,55 @@ namespace CapaPresentacion
 
         //protected void btn_VerAgenda_Click(object sender, EventArgs e)
         //{
-        //   cargarAgenda();
+        //    cargarAgenda();
 
 
         //}
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            //if (rdb_Publico.Checked) {
+            //    txt_Direccion.Enabled = true;
+            //    txt_NombreLugar.Enabled = true;
+            //    txt_HoraInicio.Enabled = true;
+            //    txt_HoraFin.Enabled = true;
+            //    txt_Cantidad.Enabled = true;
+            //    cmb_Complejo.Enabled = false;
+
+            //    btn_Crear.Enabled = true;
+            //    btn_Cancelar.Enabled = true;
+
+
+            //}
+            //if (rdb_Privado.Checked) {
+            //    txt_Direccion.Enabled = false;
+            //    txt_NombreLugar.Enabled = false;
+            //    txt_HoraInicio.Enabled = false;
+            //    txt_HoraFin.Enabled = false;
+            //    txt_Cantidad.Enabled = false;
+            //    cmb_Complejo.Enabled = true;
+
+            //    btn_Agenda.Visible = true;
+
+            //    btn_Crear.Enabled = true;
+            //    btn_Cancelar.Enabled = true;
+
+
+            //}
             if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null && cmb_Complejo.SelectedIndex != 0)
             {
-
+                
                 cargarAgenda();
-                btn_Agenda.Visible = true;
+               // btn_Agenda.Visible = true;
                 //lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate;
+            }
+        }
+
+        protected void cld_Fecha_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < DateTime.Now.Date)
+            {
+                e.Day.IsSelectable = false;
             }
         }
     }

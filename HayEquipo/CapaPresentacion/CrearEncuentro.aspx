@@ -37,7 +37,7 @@
                     <div class="well" style="width: 310px; margin: 0 auto;">
                         <div class="form-group">
                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" ></asp:Calendar>
+                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender"></asp:Calendar>
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,14 +92,13 @@
                                 <%--MODAL--%>
 
 
+                               <%-- <asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
+                                    OnClick="btn_VerAgenda_Click" data-toggle="modal" data-target="#exampleModalScrollable" />
+--%>
 
 
-                                <%--<asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
-                                    OnClick="btn_VerAgenda_Click"  />--%>
-
-
-
-
+                                
+                                       
 
                                 <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary"
                                     data-toggle="modal" data-target="#exampleModalScrollable"
@@ -109,10 +108,9 @@
 
 
 
-
-
                                     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-                                    aria-hidden="false" data-backdrop="static" data-keyboard="false">
+                                    aria-hidden="false">
+                                         <%--data-backdrop="static" data-keyboard="false">--%>
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
 
 
@@ -134,7 +132,7 @@
                                                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick"  Interval="1000"></asp:Timer>
 
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
@@ -150,9 +148,11 @@
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
 
                                                     </Columns>
-
-
                                                 </asp:GridView>
+
+
+
+
                               <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>
