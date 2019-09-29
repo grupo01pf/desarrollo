@@ -32,6 +32,9 @@ namespace CapaPresentacion
 
             cargarMapa();
 
+            //if (lbl_Reserva.Text != null && lbl_Capacidad != null) {
+
+            //}
 
 
 
@@ -319,6 +322,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
 
+           // cargarAgenda();
 
         }
 
@@ -327,7 +331,7 @@ namespace CapaPresentacion
         private void cargarAgenda()
         {
 
-            lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
+            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString(); 
             //******************************************
             // Generar Horarios
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
@@ -375,28 +379,12 @@ namespace CapaPresentacion
                         {
 
                             lg.idEstadoHorario = lr.idEstadoHorario;
-                            //agenda = new AgendaEntidad();
-
-                            //agenda.idCancha = lg.idCancha;
-                            //agenda.nombreCancha = lg.nombreCancha;
-                            //agenda.nombreTipoCancha = lg.nombreTipoCancha;
-                            //agenda.horaInicioHorario = lg.horaInicioHorario;
-                            //agenda.precioCancha = lg.precioCancha;
-                            //agenda.capacidadTipoCancha = lg.capacidadTipoCancha;
-
-                            //listaHorariosDisponibles.Add(agenda);
+                           
                         }
                     }
                 }
             }
-            //else { listaHorariosDisponibles = listaAgendaGenerada; }
-
-
-            //*************************************************
-            // Cargar Horarios
-            // gdv_Agenda.DataSource = listaAgenda;
-            // gdv_Agenda.DataSource = listaHorariosDisponibles;
-
+            
             foreach (AgendaEntidad lg in listaAgendaGenerada)
             {
                 if (lg.idEstadoHorario == null)
@@ -420,10 +408,15 @@ namespace CapaPresentacion
         protected void cmb_Complejo_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbl_Reserva.Text = string.Empty;
-            // lbl_Capacidad.Text = string.Empty;
-            cargarAgenda();
-           // btn_Agenda.Visible = true;
 
+            if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null
+                 && cmb_Complejo.SelectedIndex != 0)
+            {
+                cargarAgenda();
+
+                lbl_Reserva.Visible = false;
+                lbl_Capacidad.Visible = false;
+            }
         }
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
@@ -434,10 +427,11 @@ namespace CapaPresentacion
             string datos = string.Empty;
             datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
-
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
 
-
+            lbl_Reserva.Visible = true;
+            lbl_Capacidad.Visible = true;
+           
         }
 
 
@@ -450,40 +444,18 @@ namespace CapaPresentacion
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            //if (rdb_Publico.Checked) {
-            //    txt_Direccion.Enabled = true;
-            //    txt_NombreLugar.Enabled = true;
-            //    txt_HoraInicio.Enabled = true;
-            //    txt_HoraFin.Enabled = true;
-            //    txt_Cantidad.Enabled = true;
-            //    cmb_Complejo.Enabled = false;
-
-            //    btn_Crear.Enabled = true;
-            //    btn_Cancelar.Enabled = true;
-
-
-            //}
-            //if (rdb_Privado.Checked) {
-            //    txt_Direccion.Enabled = false;
-            //    txt_NombreLugar.Enabled = false;
-            //    txt_HoraInicio.Enabled = false;
-            //    txt_HoraFin.Enabled = false;
-            //    txt_Cantidad.Enabled = false;
-            //    cmb_Complejo.Enabled = true;
-
-            //    btn_Agenda.Visible = true;
-
-            //    btn_Crear.Enabled = true;
-            //    btn_Cancelar.Enabled = true;
-
-
-            //}
-            if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null && cmb_Complejo.SelectedIndex != 0)
+            
+            if ( cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null
+                && cmb_Complejo.SelectedIndex != 0 )
             {
                 
                 cargarAgenda();
-               // btn_Agenda.Visible = true;
-                //lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate;
+
+                if (lbl_Reserva.Text != null && lbl_Capacidad.Text != null) {
+                    lbl_Reserva.Visible = true;
+                    lbl_Capacidad.Visible = true;
+                }
+
             }
         }
 
@@ -492,6 +464,19 @@ namespace CapaPresentacion
             if (e.Day.Date < DateTime.Now.Date)
             {
                 e.Day.IsSelectable = false;
+               
+            }
+        }
+
+        protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)
+        {
+            if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null
+                && cmb_Complejo.SelectedIndex != 0)
+            {               
+                cargarAgenda();
+
+                lbl_Reserva.Visible = false;
+                lbl_Capacidad.Visible = false;
             }
         }
     }

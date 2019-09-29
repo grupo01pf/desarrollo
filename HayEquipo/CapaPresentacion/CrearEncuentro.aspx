@@ -36,8 +36,10 @@
                     </div>
                     <div class="well" style="width: 310px; margin: 0 auto;">
                         <div class="form-group">
+
                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender"></asp:Calendar>
+                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
+                       
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,6 +109,9 @@
                                 </button>
 
 
+                                
+
+
 
                                     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
                                     aria-hidden="false">
@@ -129,15 +134,17 @@
 
                                                         <center>
 
-                                                           <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+                  <%--                                      
+                   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick"  Interval="1000"></asp:Timer>
+                            <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick"  Interval="1000"></asp:Timer>--%>
 
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged"  >
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
@@ -151,15 +158,11 @@
                                                 </asp:GridView>
 
 
-
-
+                     <%--       
                               <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>
-                    </asp:UpdatePanel>
-
-
-
+                    </asp:UpdatePanel>--%>
 
 
                                                 </center>
@@ -173,6 +176,9 @@
 
                                     </div>
                                 </div>
+
+                        
+
 
 
                                 <%--FIN MODAL--%>
