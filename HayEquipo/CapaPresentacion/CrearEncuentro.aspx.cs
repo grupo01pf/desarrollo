@@ -13,10 +13,11 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IdEncuentro"] = null;
+            
 
             if (!IsPostBack)
             {
+                Session["IdEncuentro"] = null;
 
                 deshabilitarControles();
 
@@ -91,10 +92,7 @@ namespace CapaPresentacion
                 TimeSpan? hf = TimeSpan.Parse(txt_HoraFin.Text);
                 ed.horaFin = hf;
             }
-            ed.tipoEncuentro = "Publico";
-
-            //  if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
-            //  else { ed.accesibilidad = "Abierto"; }
+            ed.tipoEncuentro = "Publico";          
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
             { ed.clave = string.Empty; ed.accesibilidad = "Abierto"; }
@@ -135,8 +133,7 @@ namespace CapaPresentacion
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
             ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
-            // ed.idUsuario = 1;
-            // ed.fechaCreacionEncuentro = DateTime.Now; (reserva)
+           
 
             ed.idDeporte = cmb_Deporte.SelectedIndex;
             ed.idComplejo = cmb_Complejo.SelectedIndex;
@@ -146,9 +143,7 @@ namespace CapaPresentacion
 
             ed.tipoEncuentro = "Privado";
 
-            // if (chk_Accesibilidad.Checked) { ed.accesibilidad = "Cerrado"; }
-            //  else { ed.accesibilidad = "Abierto"; }
-
+           
             if (string.IsNullOrEmpty(txt_Clave.Text))
             { ed.clave = string.Empty; ed.accesibilidad = "Abierto"; }
             else
@@ -182,7 +177,7 @@ namespace CapaPresentacion
             {
                 TimeSpan? hr = TimeSpan.Parse(fila.Cells[4].Text);
                 horario.horaInicio = hr;
-                // horario.horaInicio =
+                
             }
             horario.fecha = cld_Fecha.SelectedDate;
             horario.idEstado = 1; // (REESERVADO)
@@ -198,10 +193,6 @@ namespace CapaPresentacion
             reserva.fechaReserva = DateTime.Now;
             reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());
 
-            //string fecha = DateTime.Now.ToString("HHmmss");
-            //TimeSpan hr = TimeSpan.Parse(fecha.ToString());
-            //reserva.horaReserva = hr;
-
             reserva.idEstado = 1; //(reservado)
             ReservaDao.InsertarReserva(reserva);
 
@@ -209,7 +200,7 @@ namespace CapaPresentacion
             msg.idUsuario = int.Parse(Session["ID"].ToString());
             msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             msg.fechaHora = DateTime.Now;
-            // msg.texto = string.Empty;
+           
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
 
@@ -225,10 +216,7 @@ namespace CapaPresentacion
             Response.Redirect("Home.aspx");
         }
 
-        protected void btn_BuscarHorarios_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void cargarGrilla()
         {
@@ -262,10 +250,7 @@ namespace CapaPresentacion
             cmb_Complejo.DataBind();
         }
 
-        private void cargarTipoCanchas()
-        {
-
-        }
+      
 
         private void cargarBarrios()
         {

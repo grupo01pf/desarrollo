@@ -61,22 +61,25 @@ namespace CapaPresentacion
             cargarChat();
             txt_Mensaje.Focus();
             */
+            if (!IsPostBack) {
 
-            Session["IdOrganizadorEncuentro"] = null;
-            Session["CapacidadMaxima"] = null;
-            // cargarDeportes();
-            // cargarComplejos();
-            cargarEquipoA();
-            cargarEquipoB();
+                Session["IdOrganizadorEncuentro"] = null;
+                Session["CapacidadMaxima"] = null;
+                // cargarDeportes();
+                // cargarComplejos();
+                cargarEquipoA();
+                cargarEquipoB();
 
-            cargarDatosEncuentroPrivado();
+                cargarDatosEncuentroPrivado();
 
-            calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB());
+                calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB());
 
-            // cargarMapa();
+                // cargarMapa();
 
-            cargarChat();
-            txt_Mensaje.Focus();
+              //  cargarChat();
+            }
+            
+           // txt_Mensaje.Focus();
         }
 
 
