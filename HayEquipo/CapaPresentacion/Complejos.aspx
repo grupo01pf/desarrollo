@@ -41,7 +41,7 @@
 &nbsp;  
     <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click">Fútbol</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click">Basket</asp:LinkButton>
+ <%--   <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click">Basket</asp:LinkButton>--%>
 &nbsp;
     <asp:LinkButton ID="lbPaddle" runat="server">Paddle</asp:LinkButton>
 &nbsp;
@@ -57,7 +57,10 @@
 &nbsp;<br />
     <br />
 &nbsp;
-    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False"/>
+    <%--<asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>--%>
+    <button id="btnD1" type="button" class="close" aria-label="Close" runat="server" visible="false">
+  <span aria-hidden="true">&times;</span>
+</button>
 &nbsp;
     <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" />
 &nbsp;
