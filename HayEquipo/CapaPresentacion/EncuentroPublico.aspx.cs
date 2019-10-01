@@ -276,7 +276,7 @@ namespace CapaPresentacion
 
         private void cargarListaInvitar() {
 
-            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios();
+            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
         }

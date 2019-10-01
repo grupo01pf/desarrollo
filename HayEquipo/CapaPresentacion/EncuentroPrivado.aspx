@@ -158,15 +158,16 @@
                                                     <Columns>
                                                         <asp:TemplateField>
                                                             <HeaderTemplate>
-                                                                <asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />
-                                                            </HeaderTemplate>                                                        
+                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
+                                                           <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
+                                                                 </HeaderTemplate>                                                        
                                                             <ItemTemplate>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server" Text="" OnCheckedChanged="chk_Invitar_CheckedChanged" />
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" />
                                                                  </ItemTemplate>                                                              
                                                              
                                                         </asp:TemplateField> 
                                                         <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="false" />
-                                                        <asp:BoundField DataField="nombre" HeaderText="nombreUsuario" Visible="true" />
+                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
                                                                                                                 
                                                     </Columns>
                                                 </asp:GridView>   

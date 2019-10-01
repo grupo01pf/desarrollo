@@ -303,6 +303,7 @@ namespace CapaPresentacion
 
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
+            controlDatosObligatorios();
 
 
         }
@@ -322,8 +323,24 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
 
-           // cargarAgenda();
+            // cargarAgenda();
+            controlDatosObligatorios();
+        }
 
+        private void controlDatosObligatorios() {
+
+            if (cmb_Deporte.SelectedIndex == 0)
+            {
+                lbl_Error.Visible = true;
+                lbl_Error.Text = "Debe seleccionar un Deporte";
+                cmb_Deporte.BorderColor = System.Drawing.Color.Red;
+                cmb_Deporte.Focus();
+            }
+            else {
+                lbl_Error.Visible = false;
+                lbl_Error.Text = string.Empty;
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            }
         }
 
 

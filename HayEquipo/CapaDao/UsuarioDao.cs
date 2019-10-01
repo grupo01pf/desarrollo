@@ -29,12 +29,30 @@ namespace CapaDao
 
 
 
-        public static List<Usuario> obtenerUsuarios() {
-            // List<Usuario> listaUsuarios = new List<Usuario>();
-            using (HayEquipoEntities db = new HayEquipoEntities()) {
-
-                return db.Usuario.ToList();
+        public static List<Usuario> obtenerUsuarios(int idUsuario) {
+            List<Usuario> listaUsuarios = new List<Usuario>();
+            Usuario u = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_UsuarioDao_ObtenerUsuarios", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                u = new Usuario();
+                u.id = int.Parse(dr["id"].ToString());
+                u.nombre = dr["nombre"].ToString();
+                listaUsuarios.Add(u);
             }
+            dr.Close();
+            cn.Close();
+            return listaUsuarios;
+            //using (HayEquipoEntities db = new HayEquipoEntities()) {
+
+            //    return db.Usuario.ToList();
+            //}
         }
 
         public static bool Usuario(string usuario, string clave) {
