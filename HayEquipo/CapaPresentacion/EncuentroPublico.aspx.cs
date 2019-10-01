@@ -23,6 +23,7 @@ namespace CapaPresentacion
                 validacionesDeUsuario();
                 calcularCapacidad();
                 cargarChat();
+                cargarListaInvitar();
             }
             
             //   cargarChat();
@@ -266,5 +267,19 @@ namespace CapaPresentacion
 
             // gdv_Pantalla.DataBind();
         }
+
+        protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void cargarListaInvitar() {
+
+            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios();
+            gdv_Invitar.DataKeyNames = new string[] { "id" };
+            gdv_Invitar.DataBind();
+        }
+
     }
 }

@@ -27,6 +27,16 @@ namespace CapaDao
         #endregion
 
 
+
+
+        public static List<Usuario> obtenerUsuarios() {
+            // List<Usuario> listaUsuarios = new List<Usuario>();
+            using (HayEquipoEntities db = new HayEquipoEntities()) {
+
+                return db.Usuario.ToList();
+            }
+        }
+
         public static bool Usuario(string usuario, string clave) {
 
             bool flag = false;

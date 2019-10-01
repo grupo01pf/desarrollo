@@ -123,8 +123,75 @@
                     </div>
                     <br />
                     <div class="form-group">
-                    <asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" />
+                    <%--<asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" />--%>
                     <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger"/>
+
+                        
+                        <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                            data-toggle="modal" data-target="#exampleModalScrollable"  visible="true">
+                            Invitar
+                        </button>
+                        <%--MODAL--%>
+
+                        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                            aria-hidden="false">
+                            <%--data-backdrop="static" data-keyboard="false">--%>
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                            <strong>
+                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <center>
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" >
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <HeaderTemplate>
+                                                                <asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />
+                                                            </HeaderTemplate>                                                        
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server" Text="" OnCheckedChanged="chk_Invitar_CheckedChanged" />
+                                                                 </ItemTemplate>                                                              
+                                                             
+                                                        </asp:TemplateField> 
+                                                        <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="false" />
+                                                        <asp:BoundField DataField="nombre" HeaderText="nombreUsuario" Visible="true" />
+                                                                                                                
+                                                    </Columns>
+                                                </asp:GridView>   
+                                                </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Invitar</button>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <%--FIN MODAL--%>
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -166,9 +233,11 @@
                     <%--BOTONES CHAT--%>
                         <div class="form-group alinearIzquiera">
                             <label for="comment">Mensaje:</label>
+                             <asp:Panel ID="pnl_PanelChat" runat="server" DefaultButton="btn_Enviar">
                              <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control" ></asp:TextBox><br />
                              <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block"/>
-                        </div>
+                        </asp:Panel>
+                                 </div>
                 </div>
             </div>
             <div class="col-me-2"></div>

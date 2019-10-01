@@ -166,13 +166,31 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btn_Salir;
         
         /// <summary>
-        /// Control btn_Invitar.
+        /// Control btn_inv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Invitar;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_inv;
+        
+        /// <summary>
+        /// Control lbl_agendaFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_agendaFecha;
+        
+        /// <summary>
+        /// Control gdv_Invitar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_Invitar;
         
         /// <summary>
         /// Control ScriptManager1.

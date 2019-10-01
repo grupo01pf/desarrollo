@@ -76,6 +76,7 @@ namespace CapaPresentacion
 
               //  cargarMapa();
                 cargarChat();
+                cargarListaInvitar();
             }
             
            // txt_Mensaje.Focus();
@@ -416,5 +417,18 @@ namespace CapaPresentacion
                 cargarChat();
             }
         }
+
+        protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cargarListaInvitar()
+        {
+            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios();
+            gdv_Invitar.DataKeyNames = new string[] { "id" };
+            gdv_Invitar.DataBind();
+        }
+
     }
 }
