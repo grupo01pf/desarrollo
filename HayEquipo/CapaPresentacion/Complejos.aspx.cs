@@ -243,12 +243,12 @@ namespace CapaPresentacion
                     CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
-
+            
             else if (btnD2.Visible == false && btnD1.InnerText != "Fútbol  x" && btnD3.Text != "Fútbol  x")
             {
                 btnD2.Text = lbFutbol.Text + "  x";
                 btnD2.Visible = true;
-
+                
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
