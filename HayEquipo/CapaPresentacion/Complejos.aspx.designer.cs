@@ -76,6 +76,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.LinkButton lbFutbol;
         
         /// <summary>
+        /// Control lbBasket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbBasket;
+        
+        /// <summary>
         /// Control lbPaddle.
         /// </summary>
         /// <remarks>
@@ -136,7 +145,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnD1;
+        protected global::System.Web.UI.WebControls.Button btnD1;
         
         /// <summary>
         /// Control btnD2.

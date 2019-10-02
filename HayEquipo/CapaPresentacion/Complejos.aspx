@@ -39,32 +39,29 @@
             Display="Dynamic"></asp:RequiredFieldValidator>--%>
         <br />
 &nbsp;  
-    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click">Fútbol</asp:LinkButton>
+    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC">Fútbol</asp:LinkButton>
 &nbsp;
- <%--   <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click">Basket</asp:LinkButton>--%>
+    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click" ForeColor="#0099CC">Basket</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbPaddle" runat="server">Paddle</asp:LinkButton>
+    <asp:LinkButton ID="lbPaddle" runat="server" OnClick="lbPaddle_Click" ForeColor="#0099CC">Paddle</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbTenis" runat="server">Tenis</asp:LinkButton>
+    <asp:LinkButton ID="lbTenis" runat="server" ForeColor="#0099CC" OnClick="lbTenis_Click">Tenis</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbRunning" runat="server">Running</asp:LinkButton>
+    <asp:LinkButton ID="lbRunning" runat="server" ForeColor="#0099CC">Running</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbCiclismo" runat="server">Ciclismo</asp:LinkButton>
+    <asp:LinkButton ID="lbCiclismo" runat="server" ForeColor="#0099CC">Ciclismo</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbCaminata" runat="server">Caminata</asp:LinkButton>
+    <asp:LinkButton ID="lbCaminata" runat="server" ForeColor="#0099CC">Caminata</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbVolley" runat="server">Volley</asp:LinkButton>
+    <asp:LinkButton ID="lbVolley" runat="server" ForeColor="#0099CC">Volley</asp:LinkButton>
 &nbsp;<br />
     <br />
 &nbsp;
-    <%--<asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>--%>
-    <button id="btnD1" type="button" class="close" aria-label="Close" runat="server" visible="false">
-  <span aria-hidden="true">&times;</span>
-</button>
+    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>
 &nbsp;
-    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" />
+    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD2_Click"/>
 &nbsp;
-    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" />
+    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
     <br />
         <br />
         <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
