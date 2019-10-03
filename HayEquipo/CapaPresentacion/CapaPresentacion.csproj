@@ -124,6 +124,7 @@
     <Content Include="Imagenes\basket.jpg" />
     <Content Include="Imagenes\boton-ir.png" />
     <Content Include="Imagenes\cerveza.jpg" />
+    <Content Include="Imagenes\complejo_logo_default.png" />
     <Content Include="Imagenes\complejo_transparente.png" />
     <Content Include="Imagenes\deTodo.png" />
     <Content Include="Imagenes\futbol.jpg" />

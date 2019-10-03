@@ -32,8 +32,8 @@ namespace CapaEntidades
         public Nullable<int> nroCalle { get; set; }
         public Nullable<int> idBarrio { get; set; }
         public Nullable<int> nroTelefono { get; set; }
-        public System.TimeSpan horaApertura { get; set; }
-        public System.TimeSpan horaCierre { get; set; }
+        public System.TimeSpan? horaApertura { get; set; }
+        public System.TimeSpan? horaCierre { get; set; }
         public Nullable<int> idResponsable { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }

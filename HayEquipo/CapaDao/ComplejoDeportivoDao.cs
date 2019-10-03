@@ -281,5 +281,61 @@ namespace CapaDao
             cn.Close();
             return canchas;
         }
+
+        public static bool AgregarImagen(string id, Byte[] imagen)
+        {
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ComplejoDeportivo SET avatar= @imagen WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@imagen", imagen);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            return flag;
+        }
+
+        public static byte[] ObtenerImagen(string id)
+        {
+            byte[] imagen = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT cd.avatar as avatar FROM ComplejoDeportivo cd WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = (byte[])dr["avatar"];
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+        }
+
+        public static bool existeImagen(string id)
+        {
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT * FROM ComplejoDeportivo cd WHERE avatar IS NOT NULL and @id=id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+        }
     }
 }

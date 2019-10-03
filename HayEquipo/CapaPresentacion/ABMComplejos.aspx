@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblDesc" CssClass="alinearIzquiera" runat="server" Text="Descripcion" ForeColor="black"></asp:Label>
-                        <asp:TextBox ID="txtDesc" placeholder="Ingrese una descripción" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDesc" placeholder="Ingrese una descripción" CssClass="form-control" runat="server" height="100px" Wrap="true" TextMode="MultiLine"></asp:TextBox>     
                         <asp:RequiredFieldValidator ID="rvfDesc"
                             runat="server"
                             ControlToValidate="txtDesc"
@@ -111,7 +111,20 @@
                      
                                 <asp:Label ID="lblHoraCie" runat="server" Text="Hora Cierre "></asp:Label>
                                 <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                                 <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
+                                 <br />
+                                 <br />
+                                 <div class="form-group">
+                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" /> 
+                                 </div>
+                                 <asp:Label ID="lblestado" runat="server"></asp:Label> 
+                    </div>          
+           <div class="form-group">
+             <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click"/>
+              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
+                </div>
                     <div class="form-group">
                         <asp:Label ID="lblDeportes" CssClass="alinearIzquiera" runat="server" Text="Deportes:  " ForeColor="black" Visible="False"></asp:Label>
                         <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#0066CC" Visible="False"></asp:Label>         

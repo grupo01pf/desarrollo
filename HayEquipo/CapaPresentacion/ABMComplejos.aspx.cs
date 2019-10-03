@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
+using System.Drawing;
 
 namespace CapaPresentacion
 {
@@ -78,6 +79,11 @@ namespace CapaPresentacion
             txtTel.Text = null;
             txtHoraApe.Text = string.Empty;
             txtHoraCie.Text = string.Empty;
+
+            FileUploadAvatar.Visible = true;
+            btn_guardarImagen.Visible = true;
+            btn_CambiarImagen.Visible = false;
+            imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
 
             lblDeportes.Visible = false;
             lblDepResultado.Visible = false;
@@ -181,6 +187,7 @@ namespace CapaPresentacion
             Limpiar();
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
             ID = idSeleccionado;
+            Session["ID"] = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
             txtNomb.Text = compSelec.nombre;
@@ -192,6 +199,15 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.nroTelefono.ToString();
             txtHoraApe.Text = compSelec.horaApertura.ToString();
             txtHoraCie.Text = compSelec.horaCierre.ToString();
+            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString()) != false)
+            {
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                CambiarImagen();
+            }
+            else
+            {
+                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+            }
 
             lblDeportes.Visible = true;
             lblDepResultado.Visible = true;
@@ -454,6 +470,47 @@ namespace CapaPresentacion
                 CargarGrillaServicios();
                 btnPopUp_ModalPopupExtender2.Show();
             }
+        }
+
+        protected void btnGuardarImagen_Click(object sender, EventArgs e)
+        {
+            if (FileUploadAvatar.HasFile)
+            {
+                //obtener datos de la imagen
+                int tam = FileUploadAvatar.PostedFile.ContentLength;
+                byte[] ImagenOriginal = new byte[tam];
+
+                FileUploadAvatar.PostedFile.InputStream.Read(ImagenOriginal, 0, tam);
+                Bitmap ImagenOriginalBinaria = new Bitmap(FileUploadAvatar.PostedFile.InputStream);
+
+                //insertar en BD
+                ComplejoDeportivoDao.AgregarImagen(Session["ID"].ToString(), ImagenOriginal);
+                lblestado.Text = "Imagen Guardada Exitosamente";
+                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+                //Image1.ImageUrl = ImagenDataURL64;
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                FileUploadAvatar.Visible = false;
+                btn_guardarImagen.Visible = false;
+                btn_CambiarImagen.Visible = true;
+            }
+            else
+            {
+                lblestado.Text = "Coloque un archivo de imagen valido";
+            }
+        }
+
+        protected void btnCambiarImagen_Click(object sender, EventArgs e)
+        {
+            FileUploadAvatar.Visible = true;
+            btn_guardarImagen.Visible = true;
+            btn_CambiarImagen.Visible = false;
+        }
+
+        public void CambiarImagen()
+        {
+            FileUploadAvatar.Visible = false;
+            btn_guardarImagen.Visible = false;
+            btn_CambiarImagen.Visible = true;
         }
     }
 }

@@ -108,6 +108,7 @@ namespace CapaPresentacion
             }
             ddlOrdenar.SelectedIndex = 0;
         }
+
         protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
@@ -125,12 +126,16 @@ namespace CapaPresentacion
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            lblHorarios.Text = "Horarios: " + compSelec.horaApertura.ToString(@"hh\:mm") + " a " + compSelec.horaCierre.ToString(@"hh\:mm");
-
-            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            if (compSelec.avatar != null)
+            TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
+            TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+            lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            }
+            else
+            {
+                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
             }
 
 

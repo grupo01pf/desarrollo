@@ -117,7 +117,7 @@
                      <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
                        onclick="btnClose2_Click"/>
                     <h4 class="modal-title" id="myModalLabel2" runat="server"></h4>
-                    <asp:Image ID="imgAvatar" runat="server" />
+                    <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

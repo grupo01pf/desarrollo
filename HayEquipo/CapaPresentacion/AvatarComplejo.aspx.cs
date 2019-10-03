@@ -13,9 +13,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string id = Convert.ToString(Session["ID"]);
-            ComplejoDeportivo comp = ComplejoDeportivoDao.ObtenerComplejosPorID(int.Parse(id));
-            byte[] img = comp.avatar;
+            byte[] img = ComplejoDeportivoDao.ObtenerImagen(Session["ID"].ToString());
             Response.BinaryWrite(img);
         }
     }
