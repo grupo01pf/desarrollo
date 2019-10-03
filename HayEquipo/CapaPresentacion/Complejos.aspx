@@ -145,7 +145,10 @@
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblTelefono" runat="server"></asp:Label>
-                    </div>  
+                    </div>
+                     <div class="form-group">
+                        <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                    </div>
                     <div class="form-group">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->

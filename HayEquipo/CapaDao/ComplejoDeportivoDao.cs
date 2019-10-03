@@ -35,6 +35,8 @@ namespace CapaDao
                 comp.nroCalle = complejo.nroCalle;
                 comp.idBarrio = complejo.idBarrio;
                 comp.nroTelefono = complejo.nroTelefono;
+                comp.horaApertura = complejo.horaApertura;
+                comp.horaCierre = complejo.horaCierre;
                 comp.idResponsable = complejo.idResponsable;
                 comp.promedioEstrellas = complejo.promedioEstrellas;
                 comp.idEstado = complejo.idEstado;

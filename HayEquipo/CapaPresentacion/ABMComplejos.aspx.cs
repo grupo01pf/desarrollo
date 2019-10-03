@@ -76,6 +76,9 @@ namespace CapaPresentacion
             txtNro.Text = null;
             ddlBarrio.SelectedIndex = 0;
             txtTel.Text = null;
+            txtHoraApe.Text = string.Empty;
+            txtHoraCie.Text = string.Empty;
+
             lblDeportes.Visible = false;
             lblDepResultado.Visible = false;
 
@@ -139,6 +142,14 @@ namespace CapaPresentacion
             if (int.TryParse(txtTel.Text, out tel))
                 complejo.nroTelefono = tel;
 
+            TimeSpan horaApe;
+            if (TimeSpan.TryParse(txtHoraApe.Text, out horaApe))
+                complejo.horaApertura = horaApe;
+
+            TimeSpan horaCie;
+            if (TimeSpan.TryParse(txtHoraCie.Text, out horaCie))
+                complejo.horaCierre = horaCie;
+
             if (ID.HasValue)
             {
                 complejo.id = ID.Value;
@@ -179,6 +190,8 @@ namespace CapaPresentacion
             txtNro.Text = compSelec.nroCalle.ToString();
             ddlBarrio.SelectedIndex = int.Parse((compSelec.idBarrio).ToString());
             txtTel.Text = compSelec.nroTelefono.ToString();
+            txtHoraApe.Text = compSelec.horaApertura.ToString();
+            txtHoraCie.Text = compSelec.horaCierre.ToString();
 
             lblDeportes.Visible = true;
             lblDepResultado.Visible = true;

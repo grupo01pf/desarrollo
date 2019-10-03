@@ -106,6 +106,13 @@
                             Display="Dynamic"></asp:RegularExpressionValidator>
                     </div>
                     <div class="form-group">
+                                <asp:Label ID="lblHoraApe" runat="server" Text="Hora Apertura "></asp:Label>
+                                <asp:TextBox ID="txtHoraApe" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                     
+                                <asp:Label ID="lblHoraCie" runat="server" Text="Hora Cierre "></asp:Label>
+                                <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                            </div>
+                    <div class="form-group">
                         <asp:Label ID="lblDeportes" CssClass="alinearIzquiera" runat="server" Text="Deportes:  " ForeColor="black" Visible="False"></asp:Label>
                         <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#0066CC" Visible="False"></asp:Label>         
                     </div>

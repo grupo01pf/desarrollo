@@ -117,25 +117,6 @@ namespace CapaPresentacion
 
             myModalLabel2.InnerText = compSelec.nombre;
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-            //string dep1 = DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte1.ToString())).nombre;
-            //string dep2;
-            //string dep3;
-            //if (compSelec.idDeporte2 != null)
-            //{
-            //    dep2 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte2.ToString())).nombre;
-            //}
-            //else
-            //{
-            //    dep2 = "";
-            //}
-            //if (compSelec.idDeporte3 != null)
-            //{
-            //    dep3 = " - " + DeporteDao.ObtenerDeportesPorID(int.Parse(compSelec.idDeporte3.ToString())).nombre;
-            //}
-            //else
-            //{
-            //    dep3 = "";
-            //}
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
             //CargarListServicios(compSelec.id);
@@ -144,7 +125,7 @@ namespace CapaPresentacion
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-
+            lblHorarios.Text = "Horarios: " + compSelec.horaApertura.ToString(@"hh\:mm") + " a " + compSelec.horaCierre.ToString(@"hh\:mm");
 
             //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
             if (compSelec.avatar != null)
@@ -153,9 +134,9 @@ namespace CapaPresentacion
             }
 
 
-            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
             btnPopUp_ModalPopupExtender2.Show();
 
@@ -193,8 +174,7 @@ namespace CapaPresentacion
                 CargarGrillaComplejosPorNom();
             }
         }
-        //SI APRETO EN FUTBOL Y BASKET ME TRAE FUTBOL O BASKET (TIENE Q TRAER FUTBOL Y BASQUET) 
-        //ARREGLAR CUANDO string d2 = btnD2.Text.Remove(4); Y BTND2.TEXT ESTA VACIO
+       
         protected void lbFutbol_Click(object sender, EventArgs e)
         {
             lbFutbol.Enabled = false;
