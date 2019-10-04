@@ -399,6 +399,7 @@ namespace CapaPresentacion
 
             txt_Mensaje.Text = string.Empty;
             cargarChat();
+            txt_Mensaje.Focus();
         }
 
         private void cargarChat()

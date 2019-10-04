@@ -13,7 +13,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (!IsPostBack)
             {
@@ -26,8 +26,8 @@ namespace CapaPresentacion
                 cargarComplejos();
                 // cargarBarrios();
                 cld_Fecha.SelectedDate = DateTime.Today;
-                
-               // cld_Fecha.SelectedDayStyle.BorderColor
+
+                // cld_Fecha.SelectedDayStyle.BorderColor
             }
 
             cargarMapa();
@@ -44,22 +44,34 @@ namespace CapaPresentacion
         {
             if (rdb_Publico.Checked)
             {
-                crearEventoPublico();
-                Response.Redirect("EncuentroPublico.aspx");
+                if (controlDatosObligatoriosEncuentroPublico())
+                {
+                    crearEventoPublico();
+                    Response.Redirect("EncuentroPublico.aspx");
+                }
+
             }
             else
             {
 
-
-                if (string.IsNullOrEmpty(lbl_Reserva.Text))
-                { lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
-                else
+                if (controlDatosObligatoriosEncuentroPublico() && controlDatosObligatoriosEncuentroPrivado() 
+                    && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
                 {
+                    lbl_Error.Visible = false;
                     crearEventoPrivado();
                     Response.Redirect("EncuentroPrivado.aspx");
                 }
+                else
+                {
+                    lbl_Error.Visible = true;
+                    lbl_Error.Text = "Debe reservar una cahcha de la agenda";
+                }
             }
+            //if (string.IsNullOrEmpty(lbl_Reserva.Text) || cmb_Complejo.SelectedIndex == 0)
+            //{ lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
         }
+    
+        
 
         private void crearEventoPublico()
         {
@@ -290,58 +302,83 @@ namespace CapaPresentacion
 
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
         {
+            
+                txt_Direccion.Enabled = true;
+                txt_NombreLugar.Enabled = true;
+                txt_HoraInicio.Enabled = true;
+                txt_HoraFin.Enabled = true;
+                txt_Cantidad.Enabled = true;
+                cmb_Complejo.Enabled = false;
 
+                btn_Agenda.Visible = false;
 
-            txt_Direccion.Enabled = true;
-            txt_NombreLugar.Enabled = true;
-            txt_HoraInicio.Enabled = true;
-            txt_HoraFin.Enabled = true;
-            txt_Cantidad.Enabled = true;
-            cmb_Complejo.Enabled = false;
-
-            btn_Agenda.Visible = false;
-
-            btn_Crear.Enabled = true;
-            btn_Cancelar.Enabled = true;
-            controlDatosObligatorios();
-
-
+                btn_Crear.Enabled = true;
+                btn_Cancelar.Enabled = true;
+            
         }
 
         protected void rdb_Privado_CheckedChanged(object sender, EventArgs e)
         {
+           
+                txt_Direccion.Enabled = false;
+                txt_NombreLugar.Enabled = false;
+                txt_HoraInicio.Enabled = false;
+                txt_HoraFin.Enabled = false;
+                txt_Cantidad.Enabled = false;
+                cmb_Complejo.Enabled = true;
 
-            txt_Direccion.Enabled = false;
-            txt_NombreLugar.Enabled = false;
-            txt_HoraInicio.Enabled = false;
-            txt_HoraFin.Enabled = false;
-            txt_Cantidad.Enabled = false;
-            cmb_Complejo.Enabled = true;
+                //  btn_Agenda.Visible = true;
 
-          //  btn_Agenda.Visible = true;
+                btn_Crear.Enabled = true;
+                btn_Cancelar.Enabled = true;
 
-            btn_Crear.Enabled = true;
-            btn_Cancelar.Enabled = true;
-
-            // cargarAgenda();
-            controlDatosObligatorios();
+                // cargarAgenda();
+                      
         }
 
-        private void controlDatosObligatorios() {
+        private bool controlDatosObligatoriosEncuentroPublico() {
 
+            bool flag = false;
             if (cmb_Deporte.SelectedIndex == 0)
             {
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
+                flag = false;
             }
             else {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+                flag = true;
             }
+            return flag;
         }
+
+        private bool controlDatosObligatoriosEncuentroPrivado() {
+            bool flag = false;
+
+            if (cmb_Complejo.SelectedIndex == 0)
+            {
+                lbl_Error.Visible = true;
+                lbl_Error.Text = "Debe seleccionar un Complejo Deportivo";
+                cmb_Complejo.BorderColor = System.Drawing.Color.Red;
+                cmb_Complejo.Focus();
+                flag = false;
+            }
+            else
+            {
+                lbl_Error.Visible = false;
+                lbl_Error.Text = string.Empty;
+                cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
+                flag = true;
+            }
+
+
+            return flag;
+        }
+        
 
 
 
@@ -434,6 +471,7 @@ namespace CapaPresentacion
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
             }
+            lbl_Error.Text = string.Empty;
         }
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
@@ -448,6 +486,7 @@ namespace CapaPresentacion
 
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
+            lbl_Error.Text = string.Empty;
            
         }
 
