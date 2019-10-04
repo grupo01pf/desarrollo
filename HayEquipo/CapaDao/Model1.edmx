@@ -75,9 +75,10 @@
           <Property Name="horaCierre" Type="time" Precision="0" />
           <Property Name="idResponsable" Type="int" />
           <Property Name="promedioEstrellas" Type="float" />
-          <Property Name="idEstado" Type="int" />
+          <Property Name="fechaRegistro" Type="date" />
           <Property Name="mapa" Type="nvarchar(max)" />
           <Property Name="avatar" Type="image" />
+          <Property Name="idEstado" Type="int" />
         </EntityType>
         <EntityType Name="Deporte">
           <Key>
@@ -1807,9 +1808,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="horaCierre" Type="Time" Precision="0" />
           <Property Name="idResponsable" Type="Int32" />
           <Property Name="promedioEstrellas" Type="Double" />
-          <Property Name="idEstado" Type="Int32" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
           <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idEstado" Type="Int32" />
           <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
           <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_ComplejoDeportivo_Estado" FromRole="ComplejoDeportivo" ToRole="Estado" />
@@ -3637,6 +3639,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Mapa" Nullable="true" />
           <Property Type="Binary" Name="Avatar" Nullable="true" MaxLength="Max" />
@@ -3651,6 +3654,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spObtenerComplejosPorNomb_Result">
@@ -3663,6 +3667,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spObtenerServiciosPorComplejos_Result">
@@ -3749,9 +3754,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
                 <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
                 <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
-                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="mapa" ColumnName="mapa" />
                 <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4358,6 +4364,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Mapa" ColumnName="Mapa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
@@ -4376,6 +4383,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -4392,6 +4400,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>

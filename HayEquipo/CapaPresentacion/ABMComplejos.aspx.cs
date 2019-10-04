@@ -163,6 +163,7 @@ namespace CapaPresentacion
             }
             else
             {
+                complejo.fechaRegistro = DateTime.Today;
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
@@ -192,7 +193,14 @@ namespace CapaPresentacion
 
             txtNomb.Text = compSelec.nombre;
             txtDesc.Text = compSelec.descripcion;
-            lblDepResultado.Text = compSelec.deportes;
+            if (compSelec.deportes != string.Empty)
+            {
+                lblDepResultado.Text = compSelec.deportes;
+            }
+            else
+            {
+                lblDepResultado.Text = "-";
+            }
             txtCalle.Text = compSelec.calle;
             txtNro.Text = compSelec.nroCalle.ToString();
             ddlBarrio.SelectedIndex = int.Parse((compSelec.idBarrio).ToString());
@@ -208,7 +216,19 @@ namespace CapaPresentacion
             {
                 imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
             }
+            if (compSelec.fechaRegistro.ToString() != string.Empty)
+            {
+                DateTime fecha = (DateTime)Convert.ChangeType(compSelec.fechaRegistro, typeof(DateTime));
+                lblFecResultado.Text = fecha.ToString(@"dd/MM/yyyy");
+            }
+            else
+            {
+                lblFecResultado.Text = "-";
+            }
+            
 
+            lblFecha.Visible = true;
+            lblFecResultado.Visible = true;
             lblDeportes.Visible = true;
             lblDepResultado.Visible = true;
             btnEliminar.Enabled = true;

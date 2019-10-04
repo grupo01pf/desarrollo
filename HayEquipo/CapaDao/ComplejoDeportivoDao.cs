@@ -59,19 +59,6 @@ namespace CapaDao
             }
         }
 
-        //public static void ActualizarDeportesComplejo2(ComplejoDeportivo complejo)
-        //{
-        //    using (HayEquipoEntities db = new HayEquipoEntities())
-        //    {
-        //        ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
-
-        //        comp.deportes = comp.deportes + " " + complejo.deportes;
-
-        //        db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-        //}
-
         public static void EliminarComplejo(int id)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
@@ -98,13 +85,13 @@ namespace CapaDao
             }
         }
 
-        public static List<spObtenerComplejosJoin_Result> ObtenerComplejosOrdenValor()
-        {
-            using (var db = new HayEquipoEntities())
-            {
-                return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosOrdenValor").ToList();
-            }
-        }
+        //public static List<spObtenerComplejosJoin_Result> ObtenerComplejosOrdenValor()
+        //{
+        //    using (var db = new HayEquipoEntities())
+        //    {
+        //        return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosOrdenValor").ToList();
+        //    }
+        //}
 
         public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario, string d1, string d2, string d3)
         {
@@ -119,7 +106,7 @@ namespace CapaDao
             cmd.CommandText = @"
                             SELECT DISTINCT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
                                 cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
-                                cd.promedioEstrellas as Valoracion, e.nombre as Estado
+                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado
                                  FROM ComplejoDeportivo cd
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
                             LEFT JOIN Responsable r ON r.id=cd.idResponsable
@@ -172,6 +159,7 @@ namespace CapaDao
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
+                comp.fechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
 
                 listaQuery.Add(comp);

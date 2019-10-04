@@ -70,9 +70,10 @@
     <Property Name="horaCierre" Type="time" Precision="0" />
     <Property Name="idResponsable" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
-    <Property Name="idEstado" Type="int" />
+    <Property Name="fechaRegistro" Type="date" />
     <Property Name="mapa" Type="nvarchar(max)" />
     <Property Name="avatar" Type="image" />
+    <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>

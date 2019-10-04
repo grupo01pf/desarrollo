@@ -35,6 +35,7 @@ namespace CapaPresentacion
             }
             set { ViewState["ID"] = value; }
         }
+
         protected void CargarGrillaComplejos()
         {
             gvComplejos.DataSource = null;
@@ -45,6 +46,7 @@ namespace CapaPresentacion
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();       
         }
+
         protected void CargarGrillaComplejosPorNom()
         {
             gvComplejos.DataSource = null;
@@ -56,6 +58,7 @@ namespace CapaPresentacion
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
+
         protected void CargarGrillaComplejosPorVal()
         {
             gvComplejos.DataSource = null;
@@ -67,6 +70,19 @@ namespace CapaPresentacion
             gvComplejos.DataKeyNames = new string[] { "ID" };
             gvComplejos.DataBind();
         }
+
+        protected void CargarGrillaComplejosPorFecha()
+        {
+            gvComplejos.DataSource = null;
+
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                      orderby comp.FechaRegistro descending
+                                      select comp);
+
+            gvComplejos.DataKeyNames = new string[] { "ID" };
+            gvComplejos.DataBind();
+        }
+
         protected void CargarGrillaComplejosBuscar(string nomb, int? idUsuario, string d1, string d2, string d3)
         {
             gvComplejos.DataSource = null;
@@ -177,6 +193,11 @@ namespace CapaPresentacion
             if (ddlOrdenar.SelectedIndex == 3)
             {
                 CargarGrillaComplejosPorNom();
+            }
+            //MÁS NUEVO
+            if (ddlOrdenar.SelectedIndex == 4)
+            {
+                CargarGrillaComplejosPorFecha();
             }
         }
        
