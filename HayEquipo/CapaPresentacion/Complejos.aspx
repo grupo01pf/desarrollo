@@ -1,7 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.Master" CodeBehind="Complejos.aspx.cs" Inherits="CapaPresentacion.Complejos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+    <style>
+        .colorLetra
+        {
+            color:#1e74cb
+        }
+    </style>
 </asp:Content>
 
 
@@ -116,7 +121,7 @@
                 <div class="modal-header">
                      <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
                        onclick="btnClose2_Click"/>
-                    <h4 class="modal-title" id="myModalLabel2" runat="server"></h4>
+                    <h4 class="modal-title colorLetra" id="myModalLabel2" runat="server"></h4>
                     <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
                 </div>
                 <div class="modal-body">
@@ -132,7 +137,7 @@
                     <div class="form-group">
                         <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
                     </div> 
-                    <div class="form-group">
+                    <div class="form-group" id="divListServ" runat="server">
                         <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
                     </div>                 
                     <div class="form-group">

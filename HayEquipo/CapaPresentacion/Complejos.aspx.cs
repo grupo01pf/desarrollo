@@ -16,7 +16,6 @@ namespace CapaPresentacion
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                //ddlOrdenar.AutoPostBack = true;
                 CargarGrillaComplejos();
                 ddlOrdenar.AutoPostBack = true;
             }
@@ -150,6 +149,7 @@ namespace CapaPresentacion
             else
             {
                 lblServicios.Text = "Servicios: - ";
+                divListServ.Visible = false;
             }
             lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
             Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
