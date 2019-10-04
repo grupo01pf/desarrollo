@@ -95,16 +95,13 @@ namespace CapaPresentacion
             gvComplejos.DataBind();
         }
 
-        //protected void CargarListServicios(int idComp)
-        //{
-        //    listServicios.DataSource = null;
-
-        //    listServicios.DataSource = (from serv in ServicioExtraDao.ObtenerServiciosPorComp(idComp)
-        //                             orderby serv.nombre
-        //                              select serv);
-
-        //    listServicios.DataBind();
-        //}
+        protected void CargarListServicios(int idComp)
+        {
+            listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);
+            listServicios.DataTextField = "nombre";
+            listServicios.DataValueField = "id";
+            listServicios.DataBind();
+        }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {          
@@ -125,6 +122,14 @@ namespace CapaPresentacion
             ddlOrdenar.SelectedIndex = 0;
         }
 
+        //protected void LimpiarModal()
+        //{
+        //    myModalLabel2.InnerText = string.Empty;
+        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+        //    lblDeportes.Text = compSelec.deportes;
+        //    lblDescripcion.Text = compSelec.descripcion;
+        //}
+
         protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
@@ -136,15 +141,32 @@ namespace CapaPresentacion
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
-            //CargarListServicios(compSelec.id);
+            listServicios.Items.Clear();
+            lblServicios.Text = "Servicios: ";
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+            {
+                CargarListServicios(compSelec.id);
+            }
+            else
+            {
+                lblServicios.Text = "Servicios: - ";
+            }
             lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
             Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
-            TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
-            lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+            if(compSelec.horaApertura != null && compSelec.horaCierre != null)
+            {
+                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
+                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+                lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+            }
+            else
+            {
+                lblHorarios.Text = "Horarios: - ";
+            }
+            
             if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();

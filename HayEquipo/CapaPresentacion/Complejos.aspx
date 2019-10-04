@@ -124,16 +124,17 @@
                         <asp:Label ID="lblValoracion" runat="server"></asp:Label>
                     </div>
                      <div class="form-group">
-                        <asp:Label ID="lblDeportes" runat="server"></asp:Label>
+                        <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
                     </div>  
                     <div class="form-group">
                         <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
                     </div>
-                   <%-- <div class="form-group">
+                    <div class="form-group">
                         <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
+                    </div> 
+                    <div class="form-group">
                         <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
-                    </div>--%>
-                    
+                    </div>                 
                     <div class="form-group">
                         <asp:Label ID="lblDireccion" runat="server"></asp:Label>
                     </div>

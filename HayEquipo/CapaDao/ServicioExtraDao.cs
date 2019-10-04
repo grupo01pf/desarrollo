@@ -62,9 +62,9 @@ namespace CapaDao
             }
         }
 
-        public static bool ExistenServiciosPorComplejo(int idComp)
+        public static int ExistenServiciosPorComplejo(int idComp)
         {
-            bool servicios = false;
+            int cantServicios = 0;
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
@@ -78,11 +78,11 @@ namespace CapaDao
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                servicios = true;
+                cantServicios = int.Parse(dr["Cantidad"].ToString());
             }
             dr.Close();
             cn.Close();
-            return servicios;
+            return cantServicios;
         }
     }
 }

@@ -247,7 +247,7 @@ namespace CapaPresentacion
             {
                 CanchaDao.EliminarCanchasPorComplejo(ID.Value);
             }
-            if (ServicioExtraDao.ExistenServiciosPorComplejo(ID.Value) == true)
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(ID.Value) > 0)
             {
                 ServicioExtraDao.EliminarServiciosPorComplejo(ID.Value);
             }          
