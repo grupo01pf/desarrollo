@@ -124,6 +124,8 @@
     <Content Include="Imagenes\basket.jpg" />
     <Content Include="Imagenes\boton-ir.png" />
     <Content Include="Imagenes\cerveza.jpg" />
+    <Content Include="Imagenes\cesped.jpg" />
+    <Content Include="Imagenes\cesped2.jpg" />
     <Content Include="Imagenes\complejo_transparente.png" />
     <Content Include="Imagenes\deTodo.png" />
     <Content Include="Imagenes\futbol.jpg" />
@@ -178,6 +180,7 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\starrr.js" />
+    <Content Include="w3\w3.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

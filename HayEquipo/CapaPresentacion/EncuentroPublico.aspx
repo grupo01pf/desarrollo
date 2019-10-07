@@ -26,8 +26,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="w3-panel w3-black w3-bottombar w3-border-blue w3-border">
     <h1 class="titulo">Encuentro</h1>
-    <div class="jumbotron text-center" style="background-color: black">
+  </div>
+    
+    <%--<div class="jumbotron text-center" style="background-color: black">--%>
+    <div class="container text-center">
         <div class="row">
             <div class="col-sm-4">
                 <div class="well">
@@ -41,7 +45,7 @@
                         <div class="col-sm-8 alinearIzquiera">
                             <strong>
                                 <asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" Style="color: #11398a" runat="server" Text=""></asp:Label></strong>
-                            <%--<br />--%>
+                            <br />
                             <asp:Label ID="Label1" Style="color: #808080" runat="server" Text="Público &#183; Organizado por "></asp:Label>
                             <strong>
                                 <asp:Label ID="txt_Organizador" runat="server" Text=""></asp:Label></strong>
@@ -60,10 +64,12 @@
                         <asp:Label ID="txt_NombreLugar" runat="server" Text="Lugar"></asp:Label>
                         <asp:Label ID="Label4" runat="server" Text=" &#183; "></asp:Label>
                         <asp:Label ID="txt_Direccion" runat="server" Text="Direccion"></asp:Label>
-                    </div>
-                    <br />
-                     <div class="alinearIzquiera elPadding">
-                         <asp:Label ID="Label6"   runat="server" Text="Cantidad de Participantes"></asp:Label>
+                    </div>                  
+                    <div class="alinearIzquiera elPadding">
+                        <i class="fa fa-male"></i>
+                        <i class="fa fa-male"></i>
+                        <i class="fa fa-male"></i>
+                         <asp:Label ID="Label6"   runat="server" Text="Cantidad de Participantes:"></asp:Label>
                        <strong> <asp:Label ID="lbl_Cantidad"  runat="server" Text=""></asp:Label>   </strong>
                     </div>
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click" class="btn btn-danger"></asp:Button>
@@ -113,23 +119,21 @@
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
 
-
-                            <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
-                                HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
-                                EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large" OnSelectedIndexChanged="gdv_Pantalla_SelectedIndexChanged" >
+                            <div class="w3-responsive">
+                            <asp:GridView ID="gdv_Pantalla" CssClass="w3-table-all w3-card-4" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gdv_Pantalla_SelectedIndexChanged" >
                                 <Columns>
                                     <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                     <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
                                     <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                                 </Columns>
                             </asp:GridView>
-
+                            </div>
                             <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
-
+                    <br />
 
 
 

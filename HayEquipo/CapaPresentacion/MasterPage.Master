@@ -17,9 +17,14 @@
 
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+    <link rel="stylesheet" href="w3/w3.css">
   <style>
     /* Set black background color, white text and some padding */
+    body {
+  background-image: url("Imagenes/cesped2.jpg");
+}
+
     footer {
       background-color: #000000;
       color: white;
@@ -78,12 +83,13 @@ $(window).load(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <img class="img-responsive" src="Imagenes/logoconnombre2.png"  width="135" height="100"/>
+        <a href="Home.aspx"><img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100" /></a>
+       <%--<img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100"/>--%>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
-        <li class="label-warning"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>       
+        <li class="label-success"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>       
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
         <%--<ul class="nav navbar-nav moverbuscador">          

@@ -100,6 +100,8 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
                                         </Columns>
                                     </asp:GridView>
+                                        <br />
+                                        <asp:Label ID="lbl_CantidadEquipoA" runat="server" Text="Label"></asp:Label>
                                 </div>
                                     </div>
                             <asp:Button ID="btn_UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" class="btn btn-success" />
@@ -115,6 +117,9 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
                                         </Columns>
                                     </asp:GridView>
+                                        <br />
+                                    <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text="Label"></asp:Label>
+
                                 </div>
                                  </div>
 
@@ -131,14 +136,15 @@
             <div class="col-sm-4">
                 <div class="well">
                     <legend>Chat</legend>
-
-                        <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff" HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove">
+                        <div class="w3-responsive">
+                        <asp:GridView ID="gdv_Pantalla" CssClass="w3-table-all w3-card-4" runat="server" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                 <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
                                 <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                             </Columns>
                         </asp:GridView>
+                            </div>
                     <br />
                     <%--BOTONES CHAT--%>
                         <div class="form-group alinearIzquiera">
@@ -161,6 +167,4 @@
 
 
 
-    </form>
-</body>
-</html>
+ 
