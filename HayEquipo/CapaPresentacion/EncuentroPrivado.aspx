@@ -73,6 +73,10 @@
                             <span class="glyphicon glyphicon-earphone"></span>
                             <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
                     </div>
+                    <div class="alinearIzquiera elPadding">
+                            <span class="glyphicon glyphicon-earphone"></span>
+                            <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                    </div>
 
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
                 </div>

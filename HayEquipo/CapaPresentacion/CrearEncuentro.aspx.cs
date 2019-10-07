@@ -49,6 +49,7 @@ namespace CapaPresentacion
                     crearEventoPublico();
                     Response.Redirect("EncuentroPublico.aspx");
                 }
+                else { rdb_Publico.Checked = false; }
 
             }
             else
@@ -302,7 +303,18 @@ namespace CapaPresentacion
 
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
         {
-            
+
+
+            if (cmb_Deporte.SelectedIndex == 0)
+            {
+                rdb_Publico.Checked = false;
+                lbl_Error.Visible = true;
+                lbl_Error.Text = "Debe seleccionar un Deporte";
+                cmb_Deporte.BorderColor = System.Drawing.Color.Red;
+                cmb_Deporte.Focus();
+            }
+            else {
+
                 txt_Direccion.Enabled = true;
                 txt_NombreLugar.Enabled = true;
                 txt_HoraInicio.Enabled = true;
@@ -314,26 +326,39 @@ namespace CapaPresentacion
 
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
-            
+                lbl_Error.Text = string.Empty;
+
+            }
+
+
         }
 
         protected void rdb_Privado_CheckedChanged(object sender, EventArgs e)
         {
            
+               
+            if (cmb_Deporte.SelectedIndex == 0)
+            {
+                rdb_Privado.Checked = false;
+                lbl_Error.Visible = true;
+                lbl_Error.Text = "Debe seleccionar un Deporte";
+                cmb_Deporte.BorderColor = System.Drawing.Color.Red;
+                cmb_Deporte.Focus();
+            }
+            else {
+
                 txt_Direccion.Enabled = false;
                 txt_NombreLugar.Enabled = false;
                 txt_HoraInicio.Enabled = false;
                 txt_HoraFin.Enabled = false;
                 txt_Cantidad.Enabled = false;
                 cmb_Complejo.Enabled = true;
-
-                //  btn_Agenda.Visible = true;
-
+                
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
-
-                // cargarAgenda();
-                      
+                lbl_Error.Text = string.Empty;
+               
+            }
         }
 
         private bool controlDatosObligatoriosEncuentroPublico() {
@@ -365,6 +390,7 @@ namespace CapaPresentacion
                 lbl_Error.Text = "Debe seleccionar un Complejo Deportivo";
                 cmb_Complejo.BorderColor = System.Drawing.Color.Red;
                 cmb_Complejo.Focus();
+                
                 flag = false;
             }
             else
