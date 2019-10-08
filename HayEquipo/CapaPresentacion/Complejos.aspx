@@ -106,7 +106,7 @@
           
             </ajaxToolkit:ModalPopupExtender>
  
-       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:40%; height:auto" BackColor="White">
+       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:80%; height:80%" BackColor="White" ScrollBars="Vertical">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
     
@@ -159,15 +159,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img id="img1"  width="1000" height="500" runat="server">
+        <img id="img1"  runat="server" height="600" width="600">
       </div>
 
       <div class="item">
-        <img id="img2" width="1000" height="500" runat="server">
+        <img id="img2" runat="server" height="600" width="600">
       </div>
     
       <div class="item">
-        <img id="img3" width="1000" height="500" runat="server">
+        <img id="img3"  runat="server" height="600" width="600">
       </div>
     </div>
 
