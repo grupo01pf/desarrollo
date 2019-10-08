@@ -104,13 +104,16 @@
                             ControlToValidate="txtTel" ValidationExpression="^[0-9]*"
                             CssClass="alert-danger"
                             Display="Dynamic"></asp:RegularExpressionValidator>
+                    </div> 
+                    <div class="form-group"> 
+                            <asp:Label ID="lblHorarios" CssClass="alinearIzquiera" runat="server" Text="Horarios" ForeColor="black"></asp:Label>       
                     </div>
-                    <div class="form-group">
-                                <asp:Label ID="lblHoraApe" runat="server" Text="Hora Apertura "></asp:Label>
-                                <asp:TextBox ID="txtHoraApe" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                    <div class="form-group"> 
+                            <asp:Label ID="lblHoraApe" runat="server" Text="Apertura "></asp:Label>
+                            <asp:TextBox ID="txtHoraApe" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                      
-                                <asp:Label ID="lblHoraCie" runat="server" Text="Hora Cierre "></asp:Label>
-                                <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                            <asp:Label ID="lblHoraCie" runat="server" Text="Cierre "></asp:Label>
+                            <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>              
                     </div>
                     <div class="form-group">
                                  <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
@@ -122,8 +125,8 @@
                                  <asp:Label ID="lblestado" runat="server"></asp:Label> 
                     </div>          
            <div class="form-group">
-             <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click"/>
-              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
+             <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar avatar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click" Visible="False"/>
+              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar avatar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
                 </div>
                     <div class="form-group">
                         <asp:Label ID="lblFecha" CssClass="alinearIzquiera" runat="server" ForeColor="black" Visible="False" Text="Fecha de registro:  "></asp:Label>
@@ -133,30 +136,27 @@
                         <asp:Label ID="lblDeportes" CssClass="alinearIzquiera" runat="server" Text="Deportes:  " ForeColor="black" Visible="False"></asp:Label>
                         <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#FF9900" Visible="False"></asp:Label>         
                     </div>
-                </div>
-                <div class="well">
-                    <%--Botones--%>
-                    <div class="modal-footer alinearIzquiera">
+                        <div class="alinearAlCentro modal-footer">
                         <%--Botones para ABM complejo--%>
                         <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="A" />
                         <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" />
                         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" />
                     </div>
-                    <div class="alinearIzquiera modal-footer">
-                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                 <ContentTemplate>
-                                    <asp:LinkButton ID="btnCanchas" runat="server" onclick="btnPopUp_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
-                                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Canchas
-                                    </asp:LinkButton>                  
-                                 </ContentTemplate>
-                                </asp:UpdatePanel>&nbsp;
-                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                <ContentTemplate>
-                                    <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
-                                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
-                                    </asp:LinkButton>                 
-                                </ContentTemplate>
-                                </asp:UpdatePanel> 
+                </div>
+                <div class="well">
+                    <%--Botones--%>
+                    <div class="alinearAlCentro">                       
+                        <asp:LinkButton ID="btnCanchas" runat="server" onclick="btnPopUp_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Canchas
+                        </asp:LinkButton>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
+                        </asp:LinkButton>            
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Imágenes
+                        </asp:LinkButton>                                                        
                     </div>
                 </div>
             </div>
@@ -341,7 +341,50 @@
                                 </Columns>
                              </asp:GridView>
                         </div>
+                    </div>
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
+                </asp:Panel> 
 
+       <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
+      
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server" 
+                Enabled="True" TargetControlID="btnInicial3" 
+               PopupControlID="PanelModal3">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
+
+            </Animations>
+          
+            </ajaxToolkit:ModalPopupExtender>
+ 
+       <asp:Panel ID="PanelModal3" runat="server" style="display:none; background:white; width:40%; height:auto">
+                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                    <ContentTemplate>
+    
+                <div class="modal-header">
+                     <asp:Button ID="btnClose3" runat="server" Text="X" CssClass="close"   
+                       onclick="btnClose3_Click"/>
+                    <h4 class="modal-title" id="myModalLabel3">Imágenes</h4>
+                </div>
+                     <div class="modal-body">
+                        <div class="form-group">
+                            <label>Imágenes</label>
+                        </div>
+                        <div class="form-group">
+                             <label>Imágenes</label>
+                        </div>
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>

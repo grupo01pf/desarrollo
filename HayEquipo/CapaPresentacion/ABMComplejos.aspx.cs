@@ -81,10 +81,12 @@ namespace CapaPresentacion
             txtHoraCie.Text = string.Empty;
 
             FileUploadAvatar.Visible = true;
-            btn_guardarImagen.Visible = true;
+            btn_guardarImagen.Visible = false;
             btn_CambiarImagen.Visible = false;
+            lblestado.Text = string.Empty;
+            lblestado.Visible = false;
             imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
-
+        
             lblDeportes.Visible = false;
             lblDepResultado.Visible = false;
 
@@ -156,6 +158,26 @@ namespace CapaPresentacion
             if (TimeSpan.TryParse(txtHoraCie.Text, out horaCie))
                 complejo.horaCierre = horaCie;
 
+            //Guardar Avatar
+            if (FileUploadAvatar.HasFile)
+            {
+                //obtener datos de la imagen
+                int tam = FileUploadAvatar.PostedFile.ContentLength;
+                byte[] ImagenOriginal = new byte[tam];
+
+                FileUploadAvatar.PostedFile.InputStream.Read(ImagenOriginal, 0, tam);
+                Bitmap ImagenOriginalBinaria = new Bitmap(FileUploadAvatar.PostedFile.InputStream);
+
+                //insertar en BD
+                complejo.avatar = ImagenOriginal;
+                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+                //Image1.ImageUrl = ImagenDataURL64;
+                //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                FileUploadAvatar.Visible = false;
+                btn_guardarImagen.Visible = false;
+                btn_CambiarImagen.Visible = true;
+            }
+
             if (ID.HasValue)
             {
                 complejo.id = ID.Value;
@@ -215,6 +237,7 @@ namespace CapaPresentacion
             else
             {
                 imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+                btn_guardarImagen.Visible = true;
             }
             if (compSelec.fechaRegistro.ToString() != string.Empty)
             {
@@ -492,6 +515,21 @@ namespace CapaPresentacion
             }
         }
 
+        //IMÁGENES (NO ABRE EL MODAL)
+        protected void btnClose3_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender3.Hide();
+            LimpiarServicios();
+        }
+
+        protected void btnPopUp3_Click(object sender, EventArgs e)
+        {
+            if (ID.HasValue == true)
+            {
+                btnPopUp_ModalPopupExtender3.Show();
+            }
+        }
+
         protected void btnGuardarImagen_Click(object sender, EventArgs e)
         {
             if (FileUploadAvatar.HasFile)
@@ -517,6 +555,7 @@ namespace CapaPresentacion
             {
                 lblestado.Text = "Coloque un archivo de imagen valido";
             }
+            lblestado.Visible = true;
         }
 
         protected void btnCambiarImagen_Click(object sender, EventArgs e)
