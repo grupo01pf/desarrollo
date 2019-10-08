@@ -119,6 +119,9 @@
     <Content Include="HomeAdministrador.aspx" />
     <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="imagen.aspx" />
+    <Content Include="ImagenComplejo1.aspx" />
+    <Content Include="ImagenComplejo2.aspx" />
+    <Content Include="ImagenComplejo3.aspx" />
     <Content Include="Imagenes\adidas.jpg" />
     <Content Include="Imagenes\avatar.jpg" />
     <Content Include="Imagenes\basket.jpg" />
@@ -259,6 +262,27 @@
     </Compile>
     <Compile Include="imagen.aspx.designer.cs">
       <DependentUpon>imagen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenComplejo1.aspx.cs">
+      <DependentUpon>ImagenComplejo1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImagenComplejo1.aspx.designer.cs">
+      <DependentUpon>ImagenComplejo1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenComplejo2.aspx.cs">
+      <DependentUpon>ImagenComplejo2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImagenComplejo2.aspx.designer.cs">
+      <DependentUpon>ImagenComplejo2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenComplejo3.aspx.cs">
+      <DependentUpon>ImagenComplejo3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImagenComplejo3.aspx.designer.cs">
+      <DependentUpon>ImagenComplejo3.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

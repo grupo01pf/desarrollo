@@ -167,7 +167,7 @@ namespace CapaPresentacion
                 lblHorarios.Text = "Horarios: - ";
             }
             
-            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString()) != false)
+            if (ComplejoDeportivoDao.existeAvatar(Session["ID"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
             }
@@ -176,10 +176,9 @@ namespace CapaPresentacion
                 imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
             }
 
-
-            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["ID"].ToString();
+            img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["ID"].ToString();
+            img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["ID"].ToString();
 
             btnPopUp_ModalPopupExtender2.Show();
 

@@ -270,7 +270,7 @@ namespace CapaDao
             return canchas;
         }
 
-        public static bool AgregarImagen(string id, Byte[] imagen)
+        public static bool AgregarAvatar(string id, Byte[] imagen)
         {
             bool flag = false;
             SqlConnection cn = new SqlConnection();
@@ -286,7 +286,7 @@ namespace CapaDao
             return flag;
         }
 
-        public static byte[] ObtenerImagen(string id)
+        public static byte[] ObtenerAvatar(string id)
         {
             byte[] imagen = null;
             SqlConnection cn = new SqlConnection();
@@ -306,7 +306,7 @@ namespace CapaDao
             return imagen;
         }
 
-        public static bool existeImagen(string id)
+        public static bool existeAvatar(string id)
         {
             bool imagen = false;
             SqlConnection cn = new SqlConnection();
@@ -325,5 +325,32 @@ namespace CapaDao
             cn.Close();
             return imagen;
         }
+
+        public static byte[] ObtenerImagen(string id, int num)
+        {
+            byte[] imagen = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                  FROM
+                               (SELECT *, ROW_NUMBER() OVER(ORDER BY idComplejo) ROWNUM
+                                  FROM FotosComplejo 
+                                 WHERE idComplejo=@id) C
+                                 WHERE C. ROWNUM = @num";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@num", num);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = (byte[])dr["imagen"];
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+        }
+
     }
 }

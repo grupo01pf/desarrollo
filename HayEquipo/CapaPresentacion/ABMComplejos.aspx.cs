@@ -207,7 +207,7 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.nroTelefono.ToString();
             txtHoraApe.Text = compSelec.horaApertura.ToString();
             txtHoraCie.Text = compSelec.horaCierre.ToString();
-            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString()) != false)
+            if (ComplejoDeportivoDao.existeAvatar(Session["ID"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
                 CambiarImagen();
@@ -504,7 +504,7 @@ namespace CapaPresentacion
                 Bitmap ImagenOriginalBinaria = new Bitmap(FileUploadAvatar.PostedFile.InputStream);
 
                 //insertar en BD
-                ComplejoDeportivoDao.AgregarImagen(Session["ID"].ToString(), ImagenOriginal);
+                ComplejoDeportivoDao.AgregarAvatar(Session["ID"].ToString(), ImagenOriginal);
                 lblestado.Text = "Imagen Guardada Exitosamente";
                 //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
                 //Image1.ImageUrl = ImagenDataURL64;
