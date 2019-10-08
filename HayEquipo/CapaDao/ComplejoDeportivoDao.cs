@@ -352,5 +352,31 @@ namespace CapaDao
             return imagen;
         }
 
+        public static bool existeImagen(string id, int num)
+        {
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                  FROM
+                               (SELECT *, ROW_NUMBER() OVER(ORDER BY idComplejo) ROWNUM
+                                  FROM FotosComplejo 
+                                 WHERE idComplejo=@id) C
+                                 WHERE C. ROWNUM = @num";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@num", num);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+        }
+
     }
 }

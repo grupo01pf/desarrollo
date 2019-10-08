@@ -82,14 +82,6 @@
         </asp:GridView>
         <br />
         <br />
-     <%--    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-        <ContentTemplate>
-           <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
-               <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
-           </asp:LinkButton>
-                   
-      </ContentTemplate>
-              </asp:UpdatePanel>--%>
     
     <asp:Button ID="btnInicial2" runat="server" Text="Button" style="display:none" />
       
@@ -167,15 +159,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img id="img1"  width="1000" height="1500" runat="server">
+        <img id="img1"  width="1000" height="500" runat="server">
       </div>
 
       <div class="item">
-        <img id="img2" width="1000" height="1500" runat="server">
+        <img id="img2" width="1000" height="500" runat="server">
       </div>
     
       <div class="item">
-        <img id="img3" width="1000" height="1500" runat="server">
+        <img id="img3" width="1000" height="500" runat="server">
       </div>
     </div>
 

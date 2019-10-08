@@ -176,9 +176,30 @@ namespace CapaPresentacion
                 imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
             }
 
-            img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["ID"].ToString();
-            img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["ID"].ToString();
-            img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["ID"].ToString();
+            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 1) != false)
+            {
+                img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["ID"].ToString();
+            }
+            else
+            {
+                img1.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 2) != false)
+            {
+                img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["ID"].ToString();
+            }
+            else
+            {
+                img2.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 3) != false)
+            {
+                img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["ID"].ToString();
+            }
+            else
+            {
+                img3.Src = "~/Imagenes/complejo_logo_default.png";
+            }
 
             btnPopUp_ModalPopupExtender2.Show();
 
