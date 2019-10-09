@@ -20,6 +20,24 @@
         }
 
     </style>
+
+    <style>
+         .ModalPopupBG
+            {
+                background-color: #000000;
+                filter: alpha(opacity=50);
+                opacity: 0.4;
+            }
+    </style>
+    <style>
+    .ModalTamaño
+{
+    min-width: 200px;
+    min-height: 150px;
+    background: white;
+    box-shadow: 0px 0px 10px #2b2b2b;
+}
+    </style>
 </asp:Content>
 
 
@@ -154,9 +172,9 @@
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
                         </asp:LinkButton>            
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+                       <%-- <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Imágenes
-                        </asp:LinkButton>                                                        
+                        </asp:LinkButton>  --%>                                                    
                     </div>
                 </div>
             </div>
@@ -188,7 +206,7 @@
       
             <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server" 
                 Enabled="True" TargetControlID="btnInicial" 
-               PopupControlID="PanelModal">
+               PopupControlID="PanelModal" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
@@ -207,7 +225,8 @@
           
             </ajaxToolkit:ModalPopupExtender>
 
-               <asp:Panel ID="PanelModal" runat="server" style="display:none; background:white; width:40%; height:auto">
+               <asp:Panel ID="PanelModal" runat="server" style="display:none">
+                   <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
@@ -272,22 +291,23 @@
                         </div>
 
                         <div class="modal-footer">
-                            <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
-                            <asp:Button ID="btnNuevoCan" runat="server" class="btn btn-default" OnClick="btnNuevoCan_Click" Text="Nuevo" Width="119px" />
-                            <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
+                            <div class="alinearAlCentro">  
+                                <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
+                                <asp:Button ID="btnNuevoCan" runat="server" class="btn btn-default" OnClick="btnNuevoCan_Click" Text="Nuevo" Width="119px" />
+                                <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
+                            </div>
                         </div>
                     </div>
    </ContentTemplate>
                     </asp:UpdatePanel>
+                       </div>
                 </asp:Panel>
-
-
-    
+  
     <asp:Button ID="btnInicial2" runat="server" Text="Button" style="display:none" />
       
             <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender2" runat="server" 
                 Enabled="True" TargetControlID="btnInicial2" 
-               PopupControlID="PanelModal2">
+               PopupControlID="PanelModal2" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
@@ -306,7 +326,8 @@
           
             </ajaxToolkit:ModalPopupExtender>
  
-       <asp:Panel ID="PanelModal2" runat="server" style="display:none; background:white; width:40%; height:auto">
+       <asp:Panel ID="PanelModal2" runat="server" style="display:none">
+           <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
     
@@ -344,9 +365,10 @@
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>
+               </div>
                 </asp:Panel> 
 
-       <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
+<%--       <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
       
             <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server" 
                 Enabled="True" TargetControlID="btnInicial3" 
@@ -388,7 +410,7 @@
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>
-                </asp:Panel> 
+                </asp:Panel> --%>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     </div>

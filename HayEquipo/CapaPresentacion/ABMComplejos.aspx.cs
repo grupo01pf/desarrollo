@@ -516,19 +516,19 @@ namespace CapaPresentacion
         }
 
         //IMÁGENES (NO ABRE EL MODAL)
-        protected void btnClose3_Click(object sender, EventArgs e)
-        {
-            btnPopUp_ModalPopupExtender3.Hide();
-            LimpiarServicios();
-        }
+        //protected void btnClose3_Click(object sender, EventArgs e)
+        //{
+        //    btnPopUp_ModalPopupExtender3.Hide();
+        //    LimpiarServicios();
+        //}
 
-        protected void btnPopUp3_Click(object sender, EventArgs e)
-        {
-            if (ID.HasValue == true)
-            {
-                btnPopUp_ModalPopupExtender3.Show();
-            }
-        }
+        //protected void btnPopUp3_Click(object sender, EventArgs e)
+        //{
+        //    if (ID.HasValue == true)
+        //    {
+        //        btnPopUp_ModalPopupExtender3.Show();
+        //    }
+        //}
 
         protected void btnGuardarImagen_Click(object sender, EventArgs e)
         {
