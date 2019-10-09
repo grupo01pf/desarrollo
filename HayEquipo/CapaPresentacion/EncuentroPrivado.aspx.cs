@@ -406,6 +406,16 @@ namespace CapaPresentacion
 
         private void cargarListaInvitar()
         {
+          
+            //List<Usuario> listaTodos = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            //List<Usuario> jugadoresInscriptos = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+            //List<Usuario> listaInvitar = new List<Usuario>();
+            //jugadoresInscriptos.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+            //foreach(Usuario us in listaTodos )  {
+
+            //}
+            
+
             gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
