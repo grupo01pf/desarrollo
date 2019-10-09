@@ -9,6 +9,18 @@
             min-width: 80%;
         }
 
+        .enlace {
+           color: #09426d;
+           text-align:center;
+        }
+        .divimagen
+        {
+            margin: 0 auto;
+            text-align: center;
+            width:auto;
+            height:130px;
+        }
+
         .header {
             background-color: #0b3107;
             font-family: Arial;
@@ -139,15 +151,18 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="Imagenes/cerveza.jpg" width="1000" height="1500">
+          <a href="https://www.heineken.com">
+        <img src="Imagenes/cerveza.jpg" width="1000" height="1500"></a>
       </div>
 
       <div class="item">
-        <img src="Imagenes/adidas.jpg" width="1000" height="1500">
+          <a href="https://www.adidas.com.ar">
+        <img src="Imagenes/adidas.jpg" width="1000" height="1500"></a>
       </div>
     
       <div class="item">
-        <img src="Imagenes/nike.jpg" width="1000" height="1500">
+          <a href="https://www.nike.com">
+        <img src="Imagenes/nike.jpg" width="1000" height="1500"></a>
       </div>
     </div>
 
@@ -285,13 +300,37 @@
         <p><strong>Fútbol 7 en Don Balón</strong></p>
         <p>Viernes 30 de Agosto a las 20 hs. </p>
         <button class="btn btn-primary">Info</button>
-      </div>      
-      <div class="well">
-        <p>ADS</p>
       </div>
+        <a href="https://www.latam.com/es_ar/">      
       <div class="well">
-        <p>ADS</p>
-      </div>
+        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>                            
+          <img src="Imagenes/publicidadLatam.png" class="img-responsive" width="460" height="460">       
+          <hr />
+        <p style="font-size:12px;">          
+            <strong>¡40% extra en acumulación de millas!</strong>
+            <%--<br />
+            <br />
+            ¿Estás listo para tus próximas vacaciones? Con Rentalcars y LATAM Pass, acumulá 7 millas por dólar gastado. Enterate cómo. Hasta el 21 de Octubre.--%>
+        </p>
+        <div class="enlace" style="font-size:12px;">
+            ABRIR ENLACE >
+        </div>
+      </div></a>
+        <a href="https://www.newbalance.com.ar">
+      <div class="well">
+        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>                            
+          <img src="Imagenes/publicidadNewBalance.jpg" class="img-responsive" width="460" height="345">       
+          <hr />
+        <p style="font-size:12px;">          
+            <strong>Descuento del 40% ingresando a través de este enlace</strong>
+            <%--<br />
+            <br />
+            ¿Estás listo para tus próximas vacaciones? Con Rentalcars y LATAM Pass, acumulá 7 millas por dólar gastado. Enterate cómo. Hasta el 21 de Octubre.--%>
+        </p>
+        <div class="enlace" style="font-size:12px;">
+            ABRIR ENLACE >
+        </div>
+      </div></a>
         <div class="well">
         <p><a href="#">Algunos links que te pueden interesar...</a></p>
         <p>

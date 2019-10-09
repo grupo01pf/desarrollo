@@ -22,7 +22,7 @@
   <style>
     /* Set black background color, white text and some padding */
     body {
-  background-image: url("Imagenes/cesped2.jpg");
+  background-image: url("Imagenes/cesped3.jpg");
 }
 
     footer {
