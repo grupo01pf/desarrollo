@@ -172,9 +172,9 @@
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
                         </asp:LinkButton>            
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                       <%-- <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
+                       <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Imágenes
-                        </asp:LinkButton>  --%>                                                    
+                        </asp:LinkButton>                                                  
                     </div>
                 </div>
             </div>
@@ -368,11 +368,11 @@
                </div>
                 </asp:Panel> 
 
-<%--       <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
+            <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
       
             <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server" 
                 Enabled="True" TargetControlID="btnInicial3" 
-               PopupControlID="PanelModal3">
+               PopupControlID="PanelModal3" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
@@ -391,7 +391,8 @@
           
             </ajaxToolkit:ModalPopupExtender>
  
-       <asp:Panel ID="PanelModal3" runat="server" style="display:none; background:white; width:40%; height:auto">
+       <asp:Panel ID="PanelModal3" runat="server" style="display:none">
+           <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                     <ContentTemplate>
     
@@ -401,16 +402,14 @@
                     <h4 class="modal-title" id="myModalLabel3">Imágenes</h4>
                 </div>
                      <div class="modal-body">
-                        <div class="form-group">
-                            <label>Imágenes</label>
-                        </div>
-                        <div class="form-group">
-                             <label>Imágenes</label>
-                        </div>
+ 
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>
-                </asp:Panel> --%>
+               </div>
+                </asp:Panel> 
+
+
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     </div>

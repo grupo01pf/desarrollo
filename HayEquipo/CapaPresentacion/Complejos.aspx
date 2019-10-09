@@ -7,6 +7,23 @@
             color:#1e74cb
         }
     </style>
+
+      <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
+
+      <style>
+  /* Make the image fully responsive */
+  .tamañoCarousel {
+      width: 1000px;
+      height: 800px;
+  }
+  </style>
+
 </asp:Content>
 
 
@@ -148,7 +165,10 @@
                         <asp:Label ID="lblHorarios" runat="server"></asp:Label>
                     </div>
                     <div class="form-group">
+
+<div class="tamañoCarousel">  
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -159,15 +179,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img id="img1"  runat="server" height="600" width="600">
+        <img id="img1"  runat="server" height="50" width="50">
       </div>
 
       <div class="item">
-        <img id="img2" runat="server" height="600" width="600">
+        <img id="img2" runat="server" height="50" width="50">
       </div>
     
       <div class="item">
-        <img id="img3"  runat="server" height="600" width="600">
+        <img id="img3"  runat="server" height="50" width="50">
       </div>
     </div>
 
@@ -180,7 +200,10 @@
       <span class="glyphicon glyphicon-chevron-right"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
+    </div>
+</div>
+
+
 
                   <div class="modal-footer">
                               
