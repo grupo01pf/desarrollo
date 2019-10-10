@@ -10,7 +10,7 @@
 namespace CapaPresentacion {
     
     
-    public partial class ComplejosWF {
+    public partial class ABMComplejosAdministrador {
         
         /// <summary>
         /// Control ScriptManager1.

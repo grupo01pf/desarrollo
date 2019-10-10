@@ -106,9 +106,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMComplejosEstablecimiento.aspx" />
     <Content Include="AvatarComplejo.aspx" />
     <Content Include="avatar\nene.png" />
-    <Content Include="ABMComplejos.aspx" />
+    <Content Include="ABMComplejosAdministrador.aspx" />
     <Content Include="ComplejoInfo.aspx" />
     <Content Include="Complejos.aspx" />
     <Content Include="CrearEncuentro.aspx" />
@@ -185,12 +186,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABMComplejos.aspx.cs">
-      <DependentUpon>ABMComplejos.aspx</DependentUpon>
+    <Compile Include="ABMComplejosEstablecimiento.aspx.cs">
+      <DependentUpon>ABMComplejosEstablecimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ABMComplejos.aspx.designer.cs">
-      <DependentUpon>ABMComplejos.aspx</DependentUpon>
+    <Compile Include="ABMComplejosEstablecimiento.aspx.designer.cs">
+      <DependentUpon>ABMComplejosEstablecimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMComplejosAdministrador.aspx.cs">
+      <DependentUpon>ABMComplejosAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMComplejosAdministrador.aspx.designer.cs">
+      <DependentUpon>ABMComplejosAdministrador.aspx</DependentUpon>
     </Compile>
     <Compile Include="AvatarComplejo.aspx.cs">
       <DependentUpon>AvatarComplejo.aspx</DependentUpon>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejos.aspx.cs" Inherits="CapaPresentacion.ComplejosWF" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="ABMComplejosAdministrador.aspx.cs" Inherits="CapaPresentacion.ABMComplejosAdministrador" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -19,24 +19,20 @@
             color: #ffffff;
         }
 
-    </style>
-
-    <style>
          .ModalPopupBG
             {
                 background-color: #000000;
                 filter: alpha(opacity=50);
                 opacity: 0.4;
             }
-    </style>
-    <style>
-    .ModalTamaño
-{
-    min-width: 200px;
-    min-height: 150px;
-    background: white;
-    box-shadow: 0px 0px 10px #2b2b2b;
-}
+
+         .ModalTamaño
+            {
+                min-width: 200px;
+                min-height: 150px;
+                background: white;
+                box-shadow: 0px 0px 10px #2b2b2b;
+            }
     </style>
 </asp:Content>
 

@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace CapaPresentacion
 {
-    public partial class ComplejosWF : System.Web.UI.Page
+    public partial class ABMComplejosEstablecimiento : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +28,7 @@ namespace CapaPresentacion
                 ddlServ.AutoPostBack = true;
             }
         }
+
         protected int? ID
         {
             get
@@ -40,6 +41,20 @@ namespace CapaPresentacion
                 }
             }
             set { ViewState["ID"] = value; }
+        }
+
+        protected int? IDCom
+        {
+            get
+            {
+                if (ViewState["IDCom"] != null)
+                    return (int)ViewState["IDCom"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["IDCom"] = value; }
         }
 
         protected int? IDCan
@@ -195,9 +210,10 @@ namespace CapaPresentacion
 
         protected void CargarGrillaComplejos()
         {
+            Responsable res = ResponsableDao.ObtenerResponsablePorIdUsuario(int.Parse(Session["ID"].ToString()));
             gvComplejos.DataSource = null;
 
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorResponsable(res.id)
                                       orderby comp.Nombre
                                       select comp);
 
@@ -209,8 +225,8 @@ namespace CapaPresentacion
         {
             Limpiar();
             int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-            ID = idSeleccionado;
-            Session["ID"] = idSeleccionado;
+            IDCom = idSeleccionado;
+            Session["IDCom"] = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
             txtNomb.Text = compSelec.nombre;
@@ -229,9 +245,9 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.nroTelefono.ToString();
             txtHoraApe.Text = compSelec.horaApertura.ToString();
             txtHoraCie.Text = compSelec.horaCierre.ToString();
-            if (ComplejoDeportivoDao.existeAvatar(Session["ID"].ToString()) != false)
+            if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
             {
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
                 CambiarImagen();
             }
             else
@@ -330,7 +346,7 @@ namespace CapaPresentacion
         {
             gvCanchas.DataSource = null;
 
-            gvCanchas.DataSource = (from can in CanchaDao.ObtenerCanchasPorComplejos(ID.Value)
+            gvCanchas.DataSource = (from can in CanchaDao.ObtenerCanchasPorComplejos(IDCom.Value)
                                     orderby can.Deporte, can.Nombre
                                     select can);
 
@@ -349,7 +365,7 @@ namespace CapaPresentacion
             if (int.TryParse(ddlTipoCancha.Text, out tipoCan))
                 cancha.idTipoCancha = tipoCan;
 
-            cancha.idComplejo = ID.Value;
+            cancha.idComplejo = IDCom.Value;
 
             if (IDCan.HasValue)
             {
@@ -361,7 +377,7 @@ namespace CapaPresentacion
                 CanchaDao.InsertarCancha(cancha);
             }
 
-            if(ComplejoDeportivoDao.ExisteDeporte(ID.Value, ddlDep4.SelectedItem.ToString()) == false)
+            if(ComplejoDeportivoDao.ExisteDeporte(IDCom.Value, ddlDep4.SelectedItem.ToString()) == false)
             {
                 ComplejoDeportivo complejo = new ComplejoDeportivo();
                 complejo.id = ID.Value;
@@ -416,9 +432,9 @@ namespace CapaPresentacion
             CanchaDao.EliminarCancha(IDCan.Value);
             CargarGrillaCanchas();
            
-            if(ComplejoDeportivoDao.CuantasCanchasPorDeporte(ID.Value, ddlDep4.SelectedIndex) == 0)
+            if(ComplejoDeportivoDao.CuantasCanchasPorDeporte(IDCom.Value, ddlDep4.SelectedIndex) == 0)
             {
-                ComplejoDeportivoDao.EliminarDeporteComplejo(ID.Value, ddlDep4.SelectedItem.ToString());
+                ComplejoDeportivoDao.EliminarDeporteComplejo(IDCom.Value, ddlDep4.SelectedItem.ToString());
             }
             LimpiarCanchas();
         }
@@ -427,7 +443,7 @@ namespace CapaPresentacion
         {
             gvServ.DataSource = null;
 
-            gvServ.DataSource = (from serv in ServicioExtraDao.ObtenerServiciosPorComp(ID.Value)
+            gvServ.DataSource = (from serv in ServicioExtraDao.ObtenerServiciosPorComp(IDCom.Value)
                                  orderby serv.nombre
                                  select serv);
 
@@ -452,7 +468,7 @@ namespace CapaPresentacion
             if (int.TryParse(ddlServ.Text, out serv))
                 servPorComp.idServicio = serv;
 
-            servPorComp.idComplejo = ID.Value;
+            servPorComp.idComplejo = IDCom.Value;
 
             ServiciosPorComplejosDao.InsertarServicioPorComplejo(servPorComp);
 
@@ -484,7 +500,7 @@ namespace CapaPresentacion
         //CANCHAS
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            ComplejoDeportivo complejo = ComplejoDeportivoDao.ObtenerComplejosPorID(ID.Value);
+            ComplejoDeportivo complejo = ComplejoDeportivoDao.ObtenerComplejosPorID(IDCom.Value);
             lblDepResultado.Text = complejo.deportes;
             CargarGrillaComplejos();
             btnPopUp_ModalPopupExtender.Hide();
@@ -493,7 +509,7 @@ namespace CapaPresentacion
 
         protected void btnPopUp_Click(object sender, EventArgs e)
         {
-            if (ID.HasValue == true)
+            if (IDCom.HasValue == true)
             {
                 CargarGrillaCanchas();
                 btnPopUp_ModalPopupExtender.Show();
@@ -509,7 +525,7 @@ namespace CapaPresentacion
 
         protected void btnPopUp2_Click(object sender, EventArgs e)
         {
-            if (ID.HasValue == true)
+            if (IDCom.HasValue == true)
             {            
                 CargarGrillaServicios();
                 btnPopUp_ModalPopupExtender2.Show();
@@ -525,7 +541,7 @@ namespace CapaPresentacion
 
         protected void btnPopUp3_Click(object sender, EventArgs e)
         {
-            if (ID.HasValue == true)
+            if (IDCom.HasValue == true)
             {
                 CargarGrillaServicios();
                 btnPopUp_ModalPopupExtender3.Show();
@@ -544,11 +560,11 @@ namespace CapaPresentacion
                 Bitmap ImagenOriginalBinaria = new Bitmap(FileUploadAvatar.PostedFile.InputStream);
 
                 //insertar en BD
-                ComplejoDeportivoDao.AgregarAvatar(Session["ID"].ToString(), ImagenOriginal);
+                ComplejoDeportivoDao.AgregarAvatar(Session["IDCom"].ToString(), ImagenOriginal);
                 lblestado.Text = "Imagen Guardada Exitosamente";
                 //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
                 //Image1.ImageUrl = ImagenDataURL64;
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
                 FileUploadAvatar.Visible = false;
                 btn_guardarImagen.Visible = false;
                 btn_CambiarImagen.Visible = true;

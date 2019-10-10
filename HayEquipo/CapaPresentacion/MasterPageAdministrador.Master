@@ -66,9 +66,10 @@ $(window).load(function() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="HomeAdministrador.aspx">Principal</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
+        <li><a href="ABMComplejosAdministrador.aspx">Complejos Deportivos</a></li>
+      </ul>      
+      <ul class="nav navbar-nav navbar-right">         
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
       </ul>
     </div>
