@@ -16,124 +16,79 @@ namespace CapaPresentacion
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                CargarGrillaComplejos();
+                
                 ddlOrdenar.AutoPostBack = true;
             }
+            CargarRepeaterComplejos();
         }
 
-        protected int? ID
+        protected int? IDCom
         {
             get
             {
-                if (ViewState["ID"] != null)
-                    return (int)ViewState["ID"];
+                if (ViewState["IDCom"] != null)
+                    return (int)ViewState["IDCom"];
                 else
                 {
                     return null;
                 }
             }
-            set { ViewState["ID"] = value; }
+            set { ViewState["IDCom"] = value; }
         }
 
-        protected void CargarGrillaComplejos()
+        protected void CargarRepeaterComplejos()
         {
-            gvComplejos.DataSource = null;
-
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      select comp);
-
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();       
+            encuentrosRepeater.DataSource = ComplejoDeportivoDao.ObtenerComplejosJoin();
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        protected void CargarGrillaComplejosPorNom()
+        protected void CargarRepeaterComplejosPorNom()
         {
-            gvComplejos.DataSource = null;
-
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      orderby comp.Nombre
-                                      select comp);
-
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
+            encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                             orderby comp.Nombre
+                                             select comp);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        protected void CargarGrillaComplejosPorVal()
+        protected void CargarRepeaterComplejosPorVal()
         {
-            gvComplejos.DataSource = null;
-
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      orderby comp.Valoracion descending
-                                      select comp);
-
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
+            encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                             orderby comp.Valoracion descending
+                                             select comp);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        protected void CargarGrillaComplejosPorFecha()
+        protected void CargarRepeaterComplejosPorFecha()
         {
-            gvComplejos.DataSource = null;
-
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      orderby comp.FechaRegistro descending
-                                      select comp);
-
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
+            encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+                                             orderby comp.FechaRegistro descending
+                                             select comp);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        protected void CargarGrillaComplejosBuscar(string nomb, int? idUsuario, string d1, string d2, string d3)
+        protected void CargarRepeaterComplejosBuscar(string nomb, int? idUsuario, string d1, string d2, string d3)
         {
-            gvComplejos.DataSource = null;
-
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3)
-                                      orderby comp.Nombre
-                                      select comp);
-
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
+            encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3)
+                                             orderby comp.Nombre
+                                             select comp);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        protected void CargarListServicios(int idComp)
+
+        void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "btnUnirseEncuentro")
         {
-            listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);
-            listServicios.DataTextField = "nombre";
-            listServicios.DataValueField = "id";
-            listServicios.DataBind();
-        }
+            string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {          
-            if (txtBuscar.Text == "")
-            {
-                CargarGrillaComplejos();
-            }
-            else
-            {                            
-                string nomb = txtBuscar.Text;
-                int? idUs = null;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
-            }
-            ddlOrdenar.SelectedIndex = 0;
-        }
-
-        //protected void LimpiarModal()
-        //{
-        //    myModalLabel2.InnerText = string.Empty;
-        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-        //    lblDeportes.Text = compSelec.deportes;
-        //    lblDescripcion.Text = compSelec.descripcion;
-        //}
-
-        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-            ID = idSeleccionado;
-            Session["ID"] = idSeleccionado;
+            int idSeleccionado = int.Parse(((LinkButton)e.CommandSource).CommandArgument);
+            IDCom = idSeleccionado;
+            Session["IDCom"] = idSeleccionado;
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
             myModalLabel2.InnerText = compSelec.nombre;
@@ -156,7 +111,7 @@ namespace CapaPresentacion
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            if(compSelec.horaApertura != null && compSelec.horaCierre != null)
+            if (compSelec.horaApertura != null && compSelec.horaCierre != null)
             {
                 TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
                 TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
@@ -166,35 +121,35 @@ namespace CapaPresentacion
             {
                 lblHorarios.Text = "Horarios: - ";
             }
-            
-            if (ComplejoDeportivoDao.existeAvatar(Session["ID"].ToString()) != false)
+
+            if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
             {
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
             }
             else
             {
                 imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
             }
 
-            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 1) != false)
+            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 1) != false)
             {
-                img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["ID"].ToString();
+                img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["IDCom"].ToString();
             }
             else
             {
                 img1.Src = "~/Imagenes/complejo_logo_default.png";
             }
-            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 2) != false)
+            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 2) != false)
             {
-                img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["ID"].ToString();
+                img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["IDCom"].ToString();
             }
             else
             {
                 img2.Src = "~/Imagenes/complejo_logo_default.png";
             }
-            if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 3) != false)
+            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 3) != false)
             {
-                img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["ID"].ToString();
+                img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["IDCom"].ToString();
             }
             else
             {
@@ -202,8 +157,178 @@ namespace CapaPresentacion
             }
 
             btnPopUp_ModalPopupExtender2.Show();
-
         }
+    }
+
+    //protected void CargarGrillaComplejos()
+    //    {
+    //        gvComplejos.DataSource = null;
+
+    //        gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+    //                                  select comp);
+
+    //        gvComplejos.DataKeyNames = new string[] { "ID" };
+    //        gvComplejos.DataBind();       
+    //    }
+
+        //protected void CargarGrillaComplejosPorNom()
+        //{
+        //    gvComplejos.DataSource = null;
+
+        //    gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+        //                              orderby comp.Nombre
+        //                              select comp);
+
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
+
+        //protected void CargarGrillaComplejosPorVal()
+        //{
+        //    gvComplejos.DataSource = null;
+
+        //    gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+        //                              orderby comp.Valoracion descending
+        //                              select comp);
+
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
+
+        //protected void CargarGrillaComplejosPorFecha()
+        //{
+        //    gvComplejos.DataSource = null;
+
+        //    gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
+        //                              orderby comp.FechaRegistro descending
+        //                              select comp);
+
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
+
+        //protected void CargarGrillaComplejosBuscar(string nomb, int? idUsuario, string d1, string d2, string d3)
+        //{
+        //    gvComplejos.DataSource = null;
+
+        //    gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3)
+        //                              orderby comp.Nombre
+        //                              select comp);
+
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
+
+        protected void CargarListServicios(int idComp)
+        {
+            listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);
+            listServicios.DataTextField = "nombre";
+            listServicios.DataValueField = "id";
+            listServicios.DataBind();
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {          
+            if (txtBuscar.Text == "")
+            {
+                CargarRepeaterComplejos();
+            }
+            else
+            {                            
+                string nomb = txtBuscar.Text;
+                int? idUs = null;
+                string d1 = string.Empty;
+                string d2 = string.Empty;
+                string d3 = string.Empty;
+
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
+            }
+            ddlOrdenar.SelectedIndex = 0;
+        }
+
+        //protected void LimpiarModal()
+        //{
+        //    myModalLabel2.InnerText = string.Empty;
+        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+        //    lblDeportes.Text = compSelec.deportes;
+        //    lblDescripcion.Text = compSelec.descripcion;
+        //}
+
+        //protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+        //    ID = idSeleccionado;
+        //    Session["ID"] = idSeleccionado;
+        //    ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+
+        //    myModalLabel2.InnerText = compSelec.nombre;
+        //    lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+        //    lblDeportes.Text = compSelec.deportes;
+        //    lblDescripcion.Text = compSelec.descripcion;
+        //    listServicios.Items.Clear();
+        //    lblServicios.Text = "Servicios: ";
+        //    if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+        //    {
+        //        CargarListServicios(compSelec.id);
+        //    }
+        //    else
+        //    {
+        //        lblServicios.Text = "Servicios: - ";
+        //        divListServ.Visible = false;
+        //    }
+        //    lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+        //    Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+        //    lblBarrio.Text = "Barrio: " + bar.nombre;
+        //    lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+        //    lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+        //    if(compSelec.horaApertura != null && compSelec.horaCierre != null)
+        //    {
+        //        TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
+        //        TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+        //        lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+        //    }
+        //    else
+        //    {
+        //        lblHorarios.Text = "Horarios: - ";
+        //    }
+            
+        //    if (ComplejoDeportivoDao.existeAvatar(Session["ID"].ToString()) != false)
+        //    {
+        //        imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+        //    }
+        //    else
+        //    {
+        //        imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+        //    }
+
+        //    if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 1) != false)
+        //    {
+        //        img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["ID"].ToString();
+        //    }
+        //    else
+        //    {
+        //        img1.Src = "~/Imagenes/complejo_logo_default.png";
+        //    }
+        //    if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 2) != false)
+        //    {
+        //        img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["ID"].ToString();
+        //    }
+        //    else
+        //    {
+        //        img2.Src = "~/Imagenes/complejo_logo_default.png";
+        //    }
+        //    if (ComplejoDeportivoDao.existeImagen(Session["ID"].ToString(), 3) != false)
+        //    {
+        //        img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["ID"].ToString();
+        //    }
+        //    else
+        //    {
+        //        img3.Src = "~/Imagenes/complejo_logo_default.png";
+        //    }
+
+        //    btnPopUp_ModalPopupExtender2.Show();
+
+        //}
 
 
         protected void ddlOrdenar_SelectedIndexChanged(object sender, EventArgs e)
@@ -212,12 +337,12 @@ namespace CapaPresentacion
             //POR DEFECTO
             if (ddlOrdenar.SelectedIndex == 0)
             {
-                CargarGrillaComplejos();
+                CargarRepeaterComplejos();
             }
             //POR VALORACION
             if (ddlOrdenar.SelectedIndex == 1)
             {
-                CargarGrillaComplejosPorVal();
+                CargarRepeaterComplejosPorVal();
             }
             //POR MAS CERCANO
             if (ddlOrdenar.SelectedIndex == 2)
@@ -229,17 +354,17 @@ namespace CapaPresentacion
                 string d2 = string.Empty;
                 string d3 = string.Empty;
 
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
             //ALFABETICAMENTE
             if (ddlOrdenar.SelectedIndex == 3)
             {
-                CargarGrillaComplejosPorNom();
+                CargarRepeaterComplejosPorNom();
             }
             //MÁS NUEVO
             if (ddlOrdenar.SelectedIndex == 4)
             {
-                CargarGrillaComplejosPorFecha();
+                CargarRepeaterComplejosPorFecha();
             }
         }
        
@@ -265,7 +390,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -276,7 +401,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
             
@@ -294,7 +419,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -305,7 +430,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -323,7 +448,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -334,7 +459,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
         }
@@ -360,7 +485,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -371,7 +496,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -389,7 +514,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -400,7 +525,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -418,7 +543,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -429,7 +554,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
         }
@@ -456,7 +581,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -467,7 +592,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -485,7 +610,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -496,7 +621,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -514,7 +639,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -525,7 +650,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
         }
@@ -552,7 +677,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -563,7 +688,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -581,7 +706,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -592,7 +717,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
 
@@ -610,7 +735,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -621,7 +746,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                    CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
             }
         }
@@ -669,7 +794,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
 
                 else
@@ -680,7 +805,7 @@ namespace CapaPresentacion
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
 
-                    CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
                 }
         }
 
@@ -722,7 +847,7 @@ namespace CapaPresentacion
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
 
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
 
             else
@@ -733,7 +858,7 @@ namespace CapaPresentacion
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
 
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
         }
 
@@ -775,7 +900,7 @@ namespace CapaPresentacion
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
 
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
 
             else
@@ -786,7 +911,7 @@ namespace CapaPresentacion
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
 
-                CargarGrillaComplejosBuscar(nomb, idUs, d1, d2, d3);
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
         }
     }

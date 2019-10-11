@@ -29,7 +29,7 @@ namespace CapaPresentacion
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
             }
-           
+         
             encuentrosRepeater.DataSource = ObtenerEncuentros();
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
