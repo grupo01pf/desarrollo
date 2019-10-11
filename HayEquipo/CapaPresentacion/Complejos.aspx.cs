@@ -15,10 +15,10 @@ namespace CapaPresentacion
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {
-                
+            {               
                 ddlOrdenar.AutoPostBack = true;
             }
+
             CargarRepeaterComplejos();
         }
 
@@ -914,5 +914,6 @@ namespace CapaPresentacion
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3);
             }
         }
+
     }
 }
