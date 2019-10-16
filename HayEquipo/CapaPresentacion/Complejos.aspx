@@ -21,8 +21,8 @@
 
       .scroll-container {
             display: block;
-            height: 340px;
-            overflow-y: scroll;
+            /*height: 600px;*/
+            overflow-y: auto;
         }
 
          .alinearIzquiera {
@@ -32,7 +32,6 @@
      .tamanoLetra {
             font-size: 20px;
         }
-
 
   </style>
 
@@ -113,7 +112,7 @@
             
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
-                     <b>Encuentros Vigentes</b></h1>
+                     <b>Complejos Deportivos</b></h1>
                     </div>
 
   <div class="scroll-container">
@@ -123,7 +122,7 @@
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-          <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="Imagenes/nene.png"" alt="Avatar"/>
+          <img id="imgLogoComp" runat="server" class="w3-left w3-circle w3-margin-right" style="width:55px" src="~/Imagenes/complejo_logo_default.png" alt="Avatar"/>
       <h1><asp:Label runat="server" text='<%#Eval("Nombre") %>'></asp:Label></h1>
     </header>
       <div class="w3-container">
