@@ -406,7 +406,10 @@ namespace CapaPresentacion
 
         private void cargarListaInvitar()
         {
-          
+
+           // List<Usuario> listaTodos = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+           // listaTodos.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+            
             //List<Usuario> listaTodos = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             //List<Usuario> jugadoresInscriptos = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
             //List<Usuario> listaInvitar = new List<Usuario>();
@@ -414,11 +417,30 @@ namespace CapaPresentacion
             //foreach(Usuario us in listaTodos )  {
 
             //}
-            
+
 
             gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
+        }
+
+        protected void btn_EnviarInvitacion_Click(object sender, EventArgs e) {
+
+            for (int i = 0; i < gdv_Invitar.Rows.Count; i++) {
+                //gdv_Invitar.Rows[i].Cells[] = 
+            }
+
+            foreach (GridView fila in gdv_Invitar.Rows) {
+                CheckBox chk = (CheckBox)fila.FindControl("chk_Invitar");
+                if (chk != null)
+                {
+                    if (chk.Checked)
+                    {
+                        
+
+                    }
+                }
+            }
         }
 
     }

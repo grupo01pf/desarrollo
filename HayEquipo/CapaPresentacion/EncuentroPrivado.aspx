@@ -180,7 +180,8 @@
                                     <div class="modal-footer">
                                         <center>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary">Invitar</button>
+                                        <button type="button" class="btn btn-primary"id="btn_EnviarInvitacion" runat="server"
+                                            onclick="btn_EnviarInvitacion_Click">Invitar</button>
                                         </center>
                                     </div>
                                 </div>
