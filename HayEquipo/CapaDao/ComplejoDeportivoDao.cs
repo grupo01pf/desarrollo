@@ -403,6 +403,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
+
             cmd.CommandText = @"SELECT *
                                   FROM
                                (SELECT *, ROW_NUMBER() OVER(ORDER BY idComplejo) ROWNUM
@@ -411,6 +412,7 @@ namespace CapaDao
                                  WHERE C. ROWNUM = @num";
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@num", num);
+
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -421,28 +423,29 @@ namespace CapaDao
             return imagen;
         }
 
-        //public static void InsertarImagenComplejo(string idComp, Byte[] imagen)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    cn.ConnectionString = ConnectionString.Cadena();
-        //    cn.Open();
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = cn;
-        //    cmd.CommandText = @"INSERT INTO FotosComplejo (imagen, idComplejo) VALUES (@imagen, @idComp)";
-        //    cmd.Parameters.AddWithValue("@idComp", idComp);
-        //    cmd.Parameters.AddWithValue("@imagen", imagen);
-        //    cmd.ExecuteNonQuery();
-        //    cn.Close();
-        //}
-
-        public static void InsertarImagenComplejo(FotosComplejo foto)
+        public static void InsertarImagenComplejo(int idComp, Byte[] imagen)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                db.FotosComplejo.Add(foto);
-                db.SaveChanges();
-            }
+            SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = @"INSERT INTO FotosComplejo (imagen, idComplejo) VALUES (@imagen, @idComp)";
+            cmd.Parameters.AddWithValue("@idComp", idComp);
+            cmd.Parameters.AddWithValue("@imagen", imagen);
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cn;
+            cn.Open();
+            cmd.ExecuteNonQuery();
         }
+
+        //public static void InsertarImagenComplejo(FotosComplejo foto)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        db.FotosComplejo.Add(foto);
+        //        db.SaveChanges();
+        //    }
+        //}
 
         public static DataTable ObtenerImagenesComp(int idComp)
         {
@@ -451,6 +454,7 @@ namespace CapaDao
            
             cmd.CommandText = @"SELECT imagen FROM FotosComplejo WHERE idComplejo = @idComp";  
             cmd.Parameters.AddWithValue("@idComp", idComp);
+
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cn;
             cn.Open();

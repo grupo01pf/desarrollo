@@ -28,6 +28,7 @@ namespace CapaPresentacion
                 ddlServ.AutoPostBack = true;
             }
         }
+
         protected int? IDCom
         {
             get
@@ -69,6 +70,7 @@ namespace CapaPresentacion
             }
             set { ViewState["IDServ"] = value; }
         }
+
         private void Limpiar()
         {
             txtNomb.Text = string.Empty;
@@ -93,6 +95,9 @@ namespace CapaPresentacion
             IDCom = null;
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
+
+            Repeater1.DataSource = null;
+            Repeater1.DataBind();
         }
 
         private void CargarDeportes()
@@ -248,8 +253,8 @@ namespace CapaPresentacion
             {
                 lblFecResultado.Text = "-";
             }
-            
 
+            CargarRepeaterImagenes();
             lblFecha.Visible = true;
             lblFecResultado.Visible = true;
             lblDeportes.Visible = true;
@@ -257,7 +262,6 @@ namespace CapaPresentacion
             btnEliminar.Enabled = true;
             btnCanchas.Enabled = true;
             btnServicios.Enabled = true;
-            btnImagenes.Enabled = true;
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -516,21 +520,6 @@ namespace CapaPresentacion
             }
         }
 
-        //IMÁGENES
-        protected void btnClose3_Click(object sender, EventArgs e)
-        {
-            btnPopUp_ModalPopupExtender3.Hide();
-        }
-
-        protected void btnPopUp3_Click(object sender, EventArgs e)
-        {
-            if (IDCom.HasValue == true)
-            {
-                CargarRepeaterImagenes();
-                btnPopUp_ModalPopupExtender3.Show();
-            }
-        }
-
         protected void btnGuardarImagen_Click(object sender, EventArgs e)
         {
             if (FileUploadAvatar.HasFile)
@@ -572,7 +561,7 @@ namespace CapaPresentacion
             btn_guardarImagen.Visible = false;
             btn_CambiarImagen.Visible = true;
         }
-         //NO ANDA POR ESTAR EN EL MODAL Y POR EL POSTBACK, FILEUPLOAD NO MANTIENE EL ARCHIVO EN SESION
+
         protected void btnSubir_Click(object sender, EventArgs e)
         {
             if (fUploadImagen.HasFile)
@@ -585,14 +574,11 @@ namespace CapaPresentacion
                 Bitmap ImagenOriginalBinaria = new Bitmap(fUploadImagen.PostedFile.InputStream);
 
                 //insertar en BD
-                FotosComplejo foto = new FotosComplejo();
-                foto.idComplejo = IDCom.Value;
-                foto.imagen = ImagenOriginal;
-                ComplejoDeportivoDao.InsertarImagenComplejo(foto);
+                ComplejoDeportivoDao.InsertarImagenComplejo(IDCom.Value,ImagenOriginal);
                 //ComplejoDeportivoDao.AgregarAvatar(Session["IDCom"].ToString(), ImagenOriginal);
                 lblEstadoImg.Text = "Imagen Guardada Exitosamente";
                 string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
-                imgAvatar.ImageUrl = ImagenDataURL64;
+                //imgAvatar.ImageUrl = ImagenDataURL64;
                 //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
                 //fUploadImagen.Visible = false;
                 //btn_guardarImagen.Visible = false;

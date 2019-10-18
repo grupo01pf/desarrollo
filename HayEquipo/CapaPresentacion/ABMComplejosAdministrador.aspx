@@ -134,7 +134,7 @@
                                  <br />
                                  <br />
                                  <div class="form-group">
-                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" /> 
+                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="form-control" runat="server" /> 
                                  </div>
                                  <asp:Label ID="lblestado" runat="server"></asp:Label> 
                     </div>          
@@ -158,6 +158,29 @@
                     </div>
                 </div>
                 <div class="well">
+                    <legend>Imágenes del Complejo</legend>
+                    <div class="form-group">                         
+                                    <div class="form-group">
+                                    <asp:FileUpload ID="fUploadImagen" runat="server" CssClass="form-control" />
+                                    </div>
+                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label> 
+                                    <br />
+                                    <br />
+                                    <asp:Button ID="btnSubir" runat="server" Text="Agregar imágen" CssClass="btn btn-primary btn-edit" OnClick="btnSubir_Click" />                                 
+                            <div class="row">
+                                 <br />
+                                <asp:Repeater ID="Repeater1" runat="server">
+                                    <ItemTemplate>
+                                        <div class="col-md-4">
+                                            <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />
+                                            <br />
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                   </div>
+                </div>
+                <div class="well">
                     <%--Botones--%>
                     <div class="alinearAlCentro">                       
                         <asp:LinkButton ID="btnCanchas" runat="server" onclick="btnPopUp_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
@@ -167,10 +190,7 @@
                         <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
                         </asp:LinkButton>            
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                       <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
-                        <i class='fa fa-check-square-o' aria-hidden='true'></i> Imágenes
-                        </asp:LinkButton>                                                  
+                        &nbsp;&nbsp;&nbsp;&nbsp;                                                
                     </div>
                 </div>
             </div>
@@ -363,77 +383,6 @@
                     </asp:UpdatePanel>
                </div>
                 </asp:Panel> 
-
-            <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
-      
-            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server" 
-                Enabled="True" TargetControlID="btnInicial3" 
-               PopupControlID="PanelModal3" BackgroundCssClass="ModalPopupBG">
-                <Animations>
-            <OnShowing>
-                <FadeIn Duration=".5" Fps="30" />
-            </OnShowing>
-            <OnShown>
-                <FadeIn Duration=".3" Fps="30" />
-            </OnShown>
-            <OnHiding>
-                <FadeOut Duration=".5" Fps="30" />
-            </OnHiding>
-            <OnHidden>
-                <FadeOut Duration=".5" Fps="30" />
-            </OnHidden>
-
-            </Animations>
-          
-            </ajaxToolkit:ModalPopupExtender>
- 
-       <asp:Panel ID="PanelModal3" runat="server" style="display:none">
-           <div class="ModalTamaño">
-                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
-                    <ContentTemplate>
-    
-                <div class="modal-header">
-                     <asp:Button ID="btnClose3" runat="server" Text="X" CssClass="close"   
-                       onclick="btnClose3_Click"/>
-                    <h4 class="modal-title" id="myModalLabel3">Imágenes</h4>
-                </div>
-                     <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 col-md-offset-4">
-                                    Imágen agregada:
-                                    <br />
-                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="200" />
-                                    <br />
-                                    <br />
-                                    Archivo:
-                                    <asp:FileUpload ID="fUploadImagen" accept=".jpg" runat="server" CssClass="form-control" />
-                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label> 
-                                    <br />
-                                    <asp:Button ID="btnSubir" runat="server" Text="Cargar imágen" CssClass="btn btn-success" OnClick="btnSubir_Click" />
-                                    <br />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <asp:Repeater ID="Repeater1" runat="server">
-                                    <ItemTemplate>
-                                        <div class="col-md-4">
-                                            <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />
-                                            <br />
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </div>
-                    </div>
-                    </ContentTemplate>
-                    </asp:UpdatePanel>
-               </div>
-                </asp:Panel> 
-
-
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
     </div>
-
 </asp:Content>
