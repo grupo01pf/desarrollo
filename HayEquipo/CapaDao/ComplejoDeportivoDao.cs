@@ -421,5 +421,46 @@ namespace CapaDao
             return imagen;
         }
 
+        //public static void InsertarImagenComplejo(string idComp, Byte[] imagen)
+        //{
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = @"INSERT INTO FotosComplejo (imagen, idComplejo) VALUES (@imagen, @idComp)";
+        //    cmd.Parameters.AddWithValue("@idComp", idComp);
+        //    cmd.Parameters.AddWithValue("@imagen", imagen);
+        //    cmd.ExecuteNonQuery();
+        //    cn.Close();
+        //}
+
+        public static void InsertarImagenComplejo(FotosComplejo foto)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.FotosComplejo.Add(foto);
+                db.SaveChanges();
+            }
+        }
+
+        public static DataTable ObtenerImagenesComp(int idComp)
+        {
+            SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
+            SqlCommand cmd = new SqlCommand();
+           
+            cmd.CommandText = @"SELECT imagen FROM FotosComplejo WHERE idComplejo = @idComp";  
+            cmd.Parameters.AddWithValue("@idComp", idComp);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cn;
+            cn.Open();
+
+            DataTable ImagenesBD = new DataTable();
+            ImagenesBD.Load(cmd.ExecuteReader());
+
+            cn.Close();
+            return ImagenesBD;
+        }
+
     }
 }

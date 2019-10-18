@@ -398,7 +398,33 @@
                     <h4 class="modal-title" id="myModalLabel3">Imágenes</h4>
                 </div>
                      <div class="modal-body">
- 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    Imágen agregada:
+                                    <br />
+                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="200" />
+                                    <br />
+                                    <br />
+                                    Archivo:
+                                    <asp:FileUpload ID="fUploadImagen" accept=".jpg" runat="server" CssClass="form-control" />
+                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label> 
+                                    <br />
+                                    <asp:Button ID="btnSubir" runat="server" Text="Cargar imágen" CssClass="btn btn-success" OnClick="btnSubir_Click" />
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <asp:Repeater ID="Repeater1" runat="server">
+                                    <ItemTemplate>
+                                        <div class="col-md-4">
+                                            <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />
+                                            <br />
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>
