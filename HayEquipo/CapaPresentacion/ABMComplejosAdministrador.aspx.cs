@@ -597,6 +597,17 @@ namespace CapaPresentacion
         {
             Repeater1.DataSource = ComplejoDeportivoDao.ObtenerImagenesComp(IDCom.Value);
             Repeater1.DataBind();
+            Repeater1.ItemCommand += new RepeaterCommandEventHandler(Repeater1_ItemCommand);
+        }
+        //REVISAR: NO ENTRA AL EVENTO
+        void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "btnEliminarImagen")
+            {
+                int idImagen = int.Parse(((LinkButton)e.CommandSource).CommandArgument);
+                ComplejoDeportivoDao.EliminarImagenComp(idImagen);
+                CargarRepeaterImagenes();
+            }
         }
 
     }

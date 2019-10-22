@@ -81,7 +81,7 @@ namespace CapaPresentacion
 
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
+        {
         if (e.CommandName == "btnUnirseEncuentro")
         {
             string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;

@@ -452,7 +452,7 @@ namespace CapaDao
             SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
             SqlCommand cmd = new SqlCommand();
            
-            cmd.CommandText = @"SELECT imagen FROM FotosComplejo WHERE idComplejo = @idComp";  
+            cmd.CommandText = @"SELECT * FROM FotosComplejo WHERE idComplejo = @idComp";  
             cmd.Parameters.AddWithValue("@idComp", idComp);
 
             cmd.CommandType = CommandType.Text;
@@ -464,6 +464,16 @@ namespace CapaDao
 
             cn.Close();
             return ImagenesBD;
+        }
+
+        public static void EliminarImagenComp(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                FotosComplejo foto = db.FotosComplejo.Find(id);
+                db.FotosComplejo.Remove(foto);
+                db.SaveChanges();
+            }
         }
 
     }

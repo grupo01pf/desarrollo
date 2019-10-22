@@ -174,6 +174,7 @@
                                         <div class="col-md-4">
                                             <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />
                                             <br />
+                                            <asp:LinkButton runat="server" CommandName="btnEliminarImagen" CommandArgument='<%#Eval("id") %>' text="Eliminar imágen" Class="w3-button w3-block w3-black" ></asp:LinkButton>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
