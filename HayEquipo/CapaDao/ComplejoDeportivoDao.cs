@@ -438,15 +438,6 @@ namespace CapaDao
             cmd.ExecuteNonQuery();
         }
 
-        //public static void InsertarImagenComplejo(FotosComplejo foto)
-        //{
-        //    using (HayEquipoEntities db = new HayEquipoEntities())
-        //    {
-        //        db.FotosComplejo.Add(foto);
-        //        db.SaveChanges();
-        //    }
-        //}
-
         public static DataTable ObtenerImagenesComp(int idComp)
         {
             SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
@@ -468,12 +459,19 @@ namespace CapaDao
 
         public static void EliminarImagenComp(int id)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                FotosComplejo foto = db.FotosComplejo.Find(id);
-                db.FotosComplejo.Remove(foto);
-                db.SaveChanges();
-            }
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"DELETE from FotosComplejo WHERE id=@idImg";
+
+            cmd.Parameters.AddWithValue("@idImg", id);
+
+            cmd.ExecuteNonQuery();
+
+            cn.Close();
         }
 
     }

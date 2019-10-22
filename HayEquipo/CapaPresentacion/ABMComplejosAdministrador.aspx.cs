@@ -26,6 +26,7 @@ namespace CapaPresentacion
                 CargarServicios();
                 ddlDep4.AutoPostBack = true;
                 ddlServ.AutoPostBack = true;
+                
             }
         }
 
@@ -575,14 +576,8 @@ namespace CapaPresentacion
 
                 //insertar en BD
                 ComplejoDeportivoDao.InsertarImagenComplejo(IDCom.Value,ImagenOriginal);
-                //ComplejoDeportivoDao.AgregarAvatar(Session["IDCom"].ToString(), ImagenOriginal);
                 lblEstadoImg.Text = "Imagen Guardada Exitosamente";
                 string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
-                //imgAvatar.ImageUrl = ImagenDataURL64;
-                //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
-                //fUploadImagen.Visible = false;
-                //btn_guardarImagen.Visible = false;
-                //btn_CambiarImagen.Visible = true;
 
                 CargarRepeaterImagenes();
             }
@@ -597,10 +592,10 @@ namespace CapaPresentacion
         {
             Repeater1.DataSource = ComplejoDeportivoDao.ObtenerImagenesComp(IDCom.Value);
             Repeater1.DataBind();
-            Repeater1.ItemCommand += new RepeaterCommandEventHandler(Repeater1_ItemCommand);
+            Repeater1.ItemCommand += new RepeaterCommandEventHandler(Repeater1_ItemCommand1);
         }
-        //REVISAR: NO ENTRA AL EVENTO
-        void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+
+        protected void Repeater1_ItemCommand1(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "btnEliminarImagen")
             {
@@ -609,6 +604,5 @@ namespace CapaPresentacion
                 CargarRepeaterImagenes();
             }
         }
-
     }
 }

@@ -134,7 +134,7 @@
                                  <br />
                                  <br />
                                  <div class="form-group">
-                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" /> 
+                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="form-control" runat="server" /> 
                                  </div>
                                  <asp:Label ID="lblestado" runat="server"></asp:Label> 
                     </div>          
@@ -156,6 +156,30 @@
                         <asp:Button ID="btnNuevo" runat="server" class="btn btn-default" OnClick="btnNuevo_Click" Text="Nuevo" />
                         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" />
                     </div>
+                </div>
+                        <div class="well">
+                    <legend>Imágenes del Complejo</legend>
+                    <div class="form-group">                         
+                                    <div class="form-group">
+                                    <asp:FileUpload ID="fUploadImagen" runat="server" CssClass="form-control" />
+                                    </div>
+                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label> 
+                                    <br />
+                                    <br />
+                                    <asp:Button ID="btnSubir" runat="server" Text="Agregar imágen" CssClass="btn btn-primary btn-edit" OnClick="btnSubir_Click" />                                 
+                            <div class="row">
+                                 <br />
+                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand1">
+                                    <ItemTemplate>
+                                        <div class="col-md-4">
+                                            <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />
+                                            <br />
+                                            <asp:LinkButton runat="server" CommandName="btnEliminarImagen" CommandArgument='<%#Eval("id") %>' text="Eliminar imágen" Class="w3-button w3-block w3-black" ></asp:LinkButton>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                   </div>
                 </div>
                 <div class="well">
                     <%--Botones--%>

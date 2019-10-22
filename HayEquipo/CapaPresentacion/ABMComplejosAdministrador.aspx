@@ -169,7 +169,7 @@
                                     <asp:Button ID="btnSubir" runat="server" Text="Agregar imágen" CssClass="btn btn-primary btn-edit" OnClick="btnSubir_Click" />                                 
                             <div class="row">
                                  <br />
-                                <asp:Repeater ID="Repeater1" runat="server">
+                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand1">
                                     <ItemTemplate>
                                         <div class="col-md-4">
                                             <img class="img-responsive" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "imagen")) %>" />

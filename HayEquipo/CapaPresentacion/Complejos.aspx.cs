@@ -124,7 +124,9 @@ namespace CapaPresentacion
 
             if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
             {
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
+                    byte[] avtr = ComplejoDeportivoDao.ObtenerAvatar(Session["IDCom"].ToString());
+                    string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(avtr);
+                    imgAvatar.ImageUrl = ImagenDataURL64;
             }
             else
             {
@@ -133,24 +135,30 @@ namespace CapaPresentacion
 
             if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 1) != false)
             {
-                img1.Src = "~/ImagenComplejo1.aspx?id=" + Session["IDCom"].ToString();
-            }
+                    byte[] Img1 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 1);
+                    string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img1);
+                    img1.Src = ImagenDataURL64;
+                }
             else
             {
                 img1.Src = "~/Imagenes/complejo_logo_default.png";
             }
             if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 2) != false)
             {
-                img2.Src = "~/ImagenComplejo2.aspx?id=" + Session["IDCom"].ToString();
-            }
+                    byte[] Img2 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 2);
+                    string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img2);
+                    img2.Src = ImagenDataURL64;
+                }
             else
             {
                 img2.Src = "~/Imagenes/complejo_logo_default.png";
             }
             if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 3) != false)
             {
-                img3.Src = "~/ImagenComplejo3.aspx?id=" + Session["IDCom"].ToString();
-            }
+                    byte[] Img3 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 3);
+                    string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img3);
+                    img3.Src = ImagenDataURL64;
+                }
             else
             {
                 img3.Src = "~/Imagenes/complejo_logo_default.png";

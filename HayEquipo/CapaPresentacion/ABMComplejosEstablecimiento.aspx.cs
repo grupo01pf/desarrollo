@@ -589,5 +589,48 @@ namespace CapaPresentacion
             btn_guardarImagen.Visible = false;
             btn_CambiarImagen.Visible = true;
         }
+
+        protected void btnSubir_Click(object sender, EventArgs e)
+        {
+            if (fUploadImagen.HasFile)
+            {
+                //obtener datos de la imagen
+                int tam = fUploadImagen.PostedFile.ContentLength;
+                byte[] ImagenOriginal = new byte[tam];
+
+                fUploadImagen.PostedFile.InputStream.Read(ImagenOriginal, 0, tam);
+                Bitmap ImagenOriginalBinaria = new Bitmap(fUploadImagen.PostedFile.InputStream);
+
+                //insertar en BD
+                ComplejoDeportivoDao.InsertarImagenComplejo(IDCom.Value, ImagenOriginal);
+                lblEstadoImg.Text = "Imagen Guardada Exitosamente";
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+
+                CargarRepeaterImagenes();
+            }
+            else
+            {
+                lblEstadoImg.Text = "Coloque un archivo de imagen valido";
+            }
+            lblestado.Visible = true;
+        }
+
+        protected void CargarRepeaterImagenes()
+        {
+            Repeater1.DataSource = ComplejoDeportivoDao.ObtenerImagenesComp(IDCom.Value);
+            Repeater1.DataBind();
+            Repeater1.ItemCommand += new RepeaterCommandEventHandler(Repeater1_ItemCommand1);
+        }
+
+        protected void Repeater1_ItemCommand1(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "btnEliminarImagen")
+            {
+                int idImagen = int.Parse(((LinkButton)e.CommandSource).CommandArgument);
+                ComplejoDeportivoDao.EliminarImagenComp(idImagen);
+                CargarRepeaterImagenes();
+            }
+        }
+
     }
 }
