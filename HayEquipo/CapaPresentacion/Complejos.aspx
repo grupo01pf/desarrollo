@@ -86,7 +86,7 @@
 &nbsp;
     <asp:LinkButton ID="lbCaminata" runat="server" ForeColor="#0099CC">Caminata</asp:LinkButton>
 &nbsp;
-    <asp:LinkButton ID="lbVolley" runat="server" ForeColor="#0099CC">Volley</asp:LinkButton>
+    <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC">Volley</asp:LinkButton>
 &nbsp;<br />
     <br />
 &nbsp;
@@ -95,6 +95,8 @@
     <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD2_Click"/>
 &nbsp;
     <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
+&nbsp;
+    <asp:Button ID="btnD4" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD4_Click"/>
     <br />
         <br />
 <%--        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">

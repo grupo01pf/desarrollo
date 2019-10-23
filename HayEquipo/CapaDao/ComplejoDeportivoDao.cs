@@ -85,7 +85,7 @@ namespace CapaDao
             }
         }
 
-        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario, string d1, string d2, string d3)
+        public static List<spObtenerComplejosPorNomb_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
         {
             List<spObtenerComplejosPorNomb_Result> listaQuery = new List<spObtenerComplejosPorNomb_Result>();
             spObtenerComplejosPorNomb_Result comp = null;
@@ -134,6 +134,11 @@ namespace CapaDao
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d3";
                 cmd.Parameters.AddWithValue("@d3", "%" + d3 + "%");
+            }
+            if (!string.IsNullOrEmpty(d4))
+            {
+                cmd.CommandText += @" AND cd.deportes LIKE @d4";
+                cmd.Parameters.AddWithValue("@d4", "%" + d4 + "%");
             }
 
             SqlDataReader dr = cmd.ExecuteReader();
