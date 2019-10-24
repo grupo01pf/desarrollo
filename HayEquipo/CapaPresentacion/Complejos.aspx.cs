@@ -19,7 +19,14 @@ namespace CapaPresentacion
                 ddlOrdenar.AutoPostBack = true;
             }
 
-            CargarRepeaterComplejos();
+            string nomb = string.Empty;
+            int? idUs = null;
+            string d1 = string.Empty;
+            string d2 = string.Empty;
+            string d3 = string.Empty;
+            string d4 = string.Empty;
+
+            CargarRepeaterComplejos(nomb, idUs, d1, d2, d3, d4);
         }
 
         protected int? IDCom
@@ -36,9 +43,9 @@ namespace CapaPresentacion
             set { ViewState["IDCom"] = value; }
         }
 
-        protected void CargarRepeaterComplejos()
+        protected void CargarRepeaterComplejos(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
         {
-            encuentrosRepeater.DataSource = ComplejoDeportivoDao.ObtenerComplejosJoin();
+            encuentrosRepeater.DataSource = ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3, d4);
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
@@ -176,22 +183,16 @@ namespace CapaPresentacion
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
-        {          
-            if (txtBuscar.Text == "")
-            {
-                CargarRepeaterComplejos();
-            }
-            else
-            {                            
-                string nomb = txtBuscar.Text;
-                int? idUs = null;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-                string d4 = string.Empty;
+        {
+            string nomb = txtBuscar.Text;
+            int? idUs = null;
+            string d1 = btnD1.Text;
+            string d2 = btnD2.Text;
+            string d3 = btnD3.Text;
+            string d4 = btnD4.Text;
 
-                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
-            }
+            CargarRepeaterComplejos(nomb, idUs, d1, d2, d3, d4);
+   
             ddlOrdenar.SelectedIndex = 0;
         }
 
@@ -209,18 +210,24 @@ namespace CapaPresentacion
             //POR DEFECTO
             if (ddlOrdenar.SelectedIndex == 0)
             {
-                CargarRepeaterComplejos();
+                string nomb = txtBuscar.Text;
+                int? idUs = null;
+                string d1 = btnD1.Text;
+                string d2 = btnD2.Text;
+                string d3 = btnD3.Text;
+                string d4 = btnD4.Text;
+
+                CargarRepeaterComplejos(nomb, idUs, d1, d2, d3, d4);
             }
             //POR VALORACION
             else if (ddlOrdenar.SelectedIndex == 1)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
                 int? idUs = null;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-                string d4 = string.Empty;
+                string d1 = btnD1.Text;
+                string d2 = btnD2.Text;
+                string d3 = btnD3.Text;
+                string d4 = btnD4.Text;
 
                 CargarRepeaterComplejosPorVal(nomb, idUs, d1, d2, d3, d4);
             }
@@ -230,10 +237,10 @@ namespace CapaPresentacion
                 string nomb = txtBuscar.Text;
                 //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
                 int? idUs = 2;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-                string d4 = string.Empty;
+                string d1 = btnD1.Text;
+                string d2 = btnD2.Text;
+                string d3 = btnD3.Text;
+                string d4 = btnD4.Text;
 
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
             }
@@ -241,12 +248,11 @@ namespace CapaPresentacion
             else if (ddlOrdenar.SelectedIndex == 3)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
                 int? idUs = null;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-                string d4 = string.Empty;
+                string d1 = btnD1.Text;
+                string d2 = btnD2.Text;
+                string d3 = btnD3.Text;
+                string d4 = btnD4.Text;
 
                 CargarRepeaterComplejosPorNom(nomb, idUs, d1, d2, d3, d4);
             }
@@ -254,12 +260,11 @@ namespace CapaPresentacion
             else if (ddlOrdenar.SelectedIndex == 4)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
                 int? idUs = null;
-                string d1 = string.Empty;
-                string d2 = string.Empty;
-                string d3 = string.Empty;
-                string d4 = string.Empty;
+                string d1 = btnD1.Text;
+                string d2 = btnD2.Text;
+                string d3 = btnD3.Text;
+                string d4 = btnD4.Text;
 
                 CargarRepeaterComplejosPorFecha(nomb, idUs, d1, d2, d3, d4);
             }

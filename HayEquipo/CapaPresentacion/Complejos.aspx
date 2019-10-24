@@ -4,7 +4,8 @@
     <style>
         .colorLetra
         {
-            color:#1e74cb
+            color:#1e74cb;
+            font-size: 50px;
         }
 
   /* Make the image fully responsive */
@@ -32,6 +33,13 @@
      .tamanoLetra {
             font-size: 20px;
         }
+  
+         .ModalPopupBG
+            {
+                background-color: #000000;
+                filter: alpha(opacity=50);
+                opacity: 0.4;
+            }
 
   </style>
 
@@ -41,24 +49,35 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCD" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White" Font-Size="Large"></asp:Label>
-        <br />
-        <br />
-&nbsp;
-        <asp:TextBox ID="txtBuscar" placeholder="Buscar Complejo" CssClass="form-control" runat="server" Width="1406px"></asp:TextBox>
+
+       <div class="container text-center"">
+        <div class="row alinearAlCentro">
+            <div class="col-sm-12">               
+        <asp:Label ID="lblCD" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White" Font-Size="Large"></asp:Label>
+                <br />
+                <br />
+            </div>
+
+            <div class="col-sm-4">
+        <asp:TextBox ID="txtBuscar" placeholder="Buscar Complejo" CssClass="form-control" runat="server" ></asp:TextBox>
       <%--  <asp:RequiredFieldValidator ID="rvfBuscar"
             runat="server"
             ControlToValidate="txtBuscar"
             ErrorMessage="Ingrese Nombre"
             CssClass="alert-danger" Display="Dynamic"
             Text="*Ingrese Nombre" ValidationGroup="A" />--%>
-        <br />       
+            </div>
+
+            <div class="col-sm-2">
         <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="140px" />
-&nbsp;<br />
-    <br />
-&nbsp;<asp:Label ID="lblOrdenar" runat="server" Text="Ordenar por:" ForeColor="White"></asp:Label>
-&nbsp;
-        <asp:DropDownList ID="ddlOrdenar" CssClass="form-control" runat="server" AppendDataBoundItems="true" Height="35px" Width="1374px" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged">
+            </div>
+
+            <div class="col-sm-2">
+        <asp:Label ID="lblOrdenar" runat="server" Text="Ordenar por:" ForeColor="White"></asp:Label>
+            </div>
+
+        <div class="col-sm-4">
+        <asp:DropDownList ID="ddlOrdenar" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlOrdenar_SelectedIndexChanged">
         <asp:ListItem Value="0" Selected="True">Seleccione..</asp:ListItem>
             <asp:ListItem Value="1">Mejor puntuado</asp:ListItem>
             <asp:ListItem>Más cercano</asp:ListItem>
@@ -70,48 +89,62 @@
             ErrorMessage="Seleccione un Barrio" InitialValue="0"
             CssClass="alert-danger"
             Display="Dynamic"></asp:RequiredFieldValidator>--%>
-        <br />
-&nbsp;  
-    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC">Fútbol</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click" ForeColor="#0099CC">Basket</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbPaddle" runat="server" OnClick="lbPaddle_Click" ForeColor="#0099CC">Paddle</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbTenis" runat="server" ForeColor="#0099CC" OnClick="lbTenis_Click">Tenis</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbRunning" runat="server" ForeColor="#0099CC">Running</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbCiclismo" runat="server" ForeColor="#0099CC">Ciclismo</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbCaminata" runat="server" ForeColor="#0099CC">Caminata</asp:LinkButton>
-&nbsp;
-    <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC">Volley</asp:LinkButton>
-&nbsp;<br />
-    <br />
-&nbsp;
+            <br />
+                </div>
+
+            <div class="col-sm-2">
+                <div class="well">
+                        <br />
+
     <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>
-&nbsp;
+                    <br />
+                    <br />
+
     <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD2_Click"/>
-&nbsp;
+                    <br />
+                    <br />
+
     <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
-&nbsp;
+                    <br />
+                    <br />
+
     <asp:Button ID="btnD4" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD4_Click"/>
-&nbsp;
+                    <br />
+                    <br />
+
     <asp:LinkButton ID="lbQuitarFiltros" runat="server" Visible="False" OnClick="lbQuitarFiltros_Click" ForeColor="Silver">Quitar filtros</asp:LinkButton>
     <br />
         <br />
-<%--        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
-            <Columns>
-                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" >
-<ItemStyle CssClass="col-lg-3 text-center" ForeColor="#3366CC"></ItemStyle>
-                </asp:CommandField>
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-                <asp:BoundField DataField="Deportes" HeaderText="Deportes" />
-                <asp:BoundField DataField="Valoracion" HeaderText="Valoración" />
-            </Columns>
-        </asp:GridView>--%>
+  
+    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC">Fútbol</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click" ForeColor="#0099CC">Basket</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbPaddle" runat="server" OnClick="lbPaddle_Click" ForeColor="#0099CC">Paddle</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbTenis" runat="server" ForeColor="#0099CC" OnClick="lbTenis_Click">Tenis</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbRunning" runat="server" ForeColor="#0099CC">Running</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbCiclismo" runat="server" ForeColor="#0099CC">Ciclismo</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbCaminata" runat="server" ForeColor="#0099CC">Caminata</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC">Volley</asp:LinkButton>
+                    <br />
+<br />
+
+</div>
+                </div>
+ 
+      <div class="col-sm-10">
              <div class="well">
             
               <div class="w3-panel w3-black">
@@ -124,9 +157,7 @@
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
-    <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-<%--          <img id="imgLogoComp" runat="server" class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "Avatar")) %>" alt="Avatar"/>--%>
           <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "Avatar")) %>" />
       <h1><asp:Label runat="server" text='<%#Eval("Nombre") %>'></asp:Label></h1>
     </header>
@@ -142,7 +173,6 @@
               <div class="col-sm-3">
                   <i class="fas fa-volleyball-ball"></i>
                   <asp:Label runat="server" text='<%#Eval("Deportes") %>'></asp:Label>          
-                  <%--<asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label> --%> 
                   <br />               
               </div>
               <div class="col-sm-3">
@@ -156,21 +186,10 @@
                   <i class="fa fa-male"></i>
                   <asp:Label runat="server" text="Acá se dice se tiene cupo o no"></asp:Label>
               </div>
-          </div>
-                 
-      <%--</p>--%>
-          <%--<hr />--%>
-      
-        <%--<p>--%>
-          
-          <%--<asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label><br />--%>
-          
+          </div>         
       </p>
       <br />  
-    </div>
-   
-         
-      <%--<asp:LinkButton runat="server" CommandName="evaluartipo" CommandArgument='<%#Eval("tipoEncuentro") %>' Visible="false"></asp:LinkButton>--%>
+    </div>   
       <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("ID") %>' text="Explorar Complejo" Class="w3-button w3-block w3-black" ></asp:LinkButton>
       </div>   
            </div><br />
@@ -179,6 +198,9 @@
 
  </div>
     </div>
+                         </div>
+            </div>
+        </div>
         <br />
         <br />
     
@@ -186,7 +208,7 @@
       
             <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender2" runat="server" 
                 Enabled="True" TargetControlID="btnInicial2" 
-               PopupControlID="PanelModal2">
+               PopupControlID="PanelModal2" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
