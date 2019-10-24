@@ -97,6 +97,8 @@
     <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
 &nbsp;
     <asp:Button ID="btnD4" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD4_Click"/>
+&nbsp;
+    <asp:LinkButton ID="lbQuitarFiltros" runat="server" Visible="False" OnClick="lbQuitarFiltros_Click" ForeColor="Silver">Quitar filtros</asp:LinkButton>
     <br />
         <br />
 <%--        <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White" AutoGenerateColumns="False">
@@ -124,7 +126,8 @@
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-          <img id="imgLogoComp" runat="server" class="w3-left w3-circle w3-margin-right" style="width:55px" src="~/Imagenes/complejo_logo_default.png" alt="Avatar"/>
+<%--          <img id="imgLogoComp" runat="server" class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "Avatar")) %>" alt="Avatar"/>--%>
+          <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "Avatar")) %>" />
       <h1><asp:Label runat="server" text='<%#Eval("Nombre") %>'></asp:Label></h1>
     </header>
       <div class="w3-container">
@@ -132,19 +135,19 @@
           <br />
           <div class="row">
               <div class="col-sm-3">
-                  <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
+                  <span class="glyphicon glyphicon-map-marker"></span>               
                   <asp:Label runat="server" text='<%#Eval("Direccion") %>'></asp:Label>
                   <br />
               </div>
               <div class="col-sm-3">
-                  <span class="glyphicon glyphicon-map-marker"></span>
-                  <asp:Label runat="server" text='<%#Eval("Deportes") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("Valoracion") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>           
+                  <i class="fas fa-volleyball-ball"></i>
+                  <asp:Label runat="server" text='<%#Eval("Deportes") %>'></asp:Label>          
                   <%--<asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label> --%> 
                   <br />               
               </div>
               <div class="col-sm-3">
-                  <span class="glyphicon glyphicon-eye-open"></span>
-                  <%--<asp:Label runat="server" text='<%#Eval("accesibilidad") %>'></asp:Label>--%>
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <asp:Label runat="server" text='<%#Eval("Valoracion") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label> 
                   <br />
               </div>
               <div class="col-sm-3">

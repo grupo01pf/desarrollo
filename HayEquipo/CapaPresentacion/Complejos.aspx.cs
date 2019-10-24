@@ -423,6 +423,8 @@ namespace CapaPresentacion
                 btnD2.Text = lbDep.Text;
                 btnD2.Visible = true;
 
+                lbQuitarFiltros.Visible = true;
+
                 if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
@@ -462,7 +464,7 @@ namespace CapaPresentacion
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
-                    d4 = btnD3.Text;
+                    d4 = btnD4.Text;
 
                     CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
                 }
@@ -493,7 +495,7 @@ namespace CapaPresentacion
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
-                    d4 = btnD3.Text;
+                    d4 = btnD4.Text;
 
                     CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
                 }
@@ -505,7 +507,7 @@ namespace CapaPresentacion
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
-                    d4 = btnD3.Text;
+                    d4 = btnD4.Text;
 
                     CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
                 }
@@ -585,7 +587,7 @@ namespace CapaPresentacion
                 d1 = btnD1.Text;
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
-                d4 = btnD3.Text;
+                d4 = btnD4.Text;
 
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
             }
@@ -597,9 +599,14 @@ namespace CapaPresentacion
                 d1 = btnD1.Text;
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
-                d4 = btnD3.Text;
+                d4 = btnD4.Text;
 
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
+            }
+
+            if(btnD1.Visible == false && btnD2.Visible == false && btnD3.Visible == false && btnD4.Visible == false)
+            {
+                lbQuitarFiltros.Visible = false;
             }
         }
 
@@ -621,6 +628,48 @@ namespace CapaPresentacion
         protected void btnD4_Click(object sender, EventArgs e)
         {
             QuitarFiltrosDeporte(btnD4);
+        }
+
+        protected void lbQuitarFiltros_Click(object sender, EventArgs e)
+        {
+            string d1 = string.Empty;
+            string d2 = string.Empty;
+            string d3 = string.Empty;
+            string d4 = string.Empty;
+
+            btnD1.Text = string.Empty;
+            btnD2.Text = string.Empty;
+            btnD3.Text = string.Empty;
+            btnD4.Text = string.Empty;
+
+            if (ddlOrdenar.SelectedIndex == 2)
+            {
+                string nomb = txtBuscar.Text;
+                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
+                int? idUs = 2;
+
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
+            }
+
+            else
+            {
+                string nomb = txtBuscar.Text;
+                int? idUs = null;
+
+                CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
+            }
+
+            lbFutbol.Enabled = true;         
+            lbBasket.Enabled = true;  
+            lbTenis.Enabled = true;    
+            lbPaddle.Enabled = true;     
+            lbVolley.Enabled = true; 
+
+            btnD1.Visible = false;
+            btnD2.Visible = false;
+            btnD3.Visible = false;
+            btnD4.Visible = false;
+            lbQuitarFiltros.Visible = false;
         }
 
     }

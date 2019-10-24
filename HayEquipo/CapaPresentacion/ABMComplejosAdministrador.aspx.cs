@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
 using System.Drawing;
+using System.Net;
 
 namespace CapaPresentacion
 {
@@ -176,9 +177,24 @@ namespace CapaPresentacion
 
                 //insertar en BD
                 complejo.avatar = ImagenOriginal;
-                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
-                //Image1.ImageUrl = ImagenDataURL64;
-                //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                FileUploadAvatar.Visible = false;
+                btn_guardarImagen.Visible = false;
+                btn_CambiarImagen.Visible = true;
+            }
+
+            else
+            {
+                //obtener datos de la imagen
+                byte[] ImagenOriginal;
+                string someUrl = @"C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\Imagenes\complejo_logo_default.png";
+                using (var webClient = new WebClient())
+                {
+                   ImagenOriginal = webClient.DownloadData(someUrl);
+                }
+
+                //insertar en BD
+                complejo.avatar = ImagenOriginal;
+
                 FileUploadAvatar.Visible = false;
                 btn_guardarImagen.Visible = false;
                 btn_CambiarImagen.Visible = true;
@@ -604,5 +620,6 @@ namespace CapaPresentacion
                 CargarRepeaterImagenes();
             }
         }
+
     }
 }
