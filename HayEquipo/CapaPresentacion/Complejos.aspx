@@ -30,6 +30,14 @@
             text-align: left;
         }
 
+            .alinearDerecha {
+            text-align: right;
+        }
+
+           .alinearAlCentro {
+            text-align: center;
+        }
+
      .tamanoLetra {
             font-size: 20px;
         }
@@ -51,7 +59,7 @@
         </asp:ScriptManager>
 
        <div class="container text-center"">
-        <div class="row alinearAlCentro">
+        <%--<div class="row alinearAlCentro">--%>
             <div class="col-sm-12">               
         <asp:Label ID="lblCD" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White" Font-Size="Large"></asp:Label>
                 <br />
@@ -68,12 +76,16 @@
             Text="*Ingrese Nombre" ValidationGroup="A" />--%>
             </div>
 
+            <div class="alinearIzquiera">
             <div class="col-sm-2">
         <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="140px" />
             </div>
+            </div>
 
+            <div class="alinearDerecha">
             <div class="col-sm-2">
         <asp:Label ID="lblOrdenar" runat="server" Text="Ordenar por:" ForeColor="White"></asp:Label>
+            </div>
             </div>
 
         <div class="col-sm-4">
@@ -199,7 +211,7 @@
  </div>
     </div>
                          </div>
-            </div>
+            <%--</div>--%>
         </div>
         <br />
         <br />
