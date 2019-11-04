@@ -13,6 +13,9 @@ namespace CapaDao
 {
     public class MensajeDao
     {
+        
+
+
         /*
         public static void InsertarMensaje(Mensaje msg) {
 

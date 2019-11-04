@@ -71,6 +71,7 @@ namespace CapaEntidades
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
+        public virtual DbSet<Notificacion> Notificacion { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
     
@@ -255,6 +256,15 @@ namespace CapaEntidades
                 new ObjectParameter("idEstado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ReservaDao_InsertarRerserva", fechaParameter, idEncuentroParameter, idEstadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_UsuarioDao_ObtenerUsuarios_Result> sp_UsuarioDao_ObtenerUsuarios(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioDao_ObtenerUsuarios_Result>("sp_UsuarioDao_ObtenerUsuarios", idUsuarioParameter);
         }
     
         public virtual ObjectResult<string> sp_UsuarioDao_UsuariosUnidosEncuentro(Nullable<int> idEncuentro)
