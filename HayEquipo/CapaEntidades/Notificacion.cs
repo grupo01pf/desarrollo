@@ -17,7 +17,7 @@ namespace CapaEntidades
         public int id { get; set; }
         public Nullable<int> idEmisor { get; set; }
         public Nullable<int> idReceptor { get; set; }
-        public byte[] notificacion1 { get; set; }
+        public string notificacion { get; set; }
         public string estado { get; set; }
     }
 }

@@ -13,11 +13,21 @@ namespace CapaDao
     public class NotificacionDao
     {
 
-        public void insertarNotificacion() {
+        public static void insertarNotificacion() {
 
             using (HayEquipoEntities db = new HayEquipoEntities()) {
 
             }
+        }
+
+        public static List<Notificacion> mostrarNotificaciones() {
+            List<Notificacion> listaNotificacion = new List<Notificacion>();
+
+
+
+
+
+            return listaNotificacion;
         }
 
     }

@@ -147,6 +147,9 @@ namespace CapaPresentacion
             return encuentro;
         }
 
-
+        protected void btn_Notificacion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PerfilDeportistas.aspx");
+        }
     }
 }

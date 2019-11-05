@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c226f580e5f475e8102bd7288a70c92" Name="Diagram1">
+      <Diagram DiagramId="7720bb88904b4eb68215de3c971be36b" Name="Diagram1">
         <EntityTypeShape EntityType="HayEquipoModel.Administrador" Width="1.5" PointX="11.75" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.AmigosPorDeportistas" Width="1.5" PointX="8.25" PointY="24.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="24.375" IsExpanded="true" />

@@ -226,10 +226,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definid
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="idEmisor" Type="int" />
           <Property Name="idReceptor" Type="int" />
-          <Property Name="notificacion" Type="varbinary" MaxLength="50" />
+          <Property Name="notificacion" Type="nvarchar" MaxLength="50" />
           <Property Name="estado" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Pais">
@@ -2279,10 +2279,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="idEmisor" Type="Int32" />
           <Property Name="idReceptor" Type="Int32" />
-          <Property Name="notificacion1" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="notificacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reserva">

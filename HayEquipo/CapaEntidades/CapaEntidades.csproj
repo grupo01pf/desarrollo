@@ -138,6 +138,7 @@
     <Compile Include="Notificacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="NotificacionQueryEntidad.cs" />
     <Compile Include="Pais.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

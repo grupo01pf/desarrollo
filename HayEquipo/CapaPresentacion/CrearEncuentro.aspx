@@ -144,9 +144,10 @@
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged"  >
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" >
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />

@@ -569,6 +569,16 @@
     <Property Name="idDeportista" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_FotosDeportista_Deportista" FromRole="FotosDeportista" ToRole="Deportista" />
   </EntityType>
+  <EntityType Name="Notificacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idEmisor" Type="Int32" />
+    <Property Name="idReceptor" Type="Int32" />
+    <Property Name="notificacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Reserva">
     <Key>
       <PropertyRef Name="id" />
@@ -1413,6 +1423,7 @@
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
+    <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
@@ -1732,6 +1743,9 @@
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
       <Parameter Name="idEstado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_UsuarioDao_ObtenerUsuarios" ReturnType="Collection(HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_UsuarioDao_UsuariosUnidosEncuentro" ReturnType="Collection(String)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1834,6 +1848,10 @@
     <Property Type="DateTime" Name="fechaHora" Nullable="true" Precision="16" />
     <Property Type="String" Name="texto" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="idMensaje" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result">
     <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />

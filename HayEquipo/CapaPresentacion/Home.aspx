@@ -91,6 +91,34 @@
             height: 340px;
             overflow-y: scroll;
         }
+
+
+        .notification {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            .notification:hover {
+                background: green;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+            }
+
+
+
     </style>
 </asp:Content>
 
@@ -109,6 +137,16 @@
         <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
       </div>
       
+
+        <%-- INVITACIONES --%>
+
+         <%--<a href="#" class="notification">--%>
+        <div class="well">
+        <span><asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" /></span>
+         <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="3"></asp:Label></span>
+      <%--  </a> --%>
+         </div>
+
       <div class="alert alert-success fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
         <p><strong>Ey!</strong></p>
@@ -119,6 +157,9 @@
         <p><strong>Ey!</strong></p>
         Tienes una invitación de Pedro García. <p><strong>Ver Invitación</strong></p>
       </div>
+
+        <%-- FIN INVITACIONES --%>
+
     </div>
     <div class="col-sm-8" <%--style="background-color:#d7dbd3;"--%>>
     
