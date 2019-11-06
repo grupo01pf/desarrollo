@@ -158,7 +158,7 @@
 
                                         <center>
                                                <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" >
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                                                     <Columns>
                                                         <asp:TemplateField>
                                                             <HeaderTemplate>
@@ -170,7 +170,7 @@
                                                                  </ItemTemplate>                                                              
                                                              
                                                         </asp:TemplateField> 
-                                                        <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="false" />
+                                                        <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="true" />
                                                         <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
                                                                                                                 
                                                     </Columns>

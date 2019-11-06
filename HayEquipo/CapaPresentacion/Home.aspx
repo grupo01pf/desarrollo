@@ -143,7 +143,7 @@
          <%--<a href="#" class="notification">--%>
         <div class="well">
         <span><asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" /></span>
-         <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="3"></asp:Label></span>
+         <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
       <%--  </a> --%>
          </div>
 

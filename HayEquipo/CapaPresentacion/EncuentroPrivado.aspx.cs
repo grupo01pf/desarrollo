@@ -422,46 +422,56 @@ namespace CapaPresentacion
         }
 
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e) {
+            /*
+               GridViewRow fila = gdv_Invitar.SelectedRow;
+               var rows = gdv_Invitar.Rows;
+               Notificacion notificacion = null;
+               for (int i = 0; i < gdv_Invitar.Rows.Count; i++)             
+               {                    
+                   bool isChecked = ((CheckBox)rows[i].FindControl("chk_Invitar")).Checked;
+             
+                   if (isChecked)
+                       {
+                           notificacion = new Notificacion();
+                           notificacion.idEmisor = int.Parse(Session["ID"].ToString());
 
-            GridViewRow fila = gdv_Invitar.SelectedRow;
-            var rows = gdv_Invitar.Rows;
-            Notificacion notificacion = null;
-            for (int i = 0; i < gdv_Invitar.Rows.Count; i++)
-            {
-                //CheckBox chk = (CheckBox)gdv_Invitar.FindControl("chk_Invitar");
-                //if (chk != null)
-                //{ 
-                bool isChecked = ((CheckBox)rows[i].FindControl("chk_Invitar")).Checked;
-                if (isChecked)
-                
-                    //if (chk.Checked)
+                       //   notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].ToString()) ;
+                        notificacion.idReceptor = Convert.ToInt32(gdv_Invitar.Rows[i].Cells[0].ToString());
+
+                     //  notificacion.nombreEmisor = fila.Columns[1].text;
+                       notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                           notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
+
+                           NotificacionDao.insertarNotificacion(notificacion);
+                       }
+                   }
+             */
+
+            //********************************************************************
+           // GridViewRow fila = gdv_Invitar.SelectedRow;
+            foreach (GridViewRow fila in gdv_Invitar.Rows)
+            {               
+                Notificacion notificacion = null;
+                //   bool isChecked = ((CheckBox)fila.FindControl("chk_Invitar")).Checked;
+                if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
+                 //   if (isChecked)
                     {
-
-                       
-                        notificacion = new Notificacion();
-                        notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                    notificacion = new Notificacion();
+                    notificacion.idEmisor = int.Parse(Session["ID"].ToString());
 
                     //   notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].ToString()) ;
                     // notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].Text);
-                    notificacion.nombreEmisor = gdv_Invitar.Rows[i].Cells[1].ToString();
+                    notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text);
+                    notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                        notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
+                    notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
 
-                        NotificacionDao.insertarNotificacion(notificacion);
-                    }
-                }
-          
+                    NotificacionDao.insertarNotificacion(notificacion);
 
-                //********************************************************************
-                    //foreach (GridView fila in gdv_Invitar.Rows) {
-                    //   CheckBox chk = (CheckBox)fila.FindControl("chk_Invitar");
-                    //    if (chk != null)
-                    //    {
-                    //        if (chk.Checked)
-                    //        {
-                    //        }
-                    //    }
                 }
+            } 
+
+            }
         
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
         {

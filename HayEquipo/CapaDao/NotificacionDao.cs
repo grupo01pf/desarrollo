@@ -22,7 +22,7 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand("sp_NotificacionDao_insertarNotificacion", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idEmisor", notificacion.idEmisor);
-            //cmd.Parameters.AddWithValue("@idReceptor", notificacion.idReceptor);                        
+            cmd.Parameters.AddWithValue("@idReceptor", notificacion.idReceptor);                        
             cmd.Parameters.AddWithValue("@nombreReceptor", notificacion.nombreReceptor);
             cmd.Parameters.AddWithValue("@idEncuentro", notificacion.idEncuentro);
             cmd.Parameters.AddWithValue("@texto", notificacion.texto);
