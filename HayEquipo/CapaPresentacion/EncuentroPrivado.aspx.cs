@@ -422,33 +422,17 @@ namespace CapaPresentacion
         }
 
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e) {
-            /*
-               GridViewRow fila = gdv_Invitar.SelectedRow;
-               var rows = gdv_Invitar.Rows;
-               Notificacion notificacion = null;
-               for (int i = 0; i < gdv_Invitar.Rows.Count; i++)             
-               {                    
-                   bool isChecked = ((CheckBox)rows[i].FindControl("chk_Invitar")).Checked;
-             
-                   if (isChecked)
-                       {
-                           notificacion = new Notificacion();
-                           notificacion.idEmisor = int.Parse(Session["ID"].ToString());
 
-                       //   notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].ToString()) ;
-                        notificacion.idReceptor = Convert.ToInt32(gdv_Invitar.Rows[i].Cells[0].ToString());
+            List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            int[] idUsuarios = new int[1000];
+            int i = 0;
+            foreach (Usuario u in lista)
+            {
+                idUsuarios[i] = u.id;
+                i++;
+            }
 
-                     //  notificacion.nombreEmisor = fila.Columns[1].text;
-                       notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                           notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
-
-                           NotificacionDao.insertarNotificacion(notificacion);
-                       }
-                   }
-             */
-
-            //********************************************************************
-           // GridViewRow fila = gdv_Invitar.SelectedRow;
+            i = 0;
             foreach (GridViewRow fila in gdv_Invitar.Rows)
             {               
                 Notificacion notificacion = null;
@@ -458,19 +442,19 @@ namespace CapaPresentacion
                     {
                     notificacion = new Notificacion();
                     notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-
-                    //   notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].ToString()) ;
-                    // notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].Text);
-                    notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text);
+                   // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
+                    notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
                     notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
 
                     NotificacionDao.insertarNotificacion(notificacion);
 
+                   
                 }
-            } 
-
+                i++;
+            }
+            //i = 0;
             }
         
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)

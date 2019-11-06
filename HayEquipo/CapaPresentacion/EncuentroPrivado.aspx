@@ -170,7 +170,7 @@
                                                                  </ItemTemplate>                                                              
                                                              
                                                         </asp:TemplateField> 
-                                                        <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="true" />
+                                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
                                                         <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
                                                                                                                 
                                                     </Columns>
