@@ -232,6 +232,23 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MensajeQueryDao_MostrarMensajes_Result>("sp_MensajeQueryDao_MostrarMensajes", idEncuentroParameter);
         }
     
+        public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, Nullable<int> idEncuentro, string texto)
+        {
+            var idEmisorParameter = idEmisor.HasValue ?
+                new ObjectParameter("idEmisor", idEmisor) :
+                new ObjectParameter("idEmisor", typeof(int));
+    
+            var idEncuentroParameter = idEncuentro.HasValue ?
+                new ObjectParameter("idEncuentro", idEncuentro) :
+                new ObjectParameter("idEncuentro", typeof(int));
+    
+            var textoParameter = texto != null ?
+                new ObjectParameter("texto", texto) :
+                new ObjectParameter("texto", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, idEncuentroParameter, textoParameter);
+        }
+    
         public virtual ObjectResult<string> sp_PermisoUsuario(string usuario)
         {
             var usuarioParameter = usuario != null ?

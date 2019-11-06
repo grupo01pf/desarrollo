@@ -16,8 +16,11 @@ namespace CapaEntidades
     {
         public int id { get; set; }
         public Nullable<int> idEmisor { get; set; }
+        public string nombreEmisor { get; set; }
         public Nullable<int> idReceptor { get; set; }
-        public string notificacion { get; set; }
-        public string estado { get; set; }
+        public string nombreReceptor { get; set; }
+        public Nullable<int> idEncuentro { get; set; }
+        public string texto { get; set; }
+        public Nullable<int> idEstado { get; set; }
     }
 }

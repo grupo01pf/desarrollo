@@ -166,7 +166,7 @@
                                                            <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
                                                                  </HeaderTemplate>                                                        
                                                             <ItemTemplate>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" />
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" AutoPostBack="false"/>
                                                                  </ItemTemplate>                                                              
                                                              
                                                         </asp:TemplateField> 
@@ -180,8 +180,9 @@
                                     <div class="modal-footer">
                                         <center>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary"id="btn_EnviarInvitacion" runat="server"
-                                            onclick="btn_EnviarInvitacion_Click">Invitar</button>
+                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
+                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
+                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Enviar" OnClick="btn_EnviarInvitacion_Click" />
                                         </center>
                                     </div>
                                 </div>

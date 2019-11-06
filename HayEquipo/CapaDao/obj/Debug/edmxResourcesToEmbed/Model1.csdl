@@ -573,11 +573,14 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idEmisor" Type="Int32" />
+    <Property Name="nombreEmisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="idReceptor" Type="Int32" />
-    <Property Name="notificacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombreReceptor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEncuentro" Type="Int32" />
+    <Property Name="texto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Int32" />
   </EntityType>
   <EntityType Name="Reserva">
     <Key>
@@ -1734,6 +1737,11 @@
     </FunctionImport>
     <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
+      <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+      <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+      <Parameter Name="texto" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
       <Parameter Name="usuario" Mode="In" Type="String" />

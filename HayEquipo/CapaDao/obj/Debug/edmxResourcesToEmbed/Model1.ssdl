@@ -221,11 +221,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definid
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idEmisor" Type="int" />
+    <Property Name="nombreEmisor" Type="nvarchar" MaxLength="50" />
     <Property Name="idReceptor" Type="int" />
-    <Property Name="notificacion" Type="nvarchar" MaxLength="50" />
-    <Property Name="estado" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombreReceptor" Type="nvarchar" MaxLength="50" />
+    <Property Name="idEncuentro" Type="int" />
+    <Property Name="texto" Type="nvarchar" MaxLength="50" />
+    <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="Pais">
     <Key>
@@ -1307,6 +1310,11 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   <Function Name="sp_MensajeQueryDao_MostrarMensajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_NotificacionDao_insertarNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmisor" Type="int" Mode="In" />
+    <Parameter Name="idEncuentro" Type="int" Mode="In" />
+    <Parameter Name="texto" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_PermisoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usuario" Type="nvarchar" Mode="In" />
   </Function>
@@ -1413,9 +1421,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       <DefiningQuery>SELECT 
     [Notificacion].[id] AS [id], 
     [Notificacion].[idEmisor] AS [idEmisor], 
+    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
     [Notificacion].[idReceptor] AS [idReceptor], 
-    [Notificacion].[notificacion] AS [notificacion], 
-    [Notificacion].[estado] AS [estado]
+    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
+    [Notificacion].[idEncuentro] AS [idEncuentro], 
+    [Notificacion].[texto] AS [texto], 
+    [Notificacion].[idEstado] AS [idEstado]
     FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">

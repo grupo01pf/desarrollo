@@ -13,11 +13,22 @@ namespace CapaDao
     public class NotificacionDao
     {
 
-        public static void insertarNotificacion() {
+        public static void insertarNotificacion(Notificacion notificacion) {
 
-            using (HayEquipoEntities db = new HayEquipoEntities()) {
 
-            }
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_NotificacionDao_insertarNotificacion", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEmisor", notificacion.idEmisor);
+            //cmd.Parameters.AddWithValue("@idReceptor", notificacion.idReceptor);                        
+            cmd.Parameters.AddWithValue("@nombreReceptor", notificacion.nombreReceptor);
+            cmd.Parameters.AddWithValue("@idEncuentro", notificacion.idEncuentro);
+            cmd.Parameters.AddWithValue("@texto", notificacion.texto);
+
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
 
         public static List<Notificacion> mostrarNotificaciones() {

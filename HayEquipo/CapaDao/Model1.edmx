@@ -226,11 +226,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definid
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idEmisor" Type="int" />
+          <Property Name="nombreEmisor" Type="nvarchar" MaxLength="50" />
           <Property Name="idReceptor" Type="int" />
-          <Property Name="notificacion" Type="nvarchar" MaxLength="50" />
-          <Property Name="estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreReceptor" Type="nvarchar" MaxLength="50" />
+          <Property Name="idEncuentro" Type="int" />
+          <Property Name="texto" Type="nvarchar" MaxLength="50" />
+          <Property Name="idEstado" Type="int" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -1312,6 +1315,11 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         <Function Name="sp_MensajeQueryDao_MostrarMensajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEncuentro" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_NotificacionDao_insertarNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmisor" Type="int" Mode="In" />
+          <Parameter Name="idEncuentro" Type="int" Mode="In" />
+          <Parameter Name="texto" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_PermisoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="nvarchar" Mode="In" />
         </Function>
@@ -1418,9 +1426,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <DefiningQuery>SELECT 
     [Notificacion].[id] AS [id], 
     [Notificacion].[idEmisor] AS [idEmisor], 
+    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
     [Notificacion].[idReceptor] AS [idReceptor], 
-    [Notificacion].[notificacion] AS [notificacion], 
-    [Notificacion].[estado] AS [estado]
+    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
+    [Notificacion].[idEncuentro] AS [idEncuentro], 
+    [Notificacion].[texto] AS [texto], 
+    [Notificacion].[idEstado] AS [idEstado]
     FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
@@ -2279,11 +2290,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idEmisor" Type="Int32" />
+          <Property Name="nombreEmisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="idReceptor" Type="Int32" />
-          <Property Name="notificacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreReceptor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idEncuentro" Type="Int32" />
+          <Property Name="texto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idEstado" Type="Int32" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -3441,6 +3455,11 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
             <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
+            <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+            <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+            <Parameter Name="texto" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
             <Parameter Name="usuario" Mode="In" Type="String" />
           </FunctionImport>
@@ -4111,9 +4130,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               <MappingFragment StoreEntitySet="Notificacion">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idEmisor" ColumnName="idEmisor" />
+                <ScalarProperty Name="nombreEmisor" ColumnName="nombreEmisor" />
                 <ScalarProperty Name="idReceptor" ColumnName="idReceptor" />
-                <ScalarProperty Name="notificacion1" ColumnName="notificacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombreReceptor" ColumnName="nombreReceptor" />
+                <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4237,6 +4259,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_NotificacionDao_insertarNotificacion" FunctionName="HayEquipoModel.Store.sp_NotificacionDao_insertarNotificacion" />
           <FunctionImportMapping FunctionImportName="sp_PermisoUsuario" FunctionName="HayEquipoModel.Store.sp_PermisoUsuario" />
           <FunctionImportMapping FunctionImportName="sp_ReservaDao_InsertarRerserva" FunctionName="HayEquipoModel.Store.sp_ReservaDao_InsertarRerserva" />
           <FunctionImportMapping FunctionImportName="sp_UsuarioDao_ObtenerUsuarios" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_ObtenerUsuarios">
