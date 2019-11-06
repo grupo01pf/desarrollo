@@ -2,16 +2,48 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
+   <style>
+         .scroll-container {
+            display: block;
+            /*height: 600px;*/
+            overflow-y: auto;
+        }
+
+                  .alinearIzquiera {
+            text-align: left;
+        }
+
+            .alinearDerecha {
+            text-align: right;
+        }
+
+           .alinearAlCentro {
+            text-align: center;
+        }
+
+     .tamanoLetra {
+            font-size: 20px;
+        }
+
+           .colorLetra
+        {
+            color:#1e74cb;
+            font-size: 50px;
+        }
+   </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-                <div class="well">
-            
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+
+    <div class="container text-center"">
+    <div class="col-sm-10">
+                <div class="well">        
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
-                     <b>Encuentros Vigentes</b></h1>
+                     <b>Próximos Encuentros</b></h1>
                     </div>
   <div class="scroll-container">
      <asp:Repeater ID="encuentrosRepeater" runat="server">
@@ -29,6 +61,7 @@
           <div class="row">
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
                   <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
                   <br />
               </div>
@@ -71,5 +104,7 @@
      </asp:Repeater>    
 
  </div>
+                    </div>
     </div>
+         </div>
     </asp:Content>

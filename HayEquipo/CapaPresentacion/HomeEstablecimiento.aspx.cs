@@ -13,20 +13,30 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            encuentrosRepeater.DataSource = ObtenerEncuentros();
-            encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            CargarRepeaterEncuentros();
         }
 
-        //CAMBIAR A OBTENER ENCUENTROS DEPORTIVOS PRIVADOS
-        public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
+        protected int? IDRes
         {
-            List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
-            //var q = from p in contexto.EncuentroDeportivo
-            //        select p;
-            //return q.ToList();
-            return encuentro;
+            get
+            {
+                if (ViewState["IDRes"] != null)
+                    return (int)ViewState["IDRes"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["IDRes"] = value; }
+        }
+
+        protected void CargarRepeaterEncuentros()
+        {
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.ObtenerEncuentrosPorResponsable(int.Parse(Session["ID"].ToString()))
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             select encuentro);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)

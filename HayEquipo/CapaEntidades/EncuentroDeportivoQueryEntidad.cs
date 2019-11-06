@@ -26,7 +26,7 @@ namespace CapaEntidades
         public DateTime horaInicio { get; set; }
         public DateTime horaFin { get; set; }
         public string nombreLP { get; set; }
-
+ 
         public string direccion { get; set; }
         // public int numeroCalle { get; set; }
         public string clave { get; set; }
