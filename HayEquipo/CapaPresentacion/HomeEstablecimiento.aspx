@@ -59,14 +59,14 @@
      <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-       <div class="container text-center"">
+       <div class="container text-center">
  
       <div class="col-sm-10">
              <div class="well">
             
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
-                     <b>Complejos Deportivos</b></h1>
+                     <b>Próximos Encuentros</b></h1>
                     </div>
 
   <div class="scroll-container">
@@ -116,9 +116,46 @@
      </asp:Repeater>    
 
  </div>
-    </div>
+    </div>  
                          </div>
-        </div>
 
+           <div class="col-sm-10">
+                    <div class="well">
+
+                        <div class="w3-panel w3-black">
+                    <h1 class="w3-opacity">
+                     <b>Agenda</b></h1>
+                    </div>
+                        <div class="form-group">
+                            <asp:ListBox ID="lstComp" CssClass="form-control" runat="server"  AppendDataBoundItems="true" OnSelectedIndexChanged="lstComp_SelectedIndexChanged" ></asp:ListBox>
+                       <%--  <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged">
+                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                            </asp:DropDownList>--%>
+                            </div>
+
+                         <div class="form-group">
+                            <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" ></asp:Calendar>
+                         </div>
+
+                        <div class="form-group">
+                             <asp:DropDownList ID="ddlHora" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlHora_SelectedIndexChanged">
+                              <%--  <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                                <asp:ListItem Value="1">00hs</asp:ListItem>--%>
+                            </asp:DropDownList>
+                        </div>
+
+                        <div class="form-group">
+                             <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="false" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                                <Columns>
+                                <asp:CommandField HeaderText="Reservar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" SelectText="Reservar" />
+                                </Columns>
+                             </asp:GridView>
+                            
+                        </div>
+                        </div>
+                    </div>
+               </div>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           </div>
 </asp:Content>

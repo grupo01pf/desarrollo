@@ -281,6 +281,42 @@ namespace CapaDao
             return complejos;
         }
 
+        public static List<spObtenerComplejosJoin_Result> ObtenerComplejosPorUsuario(int idUs)
+        {
+            List<spObtenerComplejosJoin_Result> complejos = new List<spObtenerComplejosJoin_Result>();
+            spObtenerComplejosJoin_Result comp = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT cd.id as ID, cd.nombre as Nombre
+		   FROM ComplejoDeportivo cd
+		   LEFT JOIN Responsable r ON r.id=cd.idResponsable
+           LEFT JOIN Usuario u ON u.id=r.idUsuario
+                 WHERE u.id = @idUs";
+
+            cmd.Parameters.AddWithValue("@idUs", idUs);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                comp = new spObtenerComplejosJoin_Result();
+
+                comp.ID = int.Parse(dr["ID"].ToString());
+                comp.Nombre = dr["Nombre"].ToString();
+
+                complejos.Add(comp);
+            }
+            dr.Close();
+            cn.Close();
+            return complejos;
+        }
+
         public static int CuantasCanchasPorDeporte(int idComp, int idDep)
         {
 

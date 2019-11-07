@@ -384,7 +384,7 @@ namespace CapaDao
             return tipo;
         }
 
-        public static List<EncuentroDeportivoQueryEntidad> ObtenerEncuentrosPorResponsable(int idUs)
+        public static List<EncuentroDeportivoQueryEntidad> ObtenerEncuentrosPorUsResponsable(int idUs)
         {
             List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
 

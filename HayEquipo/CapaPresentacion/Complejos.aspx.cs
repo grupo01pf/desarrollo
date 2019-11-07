@@ -235,8 +235,8 @@ namespace CapaPresentacion
             else if (ddlOrdenar.SelectedIndex == 2)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                int? idUs = 2;
+                int? idUs = int.Parse(Session["ID"].ToString());
+                //int? idUs = 2;
                 string d1 = btnD1.Text;
                 string d2 = btnD2.Text;
                 string d3 = btnD3.Text;
@@ -298,8 +298,8 @@ namespace CapaPresentacion
                 else if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                    int? idUs = 2;
+                    int? idUs = int.Parse(Session["ID"].ToString());
+                    //int? idUs = 2;
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
@@ -367,8 +367,8 @@ namespace CapaPresentacion
                 else if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                    int? idUs = 2;
+                    int? idUs = int.Parse(Session["ID"].ToString());
+                    //int? idUs = 2;
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
@@ -434,8 +434,8 @@ namespace CapaPresentacion
                 else if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                    int? idUs = 2;
+                    int? idUs = int.Parse(Session["ID"].ToString());
+                    //int? idUs = 2;
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
@@ -510,8 +510,8 @@ namespace CapaPresentacion
                 else if (ddlOrdenar.SelectedIndex == 2)
                 {
                     string nomb = txtBuscar.Text;
-                    //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                    int? idUs = 2;
+                    int? idUs = int.Parse(Session["ID"].ToString());
+                    //int? idUs = 2;
                     d1 = btnD1.Text;
                     d2 = btnD2.Text;
                     d3 = btnD3.Text;
@@ -638,8 +638,8 @@ namespace CapaPresentacion
             else if (ddlOrdenar.SelectedIndex == 2)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                int? idUs = 2;
+                int? idUs = int.Parse(Session["ID"].ToString());
+                //int? idUs = 2;
                 d1 = btnD1.Text;
                 d2 = btnD2.Text;
                 d3 = btnD3.Text;
@@ -733,8 +733,8 @@ namespace CapaPresentacion
             else if (ddlOrdenar.SelectedIndex == 2)
             {
                 string nomb = txtBuscar.Text;
-                //int? idUs = int.Parse(Session["ID"].ToString()); COMENTADO PARA USAR SIN LOGGEARSE
-                int? idUs = 2;
+                int? idUs = int.Parse(Session["ID"].ToString());
+                //int? idUs = 2;
 
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
             }
