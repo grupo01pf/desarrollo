@@ -49,6 +49,10 @@
                 filter: alpha(opacity=50);
                 opacity: 0.4;
             }
+         .losmargenes{
+             margin-left:30px;
+             margin-right:30px
+         }
 
   </style>
 
@@ -59,10 +63,11 @@
      <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-       <div class="container text-center">
- 
-      <div class="col-sm-10">
-             <div class="well">
+      <%-- <div class="container">--%>
+    <div class="losmargenes">
+ <div class="row">
+     <div class="col-sm-6">
+          <div class="well">
             
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
@@ -117,45 +122,80 @@
 
  </div>
     </div>  
-                         </div>
-
-           <div class="col-sm-10">
-                    <div class="well">
+     </div>
+     <div class="col-sm-6">
+          <div class="well">
 
                         <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
                      <b>Agenda</b></h1>
                     </div>
                         <div class="form-group">
-                            <asp:ListBox ID="lstComp" CssClass="form-control" runat="server"  AppendDataBoundItems="true" OnSelectedIndexChanged="lstComp_SelectedIndexChanged" ></asp:ListBox>
-                       <%--  <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged">
+<%--                            <asp:ListBox ID="lstComp" CssClass="form-control" runat="server"  AppendDataBoundItems="true" OnSelectedIndexChanged="lstComp_SelectedIndexChanged" ></asp:ListBox>--%>
+                         <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
                                 <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                            </asp:DropDownList>--%>
+                            </asp:DropDownList>
+                            </div>
+
+                         <div class="form-group">
+                         <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
+                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                            </asp:DropDownList>
                             </div>
 
                          <div class="form-group">
                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" ></asp:Calendar>
+                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
                          </div>
 
-                        <div class="form-group">
-                             <asp:DropDownList ID="ddlHora" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlHora_SelectedIndexChanged">
-                              <%--  <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                                <asp:ListItem Value="1">00hs</asp:ListItem>--%>
+<%--                        <div class="form-group">
+                             <asp:DropDownList ID="ddlHora" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
+                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                                <asp:ListItem Value="1">00hs</asp:ListItem>
                             </asp:DropDownList>
-                        </div>
+                        </div>--%>
 
-                        <div class="form-group">
+                 <%--       <div class="form-group">
                              <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="false" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
                                 <Columns>
                                 <asp:CommandField HeaderText="Reservar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" SelectText="Reservar" />
                                 </Columns>
-                             </asp:GridView>
-                            
+                             </asp:GridView>                         
+                        </div>--%>
+
+                        <strong><asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong>
+                                                         <br />
+                      <%--  <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>       
+                                                         <br />--%>
+
+                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
+                                                    <Columns>
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
+                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
+                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
+                                                        <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
+                                                    </Columns>
+                                                </asp:GridView>
+                                 <br />
+                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                <br />
+                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
                         </div>
-                        </div>
-                    </div>
-               </div>
+                    
+     </div>
+ </div>
+      
+            
+                         
+        </div>
+           
+                   
+      
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           </div>
+           <%--</div>--%>
 </asp:Content>

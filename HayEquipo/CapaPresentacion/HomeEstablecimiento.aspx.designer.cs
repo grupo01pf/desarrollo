@@ -31,13 +31,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Repeater encuentrosRepeater;
         
         /// <summary>
-        /// Control lstComp.
+        /// Control ddlComp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstComp;
+        protected global::System.Web.UI.WebControls.DropDownList ddlComp;
+        
+        /// <summary>
+        /// Control ddlDeportes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeportes;
         
         /// <summary>
         /// Control lbl_Fecha.
@@ -58,21 +67,39 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Calendar cld_Fecha;
         
         /// <summary>
-        /// Control ddlHora.
+        /// Control lbl_agendaFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHora;
+        protected global::System.Web.UI.WebControls.Label lbl_agendaFecha;
         
         /// <summary>
-        /// Control gvCanchas.
+        /// Control gdv_Agenda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCanchas;
+        protected global::System.Web.UI.WebControls.GridView gdv_Agenda;
+        
+        /// <summary>
+        /// Control lbl_Reserva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Reserva;
+        
+        /// <summary>
+        /// Control lbl_Capacidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Capacidad;
     }
 }
