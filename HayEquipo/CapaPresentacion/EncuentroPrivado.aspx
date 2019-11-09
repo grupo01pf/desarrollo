@@ -30,7 +30,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="titulo">Encuentro</h1>
+      
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+
+      <h1 class="titulo">Encuentro</h1>
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-4">
@@ -50,10 +55,10 @@
                     <hr class="colorLineaHorizontal" />
                     <div class="alinearIzquiera elPadding">
                         <span class="glyphicon glyphicon-time"></span>
-                        <asp:Label ID="Label3" style="color:black" runat="server" Text="De: "></asp:Label>
+                        <asp:Label ID="Label3" style="color:black" runat="server" Text="Inicio: "></asp:Label>
                         <asp:Label ID="txt_HoraInicio" runat="server" Text="0"></asp:Label>
-                        <asp:Label ID="Label4" runat="server" Text=" a "></asp:Label>
-                        <asp:Label ID="txt_HoraFin" runat="server" Text="0"></asp:Label>
+                        <%--<asp:Label ID="Label4" runat="server" Text=" a "></asp:Label>--%>
+                        <%--<asp:Label ID="txt_HoraFin" runat="server" Text="0"></asp:Label>--%>
                     </div>
                     <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-map-marker"></span>
@@ -75,7 +80,7 @@
                     </div>
                     <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-earphone"></span>
-                            <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                            <%--<asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>--%>
                     </div>
 
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
@@ -97,7 +102,20 @@
                     <div class="row">
                         <div class="col-sm-6">
                                 <div class="panel panel-primary">
+
                             <div class="panel-heading">Equipo A</div>
+
+                                <%-- ********* Equipo A *********** --%>
+
+                                      
+                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                        
+                            <div class="scroll-container">
+
+
+
                                     <div class="panel-body">
                                         <%--Equipo A--%>
                                         <asp:GridView ID="gdv_Equipo_A" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
@@ -107,12 +125,43 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
+
+
+
+                                
+                                  </div>
+
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+
+
+
+                                <%-- ************************************ --%>
+                                    
                                     </div>
+
+
                             <asp:Button ID="btn_UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" class="btn btn-success" />
                         </div>
                         <div class="col-sm-6">
                              <div class="panel panel-primary">
+
                             <div class="panel-heading">Equipo B</div>
+
+                                 <%-- ************** Equipo B ************* --%>
+
+                                                       
+                   <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                        <ContentTemplate>
+                            <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                        
+                            <div class="scroll-container">
+
+
+
                                     <div class="panel-body">
                                     <%--Equipo B --%>
                                     <asp:GridView ID="gdv_Equipo_B" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
@@ -122,6 +171,23 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
+
+                                
+                                  </div>
+
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+
+
+                                 <%-- ************************* --%>
+
+                                
+                                <%--    </div>--%>
+
+
                                  </div>
 
                             <asp:Button ID="btn_UnirseEquipoB" runat="server" Text="Unirse" OnClick="btn_UnirseEquipoB_Click" class="btn btn-success" />
@@ -214,12 +280,13 @@
                      <%--AJAX--%>
 
 
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
                         
                             <div class="scroll-container">
+
 
                          <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
                                 HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
@@ -231,6 +298,7 @@
                             </Columns>
                         </asp:GridView>
                     
+
                                   </div>
 
                             <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>

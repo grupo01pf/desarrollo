@@ -90,7 +90,7 @@ namespace CapaPresentacion
             cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
 
             txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
-            txt_HoraFin.Text = edq.horaFin.ToShortTimeString();
+            //txt_HoraFin.Text = edq.horaFinHorario.ToShortTimeString();
 
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
@@ -234,7 +234,7 @@ namespace CapaPresentacion
 
             total = equipoA + equipoB;
 
-            lbl_Cantidad.Text = total + " / " + Session["CapacidadMaxima"].ToString();
+            //lbl_Cantidad.Text = total + " / " + Session["CapacidadMaxima"].ToString();
 
             if (total == int.Parse(Session["CapacidadMaxima"].ToString())) {
                 int estado = 8; // (COMPLETO)
@@ -440,6 +440,9 @@ namespace CapaPresentacion
             if (Session["idEncuentro"] != null)
             {
                 cargarChat();
+
+                cargarEquipoA();
+                cargarEquipoB();
             }
         }
 
@@ -498,31 +501,12 @@ namespace CapaPresentacion
                 }
                 i++;
             }
-            //i = 0;
+
             }
         
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
         {
-            /*
-            var rows = gdv_Invitar.Rows;
-            int count = gdv_Invitar.Rows.Count;
-            Notificacion notificacion = null;
-            for (int i = 0; i < count; i++)
-            {
-                bool isChecked = ((CheckBox)rows[i].FindControl("chk_Invitar")).Checked;
-                if (isChecked)
-                {
-                    notificacion = new Notificacion();
-                    notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-                    //  notificacion.idReceptor = int.Parse(gdv_Invitar.Rows[i].Cells[0].ToString());
-                    notificacion.idReceptor =
-                    notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                    notificacion.notificacion1 = "Has sido invitado a participar de un encuentro deportivo";
-
-                    NotificacionDao.insertarNotificacion(notificacion);
-                }
-            }
-            */
+           
         }
 
         protected void btn_CerrarEncuentro_Click(object sender, EventArgs e)
@@ -542,5 +526,23 @@ namespace CapaPresentacion
             //validacionesDeUsuario();
          //   Session["Unirse"] = true;
         }
-}
+
+        protected void Timer2_Tick(object sender, EventArgs e)
+        {
+            if (Session["idEncuentro"] != null)
+            {
+                cargarEquipoA();
+                cargarEquipoB();
+            }
+        }
+
+        protected void Timer3_Tick(object sender, EventArgs e)
+        {
+            if (Session["idEncuentro"] != null)
+            {
+                cargarEquipoB();
+            }
+
+        }
+    }
 }

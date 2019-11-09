@@ -169,6 +169,11 @@ namespace CapaPresentacion
                 ed.capacidad = 4; // (POR DEFECTO 4 USUARIOS)
             else { ed.capacidad = int.Parse(fila.Cells[6].Text); }
 
+            if (string.IsNullOrEmpty(fila.Cells[4].Text))
+                ed.horaInicio = TimeSpan.Parse("00:00")  ; // (POR DEFECTO )
+            else { ed.horaInicio = TimeSpan.Parse(fila.Cells[4].Text); }
+
+
 
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
             EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
