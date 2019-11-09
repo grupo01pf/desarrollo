@@ -92,11 +92,19 @@ namespace CapaPresentacion
             txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
             //txt_HoraFin.Text = edq.horaFinHorario.ToShortTimeString();
 
+          
+
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
             txt_Telefono.Text = edq.numeroTelefono.ToString();
 
             Session["CapacidadMaxima"] = edq.capacidad;
+
+            lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+            lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (edq.capacidad / 2) + ")";
+            lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (edq.capacidad / 2) + ")";
+
+
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
@@ -261,6 +269,7 @@ namespace CapaPresentacion
             if (total == int.Parse(Session["CapacidadMaxima"].ToString())) {
                 int estado = 8; // (COMPLETO)
                 EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                
             }
             return total;
         }

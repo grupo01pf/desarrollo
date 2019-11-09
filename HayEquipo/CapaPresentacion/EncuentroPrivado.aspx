@@ -134,8 +134,9 @@
                             <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
                     </div>
                     <div class="alinearIzquiera elPadding">
-                            <span class="glyphicon glyphicon-earphone"></span>
-                            <%--<asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>--%>
+                            <span class="glyphicon alert-info"></span>
+                            <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                            <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
                     </div>
 
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
@@ -158,7 +159,9 @@
                         <div class="col-sm-6">
                                 <div class="panel panel-primary">
 
-                            <div class="panel-heading">Equipo A</div>
+                            <div class="panel-heading">Equipo A
+                                <asp:Label ID="lbl_CantidadEquipoA" runat="server" Text="0"></asp:Label>
+                            </div>
 
                                 <%-- ********* Equipo A *********** --%>
 
@@ -204,7 +207,9 @@
                         <div class="col-sm-6">
                              <div class="panel panel-primary">
 
-                            <div class="panel-heading">Equipo B</div>
+                            <div class="panel-heading">Equipo B
+                                <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text="0"></asp:Label>
+                            </div>
 
                                  <%-- ************** Equipo B ************* --%>
 

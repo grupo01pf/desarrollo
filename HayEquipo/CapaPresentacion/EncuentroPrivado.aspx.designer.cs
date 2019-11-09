@@ -148,6 +148,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label txt_Telefono;
         
         /// <summary>
+        /// Control lbl_Cantidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Cantidad;
+        
+        /// <summary>
+        /// Control lbl_CantidadTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CantidadTotal;
+        
+        /// <summary>
         /// Control btn_CancelarEncuentro.
         /// </summary>
         /// <remarks>
@@ -182,6 +200,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Ingresar;
+        
+        /// <summary>
+        /// Control lbl_CantidadEquipoA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CantidadEquipoA;
         
         /// <summary>
         /// Control UpdatePanel2.
@@ -227,6 +254,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_UnirseEquipoA;
+        
+        /// <summary>
+        /// Control lbl_CantidadEquipoB.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_CantidadEquipoB;
         
         /// <summary>
         /// Control UpdatePanel3.
