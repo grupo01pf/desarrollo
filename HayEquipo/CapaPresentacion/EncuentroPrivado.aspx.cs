@@ -16,11 +16,23 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           
-            if (!IsPostBack) {
+            //if (Convert.ToBoolean(Session["Unirse"]))
+            //{
 
-              //  Session["IdOrganizadorEncuentro"] = null;
-              //  Session["CapacidadMaxima"] = null;
+            //    btn_UnirseEquipoA.Visible = true;
+            //    btn_UnirseEquipoB.Visible = true;
+            //}
+            //else {
+
+           // btn_UnirseEquipoA.Visible = false;
+           // btn_UnirseEquipoB.Visible = false;
+            //}
+
+            if (!IsPostBack) {
+                
+
+                //  Session["IdOrganizadorEncuentro"] = null;
+                //  Session["CapacidadMaxima"] = null;
                 // cargarDeportes();
                 // cargarComplejos();
                 cargarEquipoA();
@@ -36,6 +48,8 @@ namespace CapaPresentacion
 
                 //btn_UnirseEquipoA.Enabled = true;
                 //btn_UnirseEquipoB.Enabled = true;
+
+
             }
             
            // txt_Mensaje.Focus();
@@ -74,6 +88,9 @@ namespace CapaPresentacion
             lbl_Complejo.Text = edq.nombreComplejo;
 
             cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
+
+            txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
+            txt_HoraFin.Text = edq.horaFin.ToShortTimeString();
 
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
@@ -119,6 +136,8 @@ namespace CapaPresentacion
                     btn_UnirseEquipoB.Enabled = true;
                     btn_Salir.Enabled = false;
                     btn_CancelarEncuentro.Visible = true;
+                    ////btn_CerrarEncuentro.Visible = true;
+                    ////btn_AbrirEncuentro.Visible = false;
                 }
                 else if(validarExistenciaEnEquipoB()){
 
@@ -361,9 +380,34 @@ namespace CapaPresentacion
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
             int estado = 6; // (CANCELADO)
-            EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+            
             ReservaDao.acutalizarReserva(int.Parse(Session["idEncuentro"].ToString()), estado);
+            EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+            
+
+            // Enviar notificacion
+
+            List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+            lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+
+
+            foreach (Usuario u in lista)
+            {
+                Notificacion notificacion = null;
+                    notificacion = new Notificacion();
+                    notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                    // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
+                    notificacion.idReceptor = u.id;
+                    notificacion.nombreReceptor = Session["Usuario"].ToString();
+                    notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                    notificacion.texto = "El encuentro deportivo ha sido Cancelado";
+
+                    NotificacionDao.insertarNotificacion(notificacion);
+                
+                }
+
             Response.Redirect("Home.aspx");
+
 
         }
 
@@ -424,7 +468,7 @@ namespace CapaPresentacion
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e) {
 
             List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
-            int[] idUsuarios = new int[1000];
+            int[] idUsuarios = new int[lista.Count];
             int i = 0;
             foreach (Usuario u in lista)
             {
@@ -481,5 +525,22 @@ namespace CapaPresentacion
             */
         }
 
-    }
+        protected void btn_CerrarEncuentro_Click(object sender, EventArgs e)
+        {
+            //btn_UnirseEquipoA.Enabled = false;
+            //btn_UnirseEquipoB.Enabled = false;
+            //btn_CerrarEncuentro.Visible = false;
+            //btn_AbrirEncuentro.Visible = true;
+
+          //  Session["Unirse"] = false; 
+        }
+
+        protected void btn_AbrirEncuentro_Click(object sender, EventArgs e)
+        {
+            //btn_AbrirEncuentro.Visible = false;
+            //btn_CerrarEncuentro.Visible = true;
+            //validacionesDeUsuario();
+         //   Session["Unirse"] = true;
+        }
+}
 }

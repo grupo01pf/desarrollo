@@ -40,16 +40,29 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static void acutalizarReserva(int idEncuntro, int estado)
+        public static void acutalizarReserva(int idEncuentro, int estado)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                Reserva reserva = db.Reserva.First(r => r.id == idEncuntro);
-                reserva.idEstado = estado;
-                db.Entry(reserva).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
+            //using (HayEquipoEntities db = new HayEquipoEntities())
+            //{
+            //    Reserva reserva = db.Reserva.First(r => r.id == idEncuentro);
+            //    reserva.idEstado = estado;
+            //    db.Entry(reserva).State = System.Data.Entity.EntityState.Modified;
+            //    db.SaveChanges();
+            //  }
+
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_ReservaDao_ActualizarReserva", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEncuentro", idEncuentro);
+            cmd.Parameters.AddWithValue("@estado", estado);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+
+
         }
 
-    }
+        }
 }

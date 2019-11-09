@@ -134,7 +134,7 @@
                     <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
                     <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
                     <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
-                    <li><a data-toggle="tab" href="#menu4">Notificaciones</a></li>
+                    <li><a data-toggle="tab" href="#menu4">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
@@ -278,9 +278,9 @@
                                 <Columns>
                                     <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                     <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                    <asp:BoundField DataField="emisor" HeaderText="Emisor" Visible="true" />
-                                    <asp:BoundField DataField="notificacion" HeaderText="Notificacion" Visible="true" />
-
+                                    <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
+                                    <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                    <asp:BoundField DataField="idEncuentro" HeaderText ="IdEncuentro" visible ="false" />
 
                                 </Columns>
                             </asp:GridView>

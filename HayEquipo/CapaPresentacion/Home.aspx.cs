@@ -34,7 +34,13 @@ namespace CapaPresentacion
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
 
+            actualizarNotificaciones();
 
+        }
+
+        private void actualizarNotificaciones() {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
         }
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)

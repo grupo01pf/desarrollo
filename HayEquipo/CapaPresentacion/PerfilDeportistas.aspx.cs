@@ -37,8 +37,9 @@ namespace CapaPresentacion
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
-            
 
+            actualizarNotificaciones();
+            mostrarNotificaciones();
         }
 
         private void cargarTipoDocumento()
@@ -328,9 +329,44 @@ namespace CapaPresentacion
 
         protected void gdv_Notificaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow fila = gdv_Notificaciones.SelectedRow;
+           // string idEncuentro = fila.Cells[4].Text;
+            // int id = int.Parse(fila.Cells[4].Text);
+            string idEncuentro = Convert.ToString(fila.RowIndex);
+            int id = fila.RowIndex;
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            int[] idEncuentrosDeportivos = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idEncuentrosDeportivos[i] = n.idEncuentro;
+                i++;
+            }
+            idEncuentro = idEncuentrosDeportivos[id].ToString();
+
+
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
+            {
+                //  Session["idEncuentro"] = id;
+                Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPrivado.aspx");
+            }
 
 
 
+        }
+
+        private void actualizarNotificaciones()
+        {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
+        }
+
+        private void mostrarNotificaciones() {
+
+            gdv_Notificaciones.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            gdv_Notificaciones.DataKeyNames = new string[] { "idNotificacion" };
+            gdv_Notificaciones.DataBind();
 
         }
     }
