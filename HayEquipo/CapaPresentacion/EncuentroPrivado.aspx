@@ -70,10 +70,65 @@
 
                     </div>
                     <div class="alinearIzquiera elPadding">
-                        <span class="glyphicon glyphicon-search"></span>
-                        <asp:LinkButton ID="LinkButton1" runat="server">Ver Info del Complejo</asp:LinkButton>
+                        <%--<span class="glyphicon glyphicon-search"></span>--%>
+                        <%--<asp:LinkButton ID="LinkButton1" runat="server">Ver Info del Complejo</asp:LinkButton>--%>
                         <%--Al darle click al linkbutton debería mostrar un modal con los datos del complejo: mapa, reputación, servicios, etc.--%>
+                        
+                          <%--MODAL COMPLEJO--%>
+
+                        
+                                <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#exampleModalScrollable2"
+                                     visible="true"  >
+                                    Ver Complejo
+                                </button>
+
+
+                        <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
+                            aria-hidden="false">
+                            <%--data-backdrop="static" data-keyboard="false">--%>
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle2">
+                                            <strong>
+                                                <asp:Label ID="Label4" runat="server"></asp:Label></strong></h5>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <%-- BODY --%>
+
+                                           </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
+                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
+                                            <%--<asp:Button ID="Button1" runat="server" Text="Enviar" OnClick="" />--%>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                           <%--FIN MODAL COMPLEJO  --%>
+
+
                     </div>
+
+
+
                     <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-earphone"></span>
                             <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
