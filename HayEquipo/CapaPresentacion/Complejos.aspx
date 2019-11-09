@@ -165,7 +165,7 @@
                     </div>
 
   <div class="scroll-container">
-     <asp:Repeater ID="encuentrosRepeater" runat="server">
+     <asp:Repeater ID="encuentrosRepeater" runat="server" onitemdatabound="encuentrosRepeater_ItemDataBound" >
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
@@ -177,27 +177,33 @@
       <p class="tamanoLetra">
           <br />
           <div class="row">
-              <div class="col-sm-3">
+              <div class="alinearAlCentro">
+              <div class="col-sm-4">
                   <span class="glyphicon glyphicon-map-marker"></span>               
                   <asp:Label runat="server" text='<%#Eval("Direccion") %>'></asp:Label>
                   <br />
               </div>
-              <div class="col-sm-3">
+              </div>
+              <div class="alinearAlCentro">
+              <div class="col-sm-4">
                   <i class="fas fa-volleyball-ball"></i>
                   <asp:Label runat="server" text='<%#Eval("Deportes") %>'></asp:Label>          
                   <br />               
               </div>
-              <div class="col-sm-3">
+              </div>
+              <div class="alinearAlCentro">
+              <div class="col-sm-4">
                   <span class="glyphicon glyphicon-thumbs-up"></span>
-                  <asp:Label runat="server" text='<%#Eval("Valoracion") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label> 
+                  <asp:Label runat="server" text='<%#Eval("Valoracion") %>'></asp:Label> 
                   <br />
               </div>
-              <div class="col-sm-3">
+              </div>
+      <%--        <div class="col-sm-3">
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
                   <asp:Label runat="server" text="Acá se dice se tiene cupo o no"></asp:Label>
-              </div>
+              </div>--%>
           </div>         
       </p>
       <br />  
@@ -206,10 +212,25 @@
       </div>   
            </div><br />
             </ItemTemplate>
+
+            <FooterTemplate>
+            <tr>
+            <td>
+            <asp:Label ID="lblEmptyData"
+            Text="No Se Encontraron Complejos" runat="server" Visible="false" Font-Size="Large">
+            </asp:Label>
+            </td>
+            </tr>
+            </table>           
+            </FooterTemplate>
+
      </asp:Repeater>    
 
  </div>
     </div>
+         <%-- <div class="w3-panel w3-black">
+                    <asp:Label ID="lblCompDefault" runat="server" Text="No se encontraron complejos" ForeColor="White" Visible="false"></asp:Label>
+                    </div>--%>
                          </div>
             <%--</div>--%>
         </div>

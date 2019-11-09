@@ -174,6 +174,18 @@ namespace CapaPresentacion
         }
     }
 
+        protected void encuentrosRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (encuentrosRepeater.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    Label lblFooter = (Label)e.Item.FindControl("lblEmptyData");
+                    lblFooter.Visible = true;
+                }
+            }
+        }
+
         protected void CargarListServicios(int idComp)
         {
             listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);

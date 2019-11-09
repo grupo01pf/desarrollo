@@ -19,8 +19,8 @@ namespace CapaPresentacion
             {
                 CargarDdlComplejos();
                 CargarDdlDeportes();
-                //ddlComp.AutoPostBack = true;
-                //ddlDeportes.AutoPostBack = true;
+                ddlComp.AutoPostBack = true;
+                ddlDeportes.AutoPostBack = true;
             }
         }
 
@@ -126,7 +126,7 @@ namespace CapaPresentacion
             lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(ddlComp.SelectedIndex);
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(int.Parse(ddlComp.SelectedValue));
             DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
             DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
             int ha = int.Parse(horaApertura.Hour.ToString());
@@ -134,7 +134,7 @@ namespace CapaPresentacion
 
             int horas = int.Parse(horario.Hour.ToString());
 
-            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(ddlComp.SelectedIndex, ddlDeportes.SelectedIndex);
+            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(int.Parse(ddlComp.SelectedValue), ddlDeportes.SelectedIndex);
             AgendaEntidad agenda = null;
             List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
             foreach (AgendaEntidad a in listaDatosAgenda)
@@ -157,7 +157,7 @@ namespace CapaPresentacion
             //**************************************************
             // Quitar Horarios Reservados
 
-            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(ddlComp.SelectedIndex, cld_Fecha.SelectedDate);
+            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(int.Parse(ddlComp.SelectedValue), cld_Fecha.SelectedDate);
             List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
             if (listaHorariosReservados.Count != 0)
             {
@@ -213,12 +213,26 @@ namespace CapaPresentacion
             gdv_Agenda.DataBind();
         }
 
-        protected void cmb_Complejo_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlComp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbl_Reserva.Text = string.Empty;
-            lbl_Capacidad.Text = string.Empty;
-            cargarAgenda();
-            //btn_Agenda.Visible = true;
+            if (ddlDeportes.SelectedIndex != 0 && cld_Fecha.SelectedDate.Date > DateTime.MinValue)
+            {
+                lbl_Reserva.Text = string.Empty;
+                lbl_Capacidad.Text = string.Empty;
+                cargarAgenda();
+                //btn_Agenda.Visible = true;
+            }           
+        }
+
+        protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlComp.SelectedIndex != 0 && cld_Fecha.SelectedDate.Date > DateTime.MinValue)
+            {
+                lbl_Reserva.Text = string.Empty;
+                lbl_Capacidad.Text = string.Empty;
+                cargarAgenda();
+                //btn_Agenda.Visible = true;
+            }
         }
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)

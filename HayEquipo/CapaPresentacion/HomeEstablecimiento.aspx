@@ -132,13 +132,13 @@
                     </div>
                         <div class="form-group">
 <%--                            <asp:ListBox ID="lstComp" CssClass="form-control" runat="server"  AppendDataBoundItems="true" OnSelectedIndexChanged="lstComp_SelectedIndexChanged" ></asp:ListBox>--%>
-                         <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
+                         <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged" >
                                 <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                             </asp:DropDownList>
                             </div>
 
                          <div class="form-group">
-                         <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
+                         <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged" >
                                 <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                             </asp:DropDownList>
                             </div>
