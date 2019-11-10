@@ -526,23 +526,23 @@ namespace CapaPresentacion
          //   Session["Unirse"] = true;
         }
 
-        protected void Timer2_Tick(object sender, EventArgs e)
-        {
-            if (Session["idEncuentro"] != null)
-            {
-                cargarEquipoA();
-                cargarEquipoB();
-            }
-        }
+        //protected void Timer2_Tick(object sender, EventArgs e)
+        //{
+        //    if (Session["idEncuentro"] != null)
+        //    {
+        //        cargarEquipoA();
+        //        cargarEquipoB();
+        //    }
+        //}
 
-        protected void Timer3_Tick(object sender, EventArgs e)
-        {
-            if (Session["idEncuentro"] != null)
-            {
-                cargarEquipoB();
-            }
+        //protected void Timer3_Tick(object sender, EventArgs e)
+        //{
+        //    if (Session["idEncuentro"] != null)
+        //    {
+        //        cargarEquipoB();
+        //    }
 
-        }
+        //}
 
         private void cargarModalComplejo(int idComplejo) {
 

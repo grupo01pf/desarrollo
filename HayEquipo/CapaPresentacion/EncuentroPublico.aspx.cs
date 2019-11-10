@@ -261,6 +261,9 @@ namespace CapaPresentacion
             if (Session["idEncuentro"] != null)
             {
                 cargarChat();
+
+                cargarTabla();
+                calcularCapacidad();
             }
 
             //  gdv_Pantalla.DataSource = sqlData.

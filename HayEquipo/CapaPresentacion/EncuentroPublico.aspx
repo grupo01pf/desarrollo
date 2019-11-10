@@ -33,6 +33,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+
+      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+
     <h1 class="titulo">Encuentro</h1>
     <div class="jumbotron text-center" style="background-color: black">
         <div class="row">
@@ -82,6 +87,21 @@
                     <legend>Lista de Participantes</legend>
                     <div class="panel panel-primary">
                         <div class="panel-heading">Nombre de usuario</div>
+
+
+                        <%-- Lista Jugadores --%>
+
+                                            
+                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                        
+                            <div class="scroll-container">
+
+
+
+
+
                         <div class="panel-body">
                             <asp:GridView ID="gdv_UsuariosUnidos" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large" runat="server" AutoGenerateColumns="false">
                                 <Columns>
@@ -90,8 +110,21 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                    </div>
+                   
 
+
+                            
+                                  </div>
+
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+                                <%-- ************************************ --%>
+
+
+                    </div>
 
 
                     <%--BOTONES --%>
@@ -181,7 +214,7 @@
                        <%--AJAX--%>
 
 
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
