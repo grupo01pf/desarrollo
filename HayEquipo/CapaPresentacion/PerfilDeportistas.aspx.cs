@@ -344,13 +344,24 @@ namespace CapaPresentacion
             }
             idEncuentro = idEncuentrosDeportivos[id].ToString();
 
+            int idNotif = int.Parse(gdv_Notificaciones.SelectedDataKey.Value.ToString());
+            NotificacionDao.actualizarEstadoNotificacion(9, idNotif);
+
+            Session["idEncuentro"] = idEncuentrosDeportivos[id];
 
             if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
             {
                 //  Session["idEncuentro"] = id;
-                Session["idEncuentro"] = idEncuentrosDeportivos[id];
+               // Session["idEncuentro"] = idEncuentrosDeportivos[id];
                 Response.Redirect("EncuentroPrivado.aspx");
             }
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
+            {
+                //  Session["idEncuentro"] = id;
+               // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPublico.aspx");
+            }
+
 
 
 
@@ -369,5 +380,38 @@ namespace CapaPresentacion
             gdv_Notificaciones.DataBind();
 
         }
+
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+           
+
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+
+            int[] idNotificaciones = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idNotificaciones[i] = n.idNotificacion;
+                i++;
+            }
+
+            i = 0;
+
+
+            foreach (GridViewRow fila in gdv_Notificaciones.Rows)
+            {
+                             
+                if ((fila.Cells[0].FindControl("chk_Eliminar") as CheckBox).Checked)              
+                {
+                    
+                    NotificacionDao.actualizarEstadoNotificacion(11,idNotificaciones[i]);
+                    
+                }
+                i++;
+            }
+           
+        }
+
+     
     }
 }

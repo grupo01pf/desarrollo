@@ -273,14 +273,22 @@
 
                             <br />
                             <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
+                                HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged"
+                                >
+                        
 
                                 <Columns>
+
+
                                     <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                     <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
                                     <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
-                                    <asp:BoundField DataField="idEncuentro" HeaderText ="IdEncuentro" visible ="false" />
+                                    <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                  
+
 
                                 </Columns>
                             </asp:GridView>
@@ -288,6 +296,8 @@
                         </div>
                     </div>
                     <%-- FIN NOTIFICACIONES --%>
+
+                    <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
 
                 </div>
             </div>

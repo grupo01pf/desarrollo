@@ -171,6 +171,12 @@
                                             </div>
                                                                                  
                                            </div>
+
+                                      <%-- ****MAPA**** --%>
+        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
+        </div>
+        <%-- ****MAPA**** --%>
                                       <%-- FIN BODY --%>
 
 
@@ -449,9 +455,9 @@
 
         </div>
 
-        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
+       <%-- <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
-        </div>
+        </div>--%>
     </div>
 </asp:Content>
 

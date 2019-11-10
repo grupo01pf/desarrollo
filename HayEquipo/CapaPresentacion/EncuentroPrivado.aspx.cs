@@ -62,6 +62,9 @@ namespace CapaPresentacion
 
             Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
+            cargarModalComplejo(edq.idComplejo);
+            cargarMapa(edq.idComplejo);
+
             lbl_Deporte.Text = edq.nombreDeporte;
 
             lbl_Complejo.Text = edq.nombreComplejo;
@@ -92,16 +95,17 @@ namespace CapaPresentacion
 
             validacionesDeUsuario();
 
-            cargarModalComplejo(edq.idComplejo);
+           
         }
 
-        //private void cargarMapa() {
-        //    contenedorDelMapa.Visible = true;
-        //    frm_map.Visible = true;
-        //    //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-        //    ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(int.Parse(lbl_Complejo.te);
-        //    frm_map.Src = cd.mapa;
-        //}
+        private void cargarMapa(int idComplejoDeportivo)
+        {
+            contenedorDelMapa.Visible = true;
+            frm_map.Visible = true;
+            //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
+            frm_map.Src = cd.mapa;
+        }
 
         private void validacionesDeUsuario()
         {
@@ -165,22 +169,7 @@ namespace CapaPresentacion
         private int calcularCapacidadEquipoA()
         {
             int equipoA = 0;
-            //List<Usuario> listaUsuariosEuqipoA = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
-            //if (listaUsuariosEuqipoA.Count < (int.Parse(Session["CapacidadMaxima"].ToString()))/2 )
-            //{
-            //    // lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-            //    equipoA = listaUsuariosEuqipoA.Count;
-            //}
-            //else
-            //{
-            //    equipoA = listaUsuariosEuqipoA.Count;
-            //    // lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-            //    btn_UnirseEquipoA.Enabled = false;
-            //    // actualizar estado
-            //  //  int estado = 8; // (COMPLETO)
-            // //   EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-            //}
-
+            
             equipoA = gdv_Equipo_A.Rows.Count;
             if (equipoA >= (int.Parse(Session["CapacidadMaxima"].ToString())) / 2)
             {
@@ -197,22 +186,7 @@ namespace CapaPresentacion
         private int calcularCapacidadEquipoB()
         {
             int equipoB = 0;
-            //List<Usuario> listaUsuariosEquipoB = UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString()));
-            //if (listaUsuariosEquipoB.Count < (int.Parse(Session["CapacidadMaxima"].ToString()))/2 )
-            //{
-            //    //  lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-            //    equipoB = listaUsuariosEquipoB.Count;
-            //}
-            //else
-            //{
-            //    equipoB = listaUsuariosEquipoB.Count;
-            //    //  lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-            //    btn_UnirseEquipoB.Enabled = false;
-            //   // int estado = 8; // (COMPLETO)
-            //   // EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-
-            //}
-
+      
             equipoB = gdv_Equipo_B.Rows.Count;
             if (equipoB >= (int.Parse(Session["CapacidadMaxima"].ToString())) / 2)
             {
@@ -330,10 +304,7 @@ namespace CapaPresentacion
 
         }
 
-        //protected void btn_Invitar_Click(object sender, EventArgs e)
-        //{
-
-        //}
+        
 
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
@@ -493,7 +464,7 @@ namespace CapaPresentacion
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
                     notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
-
+                    notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
 
                    
@@ -568,9 +539,9 @@ namespace CapaPresentacion
             }
 
 
-            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
            // btnPopUp_ModalPopupExtender2.Show();
         }

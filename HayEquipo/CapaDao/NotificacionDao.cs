@@ -26,6 +26,7 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@nombreReceptor", notificacion.nombreReceptor);
             cmd.Parameters.AddWithValue("@idEncuentro", notificacion.idEncuentro);
             cmd.Parameters.AddWithValue("@texto", notificacion.texto);
+            cmd.Parameters.AddWithValue("@idEstado", notificacion.idEstado);
 
             cmd.ExecuteNonQuery();
             cn.Close();
@@ -54,6 +55,7 @@ namespace CapaDao
                 notificacion.nombreUsuario = dr["emisor"].ToString();
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
+                notificacion.nombreEstado = dr["estado"].ToString();
                 listaNotificacion.Add(notificacion);
             }
 
@@ -87,6 +89,22 @@ namespace CapaDao
             
             return contador;
 
+        }
+
+
+        public static void actualizarEstadoNotificacion(int idEstado, int idNotificacion)
+        {
+
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_NotificacionDao_actualizarEstadoNotificacion", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idEstado", idEstado);
+            cmd.Parameters.AddWithValue("@idNotificacion", idNotificacion);
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
 
     }
