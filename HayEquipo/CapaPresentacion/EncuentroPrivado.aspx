@@ -99,13 +99,81 @@
                                         </button>
                                         <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                             <strong>
-                                                <asp:Label ID="Label4" runat="server"></asp:Label></strong></h5>
+                                              <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                  </center>
+                                            </strong></h5>
                                     </div>
                                     <div class="modal-body">
 
                                         <%-- BODY --%>
 
+                                        <div class="form-group">
+                                            <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDeportes" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                                        </div>
+                                        <%-- <div class="form-group">
+                        <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
+                        <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
+                    </div>--%>
+
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblZona" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                                <!-- Indicators -->
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                </ol>
+
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner">
+                                                    <div class="item active">
+                                                        <img id="img1" width="1000" height="1500" runat="server">
+                                                    </div>
+
+                                                    <div class="item">
+                                                        <img id="img2" width="1000" height="1500" runat="server">
+                                                    </div>
+
+                                                    <div class="item">
+                                                        <img id="img3" width="1000" height="1500" runat="server">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Left and right controls -->
+                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                            
+                                            </div>
+                                                                                 
                                            </div>
+                                      <%-- FIN BODY --%>
+
+
                                     <div class="modal-footer">
                                         <center>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

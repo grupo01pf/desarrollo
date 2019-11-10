@@ -16,40 +16,20 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //if (Convert.ToBoolean(Session["Unirse"]))
-            //{
-
-            //    btn_UnirseEquipoA.Visible = true;
-            //    btn_UnirseEquipoB.Visible = true;
-            //}
-            //else {
-
-           // btn_UnirseEquipoA.Visible = false;
-           // btn_UnirseEquipoB.Visible = false;
-            //}
-
+           
             if (!IsPostBack) {
                 
 
-                //  Session["IdOrganizadorEncuentro"] = null;
-                //  Session["CapacidadMaxima"] = null;
-                // cargarDeportes();
-                // cargarComplejos();
                 cargarEquipoA();
                 cargarEquipoB();
 
                 cargarDatosEncuentroPrivado();
 
-              //  calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB());
-
+           
               //  cargarMapa();
                 cargarChat();
                 cargarListaInvitar();
-
-                //btn_UnirseEquipoA.Enabled = true;
-                //btn_UnirseEquipoB.Enabled = true;
-
-
+                
             }
             
            // txt_Mensaje.Focus();
@@ -82,10 +62,10 @@ namespace CapaPresentacion
 
             Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
-            //cmb_Deporte.SelectedValue = edq.nombreDeporte;
             lbl_Deporte.Text = edq.nombreDeporte;
-            //cmb_Complejo.SelectedValue = edq.nombreComplejo;
+
             lbl_Complejo.Text = edq.nombreComplejo;
+            lbl_ComplejoTitulo.Text = edq.nombreComplejo;
 
             cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
 
@@ -112,18 +92,7 @@ namespace CapaPresentacion
 
             validacionesDeUsuario();
 
-            // txt_HoraInicio.Text = eq.horaInicio.ToShortTimeString();
-            // txt_HoraFin.Text = eq.horaFin.ToShortTimeString();
-
-            //if (string.IsNullOrEmpty(eq.nombreLP))
-            //    txt_NombreLugar.Text = string.Empty;
-            //else { txt_NombreLugar.Text = eq.nombreLP.ToString(); }
-
-            //if (string.IsNullOrEmpty(eq.direccion))
-            //    txt_Direccion.Text = string.Empty;
-            //else { txt_Direccion.Text = eq.direccion.ToString(); }
-
-
+            cargarModalComplejo(edq.idComplejo);
         }
 
         //private void cargarMapa() {
@@ -263,8 +232,6 @@ namespace CapaPresentacion
             int total = 0;
 
             total = equipoA + equipoB;
-
-            //lbl_Cantidad.Text = total + " / " + Session["CapacidadMaxima"].ToString();
 
             if (total == int.Parse(Session["CapacidadMaxima"].ToString())) {
                 int estado = 8; // (COMPLETO)
@@ -575,6 +542,37 @@ namespace CapaPresentacion
                 cargarEquipoB();
             }
 
+        }
+
+        private void cargarModalComplejo(int idComplejo) {
+
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+
+           // myModalLabel2.InnerText = compSelec.nombre;
+            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+            
+            lblDeportes.Text = compSelec.deportes;
+            lblDescripcion.Text = compSelec.descripcion;
+            //CargarListServicios(compSelec.id);
+            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblBarrio.Text = "Barrio: " + bar.nombre;
+            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+
+
+            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
+            if (compSelec.avatar != null)
+            {
+               // imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            }
+
+
+            img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+
+           // btnPopUp_ModalPopupExtender2.Show();
         }
     }
 }
