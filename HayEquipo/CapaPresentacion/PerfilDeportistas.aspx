@@ -390,52 +390,7 @@
                       </div>
 
                 </div>
-            </div>
-                </div>
-
-   </div>
-
-    </div>
-                            </p>
-                            <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
-                            <p class="clasificacion">
-                                <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
-                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
-                            </p>
-                            <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad Deportiva"></asp:Label>
-                            <p class="clasificacion">
-                                <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
-                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
-                            </p>
-
-                            <asp:Label CssClass="estrellalabel" runat="server" Text="Promedio General"></asp:Label>
-                            <p class="clasificacion">
-                                <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
-                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:Label ID="lblmsjrb4" runat="server" Text=""></asp:Label>
-                            </p>
-
-                        </div>
-                    </div>
-
-                    <%-- NOTIFICACIONES --%>
+              <%-- NOTIFICACIONES --%>
                     <div id="menu6" class="tab-pane fade">
                         <div class="table-responsive">
 
@@ -466,13 +421,16 @@
                     <%-- FIN NOTIFICACIONES --%>
 
                     <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
-
-                </div>
             </div>
+                </div>
 
-        </div>
+   </div>
 
     </div>
+                           
+                  
 
+                </div>
+      
 
 </asp:Content>

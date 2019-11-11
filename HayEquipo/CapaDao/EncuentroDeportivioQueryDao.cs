@@ -390,19 +390,16 @@ namespace CapaDao
         }
 
         public static List<EncuentroDeportivoQueryEntidad> ObtenerEncuentrosPorUsResponsable(int idUs)
+        { 
+             List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
 
+        EncuentroDeportivoQueryEntidad edq = null;
 
-        public static List<EncuentroDeportivoQueryEntidad> obtenerEncuentrosDeportivosConImagenes()
-        {
-            List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
-
-            EncuentroDeportivoQueryEntidad edq = null;
-
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = ConnectionString.Cadena();
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
+        cmd.Connection = cn;
             cmd.CommandText = @"SELECT ed.id, ed.fechaInicioEncuentro,d.nombre as Deporte,
                                 e.nombre as Estado,ed.horaInicio,ed.horaFin,cd.nombre as Complejo ,cd.calle,cd.nroCalle,
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave
@@ -414,6 +411,49 @@ namespace CapaDao
 								LEFT JOIN Usuario u ON u.id=r.idUsuario
 								WHERE u.id=@idUs";
             cmd.Parameters.AddWithValue("@idUs", idUs);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                edq = new EncuentroDeportivoQueryEntidad();
+
+        edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                //edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreUsuario = dr["Usuario"].ToString();
+        edq.nombreDeporte = dr["Deporte"].ToString();
+        edq.nombreEstado = dr["Estado"].ToString();
+        DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+    DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
+DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
+                edq.nombreLP = dr["Lugar"].ToString();
+edq.direccion = dr["direccion"].ToString();
+edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
+edq.accesibilidad = dr["accesibilidad"].ToString();
+edq.clave = dr["clave"].ToString();
+edq.avatar = (byte[])dr["avatar"];
+                ListaEDQ.Add(edq);
+
+
+
+
+            }
+            dr.Close();
+            cn.Close();
+           return ListaEDQ;
+   }
+
+
+    public static List<EncuentroDeportivoQueryEntidad> obtenerEncuentrosDeportivosConImagenes()
+        {
+            List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
+
+            EncuentroDeportivoQueryEntidad edq = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+           
             cmd.CommandText = @"SELECT ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
                                 e.nombre as Estado,ed.horaInicio,ed.horaFin,ed.nombreLP as Lugar ,ed.direccion,
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave ,d.avatar as avatar
@@ -482,17 +522,8 @@ namespace CapaDao
                 edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
-                ListaEDQ.Add(edq);
-
-                // eq.calle = dr["calle"].ToString();
-                //eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
-                //eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());
-                //eq.fechaInicioEncuentro = (DateTime)dr["fechaInicioEncuentro"];
-                //eq.horaInicio = DateTime.Parse(dr["horaInicio"].ToString());
-                // eq.nombreEstado = dr["nombreEstado"].ToString();
-                // eq.nombreLP = dr["Lugar"].ToString();
-                // eq.direccion = dr["direccion"].ToString();
                 edq.avatar = (byte[])dr["avatar"];
+
                 ListaEDQ.Add(edq);
 
 
@@ -504,9 +535,7 @@ namespace CapaDao
         }
 
 
-            return ListaEDQ;
-        }
-
+       
 
     }
 }
