@@ -106,27 +106,6 @@
 
             <div class="col-sm-2">
                 <div class="well">
-                        <br />
-
-    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>
-                    <br />
-                    <br />
-
-    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD2_Click"/>
-                    <br />
-                    <br />
-
-    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
-                    <br />
-                    <br />
-
-    <asp:Button ID="btnD4" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD4_Click"/>
-                    <br />
-                    <br />
-
-    <asp:LinkButton ID="lbQuitarFiltros" runat="server" Visible="False" OnClick="lbQuitarFiltros_Click" ForeColor="Silver">Quitar filtros</asp:LinkButton>
-    <br />
-        <br />
   
     <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC">Fútbol</asp:LinkButton>
                     <br />
@@ -151,6 +130,25 @@
 
     <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC">Volley</asp:LinkButton>
                     <br />
+                    <br />
+    <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>
+                    <br />
+                    <br />
+
+    <asp:Button ID="btnD2" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD2_Click"/>
+                    <br />
+                    <br />
+
+    <asp:Button ID="btnD3" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD3_Click"/>
+                    <br />
+                    <br />
+
+    <asp:Button ID="btnD4" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD4_Click"/>
+                    <br />
+                    <br />
+    <asp:LinkButton ID="lbQuitarFiltros" runat="server" Visible="False" OnClick="lbQuitarFiltros_Click" ForeColor="Silver">Quitar filtros</asp:LinkButton>
+  
+
 <br />
 
 </div>
@@ -169,7 +167,7 @@
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
-      <header class="w3-container w3-green">
+      <header class="w3-container w3-indigo">
           <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/jpg;base64, <%# Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem, "Avatar")) %>" />
       <h1><asp:Label runat="server" text='<%#Eval("Nombre") %>'></asp:Label></h1>
     </header>
