@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="id" />
@@ -225,6 +225,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.FotosDeportista' no tiene defi
     <Property Name="texto" Type="nvarchar" MaxLength="50" />
     <Property Name="fechaHora" Type="smalldatetime" />
     <Property Name="idUsuario" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Notificacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEmisor" Type="int" />
+    <Property Name="nombreEmisor" Type="nvarchar" MaxLength="50" />
+    <Property Name="idReceptor" Type="int" />
+    <Property Name="nombreReceptor" Type="nvarchar" MaxLength="50" />
+    <Property Name="idEncuentro" Type="int" />
+    <Property Name="texto" Type="nvarchar" MaxLength="50" />
+    <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="Pais">
     <Key>
@@ -1246,6 +1261,11 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   <Function Name="sp_MensajeQueryDao_MostrarMensajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_NotificacionDao_insertarNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmisor" Type="int" Mode="In" />
+    <Parameter Name="idEncuentro" Type="int" Mode="In" />
+    <Parameter Name="texto" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_PermisoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usuario" Type="nvarchar" Mode="In" />
   </Function>
@@ -1253,6 +1273,9 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Parameter Name="fecha" Type="smalldatetime" Mode="In" />
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
     <Parameter Name="idEstado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_UsuarioDao_ObtenerUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_UsuarioDao_UsuariosUnidosEncuentro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
@@ -1355,6 +1378,18 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     [FotosDeportista].[imagen] AS [imagen],
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Notificacion" EntityType="Self.Notificacion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT
+    [Notificacion].[id] AS [id],
+    [Notificacion].[idEmisor] AS [idEmisor],
+    [Notificacion].[nombreEmisor] AS [nombreEmisor],
+    [Notificacion].[idReceptor] AS [idReceptor],
+    [Notificacion].[nombreReceptor] AS [nombreReceptor],
+    [Notificacion].[idEncuentro] AS [idEncuentro],
+    [Notificacion].[texto] AS [texto],
+    [Notificacion].[idEstado] AS [idEstado]
+    FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT

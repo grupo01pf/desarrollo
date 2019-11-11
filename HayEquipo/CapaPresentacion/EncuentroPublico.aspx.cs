@@ -14,64 +14,62 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Session["IdOrganizadorEncuentro"] = null;
-            Session["CapacidadMaxima"] = null;
-          //  Session["CantidadActual"] = null;
 
+            if (!IsPostBack) {
+                Session["IdOrganizadorEncuentro"] = null;
+                Session["CapacidadMaxima"] = null;
+                cargarTabla();
+                cargarDatosEncuentroPublico();
+                validacionesDeUsuario();
+                calcularCapacidad();
+                cargarChat();
+                cargarListaInvitar();
+            }
 
-
-            //Session["IdUsuarioEncuentro"] = null;
-            //if (Request.QueryString["Id"] != null)
-            //{
-
-
-            //    Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
-            //}
-            //cargarDeportes();
-            cargarTabla();
-            cargarDatosEncuentroPublico();
-            validacionesDeUsuario();
-            calcularCapacidad();
-
-         //   cargarChat();
+            //   cargarChat();
             // txt_Mensaje.Focus();
 
         }
         private void cargarDatosEncuentroPublico()
         {
-
-            EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-
-            // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-
-            //  edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-
-            Session["IdOrganizadorEncuentro"] = edq.idUsuario;
-
-            //cmb_Deporte.SelectedValue = edq.nombreDeporte;
-            lbl_Deporte.Text = edq.nombreDeporte;
-
-            cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
-
-            txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
-            txt_HoraFin.Text = edq.horaFin.ToShortTimeString();
-
-            if (string.IsNullOrEmpty(edq.nombreLP))
-                txt_NombreLugar.Text = string.Empty;
-            else { txt_NombreLugar.Text = edq.nombreLP.ToString(); }
-
-            if (string.IsNullOrEmpty(edq.direccion))
-                txt_Direccion.Text = string.Empty;
-            else { txt_Direccion.Text = edq.direccion.ToString(); }
-
-            Session["CapacidadMaxima"] = edq.capacidad;
-
-            txt_Organizador.Text = edq.nombreUsuario.ToString();
-
-            bloquearControles();
+            // if (Session["idEncuentro"] != null) {
 
 
+                EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
+
+                // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+
+                //  edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(idEncuentro);
+                edq = EncuentroDeportivioQueryDao.datosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+
+                Session["idEncuentro"] = edq.idEncuentroDeportivo;
+                int id = int.Parse(Session["idEncuentro"].ToString());
+
+                Session["IdOrganizadorEncuentro"] = edq.idUsuario;
+
+                //cmb_Deporte.SelectedValue = edq.nombreDeporte;
+                lbl_Deporte.Text = edq.nombreDeporte;
+
+                cld_Fecha.Text = edq.fechaInicioEncuentro.ToShortDateString();
+
+                txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
+                txt_HoraFin.Text = edq.horaFin.ToShortTimeString();
+
+                if (string.IsNullOrEmpty(edq.nombreLP))
+                    txt_NombreLugar.Text = string.Empty;
+                else { txt_NombreLugar.Text = edq.nombreLP.ToString(); }
+
+                if (string.IsNullOrEmpty(edq.direccion))
+                    txt_Direccion.Text = string.Empty;
+                else { txt_Direccion.Text = edq.direccion.ToString(); }
+
+                Session["CapacidadMaxima"] = edq.capacidad;
+
+                txt_Organizador.Text = edq.nombreUsuario.ToString();
+
+                bloquearControles();
+
+           // }
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
@@ -85,16 +83,18 @@ namespace CapaPresentacion
 
 
         //  private void calcularCapacidad(int capacidad, int idEncuentro) {
-        private void calcularCapacidad() {
+        private void calcularCapacidad()
+        {
 
             //bool completo = false;
             List<Usuario> listaUsuarios = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-           // Session["CantidadActual"] = listaUsuarios.Count();
+            // Session["CantidadActual"] = listaUsuarios.Count();
             if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
             }
-            else {
+            else
+            {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
                 int estado = 8; // (COMPLETO)
@@ -142,11 +142,13 @@ namespace CapaPresentacion
 
         private void cargarTabla()
         {
-            //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-            //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
-            gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
-            gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
-            gdv_UsuariosUnidos.DataBind();
+
+                //  Session["ListaUsuariosUnidos"] = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+                //  gdv_UsuariosUnidos.DataSource = Session["ListaUsuariosUnidos"];
+                gdv_UsuariosUnidos.DataSource = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
+                gdv_UsuariosUnidos.DataKeyNames = new string[] { "nombre" };
+                gdv_UsuariosUnidos.DataBind();
+
         }
 
         //private void cargarDeportes()
@@ -157,7 +159,8 @@ namespace CapaPresentacion
         //    cmb_Deporte.DataBind();
         //}
 
-        private void validacionesDeUsuario() {
+        private void validacionesDeUsuario()
+        {
 
             if (validarOrganizador())
             {
@@ -196,19 +199,22 @@ namespace CapaPresentacion
 
         }
 
-        private bool validarJugadorUnido() {
+        private bool validarJugadorUnido()
+        {
 
             bool estaUnido = false;
 
             List<Usuario> listaUsuariosUnidos = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
 
-            foreach (Usuario u in listaUsuariosUnidos) {
+            foreach (Usuario u in listaUsuariosUnidos)
+            {
 
-                if (u.id == int.Parse(Session["ID"].ToString())) {
+                if (u.id == int.Parse(Session["ID"].ToString()))
+                {
                     return estaUnido = true;
                 }
             }
-                return estaUnido;
+            return estaUnido;
 
         }
 
@@ -248,18 +254,35 @@ namespace CapaPresentacion
             gdv_Pantalla.DataBind();
         }
 
-        protected void gdv_Pantalla_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            if (Session["idEncuentro"] != null)
+            {
+                cargarChat();
 
-             cargarChat();
-          //  gdv_Pantalla.DataSource = sqlData.
+                cargarTabla();
+                calcularCapacidad();
+            }
 
-           // gdv_Pantalla.DataBind();
+            //  gdv_Pantalla.DataSource = sqlData.
+
+            // gdv_Pantalla.DataBind();
         }
+
+        protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void cargarListaInvitar() {
+
+            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            gdv_Invitar.DataKeyNames = new string[] { "id" };
+            gdv_Invitar.DataBind();
+        }
+
     }
 }

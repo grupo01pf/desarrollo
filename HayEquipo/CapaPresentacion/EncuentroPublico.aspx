@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPublico.aspx.cs" Inherits="CapaPresentacion.EncuentroPublico" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPublico.aspx.cs" Inherits="CapaPresentacion.EncuentroPublico" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -22,14 +22,25 @@
         .Estilotable {
             border-collapse: collapse;
         }
+        .scroll-container {
+
+            display: block;
+            height = 500px;
+            overflow-y: scroll;
+        }
+
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="w3-panel w3-black w3-bottombar w3-border-blue w3-border">
+
+
+      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+
     <h1 class="titulo">Encuentro</h1>
   </div>
-    
+
     <%--<div class="jumbotron text-center" style="background-color: black">--%>
     <div class="container text-center">
         <div class="row">
@@ -64,7 +75,7 @@
                         <asp:Label ID="txt_NombreLugar" runat="server" Text="Lugar"></asp:Label>
                         <asp:Label ID="Label4" runat="server" Text=" &#183; "></asp:Label>
                         <asp:Label ID="txt_Direccion" runat="server" Text="Direccion"></asp:Label>
-                    </div>                  
+                    </div>
                     <div class="alinearIzquiera elPadding">
                         <i class="fa fa-male"></i>
                         <i class="fa fa-male"></i>
@@ -81,6 +92,21 @@
                     <legend>Lista de Participantes</legend>
                     <div class="panel panel-primary">
                         <div class="panel-heading">Nombre de usuario</div>
+
+
+                        <%-- Lista Jugadores --%>
+
+
+                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+
+                            <div class="scroll-container">
+
+
+
+
+
                         <div class="panel-body">
                             <asp:GridView ID="gdv_UsuariosUnidos" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large" runat="server" AutoGenerateColumns="false">
                                 <Columns>
@@ -89,8 +115,21 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                    </div>
 
+
+
+
+                                  </div>
+
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+                                <%-- ************************************ --%>
+
+
+                    </div>
 
 
                     <%--BOTONES --%>
@@ -99,7 +138,73 @@
                         <br />
                         <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" Width="30%"/>
                         <br />
-                        <asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" Width="30%"/>
+
+
+
+
+                         <%--<asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" Width="30%"/>--%>
+
+
+
+                        <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                            data-toggle="modal" data-target="#exampleModalScrollable"  visible="true">
+                            Invitar
+                        </button>
+                        <%--MODAL--%>
+
+                        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                            aria-hidden="false">
+                            <%--data-backdrop="static" data-keyboard="false">--%>
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                            <strong>
+                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <center>
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" >
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <HeaderTemplate>
+                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
+                                                                <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
+                                                            </HeaderTemplate>
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server" OnCheckedChanged="chk_Invitar_CheckedChanged" />
+                                                                 </ItemTemplate>
+
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="id" HeaderText="idUsuario" Visible="false" />
+                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
+
+                                                    </Columns>
+                                                </asp:GridView>
+                                              <%--  </center>--%>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Invitar</button>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <%--FIN MODAL--%>
                     </div>
                 </div>
             </div>
@@ -114,20 +219,26 @@
                        <%--AJAX--%>
 
 
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
 
-                            <div class="w3-responsive">
-                            <asp:GridView ID="gdv_Pantalla" CssClass="w3-table-all w3-card-4" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gdv_Pantalla_SelectedIndexChanged" >
+
+                            <div class="scroll-container">
+
+                            <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
+                                HeaderStyle-ForeColor="White"  BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
+                                EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large"  >
                                 <Columns>
                                     <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                     <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
                                     <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                                 </Columns>
                             </asp:GridView>
-                            </div>
+
+                                </div>
+
                             <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>

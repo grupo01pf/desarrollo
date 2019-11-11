@@ -103,15 +103,43 @@
             height: 340px;
             overflow-y: scroll;
         }
+
+
+        .notification {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            .notification:hover {
+                background: green;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+            }
+
+
+
     </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       
 
-  
-<div class="container text-center">    
+
+
+<div class="container text-center">
 
   <div class="row">
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
@@ -120,7 +148,17 @@
          <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
         <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
       </div>
-      
+
+
+        <%-- INVITACIONES --%>
+
+         <%--<a href="#" class="notification">--%>
+        <div class="well">
+        <span><asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" /></span>
+         <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
+      <%--  </a> --%>
+         </div>
+
       <div class="alert alert-success fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
         <p><strong>Ey!</strong></p>
@@ -136,18 +174,20 @@
            <asp:Repeater ID="DeportistasRepeater" runat="server">
            <ItemTemplate>
               <%--  <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
-               --%>   <asp:Label runat="server" text='<%#Eval("nombres") %>'></asp:Label> <asp:Label runat="server" text='<%#Eval("apellido") %>'> </asp:Label>                     
+               --%>   <asp:Label runat="server" text='<%#Eval("nombres") %>'></asp:Label> <asp:Label runat="server" text='<%#Eval("apellido") %>'> </asp:Label>
                <asp:LinkButton runat="server" CommandName="btnVerPerfil" CommandArgument='<%#Eval("idDeportista") %>' text="Ver Perfil" Class="w3-button w3-block w3-black" ></asp:LinkButton>
                </ItemTemplate>
                </asp:Repeater>
 
        </div>
 
+        <%-- FIN INVITACIONES --%>
+
     </div>
     <div class="col-sm-8" <%--style="background-color:#d7dbd3;"--%>>
-    
+
       <div class="row">
-          
+
         <div class="col-sm-12">
           <div class="panel panel-default text-left">
             <div class="panel-body">
@@ -171,7 +211,7 @@
           <a href="https://www.adidas.com.ar">
         <img src="Imagenes/adidas.jpg" width="1000" height="1500"></a>
       </div>
-    
+
       <div class="item">
           <a href="https://www.nike.com">
         <img src="Imagenes/nike.jpg" width="1000" height="1500"></a>
@@ -191,7 +231,7 @@
               <%--<p contenteditable="true">ADS</p>
               <button type="button" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-thumbs-up"></span> Like
-              </button>  --%>   
+              </button>  --%>
             </div>
           </div>
         </div>
@@ -205,45 +245,45 @@
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
-          </span>        
+          </span>
         </div>
-      
-        
+
+
           <div class="well">
-            
+
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
                      <b>Encuentros Vigentes</b></h1>
                     </div>
            <%--<h3 class="round3">Encuentros Vigentes</h3>--%>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
-             
+
               <%-- GRILLA LUGARES PUBLICOS --%>
-               
+
                   <%-- <div id="myDIV">
                     <div class="table-responsive">
                   <asp:GridView ID="gdv_EncuentrosDisponibles" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                  HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                 OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged">
                                 <Columns>
-                                    <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
+                                    <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
-                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
+                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />
                                     <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" NullDisplayText="---" />
                                     <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" NullDisplayText="---" />
-                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
+                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>
                                     <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
-                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  
+                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />
                                     <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="false" />
 
                                 </Columns>
                             </asp:GridView>
-                    
+
               </div>
               </div>--%>
   <div class="scroll-container">
-     
+
      <asp:Repeater ID="encuentrosRepeater" runat="server">
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
@@ -251,7 +291,7 @@
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
        <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
-         
+
          <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>
       <div class="w3-container">
@@ -266,10 +306,10 @@
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-map-marker"></span>
-                  <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>           
-                  <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>  
-                  <br />  
-                  <br />             
+                  <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("nombreLP") %>'> </asp:Label><asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("direccion") %>'></asp:Label><asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>
+                  <br />
+                  <br />
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-eye-open"></span>
@@ -284,25 +324,25 @@
                   <asp:Label runat="server" text='<%#Eval("nombreEstado") %>'></asp:Label>
               </div>
           </div>
-                 
+
       <%--</p>--%>
           <%--<hr />--%>
-      
+
         <%--<p>--%>
-          
+
           <%--<asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label><br />--%>
-          
+
       </p>
-      <br />  
+      <br />
     </div>
-   
-         
+
+
       <%--<asp:LinkButton runat="server" CommandName="evaluartipo" CommandArgument='<%#Eval("tipoEncuentro") %>' Visible="false"></asp:LinkButton>--%>
       <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Unirse al encuentro" Class="w3-button w3-block w3-black" ></asp:LinkButton>
-      </div>   
+      </div>
            </div><br />
             </ItemTemplate>
-     </asp:Repeater>    
+     </asp:Repeater>
 
  </div>
     </div>
@@ -315,12 +355,12 @@
         <p>Viernes 30 de Agosto a las 20 hs. </p>
         <button class="btn btn-primary">Info</button>
       </div>
-        <a href="https://www.latam.com/es_ar/">      
+        <a href="https://www.latam.com/es_ar/">
       <div class="well">
-        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>                            
-          <img src="Imagenes/publicidadLatam.png" class="img-responsive" width="460" height="460">       
+        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>
+          <img src="Imagenes/publicidadLatam.png" class="img-responsive" width="460" height="460">
           <hr />
-        <p style="font-size:12px;">          
+        <p style="font-size:12px;">
             <strong>¡40% extra en acumulación de millas!</strong>
             <%--<br />
             <br />
@@ -332,10 +372,10 @@
       </div></a>
         <a href="https://www.newbalance.com.ar">
       <div class="well">
-        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>                            
-          <img src="Imagenes/publicidadNewBalance.jpg" class="img-responsive" width="460" height="345">       
+        <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>
+          <img src="Imagenes/publicidadNewBalance.jpg" class="img-responsive" width="460" height="345">
           <hr />
-        <p style="font-size:12px;">          
+        <p style="font-size:12px;">
             <strong>Descuento del 40% ingresando a través de este enlace</strong>
             <%--<br />
             <br />
@@ -351,7 +391,7 @@
           <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button">Olé</a>
           <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button">Mundo D</a>
           <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button">Agencia<br /> Córdoba<br /> Deportes</a>
-          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>         
+          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>
         </p>
       </div>
     </div>
@@ -369,6 +409,3 @@ $(document).ready(function(){
 });
 </script>--%>
 </asp:Content>
-
-
-

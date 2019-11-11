@@ -3,15 +3,15 @@
 //     Este código fue generado por una herramienta.
 //
 //     Los cambios en este archivo podrían causar un comportamiento incorrecto y se perderán si
-//     se vuelve a generar el código. 
+//     se vuelve a generar el código.
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
 namespace CapaPresentacion {
-    
-    
+
+
     public partial class PerfilDeportistas {
-        
+
         /// <summary>
         /// Control link_nombreUsuario2.
         /// </summary>
@@ -20,7 +20,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton link_nombreUsuario2;
-        
+
         /// <summary>
         /// Control Image1.
         /// </summary>
@@ -29,7 +29,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image1;
-        
+
         /// <summary>
         /// Control FileUploadAvatar.
         /// </summary>
@@ -38,7 +38,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUploadAvatar;
-        
+
         /// <summary>
         /// Control btn_guardarImagen.
         /// </summary>
@@ -47,7 +47,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_guardarImagen;
-        
+
         /// <summary>
         /// Control btn_CambiarImagen.
         /// </summary>
@@ -56,7 +56,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_CambiarImagen;
-        
+
         /// <summary>
         /// Control lblestado.
         /// </summary>
@@ -65,7 +65,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblestado;
-        
+
         /// <summary>
         /// Control datos.
         /// </summary>
@@ -74,7 +74,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl datos;
-        
+
         /// <summary>
         /// Control calif.
         /// </summary>
@@ -83,7 +83,16 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl calif;
-        
+
+        /// <summary>
+        /// Control lbl_Notificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Notificacion;
+
         /// <summary>
         /// Control lbl_Nombres.
         /// </summary>
@@ -92,7 +101,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Nombres;
-        
+
         /// <summary>
         /// Control txt_Nombres.
         /// </summary>
@@ -101,7 +110,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Nombres;
-        
+
         /// <summary>
         /// Control lbl_Apellidos.
         /// </summary>
@@ -110,7 +119,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Apellidos;
-        
+
         /// <summary>
         /// Control txt_Apellidos.
         /// </summary>
@@ -119,7 +128,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Apellidos;
-        
+
         /// <summary>
         /// Control lbl_TipoDocumento.
         /// </summary>
@@ -128,7 +137,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_TipoDocumento;
-        
+
         /// <summary>
         /// Control ddl_TipoDocumento.
         /// </summary>
@@ -137,7 +146,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_TipoDocumento;
-        
+
         /// <summary>
         /// Control lbl_NumeroDocumento.
         /// </summary>
@@ -146,7 +155,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_NumeroDocumento;
-        
+
         /// <summary>
         /// Control txt_NumeroDocumento.
         /// </summary>
@@ -155,7 +164,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_NumeroDocumento;
-        
+
         /// <summary>
         /// Control lbl_Sexo.
         /// </summary>
@@ -164,7 +173,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Sexo;
-        
+
         /// <summary>
         /// Control txt_Sexo.
         /// </summary>
@@ -173,7 +182,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sexo;
-        
+
         /// <summary>
         /// Control lbl_FechaNacimiento.
         /// </summary>
@@ -182,7 +191,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_FechaNacimiento;
-        
+
         /// <summary>
         /// Control txt_FechaNacimiento.
         /// </summary>
@@ -191,7 +200,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_FechaNacimiento;
-        
+
         /// <summary>
         /// Control lbl_Telefono.
         /// </summary>
@@ -200,7 +209,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Telefono;
-        
+
         /// <summary>
         /// Control txt_Telefono.
         /// </summary>
@@ -209,7 +218,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Telefono;
-        
+
         /// <summary>
         /// Control btnGuardar.
         /// </summary>
@@ -218,7 +227,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
+
         /// <summary>
         /// Control btnCambiar.
         /// </summary>
@@ -227,7 +236,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCambiar;
-        
+
         /// <summary>
         /// Control btnActualizar.
         /// </summary>
@@ -236,7 +245,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnActualizar;
-        
+
         /// <summary>
         /// Control lblmsj.
         /// </summary>
@@ -245,7 +254,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsj;
-        
+
         /// <summary>
         /// Control gdv_EncuentrosDeportista.
         /// </summary>
@@ -254,7 +263,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdv_EncuentrosDeportista;
-        
+
         /// <summary>
         /// Control RadioButtonList1.
         /// </summary>
@@ -263,7 +272,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
-        
+
         /// <summary>
         /// Control lblmsjrb1.
         /// </summary>
@@ -272,7 +281,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb1;
-        
+
         /// <summary>
         /// Control RadioButtonList2.
         /// </summary>
@@ -281,7 +290,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
-        
+
         /// <summary>
         /// Control lblmsjrb2.
         /// </summary>
@@ -290,7 +299,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb2;
-        
+
         /// <summary>
         /// Control RadioButtonList3.
         /// </summary>
@@ -299,7 +308,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList3;
-        
+
         /// <summary>
         /// Control lblmsjrb3.
         /// </summary>
@@ -308,7 +317,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb3;
-        
+
         /// <summary>
         /// Control RadioButtonList4.
         /// </summary>
@@ -317,7 +326,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList4;
-        
+
         /// <summary>
         /// Control lblmsjrb4.
         /// </summary>
@@ -326,16 +335,17 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb4;
-        
+
         /// <summary>
         /// Control ddl_anios.
+        /// Control gdv_Notificaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_anios;
-        
+
         /// <summary>
         /// Control ddl_aniosregistros.
         /// </summary>
@@ -344,7 +354,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_aniosregistros;
-        
+
         /// <summary>
         /// Control CrystalReportViewer1.
         /// </summary>
@@ -353,7 +363,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
-        
+
         /// <summary>
         /// Control CrystalReportSource1.
         /// </summary>
@@ -362,5 +372,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::CrystalDecisions.Web.CrystalReportSource CrystalReportSource1;
+        protected global::System.Web.UI.WebControls.GridView gdv_Notificaciones;
     }
 }

@@ -580,6 +580,19 @@
     <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="idDeportista" Type="Int32" />
   </EntityType>
+  <EntityType Name="Notificacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmisor" Type="Int32" />
+    <Property Name="nombreEmisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idReceptor" Type="Int32" />
+    <Property Name="nombreReceptor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEncuentro" Type="Int32" />
+    <Property Name="texto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Int32" />
+  </EntityType>
   <EntityType Name="Reserva">
     <Key>
       <PropertyRef Name="id" />
@@ -1354,6 +1367,7 @@
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
+    <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
@@ -1641,6 +1655,11 @@
     <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
+      <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+      <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+      <Parameter Name="texto" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
       <Parameter Name="usuario" Mode="In" Type="String" />
     </FunctionImport>
@@ -1648,6 +1667,9 @@
       <Parameter Name="fecha" Mode="In" Type="DateTime" />
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
       <Parameter Name="idEstado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UsuarioDao_ObtenerUsuarios" ReturnType="Collection(HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_UsuarioDao_UsuariosUnidosEncuentro" ReturnType="Collection(String)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
@@ -1760,6 +1782,10 @@
     <Property Type="DateTime" Name="fechaHora" Nullable="true" Precision="16" />
     <Property Type="String" Name="texto" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="idMensaje" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result">
     <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />

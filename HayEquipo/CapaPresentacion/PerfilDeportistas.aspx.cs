@@ -17,7 +17,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             link_nombreUsuario2.Text = Session["Usuario"].ToString();
             if (UsuarioDao.existeImagen(Session["ID"].ToString()) != false)
             {
@@ -36,13 +36,15 @@ namespace CapaPresentacion
             {
                 cargarTipoDocumento();
             }
-           
+
             gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["ID"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
             ReporteDeportesxFecha();
 
+            actualizarNotificaciones();
+            mostrarNotificaciones();
         }
 
         private void cargarTipoDocumento()
@@ -112,7 +114,7 @@ namespace CapaPresentacion
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
             lblmsj.Text = "Datos Guardados Exitosamente";
-           
+
 
         }
         protected void btnCambiar_Click(object sender, EventArgs e)
@@ -179,7 +181,7 @@ namespace CapaPresentacion
             {
                 lblestado.Text = "Coloque un Archivo de imagen valido";
             }
-           
+
         }
         protected void btnCambiarImagen_Click(object sender, EventArgs e)
         {
@@ -312,7 +314,7 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){ 
+            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){
             RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())));
             foreach (ListItem item in RadioButtonList4.Items)
             {
@@ -330,7 +332,7 @@ namespace CapaPresentacion
             }
         }
 
- 
+
 
         public string obtenerDatosBar()
         {
@@ -338,7 +340,7 @@ namespace CapaPresentacion
             Datos.Columns.Add(new DataColumn("Mes",typeof(string)));
             Datos.Columns.Add(new DataColumn("Jugados", typeof(string)));
             Datos.Columns.Add(new DataColumn("Organizados", typeof(string)));
-          
+
 
             Datos.Rows.Add(new object[] { "Ene.", Estadisticas.obtenerCantidadPartidos("01", Session["ID"].ToString(),ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("01", Session["ID"].ToString(), ddl_anios.Text) });
             Datos.Rows.Add(new object[] { "Feb.", Estadisticas.obtenerCantidadPartidos("02", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("02", Session["ID"].ToString(), ddl_anios.Text) });
@@ -361,7 +363,7 @@ namespace CapaPresentacion
                 strDatos = strDatos + "'" + dr[0] + "'" + "," +
                     dr[1].ToString().Replace(",", ".") + "," +
                      dr[2].ToString().Replace(",", ".");
-                    
+
                 strDatos = strDatos + "],";
             }
             strDatos = strDatos + "],";
@@ -373,7 +375,7 @@ namespace CapaPresentacion
             DataTable Datos = new DataTable();
             Datos.Columns.Add(new DataColumn("Mes", typeof(string)));
             Datos.Columns.Add(new DataColumn("Usuarios", typeof(string)));
-            
+
 
 
             Datos.Rows.Add(new object[] { "Ene.", Estadisticas.obtenerCantidadUsuariosRegistrados("01",ddl_aniosregistros.Text)});
@@ -405,12 +407,98 @@ namespace CapaPresentacion
 
         public void ReporteDeportesxFecha()
         {
-            
+
            ReporteCantidadDeportesxFecha reporte = new ReporteCantidadDeportesxFecha();
             reporte.SetParameterValue("@Complejo",1);
             CrystalReportViewer1.ReportSource = reporte;
 
         }
+
+        protected void gdv_Notificaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow fila = gdv_Notificaciones.SelectedRow;
+           // string idEncuentro = fila.Cells[4].Text;
+            // int id = int.Parse(fila.Cells[4].Text);
+            string idEncuentro = Convert.ToString(fila.RowIndex);
+            int id = fila.RowIndex;
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            int[] idEncuentrosDeportivos = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idEncuentrosDeportivos[i] = n.idEncuentro;
+                i++;
+            }
+            idEncuentro = idEncuentrosDeportivos[id].ToString();
+
+            int idNotif = int.Parse(gdv_Notificaciones.SelectedDataKey.Value.ToString());
+            NotificacionDao.actualizarEstadoNotificacion(9, idNotif);
+
+            Session["idEncuentro"] = idEncuentrosDeportivos[id];
+
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
+            {
+                //  Session["idEncuentro"] = id;
+               // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPrivado.aspx");
+            }
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
+            {
+                //  Session["idEncuentro"] = id;
+               // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPublico.aspx");
+            }
+
+
+
+
+        }
+
+        private void actualizarNotificaciones()
+        {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
+        }
+
+        private void mostrarNotificaciones() {
+
+            gdv_Notificaciones.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            gdv_Notificaciones.DataKeyNames = new string[] { "idNotificacion" };
+            gdv_Notificaciones.DataBind();
+
+        }
+
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+
+
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+
+            int[] idNotificaciones = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idNotificaciones[i] = n.idNotificacion;
+                i++;
+            }
+
+            i = 0;
+
+
+            foreach (GridViewRow fila in gdv_Notificaciones.Rows)
+            {
+
+                if ((fila.Cells[0].FindControl("chk_Eliminar") as CheckBox).Checked)
+                {
+
+                    NotificacionDao.actualizarEstadoNotificacion(11,idNotificaciones[i]);
+
+                }
+                i++;
+            }
+
+        }
+
 
     }
 }

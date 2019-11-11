@@ -31,16 +31,18 @@ namespace CapaPresentacion
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
             }
-         
+
             encuentrosRepeater.DataSource = ObtenerEncuentros();
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
 
-            DeportistasRepeater.DataSource = ObtenerDeportistas();
-            DeportistasRepeater.DataBind();
-            DeportistasRepeater.ItemCommand += new RepeaterCommandEventHandler(DeportistasRepeater_ItemCommand);
+            actualizarNotificaciones();
 
+        }
 
+        private void actualizarNotificaciones() {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
         }
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -51,9 +53,11 @@ namespace CapaPresentacion
                 int id = int.Parse(idEncuentro);
 
                 Session["idEncuentro"] = id;
+
+                Session["idEncuentro"] = id;
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    // Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    //  Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
                     Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
@@ -62,7 +66,7 @@ namespace CapaPresentacion
                     Response.Redirect("EncuentroPrivado.aspx");
                 }
 
-                }
+            }
         }
 
         void DeportistasRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -73,9 +77,9 @@ namespace CapaPresentacion
                 //int id = int.Parse(idDeportista);
 
                 //Session["ID"] = id;
-               
+
                 Response.Redirect("PerfilOtrosDeportistas.aspx?Id=" + idDeportista);
-               
+
             }
         }
 
@@ -155,17 +159,17 @@ namespace CapaPresentacion
 
 
         //}
-         
+
         public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
         {
             List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosConImagenes();
+            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
             //var q = from p in contexto.EncuentroDeportivo
             //        select p;
             //return q.ToList();
             return encuentro;
         }
-        
+
        public List<DeportistaEntidad> ObtenerDeportistas()
         {
             List<DeportistaEntidad> Deportistas = new List<DeportistaEntidad>();
@@ -175,6 +179,9 @@ namespace CapaPresentacion
 
 
 
-
+        protected void btn_Notificacion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PerfilDeportistas.aspx");
+        }
     }
 }

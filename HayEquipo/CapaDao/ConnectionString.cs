@@ -32,7 +32,7 @@ namespace CapaDao
 
             //*****Nico_BD
 
-            //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+            string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
             //string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=SA;Password=taninga1643";
