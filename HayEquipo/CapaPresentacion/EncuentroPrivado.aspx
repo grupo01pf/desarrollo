@@ -368,8 +368,11 @@
                                                            <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
                                                                  </HeaderTemplate>                                                        
                                                             <ItemTemplate>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" AutoPostBack="false"/>
-                                                                 </ItemTemplate>                                                              
+                                                                <center>
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
+                                                                    AutoPostBack="false"/>
+                                                                 </center>
+                                                                    </ItemTemplate>                                                              
                                                              
                                                         </asp:TemplateField> 
                                                         <asp:BoundField DataField="id" HeaderText="" Visible="false" />
