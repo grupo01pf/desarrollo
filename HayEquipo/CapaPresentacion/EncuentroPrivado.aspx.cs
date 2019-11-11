@@ -163,12 +163,12 @@ namespace CapaPresentacion
             List<Usuario> listaUsuariosEuqipoA = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
             if (listaUsuariosEuqipoA.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+              //  lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 equipoA = listaUsuariosEuqipoA.Count;
             }
             else {
                 equipoA = listaUsuariosEuqipoA.Count;
-                lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+               // lbl_CantidadEquipoA.Text = listaUsuariosEuqipoA.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_UnirseEquipoA.Enabled = false;
                 // actualizar estado
                 int estado = 8; // (COMPLETO)
@@ -182,12 +182,12 @@ namespace CapaPresentacion
             List<Usuario> listaUsuariosEquipoB = UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString()));
             if (listaUsuariosEquipoB.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+               // lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 equipoB = listaUsuariosEquipoB.Count;
             }
             else {
                 equipoB = listaUsuariosEquipoB.Count;
-                lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
+                //lbl_CantidadEquipoB.Text = listaUsuariosEquipoB.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_UnirseEquipoB.Enabled = false;
                 int estado = 8; // (COMPLETO)
                 EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);

@@ -16,14 +16,9 @@ namespace CapaEntidades
     {
         public int id { get; set; }
         public Nullable<int> idDeportistaValorado { get; set; }
+        public int idUsuarioValorador { get; set; }
         public Nullable<int> idComplejoValorado { get; set; }
-        public Nullable<int> idUsuarioValorador { get; set; }
-        public Nullable<int> valoracion1 { get; set; }
-        public Nullable<int> idTipoValoracion { get; set; }
-    
-        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
-        public virtual Deportista Deportista { get; set; }
-        public virtual TipoValoracion TipoValoracion { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public Nullable<int> Valoracion1 { get; set; }
+        public int idTipoValoracion { get; set; }
     }
 }

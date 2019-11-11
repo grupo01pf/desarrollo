@@ -15,10 +15,9 @@ namespace CapaEntidades
     public partial class ReseñaComplejo
     {
         public int id { get; set; }
-        public string reseña { get; set; }
-        public Nullable<int> idComplejoValorado { get; set; }
-        public Nullable<int> idUsuarioValorador { get; set; }
-    
-        public virtual Usuario Usuario { get; set; }
+        public int idUsuarioValorador { get; set; }
+        public int idComplejoValorado { get; set; }
+        public string Reseña { get; set; }
+        public Nullable<System.DateTime> fechaReseña { get; set; }
     }
 }

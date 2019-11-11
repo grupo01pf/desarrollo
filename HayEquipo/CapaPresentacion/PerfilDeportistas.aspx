@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PerfilDeportistas.aspx.cs" Inherits="CapaPresentacion.PerfilDeportistas" %>
 
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
             .mydatagrid
@@ -109,7 +113,80 @@ input[type="radio"]:checked ~ label {
 
 
     </style>
+
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Mes');
+          data.addColumn('number', 'Jugados');
+          data.addColumn('number', 'Organizados');
+          data.addRows(<%=this.obtenerDatosBar()%>);
+
+        var options = {
+          chart: {
+            title: 'Partidos Jugados y Organizados',
+           
+          },
+          
+            hAxis:{
+                title: "Fecha",
+                format: 'M/d/yy',
+            },
+            vAxis: {
+                title: "Partidos",
+                minValue: 0,
+                maxValue: 100,
+               
+                
+        }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+        
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Mes');
+          data.addColumn('number', 'Usuarios');
+          data.addRows(<%=this.obtenerDatosBarUsuariosRegistrados()%>);
+
+        var options = {
+          chart: {
+            title: 'Usuarios Registrados',
+            bars: 'horizontal'
+          },
+          
+            hAxis:{
+                title: "Fecha",
+                format: 'M/d/yy',
+            },
+            vAxis: {
+                title: "Cantidad de Usuarios Registrados",
+                minValue: 0,
+                maxValue: 100,
+               
+                
+        }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
 </asp:Content>
+
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -141,6 +218,9 @@ input[type="radio"]:checked ~ label {
     <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
     <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
     <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
+    <li><a data-toggle="tab" href="#menu4">Usuarios Registrados</a></li>
+    <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>
+
   </ul>
         <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
@@ -273,6 +353,48 @@ input[type="radio"]:checked ~ label {
              
             </div>
    </div>
+            <div id="menu3" class="fade">
+              <div class="table-responsive">
+                <asp:DropDownList ID="ddl_anios" runat="server" Width="150px" AutoPostBack="true"   >
+                                    <asp:ListItem Text="2019" Value="2019" />
+                                    <asp:ListItem Text="2018" Value="2018" />
+                                    
+                              
+                                </asp:DropDownList>
+                 <div id="barchart_material" style="width:100%; height: 500px;"></div>
+                  
+
+                   </div>
+               
+                </div>
+             <div id="menu4" class="fade">
+              <div class="table-responsive">
+                <asp:DropDownList ID="ddl_aniosregistros" runat="server" Width="150px" AutoPostBack="true"   >
+                                    <asp:ListItem Text="2019" Value="2019" />
+                                    <asp:ListItem Text="2018" Value="2018" />
+                                    
+                              
+                                </asp:DropDownList>
+                 <div id="columnchart_material" style="width:100%; height: 500px;"></div>
+
+
+                   </div>
+               
+                </div>
+             <div id="menu5" class=" fade">
+              <div class="table-responsive">
+                
+                  <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" DisplayToolbar="False" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" ToolPanelView="None" ReuseParameterValuesOnRefresh="True" />
+
+                      <br />
+                  <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
+                      <Report FileName="ReporteCantidadDeportesxFecha.rpt">
+                      </Report>
+                  </CR:CrystalReportSource>
+
+                      </div>
+               
+                </div>
             </div>
                 </div>
           

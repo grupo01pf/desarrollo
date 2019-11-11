@@ -8,6 +8,8 @@ namespace CapaEntidades
 {
     public class EncuentroDeportivoQueryEntidad
     {
+        // cantidad de partidos para reporte
+        public int cantidadPartidosxDeporte { get; set; }
 
         // Encuentro Deportivo
 

@@ -67,6 +67,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CanchaEntidad.cs" />
+    <Compile Include="CanchasPorComplejos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="CanchasPorComplejosEntidad.cs" />
     <Compile Include="CanchasPorHorarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -205,13 +208,7 @@
     <Compile Include="spObtenerComplejosJoin_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="spObtenerComplejosOrdenValor_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="spObtenerComplejosPorNomb_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="spObtenerServiciosPorComplejos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Sponsor.cs">
@@ -246,6 +243,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoCanchaEntidad.cs" />
+    <Compile Include="TipoComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoComplejoEntidad.cs" />
     <Compile Include="TipoDeporte.cs">
       <DependentUpon>Model1.tt</DependentUpon>
