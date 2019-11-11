@@ -30,7 +30,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+      
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
@@ -73,10 +73,10 @@
                         <%--<span class="glyphicon glyphicon-search"></span>--%>
                         <%--<asp:LinkButton ID="LinkButton1" runat="server">Ver Info del Complejo</asp:LinkButton>--%>
                         <%--Al darle click al linkbutton debería mostrar un modal con los datos del complejo: mapa, reputación, servicios, etc.--%>
-
+                        
                           <%--MODAL COMPLEJO--%>
 
-
+                        
                                 <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
                                     data-toggle="modal" data-target="#exampleModalScrollable2"
                                      visible="true"  >
@@ -167,9 +167,9 @@
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </div>
-
+                                            
                                             </div>
-
+                                                                                 
                                            </div>
 
                                       <%-- ****MAPA**** --%>
@@ -239,11 +239,11 @@
 
                                 <%-- ********* Equipo A *********** --%>
 
-
+                                      
                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
-
+                        
                             <div class="scroll-container">
 
 
@@ -256,13 +256,11 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
                                         </Columns>
                                     </asp:GridView>
-                                        <br />
-                                        <asp:Label ID="lbl_CantidadEquipoA" runat="server" Text="Label"></asp:Label>
                                 </div>
 
 
 
-
+                                
                                   </div>
 
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
@@ -274,7 +272,7 @@
 
 
                                 <%-- ************************************ --%>
-
+                                    
                                     </div>
 
 
@@ -289,11 +287,11 @@
 
                                  <%-- ************** Equipo B ************* --%>
 
-
+                                                       
                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
-
+                        
                             <div class="scroll-container">
 
 
@@ -306,12 +304,9 @@
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
                                         </Columns>
                                     </asp:GridView>
-                                        <br />
-                                    <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text="Label"></asp:Label>
-
                                 </div>
 
-
+                                
                                   </div>
 
                             <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
@@ -323,7 +318,7 @@
 
                                  <%-- ************************* --%>
 
-
+                                
                                 <%--    </div>--%>
 
 
@@ -337,7 +332,7 @@
                     <%--<asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" />--%>
                     <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger"/>
 
-
+                        
                         <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                             data-toggle="modal" data-target="#exampleModalScrollable"  visible="true">
                             Invitar
@@ -371,20 +366,20 @@
                                                             <HeaderTemplate>
                                                                 <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
                                                            <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
-                                                                 </HeaderTemplate>
+                                                                 </HeaderTemplate>                                                        
                                                             <ItemTemplate>
                                                                 <center>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged"
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
                                                                     AutoPostBack="false"/>
                                                                  </center>
-                                                                    </ItemTemplate>
-
-                                                        </asp:TemplateField>
+                                                                    </ItemTemplate>                                                              
+                                                             
+                                                        </asp:TemplateField> 
                                                         <asp:BoundField DataField="id" HeaderText="" Visible="false" />
                                                         <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
-
+                                                                                                                
                                                     </Columns>
-                                                </asp:GridView>
+                                                </asp:GridView>   
                                                 </center>
                                     </div>
                                     <div class="modal-footer">
@@ -415,7 +410,7 @@
             <div class="col-sm-4">
                 <div class="well">
 
-
+                    
                     <%--CHAT--%>
                     <legend>Chat</legend>
 
@@ -426,7 +421,7 @@
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
-
+                        
                             <div class="scroll-container">
 
 
@@ -439,7 +434,7 @@
                                 <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
                             </Columns>
                         </asp:GridView>
-
+                    
 
                                   </div>
 
@@ -468,3 +463,6 @@
         </div>--%>
     </div>
 </asp:Content>
+
+
+

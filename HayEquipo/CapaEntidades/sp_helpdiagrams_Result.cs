@@ -10,14 +10,13 @@
 namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class FotosComplejo
+    public partial class sp_helpdiagrams_Result
     {
-        public int id { get; set; }
-        public byte[] imagen { get; set; }
-        public Nullable<int> idComplejo { get; set; }
-    
-        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

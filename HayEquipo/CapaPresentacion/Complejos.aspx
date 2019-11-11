@@ -66,6 +66,7 @@
                 <br />
             </div>
 
+            <asp:Panel ID="pnl_PanelBuscar" runat="server" DefaultButton="btnBuscar">
             <div class="col-sm-4">
         <asp:TextBox ID="txtBuscar" placeholder="Buscar Complejo" CssClass="form-control" runat="server" ></asp:TextBox>
       <%--  <asp:RequiredFieldValidator ID="rvfBuscar"
@@ -81,6 +82,7 @@
         <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-primary" OnClick="btnBuscar_Click" Text="Buscar" Width="140px" />
             </div>
             </div>
+            </asp:Panel>
 
             <div class="alinearDerecha">
             <div class="col-sm-2">

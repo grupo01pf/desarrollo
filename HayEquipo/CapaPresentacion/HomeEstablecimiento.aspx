@@ -108,7 +108,7 @@
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
-                  <asp:Label runat="server" text="Acá se dice se tiene cupo o no"></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("nombreEstado") %>'></asp:Label>
               </div>
           </div>         
       </p>

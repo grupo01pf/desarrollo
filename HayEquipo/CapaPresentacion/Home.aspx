@@ -159,27 +159,26 @@
       <%--  </a> --%>
          </div>
 
-      <div class="alert alert-success fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-        <p><strong>Ey!</strong></p>
-        Tienes una invitación de Juan Perez. <p><strong>Ver Invitación</strong></p>
+      <div class="well">
+        <p><a href="#">Algunos links que te pueden interesar...</a></p>
+        <p>
+          <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button">Olé</a>
+          <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button">Mundo D</a>
+          <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button">Agencia<br /> Córdoba<br /> Deportes</a>
+          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>
+        </p>
       </div>
-         <div class="alert alert-success fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-        <p><strong>Ey!</strong></p>
-        Tienes una invitación de Pedro García. <p><strong>Ver Invitación</strong></p>
-      </div>
-       <div class="well">
+      <%-- <div class="well">
            <h3>Deportistas</h3>
            <asp:Repeater ID="DeportistasRepeater" runat="server">
-           <ItemTemplate>
+           <ItemTemplate>--%>
               <%--  <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
-               --%>   <asp:Label runat="server" text='<%#Eval("nombres") %>'></asp:Label> <asp:Label runat="server" text='<%#Eval("apellido") %>'> </asp:Label>
+               --%>  <%-- <asp:Label runat="server" text='<%#Eval("nombres") %>'></asp:Label> <asp:Label runat="server" text='<%#Eval("apellido") %>'> </asp:Label>
                <asp:LinkButton runat="server" CommandName="btnVerPerfil" CommandArgument='<%#Eval("idDeportista") %>' text="Ver Perfil" Class="w3-button w3-block w3-black" ></asp:LinkButton>
                </ItemTemplate>
                </asp:Repeater>
 
-       </div>
+       </div>--%>
 
         <%-- FIN INVITACIONES --%>
 
@@ -290,7 +289,7 @@
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-       <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
+       <%--<img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>--%>
 
          <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>
@@ -300,6 +299,7 @@
           <div class="row">
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
                   <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
                   <br />
                   <br />
@@ -385,15 +385,7 @@
             ABRIR ENLACE >
         </div>
       </div></a>
-        <div class="well">
-        <p><a href="#">Algunos links que te pueden interesar...</a></p>
-        <p>
-          <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button">Olé</a>
-          <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button">Mundo D</a>
-          <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button">Agencia<br /> Córdoba<br /> Deportes</a>
-          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>
-        </p>
-      </div>
+        
     </div>
       </div>
    </div>

@@ -10,15 +10,12 @@
 namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CanchasPorComplejos
+    public partial class ReporteCantidadDeportexFecha_Result
     {
-        public int id { get; set; }
-        public Nullable<int> idComplejo { get; set; }
-        public Nullable<int> idCancha { get; set; }
-    
-        public virtual Cancha Cancha { get; set; }
-        public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
+        public string Deporte { get; set; }
+        public Nullable<int> año { get; set; }
+        public string mes { get; set; }
+        public Nullable<int> CantidadPartidos { get; set; }
     }
 }

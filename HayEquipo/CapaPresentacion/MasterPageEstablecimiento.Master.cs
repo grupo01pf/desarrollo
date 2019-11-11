@@ -20,8 +20,8 @@ namespace CapaPresentacion
             //Response.Redirect("Login.aspx");
             Session["Usuario"] = String.Empty;
             Session["Rol"] = String.Empty;
-            //FormsAuthentication.SignOut();
-            //FormsAuthentication.RedirectToLoginPage();
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

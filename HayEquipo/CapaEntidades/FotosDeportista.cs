@@ -17,5 +17,7 @@ namespace CapaEntidades
         public int id { get; set; }
         public byte[] imagen { get; set; }
         public Nullable<int> idDeportista { get; set; }
+    
+        public virtual Deportista Deportista { get; set; }
     }
 }

@@ -415,26 +415,20 @@ namespace CapaDao
             while (dr.Read())
             {
                 edq = new EncuentroDeportivoQueryEntidad();
-
-        edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
                 //edq.nombreUsuario = dr["Usuario"].ToString();
-                edq.nombreUsuario = dr["Usuario"].ToString();
-        edq.nombreDeporte = dr["Deporte"].ToString();
-        edq.nombreEstado = dr["Estado"].ToString();
-        DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
-    DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
-DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
-                edq.nombreLP = dr["Lugar"].ToString();
-edq.direccion = dr["direccion"].ToString();
-edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
-edq.accesibilidad = dr["accesibilidad"].ToString();
-edq.clave = dr["clave"].ToString();
-edq.avatar = (byte[])dr["avatar"];
+                edq.nombreDeporte = dr["Deporte"].ToString();
+                edq.nombreEstado = dr["Estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
+                DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
+                edq.nombreComplejo = dr["Complejo"].ToString();
+                edq.calleComplejo = dr["calle"].ToString();
+                edq.numeroCalleComplejo = int.Parse(dr["nroCalle"].ToString());
+                edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
+                edq.accesibilidad = dr["accesibilidad"].ToString();
+                edq.clave = dr["clave"].ToString();
                 ListaEDQ.Add(edq);
-
-
-
-
             }
             dr.Close();
             cn.Close();

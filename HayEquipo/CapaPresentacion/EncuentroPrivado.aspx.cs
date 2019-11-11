@@ -371,6 +371,7 @@ namespace CapaPresentacion
                     notificacion.nombreReceptor = Session["Usuario"].ToString();
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
                     notificacion.texto = "El encuentro deportivo ha sido Cancelado";
+                    notificacion.idEstado = 10;
 
                     NotificacionDao.insertarNotificacion(notificacion);
 

@@ -22,8 +22,10 @@ namespace CapaEntidades
             this.DeportesPorDeportistas = new HashSet<DeportesPorDeportistas>();
             this.DeportistasPorEquipos = new HashSet<DeportistasPorEquipos>();
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
+            this.FotosDeportista = new HashSet<FotosDeportista>();
             this.InvitacionEncuentro = new HashSet<InvitacionEncuentro>();
             this.PosicionesPorDeportistas = new HashSet<PosicionesPorDeportistas>();
+            this.Valoracion = new HashSet<Valoracion>();
             this.ZonasPorDeportistas = new HashSet<ZonasPorDeportistas>();
         }
     
@@ -53,9 +55,13 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EncuentroDeportivo> EncuentroDeportivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FotosDeportista> FotosDeportista { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvitacionEncuentro> InvitacionEncuentro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PosicionesPorDeportistas> PosicionesPorDeportistas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Valoracion> Valoracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
     }

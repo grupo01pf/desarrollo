@@ -31,6 +31,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lblCD;
         
         /// <summary>
+        /// Control pnl_PanelBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_PanelBuscar;
+        
+        /// <summary>
         /// Control txtBuscar.
         /// </summary>
         /// <remarks>

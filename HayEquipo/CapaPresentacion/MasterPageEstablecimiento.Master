@@ -18,8 +18,9 @@
 
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <style>    
+  <%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+    <link rel="stylesheet" href="w3/w3.css">
+  <style>
     /* Set black background color, white text and some padding */
     footer {
       background-color: #000000;
