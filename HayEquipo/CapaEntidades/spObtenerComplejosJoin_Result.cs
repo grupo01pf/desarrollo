@@ -19,12 +19,9 @@ namespace CapaEntidades
         public string Deportes { get; set; }
         public string Direccion { get; set; }
         public string Barrio { get; set; }
-        public string Zona { get; set; }
         public Nullable<int> Telefono { get; set; }
         public string Responsable { get; set; }
         public Nullable<double> Valoracion { get; set; }
         public string Estado { get; set; }
-        public string Mapa { get; set; }
-        public byte[] Avatar { get; set; }
     }
 }

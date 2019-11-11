@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
 using System.Drawing;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CapaPresentacion
 {
@@ -14,6 +17,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             link_nombreUsuario2.Text = Session["Usuario"].ToString();
             if (UsuarioDao.existeImagen(Session["ID"].ToString()) != false)
             {
@@ -37,7 +41,7 @@ namespace CapaPresentacion
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
-            
+            ReporteDeportesxFecha();
 
         }
 
@@ -248,12 +252,12 @@ namespace CapaPresentacion
         //}
         public void manejarValoracion()
         {
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "1") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "1") == true)
             {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "1"));
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "1"));
                 foreach (ListItem item in RadioButtonList1.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "1") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "1") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -268,12 +272,12 @@ namespace CapaPresentacion
                 lblmsjrb1.Text = "Usted no ha sido calificado en esta seccion";
 
             }
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "2") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "2") == true)
             {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "2"));
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "2"));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "2") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "2") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -288,12 +292,12 @@ namespace CapaPresentacion
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "3") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "3") == true)
             {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "3"));
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "3"));
                 foreach (ListItem item in RadioButtonList3.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "3") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "3") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -308,11 +312,11 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if(ValoracionDao.existePromedioGeneral(Session["id"].ToString()) == true){ 
-            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(Session["id"].ToString()));
+            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){ 
+            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())));
             foreach (ListItem item in RadioButtonList4.Items)
             {
-                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(Session["id"].ToString()) && item.Text == "★")
+                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) && item.Text == "★")
                 {
                     item.Attributes.CssStyle.Add("color", "orange");
                 }
@@ -324,6 +328,88 @@ namespace CapaPresentacion
                 RadioButtonList4.Enabled = false;
                 lblmsjrb4.Text = "Usted no ha sido calificado";
             }
+        }
+
+ 
+
+        public string obtenerDatosBar()
+        {
+            DataTable Datos = new DataTable();
+            Datos.Columns.Add(new DataColumn("Mes",typeof(string)));
+            Datos.Columns.Add(new DataColumn("Jugados", typeof(string)));
+            Datos.Columns.Add(new DataColumn("Organizados", typeof(string)));
+          
+
+            Datos.Rows.Add(new object[] { "Ene.", Estadisticas.obtenerCantidadPartidos("01", Session["ID"].ToString(),ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("01", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Feb.", Estadisticas.obtenerCantidadPartidos("02", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("02", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Mar.", Estadisticas.obtenerCantidadPartidos("03", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("03", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Abr.", Estadisticas.obtenerCantidadPartidos("04", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("04", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "May.", Estadisticas.obtenerCantidadPartidos("05", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("05", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Jun.", Estadisticas.obtenerCantidadPartidos("06", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("06", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Jul.", Estadisticas.obtenerCantidadPartidos("07", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("07", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Ago.", Estadisticas.obtenerCantidadPartidos("08", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("08", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Sep.", Estadisticas.obtenerCantidadPartidos("09", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("09", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Oct.", Estadisticas.obtenerCantidadPartidos("10", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("10", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Nov.", Estadisticas.obtenerCantidadPartidos("11", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("11", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Dic.", Estadisticas.obtenerCantidadPartidos("12", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("12", Session["ID"].ToString(), ddl_anios.Text) });
+
+            string strDatos;
+            strDatos = "[";
+            foreach(DataRow dr in Datos.Rows)
+            {
+                strDatos = strDatos + "[";
+                strDatos = strDatos + "'" + dr[0] + "'" + "," +
+                    dr[1].ToString().Replace(",", ".") + "," +
+                     dr[2].ToString().Replace(",", ".");
+                    
+                strDatos = strDatos + "],";
+            }
+            strDatos = strDatos + "],";
+            return strDatos;
+        }
+
+        public string obtenerDatosBarUsuariosRegistrados()
+        {
+            DataTable Datos = new DataTable();
+            Datos.Columns.Add(new DataColumn("Mes", typeof(string)));
+            Datos.Columns.Add(new DataColumn("Usuarios", typeof(string)));
+            
+
+
+            Datos.Rows.Add(new object[] { "Ene.", Estadisticas.obtenerCantidadUsuariosRegistrados("01",ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Feb.", Estadisticas.obtenerCantidadUsuariosRegistrados("02", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Mar.", Estadisticas.obtenerCantidadUsuariosRegistrados("03", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Abr.", Estadisticas.obtenerCantidadUsuariosRegistrados("04", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "May.", Estadisticas.obtenerCantidadUsuariosRegistrados("05", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Jun.", Estadisticas.obtenerCantidadUsuariosRegistrados("06", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Jul.", Estadisticas.obtenerCantidadUsuariosRegistrados("07", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Ago.", Estadisticas.obtenerCantidadUsuariosRegistrados("08", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Sep.", Estadisticas.obtenerCantidadUsuariosRegistrados("09", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Oct.", Estadisticas.obtenerCantidadUsuariosRegistrados("10", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Nov.", Estadisticas.obtenerCantidadUsuariosRegistrados("11", ddl_aniosregistros.Text)});
+            Datos.Rows.Add(new object[] { "Dic.", Estadisticas.obtenerCantidadUsuariosRegistrados("12", ddl_aniosregistros.Text)});
+
+            string strDatos;
+            strDatos = "[";
+            foreach (DataRow dr in Datos.Rows)
+            {
+                strDatos = strDatos + "[";
+                strDatos = strDatos + "'" + dr[0] + "'" + "," +
+                    dr[1].ToString().Replace(",", ".") + ",";
+
+                strDatos = strDatos + "],";
+            }
+            strDatos = strDatos + "],";
+            return strDatos;
+        }
+
+        public void ReporteDeportesxFecha()
+        {
+            
+           ReporteCantidadDeportesxFecha reporte = new ReporteCantidadDeportesxFecha();
+            reporte.SetParameterValue("@Complejo",1);
+            CrystalReportViewer1.ReportSource = reporte;
+
         }
 
     }

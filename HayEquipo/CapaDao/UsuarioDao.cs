@@ -576,5 +576,7 @@ namespace CapaDao
             return imagen;
 
         }
+
+       
     }
 }

@@ -187,5 +187,97 @@ namespace CapaDao
         }
 
 
+        public static Deportista ObtenerDeportistaPorID2(string id)
+        {
+            Deportista d = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                FROM Deportista where id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                d = new Deportista();
+
+                d.id = int.Parse(dr["id"].ToString());
+                d.apellido = dr["apellido"].ToString();
+                d.nombres = dr["nombres"].ToString();
+                d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
+                d.nroDoc = int.Parse(dr["nroDoc"].ToString());
+                d.sexo = dr["sexo"].ToString();
+                d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
+                d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                d.idUsuario = int.Parse(dr["idUsuario"].ToString());
+                d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
+                d.idEstado = int.Parse(dr["idEstado"].ToString());
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+        public static string ObtenerIdDeportista(string id)
+        {
+            string d ="";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT id
+                                FROM Deportista where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+               
+
+                d= dr["id"].ToString();
+               
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+        public static string ObtenerIdUsuario(string id)
+        {
+            string d = "";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT idUsuario
+                                FROM Deportista where id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+
+                d = dr["idUsuario"].ToString();
+
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
     }
 }

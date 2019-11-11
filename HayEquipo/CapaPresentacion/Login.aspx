@@ -42,6 +42,17 @@
           color:red;
 
       }
+
+
+        @media only screen and (max-width: 700px) {
+         .ensanchar{
+             width: 200px;
+             height: 400px;
+         }
+
+
+        }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -163,8 +174,9 @@
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-
-
+               <div class="ensanchar">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
                 <div class="modal-header">
                      <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
@@ -218,9 +230,9 @@
                    <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
-
-
-
+                 </div>
+                    </div>
+                   </div>
 
 
 

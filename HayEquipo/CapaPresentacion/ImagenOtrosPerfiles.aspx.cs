@@ -8,14 +8,13 @@ using CapaDao;
 
 namespace CapaPresentacion
 {
-    public partial class imagen : System.Web.UI.Page
+    public partial class ImagenOtrosPerfiles : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            byte[] img = UsuarioDao.ObtenerImagen(Session["ID"].ToString());
-           
+            byte[] img = UsuarioDao.ObtenerImagen(Request.QueryString["id"].ToString());
+
             Response.BinaryWrite(img);
-          
         }
     }
 }

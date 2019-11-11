@@ -20,13 +20,13 @@ namespace CapaPresentacion
 
 
 
-            Session["IdUsuarioEncuentro"] = null;
-            if (Request.QueryString["Id"] != null)
-            {
+            //Session["IdUsuarioEncuentro"] = null;
+            //if (Request.QueryString["Id"] != null)
+            //{
 
 
-                Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
-            }
+            //    Session["IdEncuentro"] = int.Parse(Request.QueryString["Id"]);
+            //}
             //cargarDeportes();
             cargarTabla();
             cargarDatosEncuentroPublico();

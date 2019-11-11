@@ -119,6 +119,18 @@
         <p><strong>Ey!</strong></p>
         Tienes una invitación de Pedro García. <p><strong>Ver Invitación</strong></p>
       </div>
+       <div class="well">
+           <h3>Deportistas</h3>
+           <asp:Repeater ID="DeportistasRepeater" runat="server">
+           <ItemTemplate>
+              <%--  <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
+               --%>   <asp:Label runat="server" text='<%#Eval("nombres") %>'></asp:Label> <asp:Label runat="server" text='<%#Eval("apellido") %>'> </asp:Label>                     
+               <asp:LinkButton runat="server" CommandName="btnVerPerfil" CommandArgument='<%#Eval("idDeportista") %>' text="Ver Perfil" Class="w3-button w3-block w3-black" ></asp:LinkButton>
+               </ItemTemplate>
+               </asp:Repeater>
+
+       </div>
+
     </div>
     <div class="col-sm-8" <%--style="background-color:#d7dbd3;"--%>>
     
@@ -216,14 +228,16 @@
               </div>
               </div>--%>
   <div class="scroll-container">
+     
      <asp:Repeater ID="encuentrosRepeater" runat="server">
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-          <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="Imagenes/nene.png"" alt="Avatar"/>
-      <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
+       <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
+         
+         <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>
       <div class="w3-container">
       <p class="tamanoLetra">
@@ -249,7 +263,7 @@
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
                   <i class="fa fa-male"></i>
-                  <asp:Label runat="server" text="Acá se dice se tiene cupo o no"></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("nombreEstado") %>'></asp:Label>
               </div>
           </div>
                  

@@ -10,7 +10,7 @@
 namespace CapaPresentacion {
     
     
-    public partial class PerfilDeportistas {
+    public partial class PerfilOtrosDeportistas {
         
         /// <summary>
         /// Control link_nombreUsuario2.
@@ -29,42 +29,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image1;
-        
-        /// <summary>
-        /// Control FileUploadAvatar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUploadAvatar;
-        
-        /// <summary>
-        /// Control btn_guardarImagen.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_guardarImagen;
-        
-        /// <summary>
-        /// Control btn_CambiarImagen.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_CambiarImagen;
-        
-        /// <summary>
-        /// Control lblestado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblestado;
         
         /// <summary>
         /// Control datos.
@@ -94,13 +58,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Nombres;
         
         /// <summary>
-        /// Control txt_Nombres.
+        /// Control Nombres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Nombres;
+        protected global::System.Web.UI.WebControls.Label Nombres;
         
         /// <summary>
         /// Control lbl_Apellidos.
@@ -112,31 +76,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Apellidos;
         
         /// <summary>
-        /// Control txt_Apellidos.
+        /// Control Apellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Apellidos;
-        
-        /// <summary>
-        /// Control lbl_TipoDocumento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TipoDocumento;
-        
-        /// <summary>
-        /// Control ddl_TipoDocumento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_TipoDocumento;
+        protected global::System.Web.UI.WebControls.Label Apellidos;
         
         /// <summary>
         /// Control lbl_NumeroDocumento.
@@ -148,13 +94,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_NumeroDocumento;
         
         /// <summary>
-        /// Control txt_NumeroDocumento.
+        /// Control Nrodoc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_NumeroDocumento;
+        protected global::System.Web.UI.WebControls.Label Nrodoc;
         
         /// <summary>
         /// Control lbl_Sexo.
@@ -166,13 +112,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Sexo;
         
         /// <summary>
-        /// Control txt_Sexo.
+        /// Control sexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Sexo;
+        protected global::System.Web.UI.WebControls.Label sexo;
         
         /// <summary>
         /// Control lbl_FechaNacimiento.
@@ -184,13 +130,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_FechaNacimiento;
         
         /// <summary>
-        /// Control txt_FechaNacimiento.
+        /// Control Fechanac.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_FechaNacimiento;
+        protected global::System.Web.UI.WebControls.Label Fechanac;
         
         /// <summary>
         /// Control lbl_Telefono.
@@ -202,49 +148,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Telefono;
         
         /// <summary>
-        /// Control txt_Telefono.
+        /// Control Tel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Telefono;
-        
-        /// <summary>
-        /// Control btnGuardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// Control btnCambiar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCambiar;
-        
-        /// <summary>
-        /// Control btnActualizar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActualizar;
-        
-        /// <summary>
-        /// Control lblmsj.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsj;
+        protected global::System.Web.UI.WebControls.Label Tel;
         
         /// <summary>
         /// Control gdv_EncuentrosDeportista.
@@ -326,41 +236,5 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb4;
-        
-        /// <summary>
-        /// Control ddl_anios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_anios;
-        
-        /// <summary>
-        /// Control ddl_aniosregistros.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_aniosregistros;
-        
-        /// <summary>
-        /// Control CrystalReportViewer1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
-        
-        /// <summary>
-        /// Control CrystalReportSource1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::CrystalDecisions.Web.CrystalReportSource CrystalReportSource1;
     }
 }

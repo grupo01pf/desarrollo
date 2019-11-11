@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
 using CapaEntidades;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CapaPresentacion
 {
@@ -34,6 +36,10 @@ namespace CapaPresentacion
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
 
+            DeportistasRepeater.DataSource = ObtenerDeportistas();
+            DeportistasRepeater.DataBind();
+            DeportistasRepeater.ItemCommand += new RepeaterCommandEventHandler(DeportistasRepeater_ItemCommand);
+
 
         }
 
@@ -42,17 +48,35 @@ namespace CapaPresentacion
             if (e.CommandName == "btnUnirseEncuentro")
             {
                 string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+                int id = int.Parse(idEncuentro);
 
+                Session["idEncuentro"] = id;
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    // Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
                 {
-                    Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    // Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPrivado.aspx");
                 }
 
                 }
+        }
+
+        void DeportistasRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "btnVerPerfil")
+            {
+                string idDeportista = ((LinkButton)e.CommandSource).CommandArgument;
+                //int id = int.Parse(idDeportista);
+
+                //Session["ID"] = id;
+               
+                Response.Redirect("PerfilOtrosDeportistas.aspx?Id=" + idDeportista);
+               
+            }
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)
@@ -135,12 +159,21 @@ namespace CapaPresentacion
         public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
         {
             List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro= EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosConImagenes();
             //var q = from p in contexto.EncuentroDeportivo
             //        select p;
             //return q.ToList();
             return encuentro;
         }
+        
+       public List<DeportistaEntidad> ObtenerDeportistas()
+        {
+            List<DeportistaEntidad> Deportistas = new List<DeportistaEntidad>();
+            Deportistas = DeportistaDao.ObtenerTodosDeportistas();
+            return Deportistas;
+        }
+
+
 
 
     }

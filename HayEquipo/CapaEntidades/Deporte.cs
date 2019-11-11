@@ -17,10 +17,10 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Deporte()
         {
+            this.Cancha = new HashSet<Cancha>();
             this.DeportesPorDeportistas = new HashSet<DeportesPorDeportistas>();
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
             this.Posicion = new HashSet<Posicion>();
-            this.TipoCancha = new HashSet<TipoCancha>();
             this.TiposPorDeportes = new HashSet<TiposPorDeportes>();
         }
     
@@ -29,13 +29,13 @@ namespace CapaEntidades
         public byte[] avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cancha> Cancha { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeportesPorDeportistas> DeportesPorDeportistas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EncuentroDeportivo> EncuentroDeportivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posicion> Posicion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TipoCancha> TipoCancha { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TiposPorDeportes> TiposPorDeportes { get; set; }
     }
