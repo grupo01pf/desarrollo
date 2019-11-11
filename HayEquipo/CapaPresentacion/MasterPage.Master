@@ -17,9 +17,14 @@
 
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+    <link rel="stylesheet" href="w3/w3.css">
   <style>
     /* Set black background color, white text and some padding */
+    body {
+  background-image: url("Imagenes/cesped3.jpg");
+}
+
     footer {
       background-color: #000000;
       color: white;
@@ -52,7 +57,7 @@
      }
      .moverboton{
          margin-left:490%;
-        
+
      }
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -78,29 +83,39 @@ $(window).load(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <img class="img-responsive" src="Imagenes/logoconnombre2.png"  width="135" height="100"/>
+        <a href="Home.aspx"><img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100" /></a>
+       <%--<img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100"/>--%>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="Home.aspx">Principal</a></li>
         <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
-         <li><strong>
-             <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" BackColor="Yellow"  ForeColor="Black" OnClick="btn_CrearEncuentro_Click" Height="50px"/>
-            </strong>
-         </li>
+         
           <li><a href="Complejos.aspx">Complejos Deportivos</a></li>
+        <li class="label-success"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>
       </ul>
-        <ul class="nav navbar-nav moverbuscador">          
+       <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
+        <%--<ul class="nav navbar-nav moverbuscador">
           <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>
           <li>
             <button class="btn btn-default moverboton" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
-          </li>             
-       </ul>
+          </li>
+       </ul>--%>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
+      </ul>
+        <ul class="navbar-form navbar-right" role="search">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" placeholder="Buscar jugadores..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
       </ul>
     </div>
   </div>
@@ -161,7 +176,7 @@ $(window).load(function() {
 </footer>
 <!-- Footer -->
  <script>
-    
+
     </script>
 </body>
 </html>

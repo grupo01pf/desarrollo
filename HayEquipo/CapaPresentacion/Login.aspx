@@ -23,6 +23,7 @@
        .centrar{margin-left:180px; }
       h1 {
   text-shadow: 2px 2px 5px green;
+  font-size: 45px;
 }
       .loader {
     position: fixed;
@@ -34,6 +35,9 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+      .agrandarLetra{
+          font-size: 25px;
+      }
 
         .margenWell {
             margin: 20px;
@@ -79,17 +83,19 @@
                         <br />
                         <br />
                         <br />
+                        <br />
+                            
+
                         <h1>HAY EQUIPO !</h1>
-                        <p>Unidos por el deporte</p>
+                <p class="agrandarLetra">Unidos por el deporte</p>
+                            
                         <br />
                         <br />
                         <br />
                         <br />
-
+                        <br />
                     </div>
-
-                    <br />
-                </div>
+                    </div>                                 
                 <div class="col-sm-6">
                     <div class="well">
 

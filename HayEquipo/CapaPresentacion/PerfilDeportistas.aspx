@@ -116,8 +116,8 @@ input[type="radio"]:checked ~ label {
   <div class="container">
     <div class="row">
 
-      <div class="col-sm-4 well text-center">
-   
+      <div class="col-sm-4 text-center">
+        <div class="well">
        <p> <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton></p>
        
           <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
@@ -132,8 +132,10 @@ input[type="radio"]:checked ~ label {
               <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
                 </div>
              <asp:Label ID="lblestado" runat="server"></asp:Label>
+          </div>
          </div>
         <div class="col-sm-8 well">
+            <div class="well">
          <ul class="nav nav-tabs">
     <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
     <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
@@ -188,8 +190,8 @@ input[type="radio"]:checked ~ label {
     <div id="menu1" class="tab-pane fade">
           <div class="table-responsive">
                <br />
-                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
+                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
+                                 OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
                              
                                 <Columns>
                                     <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
@@ -272,6 +274,8 @@ input[type="radio"]:checked ~ label {
             </div>
    </div>
             </div>
+                </div>
+          
    </div>
         
     </div>
