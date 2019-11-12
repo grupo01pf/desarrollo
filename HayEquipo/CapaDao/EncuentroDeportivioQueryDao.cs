@@ -528,8 +528,111 @@ namespace CapaDao
             return ListaEDQ;
         }
 
+        public static List<EncuentroDeportivoQueryEntidad> obtenerEncuentrosDeportivosPorDeporte(int idDepor)
+        {
+            List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
 
-       
+            EncuentroDeportivoQueryEntidad edq = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+
+            cmd.CommandText = @"SELECT ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
+                                e.nombre as Estado,ed.horaInicio,ed.horaFin,ed.nombreLP as Lugar ,ed.direccion,
+                                ed.tipoEncuentro, ed.accesibilidad, ed.clave ,d.avatar as avatar
+                                FROM EncuentroDeportivo ed, Usuario u, Deporte d, Estado e
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND ed.tipoEncuentro = 'Publico'";
+
+            if (idDepor != 0)
+            {
+                cmd.CommandText += " AND ed.idDeporte=@idDepor";
+                cmd.Parameters.AddWithValue("@idDepor", idDepor);
+            }
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                edq = new EncuentroDeportivoQueryEntidad();
+
+                edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                //edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreDeporte = dr["Deporte"].ToString();
+                edq.nombreEstado = dr["Estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
+                DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
+                edq.nombreLP = dr["Lugar"].ToString();
+                edq.direccion = dr["direccion"].ToString();
+                edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
+                edq.accesibilidad = dr["accesibilidad"].ToString();
+                edq.clave = dr["clave"].ToString();
+                edq.avatar = (byte[])dr["avatar"];
+                ListaEDQ.Add(edq);
+
+
+
+
+            }
+            dr.Close();
+            cn.Close();
+
+            //**********************************************************
+
+            // EncuentroDeportivoQueryEntidad eq = null;
+            // SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            //  SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT ed.id, u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
+                                e.nombre as Estado,ed.horaInicio,ed.horaFin,cd.nombre as Complejo ,cd.calle,cd.nroCalle,
+                                ed.tipoEncuentro, ed.accesibilidad, ed.clave,d.avatar as avatar
+                                FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id";
+
+            if (idDepor != 0)
+            {
+                cmd.CommandText += " AND ed.idDeporte=@idDepor";
+                //cmd.Parameters.AddWithValue("@idDepor", idDepor);
+            }
+
+            // SqlDataReader dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+
+                edq = new EncuentroDeportivoQueryEntidad();
+
+                edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreDeporte = dr["Deporte"].ToString();
+                edq.nombreEstado = dr["Estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
+                DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
+                edq.nombreComplejo = dr["Complejo"].ToString();
+                edq.calleComplejo = dr["calle"].ToString();
+                edq.numeroCalleComplejo = int.Parse(dr["nroCalle"].ToString());
+                edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
+                edq.accesibilidad = dr["accesibilidad"].ToString();
+                edq.clave = dr["clave"].ToString();
+                edq.avatar = (byte[])dr["avatar"];
+
+                ListaEDQ.Add(edq);
+
+
+            }
+            dr.Close();
+            cn.Close();
+
+            return ListaEDQ;
+        }
+
 
     }
 }

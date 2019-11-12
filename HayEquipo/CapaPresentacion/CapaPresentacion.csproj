@@ -1711,6 +1711,7 @@
     <Content Include="Imagenes\cesped2.jpg" />
     <Content Include="Imagenes\complejo_transparente.png" />
     <Content Include="Imagenes\deTodo.png" />
+    <Content Include="Imagenes\fondo2.jpg" />
     <Content Include="Imagenes\futbol.jpg" />
     <Content Include="Imagenes\loadingGif1.gif" />
     <Content Include="Imagenes\megatlon.jpg" />
@@ -1789,7 +1790,7 @@
     <Content Include="fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff2" />
     <Content Include="aspnet_client" />
-    <Content Include="CrystalReport1.rpt" />
+    <Content Include="ReporteCantidadDeportesxFecha.rpt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

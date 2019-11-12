@@ -41,7 +41,7 @@ namespace CapaPresentacion
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
-            ReporteDeportesxFecha();
+            //ReporteDeportesxFecha();
 
             actualizarNotificaciones();
             mostrarNotificaciones();
@@ -405,14 +405,13 @@ namespace CapaPresentacion
             return strDatos;
         }
 
-        public void ReporteDeportesxFecha()
-        {
+        //public void ReporteDeportesxFecha()
+        //{
+        //   ReporteCantidadDeportesxFecha reporte = new ReporteCantidadDeportesxFecha();
+        //    reporte.SetParameterValue("@Complejo",1);
+        //    CrystalReportViewer1.ReportSource = reporte;
 
-           ReporteCantidadDeportesxFecha reporte = new ReporteCantidadDeportesxFecha();
-            reporte.SetParameterValue("@Complejo",1);
-            CrystalReportViewer1.ReportSource = reporte;
-
-        }
+        //}
 
         protected void gdv_Notificaciones_SelectedIndexChanged(object sender, EventArgs e)
         {

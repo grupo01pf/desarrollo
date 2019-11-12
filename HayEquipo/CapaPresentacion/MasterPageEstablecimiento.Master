@@ -29,7 +29,9 @@
     }
     
     body {
-        background-color: #0b3107;
+        background-image: url("Imagenes/fondo2.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     .fondo {
   overflow: hidden;

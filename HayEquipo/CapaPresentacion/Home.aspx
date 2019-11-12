@@ -100,7 +100,7 @@
 
         .scroll-container {
             display: block;
-            height: 340px;
+            height: 575px;
             overflow-y: scroll;
         }
 
@@ -235,17 +235,19 @@
           </div>
         </div>
       </div>
-        <div><button type="button" class="btn btn-primary btn-block">Filtrar encuentros</button>
+        <div><button type="button" class="btn btn-primary btn-block">Filtrar encuentros por deporte</button>
 
         </div>
-      <div class="form-group input-group">
-          <input type="text" class="form-control" id="myInput" placeholder="Buscar encuentros..."/>
-          <span class="input-group-btn">
+          <%--<input type="text" class="form-control" id="myInput" placeholder="Buscar encuentros..."/>--%>
+       <%--   <span class="input-group-btn">
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
-          </span>
-        </div>
+          </span>--%>
+            <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged">
+            <asp:ListItem Value="0" Selected="True">Todos..</asp:ListItem>
+            </asp:DropDownList>
+            <br />
 
 
           <div class="well">
@@ -289,7 +291,7 @@
   <div class="w3-card-4">
     <%--<h2>Encuentro <asp:Label ID="tipoencuentro" runat="server" text='<%#Eval("tipoEncuentro") %>'></asp:Label></h2>--%>
       <header class="w3-container w3-green">
-       <%--<img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>--%>
+       <img class="w3-left w3-circle w3-margin-right" style="width:55px" src="data:image/png;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"avatar"))%>" alt="Avatar"/>
 
          <h1><asp:Label runat="server" text='<%#Eval("nombreDeporte") %>'></asp:Label></h1>
     </header>

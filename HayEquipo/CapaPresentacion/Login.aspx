@@ -56,7 +56,11 @@
 
 
         }
-
+            body {
+  background-image: url("Imagenes/fondo2.jpg");
+  background-repeat: no-repeat;
+        background-attachment: fixed;
+}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -176,7 +180,7 @@
 
 
 
-            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; width: 40%; height: auto">
+            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; width: 40%; height: auto" >
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 

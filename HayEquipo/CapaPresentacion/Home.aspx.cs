@@ -26,7 +26,8 @@ namespace CapaPresentacion
             }
             if (!IsPostBack)
             {
-
+                CargarDdlDeportes();
+                ddlDeportes.AutoPostBack = true;
                 //cargarEventosDisponibles();
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
@@ -163,7 +164,7 @@ namespace CapaPresentacion
         public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
         {
             List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosConImagenes();
             //var q = from p in contexto.EncuentroDeportivo
             //        select p;
             //return q.ToList();
@@ -177,11 +178,30 @@ namespace CapaPresentacion
             return Deportistas;
         }
 
-
-
         protected void btn_Notificacion_Click(object sender, EventArgs e)
         {
             Response.Redirect("PerfilDeportistas.aspx");
         }
+
+        private void CargarDdlDeportes()
+        {
+            ddlDeportes.DataSource = DeporteDao.ObtenerDeportes();
+            ddlDeportes.DataTextField = "nombre";
+            ddlDeportes.DataValueField = "id";
+            ddlDeportes.DataBind();
+        }
+
+        protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                CargarRepeaterPorDeporte();
+        }
+
+        private void CargarRepeaterPorDeporte()
+        {
+            encuentrosRepeater.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()));
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+        }
+
     }
 }

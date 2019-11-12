@@ -78,9 +78,9 @@ namespace CapaPresentacion
 
         private void CargarDdlDeportes()
         {
-            ddlDeportes.DataSource = DeporteDao.ObtenerDeportes();
+            ddlDeportes.DataSource = DeporteDao.ObtenerDeportes();            
+            ddlDeportes.DataTextField = "nombre";
             ddlDeportes.DataValueField = "id";
-            ddlDeportes.DataValueField = "nombre";
             ddlDeportes.DataBind();
         }
 
