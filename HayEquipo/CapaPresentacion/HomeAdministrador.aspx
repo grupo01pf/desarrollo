@@ -28,11 +28,11 @@
                   </div>
               <br />
               
-                  <div class="w3-card-4" style="width:100%;">
+                  <a href="ReportesEstadisticasAdmin.aspx"><div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-red">
                         <h1>Reportes y Estadísticas</h1>
                     </header>              
-                  </div>
+                  </div></a>
               
           
           <br /><br /><br /><br /><br /><br /><br />

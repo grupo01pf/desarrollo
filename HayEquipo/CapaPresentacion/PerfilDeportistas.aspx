@@ -145,40 +145,7 @@
       }
     </script>
     
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'Mes');
-          data.addColumn('number', 'Usuarios');
-          data.addRows(<%=this.obtenerDatosBarUsuariosRegistrados()%>);
-
-        var options = {
-          chart: {
-            title: 'Usuarios Registrados',
-            bars: 'horizontal'
-          },
-
-            hAxis:{
-                title: "Fecha",
-                format: 'M/d/yy',
-            },
-            vAxis: {
-                title: "Cantidad de Usuarios Registrados",
-                minValue: 0,
-                maxValue: 100,
-
-
-        }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
+   
 </asp:Content>
 
 
@@ -212,8 +179,7 @@
     <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
     <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
     <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
-    <li><a data-toggle="tab" href="#menu4">Usuarios Registrados</a></li>
-    <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>
+   <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
     <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
 
   </ul>
@@ -362,21 +328,8 @@
                    </div>
 
                 </div>
-             <div id="menu4" class="fade">
-              <div class="table-responsive">
-                <asp:DropDownList ID="ddl_aniosregistros" runat="server" Width="150px" AutoPostBack="true"   >
-                                    <asp:ListItem Text="2019" Value="2019" />
-                                    <asp:ListItem Text="2018" Value="2018" />
 
-
-                                </asp:DropDownList>
-                 <div id="columnchart_material" style="width:100%; height: 500px;"></div>
-
-
-                   </div>
-
-                </div>
-             <div id="menu5" class=" fade">
+<%--             <div id="menu5" class=" fade">
               <div class="table-responsive">
 
                   <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" DisplayToolbar="False" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" ToolPanelView="None" ReuseParameterValuesOnRefresh="True" />
@@ -389,7 +342,7 @@
 
                       </div>
 
-                </div>
+                </div>--%>
               <%-- NOTIFICACIONES --%>
                     <div id="menu6" class="tab-pane fade">
                         <div class="table-responsive">

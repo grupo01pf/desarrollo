@@ -99,10 +99,11 @@
                         <br />
                         <br />
                         <br />
-                            
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/logoconnombre2.png" Width="75%" />   
 
-                        <h1>HAY EQUIPO !</h1>
-                <p class="agrandarLetra">Unidos por el deporte</p>
+              <%--          <h1>HAY EQUIPO !</h1>
+                
+                <p class="agrandarLetra">Unidos por el deporte</p>--%>
                             
                         <br />
                         <br />
@@ -180,7 +181,7 @@
 
 
 
-            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; width: 40%; height: auto" >
+            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 

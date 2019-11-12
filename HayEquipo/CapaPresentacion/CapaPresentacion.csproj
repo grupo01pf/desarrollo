@@ -1730,6 +1730,7 @@
     </Content>
     <Content Include="PerfilDeportistas.aspx" />
     <Content Include="PerfilOtrosDeportistas.aspx" />
+    <Content Include="ReportesEstadisticasAdmin.aspx" />
     <Content Include="Restaurar.aspx" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
@@ -1982,6 +1983,13 @@
       <DependentUpon>PerfilOtrosDeportistas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesEstadisticasAdmin.aspx.cs">
+      <DependentUpon>ReportesEstadisticasAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesEstadisticasAdmin.aspx.designer.cs">
+      <DependentUpon>ReportesEstadisticasAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Restaurar.aspx.cs">
       <DependentUpon>Restaurar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

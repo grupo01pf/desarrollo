@@ -399,7 +399,7 @@ namespace CapaPresentacion
             if(ComplejoDeportivoDao.ExisteDeporte(IDCom.Value, ddlDep4.SelectedItem.ToString()) == false)
             {
                 ComplejoDeportivo complejo = new ComplejoDeportivo();
-                complejo.id = ID.Value;
+                complejo.id = IDCom.Value;
                 complejo.deportes = ddlDep4.SelectedItem.ToString();
                 ComplejoDeportivoDao.ActualizarDeportesComplejo(complejo);          
             }
