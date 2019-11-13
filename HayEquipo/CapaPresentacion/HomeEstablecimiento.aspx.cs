@@ -293,6 +293,8 @@ namespace CapaPresentacion
 
             AgendaDao.InsertarCanchasPorHorarios(cph);
 
+            cargarAgenda();
+
             //Reserva reserva = new Reserva();
             //reserva.fechaReserva = DateTime.Now;
             //reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());

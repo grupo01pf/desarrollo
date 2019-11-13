@@ -154,7 +154,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-sm-4 text-center">
+      <div class="col-sm-5 text-center">
         <div class="well">
        <p> <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton></p>
 
@@ -172,7 +172,7 @@
              <asp:Label ID="lblestado" runat="server"></asp:Label>
           </div>
          </div>
-        <div class="col-sm-8 well">
+        <div class="col-sm-7 well">
             <div class="well">
          <ul class="nav nav-tabs">
     <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
