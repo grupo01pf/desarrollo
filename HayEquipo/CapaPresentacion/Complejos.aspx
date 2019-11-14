@@ -60,8 +60,10 @@
 
        <div class="container text-center"">
         <%--<div class="row alinearAlCentro">--%>
-            <div class="col-sm-12">               
-        <asp:Label ID="lblCD" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White" Font-Size="Large"></asp:Label>
+            <div class="col-sm-12">  
+                  <h1>
+                        <asp:Label ID="lblTitulo" runat="server" Text="Explorá nuestros Complejos Deportivos asociados" ForeColor="White"></asp:Label>
+                  </h1>             
                 <br />
                 <br />
             </div>
@@ -109,30 +111,40 @@
             <div class="col-sm-2">
                 <div class="well">
   
-    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC">Fútbol</asp:LinkButton>
+    <asp:LinkButton ID="lbFutbol" runat="server" OnClick="lbFutbol_Click" ForeColor="#0099CC" >Fútbol</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click" ForeColor="#0099CC">Basket</asp:LinkButton>
+    <asp:LinkButton ID="lbBasket" runat="server" OnClick="lbBasket_Click" ForeColor="#0099CC" >Basket</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbPaddle" runat="server" OnClick="lbPaddle_Click" ForeColor="#0099CC">Paddle</asp:LinkButton>
+    <asp:LinkButton ID="lbPaddle" runat="server" OnClick="lbPaddle_Click" ForeColor="#0099CC" >Paddle</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbTenis" runat="server" ForeColor="#0099CC" OnClick="lbTenis_Click">Tenis</asp:LinkButton>
+    <asp:LinkButton ID="lbTenis" runat="server" OnClick="lbTenis_Click" ForeColor="#0099CC" >Tenis</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbRunning" runat="server" ForeColor="#0099CC">Running</asp:LinkButton>
+    <asp:LinkButton ID="lbRunning" runat="server" OnClick="lbRunning_Click" ForeColor="#0099CC" >Running</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbCiclismo" runat="server" ForeColor="#0099CC">Ciclismo</asp:LinkButton>
+    <asp:LinkButton ID="lbCiclismo" runat="server" OnClick="lbCiclismo_Click" ForeColor="#0099CC" >Ciclismo</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbCaminata" runat="server" ForeColor="#0099CC">Caminata</asp:LinkButton>
+    <asp:LinkButton ID="lbGolf" runat="server" OnClick="lbGolf_Click" ForeColor="#0099CC" >Golf</asp:LinkButton>
                     <br />
 
-    <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC">Volley</asp:LinkButton>
+    <asp:LinkButton ID="lbVolley" runat="server" OnClick="lbVolley_Click" ForeColor="#0099CC" >Volley</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbPingPong" runat="server" OnClick="lbPingPong_Click" ForeColor="#0099CC" >Ping Pong</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbBoxeo" runat="server" OnClick="lbBoxeo_Click" ForeColor="#0099CC" >Boxeo</asp:LinkButton>
+                    <br />
+
+    <asp:LinkButton ID="lbKarate" runat="server" OnClick="lbKarate_Click" ForeColor="#0099CC" >Karate</asp:LinkButton>
                     <br />
                     <br />
+
     <asp:Button ID="btnD1" runat="server" CssClass="btn-warning" Visible="False" OnClick="btnD1_Click"/>
                     <br />
                     <br />

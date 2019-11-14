@@ -63,7 +63,6 @@
      <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-      <%-- <div class="container">--%>
     <div class="losmargenes">
  <div class="row">
      <div class="col-sm-6">
@@ -131,37 +130,23 @@
                      <b>Agenda</b></h1>
                     </div>
                         <div class="form-group">
-<%--                            <asp:ListBox ID="lstComp" CssClass="form-control" runat="server"  AppendDataBoundItems="true" OnSelectedIndexChanged="lstComp_SelectedIndexChanged" ></asp:ListBox>--%>
-                         <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged" >
-                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                            </asp:DropDownList>
-                            </div>
+                             <asp:Label ID="lbl_Comp" runat="server" Text="Complejo"></asp:Label>
+                             <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged" >
+                             <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                             </asp:DropDownList>
+                        </div>
 
-                         <div class="form-group">
-                         <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged" >
-                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                            </asp:DropDownList>
-                            </div>
+                        <div class="form-group">
+                             <asp:Label ID="lblDep" runat="server" Text="Deporte"></asp:Label>
+                             <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged" >
+                             <asp:ListItem Value="0">Seleccione..</asp:ListItem>
+                             </asp:DropDownList>
+                        </div>
 
-                         <div class="form-group">
-                            <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
-                         </div>
-
-<%--                        <div class="form-group">
-                             <asp:DropDownList ID="ddlHora" CssClass="form-control" runat="server" AppendDataBoundItems="true" >
-                                <asp:ListItem Value="0">Seleccione..</asp:ListItem>
-                                <asp:ListItem Value="1">00hs</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>--%>
-
-                 <%--       <div class="form-group">
-                             <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="false" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
-                                <Columns>
-                                <asp:CommandField HeaderText="Reservar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" SelectText="Reservar" />
-                                </Columns>
-                             </asp:GridView>                         
-                        </div>--%>
+                        <div class="form-group">
+                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+                             <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
+                        </div>
 
                         <strong><asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong>
                                                          <br />
@@ -197,5 +182,5 @@
                    
       
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <%--</div>--%>
+ 
 </asp:Content>

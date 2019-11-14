@@ -109,6 +109,9 @@ namespace CapaPresentacion
             ID = null;
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
+
+            Repeater1.DataSource = null;
+            Repeater1.DataBind();
         }
 
         private void CargarDeportes()
@@ -283,8 +286,8 @@ namespace CapaPresentacion
             {
                 lblFecResultado.Text = "-";
             }
-            
 
+            CargarRepeaterImagenes();
             lblFecha.Visible = true;
             lblFecResultado.Visible = true;
             lblDeportes.Visible = true;

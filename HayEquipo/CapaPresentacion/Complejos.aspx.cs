@@ -595,6 +595,36 @@ namespace CapaPresentacion
             FiltrosDeportes(lbVolley, "Volley");
         }
 
+        protected void lbRunning_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbRunning, "Running");
+        }
+
+        protected void lbCiclismo_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbCiclismo, "Ciclismo");
+        }
+
+        protected void lbGolf_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbGolf, "Golf");
+        }
+
+        protected void lbPingPong_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbPingPong, "Ping Pong");
+        }
+
+        protected void lbBoxeo_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbBoxeo, "Boxeo");
+        }
+
+        protected void lbKarate_Click(object sender, EventArgs e)
+        {
+            FiltrosDeportes(lbKarate, "Karate");
+        }
+
         protected void btnClose2_Click(object sender, EventArgs e)
         {
             btnPopUp_ModalPopupExtender2.Hide();
@@ -630,6 +660,36 @@ namespace CapaPresentacion
             if (btnDep.Text == "Volley")
             {
                 lbVolley.Enabled = true;
+            }
+
+            if (btnDep.Text == "Running")
+            {
+                lbRunning.Enabled = true;
+            }
+
+            if (btnDep.Text == "Ciclismo")
+            {
+                lbCiclismo.Enabled = true;
+            }
+
+            if (btnDep.Text == "Golf")
+            {
+                lbGolf.Enabled = true;
+            }
+
+            if (btnDep.Text == "Ping Pong")
+            {
+                lbPingPong.Enabled = true;
+            }
+
+            if (btnDep.Text == "Boxeo")
+            {
+                lbBoxeo.Enabled = true;
+            }
+
+            if (btnDep.Text == "Karate")
+            {
+                lbKarate.Enabled = true;
             }
 
             btnDep.Visible = false;
