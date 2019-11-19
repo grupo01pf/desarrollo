@@ -235,7 +235,7 @@
           </div>
         </div>
       </div>
-        <div><button type="button" class="btn btn-primary btn-block">Filtrar encuentros por deporte</button>
+        <div><button type="button" class="btn btn-primary btn-block" >Filtrar encuentros</button>
 
         </div>
           <%--<input type="text" class="form-control" id="myInput" placeholder="Buscar encuentros..."/>--%>
@@ -244,11 +244,15 @@
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>--%>
+            <asp:Label ID="lblDeportes" runat="server" Text="Por Deporte:" ForeColor="White"></asp:Label>
             <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged">
             <asp:ListItem Value="0" Selected="True">Todos..</asp:ListItem>
             </asp:DropDownList>
+            <asp:Label ID="lblZonas" runat="server" Text="Por Zona:" ForeColor="White"></asp:Label>
+            <asp:DropDownList ID="ddlZonas" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlZonas_SelectedIndexChanged">
+            <asp:ListItem Value="0" Selected="True">Todas..</asp:ListItem>
+            </asp:DropDownList>
             <br />
-
 
           <div class="well">
 

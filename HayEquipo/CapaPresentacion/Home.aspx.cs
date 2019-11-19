@@ -28,12 +28,17 @@ namespace CapaPresentacion
             {
                 CargarDdlDeportes();
                 ddlDeportes.AutoPostBack = true;
+                CargarDdlZonas();
+                ddlZonas.AutoPostBack = true;
                 //cargarEventosDisponibles();
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
             }
 
-            encuentrosRepeater.DataSource = ObtenerEncuentros();
+            encuentrosRepeater.DataSource = (from encuentro in ObtenerEncuentros()
+                 orderby encuentro.fechaInicioEncuentro ascending
+                 select encuentro)
+                ;
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
 
@@ -198,7 +203,31 @@ namespace CapaPresentacion
 
         private void CargarRepeaterPorDeporte()
         {
-            encuentrosRepeater.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()));
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()))
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             select encuentro);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+        }
+
+        private void CargarDdlZonas()
+        {
+            ddlZonas.DataSource = ZonaDao.obtenerZonas();
+            ddlZonas.DataTextField = "nombre";
+            ddlZonas.DataValueField = "idZona";
+            ddlZonas.DataBind();
+        }
+
+        protected void ddlZonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarRepeaterPorZona();
+        }
+
+        private void CargarRepeaterPorZona()
+        {
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorZona(int.Parse(ddlZonas.SelectedValue.ToString()))
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             select encuentro);
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
