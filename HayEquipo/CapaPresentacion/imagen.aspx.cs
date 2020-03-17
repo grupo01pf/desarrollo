@@ -13,7 +13,9 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             byte[] img = UsuarioDao.ObtenerImagen(Session["ID"].ToString());
+           
             Response.BinaryWrite(img);
+          
         }
     }
 }

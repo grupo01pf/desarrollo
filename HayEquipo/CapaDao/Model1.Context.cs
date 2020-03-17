@@ -72,8 +72,18 @@ namespace CapaEntidades
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
+        public virtual DbSet<Notificacion> Notificacion { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
+    
+        public virtual ObjectResult<ReporteCantidadDeportexFecha_Result> ReporteCantidadDeportexFecha(Nullable<int> complejo)
+        {
+            var complejoParameter = complejo.HasValue ?
+                new ObjectParameter("Complejo", complejo) :
+                new ObjectParameter("Complejo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReporteCantidadDeportexFecha_Result>("ReporteCantidadDeportexFecha", complejoParameter);
+        }
     
         public virtual ObjectResult<sp_AgendaDao_ObtenerAgendaComplejo_Result> sp_AgendaDao_ObtenerAgendaComplejo(Nullable<int> idComplejo, Nullable<int> idDeporte)
         {
@@ -313,6 +323,53 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MensajeQueryDao_MostrarMensajes_Result>("sp_MensajeQueryDao_MostrarMensajes", idEncuentroParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> sp_NotificacionDao_contadorNotificaciones(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_NotificacionDao_contadorNotificaciones", idUsuarioParameter);
+        }
+    
+        public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, Nullable<int> idReceptor, string nombreReceptor, Nullable<int> idEncuentro, string texto, Nullable<int> idEstado)
+        {
+            var idEmisorParameter = idEmisor.HasValue ?
+                new ObjectParameter("idEmisor", idEmisor) :
+                new ObjectParameter("idEmisor", typeof(int));
+    
+            var idReceptorParameter = idReceptor.HasValue ?
+                new ObjectParameter("idReceptor", idReceptor) :
+                new ObjectParameter("idReceptor", typeof(int));
+    
+            var nombreReceptorParameter = nombreReceptor != null ?
+                new ObjectParameter("nombreReceptor", nombreReceptor) :
+                new ObjectParameter("nombreReceptor", typeof(string));
+    
+            var idEncuentroParameter = idEncuentro.HasValue ?
+                new ObjectParameter("idEncuentro", idEncuentro) :
+                new ObjectParameter("idEncuentro", typeof(int));
+    
+            var textoParameter = texto != null ?
+                new ObjectParameter("texto", texto) :
+                new ObjectParameter("texto", typeof(string));
+    
+            var idEstadoParameter = idEstado.HasValue ?
+                new ObjectParameter("idEstado", idEstado) :
+                new ObjectParameter("idEstado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, idReceptorParameter, nombreReceptorParameter, idEncuentroParameter, textoParameter, idEstadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_NotificacionDao_mostrarNotificaciones_Result> sp_NotificacionDao_mostrarNotificaciones(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_NotificacionDao_mostrarNotificaciones_Result>("sp_NotificacionDao_mostrarNotificaciones", idUsuarioParameter);
+        }
+    
         public virtual ObjectResult<string> sp_PermisoUsuario(string usuario)
         {
             var usuarioParameter = usuario != null ?
@@ -339,6 +396,19 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
+        public virtual int sp_ReservaDao_ActualizarReserva(Nullable<int> idEncuentro, Nullable<int> estado)
+        {
+            var idEncuentroParameter = idEncuentro.HasValue ?
+                new ObjectParameter("idEncuentro", idEncuentro) :
+                new ObjectParameter("idEncuentro", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ReservaDao_ActualizarReserva", idEncuentroParameter, estadoParameter);
+        }
+    
         public virtual int sp_ReservaDao_InsertarRerserva(Nullable<System.DateTime> fecha, Nullable<int> idEncuentro, Nullable<int> idEstado)
         {
             var fechaParameter = fecha.HasValue ?
@@ -359,6 +429,15 @@ namespace CapaEntidades
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<sp_UsuarioDao_ObtenerUsuarios_Result> sp_UsuarioDao_ObtenerUsuarios(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UsuarioDao_ObtenerUsuarios_Result>("sp_UsuarioDao_ObtenerUsuarios", idUsuarioParameter);
         }
     
         public virtual ObjectResult<string> sp_UsuarioDao_UsuariosUnidosEncuentro(Nullable<int> idEncuentro)

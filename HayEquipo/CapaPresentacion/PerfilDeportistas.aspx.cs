@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
 using System.Drawing;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CapaPresentacion
 {
@@ -14,6 +17,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             link_nombreUsuario2.Text = Session["Usuario"].ToString();
             if (UsuarioDao.existeImagen(Session["ID"].ToString()) != false)
             {
@@ -32,13 +36,15 @@ namespace CapaPresentacion
             {
                 cargarTipoDocumento();
             }
-           
+
             gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["ID"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
-            
+            //ReporteDeportesxFecha();
 
+            actualizarNotificaciones();
+            mostrarNotificaciones();
         }
 
         private void cargarTipoDocumento()
@@ -108,7 +114,7 @@ namespace CapaPresentacion
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
             lblmsj.Text = "Datos Guardados Exitosamente";
-           
+
 
         }
         protected void btnCambiar_Click(object sender, EventArgs e)
@@ -175,7 +181,7 @@ namespace CapaPresentacion
             {
                 lblestado.Text = "Coloque un Archivo de imagen valido";
             }
-           
+
         }
         protected void btnCambiarImagen_Click(object sender, EventArgs e)
         {
@@ -248,12 +254,12 @@ namespace CapaPresentacion
         //}
         public void manejarValoracion()
         {
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "1") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") == true)
             {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "1"));
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4"));
                 foreach (ListItem item in RadioButtonList1.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "1") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -268,12 +274,12 @@ namespace CapaPresentacion
                 lblmsjrb1.Text = "Usted no ha sido calificado en esta seccion";
 
             }
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "2") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") == true)
             {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "2"));
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5"));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "2") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -288,12 +294,12 @@ namespace CapaPresentacion
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioxid(Session["id"].ToString(), "3") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") == true)
             {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "3"));
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6"));
                 foreach (ListItem item in RadioButtonList3.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["id"].ToString(), "3") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -308,11 +314,11 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if(ValoracionDao.existePromedioGeneral(Session["id"].ToString()) == true){ 
-            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(Session["id"].ToString()));
+            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){
+            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())));
             foreach (ListItem item in RadioButtonList4.Items)
             {
-                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(Session["id"].ToString()) && item.Text == "★")
+                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) && item.Text == "★")
                 {
                     item.Attributes.CssStyle.Add("color", "orange");
                 }
@@ -325,6 +331,139 @@ namespace CapaPresentacion
                 lblmsjrb4.Text = "Usted no ha sido calificado";
             }
         }
+
+
+
+        public string obtenerDatosBar()
+        {
+            DataTable Datos = new DataTable();
+            Datos.Columns.Add(new DataColumn("Mes",typeof(string)));
+            Datos.Columns.Add(new DataColumn("Jugados", typeof(string)));
+            Datos.Columns.Add(new DataColumn("Organizados", typeof(string)));
+
+
+            Datos.Rows.Add(new object[] { "Ene.", Estadisticas.obtenerCantidadPartidos("01", Session["ID"].ToString(),ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("01", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Feb.", Estadisticas.obtenerCantidadPartidos("02", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("02", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Mar.", Estadisticas.obtenerCantidadPartidos("03", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("03", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Abr.", Estadisticas.obtenerCantidadPartidos("04", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("04", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "May.", Estadisticas.obtenerCantidadPartidos("05", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("05", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Jun.", Estadisticas.obtenerCantidadPartidos("06", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("06", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Jul.", Estadisticas.obtenerCantidadPartidos("07", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("07", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Ago.", Estadisticas.obtenerCantidadPartidos("08", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("08", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Sep.", Estadisticas.obtenerCantidadPartidos("09", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("09", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Oct.", Estadisticas.obtenerCantidadPartidos("10", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("10", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Nov.", Estadisticas.obtenerCantidadPartidos("11", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("11", Session["ID"].ToString(), ddl_anios.Text) });
+            Datos.Rows.Add(new object[] { "Dic.", Estadisticas.obtenerCantidadPartidos("12", Session["ID"].ToString(), ddl_anios.Text), Estadisticas.obtenerCantidadPartidosAdmin("12", Session["ID"].ToString(), ddl_anios.Text) });
+
+            string strDatos;
+            strDatos = "[";
+            foreach(DataRow dr in Datos.Rows)
+            {
+                strDatos = strDatos + "[";
+                strDatos = strDatos + "'" + dr[0] + "'" + "," +
+                    dr[1].ToString().Replace(",", ".") + "," +
+                     dr[2].ToString().Replace(",", ".");
+
+                strDatos = strDatos + "],";
+            }
+            strDatos = strDatos + "],";
+            return strDatos;
+        }
+
+        //public void ReporteDeportesxFecha()
+        //{
+        //   ReporteCantidadDeportesxFecha reporte = new ReporteCantidadDeportesxFecha();
+        //    reporte.SetParameterValue("@Complejo",1);
+        //    CrystalReportViewer1.ReportSource = reporte;
+
+        //}
+
+        protected void gdv_Notificaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow fila = gdv_Notificaciones.SelectedRow;
+            // string idEncuentro = fila.Cells[4].Text;
+            // int id = int.Parse(fila.Cells[4].Text);
+            string idEncuentro = Convert.ToString(fila.RowIndex);
+            int id = fila.RowIndex;
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            int[] idEncuentrosDeportivos = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idEncuentrosDeportivos[i] = n.idEncuentro;
+                i++;
+            }
+            idEncuentro = idEncuentrosDeportivos[id].ToString();
+
+            int idNotif = int.Parse(gdv_Notificaciones.SelectedDataKey.Value.ToString());
+            NotificacionDao.actualizarEstadoNotificacion(9, idNotif);
+
+            Session["idEncuentro"] = idEncuentrosDeportivos[id];
+
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
+            {
+                //  Session["idEncuentro"] = id;
+                // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPrivado.aspx");
+            }
+            if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
+            {
+                //  Session["idEncuentro"] = id;
+                // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+                Response.Redirect("EncuentroPublico.aspx");
+            }
+
+
+
+
+        }
+
+        private void actualizarNotificaciones()
+        {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
+        }
+
+        private void mostrarNotificaciones()
+        {
+
+            gdv_Notificaciones.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            gdv_Notificaciones.DataKeyNames = new string[] { "idNotificacion" };
+            gdv_Notificaciones.DataBind();
+
+        }
+
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+
+
+            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+
+            int[] idNotificaciones = new int[lista.Count];
+            int i = 0;
+            foreach (NotificacionQueryEntidad n in lista)
+            {
+                idNotificaciones[i] = n.idNotificacion;
+                i++;
+            }
+
+            i = 0;
+
+
+            foreach (GridViewRow fila in gdv_Notificaciones.Rows)
+            {
+
+                if ((fila.Cells[0].FindControl("chk_Eliminar") as CheckBox).Checked)
+                {
+
+                    NotificacionDao.actualizarEstadoNotificacion(11, idNotificaciones[i]);
+
+                }
+                i++;
+            }
+
+        }
+
 
     }
 }

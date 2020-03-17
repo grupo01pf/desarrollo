@@ -22,13 +22,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control lblCD.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCD;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        
+        /// <summary>
+        /// Control pnl_PanelBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_PanelBuscar;
         
         /// <summary>
         /// Control txtBuscar.
@@ -76,6 +85,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.LinkButton lbFutbol;
         
         /// <summary>
+        /// Control lbBasket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbBasket;
+        
+        /// <summary>
         /// Control lbPaddle.
         /// </summary>
         /// <remarks>
@@ -112,13 +130,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.LinkButton lbCiclismo;
         
         /// <summary>
-        /// Control lbCaminata.
+        /// Control lbGolf.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbCaminata;
+        protected global::System.Web.UI.WebControls.LinkButton lbGolf;
         
         /// <summary>
         /// Control lbVolley.
@@ -130,13 +148,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.LinkButton lbVolley;
         
         /// <summary>
+        /// Control lbPingPong.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbPingPong;
+        
+        /// <summary>
+        /// Control lbBoxeo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbBoxeo;
+        
+        /// <summary>
+        /// Control lbKarate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbKarate;
+        
+        /// <summary>
         /// Control btnD1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnD1;
+        protected global::System.Web.UI.WebControls.Button btnD1;
         
         /// <summary>
         /// Control btnD2.
@@ -157,13 +202,31 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnD3;
         
         /// <summary>
-        /// Control gvComplejos.
+        /// Control btnD4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvComplejos;
+        protected global::System.Web.UI.WebControls.Button btnD4;
+        
+        /// <summary>
+        /// Control lbQuitarFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbQuitarFiltros;
+        
+        /// <summary>
+        /// Control encuentrosRepeater.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater encuentrosRepeater;
         
         /// <summary>
         /// Control btnInicial2.
@@ -256,6 +319,33 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lblDescripcion;
         
         /// <summary>
+        /// Control lblServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblServicios;
+        
+        /// <summary>
+        /// Control divListServ.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListServ;
+        
+        /// <summary>
+        /// Control listServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox listServicios;
+        
+        /// <summary>
         /// Control lblDireccion.
         /// </summary>
         /// <remarks>
@@ -290,6 +380,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTelefono;
+        
+        /// <summary>
+        /// Control lblHorarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHorarios;
         
         /// <summary>
         /// Control img1.

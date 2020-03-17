@@ -83,9 +83,10 @@
     <Property Name="horaCierre" Type="Time" Precision="0" />
     <Property Name="idResponsable" Type="Int32" />
     <Property Name="promedioEstrellas" Type="Double" />
-    <Property Name="idEstado" Type="Int32" />
+    <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
     <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="idEstado" Type="Int32" />
     <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
     <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_ComplejoDeportivo_Estado" FromRole="ComplejoDeportivo" ToRole="Estado" />
@@ -342,7 +343,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="reseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="reseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="idComplejoValorado" Type="Int32" />
     <Property Name="idUsuarioValorador" Type="Int32" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_ReseñaComplejo_Usuario" FromRole="ReseñaComplejo" ToRole="Usuario" />
@@ -578,6 +579,19 @@
     <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="idDeportista" Type="Int32" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_FotosDeportista_Deportista" FromRole="FotosDeportista" ToRole="Deportista" />
+  </EntityType>
+  <EntityType Name="Notificacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idEmisor" Type="Int32" />
+    <Property Name="nombreEmisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idReceptor" Type="Int32" />
+    <Property Name="nombreReceptor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEncuentro" Type="Int32" />
+    <Property Name="texto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Int32" />
   </EntityType>
   <EntityType Name="Reserva">
     <Key>
@@ -1424,6 +1438,7 @@
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
+    <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
@@ -1686,6 +1701,9 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
     </AssociationSet>
+    <FunctionImport Name="ReporteCantidadDeportexFecha" ReturnType="Collection(HayEquipoModel.ReporteCantidadDeportexFecha_Result)">
+      <Parameter Name="Complejo" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
       <Parameter Name="idComplejo" Mode="In" Type="Int32" />
       <Parameter Name="idDeporte" Mode="In" Type="Int32" />
@@ -1759,6 +1777,20 @@
     <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_contadorNotificaciones" ReturnType="Collection(Int32)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
+      <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+      <Parameter Name="idReceptor" Mode="In" Type="Int32" />
+      <Parameter Name="nombreReceptor" Mode="In" Type="String" />
+      <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+      <Parameter Name="texto" Mode="In" Type="String" />
+      <Parameter Name="idEstado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_mostrarNotificaciones" ReturnType="Collection(HayEquipoModel.sp_NotificacionDao_mostrarNotificaciones_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
       <Parameter Name="usuario" Mode="In" Type="String" />
     </FunctionImport>
@@ -1767,12 +1799,19 @@
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_ReservaDao_ActualizarReserva">
+      <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_ReservaDao_InsertarRerserva">
       <Parameter Name="fecha" Mode="In" Type="DateTime" />
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
       <Parameter Name="idEstado" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_UsuarioDao_ObtenerUsuarios" ReturnType="Collection(HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_UsuarioDao_UsuariosUnidosEncuentro" ReturnType="Collection(String)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1808,6 +1847,12 @@
       <Parameter Name="prmContraseña" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="ReporteCantidadDeportexFecha_Result">
+    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="año" Nullable="true" />
+    <Property Type="String" Name="mes" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="CantidadPartidos" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
     <Property Type="Int32" Name="idCancha" Nullable="false" />
     <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
@@ -1853,6 +1898,8 @@
     <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="capacidad" Nullable="true" />
+    <Property Type="Int32" Name="idComplejo" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -1887,6 +1934,17 @@
     <Property Type="String" Name="texto" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="idMensaje" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="sp_NotificacionDao_mostrarNotificaciones_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="emisor" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="texto" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="idEncuentro" Nullable="true" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result">
     <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="idUsuario" Nullable="false" />
@@ -1913,6 +1971,7 @@
     <Property Type="Int32" Name="Telefono" Nullable="true" />
     <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
     <Property Type="Double" Name="Valoracion" Nullable="true" />
+    <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Mapa" Nullable="true" />
     <Property Type="Binary" Name="Avatar" Nullable="true" MaxLength="Max" />
@@ -1927,6 +1986,7 @@
     <Property Type="Int32" Name="Telefono" Nullable="true" />
     <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
     <Property Type="Double" Name="Valoracion" Nullable="true" />
+    <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="spObtenerComplejosPorNomb_Result">
@@ -1939,6 +1999,7 @@
     <Property Type="Int32" Name="Telefono" Nullable="true" />
     <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
     <Property Type="Double" Name="Valoracion" Nullable="true" />
+    <Property Type="DateTime" Name="fechaRegistro" Nullable="true" />
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="spObtenerServiciosPorComplejos_Result">

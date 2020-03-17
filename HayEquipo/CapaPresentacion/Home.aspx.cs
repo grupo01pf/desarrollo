@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
 using CapaEntidades;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CapaPresentacion
 {
@@ -24,17 +26,29 @@ namespace CapaPresentacion
             }
             if (!IsPostBack)
             {
-
+                CargarDdlDeportes();
+                ddlDeportes.AutoPostBack = true;
+                CargarDdlZonas();
+                ddlZonas.AutoPostBack = true;
                 //cargarEventosDisponibles();
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
             }
-           
-            encuentrosRepeater.DataSource = ObtenerEncuentros();
+
+            encuentrosRepeater.DataSource = (from encuentro in ObtenerEncuentros()
+                 orderby encuentro.fechaInicioEncuentro ascending
+                 select encuentro)
+                ;
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
 
+            actualizarNotificaciones();
 
+        }
+
+        private void actualizarNotificaciones() {
+
+            lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
         }
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -42,17 +56,37 @@ namespace CapaPresentacion
             if (e.CommandName == "btnUnirseEncuentro")
             {
                 string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+                int id = int.Parse(idEncuentro);
 
+                Session["idEncuentro"] = id;
+
+                Session["idEncuentro"] = id;
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    //  Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
                 {
-                    Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    // Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPrivado.aspx");
                 }
 
-                }
+            }
+        }
+
+        void DeportistasRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "btnVerPerfil")
+            {
+                string idDeportista = ((LinkButton)e.CommandSource).CommandArgument;
+                //int id = int.Parse(idDeportista);
+
+                //Session["ID"] = id;
+
+                Response.Redirect("PerfilOtrosDeportistas.aspx?Id=" + idDeportista);
+
+            }
         }
 
         protected void btn_Logout_Click(object sender, EventArgs e)
@@ -131,17 +165,72 @@ namespace CapaPresentacion
 
 
         //}
-         
+
         public List<EncuentroDeportivoQueryEntidad> ObtenerEncuentros()
         {
             List<EncuentroDeportivoQueryEntidad> encuentro = new List<EncuentroDeportivoQueryEntidad>();
-            encuentro= EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPublicos();
+            encuentro = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosConImagenes();
             //var q = from p in contexto.EncuentroDeportivo
             //        select p;
             //return q.ToList();
             return encuentro;
         }
 
+       public List<DeportistaEntidad> ObtenerDeportistas()
+        {
+            List<DeportistaEntidad> Deportistas = new List<DeportistaEntidad>();
+            Deportistas = DeportistaDao.ObtenerTodosDeportistas();
+            return Deportistas;
+        }
+
+        protected void btn_Notificacion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PerfilDeportistas.aspx");
+        }
+
+        private void CargarDdlDeportes()
+        {
+            ddlDeportes.DataSource = DeporteDao.ObtenerDeportes();
+            ddlDeportes.DataTextField = "nombre";
+            ddlDeportes.DataValueField = "id";
+            ddlDeportes.DataBind();
+        }
+
+        protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                CargarRepeaterPorDeporte();
+        }
+
+        private void CargarRepeaterPorDeporte()
+        {
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()))
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             select encuentro);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+        }
+
+        private void CargarDdlZonas()
+        {
+            ddlZonas.DataSource = ZonaDao.obtenerZonas();
+            ddlZonas.DataTextField = "nombre";
+            ddlZonas.DataValueField = "idZona";
+            ddlZonas.DataBind();
+        }
+
+        protected void ddlZonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarRepeaterPorZona();
+        }
+
+        private void CargarRepeaterPorZona()
+        {
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorZona(int.Parse(ddlZonas.SelectedValue.ToString()))
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             select encuentro);
+            encuentrosRepeater.DataBind();
+            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+        }
 
     }
 }

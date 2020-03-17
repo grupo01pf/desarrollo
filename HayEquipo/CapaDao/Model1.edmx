@@ -75,9 +75,10 @@
           <Property Name="horaCierre" Type="time" Precision="0" />
           <Property Name="idResponsable" Type="int" />
           <Property Name="promedioEstrellas" Type="float" />
-          <Property Name="idEstado" Type="int" />
+          <Property Name="fechaRegistro" Type="date" />
           <Property Name="mapa" Type="nvarchar(max)" />
           <Property Name="avatar" Type="image" />
+          <Property Name="idEstado" Type="int" />
         </EntityType>
         <EntityType Name="Deporte">
           <Key>
@@ -220,6 +221,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.FotosDeportista' no tiene defi
           <Property Name="fechaHora" Type="smalldatetime" />
           <Property Name="idUsuario" Type="int" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="idEmisor" Type="int" />
+          <Property Name="nombreEmisor" Type="nvarchar" MaxLength="50" />
+          <Property Name="idReceptor" Type="int" />
+          <Property Name="nombreReceptor" Type="nvarchar" MaxLength="50" />
+          <Property Name="idEncuentro" Type="int" />
+          <Property Name="texto" Type="nvarchar" MaxLength="100" />
+          <Property Name="idEstado" Type="int" />
+        </EntityType>
         <EntityType Name="Pais">
           <Key>
             <PropertyRef Name="id" />
@@ -286,7 +302,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.FotosDeportista' no tiene defi
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="reseña" Type="nvarchar" MaxLength="50" />
+          <Property Name="reseña" Type="nvarchar(max)" />
           <Property Name="idComplejoValorado" Type="int" />
           <Property Name="idUsuarioValorador" Type="int" />
         </EntityType>
@@ -1262,6 +1278,9 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="ReporteCantidadDeportexFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Complejo" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_AgendaDao_ObtenerAgendaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idComplejo" Type="int" Mode="In" />
           <Parameter Name="idDeporte" Type="int" Mode="In" />
@@ -1335,6 +1354,20 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         <Function Name="sp_MensajeQueryDao_MostrarMensajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEncuentro" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_NotificacionDao_contadorNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_NotificacionDao_insertarNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmisor" Type="int" Mode="In" />
+          <Parameter Name="idReceptor" Type="int" Mode="In" />
+          <Parameter Name="nombreReceptor" Type="nvarchar" Mode="In" />
+          <Parameter Name="idEncuentro" Type="int" Mode="In" />
+          <Parameter Name="texto" Type="nvarchar" Mode="In" />
+          <Parameter Name="idEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_NotificacionDao_mostrarNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_PermisoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="nvarchar" Mode="In" />
         </Function>
@@ -1343,12 +1376,19 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_ReservaDao_ActualizarReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEncuentro" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_ReservaDao_InsertarRerserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fecha" Type="smalldatetime" Mode="In" />
           <Parameter Name="idEncuentro" Type="int" Mode="In" />
           <Parameter Name="idEstado" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_UsuarioDao_ObtenerUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_UsuarioDao_UsuariosUnidosEncuentro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEncuentro" Type="int" Mode="In" />
         </Function>
@@ -1440,6 +1480,18 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     [FotosDeportista].[imagen] AS [imagen], 
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Notificacion" EntityType="Self.Notificacion" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Notificacion].[id] AS [id], 
+    [Notificacion].[idEmisor] AS [idEmisor], 
+    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
+    [Notificacion].[idReceptor] AS [idReceptor], 
+    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
+    [Notificacion].[idEncuentro] AS [idEncuentro], 
+    [Notificacion].[texto] AS [texto], 
+    [Notificacion].[idEstado] AS [idEstado]
+    FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1807,9 +1859,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="horaCierre" Type="Time" Precision="0" />
           <Property Name="idResponsable" Type="Int32" />
           <Property Name="promedioEstrellas" Type="Double" />
-          <Property Name="idEstado" Type="Int32" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
           <Property Name="mapa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idEstado" Type="Int32" />
           <NavigationProperty Name="Barrio" Relationship="Self.FK_ComplejoDeportivo_Barrio" FromRole="ComplejoDeportivo" ToRole="Barrio" />
           <NavigationProperty Name="Cancha" Relationship="Self.FK_Cancha_ComplejoDeportivo" FromRole="ComplejoDeportivo" ToRole="Cancha" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_ComplejoDeportivo_Estado" FromRole="ComplejoDeportivo" ToRole="Estado" />
@@ -2066,7 +2119,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="reseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="reseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="idComplejoValorado" Type="Int32" />
           <Property Name="idUsuarioValorador" Type="Int32" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_ReseñaComplejo_Usuario" FromRole="ReseñaComplejo" ToRole="Usuario" />
@@ -2302,6 +2355,19 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idDeportista" Type="Int32" />
           <NavigationProperty Name="Deportista" Relationship="Self.FK_FotosDeportista_Deportista" FromRole="FotosDeportista" ToRole="Deportista" />
+        </EntityType>
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idEmisor" Type="Int32" />
+          <Property Name="nombreEmisor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idReceptor" Type="Int32" />
+          <Property Name="nombreReceptor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idEncuentro" Type="Int32" />
+          <Property Name="texto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="idEstado" Type="Int32" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -3148,6 +3214,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
           <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
           <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
+          <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
           <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
@@ -3410,6 +3477,9 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <End Role="Zona" EntitySet="Zona" />
             <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
           </AssociationSet>
+          <FunctionImport Name="ReporteCantidadDeportexFecha" ReturnType="Collection(HayEquipoModel.ReporteCantidadDeportexFecha_Result)">
+            <Parameter Name="Complejo" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_AgendaDao_ObtenerAgendaComplejo" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result)">
             <Parameter Name="idComplejo" Mode="In" Type="Int32" />
             <Parameter Name="idDeporte" Mode="In" Type="Int32" />
@@ -3483,6 +3553,20 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
             <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_NotificacionDao_contadorNotificaciones" ReturnType="Collection(Int32)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
+            <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+            <Parameter Name="idReceptor" Mode="In" Type="Int32" />
+            <Parameter Name="nombreReceptor" Mode="In" Type="String" />
+            <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+            <Parameter Name="texto" Mode="In" Type="String" />
+            <Parameter Name="idEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NotificacionDao_mostrarNotificaciones" ReturnType="Collection(HayEquipoModel.sp_NotificacionDao_mostrarNotificaciones_Result)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
             <Parameter Name="usuario" Mode="In" Type="String" />
           </FunctionImport>
@@ -3491,12 +3575,19 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_ReservaDao_ActualizarReserva">
+            <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_ReservaDao_InsertarRerserva">
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
             <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
             <Parameter Name="idEstado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_UsuarioDao_ObtenerUsuarios" ReturnType="Collection(HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_UsuarioDao_UsuariosUnidosEncuentro" ReturnType="Collection(String)">
             <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -3532,6 +3623,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <Parameter Name="prmContraseña" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="ReporteCantidadDeportexFecha_Result">
+          <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="año" Nullable="true" />
+          <Property Type="String" Name="mes" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="CantidadPartidos" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
           <Property Type="Int32" Name="idCancha" Nullable="false" />
           <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
@@ -3577,6 +3674,8 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="capacidad" Nullable="true" />
+          <Property Type="Int32" Name="idComplejo" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -3611,6 +3710,17 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="String" Name="texto" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="idMensaje" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_NotificacionDao_mostrarNotificaciones_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="emisor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="texto" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idEncuentro" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result">
           <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="idUsuario" Nullable="false" />
@@ -3637,6 +3747,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Mapa" Nullable="true" />
           <Property Type="Binary" Name="Avatar" Nullable="true" MaxLength="Max" />
@@ -3651,6 +3762,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spObtenerComplejosPorNomb_Result">
@@ -3663,6 +3775,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="Int32" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="102" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="true" />
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spObtenerServiciosPorComplejos_Result">
@@ -3749,9 +3862,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
                 <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
                 <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
-                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="mapa" ColumnName="mapa" />
                 <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4169,6 +4283,20 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Notificacion">
+            <EntityTypeMapping TypeName="HayEquipoModel.Notificacion">
+              <MappingFragment StoreEntitySet="Notificacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idEmisor" ColumnName="idEmisor" />
+                <ScalarProperty Name="nombreEmisor" ColumnName="nombreEmisor" />
+                <ScalarProperty Name="idReceptor" ColumnName="idReceptor" />
+                <ScalarProperty Name="nombreReceptor" ColumnName="nombreReceptor" />
+                <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Reserva">
             <EntityTypeMapping TypeName="HayEquipoModel.Reserva">
               <MappingFragment StoreEntitySet="Reserva">
@@ -4190,6 +4318,16 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ReporteCantidadDeportexFecha" FunctionName="HayEquipoModel.Store.ReporteCantidadDeportexFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HayEquipoModel.ReporteCantidadDeportexFecha_Result">
+                <ScalarProperty Name="Deporte" ColumnName="Deporte" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="CantidadPartidos" ColumnName="CantidadPartidos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_AgendaDao_ObtenerAgendaComplejo" FunctionName="HayEquipoModel.Store.sp_AgendaDao_ObtenerAgendaComplejo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HayEquipoModel.sp_AgendaDao_ObtenerAgendaComplejo_Result">
@@ -4258,6 +4396,8 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="tipoEncuentro" ColumnName="tipoEncuentro" />
                 <ScalarProperty Name="accesibilidad" ColumnName="accesibilidad" />
                 <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4311,10 +4451,32 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_NotificacionDao_contadorNotificaciones" FunctionName="HayEquipoModel.Store.sp_NotificacionDao_contadorNotificaciones" />
+          <FunctionImportMapping FunctionImportName="sp_NotificacionDao_insertarNotificacion" FunctionName="HayEquipoModel.Store.sp_NotificacionDao_insertarNotificacion" />
+          <FunctionImportMapping FunctionImportName="sp_NotificacionDao_mostrarNotificaciones" FunctionName="HayEquipoModel.Store.sp_NotificacionDao_mostrarNotificaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HayEquipoModel.sp_NotificacionDao_mostrarNotificaciones_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emisor" ColumnName="emisor" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+                <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_PermisoUsuario" FunctionName="HayEquipoModel.Store.sp_PermisoUsuario" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HayEquipoModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_ReservaDao_ActualizarReserva" FunctionName="HayEquipoModel.Store.sp_ReservaDao_ActualizarReserva" />
           <FunctionImportMapping FunctionImportName="sp_ReservaDao_InsertarRerserva" FunctionName="HayEquipoModel.Store.sp_ReservaDao_InsertarRerserva" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HayEquipoModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_UsuarioDao_ObtenerUsuarios" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_ObtenerUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_UsuarioDao_UsuariosUnidosEncuentro" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_UsuariosUnidosEncuentro" />
           <FunctionImportMapping FunctionImportName="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA" FunctionName="HayEquipoModel.Store.sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA">
             <ResultMapping>
@@ -4358,6 +4520,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Mapa" ColumnName="Mapa" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
@@ -4376,6 +4539,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -4392,6 +4556,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>

@@ -37,10 +37,10 @@ namespace CapaDao
             }
         }
 
-        public static void actualizarEncuentroDeportivo(int idEncuntro, int estado) {
+        public static void actualizarEncuentroDeportivo(int idEncuentro, int estado) {
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuntro);
+                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuentro);
                 ed.idEstado = estado;
                 db.Entry(ed).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

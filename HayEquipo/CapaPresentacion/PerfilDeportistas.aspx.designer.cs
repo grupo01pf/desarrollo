@@ -85,6 +85,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl calif;
         
         /// <summary>
+        /// Control lbl_Notificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Notificacion;
+        
+        /// <summary>
         /// Control lbl_Nombres.
         /// </summary>
         /// <remarks>
@@ -326,5 +335,23 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsjrb4;
+        
+        /// <summary>
+        /// Control ddl_anios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_anios;
+        
+        /// <summary>
+        /// Control gdv_Notificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_Notificaciones;
     }
 }
