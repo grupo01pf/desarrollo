@@ -22,7 +22,6 @@ namespace CapaEntidades
         public Nullable<int> Telefono { get; set; }
         public string Responsable { get; set; }
         public Nullable<double> Valoracion { get; set; }
-        public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string Estado { get; set; }
     }
 }

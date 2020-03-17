@@ -76,15 +76,6 @@ namespace CapaEntidades
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
     
-        public virtual ObjectResult<ReporteCantidadDeportexFecha_Result> ReporteCantidadDeportexFecha(Nullable<int> complejo)
-        {
-            var complejoParameter = complejo.HasValue ?
-                new ObjectParameter("Complejo", complejo) :
-                new ObjectParameter("Complejo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReporteCantidadDeportexFecha_Result>("ReporteCantidadDeportexFecha", complejoParameter);
-        }
-    
         public virtual ObjectResult<sp_AgendaDao_ObtenerAgendaComplejo_Result> sp_AgendaDao_ObtenerAgendaComplejo(Nullable<int> idComplejo, Nullable<int> idDeporte)
         {
             var idComplejoParameter = idComplejo.HasValue ?
@@ -249,13 +240,13 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EncuentroDeportivoDao_SalirDelEncuentroEquipoB", idUsuarioParameter, idEncuentroParameter);
         }
     
-        public virtual ObjectResult<sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result> sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado(Nullable<int> idEnc)
+        public virtual ObjectResult<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado_Result> sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado(Nullable<int> idEnc)
         {
             var idEncParameter = idEnc.HasValue ?
                 new ObjectParameter("idEnc", idEnc) :
                 new ObjectParameter("idEnc", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result>("sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado", idEncParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado_Result>("sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado", idEncParameter);
         }
     
         public virtual ObjectResult<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result> sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico(Nullable<int> idEnc)
@@ -321,6 +312,19 @@ namespace CapaEntidades
                 new ObjectParameter("idEncuentro", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MensajeQueryDao_MostrarMensajes_Result>("sp_MensajeQueryDao_MostrarMensajes", idEncuentroParameter);
+        }
+    
+        public virtual int sp_NotificacionDao_actualizarEstadoNotificacion(Nullable<int> idEstado, Nullable<int> idNotificacion)
+        {
+            var idEstadoParameter = idEstado.HasValue ?
+                new ObjectParameter("idEstado", idEstado) :
+                new ObjectParameter("idEstado", typeof(int));
+    
+            var idNotificacionParameter = idNotificacion.HasValue ?
+                new ObjectParameter("idNotificacion", idNotificacion) :
+                new ObjectParameter("idNotificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_actualizarEstadoNotificacion", idEstadoParameter, idNotificacionParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_NotificacionDao_contadorNotificaciones(Nullable<int> idUsuario)

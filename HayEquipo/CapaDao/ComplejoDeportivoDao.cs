@@ -184,7 +184,7 @@ namespace CapaDao
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+              //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 comp.Mapa = dr["Mapa"].ToString();
                 comp.Avatar = (byte[])dr["Avatar"];
@@ -269,7 +269,7 @@ namespace CapaDao
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+             //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 comp.Mapa = dr["Mapa"].ToString();
                 comp.Avatar = (byte[])dr["Avatar"];

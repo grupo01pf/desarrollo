@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="id" />
@@ -70,10 +70,9 @@
     <Property Name="horaCierre" Type="time" Precision="0" />
     <Property Name="idResponsable" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
-    <Property Name="fechaRegistro" Type="date" />
+    <Property Name="idEstado" Type="int" />
     <Property Name="mapa" Type="nvarchar(max)" />
     <Property Name="avatar" Type="image" />
-    <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -222,13 +221,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definid
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idEmisor" Type="int" />
     <Property Name="nombreEmisor" Type="nvarchar" MaxLength="50" />
     <Property Name="idReceptor" Type="int" />
     <Property Name="nombreReceptor" Type="nvarchar" MaxLength="50" />
     <Property Name="idEncuentro" Type="int" />
-    <Property Name="texto" Type="nvarchar" MaxLength="100" />
+    <Property Name="texto" Type="nvarchar" MaxLength="50" />
     <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="Pais">
@@ -297,7 +296,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Notificacion' no tiene definid
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="reseña" Type="nvarchar(max)" />
+    <Property Name="reseña" Type="nvarchar" MaxLength="50" />
     <Property Name="idComplejoValorado" Type="int" />
     <Property Name="idUsuarioValorador" Type="int" />
   </EntityType>
@@ -1273,9 +1272,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     </ReferentialConstraint>
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="ReporteCantidadDeportexFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Complejo" Type="int" Mode="In" />
-  </Function>
   <Function Name="sp_AgendaDao_ObtenerAgendaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idComplejo" Type="int" Mode="In" />
     <Parameter Name="idDeporte" Type="int" Mode="In" />
@@ -1326,7 +1322,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Parameter Name="idUsuario" Type="int" Mode="In" />
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEnc" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1348,6 +1344,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   </Function>
   <Function Name="sp_MensajeQueryDao_MostrarMensajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_NotificacionDao_actualizarEstadoNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEstado" Type="int" Mode="In" />
+    <Parameter Name="idNotificacion" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_NotificacionDao_contadorNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUsuario" Type="int" Mode="In" />
