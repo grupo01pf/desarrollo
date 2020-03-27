@@ -1695,6 +1695,7 @@
     <Content Include="fontawesome\webfonts\fa-brands-400.svg" />
     <Content Include="fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="GMap.aspx" />
     <Content Include="HomeAdministrador.aspx" />
     <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="imagen.aspx" />
@@ -1822,6 +1823,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\map.js" />
     <Content Include="scripts\starrr.js" />
     <Content Include="w3\w3.css" />
     <Content Include="Web.config" />
@@ -1883,6 +1885,13 @@
     </Compile>
     <Compile Include="EncuentroPublico.aspx.designer.cs">
       <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GMap.aspx.cs">
+      <DependentUpon>GMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GMap.aspx.designer.cs">
+      <DependentUpon>GMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
