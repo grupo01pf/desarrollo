@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<body>
+<body bgcolor="#00722e">
     <form id="form1" runat="server">
 
         <div class="container">
@@ -29,11 +29,19 @@
                 <%--FORMULARIO--%>
                 <div class="col-md-4">
                     <br />
-                    <label for="lbl_Ubicacion">Ubicacion</label>
+                   <%-- <label for="lbl_Ubicacion">Ubicacion</label>
                     <asp:HiddenField ID="txt_ID" runat="server" />
-                    <asp:TextBox ID="txt_Ubicacion" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Ubicacion" CssClass="form-control" runat="server"></asp:TextBox>--%>
 
-                     <br />
+
+                    <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
+                    <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
+                        AppendDataBoundItems="true" >
+                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                    </asp:DropDownList>
+
+
+                    <br />
 
                     <%--**** MAPA ****--%>
 
@@ -48,15 +56,15 @@
                     <asp:TextBox ID="txt_Latitud" Text="" CssClass="form-control" runat="server"></asp:TextBox>
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Longitud" Text=""  CssClass="form-control" runat="server"></asp:TextBox>
 
                 </div>
                 <br />
                 <div class="form-group">
-                    <asp:Button ID="btn_Agregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" />
-                    <asp:Button ID="btn_Modificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" />
-                    <asp:Button ID="btn_Eliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false" />
-                    <asp:Button ID="btn_Limpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" />
+                    <asp:Button ID="btn_Agregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false"  OnClick="btn_Agregar_Click"/>
+                    <asp:Button ID="btn_Modificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="btn_Modificar_Click" />
+                    <asp:Button ID="btn_Eliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false"  OnClick="btn_Eliminar_Click"/>
+                    <asp:Button ID="btn_Limpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" OnClick="btn_Limpiar_Click"/>
                 </div>
 
                 </div>
@@ -67,11 +75,26 @@
                     <br />
                     <h1>Ubicaciones</h1>
 
-                    <asp:GridView ID="gdb_Ubicaciones" runat="server">
+
+
+                    <asp:GridView ID="gdv_Ubicaciones" runat="server" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                        HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Ubicaciones_SelectedIndexChanged">
                         <Columns>
-                            <asp:ButtonField Text="Seleccionar" />
+                            
+                            <asp:CommandField ShowSelectButton="true" ControlStyle-Width="25px" />
+
+                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                            <asp:BoundField DataField="mapa" HeaderText="Id" Visible="false" />
+                            <asp:BoundField DataField="nombre" HeaderText="Cancha" Visible="true" />
+                            <asp:BoundField DataField="calle" HeaderText="Tipo" Visible="true" />
+                            <asp:BoundField DataField="nroCalle" HeaderText="Horarios" Visible="true" />
+                            <asp:BoundField DataField="latitud" HeaderText="Precio" Visible="true" />
+                            <asp:BoundField DataField="longitud" HeaderText="Capacidad" Visible="true" />
+   
+
                         </Columns>
-        </asp:GridView>
+
+                    </asp:GridView>
 
                 </div>
             </div>

@@ -60,7 +60,6 @@ namespace CapaEntidades
         public virtual DbSet<ServiciosPorComplejos> ServiciosPorComplejos { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
         public virtual DbSet<Sponsor> Sponsor { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TipoCancha> TipoCancha { get; set; }
         public virtual DbSet<TipoDeporte> TipoDeporte { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
@@ -72,9 +71,19 @@ namespace CapaEntidades
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
+        public virtual DbSet<Mapa> Mapa { get; set; }
         public virtual DbSet<Notificacion> Notificacion { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
+    
+        public virtual ObjectResult<ReporteCantidadDeportexFecha_Result> ReporteCantidadDeportexFecha(Nullable<int> complejo)
+        {
+            var complejoParameter = complejo.HasValue ?
+                new ObjectParameter("Complejo", complejo) :
+                new ObjectParameter("Complejo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReporteCantidadDeportexFecha_Result>("ReporteCantidadDeportexFecha", complejoParameter);
+        }
     
         public virtual ObjectResult<sp_AgendaDao_ObtenerAgendaComplejo_Result> sp_AgendaDao_ObtenerAgendaComplejo(Nullable<int> idComplejo, Nullable<int> idDeporte)
         {
@@ -100,61 +109,6 @@ namespace CapaEntidades
                 new ObjectParameter("fecha", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaDao_ObtenerHorariosReservados_Result>("sp_AgendaDao_ObtenerHorariosReservados", idComplejoParameter, fechaParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_EncuentroDeportivoDao_idEncuentroCreado(Nullable<int> usuario)
@@ -240,13 +194,13 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EncuentroDeportivoDao_SalirDelEncuentroEquipoB", idUsuarioParameter, idEncuentroParameter);
         }
     
-        public virtual ObjectResult<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado_Result> sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado(Nullable<int> idEnc)
+        public virtual ObjectResult<sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result> sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado(Nullable<int> idEnc)
         {
             var idEncParameter = idEnc.HasValue ?
                 new ObjectParameter("idEnc", idEnc) :
                 new ObjectParameter("idEnc", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado_Result>("sp_EncuentroDeportivoQueryDao_BuscarEncuentroPrivado", idEncParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result>("sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado", idEncParameter);
         }
     
         public virtual ObjectResult<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result> sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico(Nullable<int> idEnc)
@@ -258,30 +212,37 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result>("sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico", idEncParameter);
         }
     
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<sp_MapaDao_EliminarMapa_Result> sp_MapaDao_EliminarMapa()
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_EliminarMapa_Result>("sp_MapaDao_EliminarMapa");
         }
     
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<Nullable<decimal>> sp_MapaDao_InsertarMapa(Nullable<double> lat, Nullable<double> lng)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var latParameter = lat.HasValue ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(double));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
+            var lngParameter = lng.HasValue ?
+                new ObjectParameter("lng", lng) :
+                new ObjectParameter("lng", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_MapaDao_InsertarMapa", latParameter, lngParameter);
+        }
+    
+        public virtual ObjectResult<sp_MapaDao_ModificarMapa_Result> sp_MapaDao_ModificarMapa()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ModificarMapa_Result>("sp_MapaDao_ModificarMapa");
+        }
+    
+        public virtual ObjectResult<sp_MapaDao_ObtenerMapaByID_Result> sp_MapaDao_ObtenerMapaByID()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ObtenerMapaByID_Result>("sp_MapaDao_ObtenerMapaByID");
+        }
+    
+        public virtual ObjectResult<sp_MapaDao_ObtenerMapas_Result> sp_MapaDao_ObtenerMapas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ObtenerMapas_Result>("sp_MapaDao_ObtenerMapas");
         }
     
         public virtual int sp_MensajeDao_InsertarMensaje(Nullable<int> idEncuentro, Nullable<System.DateTime> fechaHora, string texto, Nullable<int> idUsuario)
@@ -312,19 +273,6 @@ namespace CapaEntidades
                 new ObjectParameter("idEncuentro", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MensajeQueryDao_MostrarMensajes_Result>("sp_MensajeQueryDao_MostrarMensajes", idEncuentroParameter);
-        }
-    
-        public virtual int sp_NotificacionDao_actualizarEstadoNotificacion(Nullable<int> idEstado, Nullable<int> idNotificacion)
-        {
-            var idEstadoParameter = idEstado.HasValue ?
-                new ObjectParameter("idEstado", idEstado) :
-                new ObjectParameter("idEstado", typeof(int));
-    
-            var idNotificacionParameter = idNotificacion.HasValue ?
-                new ObjectParameter("idNotificacion", idNotificacion) :
-                new ObjectParameter("idNotificacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_actualizarEstadoNotificacion", idEstadoParameter, idNotificacionParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_NotificacionDao_contadorNotificaciones(Nullable<int> idUsuario)
@@ -383,23 +331,6 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_PermisoUsuario", usuarioParameter);
         }
     
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
         public virtual int sp_ReservaDao_ActualizarReserva(Nullable<int> idEncuentro, Nullable<int> estado)
         {
             var idEncuentroParameter = idEncuentro.HasValue ?
@@ -428,11 +359,6 @@ namespace CapaEntidades
                 new ObjectParameter("idEstado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ReservaDao_InsertarRerserva", fechaParameter, idEncuentroParameter, idEstadoParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual ObjectResult<sp_UsuarioDao_ObtenerUsuarios_Result> sp_UsuarioDao_ObtenerUsuarios(Nullable<int> idUsuario)
@@ -554,6 +480,28 @@ namespace CapaEntidades
                 new ObjectParameter("prmContraseña", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuarioEstablecimiento", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spValoracionGeneralDeportista(Nullable<int> prmidDeportista)
+        {
+            var prmidDeportistaParameter = prmidDeportista.HasValue ?
+                new ObjectParameter("prmidDeportista", prmidDeportista) :
+                new ObjectParameter("prmidDeportista", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValoracionGeneralDeportista", prmidDeportistaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spValorarDeportistaxTipo(Nullable<int> prmidDeportista, Nullable<int> prmTipo)
+        {
+            var prmidDeportistaParameter = prmidDeportista.HasValue ?
+                new ObjectParameter("prmidDeportista", prmidDeportista) :
+                new ObjectParameter("prmidDeportista", typeof(int));
+    
+            var prmTipoParameter = prmTipo.HasValue ?
+                new ObjectParameter("prmTipo", prmTipo) :
+                new ObjectParameter("prmTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValorarDeportistaxTipo", prmidDeportistaParameter, prmTipoParameter);
         }
     }
 }

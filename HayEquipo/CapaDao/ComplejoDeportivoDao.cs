@@ -60,6 +60,19 @@ namespace CapaDao
             }
         }
 
+        public static void ActualizarMapaComplejo(ComplejoDeportivo complejo)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+
+                comp.mapa = complejo.mapa;
+
+                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         public static void EliminarComplejo(int id)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())
@@ -186,7 +199,7 @@ namespace CapaDao
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
               //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = dr["Mapa"].ToString();
+                comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
 
                 listaQuery.Add(comp);
@@ -271,7 +284,7 @@ namespace CapaDao
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
              //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = dr["Mapa"].ToString();
+                comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
 
                 complejos.Add(comp);

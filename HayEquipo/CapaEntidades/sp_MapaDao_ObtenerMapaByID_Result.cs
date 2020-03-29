@@ -11,9 +11,10 @@ namespace CapaEntidades
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class sp_MapaDao_ObtenerMapaByID_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id { get; set; }
+        public string latitud { get; set; }
+        public string longitud { get; set; }
     }
 }

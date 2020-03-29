@@ -262,7 +262,7 @@ namespace CapaPresentacion
                 contenedorDelMapa.Visible = true;
                 frm_map.Visible = true;
                 ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-                frm_map.Src = cd.mapa;
+               // frm_map.Src = cd.mapa;
                 btn_Agenda.Visible = true;
             }
             if (cmb_Complejo.SelectedIndex == 0)

@@ -104,7 +104,7 @@ namespace CapaPresentacion
             frm_map.Visible = true;
             //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
-            frm_map.Src = cd.mapa;
+           // frm_map.Src = cd.mapa;
         }
 
         private void validacionesDeUsuario()

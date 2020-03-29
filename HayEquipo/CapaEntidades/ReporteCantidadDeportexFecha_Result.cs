@@ -11,12 +11,11 @@ namespace CapaEntidades
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class ReporteCantidadDeportexFecha_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public string Deporte { get; set; }
+        public Nullable<int> año { get; set; }
+        public string mes { get; set; }
+        public Nullable<int> CantidadPartidos { get; set; }
     }
 }

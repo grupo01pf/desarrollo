@@ -22,22 +22,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control txt_ID.
+        /// Control lbl_Complejo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txt_ID;
+        protected global::System.Web.UI.WebControls.Label lbl_Complejo;
         
         /// <summary>
-        /// Control txt_Ubicacion.
+        /// Control cmb_Complejo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Ubicacion;
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Complejo;
         
         /// <summary>
         /// Control txt_Latitud.
@@ -94,12 +94,12 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btn_Limpiar;
         
         /// <summary>
-        /// Control gdb_Ubicaciones.
+        /// Control gdv_Ubicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdb_Ubicaciones;
+        protected global::System.Web.UI.WebControls.GridView gdv_Ubicaciones;
     }
 }

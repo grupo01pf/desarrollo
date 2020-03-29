@@ -35,8 +35,9 @@ myMap.on('dblclick', e => {
    // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
 
-    $('#txt_Latitud').val(marker.getLatLng().lat)
-    $('#txt_Longitud').val(marker.getLatLng().lng)
+   $('#txt_Latitud').val(marker.getLatLng().lat)
+   $('#txt_Longitud').val(marker.getLatLng().lng)
+
 
     // marker.bindPopup('CBA').openPopup(); // ok
 
