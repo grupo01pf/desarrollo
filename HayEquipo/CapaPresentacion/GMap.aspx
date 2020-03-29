@@ -12,8 +12,8 @@
 
     <style>
         #myMap {
-            height: 250px;
-            width: 350px;
+            height: 350px;
+            width: 450px;
         }
     </style>
 
@@ -27,7 +27,7 @@
 
             <div class="row">
                 <%--FORMULARIO--%>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <br />
                    <%-- <label for="lbl_Ubicacion">Ubicacion</label>
                     <asp:HiddenField ID="txt_ID" runat="server" />
@@ -52,11 +52,21 @@
                     <%--**** FIN MAPA ****--%>
 
                 <div class="form-group">
+                    <%--<asp:TextBox ID="txt_Texto" Text="" runat="server" ></asp:TextBox>--%>
+
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text=""  CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
+
+                    <br />
+
+                  <%--  <p>
+                        latitude: <span id="lat"></span><br />
+                        longitude: <span id="lon"></span>
+                    </p>--%>
+
 
                 </div>
                 <br />
@@ -71,7 +81,7 @@
                
 
                 <%--GRILLA--%>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <br />
                     <h1>Ubicaciones</h1>
 
@@ -81,15 +91,15 @@
                         HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Ubicaciones_SelectedIndexChanged">
                         <Columns>
                             
-                            <asp:CommandField ShowSelectButton="true" ControlStyle-Width="25px" />
+                            <asp:CommandField ShowSelectButton="true" />
 
                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                            <asp:BoundField DataField="mapa" HeaderText="Id" Visible="false" />
-                            <asp:BoundField DataField="nombre" HeaderText="Cancha" Visible="true" />
-                            <asp:BoundField DataField="calle" HeaderText="Tipo" Visible="true" />
-                            <asp:BoundField DataField="nroCalle" HeaderText="Horarios" Visible="true" />
-                            <asp:BoundField DataField="latitud" HeaderText="Precio" Visible="true" />
-                            <asp:BoundField DataField="longitud" HeaderText="Capacidad" Visible="true" />
+                            <asp:BoundField DataField="mapa" HeaderText="IdMapa" Visible="false" />
+                            <asp:BoundField DataField="nombre" HeaderText="Commplejo Deportivo" Visible="true" />
+                            <asp:BoundField DataField="calle" HeaderText="Calle" Visible="true" />
+                            <asp:BoundField DataField="nroCalle" HeaderText="Nro" Visible="true" />
+                            <asp:BoundField DataField="latitud" HeaderText="Latitud" Visible="true" />
+                            <asp:BoundField DataField="longitud" HeaderText="Longitud" Visible="true" />
    
 
                         </Columns>
@@ -106,8 +116,16 @@
             crossorigin=""></script>
 
         <%--**** CONTROL DEL MAPA ****--%>
-        <script src="scripts/map.js"></script>
+        <script src="scripts/map.js" ></script>
 
+
+        <script type="text/javascript">
+    function GetTextBoxValue() {
+        var value = document.getElementById('<%=txt_Latitud.ClientID%>').value;
+        alert(value);
+        return false;
+    }
+</script>
 
 
         <%--BOOTSTRAP--%>

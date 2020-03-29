@@ -78,8 +78,8 @@ namespace CapaPresentacion
         {
             GridViewRow fila = gdv_Ubicaciones.SelectedRow;
 
-            txt_Latitud.Text = fila.Cells[3].Text;
-            txt_Longitud.Text = fila.Cells[3].Text;
+            txt_Latitud.Text = fila.Cells[6].Text;
+            txt_Longitud.Text = fila.Cells[7].Text;
         }
 
         private void cargarGrilla() {
@@ -87,6 +87,14 @@ namespace CapaPresentacion
             gdv_Ubicaciones.DataSource = MapaDao.obtenerMapas();
             gdv_Ubicaciones.DataKeyNames = new string[] { "id" };
             gdv_Ubicaciones.DataBind();
+
+            //List<MapaQueryDao> listaMapas = MapaDao.obtenerMapas();
+            //foreach (MapaQueryDao mapa in listaMapas) {
+
+            //    txt_Latitud.Text = mapa.latitud;
+            //    txt_Longitud.Text = mapa.longitud;
+            //}
+            
         }
 
         private void limpiarCampos() {
