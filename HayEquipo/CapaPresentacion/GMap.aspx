@@ -52,14 +52,15 @@
                     <%--**** FIN MAPA ****--%>
 
                 <div class="form-group">
-                    <%--<asp:TextBox ID="txt_Texto" Text="" runat="server" ></asp:TextBox>--%>
+                
 
                     <label for="lbl_Latitud">Latitud</label>
                     <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
-
+                    <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                    
                     <label for="lbl_Longitud">Longitud</label>
                     <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
-
+                    <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
                     <br />
 
                   <%--  <p>
@@ -116,16 +117,65 @@
             crossorigin=""></script>
 
         <%--**** CONTROL DEL MAPA ****--%>
-        <script src="scripts/map.js" ></script>
+        <%--<script src="scripts/map.js" ></script>--%>
 
 
-        <script type="text/javascript">
-    function GetTextBoxValue() {
-        var value = document.getElementById('<%=txt_Latitud.ClientID%>').value;
-        alert(value);
-        return false;
-    }
-</script>
+       <script type="text/javascript">
+
+
+           const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+
+
+           // CENTRAR LA VISTA DEL MAPA
+           let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+           L.tileLayer(tilesProvider, {
+               maxzoom: 18,
+           }).addTo(myMap)
+
+
+          // MOSTRAR UN COMPLEJO
+
+           <%--var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+           var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+           var complejoDeportivo = L.marker([latitude, longitude]).addTo(myMap)
+           myMap.setView([latitude,longitude], 15)--%>
+
+
+           // CREAR UN MARCADOR
+           // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
+
+           // DESACTIVAR ZOOM CON DOBLE CLICK
+           myMap.doubleClickZoom.disable()
+
+
+
+           var layerGroup = L.layerGroup().addTo(myMap)
+
+           // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+           myMap.on('dblclick', e => {
+
+               layerGroup.clearLayers();
+
+               let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+               // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
+
+               myMap.closePopup();
+               var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+               // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
+
+               $('#txt_Latitud').val(marker.getLatLng().lat)
+               $('#txt_Longitud').val(marker.getLatLng().lng)
+
+               // PONER UN POPUP
+               // marker.bindPopup('CBA').openPopup(); // ok
+
+
+           })
+
+
+       </script>
 
 
         <%--BOOTSTRAP--%>

@@ -6,10 +6,18 @@ const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
 // centrar la vista del mapa
 let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
 
-
 L.tileLayer(tilesProvider, {
     maxzoom: 18,
 }).addTo(myMap)
+
+
+
+
+var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+var complejoDeportivo = L.marker([latitude, longitude]).addTo(myMap)
+
+
 
 // crear un marcador
 // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
@@ -35,6 +43,7 @@ myMap.on('dblclick', e => {
    $('#txt_Longitud').val(marker.getLatLng().lng)
 
     // marker.bindPopup('CBA').openPopup(); // ok
+
     
 })
 
