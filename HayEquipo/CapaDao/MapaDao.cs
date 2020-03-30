@@ -16,7 +16,21 @@ namespace CapaDao
         public static Mapa obtenerMapaByID(int id) {
 
             Mapa m = new Mapa();
-
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_MapaDao_ObtenerMapaByID", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                m.id = int.Parse(dr["id"].ToString());
+                m.latitud = dr["latitud"].ToString();
+                m.longitud = dr["longitud"].ToString();
+            }
+            dr.Close();
+            cn.Close();
             return m;
 
         }

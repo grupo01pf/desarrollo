@@ -94,8 +94,8 @@
                             
                             <asp:CommandField ShowSelectButton="true" />
 
-                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                            <asp:BoundField DataField="mapa" HeaderText="IdMapa" Visible="false" />
+                            <asp:BoundField DataField="id" HeaderText="Id" Visible="" />
+                            <asp:BoundField DataField="mapa" HeaderText="IdMapa" Visible="true" />
                             <asp:BoundField DataField="nombre" HeaderText="Commplejo Deportivo" Visible="true" />
                             <asp:BoundField DataField="calle" HeaderText="Calle" Visible="true" />
                             <asp:BoundField DataField="nroCalle" HeaderText="Nro" Visible="true" />
@@ -134,12 +134,14 @@
            }).addTo(myMap)
 
 
-          // MOSTRAR UN COMPLEJO
-
-           <%--var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+           // MOSTRAR UN COMPLEJO
+           var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
            var complejoDeportivo = L.marker([latitude, longitude]).addTo(myMap)
-           myMap.setView([latitude,longitude], 15)--%>
+           if (latitude != "" && longitude != "") {
+               myMap.setView([latitude, longitude], 15)
+           }
+          
 
 
            // CREAR UN MARCADOR

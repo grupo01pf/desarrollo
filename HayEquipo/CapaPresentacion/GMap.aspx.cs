@@ -20,7 +20,18 @@ namespace CapaPresentacion
             cargarComplejos();
             cargarGrilla();
 
-            //txt_Texto.Text = "hola";
+           // limpiarCampos();
+
+
+        }
+
+        private void mostrarUbicacion(int idMapa) {
+
+            Mapa mapa = MapaDao.obtenerMapaByID(idMapa);            
+
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;        
+
         }
 
 
@@ -84,6 +95,14 @@ namespace CapaPresentacion
 
             txt_Latitud.Text = fila.Cells[6].Text;
             txt_Longitud.Text = fila.Cells[7].Text;
+
+
+
+          
+            int idMapa = 0;
+            string str = fila.Cells[2].Text;
+            if (int.TryParse(str, out idMapa))
+                mostrarUbicacion(idMapa);
         }
 
         private void cargarGrilla() {
@@ -91,18 +110,6 @@ namespace CapaPresentacion
             gdv_Ubicaciones.DataSource = MapaDao.obtenerMapas();
             gdv_Ubicaciones.DataKeyNames = new string[] { "id" };
             gdv_Ubicaciones.DataBind();
-
-
-
-
-            List<MapaQueryDao> listaMapas = MapaDao.obtenerMapas();
-            foreach (MapaQueryDao mapa in listaMapas)
-            {
-
-                txt_Latitud.Text = mapa.latitud;
-                txt_Longitud.Text = mapa.longitud;
-                return;
-            }
 
         }
 
