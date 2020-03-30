@@ -93,14 +93,37 @@ namespace CapaDao
             return id;
         }
 
-      
 
-        public static void modificarMapa(int id) {
 
+        public static void modificarMapa(Mapa m)
+        {
+            //public static void modificarMapa(int id, string lat, string lng){
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_MapaDao_ModificarMapa", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", m.id);
+            cmd.Parameters.AddWithValue("@lat", m.latitud);
+            cmd.Parameters.AddWithValue("@lng", m.longitud);
+            //cmd.Parameters.AddWithValue("@id", id);
+            //cmd.Parameters.AddWithValue("@lat", lat);
+            //cmd.Parameters.AddWithValue("@lng", lng);
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
 
         public static void eliminarMapa(int id){
 
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_MapaDao_EliminarMapa", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", id);;
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
     }
 }

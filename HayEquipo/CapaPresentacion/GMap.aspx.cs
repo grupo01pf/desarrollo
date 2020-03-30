@@ -11,18 +11,24 @@ namespace CapaPresentacion
 {
     public partial class GMap : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            txt_Latitud.Enabled = true;
-            txt_Longitud.Enabled = true;
+            if (!IsPostBack)
+            {
+                Session["idMapa"] = string.Empty;
+                Session["idComplejo"] = string.Empty;
 
-            cargarComplejos();
-            cargarGrilla();
+                txt_Latitud.Enabled = true;
+                txt_Longitud.Enabled = true;
 
-           // limpiarCampos();
+                cargarComplejos();
+                cargarGrilla();
 
+                // limpiarCampos();
 
+            }
         }
 
         private void mostrarUbicacion(int idMapa) {
@@ -68,20 +74,33 @@ namespace CapaPresentacion
             ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
 
             limpiarCampos();
+            cargarGrilla();
         }
 
         protected void btn_Modificar_Click(object sender, EventArgs e)
         {
-
+            Mapa m = new Mapa();      
+             
+            m.id = int.Parse(Session["idMapa"].ToString());
+            m.latitud = txt_Latitud.Text;
+            m.longitud = txt_Longitud.Text;
+            MapaDao.modificarMapa(m);
 
             limpiarCampos();
+            cargarGrilla();
         }
 
         protected void btn_Eliminar_Click(object sender, EventArgs e)
         {
 
+            MapaDao.eliminarMapa(int.Parse(Session["idMapa"].ToString()));
+            ComplejoDeportivo cd = new ComplejoDeportivo();
+            cd.id = int.Parse(Session["idComplejo"].ToString());
+            cd.mapa = null;
+            ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
 
             limpiarCampos();
+            cargarGrilla();
         }
 
         protected void btn_Limpiar_Click(object sender, EventArgs e)
@@ -96,13 +115,26 @@ namespace CapaPresentacion
             txt_Latitud.Text = fila.Cells[6].Text;
             txt_Longitud.Text = fila.Cells[7].Text;
 
+            Session["idComplejo"] = int.Parse(fila.Cells[1].Text);
+            Session["idMapa"] = int.Parse(fila.Cells[2].Text);
+
+            mostrarUbicacion(int.Parse(Session["idMapa"].ToString()));
 
 
-          
-            int idMapa = 0;
-            string str = fila.Cells[2].Text;
-            if (int.TryParse(str, out idMapa))
-                mostrarUbicacion(idMapa);
+            //int idComplejo = 0;
+            //string cd = fila.Cells[1].Text;
+            //if (int.TryParse(cd, out idComplejo)) { 
+            //    Session["idComplejo"] = idComplejo;
+            //}
+
+
+            //int idMapa = 0;
+            //string map = fila.Cells[2].Text;
+            //if (int.TryParse(map, out idMapa)) {
+            //    Session["idMapa"] = idMapa;
+            //    mostrarUbicacion(idMapa);                
+            //}               
+
         }
 
         private void cargarGrilla() {

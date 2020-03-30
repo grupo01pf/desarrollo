@@ -94,8 +94,8 @@
                             
                             <asp:CommandField ShowSelectButton="true" />
 
-                            <asp:BoundField DataField="id" HeaderText="Id" Visible="" />
-                            <asp:BoundField DataField="mapa" HeaderText="IdMapa" Visible="true" />
+                            <asp:BoundField DataField="id" HeaderText="Id" Visible="true" />
+                            <asp:BoundField DataField="idMapa" HeaderText="IdMapa" Visible="true" />
                             <asp:BoundField DataField="nombre" HeaderText="Commplejo Deportivo" Visible="true" />
                             <asp:BoundField DataField="calle" HeaderText="Calle" Visible="true" />
                             <asp:BoundField DataField="nroCalle" HeaderText="Nro" Visible="true" />
@@ -134,10 +134,12 @@
            }).addTo(myMap)
 
 
+           var layerGroup = L.layerGroup().addTo(myMap)
+
            // MOSTRAR UN COMPLEJO
            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
-           var complejoDeportivo = L.marker([latitude, longitude]).addTo(myMap)
+           var marker = L.marker([latitude, longitude]).addTo(layerGroup)
            if (latitude != "" && longitude != "") {
                myMap.setView([latitude, longitude], 15)
            }
@@ -152,10 +154,13 @@
 
 
 
-           var layerGroup = L.layerGroup().addTo(myMap)
+           // var layerGroup = L.layerGroup().addTo(myMap)
 
            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
            myMap.on('dblclick', e => {
+               // ELIMINAR MARCADOR DEL COMPLEJO
+               
+
 
                layerGroup.clearLayers();
 
@@ -163,12 +168,16 @@
                // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
 
                myMap.closePopup();
-               var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+               //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+               // var marker = L.marker([latLng.lat, latLng.lng], { draggable: true }).addTo(layerGroup)
+               marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
                $('#txt_Latitud').val(marker.getLatLng().lat)
                $('#txt_Longitud').val(marker.getLatLng().lng)
+
 
                // PONER UN POPUP
                // marker.bindPopup('CBA').openPopup(); // ok
