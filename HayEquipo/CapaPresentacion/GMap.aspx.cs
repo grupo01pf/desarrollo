@@ -25,10 +25,10 @@ namespace CapaPresentacion
 
                 cargarComplejos();
                 cargarGrilla();
-
-                // limpiarCampos();
-
+                
             }
+
+            obtenerCoordenadas();
         }
 
         private void mostrarUbicacion(int idMapa) {
@@ -46,7 +46,7 @@ namespace CapaPresentacion
 
             cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
             cmb_Complejo.DataValueField = "id";
-            cmb_Complejo.DataValueField = "nombre";
+            cmb_Complejo.DataTextField = "nombre";
             cmb_Complejo.DataBind();
         }
 
@@ -108,6 +108,42 @@ namespace CapaPresentacion
             limpiarCampos();
         }
 
+
+        private void obtenerCoordenadas(){
+            List<MapaQueryDao> listaMapas = MapaDao.obtenerMapas();
+
+            string str = "[";
+            //for(int i = 0; i < listaMapas.Count; i++){
+            //    if (i != listaMapas.Count)
+            //    {
+            //        str += "[" + m.latitud + "," + m.longitud + "],";
+            //    }
+            //    else {
+            //        str += "[" + m.latitud + "," + m.longitud + "]";
+            //    }
+            //}
+
+            int contador = 0;
+            foreach (MapaQueryDao m in listaMapas) {
+                if (contador != listaMapas.Count - 1)
+                {
+                    str += "[" + m.latitud + "," + m.longitud + "],";
+                }
+                else
+                {
+                    str += "[" + m.latitud + "," + m.longitud + "]";
+                }
+
+                contador++;
+            }
+
+
+            str += "]";
+
+            txt_Todos.Text = str;
+        }
+
+
         protected void gdv_Ubicaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow fila = gdv_Ubicaciones.SelectedRow;
@@ -119,13 +155,6 @@ namespace CapaPresentacion
             Session["idMapa"] = int.Parse(fila.Cells[2].Text);
 
             mostrarUbicacion(int.Parse(Session["idMapa"].ToString()));
-
-
-            //int idComplejo = 0;
-            //string cd = fila.Cells[1].Text;
-            //if (int.TryParse(cd, out idComplejo)) { 
-            //    Session["idComplejo"] = idComplejo;
-            //}
 
 
             //int idMapa = 0;
@@ -150,5 +179,7 @@ namespace CapaPresentacion
             txt_Latitud.Text = string.Empty;
             txt_Longitud.Text = string.Empty;
         }
+
+       
     }
 }

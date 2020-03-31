@@ -12,22 +12,23 @@
 
     <style>
         #myMap {
-            height: 350px;
-            width: 450px;
+            height: 450px;
+            width: 550px;
         }
     </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<body bgcolor="#00722e">
+<body >
     <form id="form1" runat="server">
 
         <div class="container">
 
             <div class="row">
+
                 <%--FORMULARIO--%>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <br />
                    <%-- <label for="lbl_Ubicacion">Ubicacion</label>
                     <asp:HiddenField ID="txt_ID" runat="server" />
@@ -51,15 +52,15 @@
                 
                     <%--**** FIN MAPA ****--%>
 
-                <div class="form-group">
+                <div class="form-inline">
                 
 
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>
                     <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
                     
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>
                     <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
                     <br />
 
@@ -71,7 +72,7 @@
 
                 </div>
                 <br />
-                <div class="form-group">
+                <div class="form-inline">
                     <asp:Button ID="btn_Agregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false"  OnClick="btn_Agregar_Click"/>
                     <asp:Button ID="btn_Modificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="btn_Modificar_Click" />
                     <asp:Button ID="btn_Eliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false"  OnClick="btn_Eliminar_Click"/>
@@ -82,30 +83,38 @@
                
 
                 <%--GRILLA--%>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <br />
                     <h1>Ubicaciones</h1>
 
+                    <br />
+                    <div class="form-group">
+                        <asp:TextBox ID="txt_Todos" Text="" runat="server" Visible="true"></asp:TextBox>     
+                        <asp:Button ID="btn_Todos" Text="Mostrar Todos" runat="server" CssClass="btn btn-info" OnClientClick="getCoords();"/>                                           
+
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <asp:GridView ID="gdv_Ubicaciones" runat="server" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                            HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Ubicaciones_SelectedIndexChanged">
+                            <Columns>
+
+                                <asp:CommandField ShowSelectButton="true" />
+
+                                <asp:BoundField DataField="id" HeaderText="Id" Visible="true" />
+                                <asp:BoundField DataField="idMapa" HeaderText="IdMapa" Visible="true" />
+                                <asp:BoundField DataField="nombre" HeaderText="Commplejo Deportivo" Visible="true" />
+                                <asp:BoundField DataField="calle" HeaderText="Calle" Visible="true" />
+                                <asp:BoundField DataField="nroCalle" HeaderText="Nro" Visible="true" />
+                                <asp:BoundField DataField="latitud" HeaderText="Latitud" Visible="true" />
+                                <asp:BoundField DataField="longitud" HeaderText="Longitud" Visible="true" />
 
 
-                    <asp:GridView ID="gdv_Ubicaciones" runat="server" AutoGenerateColumns="False" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                        HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Ubicaciones_SelectedIndexChanged">
-                        <Columns>
-                            
-                            <asp:CommandField ShowSelectButton="true" />
+                            </Columns>
 
-                            <asp:BoundField DataField="id" HeaderText="Id" Visible="true" />
-                            <asp:BoundField DataField="idMapa" HeaderText="IdMapa" Visible="true" />
-                            <asp:BoundField DataField="nombre" HeaderText="Commplejo Deportivo" Visible="true" />
-                            <asp:BoundField DataField="calle" HeaderText="Calle" Visible="true" />
-                            <asp:BoundField DataField="nroCalle" HeaderText="Nro" Visible="true" />
-                            <asp:BoundField DataField="latitud" HeaderText="Latitud" Visible="true" />
-                            <asp:BoundField DataField="longitud" HeaderText="Longitud" Visible="true" />
-   
-
-                        </Columns>
-
-                    </asp:GridView>
+                        </asp:GridView>
+                    </div>
 
                 </div>
             </div>
@@ -151,9 +160,7 @@
 
            // DESACTIVAR ZOOM CON DOBLE CLICK
            myMap.doubleClickZoom.disable()
-
-
-
+           
            // var layerGroup = L.layerGroup().addTo(myMap)
 
            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
@@ -170,8 +177,8 @@
                myMap.closePopup();
                //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
-               // var marker = L.marker([latLng.lat, latLng.lng], { draggable: true }).addTo(layerGroup)
-               marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+                marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+               // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
@@ -181,9 +188,68 @@
 
                // PONER UN POPUP
                // marker.bindPopup('CBA').openPopup(); // ok
-
-
            })
+
+
+
+
+
+
+
+
+           // ARRAY DE COMPLEJOS
+
+           function getCoords() {
+
+
+
+            //   var markers = [
+            //[-0.1244324, 51.5006728, "Big Ben"],
+            //[-0.119623, 51.503308, "London Eye"],
+            //[-0.1279688, 51.5077286, "Nelson's Column<br><a href=\"https://en.wikipedia.org/wiki/Nelson's_Column\">wp</a>"]
+            //   ];
+
+            //   //Loop through the markers array
+            //   for (var i = 0; i < markers.length; i++) {
+
+            //       var lon = markers[i][0];
+            //       var lat = markers[i][1];
+            //       var popupText = markers[i][2];
+
+            //       var markerLocation = new L.LatLng(lat, lon);
+            //       var mark = new L.Marker(markerLocation);
+            //       myMap.addLayer(mark);
+
+            //       marker.bindPopup(popupText);
+
+            //   }
+
+
+
+
+
+
+
+             <%--  var listaComplejos = document.getElementById('<%= txt_Todos.ClientID %>').value;
+               
+               var lista = [[-31.36331164963768, -64.19749259948732], [-31.4571, -64.185], [-31.4344, -64.1813]]
+
+               var m = new L.Marker.ClusterGroup();
+
+               for (var i = 0; i < lista.length; i++) {
+
+                   m.addLayer(new L.marker([lista[i][0], lista[i][1]]))
+                   m.addLayer(layerGroup)
+
+                  // var latitud = lista[i][0]
+                 //  var longitud = lista[i][1]
+                   //var ubicacion = new  L.marker([latitud,longitud]).addTo(layerGroup)
+
+                 //  var cd = new L.LatLng(latitud,longitud);
+                 //  var ubic = new L.Marker(cd);
+                 //  myMap.addLayer(ubic);
+               }--%>
+           }
 
 
        </script>

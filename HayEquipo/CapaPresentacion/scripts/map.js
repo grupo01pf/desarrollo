@@ -49,20 +49,6 @@ myMap.on('dblclick', e => {
 
 
 
-// var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value
-// var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value
-
-
-
-
-// var complejoDeportivo = L.marker([latitude, longitude]).addTo(myMap)
-// var complejoDeportivo = L.marker([latitude, longitude]).addTo(layerGroup)
-
-// myMap = L.map('myMap').setView([latitude, longitude], 10)
-
-
-
-
 
 
 
