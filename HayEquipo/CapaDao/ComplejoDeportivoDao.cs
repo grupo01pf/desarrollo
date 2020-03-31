@@ -15,7 +15,7 @@ namespace CapaDao
 
         public static void InsertarComplejo(ComplejoDeportivo complejo)
         {
-            using(HayEquipoEntities db = new HayEquipoEntities())
+            using (HayEquipoEntities db = new HayEquipoEntities())
             {
                 db.ComplejoDeportivo.Add(complejo);
                 db.SaveChanges();
@@ -197,7 +197,7 @@ namespace CapaDao
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-              //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
@@ -282,7 +282,7 @@ namespace CapaDao
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-             //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
@@ -528,8 +528,8 @@ namespace CapaDao
         {
             SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
             SqlCommand cmd = new SqlCommand();
-           
-            cmd.CommandText = @"SELECT * FROM FotosComplejo WHERE idComplejo = @idComp";  
+
+            cmd.CommandText = @"SELECT * FROM FotosComplejo WHERE idComplejo = @idComp";
             cmd.Parameters.AddWithValue("@idComp", idComp);
 
             cmd.CommandType = CommandType.Text;
@@ -561,4 +561,5 @@ namespace CapaDao
         }
 
     }
+       
 }

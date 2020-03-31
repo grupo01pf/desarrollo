@@ -271,16 +271,16 @@ namespace CapaPresentacion
 
             if (cmb_Complejo.SelectedIndex != 0)
             {
-                contenedorDelMapa.Visible = true;
-                frm_map.Visible = true;
+                //contenedorDelMapa.Visible = true;
+               // frm_map.Visible = true;
                 ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
                // frm_map.Src = cd.mapa;
                 btn_Agenda.Visible = true;
             }
             if (cmb_Complejo.SelectedIndex == 0)
             {
-                contenedorDelMapa.Visible = false;
-                frm_map.Visible = false;
+               // contenedorDelMapa.Visible = false;
+               // frm_map.Visible = false;
             }
 
         }
@@ -311,8 +311,8 @@ namespace CapaPresentacion
             btn_Agenda.Visible = false;
             // lbl_Capacidad.Visible = true;
 
-            contenedorDelMapa.Visible = false;
-            frm_map.Visible = false;
+           // contenedorDelMapa.Visible = false;
+           // frm_map.Visible = false;
 
         }
 
@@ -513,9 +513,31 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
+
+               
+
+
             }
             lbl_Error.Text = string.Empty;
+
+            int cd = 0;
+            if (int.TryParse(cmb_Complejo.SelectedItem.Value, out cd))
+                mostrarUbicacion(cd);
+
+
         }
+        private void mostrarUbicacion(int idMapa){
+
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idMapa);
+            int id = cd.mapa.Value;
+            Mapa mapa = MapaDao.obtenerMapaByID(id);
+
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;
+
+        }
+
+       
 
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
         {

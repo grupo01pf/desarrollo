@@ -1,6 +1,14 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CrearEncuentro.aspx.cs" Inherits="CapaPresentacion.CrearEncuentro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+
+
+
     <style>
         h1 {
             text-align: center;
@@ -13,6 +21,13 @@
 
         .fondoPalJumbotron {
             background-color: #000000;
+        }
+
+        #myMap {
+            /*height: 450px;
+            width: 550px;*/
+            width: 100%;
+            padding-top: 56.25%;
         }
     </style>
 </asp:Content>
@@ -39,7 +54,7 @@
 
                             <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
                             <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
-                       
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,48 +106,58 @@
                                 </asp:DropDownList>
                                 <br />
 
+
+                                <div class="form-inline">
+                                    <label for="lbl_Latitud">Latitud</label>
+                                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server"></asp:TextBox>
+                                    
+                                    <label for="lbl_Longitud">Longitud</label>
+                                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server"></asp:TextBox>
+                                   
+                                </div>
+
                                 <%--MODAL--%>
 
 
-                               <%-- <asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
+                                <%-- <asp:Button ID="btn_VerAgenda" runat="server" Text="Ver Agenda"
                                     OnClick="btn_VerAgenda_Click" data-toggle="modal" data-target="#exampleModalScrollable" />
---%>
+                                --%>
 
 
-                                
-                                       
+
+
 
                                 <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary"
                                     data-toggle="modal" data-target="#exampleModalScrollable"
-                                     visible="false"  >
+                                    visible="false">
                                     Ver Agenda del Complejo
                                 </button>
 
 
-                                
 
 
 
-                                    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+
+                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
                                     aria-hidden="false">
-                                         <%--data-backdrop="static" data-keyboard="false">--%>
+                                    <%--data-backdrop="static" data-keyboard="false">--%>
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
 
 
 
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
 
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                            <strong>
-                                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
-                                                    </div>
-                                                    <div class="modal-body">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                                    <strong>
+                                                        <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                            </div>
+                                            <div class="modal-body">
 
-                                                        <center>
+                                                <center>
 
 
                   <%--                                      
@@ -167,18 +192,18 @@
 
 
                                                 </center>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-                                                        <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
-                                                    </div>
-                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+                                                <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
+                                            </div>
+                                        </div>
 
 
                                     </div>
                                 </div>
 
-                        
+
 
 
 
@@ -203,10 +228,108 @@
             </div>
         </div>
         <%-- ****MAPA**** --%>
-        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
+
+        <div class="container">
+            <div class="form-group">
+                <div id="myMap"></div>
+            </div>
         </div>
+
+
+
+        <%--        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
+        </div>--%>
+
+
+
+
         <%-- ****MAPA**** --%>
         <%--         <iframe id="Iframe1" runat="server" src="" width="550" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>--%>
     </div>
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <%--**** CONTROL DEL MAPA ****--%>
+    <%--<script src="scripts/map.js" ></script>--%>
+
+
+    <script type="text/javascript">
+
+
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+
+
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
+
+
+
+
+        var layerGroup = L.layerGroup().addTo(myMap)
+
+        // MOSTRAR UN COMPLEJO
+
+        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+        if (latitude != "" && longitude != "") {
+            myMap.setView([latitude, longitude], 15)
+        }
+
+
+
+        // CREAR UN MARCADOR
+        // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
+
+        // DESACTIVAR ZOOM CON DOBLE CLICK
+        myMap.doubleClickZoom.disable()
+
+        // var layerGroup = L.layerGroup().addTo(myMap)
+
+        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+        myMap.on('dblclick', e => {
+            // ELIMINAR MARCADOR DEL COMPLEJO
+
+
+            layerGroup.clearLayers();
+
+            let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+            // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
+
+            myMap.closePopup();
+            //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+            // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+            // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
+
+            //  $('#txt_Latitud').val(marker.getLatLng().lat)
+            //  $('#txt_Longitud').val(marker.getLatLng().lng)
+
+
+            // PONER UN POPUP
+            // marker.bindPopup('CBA').openPopup(); // ok
+        })
+
+    </script>
+
+
+
+
+
 </asp:Content>
