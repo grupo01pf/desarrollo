@@ -14,6 +14,10 @@ namespace CapaEntidades
     public partial class sp_MapaDao_ObtenerMapas_Result
     {
         public int id { get; set; }
+        public int mapa { get; set; }
+        public string nombre { get; set; }
+        public string calle { get; set; }
+        public Nullable<int> nroCalle { get; set; }
         public string latitud { get; set; }
         public string longitud { get; set; }
     }

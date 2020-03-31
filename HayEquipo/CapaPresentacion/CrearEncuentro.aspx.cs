@@ -137,6 +137,24 @@ namespace CapaPresentacion
             // msg.texto = string.Empty;
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
+
+            insertarMapaEncuentroPublico(id);
+
+        }
+
+        private void insertarMapaEncuentroPublico(int id) {
+            Mapa m = new Mapa();
+            EncuentroDeportivo ed = new EncuentroDeportivo();
+
+            m.latitud = txt_Latitud.Text;
+            m.longitud = txt_Longitud.Text;
+
+            int idMapa = MapaDao.insertarMapa(m);
+
+            ed.id = id;
+            ed.idMapa = idMapa;
+            EncuentroDeportivoDao.ActualizarMapaEncuentro(ed);
+
         }
 
 

@@ -125,7 +125,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idAdmin" Type="int" />
+          <Property Name="idMapa" Type="int" />
           <Property Name="fechaCreacionEncuentro" Type="smalldatetime" />
           <Property Name="fechaDestruccionEncuentro" Type="smalldatetime" />
           <Property Name="idDeporte" Type="int" />
@@ -769,7 +769,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="EncuentroDeportivo">
-              <PropertyRef Name="idAdmin" />
+              <PropertyRef Name="idMapa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1320,13 +1320,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         <Function Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEnc" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_MapaDao_EliminarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_MapaDao_EliminarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_MapaDao_InsertarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lat" Type="float" Mode="In" />
           <Parameter Name="lng" Type="float" Mode="In" />
         </Function>
-        <Function Name="sp_MapaDao_ModificarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_MapaDao_ObtenerMapaByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_MapaDao_ModificarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="lat" Type="nvarchar" Mode="In" />
+          <Parameter Name="lng" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_MapaDao_ObtenerMapaByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_MapaDao_ObtenerMapas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_MensajeDao_InsertarMensaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEncuentro" Type="int" Mode="In" />
@@ -1929,7 +1937,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idAdmin" Type="Int32" />
+          <Property Name="idMapa" Type="Int32" />
           <Property Name="fechaCreacionEncuentro" Type="DateTime" Precision="0" />
           <Property Name="fechaDestruccionEncuentro" Type="DateTime" Precision="0" />
           <Property Name="idDeporte" Type="Int32" />
@@ -2708,7 +2716,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="EncuentroDeportivo">
-              <PropertyRef Name="idAdmin" />
+              <PropertyRef Name="idMapa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3508,13 +3516,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <FunctionImport Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" ReturnType="Collection(HayEquipoModel.sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result)">
             <Parameter Name="idEnc" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_MapaDao_EliminarMapa" ReturnType="Collection(HayEquipoModel.sp_MapaDao_EliminarMapa_Result)" />
+          <FunctionImport Name="sp_MapaDao_EliminarMapa">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_MapaDao_InsertarMapa" ReturnType="Collection(Decimal)">
             <Parameter Name="lat" Mode="In" Type="Double" />
             <Parameter Name="lng" Mode="In" Type="Double" />
           </FunctionImport>
-          <FunctionImport Name="sp_MapaDao_ModificarMapa" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ModificarMapa_Result)" />
-          <FunctionImport Name="sp_MapaDao_ObtenerMapaByID" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapaByID_Result)" />
+          <FunctionImport Name="sp_MapaDao_ModificarMapa">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="lat" Mode="In" Type="String" />
+            <Parameter Name="lng" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MapaDao_ObtenerMapaByID" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapaByID_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_MapaDao_ObtenerMapas" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapas_Result)" />
           <FunctionImport Name="sp_MensajeDao_InsertarMensaje">
             <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
@@ -3666,16 +3682,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="capacidad" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_MapaDao_EliminarMapa_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-        </ComplexType>
-        <ComplexType Name="sp_MapaDao_ModificarMapa_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-        </ComplexType>
         <ComplexType Name="sp_MapaDao_ObtenerMapaByID_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
@@ -3683,6 +3689,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         </ComplexType>
         <ComplexType Name="sp_MapaDao_ObtenerMapas_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="mapa" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="nroCalle" Nullable="true" />
           <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
         </ComplexType>
@@ -3899,7 +3909,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <EntityTypeMapping TypeName="HayEquipoModel.EncuentroDeportivo">
               <MappingFragment StoreEntitySet="EncuentroDeportivo">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="idMapa" ColumnName="idMapa" />
                 <ScalarProperty Name="fechaCreacionEncuentro" ColumnName="fechaCreacionEncuentro" />
                 <ScalarProperty Name="fechaDestruccionEncuentro" ColumnName="fechaDestruccionEncuentro" />
                 <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
@@ -4398,25 +4408,9 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_MapaDao_EliminarMapa" FunctionName="HayEquipoModel.Store.sp_MapaDao_EliminarMapa">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HayEquipoModel.sp_MapaDao_EliminarMapa_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="latitud" ColumnName="latitud" />
-                <ScalarProperty Name="longitud" ColumnName="longitud" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MapaDao_EliminarMapa" FunctionName="HayEquipoModel.Store.sp_MapaDao_EliminarMapa" />
           <FunctionImportMapping FunctionImportName="sp_MapaDao_InsertarMapa" FunctionName="HayEquipoModel.Store.sp_MapaDao_InsertarMapa" />
-          <FunctionImportMapping FunctionImportName="sp_MapaDao_ModificarMapa" FunctionName="HayEquipoModel.Store.sp_MapaDao_ModificarMapa">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HayEquipoModel.sp_MapaDao_ModificarMapa_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="latitud" ColumnName="latitud" />
-                <ScalarProperty Name="longitud" ColumnName="longitud" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MapaDao_ModificarMapa" FunctionName="HayEquipoModel.Store.sp_MapaDao_ModificarMapa" />
           <FunctionImportMapping FunctionImportName="sp_MapaDao_ObtenerMapaByID" FunctionName="HayEquipoModel.Store.sp_MapaDao_ObtenerMapaByID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HayEquipoModel.sp_MapaDao_ObtenerMapaByID_Result">
@@ -4430,6 +4424,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
             <ResultMapping>
               <ComplexTypeMapping TypeName="HayEquipoModel.sp_MapaDao_ObtenerMapas_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mapa" ColumnName="mapa" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="nroCalle" ColumnName="nroCalle" />
                 <ScalarProperty Name="latitud" ColumnName="latitud" />
                 <ScalarProperty Name="longitud" ColumnName="longitud" />
               </ComplexTypeMapping>

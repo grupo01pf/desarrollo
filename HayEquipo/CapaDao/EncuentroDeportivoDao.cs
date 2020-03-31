@@ -148,7 +148,19 @@ namespace CapaDao
         }
 
 
+        public static void ActualizarMapaEncuentro(EncuentroDeportivo ed)
+        {
 
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_EncuentroDeportivoDao_ActualizarEDP", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idMapa", ed.idMapa);
+            cmd.Parameters.AddWithValue("@idEDP", ed.id);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
 
     }
 }

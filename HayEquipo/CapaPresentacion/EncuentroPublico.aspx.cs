@@ -69,7 +69,9 @@ namespace CapaPresentacion
 
                 bloquearControles();
 
-           // }
+                cargarMapa(edq.idComplejo);
+
+            // }
 
 
             //EncuentroDeportivioQueryDao eqdao = new EncuentroDeportivioQueryDao();
@@ -79,6 +81,14 @@ namespace CapaPresentacion
             //  cld_Fecha.SelectedDate = eq.fechaInicioEncuentro;
             //cld_Fecha.Text = eq.fechaInicioEncuentro;
 
+        }
+
+        private void cargarMapa(int idComplejoDeportivo) { 
+                
+            int id = int.Parse(Session["idEncuentro"].ToString());
+            Mapa mapa = MapaDao.obtenerMapaByID(id);
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;
         }
 
 

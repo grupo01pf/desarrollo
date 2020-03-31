@@ -163,7 +163,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idAdmin" Type="Int32" />
+    <Property Name="idMapa" Type="Int32" />
     <Property Name="fechaCreacionEncuentro" Type="DateTime" Precision="0" />
     <Property Name="fechaDestruccionEncuentro" Type="DateTime" Precision="0" />
     <Property Name="idDeporte" Type="Int32" />
@@ -942,7 +942,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="EncuentroDeportivo">
-        <PropertyRef Name="idAdmin" />
+        <PropertyRef Name="idMapa" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1742,13 +1742,21 @@
     <FunctionImport Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" ReturnType="Collection(HayEquipoModel.sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result)">
       <Parameter Name="idEnc" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_MapaDao_EliminarMapa" ReturnType="Collection(HayEquipoModel.sp_MapaDao_EliminarMapa_Result)" />
+    <FunctionImport Name="sp_MapaDao_EliminarMapa">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_MapaDao_InsertarMapa" ReturnType="Collection(Decimal)">
       <Parameter Name="lat" Mode="In" Type="Double" />
       <Parameter Name="lng" Mode="In" Type="Double" />
     </FunctionImport>
-    <FunctionImport Name="sp_MapaDao_ModificarMapa" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ModificarMapa_Result)" />
-    <FunctionImport Name="sp_MapaDao_ObtenerMapaByID" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapaByID_Result)" />
+    <FunctionImport Name="sp_MapaDao_ModificarMapa">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="lat" Mode="In" Type="String" />
+      <Parameter Name="lng" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MapaDao_ObtenerMapaByID" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapaByID_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_MapaDao_ObtenerMapas" ReturnType="Collection(HayEquipoModel.sp_MapaDao_ObtenerMapas_Result)" />
     <FunctionImport Name="sp_MensajeDao_InsertarMensaje">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
@@ -1900,16 +1908,6 @@
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="capacidad" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="sp_MapaDao_EliminarMapa_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-  </ComplexType>
-  <ComplexType Name="sp_MapaDao_ModificarMapa_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-  </ComplexType>
   <ComplexType Name="sp_MapaDao_ObtenerMapaByID_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
@@ -1917,6 +1915,10 @@
   </ComplexType>
   <ComplexType Name="sp_MapaDao_ObtenerMapas_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="mapa" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="nroCalle" Nullable="true" />
     <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
   </ComplexType>

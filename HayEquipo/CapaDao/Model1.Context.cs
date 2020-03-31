@@ -212,9 +212,13 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result>("sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico", idEncParameter);
         }
     
-        public virtual ObjectResult<sp_MapaDao_EliminarMapa_Result> sp_MapaDao_EliminarMapa()
+        public virtual int sp_MapaDao_EliminarMapa(Nullable<int> id)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_EliminarMapa_Result>("sp_MapaDao_EliminarMapa");
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MapaDao_EliminarMapa", idParameter);
         }
     
         public virtual ObjectResult<Nullable<decimal>> sp_MapaDao_InsertarMapa(Nullable<double> lat, Nullable<double> lng)
@@ -230,14 +234,30 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_MapaDao_InsertarMapa", latParameter, lngParameter);
         }
     
-        public virtual ObjectResult<sp_MapaDao_ModificarMapa_Result> sp_MapaDao_ModificarMapa()
+        public virtual int sp_MapaDao_ModificarMapa(Nullable<int> id, string lat, string lng)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ModificarMapa_Result>("sp_MapaDao_ModificarMapa");
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var latParameter = lat != null ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(string));
+    
+            var lngParameter = lng != null ?
+                new ObjectParameter("lng", lng) :
+                new ObjectParameter("lng", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MapaDao_ModificarMapa", idParameter, latParameter, lngParameter);
         }
     
-        public virtual ObjectResult<sp_MapaDao_ObtenerMapaByID_Result> sp_MapaDao_ObtenerMapaByID()
+        public virtual ObjectResult<sp_MapaDao_ObtenerMapaByID_Result> sp_MapaDao_ObtenerMapaByID(Nullable<int> id)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ObtenerMapaByID_Result>("sp_MapaDao_ObtenerMapaByID");
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MapaDao_ObtenerMapaByID_Result>("sp_MapaDao_ObtenerMapaByID", idParameter);
         }
     
         public virtual ObjectResult<sp_MapaDao_ObtenerMapas_Result> sp_MapaDao_ObtenerMapas()

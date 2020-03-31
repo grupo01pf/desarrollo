@@ -98,14 +98,17 @@ namespace CapaPresentacion
 
         }
 
-        private void cargarMapa(int idComplejoDeportivo)
-        {
-            contenedorDelMapa.Visible = true;
-            frm_map.Visible = true;
-            //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+        private void cargarMapa(int idComplejoDeportivo){
+
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
-           // frm_map.Src = cd.mapa;
+
+            int id = cd.mapa.Value;
+            Mapa mapa = MapaDao.obtenerMapaByID(id);
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;
         }
+
+       
 
         private void validacionesDeUsuario()
         {

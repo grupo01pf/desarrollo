@@ -120,7 +120,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idAdmin" Type="int" />
+    <Property Name="idMapa" Type="int" />
     <Property Name="fechaCreacionEncuentro" Type="smalldatetime" />
     <Property Name="fechaDestruccionEncuentro" Type="smalldatetime" />
     <Property Name="idDeporte" Type="int" />
@@ -764,7 +764,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="EncuentroDeportivo">
-        <PropertyRef Name="idAdmin" />
+        <PropertyRef Name="idMapa" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1315,13 +1315,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   <Function Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEnc" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_MapaDao_EliminarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MapaDao_EliminarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_MapaDao_InsertarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="lat" Type="float" Mode="In" />
     <Parameter Name="lng" Type="float" Mode="In" />
   </Function>
-  <Function Name="sp_MapaDao_ModificarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_MapaDao_ObtenerMapaByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MapaDao_ModificarMapa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="lat" Type="nvarchar" Mode="In" />
+    <Parameter Name="lng" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_MapaDao_ObtenerMapaByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_MapaDao_ObtenerMapas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MensajeDao_InsertarMensaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEncuentro" Type="int" Mode="In" />

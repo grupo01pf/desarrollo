@@ -22,7 +22,7 @@ namespace CapaEntidades
         }
     
         public int id { get; set; }
-        public Nullable<int> idAdmin { get; set; }
+        public Nullable<int> idMapa { get; set; }
         public Nullable<System.DateTime> fechaCreacionEncuentro { get; set; }
         public Nullable<System.DateTime> fechaDestruccionEncuentro { get; set; }
         public Nullable<int> idDeporte { get; set; }

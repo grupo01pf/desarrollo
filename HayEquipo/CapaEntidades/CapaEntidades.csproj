@@ -244,12 +244,6 @@
     <Compile Include="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_MapaDao_EliminarMapa_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_MapaDao_ModificarMapa_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_MapaDao_ObtenerMapaByID_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

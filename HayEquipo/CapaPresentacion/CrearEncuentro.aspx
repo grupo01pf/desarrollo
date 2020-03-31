@@ -30,9 +30,9 @@
             padding-top: 56.25%;
         }
 
-        #LatLng {
-               display: none;     
-        }
+        /*#LatLng {
+            /*display: none;*/
+        }*/
     </style>
 </asp:Content>
 
@@ -111,15 +111,7 @@
                                 <br />
 
 
-                                <div class="form-inline">
-                                    <div id="LatLng">
-                                    <label for="lbl_Latitud">Latitud</label>
-                                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                                    
-                                    <label for="lbl_Longitud">Longitud</label>
-                                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                                   </div>
-                                </div>
+
 
                                 <%--MODAL--%>
 
@@ -238,7 +230,19 @@
             <div class="form-group">
                 <div id="myMap"></div>
             </div>
+
+            <div class="form-inline">
+                <div id="LatLng">
+                    <label for="lbl_Latitud">Latitud</label>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+
+                    <label for="lbl_Longitud">Longitud</label>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                </div>
+            </div>
         </div>
+
+            
 
 
 
@@ -323,9 +327,13 @@
 
             // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-            //  $('#txt_Latitud').val(marker.getLatLng().lat)
-            //  $('#txt_Longitud').val(marker.getLatLng().lng)
+            $('#txt_Latitud').val(marker.getLatLng().lat)
+            $('#txt_Longitud').val(marker.getLatLng().lng)
 
+           // var v1 = marker.getLatLng().lat
+           // var v2 = marker.getLatLng().lng
+           // document.getElementById('txt_Latitud').value = v1
+           // document.getElementById('txt_Longitud').value = v2
 
             // PONER UN POPUP
             // marker.bindPopup('CBA').openPopup(); // ok

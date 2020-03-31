@@ -29,6 +29,13 @@
             overflow-y: scroll;
         }
 
+         #myMap {
+            height: 300px;
+            width: 400px;
+            /*width: 100%;
+            padding-top: 56.25%;*/
+        }
+
     </style>
 </asp:Content>
 
@@ -39,7 +46,7 @@
 
 
     <h1 class="titulo">Encuentro</h1>
-  </div>
+  <%--</div>--%>
 
     <%--<div class="jumbotron text-center" style="background-color: black">--%>
     <div class="container text-center">
@@ -255,14 +262,7 @@
                             <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control" MaxLength="50"  ></asp:TextBox><br />
                             <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block" />
 
-                           <%-- <script type="text/javascript">
-
-                                function enviar(){
-
-
-                                }
-
-                            </script>--%>
+                          
 
 
 
@@ -273,5 +273,81 @@
 
                 <%--</div>--%>
             </div>
+
+            <div class="container">
+            <div class="form-group">
+                <div id="myMap"></div>
+            </div>
+
+            <div class="form-inline">
+                <div id="LatLng">
+                    <label for="lbl_Latitud">Latitud</label>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+
+                    <label for="lbl_Longitud">Longitud</label>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+
+
        </div>
+
+
+        
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <%--**** CONTROL DEL MAPA ****--%>
+    <%--<script src="scripts/map.js" ></script>--%>
+
+
+    <script type="text/javascript">
+
+
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+
+
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
+
+
+
+
+        var layerGroup = L.layerGroup().addTo(myMap)
+
+        // MOSTRAR UN COMPLEJO
+
+        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+        if (latitude != "" && longitude != "") {
+            myMap.setView([latitude, longitude], 15)
+        }
+
+
+
+        // CREAR UN MARCADOR
+        // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
+
+        // DESACTIVAR ZOOM CON DOBLE CLICK
+        myMap.doubleClickZoom.disable()
+
+        // var layerGroup = L.layerGroup().addTo(myMap)
+
+       
+
+    </script>
+
+
+
+
+
 </asp:Content>
