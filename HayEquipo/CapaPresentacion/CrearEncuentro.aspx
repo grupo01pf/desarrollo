@@ -29,6 +29,10 @@
             width: 100%;
             padding-top: 56.25%;
         }
+
+        #LatLng {
+               display: none;     
+        }
     </style>
 </asp:Content>
 
@@ -108,12 +112,13 @@
 
 
                                 <div class="form-inline">
+                                    <div id="LatLng">
                                     <label for="lbl_Latitud">Latitud</label>
-                                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                                     
                                     <label for="lbl_Longitud">Longitud</label>
-                                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server"></asp:TextBox>
-                                   
+                                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                   </div>
                                 </div>
 
                                 <%--MODAL--%>
