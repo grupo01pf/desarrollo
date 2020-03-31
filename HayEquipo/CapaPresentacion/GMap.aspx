@@ -143,6 +143,8 @@
            }).addTo(myMap)
 
 
+
+
            var layerGroup = L.layerGroup().addTo(myMap)
 
            // MOSTRAR UN COMPLEJO
@@ -190,66 +192,6 @@
                // marker.bindPopup('CBA').openPopup(); // ok
            })
 
-
-
-
-
-
-
-
-           // ARRAY DE COMPLEJOS
-
-           function getCoords() {
-
-
-
-            //   var markers = [
-            //[-0.1244324, 51.5006728, "Big Ben"],
-            //[-0.119623, 51.503308, "London Eye"],
-            //[-0.1279688, 51.5077286, "Nelson's Column<br><a href=\"https://en.wikipedia.org/wiki/Nelson's_Column\">wp</a>"]
-            //   ];
-
-            //   //Loop through the markers array
-            //   for (var i = 0; i < markers.length; i++) {
-
-            //       var lon = markers[i][0];
-            //       var lat = markers[i][1];
-            //       var popupText = markers[i][2];
-
-            //       var markerLocation = new L.LatLng(lat, lon);
-            //       var mark = new L.Marker(markerLocation);
-            //       myMap.addLayer(mark);
-
-            //       marker.bindPopup(popupText);
-
-            //   }
-
-
-
-
-
-
-
-             <%--  var listaComplejos = document.getElementById('<%= txt_Todos.ClientID %>').value;
-               
-               var lista = [[-31.36331164963768, -64.19749259948732], [-31.4571, -64.185], [-31.4344, -64.1813]]
-
-               var m = new L.Marker.ClusterGroup();
-
-               for (var i = 0; i < lista.length; i++) {
-
-                   m.addLayer(new L.marker([lista[i][0], lista[i][1]]))
-                   m.addLayer(layerGroup)
-
-                  // var latitud = lista[i][0]
-                 //  var longitud = lista[i][1]
-                   //var ubicacion = new  L.marker([latitud,longitud]).addTo(layerGroup)
-
-                 //  var cd = new L.LatLng(latitud,longitud);
-                 //  var ubic = new L.Marker(cd);
-                 //  myMap.addLayer(ubic);
-               }--%>
-           }
 
 
        </script>

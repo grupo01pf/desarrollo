@@ -78,10 +78,17 @@ namespace CapaPresentacion
         {
 
             EncuentroDeportivo ed = new EncuentroDeportivo();
-            ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
+            ed.idUsuario = int.Parse(Session["ID"].ToString()); 
+            //( USAR cuando este el Login )
+                                                                
             // ed.idUsuario = 1;  // (Usar cuando No este el login)
+                                                                
             // ed.fechaCreacionEncuentro = DateTime.Now;
-            ed.idDeporte = cmb_Deporte.SelectedIndex;
+
+            int sport = 0;
+            if (int.TryParse(cmb_Deporte.SelectedItem.Value, out sport))
+                ed.idDeporte = sport;
+
             ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
             ed.idEstado = 7; // (habilitado)
 
@@ -141,10 +148,15 @@ namespace CapaPresentacion
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
             ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
-           
 
-            ed.idDeporte = cmb_Deporte.SelectedIndex;
-            ed.idComplejo = cmb_Complejo.SelectedIndex;
+            int sport = 0;
+            if (int.TryParse(cmb_Deporte.SelectedItem.Value, out sport))                
+                ed.idDeporte = sport;
+
+            int compDep = 0;
+            if (int.TryParse(cmb_Complejo.SelectedItem.Value, out compDep))
+                ed.idComplejo = compDep;
+
             ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
 
             ed.idEstado = 7; // (habilitado)
@@ -232,7 +244,7 @@ namespace CapaPresentacion
         {
             cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
             cmb_Deporte.DataValueField = "id";
-            cmb_Deporte.DataValueField = "nombre";
+            cmb_Deporte.DataTextField = "nombre";
             cmb_Deporte.DataBind();
 
 
@@ -243,7 +255,7 @@ namespace CapaPresentacion
 
             //cmb_Zona.DataSource = ZonaDao.obtenerZonas();
             //cmb_Zona.DataValueField = "IdZona";
-            //cmb_Zona.DataValueField = "nombre";
+            //cmb_Zona.DataTextField = "nombre";
             //cmb_Zona.DataBind();
         }
         private void cargarComplejos()
@@ -251,7 +263,7 @@ namespace CapaPresentacion
 
             cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
             cmb_Complejo.DataValueField = "id";
-            cmb_Complejo.DataValueField = "nombre";
+            cmb_Complejo.DataTextField = "nombre";
             cmb_Complejo.DataBind();
         }
 
@@ -278,7 +290,7 @@ namespace CapaPresentacion
 
             //cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
             //cmb_Barrio.DataValueField = "IdBarrio";
-            //cmb_Barrio.DataValueField = "nombre";
+            //cmb_Barrio.DataTextField = "nombre";
             //cmb_Barrio.DataBind();
         }
 

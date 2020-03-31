@@ -68,8 +68,12 @@ namespace CapaPresentacion
             m.longitud = txt_Longitud.Text;
 
             int idMapa =  MapaDao.insertarMapa(m);
-            
-            cd.id = cmb_Complejo.SelectedIndex;
+
+            // cd.id = cmb_Complejo.SelectedIndex;
+            int cmbID = 0;
+            if(int.TryParse(cmb_Complejo.SelectedItem.Value,out cmbID))
+                cd.id = cmbID;
+
             cd.mapa = idMapa;
             ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
 
@@ -113,29 +117,35 @@ namespace CapaPresentacion
             List<MapaQueryDao> listaMapas = MapaDao.obtenerMapas();
 
             string str = "[";
-            //for(int i = 0; i < listaMapas.Count; i++){
-            //    if (i != listaMapas.Count)
+            int contador = 0;
+
+
+            //foreach (MapaQueryDao m in listaMapas)
+            //{
+            //    if (contador != listaMapas.Count - 1)
+            //    {
+            //        str += "{lat:" + m.latitud + ",lon:" + m.longitud + "},";
+            //    }
+            //    else
+            //    {
+            //        str += "{lat:" + m.latitud + ",lon:" + m.longitud + "}";
+            //    }
+
+            //    contador++;
+            //}
+            
+            //foreach (MapaQueryDao m in listaMapas) {
+            //    if (contador != listaMapas.Count - 1)
             //    {
             //        str += "[" + m.latitud + "," + m.longitud + "],";
             //    }
-            //    else {
+            //    else
+            //    {
             //        str += "[" + m.latitud + "," + m.longitud + "]";
             //    }
+
+            //    contador++;
             //}
-
-            int contador = 0;
-            foreach (MapaQueryDao m in listaMapas) {
-                if (contador != listaMapas.Count - 1)
-                {
-                    str += "[" + m.latitud + "," + m.longitud + "],";
-                }
-                else
-                {
-                    str += "[" + m.latitud + "," + m.longitud + "]";
-                }
-
-                contador++;
-            }
 
 
             str += "]";
