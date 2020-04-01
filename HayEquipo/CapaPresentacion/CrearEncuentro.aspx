@@ -231,6 +231,7 @@
                 <div id="myMap"></div>
             </div>
 
+         
             <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
@@ -242,7 +243,6 @@
             </div>
         </div>
 
-            
 
 
 
@@ -257,6 +257,8 @@
         <%--         <iframe id="Iframe1" runat="server" src="" width="550" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>--%>
     </div>
 
+
+          
 
 
 
@@ -346,3 +348,5 @@
 
 
 </asp:Content>
+
+ 

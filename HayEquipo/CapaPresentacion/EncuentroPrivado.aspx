@@ -44,6 +44,7 @@
     <h1 class="titulo">Encuentro</h1>
     <div class="container text-center">
         <div class="row">
+            
             <div class="col-sm-4">
                 <div class="well">
                     <legend>Datos del Encuentro</legend>
@@ -458,14 +459,25 @@
             </div>
             <div class="col-me-2"></div>
 
+
+
+
+
+
+
+
         </div>
 
         <%-- <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
         </div>--%>
 
-        <%-- ****MAPA**** --%>
-        <div class="row">
+
+
+
+    
+              <%-- ****MAPA**** --%>
+        <%--<div class="row">--%>
             <div class="container">
                 <div class="form-group">
                     <div id="myMap"></div>
@@ -482,7 +494,13 @@
                 </div>
             </div>
 
-        </div>
+        <%--</div>--%>
+
+
+
+
+
+      
 
 
     </div>

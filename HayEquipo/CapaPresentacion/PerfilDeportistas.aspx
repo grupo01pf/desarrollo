@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PerfilDeportistas.aspx.cs" Inherits="CapaPresentacion.PerfilDeportistas" %>
 
-<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%--<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>--%>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
@@ -108,164 +108,194 @@
         }
     </style>
 
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'Mes');
-          data.addColumn('number', 'Jugados');
-          data.addColumn('number', 'Organizados');
-          data.addRows(<%=this.obtenerDatosBar()%>);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Mes');
+            data.addColumn('number', 'Jugados');
+            data.addColumn('number', 'Organizados');
+            data.addRows(<%=this.obtenerDatosBar()%>);
 
-        var options = {
-          chart: {
-            title: 'Partidos Jugados y Organizados',
+            var options = {
+                chart: {
+                    title: 'Partidos Jugados y Organizados',
 
-          },
+                },
 
-            hAxis:{
-                title: "Fecha",
-                format: 'M/d/yy',
-            },
-            vAxis: {
-                title: "Partidos",
-                minValue: 0,
-                maxValue: 100,
+                hAxis: {
+                    title: "Fecha",
+                    format: 'M/d/yy',
+                },
+                vAxis: {
+                    title: "Partidos",
+                    minValue: 0,
+                    maxValue: 100,
 
 
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
         }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
     </script>
-    
-   
+
+
 </asp:Content>
 
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <div class="container">
-    <div class="row">
+    <div class="container">
+        <div class="row">
 
-      <div class="col-sm-5 text-center">
-        <div class="well">
-       <p> <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton></p>
+            <div class="col-sm-5 text-center">
+                <div class="well">
+                    <p>
+                        <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton>
+                    </p>
 
-          <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
-          <br />
-          <br />
-          <div class="form-group">
-          <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" />
-              </div>
+                    <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <asp:FileUpload ID="FileUploadAvatar" CssClass="btn btn-primary" runat="server" />
+                    </div>
 
-           <div class="form-group">
-             <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click"/>
-              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>
+                    <div class="form-group">
+                        <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click" />
+                        <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar Imagen" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false" />
+                    </div>
+                    <asp:Label ID="lblestado" runat="server"></asp:Label>
                 </div>
-             <asp:Label ID="lblestado" runat="server"></asp:Label>
-          </div>
-         </div>
-        <div class="col-sm-7 well">
-            <div class="well">
-         <ul class="nav nav-tabs">
-    <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
-    <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
-    <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
-    <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
-   <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
-    <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
 
-  </ul>
-        <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-        <br />
-         <div class="form-group">
-           <asp:Label ID="lbl_Nombres" runat="server" Text="Nombres"></asp:Label>
-        <asp:TextBox ID="txt_Nombres" class="form-control" runat="server" placeholder="Ingrese Nombres"></asp:TextBox>
 
-    </div>
-       <div class="form-group">
-       <asp:Label ID="lbl_Apellidos" runat="server" Text="Apellido"></asp:Label>
-        <asp:TextBox ID="txt_Apellidos" runat="server" class="form-control" placeholder="Ingrese Apellido"></asp:TextBox>
-
-       </div>
-    <div class="form-group">
-      <asp:Label ID="lbl_TipoDocumento" runat="server" Text="Tipo Documento"></asp:Label>
-        <asp:DropDownList ID="ddl_TipoDocumento" runat="server"></asp:DropDownList>
-      </div>
-
-           <div class="form-group">
-       <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="Numero de Documento"></asp:Label>
-        <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" placeholder="Ingrese Nro Documento"></asp:TextBox>
-        </div>
-           <div class="form-group">
-       <asp:Label ID="lbl_Sexo" runat="server" Text="Sexo"></asp:Label>
-        <asp:TextBox ID="txt_Sexo" runat="server" class="form-control" placeholder="Ingrese Sexo"></asp:TextBox>
-
-           </div>
-           <div class="form-group">
-       <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento"></asp:Label>
-        <asp:TextBox ID="txt_FechaNacimiento" runat="server" class="form-control" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
-        </div>
-             <div class="form-group">
-       <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono"></asp:Label>
-        <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
-        </div>
-           <div class="form-group">
-             <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
-              <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />
-              <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click"  Visible="false" />
-             <asp:Label ID="lblmsj" runat="server"></asp:Label>
-           </div>
-       </div>
+                
 
 
 
-    <div id="menu1" class="tab-pane fade">
-          <div class="table-responsive">
-               <br />
-                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
-                                 OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
 
-                                <Columns>
-                                    <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                    <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
-                                    <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
-                                    <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />
-                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
-                                    <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
-                                    <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
-                                    <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />
-                                    <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />
-                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+            </div>
+            <div class="col-sm-7 well">
+                <div class="well">
+                    <ul class="nav nav-tabs">
+                        <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Mis Encuentros</a></li>
+                        <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
+                        <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
+                        <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
+                        <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
 
-                                </Columns>
-                            </asp:GridView>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <br />
+                            <div class="form-group">
+                                <asp:Label ID="lbl_Nombres" runat="server" Text="Nombres"></asp:Label>
+                                <asp:TextBox ID="txt_Nombres" class="form-control" runat="server" placeholder="Ingrese Nombres"></asp:TextBox>
 
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_Apellidos" runat="server" Text="Apellido"></asp:Label>
+                                <asp:TextBox ID="txt_Apellidos" runat="server" class="form-control" placeholder="Ingrese Apellido"></asp:TextBox>
+
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_TipoDocumento" runat="server" Text="Tipo Documento"></asp:Label>
+                                <asp:DropDownList ID="ddl_TipoDocumento" runat="server"></asp:DropDownList>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="Numero de Documento"></asp:Label>
+                                <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" placeholder="Ingrese Nro Documento"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_Sexo" runat="server" Text="Sexo"></asp:Label>
+                                <asp:TextBox ID="txt_Sexo" runat="server" class="form-control" placeholder="Ingrese Sexo"></asp:TextBox>
+
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento"></asp:Label>
+                                <asp:TextBox ID="txt_FechaNacimiento" runat="server" class="form-control" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono"></asp:Label>
+                                <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
+                                <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />
+                                <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click" Visible="false" />
+                                <asp:Label ID="lblmsj" runat="server"></asp:Label>
+                            </div>
                         </div>
 
-                    </div>
-                    <div id="menu2" class="tab-pane fade">
-                        <div class="table-responsive">
-                            <br />
-                            <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
-                            <p class="clasificacion">
-                                <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
-                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                </asp:RadioButtonList>
-                                <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
-                                <%-- <input id="radio1" runat="server" type="radio" name="estrellas" value="5" />
+
+
+                        <div id="menu1" class="tab-pane fade">
+                            <div class="table-responsive">
+                                <br />
+                                <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
+                                    OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged">
+
+                                    <Columns>
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                        <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
+                                        <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
+                                        <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />
+                                        <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
+                                        <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
+                                        <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}" />
+                                        <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />
+                                        <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />
+                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                    </Columns>
+                                </asp:GridView>
+
+                            </div>
+
+                        </div>
+                         <%-- NOTIFICACIONES --%>
+                        <div id="menu6" class="tab-pane fade">
+                            <div class="table-responsive">
+
+                                <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
+                                    
+                                    <Columns>
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                        <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                        <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
+                                        <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                        <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                    </Columns>
+                                </asp:GridView>
+
+                            </div>
+                        </div>
+                        <%-- FIN NOTIFICACIONES --%>
+                        <div id="menu2" class="tab-pane fade">
+                            <div class="table-responsive">
+                                <br />
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
+                                    <%-- <input id="radio1" runat="server" type="radio" name="estrellas" value="5" />
     <label for="radio1" class="estrella" runat="server" onclick="marcarradio1">★</label>
     <input id="radio2"  runat="server" type="radio" name="estrellas" value="4"/>
     <label for="radio2" class="estrella">★</label>
@@ -275,61 +305,60 @@
     <label for="radio4" class="estrella">★</label>
     <input id="radio5" runat="server" type="radio" name="estrellas" value="1"/>
     <label for="radio5" class="estrella">★</label>--%>
+                                </p>
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
+                                </p>
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad Deportiva"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
+                                </p>
 
-  </p>
-      <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
-  <p class="clasificacion">
-     <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
-    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-    </asp:RadioButtonList>
-     <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
-  </p>
-        <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad Deportiva"></asp:Label>
-  <p class="clasificacion">
-     <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
-    <asp:ListItem Text="★" Value="1" ></asp:ListItem>
-    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-    </asp:RadioButtonList>
-      <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
-  </p>
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Promedio General"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb4" runat="server" Text=""></asp:Label>
+                                </p>
 
-                <asp:Label CssClass="estrellalabel" runat="server" Text="Promedio General"></asp:Label>
-  <p class="clasificacion">
-     <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true"  >
-    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-    </asp:RadioButtonList>
-     <asp:Label ID="lblmsjrb4" runat="server" Text=""></asp:Label>
-  </p>
-
-            </div>
-   </div>
-            <div id="menu3" class="fade">
-              <div class="table-responsive">
-                <asp:DropDownList ID="ddl_anios" runat="server" Width="150px" AutoPostBack="true"   >
+                            </div>
+                        </div>
+                        <div id="menu3" class="fade">
+                            <div class="table-responsive">
+                                <asp:DropDownList ID="ddl_anios" runat="server" Width="150px" AutoPostBack="true">
                                     <asp:ListItem Text="2019" Value="2019" />
                                     <asp:ListItem Text="2018" Value="2018" />
 
 
                                 </asp:DropDownList>
-                 <div id="barchart_material" style="width:100%; height: 500px;"></div>
+                                <div id="barchart_material" style="width: 100%; height: 500px;"></div>
 
 
-                   </div>
+                            </div>
 
-                </div>
+                        </div>
 
-<%--             <div id="menu5" class=" fade">
+                        <%--             <div id="menu5" class=" fade">
               <div class="table-responsive">
 
                   <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" DisplayToolbar="False" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" ToolPanelView="None" ReuseParameterValuesOnRefresh="True" />
@@ -343,47 +372,19 @@
                       </div>
 
                 </div>--%>
-              <%-- NOTIFICACIONES --%>
-                    <div id="menu6" class="tab-pane fade">
-                        <div class="table-responsive">
+                       
 
-                            <br />
-                            <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged"
-                                >
-
-
-                                <Columns>
-
-
-                                    <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                    <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                    <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
-                                    <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
-                                    <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
-                                    <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
-
-
-
-
-                                </Columns>
-                            </asp:GridView>
-
-                        </div>
+                        <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
                     </div>
-                    <%-- FIN NOTIFICACIONES --%>
-
-                    <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
-            </div>
                 </div>
 
-   </div>
+            </div>
+
+        </div>
+
+
 
     </div>
-                           
-                  
 
-                </div>
-      
 
 </asp:Content>
