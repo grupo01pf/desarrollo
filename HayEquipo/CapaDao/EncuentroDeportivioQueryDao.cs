@@ -51,7 +51,7 @@ namespace CapaDao
                 edq.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
                 edq.idComplejo = int.Parse(dr["idComplejo"].ToString());
-
+                edq.idClave = int.Parse(dr["idClave"].ToString());
                 // eq.calle = dr["calle"].ToString();
                 //eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
                 //eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());

@@ -34,6 +34,7 @@ namespace CapaEntidades
         public string clave { get; set; }
         public int capacidad { get; set; }
 
+        public int idClave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }

@@ -29,6 +29,8 @@ namespace CapaPresentacion
                 cld_Fecha.SelectedDate = DateTime.Today;
 
                 // cld_Fecha.SelectedDayStyle.BorderColor
+
+                txt_Clave.Enabled = false;
             }
 
             cargarMapa();
@@ -37,7 +39,7 @@ namespace CapaPresentacion
 
             //}
 
-
+            
 
         }
 
@@ -185,10 +187,18 @@ namespace CapaPresentacion
             ed.tipoEncuentro = "Privado";
 
            
-            if (string.IsNullOrEmpty(txt_Clave.Text))
-            { ed.clave = string.Empty; ed.accesibilidad = "Abierto"; }
-            else
-            { ed.clave = txt_Clave.Text; ed.accesibilidad = "Cerrado"; }
+            if (string.IsNullOrEmpty(txt_Clave.Text)){
+                                
+                ed.accesibilidad = "Abierto";
+                ed.clave = string.Empty;
+            }
+            else{
+
+                ed.accesibilidad = "Cerrado";
+               // ed.clave = txt_Clave.Text; // NO USAR
+                ed.idClave = CriptografiaDao.encriptar(txt_Clave.Text);
+            }
+                        
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;
@@ -624,10 +634,10 @@ namespace CapaPresentacion
             }
         }
 
-        
-
-
-
+        protected void chk_Accesibilidad_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_Clave.Enabled = true;
+        }
     }
 }
 

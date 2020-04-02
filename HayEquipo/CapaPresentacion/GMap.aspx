@@ -187,12 +187,13 @@
 
                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-             //  $('#txt_Latitud').val(marker.getLatLng().lat) // ok
-             //  $('#txt_Longitud').val(marker.getLatLng().lng) // ok
+               // ASP.NET
+               //$('#txt_Latitud').val(marker.getLatLng().lat)
+               //$('#txt_Longitud').val(marker.getLatLng().lng)
 
-
-               document.getElementById("txt_Latitud").value = marker.getLatLng().lat
-               document.getElementById("txt_Longitud").value = marker.getLatLng().lng
+               // HTML
+                document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+                document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
                // PONER UN POPUP
                // marker.bindPopup('CBA').openPopup(); // ok

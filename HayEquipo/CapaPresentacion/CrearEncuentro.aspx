@@ -69,9 +69,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <%--<asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" Text=" Clave" />--%>
+                        <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" 
+                            Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true"/>
                         <asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>
-                        <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
+                        <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
+                             TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -334,9 +336,11 @@
 
             // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
+            // ASP.NET
             //$('#txt_Latitud').val(marker.getLatLng().lat)
             //$('#txt_Longitud').val(marker.getLatLng().lng)
 
+            // HTML
             document.getElementById("txt_Latitud").value = marker.getLatLng().lat
             document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 

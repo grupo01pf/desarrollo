@@ -22,7 +22,7 @@ namespace CapaEntidades
         }
     
         public int id { get; set; }
-        public Nullable<int> idMapa { get; set; }
+        public Nullable<int> idAdmin { get; set; }
         public Nullable<System.DateTime> fechaCreacionEncuentro { get; set; }
         public Nullable<System.DateTime> fechaDestruccionEncuentro { get; set; }
         public Nullable<int> idDeporte { get; set; }
@@ -40,6 +40,8 @@ namespace CapaEntidades
         public string accesibilidad { get; set; }
         public string clave { get; set; }
         public Nullable<int> capacidad { get; set; }
+        public Nullable<int> idMapa { get; set; }
+        public Nullable<int> idClave { get; set; }
     
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
         public virtual Deporte Deporte { get; set; }

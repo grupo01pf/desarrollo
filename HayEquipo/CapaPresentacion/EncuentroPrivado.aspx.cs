@@ -11,7 +11,7 @@ namespace CapaPresentacion
 {
     public partial class EncuentroPrivado : System.Web.UI.Page
     {
-
+        private bool flag ;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +30,10 @@ namespace CapaPresentacion
                 cargarChat();
                 cargarListaInvitar();
 
+                // flag = true;
+
+                
+
             }
 
             // txt_Mensaje.Focus();
@@ -38,7 +42,7 @@ namespace CapaPresentacion
             txt_Longitud.Enabled = false;
         }
 
-
+    
 
         private void cargarEquipoA()
         {
@@ -78,7 +82,7 @@ namespace CapaPresentacion
             txt_HoraInicio.Text = edq.horaInicio.ToShortTimeString();
             //txt_HoraFin.Text = edq.horaFinHorario.ToShortTimeString();
 
-
+            Session["idClave"] = edq.idClave;
 
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
@@ -551,6 +555,25 @@ namespace CapaPresentacion
             //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
 
            // btnPopUp_ModalPopupExtender2.Show();
+        }
+
+      
+
+        protected void btn_Entrar_Click(object sender, EventArgs e)
+        {
+            string pass = txt_Clave.Text;
+
+            // buscar idEncuentro e idPass
+            if (pass.Equals(CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()))))
+            {
+                pnl_MostrarContenido.Visible = true;
+                pnl_Password.Visible = false;
+            }
+            else {
+                pnl_MostrarContenido.Visible = false;
+                pnl_Password.Visible = true;
+            }
+
         }
     }
 }
