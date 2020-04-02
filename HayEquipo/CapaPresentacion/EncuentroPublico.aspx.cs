@@ -28,6 +28,8 @@ namespace CapaPresentacion
 
             //   cargarChat();
             // txt_Mensaje.Focus();
+            txt_Latitud.Enabled = false;
+            txt_Longitud.Enabled = false;
 
         }
         private void cargarDatosEncuentroPublico()

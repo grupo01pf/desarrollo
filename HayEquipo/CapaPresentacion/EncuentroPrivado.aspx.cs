@@ -32,7 +32,10 @@ namespace CapaPresentacion
 
             }
 
-           // txt_Mensaje.Focus();
+            // txt_Mensaje.Focus();
+
+            txt_Latitud.Enabled = false;
+            txt_Longitud.Enabled = false;
         }
 
 

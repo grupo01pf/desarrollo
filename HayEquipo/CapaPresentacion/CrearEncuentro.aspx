@@ -2,10 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+
+     <%--**** MAPA ****--%>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
 
+     <%--**** MAPA ****--%>
 
 
 
@@ -34,6 +38,9 @@
             /*display: none;*/
         }*/
     </style>
+
+
+
 </asp:Content>
 
 
@@ -235,10 +242,13 @@
             <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>--%>
+                    <input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>--%>
+                     <input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">
+
                 </div>
             </div>
         </div>
@@ -261,19 +271,14 @@
           
 
 
-
-
-
-
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
 
     <%--**** CONTROL DEL MAPA ****--%>
     <%--<script src="scripts/map.js" ></script>--%>
 
-
-    <script type="text/javascript">
+      <script type="text/javascript">
 
 
         const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
@@ -329,8 +334,12 @@
 
             // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-            $('#txt_Latitud').val(marker.getLatLng().lat)
-            $('#txt_Longitud').val(marker.getLatLng().lng)
+            //$('#txt_Latitud').val(marker.getLatLng().lat)
+            //$('#txt_Longitud').val(marker.getLatLng().lng)
+
+            document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+            document.getElementById("txt_Longitud").value = marker.getLatLng().lng
+
 
            // var v1 = marker.getLatLng().lat
            // var v2 = marker.getLatLng().lng
@@ -342,6 +351,8 @@
         })
 
     </script>
+
+    
 
 
 

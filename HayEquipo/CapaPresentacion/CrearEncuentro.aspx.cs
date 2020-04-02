@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaDao;
+using System.Security.Cryptography;
 
 namespace CapaPresentacion
 {
@@ -146,8 +147,10 @@ namespace CapaPresentacion
             Mapa m = new Mapa();
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
-            m.latitud = txt_Latitud.Text;
-            m.longitud = txt_Longitud.Text;
+            //m.latitud = txt_Latitud.Text;
+            //m.longitud = txt_Longitud.Text;
+            m.latitud = txt_Latitud.Value;
+            m.longitud = txt_Longitud.Value;
 
             int idMapa = MapaDao.insertarMapa(m);
 
@@ -550,8 +553,10 @@ namespace CapaPresentacion
             int id = cd.mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
 
-            txt_Latitud.Text = mapa.latitud;
-            txt_Longitud.Text = mapa.longitud;
+            //txt_Latitud.Text = mapa.latitud;
+            //txt_Longitud.Text = mapa.longitud;
+            txt_Latitud.Value = mapa.latitud;
+            txt_Longitud.Value = mapa.longitud;
 
         }
 
@@ -618,6 +623,11 @@ namespace CapaPresentacion
                 lbl_Capacidad.Visible = false;
             }
         }
+
+        
+
+
+
     }
 }
 

@@ -20,8 +20,8 @@ namespace CapaPresentacion
                 Session["idMapa"] = string.Empty;
                 Session["idComplejo"] = string.Empty;
 
-                txt_Latitud.Enabled = true;
-                txt_Longitud.Enabled = true;
+               // txt_Latitud.Enabled = true;
+               // txt_Longitud.Enabled = true;
 
                 cargarComplejos();
                 cargarGrilla();
@@ -33,10 +33,12 @@ namespace CapaPresentacion
 
         private void mostrarUbicacion(int idMapa) {
 
-            Mapa mapa = MapaDao.obtenerMapaByID(idMapa);            
+            Mapa mapa = MapaDao.obtenerMapaByID(idMapa);
 
-            txt_Latitud.Text = mapa.latitud;
-            txt_Longitud.Text = mapa.longitud;        
+            //txt_Latitud.Text = mapa.latitud;
+            //txt_Longitud.Text = mapa.longitud; 
+            txt_Latitud.Value = mapa.latitud;
+            txt_Longitud.Value = mapa.longitud;
 
         }
 
@@ -64,8 +66,10 @@ namespace CapaPresentacion
             //    m.longitud = lng;
 
 
-            m.latitud = txt_Latitud.Text;
-            m.longitud = txt_Longitud.Text;
+            //m.latitud = txt_Latitud.Text;            
+            //m.longitud = txt_Longitud.Text;
+            m.latitud = txt_Latitud.Value;
+            m.longitud = txt_Longitud.Value;
 
             int idMapa =  MapaDao.insertarMapa(m);
 
@@ -86,8 +90,10 @@ namespace CapaPresentacion
             Mapa m = new Mapa();      
              
             m.id = int.Parse(Session["idMapa"].ToString());
-            m.latitud = txt_Latitud.Text;
-            m.longitud = txt_Longitud.Text;
+            //m.latitud = txt_Latitud.Text;
+            //m.longitud = txt_Longitud.Text;
+            m.latitud = txt_Latitud.Value;
+            m.longitud = txt_Longitud.Value;
             MapaDao.modificarMapa(m);
 
             limpiarCampos();
@@ -158,8 +164,10 @@ namespace CapaPresentacion
         {
             GridViewRow fila = gdv_Ubicaciones.SelectedRow;
 
-            txt_Latitud.Text = fila.Cells[6].Text;
-            txt_Longitud.Text = fila.Cells[7].Text;
+            //txt_Latitud.Text = fila.Cells[6].Text;
+            //txt_Longitud.Text = fila.Cells[7].Text;
+            txt_Latitud.Value = fila.Cells[6].Text;
+            txt_Longitud.Value = fila.Cells[7].Text;
 
             Session["idComplejo"] = int.Parse(fila.Cells[1].Text);
             Session["idMapa"] = int.Parse(fila.Cells[2].Text);
@@ -186,8 +194,10 @@ namespace CapaPresentacion
 
         private void limpiarCampos() {
 
-            txt_Latitud.Text = string.Empty;
-            txt_Longitud.Text = string.Empty;
+            //txt_Latitud.Text = string.Empty;
+            //txt_Longitud.Text = string.Empty;
+            txt_Latitud.Value = string.Empty;
+            txt_Longitud.Value = string.Empty;
         }
 
        

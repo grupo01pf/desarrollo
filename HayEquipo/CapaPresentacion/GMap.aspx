@@ -59,12 +59,12 @@
                 
 
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>
-                    <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                    <%--<asp:TextBox ID="txt_Latitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>--%>
+                    <input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">
                     
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>
-                    <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                    <%--<asp:TextBox ID="txt_Longitud" Text="" MaxLength="500"  runat="server"></asp:TextBox>--%>
+                    <input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">
                     <br />
 
                   <%--  <p>
@@ -187,9 +187,12 @@
 
                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-               $('#txt_Latitud').val(marker.getLatLng().lat)
-               $('#txt_Longitud').val(marker.getLatLng().lng)
+             //  $('#txt_Latitud').val(marker.getLatLng().lat) // ok
+             //  $('#txt_Longitud').val(marker.getLatLng().lng) // ok
 
+
+               document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+               document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
                // PONER UN POPUP
                // marker.bindPopup('CBA').openPopup(); // ok

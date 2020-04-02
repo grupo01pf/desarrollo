@@ -280,7 +280,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Latitud;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Latitud;
         
         /// <summary>
         /// Control txt_Longitud.
@@ -289,6 +289,6 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Longitud;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Longitud;
     }
 }
