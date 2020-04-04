@@ -106,13 +106,20 @@
                                 <asp:RadioButton ID="rdb_Privado" runat="server" Text=" Lugar Privado" GroupName="tipoEncuentro" value="1" OnCheckedChanged="rdb_Privado_CheckedChanged" AutoPostBack="true" />
                             </div>
                             <div class="form-group">
+
+                                <asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos" 
+                                    runat="server" NavigateUrl="~/Complejos.aspx"></asp:HyperLink>
+                                <br
+
+
                                 <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
                                 <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
                                     AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_Complejo_SelectedIndexChanged">
                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
-
+                               
+                                 
 
 
 
@@ -248,12 +255,12 @@
             <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
-                    <%--<asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>--%>
-                    <input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <%--<asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>--%>
-                     <input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                     <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
 
                 </div>
             </div>
@@ -341,13 +348,15 @@
             // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
             // ASP.NET
-            //$('#txt_Latitud').val(marker.getLatLng().lat)
-            //$('#txt_Longitud').val(marker.getLatLng().lng)
+            $('#txt_Latitud').val(marker.getLatLng().lat)
+            $('#txt_Longitud').val(marker.getLatLng().lng)
 
             // HTML
-            document.getElementById("txt_Latitud").value = marker.getLatLng().lat
-            document.getElementById("txt_Longitud").value = marker.getLatLng().lng
+            //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+            //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
+
+            alert(marker.getLatLng().lat + '  ' + marker.getLatLng().lng)
 
            // var v1 = marker.getLatLng().lat
            // var v2 = marker.getLatLng().lng

@@ -74,6 +74,7 @@ namespace CapaPresentacion
             int idMapa =  MapaDao.insertarMapa(m);
 
             // cd.id = cmb_Complejo.SelectedIndex;
+            // string comp = cmb_Complejo.SelectedItem.Text;
             int cmbID = 0;
             if(int.TryParse(cmb_Complejo.SelectedItem.Value,out cmbID))
                 cd.id = cmbID;

@@ -24,7 +24,7 @@ namespace CapaPresentacion
 
                 cargarDeportes();
                 // cargarZonas();
-                cargarComplejos();
+               // cargarComplejos();
                 // cargarBarrios();
                 cld_Fecha.SelectedDate = DateTime.Today;
 
@@ -149,10 +149,10 @@ namespace CapaPresentacion
             Mapa m = new Mapa();
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
-            //m.latitud = txt_Latitud.Text;
-            //m.longitud = txt_Longitud.Text;
-            m.latitud = txt_Latitud.Value;
-            m.longitud = txt_Longitud.Value;
+            m.latitud = txt_Latitud.Text;
+            m.longitud = txt_Longitud.Text;
+            //m.latitud = txt_Latitud.Value;
+            //m.longitud = txt_Longitud.Value;
 
             int idMapa = MapaDao.insertarMapa(m);
 
@@ -189,13 +189,11 @@ namespace CapaPresentacion
 
             if (string.IsNullOrEmpty(txt_Clave.Text))
             {
-
                 ed.accesibilidad = "Abierto";
                 ed.clave = string.Empty;
             }
             else
             {
-
                 ed.accesibilidad = "Cerrado";
                 ed.clave = txt_Clave.Text; // NO USAR
                 ed.idClave = CriptografiaDao.encriptar(txt_Clave.Text);
@@ -293,8 +291,10 @@ namespace CapaPresentacion
         }
         private void cargarComplejos()
         {
+            string sport = cmb_Deporte.SelectedItem.Text;
+            // cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
 
-            cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
+            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejoPorDeporte(sport);
             cmb_Complejo.DataValueField = "id";
             cmb_Complejo.DataTextField = "nombre";
             cmb_Complejo.DataBind();
@@ -403,11 +403,14 @@ namespace CapaPresentacion
                 txt_HoraFin.Enabled = false;
                 txt_Cantidad.Enabled = false;
                 cmb_Complejo.Enabled = true;
-                
+                cargarComplejos();
+
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
-               
+
+                
+
             }
         }
 
@@ -565,10 +568,10 @@ namespace CapaPresentacion
             int id = cd.mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
 
-            //txt_Latitud.Text = mapa.latitud;
-            //txt_Longitud.Text = mapa.longitud;
-            txt_Latitud.Value = mapa.latitud;
-            txt_Longitud.Value = mapa.longitud;
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;
+            //txt_Latitud.Value = mapa.latitud;
+            //txt_Longitud.Value = mapa.longitud;
 
         }
 
