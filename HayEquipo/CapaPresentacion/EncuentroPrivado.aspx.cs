@@ -32,7 +32,8 @@ namespace CapaPresentacion
 
                 // flag = true;
 
-                
+                pnl_MostrarContenido.Visible = false;
+                pnl_Password.Visible = true;
 
             }
 
@@ -561,10 +562,10 @@ namespace CapaPresentacion
 
         protected void btn_Entrar_Click(object sender, EventArgs e)
         {
-            string pass = txt_Clave.Text;
-
+            string pass = txt_Password.Text;
+            string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
             // buscar idEncuentro e idPass
-            if (pass.Equals(CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()))))
+            if (string.Equals(pass,clave))
             {
                 pnl_MostrarContenido.Visible = true;
                 pnl_Password.Visible = false;

@@ -47,7 +47,8 @@ namespace CapaDao
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                pass = dr["pwdEncuentro"].ToString();
+                string clave = dr["pwdEncuentro"].ToString();
+                pass = clave;
             }
             dr.Close();
             cn.Close();

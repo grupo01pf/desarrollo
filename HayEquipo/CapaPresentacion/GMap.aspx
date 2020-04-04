@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GMap.aspx.cs" Inherits="CapaPresentacion.GMap" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GMap.aspx.cs" Inherits="CapaPresentacion.GMap" %>
 
 <!DOCTYPE html>
 
@@ -93,7 +94,8 @@
                     <br />
                     <div class="form-group">
                         <asp:TextBox ID="txt_Todos" Text="" runat="server" Visible="true"></asp:TextBox>     
-                        <asp:Button ID="btn_Todos" Text="Mostrar Todos" runat="server" CssClass="btn btn-info" OnClientClick="getCoords();"/>                                           
+                        <asp:Button ID="btn_Todos" Text="Mostrar Todos" runat="server" 
+                            CssClass="btn btn-info" OnClientClick="getCoords();"/>                                           
 
                     </div>
                     <br />
@@ -139,7 +141,8 @@
 
 
            // CENTRAR LA VISTA DEL MAPA
-           let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+           //let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+           var myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
 
            L.tileLayer(tilesProvider, {
                maxzoom: 18,
@@ -156,9 +159,11 @@
            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
            if (latitude != "" && longitude != "") {
                myMap.setView([latitude, longitude], 15)
-           }
+           } 
           
 
+
+       
 
            // CREAR UN MARCADOR
            // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
@@ -197,8 +202,58 @@
 
                // PONER UN POPUP
                // marker.bindPopup('CBA').openPopup(); // ok
+
+             
            })
 
+
+
+
+           
+           // ARRAY LOCATIONS
+           // CREAR UN MARCADOR
+           layerGroup.clearLayers();
+           //let m1 = L.marker([-31.3546, -64.2308]).addTo(layerGroup)
+           //let m2 = L.marker([-31.4571, -64.1850]).addTo(layerGroup)
+           //let m3 = L.marker([-31.4344, -64.1813]).addTo(layerGroup)
+           //let m4 = L.marker([-31.4402, -64.1958]).addTo(layerGroup)
+
+           //let m1 = L.marker([-31.3546, -64.2308]) 
+           //let m2 = L.marker([-31.4571, -64.1850]) 
+           //let m3 = L.marker([-31.4344, -64.1813])  
+           //let m4 = L.marker([-31.4402, -64.1958]) 
+           // var puntos = [m1, m2, m3, m4]
+          
+           //var puntos = [
+           //    [-31.3546, -64.2308],
+           //    [-31.4571, -64.1850],
+           //    [-31.4344, -64.1813],
+           //    [-31.4402, -64.1958]
+           //]
+
+         // var p = new Array()
+         // var p =  document.getElementById('<%= txt_Todos.ClientID %>').value 
+        //  var puntos = [ p ]
+          
+
+         layerGroup.clearLayers();
+         for (var i = 0; i < puntos.length; i++) {
+             // puntos[i].addTo(layerGroup); // ok
+             // L.marker(puntos[i]).addTo(layerGroup); // ok
+
+             
+         }
+
+
+
+
+
+
+
+           function getCoords() {
+
+               alert(p)
+           }
 
 
        </script>
@@ -214,3 +269,4 @@
     </form>
 </body>
 </html>
+

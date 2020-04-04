@@ -163,7 +163,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idMapa" Type="Int32" />
+    <Property Name="idAdmin" Type="Int32" />
     <Property Name="fechaCreacionEncuentro" Type="DateTime" Precision="0" />
     <Property Name="fechaDestruccionEncuentro" Type="DateTime" Precision="0" />
     <Property Name="idDeporte" Type="Int32" />
@@ -181,6 +181,8 @@
     <Property Name="accesibilidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="capacidad" Type="Int32" />
+    <Property Name="idMapa" Type="Int32" />
+    <Property Name="idClave" Type="Int32" />
     <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_EncuentroDeportivo_ComplejoDeportivo" FromRole="EncuentroDeportivo" ToRole="ComplejoDeportivo" />
     <NavigationProperty Name="Deporte" Relationship="Self.FK_EncuentroDeportivo_Deporte" FromRole="EncuentroDeportivo" ToRole="Deporte" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_EncuentroDeportivo_Deportista" FromRole="EncuentroDeportivo" ToRole="Deportista" />
@@ -443,6 +445,16 @@
     <NavigationProperty Name="Responsable" Relationship="Self.FK_Sponsor_Responsable" FromRole="Sponsor" ToRole="Responsable" />
     <NavigationProperty Name="Rubro" Relationship="Self.FK_Sponsor_Rubro" FromRole="Sponsor" ToRole="Rubro" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="TipoCancha">
     <Key>
       <PropertyRef Name="id" />
@@ -590,6 +602,14 @@
     <Property Name="idEncuentro" Type="Int32" />
     <Property Name="texto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="idEstado" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Password">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pwdUsuario" Type="Binary" MaxLength="128" FixedLength="false" />
+    <Property Name="pwdEncuentro" Type="Binary" MaxLength="128" FixedLength="false" />
   </EntityType>
   <EntityType Name="Reserva">
     <Key>
@@ -942,7 +962,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="EncuentroDeportivo">
-        <PropertyRef Name="idMapa" />
+        <PropertyRef Name="idAdmin" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1424,6 +1444,7 @@
     <EntitySet Name="ServiciosPorComplejos" EntityType="Self.ServiciosPorComplejos" />
     <EntitySet Name="Sesion" EntityType="Self.Sesion" />
     <EntitySet Name="Sponsor" EntityType="Self.Sponsor" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" />
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" />
     <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
@@ -1437,6 +1458,7 @@
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
     <EntitySet Name="Mapa" EntityType="Self.Mapa" />
     <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
+    <EntitySet Name="Password" EntityType="Self.Password" />
     <EntitySet Name="Reserva" EntityType="Self.Reserva" />
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" />
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
@@ -1710,6 +1732,32 @@
       <Parameter Name="idComplejo" Mode="In" Type="Int32" />
       <Parameter Name="fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CriptografiaDao_Desencriptar" ReturnType="Collection(String)">
+      <Parameter Name="idPass" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CriptografiaDao_Encriptar" ReturnType="Collection(Decimal)">
+      <Parameter Name="pwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EncuentroDeportivoDao_ActualizarEDP">
+      <Parameter Name="idMapa" Mode="In" Type="Int32" />
+      <Parameter Name="idEDP" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_EncuentroDeportivoDao_idEncuentroCreado" ReturnType="Collection(Int32)">
       <Parameter Name="usuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1742,6 +1790,14 @@
     <FunctionImport Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico" ReturnType="Collection(HayEquipoModel.sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result)">
       <Parameter Name="idEnc" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HayEquipoModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HayEquipoModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_MapaDao_EliminarMapa">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1767,6 +1823,10 @@
     <FunctionImport Name="sp_MensajeQueryDao_MostrarMensajes" ReturnType="Collection(HayEquipoModel.sp_MensajeQueryDao_MostrarMensajes_Result)">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_NotificacionDao_actualizarEstadoNotificacion">
+      <Parameter Name="idEstado" Mode="In" Type="Int32" />
+      <Parameter Name="idNotificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_NotificacionDao_contadorNotificaciones" ReturnType="Collection(Int32)">
       <Parameter Name="idUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1784,6 +1844,11 @@
     <FunctionImport Name="sp_PermisoUsuario" ReturnType="Collection(String)">
       <Parameter Name="usuario" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_ReservaDao_ActualizarReserva">
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
       <Parameter Name="estado" Mode="In" Type="Int32" />
@@ -1793,6 +1858,7 @@
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
       <Parameter Name="idEstado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="sp_UsuarioDao_ObtenerUsuarios" ReturnType="Collection(HayEquipoModel.sp_UsuarioDao_ObtenerUsuarios_Result)">
       <Parameter Name="idUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1907,6 +1973,17 @@
     <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="capacidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
   <ComplexType Name="sp_MapaDao_ObtenerMapaByID_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

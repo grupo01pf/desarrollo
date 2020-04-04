@@ -186,19 +186,21 @@ namespace CapaPresentacion
 
             ed.tipoEncuentro = "Privado";
 
-           
-            if (string.IsNullOrEmpty(txt_Clave.Text)){
-                                
+
+            if (string.IsNullOrEmpty(txt_Clave.Text))
+            {
+
                 ed.accesibilidad = "Abierto";
                 ed.clave = string.Empty;
             }
-            else{
+            else
+            {
 
                 ed.accesibilidad = "Cerrado";
-               // ed.clave = txt_Clave.Text; // NO USAR
+                ed.clave = txt_Clave.Text; // NO USAR
                 ed.idClave = CriptografiaDao.encriptar(txt_Clave.Text);
             }
-                        
+
 
             if (string.IsNullOrEmpty(txt_NombreLugar.Text))
                 ed.nombreLP = string.Empty;

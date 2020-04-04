@@ -68,13 +68,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server" 
-                            Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true"/>
-                        <asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>
-                        <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
-                             TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-6">
@@ -219,6 +213,16 @@
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
                                 <br />
                                 <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+
+
+                                <div class="form-group">
+                                    <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
+                                        Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true" />
+                                    <%--<asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>--%>
+                                    <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
+                                        TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
+                                </div>
+
                             </div>
                         </div>
 

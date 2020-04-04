@@ -122,7 +122,8 @@ namespace CapaPresentacion
         private void obtenerCoordenadas(){
             List<MapaQueryDao> listaMapas = MapaDao.obtenerMapas();
 
-            string str = "[";
+           // string str = "[";
+            string str = "";
             int contador = 0;
 
 
@@ -139,8 +140,9 @@ namespace CapaPresentacion
 
             //    contador++;
             //}
-            
-            //foreach (MapaQueryDao m in listaMapas) {
+
+            //foreach (MapaQueryDao m in listaMapas)
+            //{
             //    if (contador != listaMapas.Count - 1)
             //    {
             //        str += "[" + m.latitud + "," + m.longitud + "],";
@@ -154,7 +156,22 @@ namespace CapaPresentacion
             //}
 
 
-            str += "]";
+            //foreach (MapaQueryDao m in listaMapas)
+            //{
+            //    if (contador != listaMapas.Count - 1)
+            //    {
+            //        str += m.latitud + "," + m.longitud + ",";
+            //    }
+            //    else
+            //    {
+            //        str +=  m.latitud + "," + m.longitud ;
+            //    }
+
+            //    contador++;
+            //}
+
+
+           // str += "]";
 
             txt_Todos.Text = str;
         }
