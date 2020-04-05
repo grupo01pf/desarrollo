@@ -98,7 +98,11 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
+                            <br />
+                            <asp:Label ID="lbl_ConsejoMapa" runat="server" 
+                                 Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
                             </div>
+                            
                         </div>
                         <%-- LUGAR PRIVADO --%>
                         <div class="col-md-6">
@@ -254,11 +258,11 @@
                <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true" ></asp:TextBox>
                     <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true" ></asp:TextBox>
                      <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
 
                 </div>

@@ -29,6 +29,7 @@ namespace CapaPresentacion
                 // cld_Fecha.SelectedDayStyle.BorderColor
 
                 txt_Clave.Enabled = false;
+               // lbl_ConsejoMapa.Visible = false;
             }
 
             cargarMapa();
@@ -39,8 +40,10 @@ namespace CapaPresentacion
         {
             if (rdb_Publico.Checked)
             {
+               // lbl_ConsejoMapa.Visible = true;
                 if (controlDatosObligatoriosEncuentroPublico())
                 {
+                    lbl_ConsejoMapa.Visible = true;
                     crearEventoPublico();
                     Response.Redirect("EncuentroPublico.aspx");
                 }
