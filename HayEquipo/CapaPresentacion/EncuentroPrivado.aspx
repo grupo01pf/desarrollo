@@ -51,8 +51,16 @@
    
 
     <asp:Panel ID="pnl_Password" runat="server">
-        <asp:TextBox ID="txt_Password" Text="" runat="server"></asp:TextBox>
-        <asp:Button ID="btn_Entrar" Text="Entrar" runat="server" OnClick="btn_Entrar_Click" />
+        <div class="well">
+            <div class="form-group">
+                <span class="glyphicon glyphicon-eye-close"></span>
+
+                <asp:Label ID="lbl_Clave" runat="server" Text=" Clave"></asp:Label>
+                <asp:TextBox ID="txt_Password" Text="" TextMode="Password" runat="server"></asp:TextBox>
+                <asp:Button ID="btn_Entrar" Text="Entrar" runat="server" OnClick="btn_Entrar_Click" />
+                
+            </div>
+        </div>
     </asp:Panel>
 
 
@@ -137,6 +145,8 @@
                                                     <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                 </strong>
+                                                <h5></h5>
+                                                <h5></h5>
                                                 <h5></h5>
                                             </h5>
                                         </div>
@@ -274,14 +284,14 @@
                         <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
                         <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
                     </div>
-                    <div class="well">
+                   <%-- <div class="well">
                         <div class="form-group">
                             <span class="glyphicon glyphicon-eye-close"></span>
                             <asp:Label ID="lbl_Clave" runat="server" Text=" Clave"></asp:Label>
                             <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeHolder="Ingrese Clave" TextMode="Password"></asp:TextBox><br />
                             <asp:Button ID="btn_Ingresar" runat="server" Text="Comprobar" CssClass="btn btn-default" OnClick="btn_Ingresar_Click" />
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
                 <div class="col-sm-4">
                     <%--Union a Equipos--%>

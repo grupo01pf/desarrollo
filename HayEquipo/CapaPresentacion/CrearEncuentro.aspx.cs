@@ -23,9 +23,7 @@ namespace CapaPresentacion
                 deshabilitarControles();
 
                 cargarDeportes();
-                // cargarZonas();
-               // cargarComplejos();
-                // cargarBarrios();
+
                 cld_Fecha.SelectedDate = DateTime.Today;
 
                 // cld_Fecha.SelectedDayStyle.BorderColor
@@ -34,12 +32,6 @@ namespace CapaPresentacion
             }
 
             cargarMapa();
-
-            //if (lbl_Reserva.Text != null && lbl_Capacidad != null) {
-
-            //}
-
-            
 
         }
 
@@ -266,10 +258,7 @@ namespace CapaPresentacion
         {
             Response.Redirect("Home.aspx");
         }
-
-
-
-    
+        
 
         private void cargarDeportes()
         {
@@ -281,14 +270,6 @@ namespace CapaPresentacion
 
         }
 
-        private void cargarZonas()
-        {
-
-            //cmb_Zona.DataSource = ZonaDao.obtenerZonas();
-            //cmb_Zona.DataValueField = "IdZona";
-            //cmb_Zona.DataTextField = "nombre";
-            //cmb_Zona.DataBind();
-        }
         private void cargarComplejos()
         {
             string sport = cmb_Deporte.SelectedItem.Text;
@@ -317,15 +298,7 @@ namespace CapaPresentacion
             }
 
         }
-
-        private void cargarBarrios()
-        {
-
-            //cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
-            //cmb_Barrio.DataValueField = "IdBarrio";
-            //cmb_Barrio.DataTextField = "nombre";
-            //cmb_Barrio.DataBind();
-        }
+        
 
         private void deshabilitarControles()
         {
@@ -592,14 +565,7 @@ namespace CapaPresentacion
             lbl_Error.Text = string.Empty;
            
         }
-
-
-        //protected void btn_VerAgenda_Click(object sender, EventArgs e)
-        //{
-        //    cargarAgenda();
-
-
-        //}
+        
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {

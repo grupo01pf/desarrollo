@@ -19,25 +19,18 @@ namespace CapaPresentacion
 
             if (!IsPostBack) {
 
-
                 cargarEquipoA();
                 cargarEquipoB();
 
                 cargarDatosEncuentroPrivado();
 
-
-              //  cargarMapa();
                 cargarChat();
                 cargarListaInvitar();
-
-                // flag = true;
 
                 pnl_MostrarContenido.Visible = false;
                 pnl_Password.Visible = true;
 
             }
-
-            // txt_Mensaje.Focus();
 
             txt_Latitud.Enabled = false;
             txt_Longitud.Enabled = false;
@@ -115,9 +108,7 @@ namespace CapaPresentacion
             txt_Latitud.Text = mapa.latitud;
             txt_Longitud.Text = mapa.longitud;
         }
-
-       
-
+ 
         private void validacionesDeUsuario()
         {
             if (validarOrganizador())
@@ -314,9 +305,7 @@ namespace CapaPresentacion
             return flag;
 
         }
-
-
-
+        
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
@@ -331,32 +320,6 @@ namespace CapaPresentacion
             btn_Salir.Enabled = false;
         }
 
-        //private void cargarDeportes()
-        //{
-        //    cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-        //    cmb_Deporte.DataValueField = "id";
-        //    cmb_Deporte.DataValueField = "nombre";
-        //    cmb_Deporte.DataBind();
-
-        //}
-        //private void cargarComplejos()
-        //{
-
-        //    cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
-        //    cmb_Complejo.DataValueField = "id";
-        //    cmb_Complejo.DataValueField = "nombre";
-        //    cmb_Complejo.DataBind();
-        //}
-
-        //private void bloquearBotones()
-        //{
-        //    cld_Fecha.Enabled = false;
-        //    txt_calle.Enabled = false;
-        //    txt_nroCalle.Enabled = false;
-        //    txt_Telefono.Enabled = false;
-        //    txt_Organizador.Enabled = false;
-
-        //}
 
         protected void btn_CancelarEncuentro_Click(object sender, EventArgs e)
         {
@@ -433,18 +396,6 @@ namespace CapaPresentacion
         private void cargarListaInvitar()
         {
 
-           // List<Usuario> listaTodos = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
-           // listaTodos.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
-
-            //List<Usuario> listaTodos = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
-            //List<Usuario> jugadoresInscriptos = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
-            //List<Usuario> listaInvitar = new List<Usuario>();
-            //jugadoresInscriptos.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
-            //foreach(Usuario us in listaTodos )  {
-
-            //}
-
-
             gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
@@ -509,23 +460,7 @@ namespace CapaPresentacion
          //   Session["Unirse"] = true;
         }
 
-        //protected void Timer2_Tick(object sender, EventArgs e)
-        //{
-        //    if (Session["idEncuentro"] != null)
-        //    {
-        //        cargarEquipoA();
-        //        cargarEquipoB();
-        //    }
-        //}
-
-        //protected void Timer3_Tick(object sender, EventArgs e)
-        //{
-        //    if (Session["idEncuentro"] != null)
-        //    {
-        //        cargarEquipoB();
-        //    }
-
-        //}
+       
 
         private void cargarModalComplejo(int idComplejo) {
 

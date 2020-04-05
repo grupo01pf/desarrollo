@@ -181,7 +181,7 @@
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
-                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
+                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="false" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
@@ -251,8 +251,7 @@
                 <div id="myMap"></div>
             </div>
 
-         
-            <div class="form-inline">
+               <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
                     <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
@@ -264,6 +263,8 @@
 
                 </div>
             </div>
+         
+          
         </div>
 
 
@@ -282,6 +283,8 @@
 
 
           
+    
+
 
 
      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -290,6 +293,7 @@
 
     <%--**** CONTROL DEL MAPA ****--%>
     <%--<script src="scripts/map.js" ></script>--%>
+
 
       <script type="text/javascript">
 
@@ -348,20 +352,17 @@
             // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
             // ASP.NET
-            $('#txt_Latitud').val(marker.getLatLng().lat)
-            $('#txt_Longitud').val(marker.getLatLng().lng)
+           // $('#txt_Latitud').val(marker.getLatLng().lat)
+           // $('#txt_Longitud').val(marker.getLatLng().lng)
+
+            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+            $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
 
             // HTML
             //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
             //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
 
-            alert(marker.getLatLng().lat + '  ' + marker.getLatLng().lng)
-
-           // var v1 = marker.getLatLng().lat
-           // var v2 = marker.getLatLng().lng
-           // document.getElementById('txt_Latitud').value = v1
-           // document.getElementById('txt_Longitud').value = v2
 
             // PONER UN POPUP
             // marker.bindPopup('CBA').openPopup(); // ok

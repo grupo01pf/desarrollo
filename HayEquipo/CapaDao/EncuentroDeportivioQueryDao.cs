@@ -52,6 +52,7 @@ namespace CapaDao
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
                 edq.idComplejo = int.Parse(dr["idComplejo"].ToString());
                 edq.idClave = int.Parse(dr["idClave"].ToString());
+                
                 // eq.calle = dr["calle"].ToString();
                 //eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
                 //eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());
@@ -100,6 +101,7 @@ namespace CapaDao
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
+                edq.idMapa = int.Parse(dr["idMapa"].ToString());
 
             }
             dr.Close();

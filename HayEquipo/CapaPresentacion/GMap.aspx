@@ -193,8 +193,11 @@
                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
                // ASP.NET
-               //$('#txt_Latitud').val(marker.getLatLng().lat)
-               //$('#txt_Longitud').val(marker.getLatLng().lng)
+               //$('#txt_Latitud').val(marker.getLatLng().lat) // ok
+               //$('#txt_Longitud').val(marker.getLatLng().lng) // ok
+
+                <%--$('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat); // ok
+                $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng); // ok--%>
 
                // HTML
                 document.getElementById("txt_Latitud").value = marker.getLatLng().lat

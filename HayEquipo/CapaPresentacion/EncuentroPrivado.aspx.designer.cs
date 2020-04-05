@@ -22,6 +22,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Panel pnl_Password;
         
         /// <summary>
+        /// Control lbl_Clave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Clave;
+        
+        /// <summary>
         /// Control txt_Password.
         /// </summary>
         /// <remarks>
@@ -299,33 +308,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_CancelarEncuentro;
-        
-        /// <summary>
-        /// Control lbl_Clave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Clave;
-        
-        /// <summary>
-        /// Control txt_Clave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Clave;
-        
-        /// <summary>
-        /// Control btn_Ingresar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Ingresar;
         
         /// <summary>
         /// Control lbl_CantidadEquipoA.
