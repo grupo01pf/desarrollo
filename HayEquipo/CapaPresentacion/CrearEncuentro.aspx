@@ -60,6 +60,23 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                   <%-- <div class="form-group">
+                        <asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>
+                        <div class="dropdown">
+                            <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems>
+                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>
+                        <div class="dropdown">
+                            <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems>
+                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>--%>
+
                     <div class="well" style="width: 310px; margin: 0 auto;">
                         <div class="form-group">
 
@@ -112,7 +129,7 @@
                             <div class="form-group">
 
                                 <asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos" 
-                                    runat="server" NavigateUrl="~/Complejos.aspx"></asp:HyperLink>
+                                    runat="server" NavigateUrl="~/Complejos.aspx" ForeColor="Blue"></asp:HyperLink>
                                 <br
 
 
@@ -317,62 +334,74 @@
 
         var layerGroup = L.layerGroup().addTo(myMap)
 
-        // MOSTRAR UN COMPLEJO
-
-        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
-
-        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-        if (latitude != "" && longitude != "") {
-            myMap.setView([latitude, longitude], 15)
-        }
-
+        
 
 
         // CREAR UN MARCADOR
         // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
 
+
+      
         // DESACTIVAR ZOOM CON DOBLE CLICK
         myMap.doubleClickZoom.disable()
 
         // var layerGroup = L.layerGroup().addTo(myMap)
 
-        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
-        myMap.on('dblclick', e => {
-            // ELIMINAR MARCADOR DEL COMPLEJO
+        if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
+            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+            myMap.on('dblclick', e => {
+                // ELIMINAR MARCADOR DEL COMPLEJO
 
 
-            layerGroup.clearLayers();
+                layerGroup.clearLayers();
 
-            let latLng = myMap.mouseEventToLatLng(e.originalEvent)
-            // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
+                let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+                // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
 
-            myMap.closePopup();
-            //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+                myMap.closePopup();
+                //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
-            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
-            // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+                marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+                // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
-            // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
+                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-            // ASP.NET
-           // $('#txt_Latitud').val(marker.getLatLng().lat)
-           // $('#txt_Longitud').val(marker.getLatLng().lng)
+                // ASP.NET
+                // $('#txt_Latitud').val(marker.getLatLng().lat)
+                // $('#txt_Longitud').val(marker.getLatLng().lng)
 
-            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
-            $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
+                $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+                $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
 
-            // HTML
-            //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
-            //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
+                // HTML
+                //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+                //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
 
 
-            // PONER UN POPUP
-            // marker.bindPopup('CBA').openPopup(); // ok
-        })
+                // PONER UN POPUP
+                // marker.bindPopup('CBA').openPopup(); // ok
+            })
+        }
 
-    </script>
+
+
+          var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
+          var indice = cmbCD.options[cmbCD.selectedIndex].value;
+
+          if (indice > 0) {
+              // MOSTRAR UN COMPLEJO
+              var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+              var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+              var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+              if (latitude != "" && longitude != "") {
+                  myMap.setView([latitude, longitude], 15)
+              }
+
+          }
+
+      </script>
 
     
 

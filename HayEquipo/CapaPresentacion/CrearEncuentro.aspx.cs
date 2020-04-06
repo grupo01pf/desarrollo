@@ -23,6 +23,8 @@ namespace CapaPresentacion
                 deshabilitarControles();
 
                 cargarDeportes();
+                //cargarBarrios();
+                //cargarZonas();
 
                 cld_Fecha.SelectedDate = DateTime.Today;
 
@@ -269,9 +271,22 @@ namespace CapaPresentacion
             cmb_Deporte.DataValueField = "id";
             cmb_Deporte.DataTextField = "nombre";
             cmb_Deporte.DataBind();
-
-
         }
+
+        //private void cargarBarrios()
+        //{
+        //    cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+        //    cmb_Barrio.DataValueField = "id";
+        //    cmb_Barrio.DataTextField = "nombre";
+        //    cmb_Barrio.DataBind();
+        //}
+        //private void cargarZonas()
+        //{
+        //    cmb_Zona.DataSource = ZonaDao.obtenerZonasEF();
+        //    cmb_Zona.DataValueField = "id";
+        //    cmb_Zona.DataTextField = "nombre";
+        //    cmb_Zona.DataBind();
+        //}
 
         private void cargarComplejos()
         {
