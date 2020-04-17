@@ -172,7 +172,22 @@ namespace CapaPresentacion
             //}
 
 
-           // str += "]";
+            // str += "]";
+
+
+            foreach (MapaQueryDao m in listaMapas)
+            {
+                if (contador != listaMapas.Count - 1)
+                {
+                    str += m.latitud + "," + m.longitud + ",";
+                }
+                else
+                {
+                    str += m.latitud + "," + m.longitud;
+                }
+
+                contador++;
+            }
 
             txt_Todos.Text = str;
         }
