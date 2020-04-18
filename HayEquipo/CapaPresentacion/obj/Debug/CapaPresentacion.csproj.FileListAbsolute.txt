@@ -240,7 +240,6 @@ C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramewo
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.SqlServer.dll
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.xml
 C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\EntityFramework.SqlServer.xml
-C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\ApplicationInsights.config
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn\csc.exe
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -297,5 +296,6 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Micros
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.ApplicationInsights.xml
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb

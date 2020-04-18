@@ -13,6 +13,7 @@ namespace CapaPresentacion
 {
     public partial class ABMComplejosEstablecimiento : System.Web.UI.Page
     {
+        //TRABAJANDO EN FORMULARIO PARA UNO SOLO COMPLEJO (COMENTE EL CARGARGRILLA)
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -20,7 +21,7 @@ namespace CapaPresentacion
             {
                 ddlTipoCancha.Enabled = false;
                 cargarBarrios();
-                CargarGrillaComplejos();
+                //CargarGrillaComplejos();
                 btnEliminar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-warning";
                 CargarDeportes();

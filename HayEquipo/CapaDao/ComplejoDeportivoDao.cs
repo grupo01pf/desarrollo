@@ -284,7 +284,7 @@ namespace CapaDao
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
                 //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                //comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
 
                 complejos.Add(comp);
