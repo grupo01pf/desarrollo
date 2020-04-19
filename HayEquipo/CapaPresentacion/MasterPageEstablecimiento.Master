@@ -67,6 +67,9 @@ $(window).load(function() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="HomeEstablecimiento.aspx">Principal</a></li>
+        <li ><a href="EstadisticaComplejo.aspx">Estadísticas</a></li>
+
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="ABMComplejos.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>

@@ -116,6 +116,7 @@
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
+    <Content Include="EstadisticaComplejo.aspx" />
     <Content Include="HomeAdministrador.aspx" />
     <Content Include="HomeEstablecimiento.aspx" />
     <Content Include="imagen.aspx" />
@@ -230,6 +231,13 @@
     </Compile>
     <Compile Include="EncuentroPublico.aspx.designer.cs">
       <DependentUpon>EncuentroPublico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadisticaComplejo.aspx.cs">
+      <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadisticaComplejo.aspx.designer.cs">
+      <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
