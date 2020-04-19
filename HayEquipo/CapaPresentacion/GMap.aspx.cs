@@ -179,11 +179,11 @@ namespace CapaPresentacion
             {
                 if (contador != listaMapas.Count - 1)
                 {
-                    str += m.latitud + "," + m.longitud + ",";
+                    str += m.latitud + "," + m.longitud + "," +  m.nombre + ",";
                 }
                 else
                 {
-                    str += m.latitud + "," + m.longitud;
+                    str += m.latitud + "," + m.longitud + "," + m.nombre;
                 }
 
                 contador++;
