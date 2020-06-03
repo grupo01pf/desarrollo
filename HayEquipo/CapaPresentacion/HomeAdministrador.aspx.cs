@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaDao;
 
 namespace CapaPresentacion
 {
@@ -12,6 +13,13 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+        protected void btnMostrarEstadistica_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(Session["ID"].ToString());
+            EstadisticaDao.truncarUsuariosActivos();
+            EstadisticaDao.CargarUsuariosActivos();
+            elDivDelDashboard.Visible = true;
         }
     }
 }

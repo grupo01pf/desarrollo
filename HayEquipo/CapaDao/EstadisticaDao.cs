@@ -10,14 +10,36 @@ using System.Configuration;
 
 namespace CapaDao
 {
+
     public class EstadisticaDao
     {
+        public static void truncarUsuariosActivos()
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spTruncarEstadisticaUsuariosActivos", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
         public static void truncarTabla()
         {
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
             SqlCommand cmd = new SqlCommand("spTruncarEstadisticaComplejo", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
+        public static void CargarUsuariosActivos()
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spCargarDatosEstadisticaUsuariosActivos", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
             cn.Close();
