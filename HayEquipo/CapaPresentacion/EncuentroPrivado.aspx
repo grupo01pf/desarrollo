@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPrivado.aspx.cs" Inherits="CapaPresentacion.EncuentroPrivado" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
@@ -44,10 +45,41 @@
             width: 100%;
             padding-top: 56.25%;
         }
+
+          input[type="radio"] {
+            display: none;
+        }
+
+
+        .clasificacion {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            margin-right: 70%;
+        }
+
+        label:hover,
+        label:hover ~ label {
+            color: orange;
+        }
+
+
+        input[type="radio"]:checked ~ label {
+            color: orange;
+        }
+
+        .estrellalabel {
+            font-size: 20px;
+        }
+
+        .estrella {
+            transform: scale(2.0);
+            margin-left: 20%;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    
    
 
     <asp:Panel ID="pnl_Password" runat="server">
@@ -125,6 +157,7 @@
                                 visible="true">
                                 Ver Complejo
                             </button>
+
 
 
                             <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
@@ -266,7 +299,114 @@
 
 
                             <%--FIN MODAL COMPLEJO  --%>
+
+                             <%--MODAL CALIFICACION--%>
+
+                          
+
+                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                <ContentTemplate>
+                                    <asp:LinkButton ID="btnCalifComplejo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary">
+                               Calificar Complejo
+                                    </asp:LinkButton>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                             <asp:Button ID="btnInicial" runat="server" Text="Button" Style="display: none" />
+
+            <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server"
+                Enabled="True" TargetControlID="btnInicial"
+                PopupControlID="PanelModal">
+                <Animations>
+            <OnShowing>
+                <FadeIn Duration=".5" Fps="30" />
+            </OnShowing>
+            <OnShown>
+                <FadeIn Duration=".3" Fps="30" />
+            </OnShown>
+            <OnHiding>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHiding>
+            <OnHidden>
+                <FadeOut Duration=".5" Fps="30" />
+            </OnHidden>
+
+                </Animations>
+            </asp:ModalPopupExtender>
+
+                           
+                <asp:UpdatePanel ID="PanelModal" runat="server" >
+                    <ContentTemplate>
+
+               <div class="ensanchar">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                <div class="modal-header">
+                     <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
+                       onclick="btnClose_Click"/>
+                    <h4 class="modal-title" id="myModalLabel">Calificar Complejo</h4>
+                </div>
+                <div class="modal-body">
+                    <asp:Label CssClass="estrellalabel" runat="server" Text="Canchas"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
+                                     </p>
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Atencion"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
+                                </p>
+                                <asp:Label CssClass="estrellalabel" runat="server" Text="Servicios"></asp:Label>
+                                <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList3_SelectedIndexChanged">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
+
+   
+                                        </div>
+
+              
+                     </div>
+
+                  <div class="modal-footer">
+                      <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
+                       onclick="btnClose_Click"/>
+
+                  </div>
+                 </div>
+                    </div>
+                   
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            
+
+                             <%--FIN MODAL CALIFICACION  --%>
                         </div>
+
+
+                        
+                            
+
 
 
 
