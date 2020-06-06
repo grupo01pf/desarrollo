@@ -21,7 +21,6 @@ namespace CapaEntidades
             this.Deportista = new HashSet<Deportista>();
             this.Mensaje = new HashSet<Mensaje>();
             this.ReseñaComplejo = new HashSet<ReseñaComplejo>();
-            this.Responsable = new HashSet<Responsable>();
             this.RolesPorUsuarios = new HashSet<RolesPorUsuarios>();
             this.Sesion = new HashSet<Sesion>();
             this.Valoracion = new HashSet<Valoracion>();
@@ -45,8 +44,6 @@ namespace CapaEntidades
         public virtual ICollection<Mensaje> Mensaje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReseñaComplejo> ReseñaComplejo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Responsable> Responsable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RolesPorUsuarios> RolesPorUsuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

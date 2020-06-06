@@ -73,12 +73,13 @@
           <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
           <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
           <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
-          <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
           <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
           <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
           <ScalarProperty Name="avatar" ColumnName="avatar" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
           <ScalarProperty Name="mapa" ColumnName="mapa" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -294,22 +295,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Responsable">
-      <EntityTypeMapping TypeName="HayEquipoModel.Responsable">
-        <MappingFragment StoreEntitySet="Responsable">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="nombres" ColumnName="nombres" />
-          <ScalarProperty Name="idTipoDoc" ColumnName="idTipoDoc" />
-          <ScalarProperty Name="nroDoc" ColumnName="nroDoc" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
-          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-          <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Rol">
       <EntityTypeMapping TypeName="HayEquipoModel.Rol">
         <MappingFragment StoreEntitySet="Rol">
@@ -372,10 +357,12 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="idRubro" ColumnName="idRubro" />
-          <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
           <ScalarProperty Name="fechaInicioContrato" ColumnName="fechaInicioContrato" />
           <ScalarProperty Name="fechaFinContrato" ColumnName="fechaFinContrato" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="contacto" ColumnName="contacto" />
+          <ScalarProperty Name="telContacto" ColumnName="telContacto" />
+          <ScalarProperty Name="mailContacto" ColumnName="mailContacto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -743,7 +730,6 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Deportes" ColumnName="Deportes" />
-          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Barrio" ColumnName="Barrio" />
           <ScalarProperty Name="Zona" ColumnName="Zona" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -753,6 +739,15 @@
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Mapa" ColumnName="Mapa" />
           <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="NroCalle" ColumnName="NroCalle" />
+          <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+          <ScalarProperty Name="Cierre" ColumnName="Cierre" />
+          <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="IDBarrio" ColumnName="IDBarrio" />
+          <ScalarProperty Name="IDZona" ColumnName="IDZona" />
+          <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

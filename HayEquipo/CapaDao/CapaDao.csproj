@@ -80,7 +80,6 @@
     <Compile Include="EncuentroDeportivoDao.cs" />
     <Compile Include="LugarPublicoDao.cs" />
     <Compile Include="ReservaDao.cs" />
-    <Compile Include="ResponsableDao.cs" />
     <Compile Include="ServicioExtraDao.cs" />
     <Compile Include="ServiciosPorComplejosDao.cs" />
     <Compile Include="TipoCanchaDao.cs" />

@@ -68,12 +68,13 @@
     <Property Name="nroTelefono" Type="int" />
     <Property Name="horaApertura" Type="time" Precision="0" />
     <Property Name="horaCierre" Type="time" Precision="0" />
-    <Property Name="idResponsable" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="fechaRegistro" Type="date" />
     <Property Name="avatar" Type="image" />
     <Property Name="idEstado" Type="int" />
     <Property Name="mapa" Type="int" />
+    <Property Name="responsable" Type="nvarchar" MaxLength="50" />
+    <Property Name="idUsuario" Type="int" />
   </EntityType>
   <EntityType Name="Deporte">
     <Key>
@@ -335,21 +336,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="idEncuentroDeportivo" Type="int" />
     <Property Name="idEstado" Type="int" />
   </EntityType>
-  <EntityType Name="Responsable">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="apellido" Type="nvarchar" MaxLength="50" />
-    <Property Name="nombres" Type="nvarchar" MaxLength="50" />
-    <Property Name="idTipoDoc" Type="int" />
-    <Property Name="nroDoc" Type="int" />
-    <Property Name="sexo" Type="nvarchar" MaxLength="50" />
-    <Property Name="fechaNacimiento" Type="date" />
-    <Property Name="nroTelefono" Type="int" />
-    <Property Name="email" Type="nvarchar" MaxLength="50" />
-    <Property Name="idUsuario" Type="int" />
-  </EntityType>
   <EntityType Name="Rol">
     <Key>
       <PropertyRef Name="id" />
@@ -407,10 +393,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="nombre" Type="nvarchar" MaxLength="50" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="idRubro" Type="int" />
-    <Property Name="idResponsable" Type="int" />
     <Property Name="fechaInicioContrato" Type="smalldatetime" />
     <Property Name="fechaFinContrato" Type="smalldatetime" />
     <Property Name="idEstado" Type="int" />
+    <Property Name="contacto" Type="nvarchar" MaxLength="50" />
+    <Property Name="telContacto" Type="int" />
+    <Property Name="mailContacto" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="TipoCancha">
     <Key>
@@ -645,18 +633,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Principal>
       <Dependent Role="ComplejoDeportivo">
         <PropertyRef Name="idEstado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ComplejoDeportivo_Responsable">
-    <End Role="Responsable" Type="Self.Responsable" Multiplicity="0..1" />
-    <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Responsable">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ComplejoDeportivo">
-        <PropertyRef Name="idResponsable" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1020,30 +996,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Responsable_TipoDocumento">
-    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
-    <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoDocumento">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Responsable">
-        <PropertyRef Name="idTipoDoc" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Responsable_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-    <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Responsable">
-        <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_RolesPorUsuarios_Rol">
     <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
     <End Role="RolesPorUsuarios" Type="Self.RolesPorUsuarios" Multiplicity="*" />
@@ -1125,18 +1077,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Principal>
       <Dependent Role="Sponsor">
         <PropertyRef Name="idEstado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Sponsor_Responsable">
-    <End Role="Responsable" Type="Self.Responsable" Multiplicity="0..1" />
-    <End Role="Sponsor" Type="Self.Sponsor" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Responsable">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Sponsor">
-        <PropertyRef Name="idResponsable" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1462,7 +1402,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publicacion" EntityType="Self.Publicacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ReseñaComplejo" EntityType="Self.ReseñaComplejo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolesPorUsuarios" EntityType="Self.RolesPorUsuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -1582,10 +1521,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     </AssociationSet>
     <AssociationSet Name="FK_ComplejoDeportivo_Estado" Association="Self.FK_ComplejoDeportivo_Estado">
       <End Role="Estado" EntitySet="Estado" />
-      <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ComplejoDeportivo_Responsable" Association="Self.FK_ComplejoDeportivo_Responsable">
-      <End Role="Responsable" EntitySet="Responsable" />
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />
     </AssociationSet>
     <AssociationSet Name="FK_DeportesPorDeportistas_Deporte" Association="Self.FK_DeportesPorDeportistas_Deporte">
@@ -1708,14 +1643,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="ReseñaComplejo" EntitySet="ReseñaComplejo" />
     </AssociationSet>
-    <AssociationSet Name="FK_Responsable_TipoDocumento" Association="Self.FK_Responsable_TipoDocumento">
-      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-      <End Role="Responsable" EntitySet="Responsable" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Responsable_Usuario" Association="Self.FK_Responsable_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Responsable" EntitySet="Responsable" />
-    </AssociationSet>
     <AssociationSet Name="FK_RolesPorUsuarios_Rol" Association="Self.FK_RolesPorUsuarios_Rol">
       <End Role="Rol" EntitySet="Rol" />
       <End Role="RolesPorUsuarios" EntitySet="RolesPorUsuarios" />
@@ -1742,10 +1669,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     </AssociationSet>
     <AssociationSet Name="FK_Sponsor_Estado" Association="Self.FK_Sponsor_Estado">
       <End Role="Estado" EntitySet="Estado" />
-      <End Role="Sponsor" EntitySet="Sponsor" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sponsor_Responsable" Association="Self.FK_Sponsor_Responsable">
-      <End Role="Responsable" EntitySet="Responsable" />
       <End Role="Sponsor" EntitySet="Sponsor" />
     </AssociationSet>
     <AssociationSet Name="FK_Sponsor_Rubro" Association="Self.FK_Sponsor_Rubro">

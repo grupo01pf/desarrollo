@@ -132,6 +132,7 @@ namespace CapaPresentacion
             ddlBarrio.DataBind();
         }
 
+        //Modificado por eliminación de tabla Responsable
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -140,7 +141,7 @@ namespace CapaPresentacion
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
             complejo.deportes = lblDepResultado.Text;
-            complejo.idResponsable = 2;
+            //complejo.idResponsable = 2;
             complejo.promedioEstrellas = 0;
             complejo.idEstado = 1;
             complejo.calle = txtCalle.Text;

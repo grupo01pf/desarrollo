@@ -390,7 +390,7 @@ namespace CapaDao
 
             return tipo;
         }
-
+        //Modifiqué consulta por elimiación de tabla 'Responsable'
         public static List<EncuentroDeportivoQueryEntidad> ObtenerEncuentrosPorUsResponsable(int idUs)
         { 
              List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
@@ -409,8 +409,7 @@ namespace CapaDao
 								LEFT JOIN Deporte d ON d.id=ed.idDeporte
 								LEFT JOIN Estado e ON e.id=ed.idEstado
                                 LEFT JOIN ComplejoDeportivo cd ON cd.id=ed.idComplejo
-								LEFT JOIN Responsable r ON r.id=cd.idResponsable
-								LEFT JOIN Usuario u ON u.id=r.idUsuario
+								LEFT JOIN Usuario u ON u.id=cd.idUsuario
 								WHERE u.id=@idUs";
             cmd.Parameters.AddWithValue("@idUs", idUs);
             SqlDataReader dr = cmd.ExecuteReader();

@@ -34,18 +34,18 @@ namespace CapaEntidades
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<System.TimeSpan> horaApertura { get; set; }
         public Nullable<System.TimeSpan> horaCierre { get; set; }
-        public Nullable<int> idResponsable { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<System.DateTime> fechaRegistro { get; set; }
         public byte[] avatar { get; set; }
         public Nullable<int> idEstado { get; set; }
         public Nullable<int> mapa { get; set; }
+        public string responsable { get; set; }
+        public Nullable<int> idUsuario { get; set; }
     
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cancha> Cancha { get; set; }
         public virtual Estado Estado { get; set; }
-        public virtual Responsable Responsable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EncuentroDeportivo> EncuentroDeportivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -54,9 +54,7 @@ namespace CapaDao
 
             //*****Agu_BD
 
-            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
-
-
+            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
 
 
             return cadena;

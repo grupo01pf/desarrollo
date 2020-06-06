@@ -40,23 +40,42 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-    <h1 class="titulo">Complejos Deportivos</h1>
+    <h1 class="titulo">Complejo Deportivo</h1>
     <%--<div class="jumbotron text-center" style="background-color: black">--%>
     <div class="container text-center"">
         <div class="row alinearAlCentro">
             <div class="col-sm-6">
                 <div class="well">
                     <legend>Registro de Complejo</legend>
+                     <%--Aquí inicia el Formulario de Registro de Complejos--%>
                     <div class="form-group">
-                        <%--Aquí inicia el Formulario de Registro de Complejos--%>
-                        <asp:Label ID="lblNombre" CssClass="alinearIzquiera" runat="server" Text="Nombre" ForeColor="black"></asp:Label>
+                        <asp:Label ID="lblNomRes" CssClass="alinearIzquiera" runat="server" Text="Nombre del Responsable" ForeColor="black"></asp:Label>
+                        <asp:TextBox ID="txtNomRes" placeholder="Ingrese nombre del responsable" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rvfNomRes"
+                            runat="server"
+                            ControlToValidate="txtNomRes"
+                            ErrorMessage="Ingrese Nombre del responsable"
+                            CssClass="alert-danger" Display="Dynamic"
+                            Text="*Ingrese nombre del responsable" ValidationGroup="A" />
+
+                        <asp:Label ID="lblApeRes" CssClass="alinearIzquiera" runat="server" Text="Apellido del Responsable" ForeColor="black"></asp:Label>
+                        <asp:TextBox ID="txtApeRes" placeholder="Ingrese apellido del responsable" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rvfAperes"
+                            runat="server"
+                            ControlToValidate="txtApeRes"
+                            ErrorMessage="Ingrese apellido del responsable"
+                            CssClass="alert-danger" Display="Dynamic"
+                            Text="*Ingrese apellido del responsable" ValidationGroup="A" />
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="lblNombre" CssClass="alinearIzquiera" runat="server" Text="Nombre del Complejo" ForeColor="black"></asp:Label>
                         <asp:TextBox ID="txtNomb" placeholder="Ingrese nombre del complejo" CssClass="form-control" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rvfNomb"
                             runat="server"
                             ControlToValidate="txtNomb"
-                            ErrorMessage="Ingrese Nombre"
+                            ErrorMessage="Ingrese nombre del complejo"
                             CssClass="alert-danger" Display="Dynamic"
-                            Text="*Ingrese Nombre" ValidationGroup="A" />
+                            Text="*Ingrese nombre del complejo" ValidationGroup="A" />
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblDesc" CssClass="alinearIzquiera" runat="server" Text="Descripcion" ForeColor="black"></asp:Label>
@@ -195,26 +214,6 @@
                        <asp:LinkButton ID="btnImagenes" runat="server" onclick="btnPopUp3_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Imágenes
                         </asp:LinkButton>                                                  
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="well">
-                    <%--Grilla de Complejos--%>
-                    <legend>Complejos cargados</legend>
-                    <div class="table-responsive">
-                          <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="False" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
-            <Columns>
-                <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" >
-                <ItemStyle CssClass="col-lg-3 text-center" ForeColor="#3366CC"></ItemStyle>
-                </asp:CommandField>
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Deportes" HeaderText="Deportes" />
-                <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-                <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
-                <asp:BoundField DataField="Responsable" HeaderText="Responsable" />
-            </Columns>
-        </asp:GridView>
                     </div>
                 </div>
             </div>

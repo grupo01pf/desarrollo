@@ -52,7 +52,6 @@ namespace CapaEntidades
         public virtual DbSet<Provincia> Provincia { get; set; }
         public virtual DbSet<Publicacion> Publicacion { get; set; }
         public virtual DbSet<ReseñaComplejo> ReseñaComplejo { get; set; }
-        public virtual DbSet<Responsable> Responsable { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<RolesPorUsuarios> RolesPorUsuarios { get; set; }
         public virtual DbSet<Rubro> Rubro { get; set; }

@@ -129,12 +129,12 @@
                     <h1 class="w3-opacity">
                      <b>Agenda</b></h1>
                     </div>
-                        <div class="form-group">
+                  <%--      <div class="form-group">
                              <asp:Label ID="lbl_Comp" runat="server" Text="Complejo"></asp:Label>
                              <asp:DropDownList ID="ddlComp" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlComp_SelectedIndexChanged" >
                              <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                              </asp:DropDownList>
-                        </div>
+                        </div>--%>
 
                         <div class="form-group">
                              <asp:Label ID="lblDep" runat="server" Text="Deporte"></asp:Label>

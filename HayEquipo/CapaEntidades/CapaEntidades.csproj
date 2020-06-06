@@ -185,10 +185,6 @@
     <Compile Include="ReseñaComplejo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Responsable.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ResponsableEntidad.cs" />
     <Compile Include="Rol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

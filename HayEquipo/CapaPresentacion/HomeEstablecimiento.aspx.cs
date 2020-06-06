@@ -17,9 +17,9 @@ namespace CapaPresentacion
 
             if (!IsPostBack)
             {
-                CargarDdlComplejos();
+                //CargarDdlComplejos();
                 CargarDdlDeportes();
-                ddlComp.AutoPostBack = true;
+                //ddlComp.AutoPostBack = true;
                 ddlDeportes.AutoPostBack = true;
             }
         }
@@ -65,16 +65,18 @@ namespace CapaPresentacion
             }
         }
 
-        private void CargarDdlComplejos()
-        {
-            ddlComp.DataSource = null;
-            ddlComp.DataTextField = "nombre";
-            ddlComp.DataValueField = "id";
-            ddlComp.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorUsuario(int.Parse(Session["ID"].ToString()))
-                                    orderby comp.Nombre
-                                    select comp);
-            ddlComp.DataBind();
-        }
+        //Modificado por eliminar tabla Responsable
+
+        //private void CargarDdlComplejos()
+        //{
+        //    ddlComp.DataSource = null;
+        //    ddlComp.DataTextField = "nombre";
+        //    ddlComp.DataValueField = "id";
+        //    ddlComp.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorUsuario(int.Parse(Session["ID"].ToString()))
+        //                            orderby comp.Nombre
+        //                            select comp);
+        //    ddlComp.DataBind();
+        //}
 
         private void CargarDdlDeportes()
         {
@@ -120,21 +122,22 @@ namespace CapaPresentacion
         //    gvCanchas.DataBind();
         //}
 
+        //Modificado por eliminar tabla Responsable
         private void cargarAgenda()
         {
 
             lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(int.Parse(ddlComp.SelectedValue));
-            DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
-            DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString()));
+            DateTime horaApertura = DateTime.Parse((cd.Apertura).ToString());
+            DateTime horario = DateTime.Parse((cd.Cierre - cd.Apertura).ToString());
             int ha = int.Parse(horaApertura.Hour.ToString());
 
 
             int horas = int.Parse(horario.Hour.ToString());
 
-            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(int.Parse(ddlComp.SelectedValue), ddlDeportes.SelectedIndex);
+            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cd.ID, ddlDeportes.SelectedIndex);
             AgendaEntidad agenda = null;
             List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
             foreach (AgendaEntidad a in listaDatosAgenda)
@@ -157,7 +160,7 @@ namespace CapaPresentacion
             //**************************************************
             // Quitar Horarios Reservados
 
-            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(int.Parse(ddlComp.SelectedValue), cld_Fecha.SelectedDate);
+            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cd.ID, cld_Fecha.SelectedDate);
             List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
             if (listaHorariosReservados.Count != 0)
             {
@@ -226,7 +229,7 @@ namespace CapaPresentacion
 
         protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlComp.SelectedIndex != 0 && cld_Fecha.SelectedDate.Date > DateTime.MinValue)
+            if (cld_Fecha.SelectedDate.Date > DateTime.MinValue)
             {
                 lbl_Reserva.Text = string.Empty;
                 lbl_Capacidad.Text = string.Empty;
@@ -258,7 +261,7 @@ namespace CapaPresentacion
 
         protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)
         {
-            if (ddlDeportes.SelectedIndex != 0 && ddlComp.SelectedIndex != 0)
+            if (ddlDeportes.SelectedIndex != 0)
             {
                 cargarAgenda();
                 //lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate;

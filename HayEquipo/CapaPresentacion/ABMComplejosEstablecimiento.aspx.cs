@@ -18,7 +18,7 @@ namespace CapaPresentacion
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {
+            {               
                 ddlTipoCancha.Enabled = false;
                 cargarBarrios();
                 //CargarGrillaComplejos();
@@ -28,6 +28,7 @@ namespace CapaPresentacion
                 CargarServicios();
                 ddlDep4.AutoPostBack = true;
                 ddlServ.AutoPostBack = true;
+                CargarComplejo();
             }
         }
 
@@ -153,7 +154,8 @@ namespace CapaPresentacion
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
             complejo.deportes = lblDepResultado.Text;
-            complejo.idResponsable = 2;
+            complejo.responsable = txtNomRes.Text + " " + txtApeRes.Text;
+            complejo.idUsuario = int.Parse(Session["ID"].ToString());
             complejo.promedioEstrellas = 0;
             complejo.idEstado = 1;
             complejo.calle = txtCalle.Text;
@@ -216,9 +218,9 @@ namespace CapaPresentacion
                 btn_CambiarImagen.Visible = true;
             }
 
-            if (ID.HasValue)
+            if (IDCom.HasValue)
             {
-                complejo.id = ID.Value;
+                complejo.id = IDCom.Value;
                 ComplejoDeportivoDao.ActualizarComplejo(complejo);
             }
             else
@@ -227,47 +229,54 @@ namespace CapaPresentacion
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
-            CargarGrillaComplejos();
             Limpiar();
         }
 
-        protected void CargarGrillaComplejos()
-        {
-            Responsable res = ResponsableDao.ObtenerResponsablePorIdUsuario(int.Parse(Session["ID"].ToString()));
-            gvComplejos.DataSource = null;
+        //protected void CargarGrillaComplejos()
+        //{
+        //    int idUsuario = int.Parse(Session["ID"].ToString());
+        //    gvComplejos.DataSource = null;
 
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosPorResponsable(res.id)
-                                      orderby comp.Nombre
-                                      select comp);
+        //    gvComplejos.DataSource = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(idUsuario);
 
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
-        }
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
 
-        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarComplejo()
         {
             Limpiar();
-            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-            IDCom = idSeleccionado;
-            Session["IDCom"] = idSeleccionado;
-            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
+            int idUsuario = int.Parse(Session["ID"].ToString());
+            //int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+            //IDCom = idSeleccionado;
+            //Session["IDCom"] = idSeleccionado;
+            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(idUsuario);
 
-            txtNomb.Text = compSelec.nombre;
-            txtDesc.Text = compSelec.descripcion;
-            if (compSelec.deportes != string.Empty)
+            if (compSelec != null)
             {
-                lblDepResultado.Text = compSelec.deportes;
+                IDCom = compSelec.ID;
+                Session["IDCom"] = compSelec.ID;
+
+            var nombresResp = compSelec.Responsable.Split(' ');
+            txtNomRes.Text = nombresResp[0];
+            txtApeRes.Text = nombresResp[1];
+            txtNomb.Text = compSelec.Nombre;
+            txtDesc.Text = compSelec.Descripcion;
+            if (compSelec.Deportes != string.Empty)
+            {
+                lblDepResultado.Text = compSelec.Deportes;
             }
             else
             {
                 lblDepResultado.Text = "-";
             }
-            txtCalle.Text = compSelec.calle;
-            txtNro.Text = compSelec.nroCalle.ToString();
-            ddlBarrio.SelectedIndex = int.Parse((compSelec.idBarrio).ToString());
-            txtTel.Text = compSelec.nroTelefono.ToString();
-            txtHoraApe.Text = compSelec.horaApertura.ToString();
-            txtHoraCie.Text = compSelec.horaCierre.ToString();
+            txtCalle.Text = compSelec.Calle;
+            txtNro.Text = compSelec.NroCalle.ToString();
+            ddlBarrio.SelectedIndex = compSelec.IDBarrio;
+            txtTel.Text = compSelec.Telefono.ToString();
+            txtHoraApe.Text = compSelec.Apertura.ToString();
+            txtHoraCie.Text = compSelec.Cierre.ToString();
+
             if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
@@ -297,6 +306,12 @@ namespace CapaPresentacion
             btnCanchas.Enabled = true;
             btnServicios.Enabled = true;
             btnImagenes.Enabled = true;
+            }
+
+            //else
+            //{
+            //    Limpiar();
+            //}
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -315,7 +330,7 @@ namespace CapaPresentacion
                 ServicioExtraDao.EliminarServiciosPorComplejo(ID.Value);
             }          
             ComplejoDeportivoDao.EliminarComplejo(ID.Value);
-            CargarGrillaComplejos();
+
             Limpiar();
         }
 
@@ -525,7 +540,6 @@ namespace CapaPresentacion
         {
             ComplejoDeportivo complejo = ComplejoDeportivoDao.ObtenerComplejosPorID(IDCom.Value);
             lblDepResultado.Text = complejo.deportes;
-            CargarGrillaComplejos();
             btnPopUp_ModalPopupExtender.Hide();
             LimpiarCanchas();
         }
