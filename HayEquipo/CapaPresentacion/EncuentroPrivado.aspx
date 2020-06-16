@@ -336,10 +336,11 @@
             </asp:ModalPopupExtender>
 
                            
-                <asp:UpdatePanel ID="PanelModal" runat="server" >
+            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
+                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                     <ContentTemplate>
 
-               <div class="ensanchar">
+               
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                 <div class="modal-header">
@@ -388,17 +389,17 @@
                      </div>
 
                   <div class="modal-footer">
-                      <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                     
                       <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
                        onclick="btnClose_Click"/>
 
                   </div>
                  </div>
-                    </div>
+                   
                    
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            
+            </asp:Panel>
 
                              <%--FIN MODAL CALIFICACION  --%>
                         </div>

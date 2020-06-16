@@ -26,7 +26,7 @@ namespace CapaPresentacion
 
                 cargarChat();
                 cargarListaInvitar();
-                cargarValoracion();
+               
 
                 pnl_MostrarContenido.Visible = false;
                 pnl_Password.Visible = true;
@@ -35,7 +35,7 @@ namespace CapaPresentacion
 
             txt_Latitud.Enabled = false;
             txt_Longitud.Enabled = false;
-            
+            cargarValoracion();
         }
 
     
@@ -635,9 +635,10 @@ namespace CapaPresentacion
                 RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador) && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador))
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
+
                     }
 
                 }
