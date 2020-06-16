@@ -93,40 +93,81 @@ namespace CapaDao
             }
         }
 
+        //public static List<spObtenerComplejosJoin_Result> ObtenerComplejosJoin()
+        //{
+        //    using (var db = new HayEquipoEntities())
+        //    {
+        //        return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosJoin").ToList();
+        //    }
+        //}
+
         public static List<spObtenerComplejosJoin_Result> ObtenerComplejosJoin()
         {
-            using (var db = new HayEquipoEntities())
+            List<spObtenerComplejosJoin_Result> listaQuery = new List<spObtenerComplejosJoin_Result>();
+            spObtenerComplejosJoin_Result comp = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
+				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
+				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
+				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
+		   FROM ComplejoDeportivo cd
+		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
+		   LEFT JOIN Estado e ON e.id=cd.idEstado
+		   LEFT JOIN Zona z ON z.id=b.idZona
+		   LEFT JOIN Usuario u ON u.id=cd.idUsuario";
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
             {
-                return db.Database.SqlQuery<spObtenerComplejosJoin_Result>("spObtenerComplejosJoin").ToList();
+                comp = new spObtenerComplejosJoin_Result();
+
+                comp.ID = int.Parse(dr["ID"].ToString());
+                comp.Nombre = dr["Nombre"].ToString();
+                comp.Descripcion = dr["Descripcion"].ToString();
+                comp.Deportes = dr["Deportes"].ToString();
+                comp.Calle = dr["Calle"].ToString();
+                comp.NroCalle = int.Parse(dr["NroCalle"].ToString());
+                if (dr["IDBarrio"].ToString() != "")
+                {
+                    comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
+                    comp.IDZona = int.Parse(dr["IDZona"].ToString());
+                }
+                else
+                {
+                    comp.IDBarrio = 0;
+                }
+                comp.Barrio = dr["Barrio"].ToString();
+                comp.Zona = dr["Zona"].ToString();
+                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
+                TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
+                comp.Responsable = dr["Responsable"].ToString();
+                comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
+                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
+                comp.Estado = dr["Estado"].ToString();
+                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                comp.Avatar = (byte[])dr["Avatar"];
+                comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
+                comp.Usuario = dr["Usuario"].ToString();
+
+                listaQuery.Add(comp);
+
             }
+
+            dr.Close();
+            cn.Close();
+            return listaQuery;
+
         }
-
-        //    public static DataTable ObtenerComplejosJoin()
-        //    {
-        //        SqlConnection cn = new SqlConnection(ConnectionString.Cadena());
-        //        SqlCommand cmd = new SqlCommand();
-
-        //        cmd.CommandText = @"SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-        //cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
-        //cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
-        // FROM ComplejoDeportivo cd
-        // LEFT JOIN Barrio b ON b.id=cd.idBarrio
-        // LEFT JOIN Responsable r ON r.id=cd.idResponsable
-        // LEFT JOIN Estado e ON e.id=cd.idEstado
-        // LEFT JOIN Zona z ON z.id=b.idZona
-        // LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
-        // LEFT JOIN Deportista de ON de.id=zpd.idDeportista";
-
-        //        cmd.CommandType = CommandType.Text;
-        //        cmd.Connection = cn;
-        //        cn.Open();
-
-        //        DataTable ComplejosBD = new DataTable();
-        //        ComplejosBD.Load(cmd.ExecuteReader());
-
-        //        cn.Close();
-        //        return ComplejosBD;
-        //    }
 
         //Modificado por eliminación tabla Responsable
         public static List<spObtenerComplejosJoin_Result> ObtenerComplejosFiltros(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
@@ -197,9 +238,16 @@ namespace CapaDao
                 comp.Deportes = dr["Deportes"].ToString();
                 comp.Calle = dr["Calle"].ToString();
                 comp.NroCalle = int.Parse(dr["NroCalle"].ToString());
-                comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
+                if (dr["IDBarrio"].ToString() != "")
+                {
+                    comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
+                    comp.IDZona = int.Parse(dr["IDZona"].ToString());
+                }
+                else
+                {
+                    comp.IDBarrio = 0;
+                }
                 comp.Barrio = dr["Barrio"].ToString();
-                comp.IDZona = int.Parse(dr["IDZona"].ToString());
                 comp.Zona = dr["Zona"].ToString();
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
@@ -224,13 +272,81 @@ namespace CapaDao
 
         }
 
-        public static ComplejoDeportivo ObtenerComplejosPorID(int id)
+        //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        return db.ComplejoDeportivo.First(c => c.id == id);
+        //    }
+        //}
+
+            //AGREGADO POR AGU:
+        public static spObtenerComplejosJoin_Result ObtenerComplejoPorID(int id)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
+            spObtenerComplejosJoin_Result comp = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
+				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
+				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
+				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
+		   FROM ComplejoDeportivo cd
+		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
+		   LEFT JOIN Estado e ON e.id=cd.idEstado
+		   LEFT JOIN Zona z ON z.id=b.idZona
+		   LEFT JOIN Usuario u ON u.id=cd.idUsuario
+                 WHERE cd.id = @id";
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
             {
-                return db.ComplejoDeportivo.First(c => c.id == id);
+                comp = new spObtenerComplejosJoin_Result();
+
+                comp.ID = int.Parse(dr["ID"].ToString());
+                comp.Nombre = dr["Nombre"].ToString();
+                comp.Descripcion = dr["Descripcion"].ToString();
+                comp.Deportes = dr["Deportes"].ToString();
+                comp.Calle = dr["Calle"].ToString();
+                comp.NroCalle = int.Parse(dr["NroCalle"].ToString());
+                if (dr["IDBarrio"].ToString() != "")
+                {
+                    comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
+                    comp.IDZona = int.Parse(dr["IDZona"].ToString());
+                }
+                else
+                {
+                    comp.IDBarrio = 0;
+                }
+                comp.Barrio = dr["Barrio"].ToString();
+                comp.Zona = dr["Zona"].ToString();
+                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
+                TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
+                comp.Responsable = dr["Responsable"].ToString();
+                comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
+                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
+                comp.Estado = dr["Estado"].ToString();
+                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                comp.Avatar = (byte[])dr["Avatar"];
+                comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
+                comp.Usuario = dr["Usuario"].ToString();
             }
+            dr.Close();
+            cn.Close();
+            return comp;
         }
+
         public static bool ExisteDeporte(int id, string nomb)
         {
 
@@ -345,9 +461,16 @@ namespace CapaDao
                 comp.Deportes = dr["Deportes"].ToString();
                 comp.Calle = dr["Calle"].ToString();
                 comp.NroCalle = int.Parse(dr["NroCalle"].ToString());
-                comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
-                comp.Barrio = dr["Barrio"].ToString();
-                comp.IDZona = int.Parse(dr["IDZona"].ToString());
+                if (dr["IDBarrio"].ToString() != "")
+                {
+                    comp.IDBarrio = int.Parse(dr["IDBarrio"].ToString());
+                    comp.IDZona = int.Parse(dr["IDZona"].ToString());
+                }
+                else
+                {
+                    comp.IDBarrio = 0;
+                }
+                comp.Barrio = dr["Barrio"].ToString();                
                 comp.Zona = dr["Zona"].ToString();
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }

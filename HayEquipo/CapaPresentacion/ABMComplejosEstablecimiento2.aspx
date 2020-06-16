@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento2.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -48,21 +48,6 @@
       <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     <%--<h1 class="titulo">Complejo Deportivo</h1>--%>
-
-            <asp:Panel ID="Panel1"  runat="server" Visible="False">
-                <div class="container text-center">
-                    <div class="row alinearAlCentro">
-                        <h1 class="titulo2">Todavía no registraste tu complejo</h1>
-                        <br />
-                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click"/>            
-                        <br />
-                        <h1 class="titulo2"></h1>
-                        <br />
-                        <h1 class="titulo2"></h1>
-                    </div>
-                </div>
-            </asp:Panel>
-    <asp:Panel ID="Panel2"  runat="server" Visible="True">
         <h1 class="titulo">Complejo Deportivo</h1>
         <br />
     <%--<div class="jumbotron text-center" style="background-color: black">--%>
@@ -456,5 +441,4 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     </div>
-</asp:Panel>
 </asp:Content>

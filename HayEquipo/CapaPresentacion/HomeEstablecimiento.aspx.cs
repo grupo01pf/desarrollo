@@ -21,6 +21,13 @@ namespace CapaPresentacion
                 CargarDdlDeportes();
                 //ddlComp.AutoPostBack = true;
                 ddlDeportes.AutoPostBack = true;
+
+                if (ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString())) == null)
+                {
+                    Panel1.Visible = true;
+                    Panel2.Visible = false;
+                }
+
             }
         }
 
@@ -309,6 +316,11 @@ namespace CapaPresentacion
             //reserva.idEstado = 1; //(reservado)
             //ReservaDao.InsertarReserva(reserva);
 
+        }
+
+        protected void btnRegComplejo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMComplejosEstablecimiento2.aspx");
         }
 
     }

@@ -54,6 +54,12 @@
              margin-right:30px
          }
 
+         .titulo2 {
+            text-align: center;
+            color: #ffffff;
+            font-size:xxx-large;
+        }
+
   </style>
 
 </asp:Content>
@@ -62,7 +68,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-
+    <asp:Panel ID="Panel1"  runat="server" Visible="False">
+                <div class="container text-center">
+                    <div class="row alinearAlCentro">
+                        <h1 class="titulo2">Todavía no registraste tu complejo</h1>
+                        <br />
+                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click" />            
+                        <br />
+                        <h1 class="titulo2"></h1>
+                        <br />
+                        <h1 class="titulo2"></h1>
+                    </div>
+                </div>
+            </asp:Panel>
+    <asp:Panel ID="Panel2"  runat="server" Visible="False">
     <div class="losmargenes">
  <div class="row">
      <div class="col-sm-6">
@@ -182,5 +201,5 @@
                    
       
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- 
+ </asp:Panel>
 </asp:Content>

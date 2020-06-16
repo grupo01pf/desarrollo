@@ -36,8 +36,8 @@ namespace CapaPresentacion
                 if (Session["Rol"].ToString() == "Administrador")
                 {
                     FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    //Response.Redirect("HomeAdministrador.aspx");
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("HomeAdministrador.aspx");
+                    //Response.Redirect("Home.aspx");
                 }
                 if (Session["Rol"].ToString() == "UsuarioDeportista")
                 {

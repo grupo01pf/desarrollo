@@ -192,7 +192,8 @@
               <div class="alinearAlCentro">
               <div class="col-sm-4">
                   <span class="glyphicon glyphicon-map-marker"></span>               
-                  <asp:Label runat="server" text='<%#Eval("Direccion") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("Calle") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("NroCalle") %>'></asp:Label>
                   <br />
               </div>
               </div>

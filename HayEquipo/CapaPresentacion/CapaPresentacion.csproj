@@ -111,6 +111,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMComplejosEstablecimiento2.aspx" />
     <Content Include="ABMComplejosEstablecimiento.aspx" />
     <Content Include="AvatarComplejo.aspx" />
     <Content Include="avatar\nene.png" />
@@ -1829,6 +1830,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMComplejosEstablecimiento2.aspx.cs">
+      <DependentUpon>ABMComplejosEstablecimiento2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMComplejosEstablecimiento2.aspx.designer.cs">
+      <DependentUpon>ABMComplejosEstablecimiento2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ABMComplejosEstablecimiento.aspx.cs">
       <DependentUpon>ABMComplejosEstablecimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

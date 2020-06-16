@@ -305,7 +305,7 @@ namespace CapaPresentacion
             {
                 //contenedorDelMapa.Visible = true;
                // frm_map.Visible = true;
-                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+                spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
                // frm_map.Src = cd.mapa;
                 btn_Agenda.Visible = true;
             }
@@ -458,9 +458,9 @@ namespace CapaPresentacion
             lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString(); 
             //******************************************
             // Generar Horarios
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-            DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
-            DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
+            DateTime horaApertura = DateTime.Parse((cd.Apertura).ToString());
+            DateTime horario = DateTime.Parse((cd.Cierre - cd.Apertura).ToString());
             int ha = int.Parse(horaApertura.Hour.ToString());
 
 
@@ -555,8 +555,8 @@ namespace CapaPresentacion
         }
         private void mostrarUbicacion(int idMapa){
 
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idMapa);
-            int id = cd.mapa.Value;
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idMapa);
+            int id = cd.Mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
 
             txt_Latitud.Text = mapa.latitud;

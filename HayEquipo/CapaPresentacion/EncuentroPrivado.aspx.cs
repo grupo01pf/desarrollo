@@ -101,9 +101,9 @@ namespace CapaPresentacion
 
         private void cargarMapa(int idComplejoDeportivo){
 
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejoDeportivo);
 
-            int id = cd.mapa.Value;
+            int id = cd.Mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
             txt_Latitud.Text = mapa.latitud;
             txt_Longitud.Text = mapa.longitud;
@@ -464,23 +464,23 @@ namespace CapaPresentacion
 
         private void cargarModalComplejo(int idComplejo) {
 
-            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
            // myModalLabel2.InnerText = compSelec.nombre;
-            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+            lblValoracion.Text = "Valoración: " + compSelec.Valoracion.ToString();
 
-            lblDeportes.Text = compSelec.deportes;
-            lblDescripcion.Text = compSelec.descripcion;
+            lblDeportes.Text = compSelec.Deportes;
+            lblDescripcion.Text = compSelec.Descripcion;
             //CargarListServicios(compSelec.id);
-            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
-            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+            lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
 
 
             //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            if (compSelec.avatar != null)
+            if (compSelec.Avatar != null)
             {
                // imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
             }

@@ -41,8 +41,8 @@
       <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     <h1 class="titulo">Complejos Deportivos</h1>
-    <%--<div class="jumbotron text-center" style="background-color: black">--%>
-    <div class="container text-center"">
+    <%--<div class="jumbotron text-center" style="background-color: black">--%>   
+    <div class="container text-center">
         <div class="row alinearAlCentro">
             <div class="col-sm-6">
                 <div class="well">
@@ -98,11 +98,11 @@
                         <asp:DropDownList ID="ddlBarrio" CssClass="form-control" runat="server" AppendDataBoundItems="true">
                             <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvBarrio"
+                       <%-- <asp:RequiredFieldValidator ID="rfvBarrio"
                             runat="server" ControlToValidate="ddlBarrio"
                             ErrorMessage="Seleccione un Barrio" InitialValue="0"
                             CssClass="alert-danger"
-                            Display="Dynamic"></asp:RequiredFieldValidator>
+                            Display="Dynamic"></asp:RequiredFieldValidator>--%>
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblTel" CssClass="alinearIzquiera" runat="server" Text="Teléfono" ForeColor="black"></asp:Label>
@@ -200,14 +200,15 @@
                     <%--Grilla de Complejos--%>
                     <legend>Complejos cargados</legend>
                     <div class="table-responsive">
-                          <asp:GridView ID="gvComplejos" runat="server"     CssClass="table table-hover table-striped" AutoGenerateColumns="False" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
+                          <asp:GridView ID="gvComplejos" runat="server" CssClass="table tables-striped" AutoGenerateColumns="False" OnSelectedIndexChanged="gvComplejos_SelectedIndexChanged" ForeColor="Black" BackColor="White">
             <Columns>
                 <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ShowSelectButton="True" ItemStyle-ForeColor="#3366CC" >
                 <ItemStyle CssClass="col-lg-3 text-center" ForeColor="#3366CC"></ItemStyle>
                 </asp:CommandField>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Deportes" HeaderText="Deportes" />
-                <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                <asp:BoundField DataField="Calle" HeaderText="Calle" />
+                <asp:BoundField DataField="NroCalle" HeaderText="Número" />
                 <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                 <asp:BoundField DataField="Responsable" HeaderText="Responsable" />
             </Columns>

@@ -8,27 +8,41 @@ using CapaEntidades;
 using CapaDao;
 using System.Drawing;
 using System.Net;
-//MEJORAR GRILLA ESTETICAMENTE 
+
 namespace CapaPresentacion
 {
-    public partial class ABMComplejosAdministrador : System.Web.UI.Page
+    public partial class ABMComplejosEstablecimiento2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {
+            {               
                 ddlTipoCancha.Enabled = false;
                 cargarBarrios();
-                CargarGrillaComplejos();
+                //CargarGrillaComplejos();
                 btnEliminar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-warning";
                 CargarDeportes();
                 CargarServicios();
                 ddlDep4.AutoPostBack = true;
                 ddlServ.AutoPostBack = true;
-                
+                CargarComplejo();
             }
+        }
+
+        protected int? ID
+        {
+            get
+            {
+                if (ViewState["ID"] != null)
+                    return (int)ViewState["ID"];
+                else
+                {
+                    return null;
+                }
+            }
+            set { ViewState["ID"] = value; }
         }
 
         protected int? IDCom
@@ -72,7 +86,6 @@ namespace CapaPresentacion
             }
             set { ViewState["IDServ"] = value; }
         }
-
         private void Limpiar()
         {
             txtNomb.Text = string.Empty;
@@ -94,7 +107,7 @@ namespace CapaPresentacion
             lblDeportes.Visible = false;
             lblDepResultado.Visible = false;
 
-            IDCom = null;
+            ID = null;
             btnEliminar.Enabled = false;
             btnEliminar.CssClass = "btn btn-warning";
 
@@ -132,7 +145,6 @@ namespace CapaPresentacion
             ddlBarrio.DataBind();
         }
 
-        //Modificado por eliminación de tabla Responsable
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -141,7 +153,8 @@ namespace CapaPresentacion
             complejo.nombre = txtNomb.Text;
             complejo.descripcion = txtDesc.Text;
             complejo.deportes = lblDepResultado.Text;
-            //complejo.idResponsable = 2;
+            complejo.responsable = txtNomRes.Text + " " + txtApeRes.Text;
+            complejo.idUsuario = int.Parse(Session["ID"].ToString());
             complejo.promedioEstrellas = 0;
             complejo.idEstado = 1;
             complejo.calle = txtCalle.Text;
@@ -154,7 +167,7 @@ namespace CapaPresentacion
             {
                 int barrio;
                 if (int.TryParse(ddlBarrio.Text, out barrio))
-                    complejo.idBarrio = barrio;
+                complejo.idBarrio = barrio;
             }
             else
             {
@@ -185,6 +198,9 @@ namespace CapaPresentacion
 
                 //insertar en BD
                 complejo.avatar = ImagenOriginal;
+                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+                //Image1.ImageUrl = ImagenDataURL64;
+                //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
                 FileUploadAvatar.Visible = false;
                 btn_guardarImagen.Visible = false;
                 btn_CambiarImagen.Visible = true;
@@ -197,7 +213,7 @@ namespace CapaPresentacion
                 string someUrl = @"C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\Imagenes\complejo_logo_default.png";
                 using (var webClient = new WebClient())
                 {
-                   ImagenOriginal = webClient.DownloadData(someUrl);
+                    ImagenOriginal = webClient.DownloadData(someUrl);
                 }
 
                 //insertar en BD
@@ -219,30 +235,37 @@ namespace CapaPresentacion
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
-            CargarGrillaComplejos();
-            Limpiar();
+            CargarComplejo();
         }
 
-        protected void CargarGrillaComplejos()
-        {
-            gvComplejos.DataSource = null;
+        //protected void CargarGrillaComplejos()
+        //{
+        //    int idUsuario = int.Parse(Session["ID"].ToString());
+        //    gvComplejos.DataSource = null;
 
-            gvComplejos.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosJoin()
-                                      orderby comp.Nombre
-                                      select comp);
+        //    gvComplejos.DataSource = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(idUsuario);
 
-            gvComplejos.DataKeyNames = new string[] { "ID" };
-            gvComplejos.DataBind();
-        }
+        //    gvComplejos.DataKeyNames = new string[] { "ID" };
+        //    gvComplejos.DataBind();
+        //}
 
-        protected void gvComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarComplejo()
         {
             Limpiar();
-            int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
-            IDCom = idSeleccionado;
-            Session["IDCom"] = idSeleccionado;
-            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
+            int idUsuario = int.Parse(Session["ID"].ToString());
+            //int idSeleccionado = int.Parse(gvComplejos.SelectedDataKey.Value.ToString());
+            //IDCom = idSeleccionado;
+            //Session["IDCom"] = idSeleccionado;
+            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(idUsuario);
 
+            if (compSelec != null)
+            {
+                IDCom = compSelec.ID;
+                Session["IDCom"] = compSelec.ID;
+
+            var nombresResp = compSelec.Responsable.Split(' ');
+            txtNomRes.Text = nombresResp[0];
+            txtApeRes.Text = nombresResp[1];
             txtNomb.Text = compSelec.Nombre;
             txtDesc.Text = compSelec.Descripcion;
             if (compSelec.Deportes != string.Empty)
@@ -259,6 +282,7 @@ namespace CapaPresentacion
             txtTel.Text = compSelec.Telefono.ToString();
             txtHoraApe.Text = compSelec.Apertura.ToString();
             txtHoraCie.Text = compSelec.Cierre.ToString();
+
             if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
             {
                 imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
@@ -287,6 +311,12 @@ namespace CapaPresentacion
             btnEliminar.Enabled = true;
             btnCanchas.Enabled = true;
             btnServicios.Enabled = true;
+            }
+
+            //else
+            //{
+            //    Limpiar();
+            //}
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -296,16 +326,16 @@ namespace CapaPresentacion
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (ComplejoDeportivoDao.ExistenCanchasPorComplejo(IDCom.Value) == true)
+            if (ComplejoDeportivoDao.ExistenCanchasPorComplejo(ID.Value) == true)
             {
-                CanchaDao.EliminarCanchasPorComplejo(IDCom.Value);
+                CanchaDao.EliminarCanchasPorComplejo(ID.Value);
             }
-            if (ServicioExtraDao.ExistenServiciosPorComplejo(IDCom.Value) > 0)
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(ID.Value) > 0)
             {
-                ServicioExtraDao.EliminarServiciosPorComplejo(IDCom.Value);
+                ServicioExtraDao.EliminarServiciosPorComplejo(ID.Value);
             }          
-            ComplejoDeportivoDao.EliminarComplejo(IDCom.Value);
-            CargarGrillaComplejos();
+            ComplejoDeportivoDao.EliminarComplejo(ID.Value);
+
             Limpiar();
         }
 
@@ -369,7 +399,7 @@ namespace CapaPresentacion
 
         protected void btnGuardarCan_Click(object sender, EventArgs e)
         {
-            if (ddlDep4.SelectedValue != "0" && (ddlTipoCancha.SelectedValue != "0" && ddlTipoCancha.SelectedValue != ""))
+            if(ddlDep4.SelectedValue != "0" && (ddlTipoCancha.SelectedValue != "0" && ddlTipoCancha.SelectedValue != ""))
             {
                 Cancha cancha = new Cancha();
 
@@ -518,7 +548,6 @@ namespace CapaPresentacion
         {
             spObtenerComplejosJoin_Result complejo = ComplejoDeportivoDao.ObtenerComplejoPorID(IDCom.Value);
             lblDepResultado.Text = complejo.Deportes;
-            CargarGrillaComplejos();
             btnPopUp_ModalPopupExtender.Hide();
             LimpiarCanchas();
         }
@@ -548,6 +577,22 @@ namespace CapaPresentacion
             }
         }
 
+        //IMÁGENES
+        protected void btnClose3_Click(object sender, EventArgs e)
+        {
+            btnPopUp_ModalPopupExtender3.Hide();
+            LimpiarServicios();
+        }
+
+        protected void btnPopUp3_Click(object sender, EventArgs e)
+        {
+            if (IDCom.HasValue == true)
+            {
+                CargarGrillaServicios();
+                btnPopUp_ModalPopupExtender3.Show();
+            }
+        }
+
         protected void btnGuardarImagen_Click(object sender, EventArgs e)
         {
             if (FileUploadAvatar.HasFile)
@@ -562,9 +607,9 @@ namespace CapaPresentacion
                 //insertar en BD
                 ComplejoDeportivoDao.AgregarAvatar(Session["IDCom"].ToString(), ImagenOriginal);
                 lblestado.Text = "Imagen Guardada Exitosamente";
-                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
-                imgAvatar.ImageUrl = ImagenDataURL64;
-                //imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
+                //string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
+                //Image1.ImageUrl = ImagenDataURL64;
+                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
                 FileUploadAvatar.Visible = false;
                 btn_guardarImagen.Visible = false;
                 btn_CambiarImagen.Visible = true;
@@ -602,7 +647,7 @@ namespace CapaPresentacion
                 Bitmap ImagenOriginalBinaria = new Bitmap(fUploadImagen.PostedFile.InputStream);
 
                 //insertar en BD
-                ComplejoDeportivoDao.InsertarImagenComplejo(IDCom.Value,ImagenOriginal);
+                ComplejoDeportivoDao.InsertarImagenComplejo(IDCom.Value, ImagenOriginal);
                 lblEstadoImg.Text = "Imagen Guardada Exitosamente";
                 string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(ImagenOriginal);
 

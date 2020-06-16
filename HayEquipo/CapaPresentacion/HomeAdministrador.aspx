@@ -15,21 +15,21 @@
           
               
                   <a href="ABMComplejosAdministrador.aspx"><div class="w3-card-4" style="width:100%;">
-                    <header class="w3-container w3-blue">
+                    <header class="w3-container w3-black">
                         <h1>Complejos deportivos</h1>
                     </header>              
                   </div></a>
               <br />
               
                   <div class="w3-card-4" style="width:100%;">
-                    <header class="w3-container w3-green">
+                    <header class="w3-container w3-black">
                         <h1>Jugadores</h1>
                     </header>              
                   </div>
               <br />
               
                   <a href="ReportesEstadisticasAdmin.aspx"><div class="w3-card-4" style="width:100%;">
-                    <header class="w3-container w3-red">
+                    <header class="w3-container w3-black">
                         <h1>Reportes y Estadísticas</h1>
                     </header>              
                   </div></a>
