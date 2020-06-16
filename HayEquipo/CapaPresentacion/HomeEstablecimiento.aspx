@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </asp:Panel>
-    <asp:Panel ID="Panel2"  runat="server" Visible="False">
+    <asp:Panel ID="Panel2"  runat="server" Visible="True">
     <div class="losmargenes">
  <div class="row">
      <div class="col-sm-6">
