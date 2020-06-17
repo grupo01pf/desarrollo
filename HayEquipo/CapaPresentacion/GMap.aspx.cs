@@ -128,58 +128,13 @@ namespace CapaPresentacion
             int contador = 0;
 
 
-            //foreach (MapaQueryDao m in listaMapas)
-            //{
-            //    if (contador != listaMapas.Count - 1)
-            //    {
-            //        str += "{lat:" + m.latitud + ",lon:" + m.longitud + "},";
-            //    }
-            //    else
-            //    {
-            //        str += "{lat:" + m.latitud + ",lon:" + m.longitud + "}";
-            //    }
-
-            //    contador++;
-            //}
-
-            //foreach (MapaQueryDao m in listaMapas)
-            //{
-            //    if (contador != listaMapas.Count - 1)
-            //    {
-            //        str += "[" + m.latitud + "," + m.longitud + "],";
-            //    }
-            //    else
-            //    {
-            //        str += "[" + m.latitud + "," + m.longitud + "]";
-            //    }
-
-            //    contador++;
-            //}
-
-
-            //foreach (MapaQueryDao m in listaMapas)
-            //{
-            //    if (contador != listaMapas.Count - 1)
-            //    {
-            //        str += m.latitud + "," + m.longitud + ",";
-            //    }
-            //    else
-            //    {
-            //        str +=  m.latitud + "," + m.longitud ;
-            //    }
-
-            //    contador++;
-            //}
-
-
-            // str += "]";
 
 
             foreach (MapaQueryDao m in listaMapas)
             {
                 if (contador != listaMapas.Count - 1)
                 {
-                    str += m.latitud + "," + m.longitud + "," +  m.nombre + ",";
+                    str += m.latitud + "," + m.longitud + "," + m.nombre + ",";
                 }
                 else
                 {
@@ -188,6 +143,7 @@ namespace CapaPresentacion
 
                 contador++;
             }
+
 
             txt_Todos.Text = str;
         }

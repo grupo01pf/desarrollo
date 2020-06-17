@@ -23,8 +23,8 @@ namespace CapaPresentacion
                 deshabilitarControles();
 
                 cargarDeportes();
-                //cargarBarrios();
-                //cargarZonas();
+                cargarBarrios();
+                cargarZonas();
 
                 cld_Fecha.SelectedDate = DateTime.Today;
 
@@ -273,20 +273,20 @@ namespace CapaPresentacion
             cmb_Deporte.DataBind();
         }
 
-        //private void cargarBarrios()
-        //{
-        //    cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
-        //    cmb_Barrio.DataValueField = "id";
-        //    cmb_Barrio.DataTextField = "nombre";
-        //    cmb_Barrio.DataBind();
-        //}
-        //private void cargarZonas()
-        //{
-        //    cmb_Zona.DataSource = ZonaDao.obtenerZonasEF();
-        //    cmb_Zona.DataValueField = "id";
-        //    cmb_Zona.DataTextField = "nombre";
-        //    cmb_Zona.DataBind();
-        //}
+        private void cargarBarrios()
+        {
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            cmb_Barrio.DataValueField = "id";
+            cmb_Barrio.DataTextField = "nombre";
+            cmb_Barrio.DataBind();
+        }
+        private void cargarZonas()
+        {
+            cmb_Zona.DataSource = ZonaDao.obtenerZonasEF();
+            cmb_Zona.DataValueField = "id";
+            cmb_Zona.DataTextField = "nombre";
+            cmb_Zona.DataBind();
+        }
 
         private void cargarComplejos()
         {
@@ -321,18 +321,29 @@ namespace CapaPresentacion
         private void deshabilitarControles()
         {
 
+            cmb_Zona.Visible = false;
+            cmb_Barrio.Visible = false;
 
             txt_Direccion.Enabled = false;
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
 
-            cmb_Complejo.Enabled = false;
+            link_ComplejosInfo.Visible = false;
+            lbl_Complejo.Visible = false;
+            cmb_Complejo.Visible = false;            
+
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
             txt_Cantidad.Enabled = false;
 
             btn_Agenda.Visible = false;
+            rdb_Horario.Enabled = false;
+            rdb_Complejo.Enabled = false;
+            lbl_PorHora.Visible = false;
+            txt_PorHora.Visible = false;
+
+            
             // lbl_Capacidad.Visible = true;
 
            // contenedorDelMapa.Visible = false;
@@ -400,6 +411,8 @@ namespace CapaPresentacion
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
 
+                rdb_Complejo.Enabled = true;
+                rdb_Horario.Enabled = true;
                 
 
             }
@@ -626,6 +639,42 @@ namespace CapaPresentacion
         protected void chk_Accesibilidad_CheckedChanged(object sender, EventArgs e)
         {
             txt_Clave.Enabled = true;
+        }
+
+   
+
+        protected void rdb_Horario_CheckedChanged(object sender, EventArgs e)
+        {
+            lbl_PorHora.Visible = true;
+            txt_PorHora.Visible = true;
+
+            link_ComplejosInfo.Visible = false;
+            lbl_Complejo.Visible = false;
+            cmb_Complejo.Visible = false;
+
+        }
+
+        protected void rdb_Complejo_CheckedChanged(object sender, EventArgs e)
+        {
+            link_ComplejosInfo.Visible = true;
+            lbl_Complejo.Visible = true;
+            cmb_Complejo.Visible = true;
+
+            lbl_PorHora.Visible = false;
+            txt_PorHora.Visible = false;
+
+        }
+
+        protected void rdb_PorBarrio_CheckedChanged(object sender, EventArgs e)
+        {
+            cmb_Zona.Visible = false;
+            cmb_Barrio.Visible = true;
+        }
+
+        protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
+        {
+            cmb_Zona.Visible = true;
+            cmb_Barrio.Visible = false;
         }
     }
 }

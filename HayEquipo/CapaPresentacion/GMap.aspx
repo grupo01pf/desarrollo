@@ -227,20 +227,19 @@
                var coords = $("#txt_Todos").val();
                console.log(coords)
                var v = coords.split(',');
-
+             
                var j = 1
                var k = 2
                for (var i = 0; i < v.length - 1; i=i+3) {
 
                    L.marker([v[i], v[j]]).bindPopup(v[k]).openPopup().addTo(layerGroup);
-                   //console.log(v[i], v[j])                   
+               
                    j = j + 3
                    k = k +3
                }
            }
 
-
-
+        
 
            
 
