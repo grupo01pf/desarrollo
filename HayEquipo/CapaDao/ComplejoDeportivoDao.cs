@@ -137,9 +137,10 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+                       SELECT * from
+(SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
                                 cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
-                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
+                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa,avg((ISNULL(v.valoracion,0))) as ValoracionPromedio
                                  FROM ComplejoDeportivo cd
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
                             LEFT JOIN Responsable r ON r.id=cd.idResponsable
@@ -147,7 +148,15 @@ namespace CapaDao
                             LEFT JOIN Zona z ON z.id=b.idZona
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
-                                WHERE 1 = 1";
+                            LEFT JOIN Valoracion v ON cd.id=v.idComplejoValorado					
+                                WHERE 1 = 1 
+							group by cd.id,cd.nombre,cd.descripcion, cd.deportes, cd.calle+' '+CONVERT(char, cd.nroCalle),b.nombre,cd.nroTelefono,r.apellido+', '+r.nombres,cd.promedioEstrellas,
+							cd.fechaRegistro,e.nombre,cd.mapa) T1
+						    FULL OUTER JOIN
+							(SELECT cd.id ,cd.avatar as Avatar
+                                 FROM ComplejoDeportivo cd    					
+                                WHERE 1 = 1) T2 ON t1.ID=t2.id 
+                               ";
 
             if (!string.IsNullOrEmpty(nomb))
             {
@@ -198,6 +207,7 @@ namespace CapaDao
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
                 //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.ValoracionPromedio = int.Parse(dr["ValoracionPromedio"].ToString());
                 comp.Estado = dr["Estado"].ToString();
               //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
@@ -211,6 +221,7 @@ namespace CapaDao
             return listaQuery;
 
         }
+
 
         public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         {
@@ -284,7 +295,7 @@ namespace CapaDao
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
                 //   comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = int.Parse(dr["Mapa"].ToString());
+             //   comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
 
                 complejos.Add(comp);
@@ -609,6 +620,8 @@ namespace CapaDao
             return listaComplejo;
 
         }
+
+
 
     }
        

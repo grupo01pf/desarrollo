@@ -98,7 +98,13 @@ namespace CapaPresentacion
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idSeleccionado);
 
             myModalLabel2.InnerText = compSelec.nombre;
-            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+                if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
+                {
+                    lblValoracion.Text = "Valoración Promedio: " + ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString());
+                }else
+                {
+                    lblValoracion.Text = "Este Complejo no ha sido valorado aun";
+                }
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
             listServicios.Items.Clear();
