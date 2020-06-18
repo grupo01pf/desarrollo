@@ -35,9 +35,10 @@
         }
 
         /*#LatLng {
-            /*display: none;*/
+            display: none;
         }
         */
+
     </style>
 
 

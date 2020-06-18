@@ -560,7 +560,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport) {
+        public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport, string barrio, string zona) {
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
             ComplejoDeportivo cd = null;
@@ -572,23 +572,25 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
+                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
                                 cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
-                                 FROM ComplejoDeportivo cd
+                                 FROM ComplejoDeportivo cd   
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
+                            LEFT JOIN Zona z ON z.id=b.idZona                        
                             LEFT JOIN Responsable r ON r.id=cd.idResponsable
-                            LEFT JOIN Estado e ON e.id=cd.idEstado
-                            LEFT JOIN Zona z ON z.id=b.idZona
+                            LEFT JOIN Estado e ON e.id=cd.idEstado                           
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
                                 WHERE 1 = 1";
+
+            
 
             if (!string.IsNullOrEmpty(sport))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
-            }
-
+            }  
+           
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -599,6 +601,65 @@ namespace CapaDao
                 cd.nombre = dr["Nombre"].ToString();
                 cd.descripcion = dr["Descripcion"].ToString();
                 cd.deportes = dr["Deportes"].ToString(); 
+
+                listaComplejo.Add(cd);
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return listaComplejo;
+
+        }
+
+
+        public static List<ComplejoDeportivo> getComplejoPorDeporte(string sport, string barrio, string zona)
+        {
+
+            List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
+            ComplejoDeportivo cd = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
+                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
+                                 FROM ComplejoDeportivo cd,  Barrio b ,Zona z
+                                WHERE 1 = 1";
+
+            //LEFT JOINON b.id = cd.idBarrio
+                        //    LEFT JOIN ON z.id = b.idZona
+
+            if (!string.IsNullOrEmpty(sport))
+            {
+                cmd.CommandText += @" AND cd.deportes LIKE @d1";
+                cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
+            }
+            if (!string.IsNullOrEmpty(barrio))
+            {
+                cmd.CommandText += @" AND b.nombre LIKE @b";
+                cmd.Parameters.AddWithValue("@b", "%" + barrio + "%");
+            }
+            if (!string.IsNullOrEmpty(zona))
+            {
+                cmd.CommandText += @" AND z.nombre LIKE @z";
+                cmd.Parameters.AddWithValue("@z", "%" + zona + "%");
+            }
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cd = new ComplejoDeportivo();
+
+                cd.id = int.Parse(dr["ID"].ToString());
+                cd.nombre = dr["Nombre"].ToString();
+                cd.descripcion = dr["Descripcion"].ToString();
+                cd.deportes = dr["Deportes"].ToString();
 
                 listaComplejo.Add(cd);
             }

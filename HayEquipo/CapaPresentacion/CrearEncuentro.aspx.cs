@@ -285,7 +285,8 @@ namespace CapaPresentacion
 
         private void cargarBarrios()
         {
-            cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
             cmb_Barrio.DataValueField = "id";
             cmb_Barrio.DataTextField = "nombre";
             cmb_Barrio.DataBind();
@@ -301,9 +302,11 @@ namespace CapaPresentacion
         private void cargarComplejos()
         {
             string sport = cmb_Deporte.SelectedItem.Text;
+            string barrio = cmb_Barrio.SelectedItem.Text;
+            string zona = cmb_Zona.SelectedItem.Text;
             // cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
 
-            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejoPorDeporte(sport);
+            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejoPorDeporte(sport,barrio,zona);
             cmb_Complejo.DataValueField = "id";
             cmb_Complejo.DataTextField = "nombre";
             cmb_Complejo.DataBind();
@@ -432,7 +435,7 @@ namespace CapaPresentacion
                 txt_HoraFin.Enabled = false;
                 txt_Cantidad.Enabled = false;
                 cmb_Complejo.Enabled = true;
-                cargarComplejos();
+                
 
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
@@ -444,6 +447,19 @@ namespace CapaPresentacion
                 rdb_Complejo.Checked = false;
 
                 lbl_ConsejoMapa.Visible = false;
+
+                if (cmb_Barrio.SelectedIndex != 0)
+                {
+
+                }
+                else if (cmb_Zona.SelectedIndex != 0)
+                {
+
+                }
+                else {
+                    cargarComplejos();
+                }
+                
             }
         }
 
