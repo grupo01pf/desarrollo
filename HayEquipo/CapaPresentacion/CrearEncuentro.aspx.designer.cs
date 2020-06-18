@@ -238,6 +238,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_PorHora;
         
         /// <summary>
+        /// Control lbl_TipoCancha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_TipoCancha;
+        
+        /// <summary>
+        /// Control cmb_TipoCancha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_TipoCancha;
+        
+        /// <summary>
         /// Control rdb_Complejo.
         /// </summary>
         /// <remarks>
@@ -299,6 +317,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdv_Agenda;
+        
+        /// <summary>
+        /// Control gdv_AgendaComplejos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_AgendaComplejos;
         
         /// <summary>
         /// Control lbl_Reserva.

@@ -131,7 +131,7 @@
                             <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
                             <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
                             <br />
-                            <asp:Label ID="lbl_ConsejoMapa" runat="server"
+                            <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
                                 Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
                         </div>
 
@@ -152,6 +152,13 @@
                             <br />
                             <asp:Label ID="lbl_PorHora" runat="server" Text="Hora Inicio"></asp:Label>
                             <asp:TextBox ID="txt_PorHora" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                            <br />
+                            <asp:Label ID="lbl_TipoCancha" runat="server" Text="Tipo Cancha"></asp:Label>
+                            <asp:DropDownList ID="cmb_TipoCancha" CssClass="form-control" runat="server" AutoPostBack="true"
+                                AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_TipoCancha_SelectedIndexChanged"
+                                >
+                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                            </asp:DropDownList>
                             <br />
 
                             <asp:RadioButton ID="rdb_Complejo" runat="server" Text=" Por Complejo" GroupName="tipoBusqueda" value="1" OnCheckedChanged="rdb_Complejo_CheckedChanged" AutoPostBack="true" />
@@ -230,10 +237,12 @@
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick"  Interval="1000"></asp:Timer>--%>
 
+                                                <%-- Agenda de un Complejo --%>
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" >
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" 
+                                                    Visible="false">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
@@ -247,6 +256,25 @@
                                                     </Columns>
                                                 </asp:GridView>
 
+                                                <%--  Agenda de varios Complejos --%>
+
+                                                 <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    visible="false"  >
+                                                    <Columns>
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        
+                                                        <asp:BoundField DataField="idComplejo" HeaderText="idComplejo" Visible="false" />
+                                                        <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
+                                                        <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
+                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="false" />
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
+                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
+                                                        <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
+
+                                                    </Columns>
+                                                </asp:GridView>
 
                      <%--       
                               <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>

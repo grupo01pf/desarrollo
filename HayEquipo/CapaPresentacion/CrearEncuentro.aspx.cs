@@ -25,7 +25,7 @@ namespace CapaPresentacion
                 cargarDeportes();
                 cargarBarrios();
                 cargarZonas();
-
+                
                 cld_Fecha.SelectedDate = DateTime.Today;
 
                 // cld_Fecha.SelectedDayStyle.BorderColor
@@ -272,6 +272,16 @@ namespace CapaPresentacion
             cmb_Deporte.DataTextField = "nombre";
             cmb_Deporte.DataBind();
         }
+        private void cargarTipoCancha()
+        {
+            int sport = 0;
+            int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+
+            cmb_TipoCancha.DataSource = TipoCanchaDao.ObtenerTipoPorIdDeporte(sport);
+            cmb_TipoCancha.DataValueField = "id";
+            cmb_TipoCancha.DataTextField = "nombre";
+            cmb_TipoCancha.DataBind();
+        }
 
         private void cargarBarrios()
         {
@@ -338,11 +348,13 @@ namespace CapaPresentacion
             txt_Cantidad.Enabled = false;
 
             btn_Agenda.Visible = false;
+
             rdb_Horario.Enabled = false;
             rdb_Complejo.Enabled = false;
             lbl_PorHora.Visible = false;
             txt_PorHora.Visible = false;
-
+            lbl_TipoCancha.Visible = false;
+            cmb_TipoCancha.Visible = false;
             
             // lbl_Capacidad.Visible = true;
 
@@ -374,11 +386,26 @@ namespace CapaPresentacion
                 txt_Cantidad.Enabled = true;
                 cmb_Complejo.Enabled = false;
 
+                link_ComplejosInfo.Visible = false;
+                lbl_Complejo.Visible = false;
+                cmb_Complejo.Visible = false;
+
+                lbl_PorHora.Visible = false;
+                txt_PorHora.Visible = false;
+                lbl_TipoCancha.Visible = false;
+                cmb_TipoCancha.Visible = false;
+                rdb_Horario.Checked = false;
+                rdb_Complejo.Checked = false;
+
+                gdv_Agenda.Visible = false;
+                gdv_AgendaComplejos.Visible = false;
+
                 btn_Agenda.Visible = false;
 
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
+                lbl_ConsejoMapa.Visible = true;
 
             }
 
@@ -413,8 +440,10 @@ namespace CapaPresentacion
 
                 rdb_Complejo.Enabled = true;
                 rdb_Horario.Enabled = true;
-                
+                rdb_Horario.Checked = false;
+                rdb_Complejo.Checked = false;
 
+                lbl_ConsejoMapa.Visible = false;
             }
         }
 
@@ -554,9 +583,6 @@ namespace CapaPresentacion
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
 
-               
-
-
             }
             lbl_Error.Text = string.Empty;
 
@@ -647,10 +673,16 @@ namespace CapaPresentacion
         {
             lbl_PorHora.Visible = true;
             txt_PorHora.Visible = true;
+            cargarTipoCancha();
+            lbl_TipoCancha.Visible = true;
+            cmb_TipoCancha.Visible = true;
 
             link_ComplejosInfo.Visible = false;
             lbl_Complejo.Visible = false;
             cmb_Complejo.Visible = false;
+
+            gdv_Agenda.Visible = false;
+            gdv_AgendaComplejos.Visible = true;
 
         }
 
@@ -662,6 +694,11 @@ namespace CapaPresentacion
 
             lbl_PorHora.Visible = false;
             txt_PorHora.Visible = false;
+            lbl_TipoCancha.Visible = false;
+            cmb_TipoCancha.Visible = false;
+
+            gdv_Agenda.Visible = true;
+            gdv_AgendaComplejos.Visible = false;
 
         }
 
@@ -675,6 +712,11 @@ namespace CapaPresentacion
         {
             cmb_Zona.Visible = true;
             cmb_Barrio.Visible = false;
+        }
+
+        protected void cmb_TipoCancha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btn_Agenda.Visible = true;
         }
     }
 }
