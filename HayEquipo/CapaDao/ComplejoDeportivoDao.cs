@@ -639,11 +639,57 @@ namespace CapaDao
                 cmd.CommandText += @" AND cd.idBarrio = b.id AND cd.idBarrio = @b";
                 cmd.Parameters.AddWithValue("@b", barrio);
             }
-            //if (!string.IsNullOrEmpty(zona))
-            //{
-            //    cmd.CommandText += @" AND z.nombre LIKE @z";
-            //    cmd.Parameters.AddWithValue("@z", "%" + zona + "%");
-            //}
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cd = new ComplejoDeportivo();
+
+                cd.id = int.Parse(dr["ID"].ToString());
+                cd.nombre = dr["Nombre"].ToString();
+                cd.descripcion = dr["Descripcion"].ToString();
+                cd.deportes = dr["Deportes"].ToString();
+
+                listaComplejo.Add(cd);
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return listaComplejo;
+
+        }
+
+        public static List<ComplejoDeportivo> getComplejoPorDeporteZona(string sport, int zona)
+        {
+
+            List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
+            ComplejoDeportivo cd = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
+                                            cd.deportes as Deportes, b.nombre as Barrio, mapa as Mapa
+                            FROM ComplejoDeportivo cd, Deporte d, Barrio b, Zona z
+                            WHERE 1 = 1";
+
+
+            if (!string.IsNullOrEmpty(sport))
+            {
+                cmd.CommandText += @" AND cd.deportes LIKE @d1";
+                cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
+            }
+            if (zona != 0)
+            {
+                cmd.CommandText += @" AND z.id = b.idZona AND b.id = cd.idBarrio AND z.id = @z";
+                cmd.Parameters.AddWithValue("@z", zona);
+            }
+
 
             SqlDataReader dr = cmd.ExecuteReader();
 

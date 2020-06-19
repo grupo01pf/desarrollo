@@ -319,7 +319,7 @@ namespace CapaPresentacion
                 cmb_Complejo.DataSource = ComplejoDeportivoDao.getComplejoPorDeporteBarrio(sport,barrio);
             }
             else if (cmb_Zona.SelectedIndex != 0) {
-
+                cmb_Complejo.DataSource = ComplejoDeportivoDao.getComplejoPorDeporteZona(sport, zona);
             }            
             
             cmb_Complejo.DataValueField = "id";
