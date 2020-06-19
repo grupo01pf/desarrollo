@@ -244,7 +244,7 @@
                                     OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged">
 
                                     <Columns>
-                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
                                         <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                         <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
                                         <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />
@@ -269,7 +269,7 @@
                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
                                     
                                     <Columns>
-                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
                                         <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
                                         <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
                                         <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />

@@ -171,12 +171,12 @@
                                                          <br />
                       <%--  <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>       
                                                          <br />--%>
-
-                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                         
+                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
                                                     <Columns>
-                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
@@ -185,6 +185,7 @@
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
                                                     </Columns>
                                                 </asp:GridView>
+                                           
                                  <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
                                 <br />
