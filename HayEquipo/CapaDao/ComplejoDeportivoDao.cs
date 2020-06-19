@@ -560,7 +560,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport, string barrio, string zona) {
+        public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport) {
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
             ComplejoDeportivo cd = null;
@@ -581,9 +581,7 @@ namespace CapaDao
                             LEFT JOIN Estado e ON e.id=cd.idEstado                           
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
-                                WHERE 1 = 1";
-
-            
+                                WHERE 1 = 1";         
 
             if (!string.IsNullOrEmpty(sport))
             {
@@ -613,7 +611,7 @@ namespace CapaDao
         }
 
 
-        public static List<ComplejoDeportivo> getComplejoPorDeporte(string sport, string barrio, string zona)
+        public static List<ComplejoDeportivo> getComplejoPorDeporteBarrio(string sport, int barrio)
         {
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
@@ -625,30 +623,27 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
-                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
-                                 FROM ComplejoDeportivo cd,  Barrio b ,Zona z
-                                WHERE 1 = 1";
+                            SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
+                                            cd.deportes as Deportes, b.nombre as Barrio, mapa as Mapa
+                            FROM ComplejoDeportivo cd, Barrio b, Deporte d
+                            WHERE 1 = 1";
 
-            //LEFT JOINON b.id = cd.idBarrio
-                        //    LEFT JOIN ON z.id = b.idZona
 
             if (!string.IsNullOrEmpty(sport))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
             }
-            if (!string.IsNullOrEmpty(barrio))
+            if (barrio != 0)
             {
-                cmd.CommandText += @" AND b.nombre LIKE @b";
-                cmd.Parameters.AddWithValue("@b", "%" + barrio + "%");
+                cmd.CommandText += @" AND cd.idBarrio = b.id AND cd.idBarrio = @b";
+                cmd.Parameters.AddWithValue("@b", barrio);
             }
-            if (!string.IsNullOrEmpty(zona))
-            {
-                cmd.CommandText += @" AND z.nombre LIKE @z";
-                cmd.Parameters.AddWithValue("@z", "%" + zona + "%");
-            }
+            //if (!string.IsNullOrEmpty(zona))
+            //{
+            //    cmd.CommandText += @" AND z.nombre LIKE @z";
+            //    cmd.Parameters.AddWithValue("@z", "%" + zona + "%");
+            //}
 
             SqlDataReader dr = cmd.ExecuteReader();
 

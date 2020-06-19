@@ -301,12 +301,27 @@ namespace CapaPresentacion
 
         private void cargarComplejos()
         {
-            string sport = cmb_Deporte.SelectedItem.Text;
-            string barrio = cmb_Barrio.SelectedItem.Text;
-            string zona = cmb_Zona.SelectedItem.Text;
-            // cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
 
-            cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejoPorDeporte(sport,barrio,zona);
+            string sport = cmb_Deporte.SelectedItem.Text;
+
+            int barrio = 0;
+            int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+
+            int zona = 0;
+            int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+
+            if (cmb_Barrio.SelectedIndex == 0 && cmb_Zona.SelectedIndex == 0)
+            {
+                cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
+            }
+            else if (cmb_Barrio.SelectedIndex != 0)
+            {
+                cmb_Complejo.DataSource = ComplejoDeportivoDao.getComplejoPorDeporteBarrio(sport,barrio);
+            }
+            else if (cmb_Zona.SelectedIndex != 0) {
+
+            }            
+            
             cmb_Complejo.DataValueField = "id";
             cmb_Complejo.DataTextField = "nombre";
             cmb_Complejo.DataBind();
@@ -707,6 +722,7 @@ namespace CapaPresentacion
             link_ComplejosInfo.Visible = true;
             lbl_Complejo.Visible = true;
             cmb_Complejo.Visible = true;
+            cargarComplejos();
 
             lbl_PorHora.Visible = false;
             txt_PorHora.Visible = false;
