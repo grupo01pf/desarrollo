@@ -312,7 +312,7 @@ namespace CapaPresentacion
 
             if (cmb_Barrio.SelectedIndex == 0 && cmb_Zona.SelectedIndex == 0)
             {
-                cmb_Complejo.DataSource = ComplejoDeportivoDao.ObtenerComplejos();
+                cmb_Complejo.DataSource = ComplejoDeportivoDao.obtenerComplejoPorDeporte(sport);
             }
             else if (cmb_Barrio.SelectedIndex != 0)
             {
@@ -633,6 +633,109 @@ namespace CapaPresentacion
 
 
         }
+
+        private void cargarAgendaPorHorario() {
+
+            EncuentroDeportivo ed = new EncuentroDeportivo();
+            ed.idUsuario = int.Parse(Session["ID"].ToString());
+
+            if (string.IsNullOrEmpty(txt_PorHora.Text))
+            { ed.horaInicio = TimeSpan.Parse("00:00"); }
+            else
+            {
+                TimeSpan? hi = TimeSpan.Parse(txt_PorHora.Text);
+                ed.horaInicio = hi;
+            }
+
+            int tipoCancha = 0;
+            if (cmb_TipoCancha.SelectedIndex != 0) {               
+                int.TryParse(cmb_TipoCancha.SelectedItem.Value, out tipoCancha);                                   
+            }
+
+
+
+            if (rdb_Horario.Checked) {
+
+                // TODO 
+
+                lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString();
+                //******************************************
+                // Generar Horarios
+                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+                DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
+                DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+                int ha = int.Parse(horaApertura.Hour.ToString());
+
+
+                int horas = int.Parse(horario.Hour.ToString());
+
+                List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
+                AgendaEntidad agenda = null;
+                List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
+                foreach (AgendaEntidad a in listaDatosAgenda)
+                {
+
+                    for (int i = 0; i < horas; i++)
+                    {
+                        agenda = new AgendaEntidad();
+                        agenda.idCancha = a.idCancha;
+                        agenda.nombreCancha = a.nombreCancha;
+                        agenda.nombreTipoCancha = a.nombreTipoCancha;
+                        agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
+                        agenda.precioCancha = a.precioCancha;
+                        agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+
+                        listaAgendaGenerada.Add(agenda);
+                    }
+                }
+
+                //**************************************************
+                // Quitar Horarios Reservados
+
+                List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
+                List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
+                if (listaHorariosReservados.Count != 0)
+                {
+                    foreach (AgendaEntidad lg in listaAgendaGenerada)
+                    {
+                        foreach (AgendaEntidad lr in listaHorariosReservados)
+                        {
+
+                            // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
+                            if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
+                            {
+
+                                lg.idEstadoHorario = lr.idEstadoHorario;
+
+                            }
+                        }
+                    }
+                }
+
+                foreach (AgendaEntidad lg in listaAgendaGenerada)
+                {
+                    if (lg.idEstadoHorario == null)
+                    {
+                        listaHorariosDisponibles.Add(lg);
+                    }
+                }
+
+                if (listaHorariosDisponibles.Count > 0)
+                {
+                    gdv_Agenda.DataSource = listaHorariosDisponibles;
+                }
+                else { gdv_Agenda.DataSource = listaAgendaGenerada; }
+
+
+                //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
+                gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
+                gdv_Agenda.DataBind();
+
+            }
+
+        }
+
+
         private void mostrarUbicacion(int idMapa){
 
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idMapa);
