@@ -712,7 +712,7 @@ namespace CapaDao
 
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporte(TimeSpan hi, int tipoCancha, string sport) {
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporte(int tipoCancha, string sport) {
 
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
@@ -725,15 +725,86 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
-                                            cd.deportes as Deportes, b.nombre as Barrio, mapa as Mapa
-                            FROM ComplejoDeportivo cd, Deporte d, Barrio b, Zona z
-                            WHERE 1 = 1";
+                                            cd.deportes as Deportes,c.nombre, c.precio, tc.nombre, tc.capacidad,
+                                            mapa as Mapa, cd.idBarrio 
+                            FROM ComplejoDeportivo cd, Deporte d, Cancha c, TipoCancha tc
+                            WHERE c.idComplejo = cd.id ";
 
 
             if (!string.IsNullOrEmpty(sport))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
+            }
+            if (tipoCancha != 0)
+            {
+                cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
+                cmd.Parameters.AddWithValue("@tc",tipoCancha);
+            }
+
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cd = new ComplejoDeportivo();
+
+                cd.id = int.Parse(dr["ID"].ToString());
+                cd.nombre = dr["Nombre"].ToString();
+                cd.descripcion = dr["Descripcion"].ToString();
+                cd.deportes = dr["Deportes"].ToString();
+
+                listaComplejo.Add(cd);
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return listaComplejo;
+        }
+
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteReservados(int tipoCancha, string sport, TimeSpan? hi, DateTime fecha )
+        {
+
+
+            List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
+            ComplejoDeportivo cd = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
+                                            cd.deportes as Deportes,c.nombre, c.precio, tc.nombre, tc.capacidad,
+                                            mapa as Mapa, cd.idBarrio, h.horaInicio, h.fecha, e.nombre
+                            FROM ComplejoDeportivo cd, Deporte d, Cancha c, TipoCancha tc,
+	                             Horario h,CanchasPorHorarios cph , Estado e
+                            WHERE c.idComplejo = cd.id SND e.id = h.idEstado";
+
+
+            if (!string.IsNullOrEmpty(sport))
+            {
+                cmd.CommandText += @" AND cd.deportes LIKE @d1";
+                cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
+            }
+            if (tipoCancha != 0)
+            {
+                cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
+                cmd.Parameters.AddWithValue("@tc", tipoCancha);
+            }
+
+            if (hi != null)
+            {
+                cmd.CommandText += @" AND h.horaInicio = @hi";
+                cmd.Parameters.AddWithValue("@hi", hi);
+            }
+            if (fecha != null)
+            {
+                cmd.CommandText += @" AND h.fecha = @fecha";
+                cmd.Parameters.AddWithValue("@fecha", fecha);
             }
 
 
