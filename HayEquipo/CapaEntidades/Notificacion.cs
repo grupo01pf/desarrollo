@@ -12,12 +12,15 @@ namespace CapaEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class Notificacion
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id { get; set; }
+        public Nullable<int> idEmisor { get; set; }
+        public string nombreEmisor { get; set; }
+        public Nullable<int> idReceptor { get; set; }
+        public string nombreReceptor { get; set; }
+        public Nullable<int> idEncuentro { get; set; }
+        public string texto { get; set; }
+        public Nullable<int> idEstado { get; set; }
     }
 }

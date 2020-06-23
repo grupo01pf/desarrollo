@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AgendaDao.cs" />
     <Compile Include="CanchaDao.cs" />
+    <Compile Include="EstadisticaDao.cs" />
     <Compile Include="MensajeDao.cs" />
     <Compile Include="MensajeQueryDao.cs" />
     <Compile Include="Model1.Context.cs">

@@ -10,7 +10,7 @@
 namespace CapaPresentacion {
     
     
-    public partial class HomeAdministrador {
+    public partial class EstadisticaComplejo {
         
         /// <summary>
         /// Control btnMostrarEstadistica.
