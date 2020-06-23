@@ -85,7 +85,7 @@ $(window).load(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="Home.aspx"><img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100" /></a>
+        <a href="Home.aspx"><img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100" /></a>
        <%--<img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100"/>--%>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">

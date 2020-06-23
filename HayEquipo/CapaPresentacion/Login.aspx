@@ -84,7 +84,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100">
+                    <img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100">
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 </div>
@@ -94,20 +94,20 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="well">
+                        <%--<br />
+                        <br />
+                        <br />--%>
                         <br />
                         <br />
-                        <br />
-                        <br />
-                        <br />
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/logoconnombre2.png" Width="75%" />   
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   
 
               <%--          <h1>HAY EQUIPO !</h1>
                 
                 <p class="agrandarLetra">Unidos por el deporte</p>--%>
                             
+                   <%--     <br />
                         <br />
-                        <br />
-                        <br />
+                        <br />--%>
                         <br />
                         <br />
                     </div>

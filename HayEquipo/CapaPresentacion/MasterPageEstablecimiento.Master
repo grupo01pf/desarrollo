@@ -71,7 +71,7 @@ $(window).load(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-       <img class="img-responsive" src="Imagenes/logoconnombre2.png"  width="135" height="100"/>
+       <img class="img-responsive" src="Imagenes/HEbarra.png"  width="135" height="100"/>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
