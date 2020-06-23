@@ -62,7 +62,7 @@ namespace CapaPresentacion
         protected void CargarRepeaterComplejosPorVal(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
         {
             encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3, d4)
-                                             orderby comp.Valoracion descending
+                                             orderby comp.ValoracionPromedio descending
                                              select comp);
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
@@ -100,10 +100,23 @@ namespace CapaPresentacion
             myModalLabel2.InnerText = compSelec.nombre;
                 if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
                 {
-                    lblValoracion.Text = "Valoración Promedio: " + ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString());
+                    RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
+                    foreach (ListItem item in RadioButtonList2.Items)
+                    {
+                        if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()) && item.Text == "★")
+                        {
+                            item.Attributes.CssStyle.Add("color", "orange");
+                        }
+
+                    }
+                    RadioButtonList2.Enabled = false;
+                    lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
+                    
                 }else
                 {
-                    lblValoracion.Text = "Este Complejo no ha sido valorado aun";
+                    RadioButtonList2.Enabled = false;
+                    RadioButtonList2.Visible = false;
+                    lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
                 }
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
@@ -853,6 +866,8 @@ namespace CapaPresentacion
             btnD4.Visible = false;
             lbQuitarFiltros.Visible = false;
         }
+
+      
 
     }
 }

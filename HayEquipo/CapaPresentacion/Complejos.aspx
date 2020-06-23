@@ -48,7 +48,35 @@
                 filter: alpha(opacity=50);
                 opacity: 0.4;
             }
+           input[type="radio"] {
+            display: none;
+        }
 
+
+        .clasificacion {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            margin-right: 70%;
+        }
+
+        label:hover,
+        label:hover ~ label {
+            color: orange;
+        }
+
+
+        input[type="radio"]:checked ~ label {
+            color: orange;
+        }
+
+        .estrellalabel {
+            font-size: 20px;
+        }
+
+        .estrella {
+            transform: scale(2.0);
+            margin-left: 20%;
+        }
   </style>
 
 </asp:Content>
@@ -177,7 +205,7 @@
                     </div>
 
   <div class="scroll-container">
-     <asp:Repeater ID="encuentrosRepeater" runat="server" onitemdatabound="encuentrosRepeater_ItemDataBound" >
+     <asp:Repeater ID="encuentrosRepeater" runat="server" onitemdatabound="encuentrosRepeater_ItemDataBound">
            <ItemTemplate>
                <div class="w3-container alinearIzquiera">
   <div class="w3-card-4">
@@ -284,7 +312,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                        <p class="clasificacion">
+                                    <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
+                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                          </p>
+                       
                     </div>
                      <div class="form-group">
                         <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
