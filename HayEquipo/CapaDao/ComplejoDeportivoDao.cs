@@ -113,9 +113,9 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
+				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona,
 				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
-				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
+				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa,
 				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
 		   FROM ComplejoDeportivo cd
 		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
@@ -181,17 +181,30 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
-				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
-				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
-				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
-		   FROM ComplejoDeportivo cd
-		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
-		   LEFT JOIN Estado e ON e.id=cd.idEstado
-		   LEFT JOIN Zona z ON z.id=b.idZona
-		   LEFT JOIN Usuario u ON u.id=cd.idUsuario
-                                WHERE 1 = 1";
+                       SELECT * from
+(SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+                                cd.calle as Calle, cd.nroCalle as NroCalle,b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona,
+                                z.nombre as Zona, cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
+                                cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro,  e.id as IDEstado, e.nombre as Estado,
+                                cd.mapa as Mapa, cd.idUsuario as IDUsuario, u.nombre as Usuario,
+                                 avg((ISNULL(v.valoracion,0))) as ValoracionPromedio
+                                 FROM ComplejoDeportivo cd
+                            LEFT JOIN Barrio b ON b.id=cd.idBarrio
+                            LEFT JOIN Estado e ON e.id=cd.idEstado
+                            LEFT JOIN Zona z ON z.id=b.idZona
+                            LEFT JOIN Usuario u ON u.id=cd.idUsuario
+		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
+		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
+                            LEFT JOIN Valoracion v ON cd.id=v.idComplejoValorado
+                                WHERE 1 = 1
+							group by cd.id,cd.nombre,cd.descripcion, cd.deportes, cd.calle, cd.nroCalle,b.id, b.nombre, z.id, z.nombre,
+              cd.nroTelefono, cd.horaApertura, cd.horaCierre, cd.responsable, cd.promedioEstrellas,
+							cd.fechaRegistro, e.id, e.nombre, cd.mapa, cd.idUsuario, u.nombre) T1
+						    FULL OUTER JOIN
+							(SELECT cd.id ,cd.avatar as Avatar
+                                 FROM ComplejoDeportivo cd
+                                WHERE 1 = 1) T2 ON t1.ID=t2.id
+                               ";
 
             if (!string.IsNullOrEmpty(nomb))
             {
@@ -255,7 +268,11 @@ namespace CapaDao
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
                 //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
+
+                comp.ValoracionPromedio = int.Parse(dr["ValoracionPromedio"].ToString());
+
                 comp.Estado = dr["Estado"].ToString();
                 //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
@@ -293,9 +310,9 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
+				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona,
 				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
-				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
+				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa,
 				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
 		   FROM ComplejoDeportivo cd
 		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
@@ -392,7 +409,7 @@ namespace CapaDao
 		  // LEFT JOIN Estado e ON e.id=cd.idEstado
 		  // LEFT JOIN Zona z ON z.id=b.idZona
 		  // LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
-		  // LEFT JOIN Deportista de ON de.id=zpd.idDeportista         
+		  // LEFT JOIN Deportista de ON de.id=zpd.idDeportista
     //             WHERE cd.idResponsable = @idRes";
 
     //        cmd.Parameters.AddWithValue("@idRes", idRes);
@@ -423,7 +440,7 @@ namespace CapaDao
     //        cn.Close();
     //        return complejos;
     //    }
-        //Modifiqué consulta por elimiación de tabla 'Responsable' 
+        //Modifiqué consulta por elimiación de tabla 'Responsable'
         public static spObtenerComplejosJoin_Result ObtenerComplejoPorUsuario(int idUs)
         {
             spObtenerComplejosJoin_Result comp = null;
@@ -436,9 +453,9 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona, 
+				cd.calle as Calle, cd.nroCalle as NroCalle, b.id as IDBarrio, b.nombre as Barrio, z.id as IDZona, z.nombre as Zona,
 				cd.nroTelefono as Telefono, cd.horaApertura as Apertura, cd.horaCierre as Cierre, cd.responsable as Responsable,
-				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa, 
+				cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.id as IDEstado, e.nombre as Estado, cd.mapa as Mapa,
 				cd.avatar as Avatar, cd.idUsuario as IDUsuario, u.nombre as Usuario
 		   FROM ComplejoDeportivo cd
 		   LEFT JOIN Barrio b ON b.id=cd.idBarrio
@@ -470,7 +487,7 @@ namespace CapaDao
                 {
                     comp.IDBarrio = 0;
                 }
-                comp.Barrio = dr["Barrio"].ToString();                
+                comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
                 comp.Telefono = int.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
@@ -626,7 +643,7 @@ namespace CapaDao
             cmd.CommandText = @"SELECT *
                                   FROM
                                (SELECT *, ROW_NUMBER() OVER(ORDER BY idComplejo) ROWNUM
-                                  FROM FotosComplejo 
+                                  FROM FotosComplejo
                                  WHERE idComplejo=@id) C
                                  WHERE C. ROWNUM = @num";
             cmd.Parameters.AddWithValue("@id", id);
@@ -653,7 +670,7 @@ namespace CapaDao
             cmd.CommandText = @"SELECT *
                                   FROM
                                (SELECT *, ROW_NUMBER() OVER(ORDER BY idComplejo) ROWNUM
-                                  FROM FotosComplejo 
+                                  FROM FotosComplejo
                                  WHERE idComplejo=@id) C
                                  WHERE C. ROWNUM = @num";
             cmd.Parameters.AddWithValue("@id", id);
@@ -758,7 +775,7 @@ namespace CapaDao
                 cd.id = int.Parse(dr["ID"].ToString());
                 cd.nombre = dr["Nombre"].ToString();
                 cd.descripcion = dr["Descripcion"].ToString();
-                cd.deportes = dr["Deportes"].ToString(); 
+                cd.deportes = dr["Deportes"].ToString();
 
                 listaComplejo.Add(cd);
             }
@@ -770,6 +787,8 @@ namespace CapaDao
 
         }
 
+
+
     }
-       
+
 }

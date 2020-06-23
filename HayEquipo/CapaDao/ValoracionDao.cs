@@ -12,7 +12,73 @@ namespace CapaDao
     public class ValoracionDao
     {
 
+        public static bool RegistrarValoracionComplejo(int idComplejo,int idUsuarioValorador,
+            int valoracion,int tipo)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarValoracionComplejo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmidComplejo", idComplejo);
+                cmd.Parameters.AddWithValue("@prmidUsuarioValorador", idUsuarioValorador);
+                cmd.Parameters.AddWithValue("@prmValoracion", valoracion);
+                cmd.Parameters.AddWithValue("@prmTipo", tipo);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
 
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
+
+        public bool RegistrarValoracionDeportista(int idDeportista, int idUsuarioValorador,
+            int valoracion, int tipo)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarValoracionDeportista", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmidDeportista", idDeportista);
+                cmd.Parameters.AddWithValue("@prmidUsuarioValorador", idUsuarioValorador);
+                cmd.Parameters.AddWithValue("@prmValoracion", valoracion);
+                cmd.Parameters.AddWithValue("@prmTipo", tipo);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
 
         public static int obtenerPromedioxid(string idDeportista,string tipo)
         {
@@ -192,6 +258,53 @@ namespace CapaDao
             cn.Close();
 
             return promedio;
+        }
+
+        public static int obtenerValorParticularComplejoxid(string idComplejo, string tipo,string idUsuarioValorador)
+        {
+            int valoracion = 0;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd = new SqlCommand("obtenerValoracionParticularComplejoxTipo", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@prmTipo", tipo);
+            cmd.Parameters.AddWithValue("@prmidComplejo", idComplejo);
+            cmd.Parameters.AddWithValue("@prmUsuarioValorador", idUsuarioValorador);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                valoracion = int.Parse(dr["valoracion"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return valoracion;
+        }
+        public static bool existeValorParticularComplejoxid(string idComplejo, string tipo, string idUsuarioValorador)
+        {
+            bool valoracion = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd = new SqlCommand("obtenerValoracionParticularComplejoxTipo", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@prmTipo", tipo);
+            cmd.Parameters.AddWithValue("@prmidComplejo", idComplejo);
+            cmd.Parameters.AddWithValue("@prmUsuarioValorador", idUsuarioValorador);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                valoracion = true;
+            }
+            dr.Close();
+            cn.Close();
+
+            return valoracion;
         }
 
     }

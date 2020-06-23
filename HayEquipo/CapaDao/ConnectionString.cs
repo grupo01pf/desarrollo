@@ -40,7 +40,7 @@ namespace CapaDao
             //string cadena= @"Data Source=IGNACIOMONETTOP\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //FrancoR BD
-            //String cadena = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
+            String cadena = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
 
             //string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 

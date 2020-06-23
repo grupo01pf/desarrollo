@@ -1797,7 +1797,6 @@
     <Content Include="fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff2" />
     <Content Include="aspnet_client" />
-    <Content Include="ReporteCantidadDeportesxFecha.rpt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

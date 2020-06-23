@@ -15,7 +15,7 @@ namespace CapaPresentacion
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {               
+            {
                 ddlOrdenar.AutoPostBack = true;
             }
 
@@ -62,7 +62,7 @@ namespace CapaPresentacion
         protected void CargarRepeaterComplejosPorVal(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
         {
             encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3, d4)
-                                             orderby comp.Valoracion descending
+                                             orderby comp.ValoracionPromedio descending
                                              select comp);
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
@@ -97,10 +97,29 @@ namespace CapaPresentacion
             Session["IDCom"] = idSeleccionado;
             spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
 
-            myModalLabel2.InnerText = compSelec.Nombre;
-            lblValoracion.Text = "Valoración: " + compSelec.Valoracion.ToString();
-            lblDeportes.Text = compSelec.Deportes;
-            lblDescripcion.Text = compSelec.Descripcion;
+            myModalLabel2.InnerText = compSelec.nombre;
+                if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
+                {
+                    RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
+                    foreach (ListItem item in RadioButtonList2.Items)
+                    {
+                        if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()) && item.Text == "★")
+                        {
+                            item.Attributes.CssStyle.Add("color", "orange");
+                        }
+
+                    }
+                    RadioButtonList2.Enabled = false;
+                    lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
+
+                }else
+                {
+                    RadioButtonList2.Enabled = false;
+                    RadioButtonList2.Visible = false;
+                    lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
+                }
+            lblDeportes.Text = compSelec.deportes;
+            lblDescripcion.Text = compSelec.descripcion;
             listServicios.Items.Clear();
             lblServicios.Text = "Servicios: ";
             if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
@@ -204,7 +223,7 @@ namespace CapaPresentacion
             string d4 = btnD4.Text;
 
             CargarRepeaterComplejos(nomb, idUs, d1, d2, d3, d4);
-   
+
             ddlOrdenar.SelectedIndex = 0;
         }
 
@@ -281,7 +300,7 @@ namespace CapaPresentacion
                 CargarRepeaterComplejosPorFecha(nomb, idUs, d1, d2, d3, d4);
             }
         }
-       
+
         protected void FiltrosDeportes(LinkButton lbDep, string dep)
         {
             lbDep.Enabled = false;
@@ -835,11 +854,11 @@ namespace CapaPresentacion
                 CargarRepeaterComplejosBuscar(nomb, idUs, d1, d2, d3, d4);
             }
 
-            lbFutbol.Enabled = true;         
-            lbBasket.Enabled = true;  
-            lbTenis.Enabled = true;    
-            lbPaddle.Enabled = true;     
-            lbVolley.Enabled = true; 
+            lbFutbol.Enabled = true;
+            lbBasket.Enabled = true;
+            lbTenis.Enabled = true;
+            lbPaddle.Enabled = true;
+            lbVolley.Enabled = true;
 
             btnD1.Visible = false;
             btnD2.Visible = false;
@@ -847,6 +866,8 @@ namespace CapaPresentacion
             btnD4.Visible = false;
             lbQuitarFiltros.Visible = false;
         }
+
+
 
     }
 }
