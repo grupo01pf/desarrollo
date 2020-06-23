@@ -23,6 +23,7 @@
        .centrar{margin-left:180px; }
       h1 {
   text-shadow: 2px 2px 5px green;
+  font-size: 45px;
 }
       .loader {
     position: fixed;
@@ -34,6 +35,9 @@
     background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+      .agrandarLetra{
+          font-size: 25px;
+      }
 
         .margenWell {
             margin: 20px;
@@ -42,6 +46,21 @@
           color:red;
 
       }
+
+
+        @media only screen and (max-width: 700px) {
+         .ensanchar{
+             width: 200px;
+             height: 400px;
+         }
+
+
+        }
+            body {
+  background-image: url("Imagenes/fondo2.jpg");
+  background-repeat: no-repeat;
+        background-attachment: fixed;
+}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -65,7 +84,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <img class="img-responsive" src="Imagenes/logoconnombre2.png" width="135" height="100">
+                    <img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100">
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 </div>
@@ -75,21 +94,24 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="well">
+                        <%--<br />
+                        <br />
+                        <br />--%>
                         <br />
                         <br />
-                        <br />
-                        <br />
-                        <h1>HAY EQUIPO !</h1>
-                        <p>Unidos por el deporte</p>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   
 
+              <%--          <h1>HAY EQUIPO !</h1>
+                
+                <p class="agrandarLetra">Unidos por el deporte</p>--%>
+                            
+                   <%--     <br />
+                        <br />
+                        <br />--%>
+                        <br />
+                        <br />
                     </div>
-
-                    <br />
-                </div>
+                    </div>                                 
                 <div class="col-sm-6">
                     <div class="well">
 
@@ -159,12 +181,13 @@
 
 
 
-            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; width: 40%; height: auto">
+            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-
-
+               <div class="ensanchar">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
                 <div class="modal-header">
                      <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
@@ -218,9 +241,9 @@
                    <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
-
-
-
+                 </div>
+                    </div>
+                   </div>
 
 
 

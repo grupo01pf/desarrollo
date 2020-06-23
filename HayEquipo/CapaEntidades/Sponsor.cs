@@ -24,15 +24,16 @@ namespace CapaEntidades
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> idRubro { get; set; }
-        public Nullable<int> idResponsable { get; set; }
         public Nullable<System.DateTime> fechaInicioContrato { get; set; }
         public Nullable<System.DateTime> fechaFinContrato { get; set; }
         public Nullable<int> idEstado { get; set; }
+        public string contacto { get; set; }
+        public Nullable<int> telContacto { get; set; }
+        public string mailContacto { get; set; }
     
         public virtual Estado Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicacion> Publicacion { get; set; }
-        public virtual Responsable Responsable { get; set; }
         public virtual Rubro Rubro { get; set; }
     }
 }

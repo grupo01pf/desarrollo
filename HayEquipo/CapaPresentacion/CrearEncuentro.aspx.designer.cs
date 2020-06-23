@@ -58,24 +58,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Calendar cld_Fecha;
         
         /// <summary>
-        /// Control lbl_Clave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Clave;
-        
-        /// <summary>
-        /// Control txt_Clave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Clave;
-        
-        /// <summary>
         /// Control rdb_Publico.
         /// </summary>
         /// <remarks>
@@ -175,6 +157,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_Direccion;
         
         /// <summary>
+        /// Control lbl_ConsejoMapa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ConsejoMapa;
+        
+        /// <summary>
         /// Control rdb_Privado.
         /// </summary>
         /// <remarks>
@@ -182,6 +173,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rdb_Privado;
+        
+        /// <summary>
+        /// Control link_ComplejosInfo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink link_ComplejosInfo;
         
         /// <summary>
         /// Control lbl_Complejo.
@@ -220,33 +220,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_agendaFecha;
         
         /// <summary>
-        /// Control ScriptManager1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// Control Timer1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
-        
-        /// <summary>
         /// Control gdv_Agenda.
         /// </summary>
         /// <remarks>
@@ -254,15 +227,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdv_Agenda;
-        
-        /// <summary>
-        /// Control sqlData.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sqlData;
         
         /// <summary>
         /// Control lbl_Reserva.
@@ -281,6 +245,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Capacidad;
+        
+        /// <summary>
+        /// Control chk_Accesibilidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_Accesibilidad;
+        
+        /// <summary>
+        /// Control txt_Clave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Clave;
         
         /// <summary>
         /// Control btn_Crear.
@@ -310,21 +292,21 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Error;
         
         /// <summary>
-        /// Control contenedorDelMapa.
+        /// Control txt_Latitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorDelMapa;
+        protected global::System.Web.UI.WebControls.TextBox txt_Latitud;
         
         /// <summary>
-        /// Control frm_map.
+        /// Control txt_Longitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe frm_map;
+        protected global::System.Web.UI.WebControls.TextBox txt_Longitud;
     }
 }

@@ -40,6 +40,8 @@ namespace CapaEntidades
         public string accesibilidad { get; set; }
         public string clave { get; set; }
         public Nullable<int> capacidad { get; set; }
+        public Nullable<int> idMapa { get; set; }
+        public Nullable<int> idClave { get; set; }
     
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
         public virtual Deporte Deporte { get; set; }

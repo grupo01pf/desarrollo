@@ -10,22 +10,30 @@
 namespace CapaEntidades
 {
     using System;
-    
+
     public partial class spObtenerComplejosJoin_Result
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Deportes { get; set; }
-        public string Direccion { get; set; }
+        public string Calle { get; set; }
+        public Nullable<int> NroCalle { get; set; }
+        public int IDBarrio { get; set; }
         public string Barrio { get; set; }
+        public int IDZona { get; set; }
         public string Zona { get; set; }
         public Nullable<int> Telefono { get; set; }
+        public Nullable<System.TimeSpan> Apertura { get; set; }
+        public Nullable<System.TimeSpan> Cierre { get; set; }
         public string Responsable { get; set; }
         public Nullable<double> Valoracion { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public int IDEstado { get; set; }
         public string Estado { get; set; }
-        public string Mapa { get; set; }
+        public Nullable<int> Mapa { get; set; }
         public byte[] Avatar { get; set; }
+        public int IDUsuario { get; set; }
+        public string Usuario { get; set; }
     }
 }

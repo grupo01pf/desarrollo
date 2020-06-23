@@ -55,6 +55,9 @@
     <Compile Include="AgendaDao.cs" />
     <Compile Include="CanchaDao.cs" />
     <Compile Include="EstadisticaDao.cs" />
+    <Compile Include="CriptografiaDao.cs" />
+    <Compile Include="Estadisticas.cs" />
+    <Compile Include="MapaDao.cs" />
     <Compile Include="MensajeDao.cs" />
     <Compile Include="MensajeQueryDao.cs" />
     <Compile Include="Model1.Context.cs">
@@ -67,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NotificacionDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BarrioDao.cs" />
     <Compile Include="ComplejoDeportivoDao.cs" />

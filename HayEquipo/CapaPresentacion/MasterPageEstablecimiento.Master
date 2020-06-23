@@ -6,23 +6,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-  <style>    
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--%>
+  <link rel="stylesheet" href="Content/bootstrap.min.css" />
+  <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--%>
+  <script src="scripts/jquery-1.9.1.min.js"></script>
+ <%-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>--%>
+  <script src="scripts/bootstrap.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+  <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
+  <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+    <link rel="stylesheet" href="w3/w3.css">
+  <style>
     /* Set black background color, white text and some padding */
     footer {
       background-color: #000000;
       color: white;
       padding: 15px;
     }
-    
+
     body {
-        background-color: #0b3107;
+        background-image: url("Imagenes/fondo2.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     .fondo {
   overflow: hidden;
@@ -45,14 +54,14 @@ $(window).load(function() {
     $(".loader").fadeOut(1000);
 });
 </script>
-    
+
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <div class="loader"></div>
-    
+
     <form id="form1" runat="server">
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -60,31 +69,35 @@ $(window).load(function() {
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
-       <img class="img-responsive" src="Imagenes/logoconnombre2.png"  width="135" height="100"/>
+       <img class="img-responsive" src="Imagenes/HEbarra.png"  width="135" height="100"/>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="HomeEstablecimiento.aspx">Principal</a></li>
+
         <li ><a href="EstadisticaComplejo.aspx">Estadísticas</a></li>
 
 
+
+        <li><a href="ABMComplejosEstablecimiento.aspx">Mi Complejo</a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="ABMComplejos.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
       </ul>
     </div>
   </div>
 </nav>
-  
+
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
+
         </asp:ContentPlaceHolder>
     </div>
-   
+
 </form>
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
@@ -133,7 +146,6 @@ $(window).load(function() {
 
 </footer>
 <!-- Footer -->
-        
+
 </body>
 </html>
-

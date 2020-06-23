@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="HomeAdministrador.aspx.cs" Inherits="CapaPresentacion.HomeAdministrador" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
+
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <div class="container text-center">
+
         <div class="well">
             <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar reporte" OnClick="btnMostrarEstadistica_Click" />
             <div id="elDivDelDashboard" visible="false" runat="server">
@@ -14,4 +15,36 @@
             </div>
         </div>
     </div>
+
+          <br />
+          <div class="w3-container">
+            <h1 style="color:white">Administrador</h1>
+          </div>
+          <br /><br /><br /><br /><br /><br />
+
+
+                  <a href="ABMComplejosAdministrador.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>Complejos deportivos</h1>
+                    </header>
+                  </div></a>
+              <br />
+
+                  <div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>Jugadores</h1>
+                    </header>
+                  </div>
+              <br />
+
+                  <a href="ReportesEstadisticasAdmin.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>Reportes y Estadísticas</h1>
+                    </header>
+                  </div></a>
+
+
+          <br /><br /><br /><br /><br /><br /><br />
+      </div>
+
     </asp:Content>

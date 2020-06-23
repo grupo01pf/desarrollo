@@ -37,10 +37,10 @@ namespace CapaDao
             }
         }
 
-        public static void actualizarEncuentroDeportivo(int idEncuntro, int estado) {
+        public static void actualizarEncuentroDeportivo(int idEncuentro, int estado) {
             using (HayEquipoEntities db = new HayEquipoEntities())
             {
-                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuntro);
+                EncuentroDeportivo ed = db.EncuentroDeportivo.First(e => e.id == idEncuentro);
                 ed.idEstado = estado;
                 db.Entry(ed).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -148,7 +148,19 @@ namespace CapaDao
         }
 
 
+        public static void ActualizarMapaEncuentro(EncuentroDeportivo ed)
+        {
 
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("sp_EncuentroDeportivoDao_ActualizarEDP", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idMapa", ed.idMapa);
+            cmd.Parameters.AddWithValue("@idEDP", ed.id);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
 
     }
 }

@@ -8,6 +8,8 @@ namespace CapaEntidades
 {
     public class EncuentroDeportivoQueryEntidad
     {
+        // cantidad de partidos para reporte
+        public int cantidadPartidosxDeporte { get; set; }
 
         // Encuentro Deportivo
 
@@ -26,12 +28,13 @@ namespace CapaEntidades
         public DateTime horaInicio { get; set; }
         public DateTime horaFin { get; set; }
         public string nombreLP { get; set; }
-
+        public int idMapa { get; set; }
         public string direccion { get; set; }
         // public int numeroCalle { get; set; }
         public string clave { get; set; }
         public int capacidad { get; set; }
 
+        public int idClave { get; set; }
 
         // Complejo Deportivo
         public int? idComplejoDeportivo { get; set; }

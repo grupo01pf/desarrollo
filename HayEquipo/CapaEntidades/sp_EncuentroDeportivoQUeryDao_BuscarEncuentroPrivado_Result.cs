@@ -10,7 +10,7 @@
 namespace CapaEntidades
 {
     using System;
-    
+
     public partial class sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result
     {
         public int id { get; set; }
@@ -30,5 +30,6 @@ namespace CapaEntidades
         public string clave { get; set; }
         public Nullable<int> capacidad { get; set; }
         public Nullable<int> idComplejo { get; set; }
+        public Nullable<int> idClave { get; set; }
     }
 }

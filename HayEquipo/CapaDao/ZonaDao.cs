@@ -10,6 +10,13 @@ namespace CapaDao
 {
     public class ZonaDao
     {
+        public static List<Zona> obtenerZonasEF()
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.Zona.ToList();
+            }
+        }
         public static List<ZonaEntidad> obtenerZonas() {
 
             ZonaEntidad zona = null;

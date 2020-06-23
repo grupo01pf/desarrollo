@@ -10,7 +10,7 @@
 namespace CapaEntidades
 {
     using System;
-    
+
     public partial class sp_NotificacionDao_mostrarNotificaciones_Result
     {
         public int id { get; set; }
@@ -18,5 +18,10 @@ namespace CapaEntidades
         public string texto { get; set; }
         public Nullable<int> idEncuentro { get; set; }
         public string estado { get; set; }
+    public partial class Mapa
+    {
+        public int id { get; set; }
+        public string latitud { get; set; }
+        public string longitud { get; set; }
     }
 }

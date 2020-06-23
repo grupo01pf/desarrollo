@@ -19,7 +19,6 @@ namespace CapaEntidades
         {
             this.Administrador = new HashSet<Administrador>();
             this.Deportista = new HashSet<Deportista>();
-            this.Responsable = new HashSet<Responsable>();
         }
     
         public int id { get; set; }
@@ -30,7 +29,5 @@ namespace CapaEntidades
         public virtual ICollection<Administrador> Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deportista> Deportista { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Responsable> Responsable { get; set; }
     }
 }

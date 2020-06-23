@@ -26,13 +26,38 @@ namespace CapaPresentacion
 
 
 
+
         protected void btn_Login_Click(object sender, EventArgs e)
         {
-            //if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+            if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
+            {
+                UsuarioDao.restaurarintentos(Session["ID"].ToString());
+                Session["Usuario"] = txt_NombreUsuario.Text;
+                if (Session["Rol"].ToString() == "Administrador")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("HomeAdministrador.aspx");
+                    //Response.Redirect("Home.aspx");
+                }
+                if (Session["Rol"].ToString() == "UsuarioDeportista")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("Home.aspx");
+                }
+                if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
+                {
+                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
+                    Response.Redirect("HomeEstablecimiento.aspx");
+                }
+            }
+
+
+            //bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
+
+
+            //if (UsuarioDao.Existe(txt_NombreUsuario.Text))
             //{
-            //    UsuarioDao.restaurarintentos(Session["ID"].ToString());
-            //    Session["Usuario"] = txt_NombreUsuario.Text;
-            //    if (Session["Rol"].ToString() == "Administrador")
+            //    if (txt_Password.Text != "")
             //    {
             //        if (bloqueado == false)
             //        {
@@ -61,7 +86,7 @@ namespace CapaPresentacion
             //                Session["ID"] = UsuarioDao.ID(txt_NombreUsuario.Text);
             //                UsuarioDao.intentos(Session["ID"].ToString());
             //                int intentos = UsuarioDao.obtenerintentos(txt_NombreUsuario.Text);
-            //                if (intentos == 3)
+            //                if (intentos == 0)
             //                {
             //                    UsuarioDao.bloqueado(Session["ID"].ToString());
 
@@ -82,110 +107,19 @@ namespace CapaPresentacion
             //            lblerror.Text = "Usuario bloqueado,por favor acceda a su mail para restaurar su contraseña";
             //        }
             //    }
-            //    if (Session["Rol"].ToString() == "UsuarioDeportista")
+            //    else
             //    {
-            //        FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-            //        Response.Redirect("Home.aspx");
-            //    }
-            //    if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-            //    {
-            //        FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-            //        Response.Redirect("HomeEstablecimiento.aspx");
+            //        lblerror.Text = "Coloca una contraseña, por favor";
             //    }
             //}
-            bool bloqueado = UsuarioDao.obtenerbloqueado(txt_NombreUsuario.Text);
+            //else
+            //{
+            //    lblerror.Text = "usuario no existente, por favor registrate";
+            //}
 
-
-            if (UsuarioDao.Existe(txt_NombreUsuario.Text))
-            {
-                if (txt_Password.Text != "")
-                {
-                    if (bloqueado == false)
-                    {
-                        if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
-                        {
-                            UsuarioDao.restaurarintentos(Session["ID"].ToString());
-                            Session["Usuario"] = txt_NombreUsuario.Text;
-                            if (Session["Rol"].ToString() == "Administrador")
-                            {
-                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                                Response.Redirect("HomeAdministrador.aspx");
-                            }
-                            if (Session["Rol"].ToString() == "UsuarioDeportista")
-                            {
-                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                                Response.Redirect("Home.aspx");
-                            }
-                            if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                            {
-                                FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                                Response.Redirect("HomeEstablecimiento.aspx");
-                            }
-                        }
-                        else
-                        {
-                            Session["ID"] = UsuarioDao.ID(txt_NombreUsuario.Text);
-                            UsuarioDao.intentos(Session["ID"].ToString());
-                            int intentos = UsuarioDao.obtenerintentos(txt_NombreUsuario.Text);
-                            if (intentos == 0)
-                            {
-                                UsuarioDao.bloqueado(Session["ID"].ToString());
-
-                                enviarcorreorestauracion();
-                                lblerror.Text = "Usuario bloqueado,se le enviara un email para restaurar su contraseña";
-
-
-
-                            }
-                            else
-                            {
-                                lblerror.Text = "Contraseña Erronea";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        lblerror.Text = "Usuario bloqueado,por favor acceda a su mail para restaurar su contraseña";
-                    }
-                }
-                else
-                {
-                    lblerror.Text = "Coloca una contraseña, por favor";
-                }
-            }
-            else
-            {
-                lblerror.Text = "usuario no existente, por favor registrate";
-            }
-
-
-
-
-
-
-
-            if (validarUsuario(txt_NombreUsuario.Text, txt_Password.Text))
-            {
-                UsuarioDao.restaurarintentos(Session["ID"].ToString());
-                Session["Usuario"] = txt_NombreUsuario.Text;
-                if (Session["Rol"].ToString() == "Administrador")
-                {
-                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    Response.Redirect("Home.aspx");
-                }
-                if (Session["Rol"].ToString() == "UsuarioDeportista")
-                {
-                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    Response.Redirect("Home.aspx");
-                }
-                if (Session["Rol"].ToString() == "UsuarioComplejoDeportivo")
-                {
-                    FormsAuthentication.RedirectFromLoginPage(txt_NombreUsuario.Text, false);
-                    Response.Redirect("Home.aspx");
-                }
-            }
 
         }
+
 
         public bool validarUsuario(string usuario, string clave)
         {
@@ -326,7 +260,7 @@ namespace CapaPresentacion
             string pass = "hayequipo123..";
             string to = UsuarioDao.obtenerEmail(txt_NombreUsuario.Text);
             string mensaje = "<p>Acceda a este link para restaurar su contraseña</p></n>"+
-                "<a href='http://localhost/CapaPresentacion/Restaurar.aspx'>Click Aqui</a>";
+                "<a href='http://localhost:40653/Restaurar.aspx'>Click Aqui</a>";
             new Email().enviarcorreo2(from, pass, to, mensaje);
         }
 
