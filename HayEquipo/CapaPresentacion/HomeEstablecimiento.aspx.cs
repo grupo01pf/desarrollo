@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDao;
 using CapaEntidades;
+using System.Drawing;
 
 namespace CapaPresentacion
 {
@@ -149,7 +150,6 @@ namespace CapaPresentacion
             List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
             foreach (AgendaEntidad a in listaDatosAgenda)
             {
-
                 for (int i = 0; i < horas; i++)
                 {
                     agenda = new AgendaEntidad();
@@ -205,22 +205,32 @@ namespace CapaPresentacion
 
             foreach (AgendaEntidad lg in listaAgendaGenerada)
             {
-                if (lg.idEstadoHorario == null)
-                {
+                //if (lg.idEstadoHorario == null)
+                //{
                     listaHorariosDisponibles.Add(lg);
-                }
+                //}
             }
-
+            
             if (listaHorariosDisponibles.Count > 0)
             {
                 gdv_Agenda.DataSource = listaHorariosDisponibles;
             }
             else { gdv_Agenda.DataSource = listaAgendaGenerada; }
-
+           
 
             //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
             gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
             gdv_Agenda.DataBind();
+
+            foreach (GridViewRow row in gdv_Agenda.Rows)
+            {
+                if (row.Cells[7].Text == "1")
+                {
+                    row.BackColor = Color.FromName("LightCoral");
+                    row.Enabled = false;
+                }
+            }
+            gdv_Agenda.Columns[7].Visible = false;
         }
 
         protected void ddlComp_SelectedIndexChanged(object sender, EventArgs e)

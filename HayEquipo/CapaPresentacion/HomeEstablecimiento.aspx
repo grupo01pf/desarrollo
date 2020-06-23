@@ -183,6 +183,7 @@
                                                         <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
+                                                        <asp:BoundField DataField="idEstadoHorario" HeaderText="Estado" Visible="true"/>
                                                     </Columns>
                                                 </asp:GridView>
                                            
