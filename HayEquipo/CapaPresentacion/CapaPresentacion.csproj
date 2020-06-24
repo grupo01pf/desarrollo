@@ -1904,6 +1904,7 @@
     </Compile>
     <Compile Include="EstadisticaComplejo.aspx.designer.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
+    </Compile>  
     <Compile Include="GMap.aspx.cs">
       <DependentUpon>GMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
