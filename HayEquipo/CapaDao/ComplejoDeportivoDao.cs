@@ -782,7 +782,7 @@ namespace CapaDao
                                             mapa as Mapa, cd.idBarrio, h.horaInicio, h.fecha, e.nombre
                             FROM ComplejoDeportivo cd, Deporte d, Cancha c, TipoCancha tc,
 	                             Horario h,CanchasPorHorarios cph , Estado e
-                            WHERE c.idComplejo = cd.id SND e.id = h.idEstado";
+                            WHERE c.idComplejo = cd.id AND e.id = h.idEstado";
 
 
             if (!string.IsNullOrEmpty(sport))

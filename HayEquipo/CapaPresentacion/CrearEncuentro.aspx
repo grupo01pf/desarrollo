@@ -265,17 +265,17 @@
                                                 <%--  Agenda de varios Complejos --%>
 
                                                  <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_AgendaComplejos_SelectedIndexChanged"
                                                     visible="false"  >
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
-                                                        <asp:BoundField DataField="idComplejo" HeaderText="idComplejo" Visible="false" />
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="false" />
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
-                                                        <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
-                                                        <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="false" />
+                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />
+                                                       
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
-                                                        <asp:BoundField DataField="horaInicioHorario" HeaderText="Horarios" Visible="true" />
+                                                       
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
 

@@ -187,7 +187,8 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Clave.Text))
             {
                 ed.accesibilidad = "Abierto";
-                ed.clave = string.Empty;
+                // ed.clave = string.Empty;
+                ed.clave = "";
             }
             else
             {
@@ -641,8 +642,15 @@ namespace CapaPresentacion
 
             string sport = cmb_Deporte.SelectedItem.Text;
 
-            TimeSpan? hi = TimeSpan.Parse("00:00");
-            hi = TimeSpan.Parse(txt_PorHora.Text);          
+            TimeSpan? hi = TimeSpan.Parse(txt_PorHora.Text);
+            //TimeSpan? hi = null; 
+            //if (string.IsNullOrEmpty(txt_PorHora.Text))
+            //{
+            //    hi = TimeSpan.Parse("00:00");
+            //}
+            //else {
+            //    hi = TimeSpan.Parse(txt_PorHora.Text);
+            //}
 
             int tipoCancha = 0;
             if (cmb_TipoCancha.SelectedIndex != 0) {               
@@ -658,15 +666,19 @@ namespace CapaPresentacion
             List<ComplejoDeportivo> listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha,sport,hi,cld_Fecha.SelectedDate);
             List<ComplejoDeportivo> listaComplejosDisponibles = null;
             List<ComplejoDeportivo> listaComplejosAgenda = null;
-           // ComplejoDeportivo cd = null;
+            // ComplejoDeportivo cd = null;
 
+            
+            listaComplejosDisponibles = listaComplejos;
             foreach(ComplejoDeportivo lc in listaComplejos)
             {
                 foreach (ComplejoDeportivo lcr in listaComplejosReservados) {
-                    if (lc.id != lcr.id) {
-                        listaComplejosDisponibles.Add(lc);
+                    if (lc.id == lcr.id) {
+                        listaComplejosDisponibles.Remove(lc);
+                        break;
                     }
                 }
+                
             }
             List<AgendaEntidad> listaDatosAgenda = new List<AgendaEntidad>();
 
@@ -677,78 +689,83 @@ namespace CapaPresentacion
 
             }
 
-
-            //*********************************************************
-            // Generar Horarios
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-                DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
-                DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
-                int ha = int.Parse(horaApertura.Hour.ToString());
+            gdv_AgendaComplejos.DataSource = listaDatosAgenda;
+            gdv_AgendaComplejos.DataKeyNames = new string[] { "idCancha" };
+            gdv_AgendaComplejos.DataBind();
 
 
-                int horas = int.Parse(horario.Hour.ToString());
+            // ELIMINAR
+            ////*********************************************************
+            //// Generar Horarios
+            //ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            //    DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
+            //    DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+            //    int ha = int.Parse(horaApertura.Hour.ToString());
 
-              //  List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
-                AgendaEntidad agenda = null;
-                List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
-                foreach (AgendaEntidad a in listaDatosAgenda)
-                {
+
+            //    int horas = int.Parse(horario.Hour.ToString());
+
+            //  //  List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
+            //    AgendaEntidad agenda = null;
+            //    List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
+            //    foreach (AgendaEntidad a in listaDatosAgenda)
+            //    {
                 
-                    for (int i = 0; i < horas; i++)
-                    {
-                        agenda = new AgendaEntidad();
-                        agenda.idCancha = a.idCancha;
-                        agenda.nombreCancha = a.nombreCancha;
-                        agenda.nombreTipoCancha = a.nombreTipoCancha;
-                        agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
-                        agenda.precioCancha = a.precioCancha;
-                        agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+            //        for (int i = 0; i < horas; i++)
+            //        {
+            //            agenda = new AgendaEntidad();
+            //            agenda.idCancha = a.idCancha;
+            //            agenda.nombreCancha = a.nombreCancha;
+            //            agenda.nombreTipoCancha = a.nombreTipoCancha;
+            //            agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
+            //            agenda.precioCancha = a.precioCancha;
+            //            agenda.capacidadTipoCancha = a.capacidadTipoCancha;
 
-                        listaAgendaGenerada.Add(agenda);
-                    }
-                }
+            //            listaAgendaGenerada.Add(agenda);
+            //        }
+            //    }
 
-                //**************************************************
-                // Quitar Horarios Reservados
+            //    //**************************************************
+            //    // Quitar Horarios Reservados
 
-                List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
-                List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
-                if (listaHorariosReservados.Count != 0)
-                {
-                    foreach (AgendaEntidad lg in listaAgendaGenerada)
-                    {
-                        foreach (AgendaEntidad lr in listaHorariosReservados)
-                        {
+            //    List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
+            //    List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
+            //    if (listaHorariosReservados.Count != 0)
+            //    {
+            //        foreach (AgendaEntidad lg in listaAgendaGenerada)
+            //        {
+            //            foreach (AgendaEntidad lr in listaHorariosReservados)
+            //            {
 
-                            // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
-                            if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
-                            {
+            //                // if (!(lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario))
+            //                if (lg.idCancha == lr.idCancha && lg.horaInicioHorario == lr.horaInicioHorario)
+            //                {
 
-                                lg.idEstadoHorario = lr.idEstadoHorario;
+            //                    lg.idEstadoHorario = lr.idEstadoHorario;
 
-                            }
-                        }
-                    }
-                }
+            //                }
+            //            }
+            //        }
+            //    }
 
-                foreach (AgendaEntidad lg in listaAgendaGenerada)
-                {
-                    if (lg.idEstadoHorario == null)
-                    {
-                        listaHorariosDisponibles.Add(lg);
-                    }
-                }
+            //    foreach (AgendaEntidad lg in listaAgendaGenerada)
+            //    {
+            //        if (lg.idEstadoHorario == null)
+            //        {
+            //            listaHorariosDisponibles.Add(lg);
+            //        }
+            //    }
 
-                if (listaHorariosDisponibles.Count > 0)
-                {
-                    gdv_Agenda.DataSource = listaHorariosDisponibles;
-                }
-                else { gdv_Agenda.DataSource = listaAgendaGenerada; }
+            //    if (listaHorariosDisponibles.Count > 0)
+            //    {
+            //        gdv_Agenda.DataSource = listaHorariosDisponibles;
+            //    }
+            //    else { gdv_Agenda.DataSource = listaAgendaGenerada; }
 
 
-                //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
-                gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
-                gdv_Agenda.DataBind();
+            //    //  gdv_Agenda.DataSource = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex);
+            //    gdv_Agenda.DataKeyNames = new string[] { "idCancha" };
+            //    gdv_Agenda.DataBind();
 
             
 
@@ -888,7 +905,33 @@ namespace CapaPresentacion
 
         protected void cmb_TipoCancha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btn_Agenda.Visible = true;
+            if (!string.IsNullOrEmpty(txt_PorHora.Text))
+            {
+                cargarAgendaPorHorario();
+
+                btn_Agenda.Visible = true;
+                lbl_Error.Visible = false;
+            }
+            else {
+                lbl_Error.Text = "Falta ingresar hora de inicio";
+                txt_PorHora.Text = string.Empty;
+                cmb_TipoCancha.SelectedIndex = 0;
+            }
+            
+        }
+
+        protected void gdv_AgendaComplejos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow fila = gdv_AgendaComplejos.SelectedRow;
+
+            string datos = string.Empty;
+            datos = fila.Cells[3].Text + " , " + fila.Cells[4].Text + " , " + txt_PorHora.Text + "hs. , $" + fila.Cells[5].Text;
+            lbl_Reserva.Text = "Reservar en: " + datos;
+            lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
+
+            lbl_Reserva.Visible = true;
+            lbl_Capacidad.Visible = true;
+            lbl_Error.Text = string.Empty;
         }
     }
 }

@@ -52,16 +52,36 @@ namespace CapaDao
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
-            SqlCommand cmd = new SqlCommand("sp_AgendaDao_ObtenerAgendaComplejo", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idComplejo", idComplejo);
-            cmd.Parameters.AddWithValue("@idDeporte", idDeporte);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"
+                            SELECT DISTINCT c.id as idCancha, c.nombre as nombreCancha, tc.nombre as tipoCancha, 
+                                            c.precio, tc.capacidad, cd.horaApertura, cd.horaCierre,
+                                            cd.nombre as nombreComplejo, cd.id as idComplejo
+                            FROM ComplejoDeportivo cd, Cancha c,TipoCancha tc, Deporte d
+                            WHERE  c.idComplejo = @idComplejo AND c.idTipoCancha = tc.id
+                                    AND tc.idDeporte = d.id";
+
+
+            if ( idComplejo > 0)
+            {
+                cmd.CommandText += @" AND cd.id = @idComplejo";
+                cmd.Parameters.AddWithValue("@idComplejo",idComplejo);
+            }
+            if (idDeporte > 0)
+            {
+                cmd.CommandText += @" AND d.id = @idDeporte";
+                cmd.Parameters.AddWithValue("@idDeporte", idDeporte);
+            }
+
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
-            {   
+            {
+                a.idComplejoDeportivo = int.Parse(dr["idComplejo"].ToString());
                 a.idCancha = int.Parse(dr["idCancha"].ToString());
                 a.nombreCancha = dr["nombreCancha"].ToString();
                 a.nombreTipoCancha = dr["tipoCancha"].ToString();
+                a.nombreComplejoDeportivo = dr["nombreComplejo"].ToString();
                 //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
                 a.precioCancha = float.Parse(dr["precio"].ToString());
