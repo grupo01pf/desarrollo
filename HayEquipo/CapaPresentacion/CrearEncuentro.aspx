@@ -270,12 +270,10 @@
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
-                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="false" />
-                                                        <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
-                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />
-                                                       
-                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
-                                                       
+                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="true" />
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />                                                       
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
 

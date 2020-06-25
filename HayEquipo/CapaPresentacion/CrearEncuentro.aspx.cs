@@ -19,6 +19,7 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 Session["IdEncuentro"] = null;
+                Session["idComplejo"] = null;
 
                 deshabilitarControles();
 
@@ -42,7 +43,7 @@ namespace CapaPresentacion
         {
             if (rdb_Publico.Checked)
             {
-               // lbl_ConsejoMapa.Visible = true;
+                // lbl_ConsejoMapa.Visible = true;
                 if (controlDatosObligatoriosEncuentroPublico())
                 {
                     lbl_ConsejoMapa.Visible = true;
@@ -54,19 +55,28 @@ namespace CapaPresentacion
             }
             else
             {
+                if (rdb_Complejo.Checked){
 
-                if (controlDatosObligatoriosEncuentroPublico() && controlDatosObligatoriosEncuentroPrivado() 
-                    && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
-                {
-                    lbl_Error.Visible = false;
-                    crearEventoPrivado();
-                    Response.Redirect("EncuentroPrivado.aspx");
+                    if (controlDatosObligatoriosEncuentroPublico() && controlDatosObligatoriosEncuentroPrivado()
+                        && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
+                    {                   
+                        lbl_Error.Visible = false;
+                        crearEventoPrivado();
+                        Response.Redirect("EncuentroPrivado.aspx");
+                    }
+                    else
+                    {
+                        lbl_Error.Visible = true;
+                        lbl_Error.Text = "Debe reservar una cahcha de la agenda";
+                    }
+
+                } else if (rdb_Horario.Checked) {
+                lbl_Error.Visible = false;
+                crearEventoPrivadoPorHorario();
+                Response.Redirect("EncuentroPrivado.aspx");
                 }
-                else
-                {
-                    lbl_Error.Visible = true;
-                    lbl_Error.Text = "Debe reservar una cahcha de la agenda";
-                }
+
+
             }
             //if (string.IsNullOrEmpty(lbl_Reserva.Text) || cmb_Complejo.SelectedIndex == 0)
             //{ lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
@@ -255,6 +265,99 @@ namespace CapaPresentacion
             msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             msg.fechaHora = DateTime.Now;
            
+            msg.texto = "Bienvenidos";
+            MensajeDao.InsertarMensaje(msg);
+
+        }
+
+        private void crearEventoPrivadoPorHorario() {
+
+            GridViewRow fila = gdv_AgendaComplejos.SelectedRow;
+
+            EncuentroDeportivo ed = new EncuentroDeportivo();
+
+            ed.idUsuario = int.Parse(Session["ID"].ToString()); //( USAR cuando este el Login )
+
+            int sport = 0;
+            if (int.TryParse(cmb_Deporte.SelectedItem.Value, out sport))
+                ed.idDeporte = sport;
+
+            ed.idComplejo = int.Parse(Session["idComplejo"].ToString());
+
+            ed.fechaInicioEncuentro = cld_Fecha.SelectedDate;
+            ed.idEstado = 7; // (habilitado)
+
+            if (string.IsNullOrEmpty(txt_PorHora.Text))
+            { ed.horaInicio = TimeSpan.Parse("00:00"); }
+            else
+            {
+                TimeSpan? hi = TimeSpan.Parse(txt_PorHora.Text);
+                ed.horaInicio = hi;
+            }            
+
+            ed.tipoEncuentro = "Privado";
+
+            if (string.IsNullOrEmpty(txt_Clave.Text))
+            {
+                ed.accesibilidad = "Abierto";
+                // ed.clave = string.Empty;
+                ed.clave = "";
+            }
+            else
+            {
+                ed.accesibilidad = "Cerrado";
+                ed.clave = txt_Clave.Text; // NO USAR
+                ed.idClave = CriptografiaDao.encriptar(txt_Clave.Text);
+            }
+
+
+            if (string.IsNullOrEmpty(txt_NombreLugar.Text))
+                ed.nombreLP = string.Empty;
+
+            if (string.IsNullOrEmpty(txt_Direccion.Text))
+                ed.direccion = string.Empty;
+
+
+            if (string.IsNullOrEmpty(fila.Cells[6].Text))
+                ed.capacidad = 4; // (POR DEFECTO 4 USUARIOS)
+            else { ed.capacidad = int.Parse(fila.Cells[6].Text); }
+
+            Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPrivado(ed);
+            EncuentroDeportivoDao.insertarUsuarioPorEncuentro(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
+
+            Horario horario = new Horario();
+
+            if (string.IsNullOrEmpty(txt_PorHora.Text))
+            { horario.horaInicio = TimeSpan.Parse("00:00"); }
+            else
+            {
+                TimeSpan? hr = TimeSpan.Parse(txt_PorHora.Text);
+                horario.horaInicio = hr;
+
+            }
+
+            horario.fecha = cld_Fecha.SelectedDate;
+            horario.idEstado = 1; // (REESERVADO)
+
+
+            CanchasPorHorarios cph = new CanchasPorHorarios();
+            cph.idHorario = AgendaDao.InsertarHorario(horario);
+            cph.idCancha = int.Parse(gdv_AgendaComplejos.SelectedDataKey.Value.ToString());
+         
+            AgendaDao.InsertarCanchasPorHorarios(cph);
+
+            Reserva reserva = new Reserva();
+            reserva.fechaReserva = DateTime.Now;
+            reserva.idEncuentroDeportivo = int.Parse(Session["idEncuentro"].ToString());
+
+            reserva.idEstado = 1; //(reservado)
+            ReservaDao.InsertarReserva(reserva);
+
+            Mensaje msg = new Mensaje();
+            msg.idUsuario = int.Parse(Session["ID"].ToString());
+            msg.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            msg.fechaHora = DateTime.Now;
+
             msg.texto = "Bienvenidos";
             MensajeDao.InsertarMensaje(msg);
 
@@ -902,6 +1005,8 @@ namespace CapaPresentacion
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
             lbl_Error.Text = string.Empty;
+
+            Session["idComplejo"] = fila.Cells[2].Text;
         }
     }
 }
