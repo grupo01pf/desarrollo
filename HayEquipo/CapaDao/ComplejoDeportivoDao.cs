@@ -764,7 +764,7 @@ namespace CapaDao
             return listaComplejo;
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteReservados(int tipoCancha, string sport, TimeSpan? hi, DateTime fecha )
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteReservados(int tipoCancha, string sport, TimeSpan? hi, DateTime fecha)
         {
 
 
@@ -828,7 +828,7 @@ namespace CapaDao
             return listaComplejo;
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(TimeSpan hi, int tipoCancha, string sport, int barrio)
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(string sport, int tipoCancha,  int barrio)
         {
 
 
@@ -842,9 +842,11 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
-                                            cd.deportes as Deportes, b.nombre as Barrio, mapa as Mapa
-                            FROM ComplejoDeportivo cd, Barrio b, Deporte d
-                            WHERE 1 = 1";
+                                            cd.deportes as Deportes,c.nombre, c.precio, tc.nombre, tc.capacidad,
+                                            mapa as Mapa, cd.idBarrio 
+                            FROM ComplejoDeportivo cd, Deporte d, Cancha c, 
+                                 TipoCancha tc, Barrio b
+                            WHERE c.idComplejo = cd.id ";
 
 
             if (!string.IsNullOrEmpty(sport))
@@ -852,11 +854,17 @@ namespace CapaDao
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
             }
+            if (tipoCancha != 0)
+            {
+                cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
+                cmd.Parameters.AddWithValue("@tc", tipoCancha);
+            }
             if (barrio != 0)
             {
                 cmd.CommandText += @" AND cd.idBarrio = b.id AND cd.idBarrio = @b";
                 cmd.Parameters.AddWithValue("@b", barrio);
             }
+
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -877,6 +885,10 @@ namespace CapaDao
 
             return listaComplejo;
         }
+
+
+
+
 
         public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteZona(TimeSpan hi, int tipoCancha, string sport, int zona)
         {
