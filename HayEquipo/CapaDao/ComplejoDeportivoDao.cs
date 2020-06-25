@@ -781,8 +781,9 @@ namespace CapaDao
                                             cd.deportes as Deportes,c.nombre, c.precio, tc.nombre, tc.capacidad,
                                             mapa as Mapa, cd.idBarrio, h.horaInicio, h.fecha, e.nombre
                             FROM ComplejoDeportivo cd, Deporte d, Cancha c, TipoCancha tc,
-	                             Horario h,CanchasPorHorarios cph , Estado e
-                            WHERE c.idComplejo = cd.id AND e.id = h.idEstado";
+	                             Horario h,CanchasPorHorarios cph , Estado e, EncuentroDeportivo ed
+                            WHERE c.idComplejo = cd.id AND e.id = h.idEstado
+                                   and ed.idComplejo = cd.id and ed.fechaInicioEncuentro = h.fecha";
 
 
             if (!string.IsNullOrEmpty(sport))
@@ -828,7 +829,7 @@ namespace CapaDao
             return listaComplejo;
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(string sport, int tipoCancha,  int barrio)
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(string sport, int tipoCancha, int barrio)
         {
 
 
@@ -885,12 +886,9 @@ namespace CapaDao
 
             return listaComplejo;
         }
+              
 
-
-
-
-
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteZona(TimeSpan hi, int tipoCancha, string sport, int zona)
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteZona(string sport, int zona,int tipoCancha)
         {
 
 
@@ -904,9 +902,11 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"
                             SELECT distinct cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, 
-                                            cd.deportes as Deportes, b.nombre as Barrio, mapa as Mapa
-                            FROM ComplejoDeportivo cd, Deporte d, Barrio b, Zona z
-                            WHERE 1 = 1";
+                                            cd.deportes as Deportes,c.nombre, c.precio, tc.nombre, tc.capacidad,
+                                            mapa as Mapa, cd.idBarrio 
+                            FROM ComplejoDeportivo cd, Deporte d, Cancha c, 
+                                 TipoCancha tc, Barrio b, Zona z
+                            WHERE c.idComplejo = cd.id ";
 
 
             if (!string.IsNullOrEmpty(sport))
@@ -914,11 +914,17 @@ namespace CapaDao
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
                 cmd.Parameters.AddWithValue("@d1", "%" + sport + "%");
             }
+            if (tipoCancha != 0)
+            {
+                cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
+                cmd.Parameters.AddWithValue("@tc", tipoCancha);
+            }
             if (zona != 0)
             {
                 cmd.CommandText += @" AND z.id = b.idZona AND b.id = cd.idBarrio AND z.id = @z";
                 cmd.Parameters.AddWithValue("@z", zona);
             }
+
 
 
             SqlDataReader dr = cmd.ExecuteReader();

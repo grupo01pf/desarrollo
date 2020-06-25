@@ -474,18 +474,19 @@ namespace CapaPresentacion
 
                 lbl_ConsejoMapa.Visible = false;
 
-                if (cmb_Barrio.SelectedIndex != 0)
-                {
+                //if (cmb_Barrio.SelectedIndex != 0)
+                //{
 
-                }
-                else if (cmb_Zona.SelectedIndex != 0)
-                {
+                //}
+                //else if (cmb_Zona.SelectedIndex != 0)
+                //{
 
-                }
-                else {
-                    cargarComplejos();
-                }
-                
+                //}
+                //else
+                //{
+                //    cargarComplejos();
+                //}
+
             }
         }
 
@@ -667,15 +668,18 @@ namespace CapaPresentacion
 
             int b = 0;
             int.TryParse(cmb_Barrio.SelectedItem.Value, out b);
-
-            if (cmb_Zona.SelectedIndex != 0) {
+            int z = 0;
+            int.TryParse(cmb_Zona.SelectedItem.Value, out z);
+            if (z != 0)
+            {
+                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteZona(sport, z, tipoCancha);
+                listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha, sport, hi, cld_Fecha.SelectedDate);
 
             }
             
             else if (b != 0) {
                 listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteBarrio(sport, tipoCancha, b);
                 listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha, sport, hi, cld_Fecha.SelectedDate);
-
             }
             else
             {
@@ -687,15 +691,30 @@ namespace CapaPresentacion
             // List<ComplejoDeportivo> listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha,sport,hi,cld_Fecha.SelectedDate);
             
             listaComplejosDisponibles = listaComplejos;
-            foreach(ComplejoDeportivo lc in listaComplejos)
-            {
-                foreach (ComplejoDeportivo lcr in listaComplejosReservados) {
-                    if (lc.id == lcr.id) {
+            //foreach(ComplejoDeportivo lc in listaComplejos)
+            //{
+            //    foreach (ComplejoDeportivo lcr in listaComplejosReservados) {
+            //        if (lc.id == lcr.id) {
+            //            listaComplejosDisponibles.Remove(lc);
+            //            break;
+            //        }
+            //    }
+
+            //}
+            ComplejoDeportivo lc = null;
+            ComplejoDeportivo lcr = null;
+            for (int i = 0; i < listaComplejos.Count; i++) {
+                lc = listaComplejos.ElementAt(i);
+                for (int j = 0; j < listaComplejosReservados.Count; j++)
+                {
+                    lcr = listaComplejosReservados.ElementAt(j);
+
+                    if (lc.id == lcr.id)
+                    {
                         listaComplejosDisponibles.Remove(lc);
-                        break;
+                      
                     }
                 }
-                
             }
             List<AgendaEntidad> listaDatosAgenda = new List<AgendaEntidad>();
 
