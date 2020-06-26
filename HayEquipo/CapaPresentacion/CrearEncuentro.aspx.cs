@@ -71,9 +71,9 @@ namespace CapaPresentacion
                     }
 
                 } else if (rdb_Horario.Checked) {
-                lbl_Error.Visible = false;
-                crearEventoPrivadoPorHorario();
-                Response.Redirect("EncuentroPrivado.aspx");
+                        lbl_Error.Visible = false;
+                        crearEventoPrivadoPorHorario();
+                        Response.Redirect("EncuentroPrivado.aspx");
                 }
 
 
@@ -770,18 +770,18 @@ namespace CapaPresentacion
             int.TryParse(cmb_Zona.SelectedItem.Value, out z);
             if (z != 0)
             {
-                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteZona(sport, z, tipoCancha);
+                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteZona(sport, z, tipoCancha, hi);
                 listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha, sport, hi, cld_Fecha.SelectedDate);
 
             }
             
             else if (b != 0) {
-                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteBarrio(sport, tipoCancha, b);
+                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporteBarrio(sport, tipoCancha, b, hi);
                 listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha, sport, hi, cld_Fecha.SelectedDate);
             }
             else
             {
-                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporte(tipoCancha, sport);
+                listaComplejos = ComplejoDeportivoDao.getComplejoPorHorarioDeporte(tipoCancha, sport, hi);
                 listaComplejosReservados = ComplejoDeportivoDao.getComplejoPorHorarioDeporteReservados(tipoCancha, sport, hi, cld_Fecha.SelectedDate);
             }
 
@@ -918,7 +918,8 @@ namespace CapaPresentacion
             lbl_TipoCancha.Enabled = true;
             cmb_TipoCancha.Enabled = true;
 
-           // link_ComplejosInfo.Enabled = false;
+            // link_ComplejosInfo.Enabled = false;
+            btn_VerComplejo.Visible = false;
             lbl_Complejo.Enabled = false;
             cmb_Complejo.Enabled = false;
 
@@ -971,7 +972,7 @@ namespace CapaPresentacion
                 cargarAgendaPorHorario();
 
                 btn_Agenda.Visible = true;
-                btn_VerComplejo.Visible = true;
+                btn_VerComplejo.Visible = false;
 
                 lbl_Error.Visible = false;
                 cmb_TipoCancha.SelectedIndex = 0;
@@ -998,6 +999,11 @@ namespace CapaPresentacion
             lbl_Error.Text = string.Empty;
 
             Session["idComplejo"] = fila.Cells[2].Text;
+
+            mostrarUbicacion(int.Parse(Session["idComplejo"].ToString()));
+
+            btn_VerComplejo.Visible = true;
+            cargarModalComplejo(int.Parse(Session["idComplejo"].ToString()));
         }
 
         private void cargarModalComplejo(int idComplejo)

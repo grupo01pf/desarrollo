@@ -154,7 +154,7 @@
                                 <div class="form-group">
                                     <asp:RadioButton ID="rdb_Horario" runat="server" Text=" Por Horario " GroupName="tipoBusqueda" value="0" OnCheckedChanged="rdb_Horario_CheckedChanged" AutoPostBack="true" />
                                     <br />
-                                    <asp:Label ID="lbl_PorHora" runat="server" Text="Hora Inicio"></asp:Label>
+                                    <asp:Label ID="lbl_PorHora" runat="server" Text="Hora Inicio" ></asp:Label>
                                     <asp:TextBox ID="txt_PorHora" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                                     <br />
                                     <asp:Label ID="lbl_TipoCancha" runat="server" Text="Tipo Cancha"></asp:Label>
@@ -185,117 +185,6 @@
                                     <br />
 
 
-                                      <%--MODAL COMPLEJO--%>
-
-                            <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
-                                data-toggle="modal" data-target="#exampleModalScrollable2"
-                                visible="false">
-                                Ver Complejo
-                            </button>
-
-
-                            <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
-                                aria-hidden="false">
-                                <%--data-backdrop="static" data-keyboard="false">--%>
-                                <div class="modal-dialog modal-dialog-scrollable" role="document">
-
-
-
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h5 class="modal-title" id="exampleModalScrollableTitle2">
-                                                <strong>
-                                                    <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
-                                                  </center>
-                                                </strong>
-                                                <h5></h5>
-                                                <h5></h5>
-                                                <h5></h5>
-                                            </h5>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <%-- BODY --%>
-
-                                            <div class="form-group">
-                                                <asp:Label ID="lblValoracion" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDeportes" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDireccion" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblBarrio" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblZona" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblTelefono" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                                    <!-- Indicators -->
-                                                    <ol class="carousel-indicators">
-                                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                    </ol>
-
-                                                    <!-- Wrapper for slides -->
-                                                    <div class="carousel-inner">
-                                                        <div class="item active">
-                                                            <img id="img1" width="1000" height="1500" runat="server">
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <img id="img2" width="1000" height="1500" runat="server">
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <img id="img3" width="1000" height="1500" runat="server">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Left and right controls -->
-                                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <%-- FIN BODY --%>
-
-
-                                    <div class="modal-footer">
-                                        <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        </center>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-                            <%--FIN MODAL COMPLEJO  --%>
 
 
 
@@ -423,6 +312,134 @@
 
 
                                 <%--FIN MODAL--%>
+
+
+
+
+                                <%-- ***************************************************** --%>
+
+
+                                <br />
+
+                                
+                                      <%--MODAL COMPLEJO--%>
+
+                            <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
+                                data-toggle="modal" data-target="#exampleModalScrollable2"
+                                visible="false">
+                                Ver Complejo
+                            </button>
+
+
+                            <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
+                                aria-hidden="false">
+                                <%--data-backdrop="static" data-keyboard="false">--%>
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h5 class="modal-title" id="exampleModalScrollableTitle2">
+                                                <strong>
+                                                    <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                  </center>
+                                                </strong>
+                                                <h5></h5>
+                                                <h5></h5>
+                                                <h5></h5>
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <%-- BODY --%>
+
+                                            <div class="form-group">
+                                                <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label ID="lblDeportes" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label ID="lblZona" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                                    <!-- Indicators -->
+                                                    <ol class="carousel-indicators">
+                                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                    </ol>
+
+                                                    <!-- Wrapper for slides -->
+                                                    <div class="carousel-inner">
+                                                        <div class="item active">
+                                                            <img id="img1" width="1000" height="1500" runat="server">
+                                                        </div>
+
+                                                        <div class="item">
+                                                            <img id="img2" width="1000" height="1500" runat="server">
+                                                        </div>
+
+                                                        <div class="item">
+                                                            <img id="img3" width="1000" height="1500" runat="server">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Left and right controls -->
+                                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <%-- FIN BODY --%>
+
+
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <%--FIN MODAL COMPLEJO  --%>
+
+
+
+
+
+
+
                                 <br />
                                 <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
@@ -585,7 +602,19 @@
                 myMap.setView([latitude, longitude], 15)
             }
 
+        } else {
+            // MOSTRAR UN COMPLEJO
+            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+            if (latitude != "" && longitude != "") {
+                myMap.setView([latitude, longitude], 15)
+            }
+
         }
+
+
 
     </script>
 

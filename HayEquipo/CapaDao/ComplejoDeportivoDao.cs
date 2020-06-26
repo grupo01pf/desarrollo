@@ -712,7 +712,7 @@ namespace CapaDao
 
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporte(int tipoCancha, string sport) {
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporte(int tipoCancha, string sport, TimeSpan? hi) {
 
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
@@ -740,6 +740,10 @@ namespace CapaDao
             {
                 cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
                 cmd.Parameters.AddWithValue("@tc",tipoCancha);
+            }
+            if (hi != null) {
+                cmd.CommandText += @" AND @hi between cd.horaApertura AND cd.horaCierre";
+                cmd.Parameters.AddWithValue("@hi", hi);
             }
 
 
@@ -829,7 +833,7 @@ namespace CapaDao
             return listaComplejo;
         }
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(string sport, int tipoCancha, int barrio)
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteBarrio(string sport, int tipoCancha, int barrio, TimeSpan? hi)
         {
 
 
@@ -865,6 +869,11 @@ namespace CapaDao
                 cmd.CommandText += @" AND cd.idBarrio = b.id AND cd.idBarrio = @b";
                 cmd.Parameters.AddWithValue("@b", barrio);
             }
+            if (hi != null)
+            {
+                cmd.CommandText += @" AND @hi between cd.horaApertura AND cd.horaCierre";
+                cmd.Parameters.AddWithValue("@hi", hi);
+            }
 
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -888,7 +897,7 @@ namespace CapaDao
         }
               
 
-        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteZona(string sport, int zona,int tipoCancha)
+        public static List<ComplejoDeportivo> getComplejoPorHorarioDeporteZona(string sport, int zona,int tipoCancha, TimeSpan? hi)
         {
 
 
@@ -923,6 +932,11 @@ namespace CapaDao
             {
                 cmd.CommandText += @" AND z.id = b.idZona AND b.id = cd.idBarrio AND z.id = @z";
                 cmd.Parameters.AddWithValue("@z", zona);
+            }
+            if (hi != null)
+            {
+                cmd.CommandText += @" AND @hi between cd.horaApertura AND cd.horaCierre";
+                cmd.Parameters.AddWithValue("@hi", hi);
             }
 
 
