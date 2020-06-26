@@ -155,12 +155,17 @@ namespace CapaPresentacion
         private void insertarMapaEncuentroPublico(int id) {
             Mapa m = new Mapa();
             EncuentroDeportivo ed = new EncuentroDeportivo();
-
-            m.latitud = txt_Latitud.Text;
-            m.longitud = txt_Longitud.Text;
-            //m.latitud = txt_Latitud.Value;
-            //m.longitud = txt_Longitud.Value;
-
+            if (string.IsNullOrEmpty(txt_Latitud.Text) || string.IsNullOrEmpty(txt_Longitud.Text)) {
+                m.latitud = "-31.416563";
+                m.longitud = "-64.183533";
+            }
+            else
+            {            
+                m.latitud = txt_Latitud.Text;
+                m.longitud = txt_Longitud.Text;
+                //m.latitud = txt_Latitud.Value;
+                //m.longitud = txt_Longitud.Value;
+            }
             int idMapa = MapaDao.insertarMapa(m);
 
             ed.id = id;
@@ -435,11 +440,15 @@ namespace CapaPresentacion
 
             if (cmb_Complejo.SelectedIndex != 0)
             {
-                //contenedorDelMapa.Visible = true;
-               // frm_map.Visible = true;
-                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+                int idComplejo = 0;
+                int.TryParse(cmb_Complejo.SelectedItem.Value, out idComplejo);
+                    //contenedorDelMapa.Visible = true;
+                    // frm_map.Visible = true;
+                    ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
                // frm_map.Src = cd.mapa;
                 btn_Agenda.Visible = true;
+                btn_VerComplejo.Visible = true;
+                cargarModalComplejo(idComplejo);
             }
             if (cmb_Complejo.SelectedIndex == 0)
             {
@@ -461,7 +470,7 @@ namespace CapaPresentacion
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
 
-            link_ComplejosInfo.Enabled = false;
+           // link_ComplejosInfo.Enabled = false;
             lbl_Complejo.Enabled = false;
             cmb_Complejo.Enabled = false;            
 
@@ -470,6 +479,7 @@ namespace CapaPresentacion
             txt_Cantidad.Enabled = false;
 
             btn_Agenda.Visible = false;
+            btn_VerComplejo.Visible = false;
 
             rdb_Horario.Enabled = false;
             rdb_Complejo.Enabled = false;
@@ -512,7 +522,7 @@ namespace CapaPresentacion
                 rdb_Horario.Enabled = false;
                 rdb_Complejo.Enabled = false;
 
-                link_ComplejosInfo.Enabled = false;
+                // link_ComplejosInfo.Enabled = false;
                 lbl_Complejo.Enabled = false;
                 cmb_Complejo.Enabled = false;
 
@@ -530,6 +540,7 @@ namespace CapaPresentacion
                 gdv_AgendaComplejos.Visible = false;
 
                 btn_Agenda.Visible = false;
+                btn_VerComplejo.Visible = false;
 
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
@@ -576,19 +587,7 @@ namespace CapaPresentacion
                 cmb_TipoCancha.SelectedIndex = 0;
 
                 lbl_ConsejoMapa.Visible = false;
-
-                //if (cmb_Barrio.SelectedIndex != 0)
-                //{
-
-                //}
-                //else if (cmb_Zona.SelectedIndex != 0)
-                //{
-
-                //}
-                //else
-                //{
-                //    cargarComplejos();
-                //}
+              
 
             }
         }
@@ -642,11 +641,15 @@ namespace CapaPresentacion
 
         private void cargarAgenda()
         {
-
-            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString(); 
+            int idComplejo = 0;
+            int.TryParse(cmb_Complejo.SelectedItem.Value, out idComplejo);
+            int sport = 0;
+            int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString();
             //******************************************
             // Generar Horarios
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            // ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
             DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
             DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
             int ha = int.Parse(horaApertura.Hour.ToString());
@@ -654,7 +657,8 @@ namespace CapaPresentacion
 
             int horas = int.Parse(horario.Hour.ToString());
 
-            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
+            // List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(cmb_Complejo.SelectedIndex, cmb_Deporte.SelectedIndex);
+            List<AgendaEntidad> listaDatosAgenda = AgendaDao.ObtenerAgendaComplejo(idComplejo, sport);
             AgendaEntidad agenda = null;
             List<AgendaEntidad> listaAgendaGenerada = new List<AgendaEntidad>();
             foreach (AgendaEntidad a in listaDatosAgenda)
@@ -677,7 +681,8 @@ namespace CapaPresentacion
             //**************************************************
             // Quitar Horarios Reservados
 
-            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
+            //  List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cmb_Complejo.SelectedIndex, cld_Fecha.SelectedDate);
+            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(idComplejo, cld_Fecha.SelectedDate);
             List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
             if (listaHorariosReservados.Count != 0)
             {
@@ -741,29 +746,19 @@ namespace CapaPresentacion
 
         private void cargarAgendaPorHorario() {
 
-            // EncuentroDeportivo ed = new EncuentroDeportivo();
-            // ed.idUsuario = int.Parse(Session["ID"].ToString());
+           
 
             string sport = cmb_Deporte.SelectedItem.Text;
 
             TimeSpan? hi = TimeSpan.Parse(txt_PorHora.Text);
-            //TimeSpan? hi = null; 
-            //if (string.IsNullOrEmpty(txt_PorHora.Text))
-            //{
-            //    hi = TimeSpan.Parse("00:00");
-            //}
-            //else {
-            //    hi = TimeSpan.Parse(txt_PorHora.Text);
-            //}
+
 
             int tipoCancha = 0;
             if (cmb_TipoCancha.SelectedIndex != 0) {               
                 int.TryParse(cmb_TipoCancha.SelectedItem.Value, out tipoCancha);                                   
             }
-            
-            // TODO 
 
-                lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString();
+            lbl_agendaFecha.Text = "Agenda día: " + cld_Fecha.SelectedDate.ToShortDateString() + " Horario: " + hi;
             //******************************************
             List<ComplejoDeportivo> listaComplejos = null;
             List<ComplejoDeportivo> listaComplejosReservados = null;
@@ -915,6 +910,7 @@ namespace CapaPresentacion
         protected void rdb_Horario_CheckedChanged(object sender, EventArgs e)
         {
             btn_Agenda.Visible = false;
+            btn_VerComplejo.Visible = false;
 
             lbl_PorHora.Enabled = true;
             txt_PorHora.Enabled = true;
@@ -922,7 +918,7 @@ namespace CapaPresentacion
             lbl_TipoCancha.Enabled = true;
             cmb_TipoCancha.Enabled = true;
 
-            link_ComplejosInfo.Enabled = false;
+           // link_ComplejosInfo.Enabled = false;
             lbl_Complejo.Enabled = false;
             cmb_Complejo.Enabled = false;
 
@@ -936,8 +932,9 @@ namespace CapaPresentacion
         protected void rdb_Complejo_CheckedChanged(object sender, EventArgs e)
         {
             btn_Agenda.Visible = false;
+            btn_VerComplejo.Visible = false;
 
-            link_ComplejosInfo.Enabled = true;
+           // link_ComplejosInfo.Enabled = true;
             lbl_Complejo.Enabled = true;
             cmb_Complejo.Enabled = true;
             cargarComplejos();
@@ -968,22 +965,16 @@ namespace CapaPresentacion
 
         protected void cmb_TipoCancha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (cmb_Zona.SelectedIndex != 0)
-            //{
-
-            //}
-            //else if (cmb_Barrio.SelectedIndex != 0) {
-
-
-            //}
-            //else
-
+            
             if (!string.IsNullOrEmpty(txt_PorHora.Text))
             {
                 cargarAgendaPorHorario();
 
                 btn_Agenda.Visible = true;
+                btn_VerComplejo.Visible = true;
+
                 lbl_Error.Visible = false;
+                cmb_TipoCancha.SelectedIndex = 0;
             }
             else {
                 lbl_Error.Text = "Falta ingresar hora de inicio";
@@ -1007,6 +998,48 @@ namespace CapaPresentacion
             lbl_Error.Text = string.Empty;
 
             Session["idComplejo"] = fila.Cells[2].Text;
+        }
+
+        private void cargarModalComplejo(int idComplejo)
+        {
+
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+
+            // myModalLabel2.InnerText = compSelec.nombre;
+            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
+
+            lblDeportes.Text = compSelec.deportes;
+            lblDescripcion.Text = compSelec.descripcion;
+            //CargarListServicios(compSelec.id);
+            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblBarrio.Text = "Barrio: " + bar.nombre;
+            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
+
+
+            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
+            if (compSelec.avatar != null)
+            {
+                // imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            }
+
+
+            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+
+            // btnPopUp_ModalPopupExtender2.Show();
+        }
+
+        protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
