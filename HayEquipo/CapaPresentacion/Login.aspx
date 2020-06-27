@@ -60,7 +60,16 @@
   background-image: url("Imagenes/fondo2.jpg");
   background-repeat: no-repeat;
         background-attachment: fixed;
-}
+        }
+
+            .login-well{
+                height: 360px;
+            }
+        
+            .divisor {
+                border-left: 1px solid rgba(0, 0, 0, 0.15);
+            }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -92,14 +101,14 @@
   <%--<div class="jumbotron text-center" style="background-color:black">--%>
         <div class="container text-center">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="well">
+<%--                    <div class="col-sm-6">
+                        <div class="well">--%>
                         <%--<br />
                         <br />
                         <br />--%>
+<%--                        <br />
                         <br />
-                        <br />
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   --%>
 
               <%--          <h1>HAY EQUIPO !</h1>
                 
@@ -108,14 +117,17 @@
                    <%--     <br />
                         <br />
                         <br />--%>
-                        <br />
+                <%--        <br />
                         <br />
                     </div>
-                    </div>                                 
-                <div class="col-sm-6">
-                    <div class="well">
+                    </div>  --%>                               
+               <%-- <div class="col-sm-6">--%>
+                    <div class="well login-well">
+                        <div class="col-sm-6">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />  
+                        </div>
 
-
+                        <div class="col-sm-6 divisor"> 
                         <h2>Iniciar Sesión</h2>
 
 
@@ -138,7 +150,7 @@
                             <br />
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <asp:LinkButton ID="btnUsuarioo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary btn-edit">
+                                    <asp:LinkButton ID="btnUsuarioo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary btn-edit" BackColor="Black" BorderColor="Black">
                <i class='fa fa-check-square-o' aria-hidden='true'></i> Registrarme
                                     </asp:LinkButton>
 
@@ -146,8 +158,9 @@
                             </asp:UpdatePanel>
 
                         </div>
+                      </div>
                     </div>
-                </div>
+               <%-- </div>--%>
 
             </div>
 
@@ -235,10 +248,10 @@
 
                   <div class="modal-footer">
                       <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
-                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
+                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-default"
                        onclick="btnClose_Click"/>
 
-                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
+                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" BackColor="Black" />
 
                   </div>
                  </div>
@@ -335,7 +348,7 @@ se hacer responsable por posibles daños ni traumas psicologicos.
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Cerrar</button>
 
                                     </div>
                                 </div>

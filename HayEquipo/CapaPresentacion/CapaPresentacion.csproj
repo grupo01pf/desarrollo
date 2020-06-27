@@ -1709,6 +1709,8 @@
     <Content Include="Imagenes\basket.jpg" />
     <Content Include="Imagenes\boton-ir.png" />
     <Content Include="Imagenes\cerveza.jpg" />
+    <Content Include="Imagenes\complejo_imagen clara.jpg" />
+    <Content Include="Imagenes\complejo_imagen_transp.jpg" />
     <Content Include="Imagenes\complejo_logo_default.png" />
     <Content Include="Imagenes\cesped.jpg" />
     <Content Include="Imagenes\cesped2.jpg" />
@@ -1897,20 +1899,19 @@
     <Compile Include="EncuentroPublico.aspx.designer.cs">
       <DependentUpon>EncuentroPublico.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="EstadisticaComplejo.aspx.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EstadisticaComplejo.aspx.designer.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GMap.aspx.cs">
       <DependentUpon>GMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GMap.aspx.designer.cs">
       <DependentUpon>GMap.aspx</DependentUpon>
-
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

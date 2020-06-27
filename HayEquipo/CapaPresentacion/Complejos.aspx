@@ -301,14 +301,14 @@
           
             </ajaxToolkit:ModalPopupExtender>
  
-       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:80%; height:80%" BackColor="White" ScrollBars="Vertical">
+       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical" BackImageUrl="~/Imagenes/complejo_imagen clara.jpg">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-    
+    <div class="container text-center">
                 <div class="modal-header">
                      <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
                        onclick="btnClose2_Click"/>
-                    <h4 class="modal-title colorLetra" id="myModalLabel2" runat="server"></h4>
+                    <b><h4 class="modal-title colorLetra" id="myModalLabel2" runat="server"></h4></b>
                     <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
                 </div>
                 <div class="modal-body">
@@ -321,36 +321,36 @@
                                         <asp:ListItem Text="★" Value="4"></asp:ListItem>
                                         <asp:ListItem Text="★" Value="5"></asp:ListItem>
                                     </asp:RadioButtonList>
-                                    <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                    <b><asp:Label ID="lblValoracion" runat="server" Font-Size="x-large"></asp:Label></b>
                           </p>
                        
                     </div>
                      <div class="form-group">
-                        <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
+                        <b><asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900" Font-Size="x-large"></asp:Label></b>
                     </div>  
                     <div class="form-group">
-                        <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblDescripcion" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
+                        <b><asp:Label ID="lblServicios" text="Servicios: " runat="server" Font-Size="x-large"></asp:Label></b>
                     </div> 
                     <div class="form-group" id="divListServ" runat="server">
                         <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
                     </div>                 
                     <div class="form-group">
-                        <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblDireccion" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblBarrio" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>    
                      <div class="form-group">
-                        <asp:Label ID="lblZona" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblZona" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblTelefono" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>
                      <div class="form-group">
-                        <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                        <b><asp:Label ID="lblHorarios" runat="server" Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
 
@@ -390,7 +390,8 @@
     </a>
     </div>
 </div>
-
+</div>
+                    </div>
                   <div class="modal-footer">
                               
                   </div>

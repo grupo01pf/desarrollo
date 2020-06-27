@@ -10,20 +10,12 @@
 namespace CapaEntidades
 {
     using System;
-    using System.Collections.Generic;
-
-
+    
     public partial class ReporteCantidadDeportexFecha_Result
     {
         public string Deporte { get; set; }
         public Nullable<int> año { get; set; }
         public string mes { get; set; }
         public Nullable<int> CantidadPartidos { get; set; }
-    public partial class Password
-    {
-        public int id { get; set; }
-        public byte[] pwdUsuario { get; set; }
-        public byte[] pwdEncuentro { get; set; }
-
     }
 }
