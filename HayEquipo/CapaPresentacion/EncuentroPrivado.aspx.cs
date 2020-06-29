@@ -27,8 +27,15 @@ namespace CapaPresentacion
                 cargarChat();
                 cargarListaInvitar();
 
-                pnl_MostrarContenido.Visible = false;
-                pnl_Password.Visible = true;
+                if (string.IsNullOrEmpty(Session["idClave"].ToString()))
+                {
+                    pnl_MostrarContenido.Visible = true;
+                    pnl_Password.Visible = false;
+                }
+                else {
+                    pnl_MostrarContenido.Visible = false;
+                    pnl_Password.Visible = true;
+                }
 
             }
 

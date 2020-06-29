@@ -198,13 +198,13 @@ namespace CapaPresentacion
 
             ed.tipoEncuentro = "Privado";
 
-
+            
             if (string.IsNullOrEmpty(txt_Clave.Text))
             {
                 ed.accesibilidad = "Abierto";
                 // ed.clave = string.Empty;
                 ed.clave = "";
-            }
+            }            
             else
             {
                 ed.accesibilidad = "Cerrado";
@@ -376,6 +376,8 @@ namespace CapaPresentacion
 
         private void cargarDeportes()
         {
+            cmb_Deporte.Items.Clear();
+            cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
             cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
             cmb_Deporte.DataValueField = "id";
             cmb_Deporte.DataTextField = "nombre";
@@ -386,6 +388,9 @@ namespace CapaPresentacion
             int sport = 0;
             int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
 
+            cmb_TipoCancha.Items.Clear();
+            cmb_TipoCancha.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
             cmb_TipoCancha.DataSource = TipoCanchaDao.ObtenerTipoPorIdDeporte(sport);
             cmb_TipoCancha.DataValueField = "id";
             cmb_TipoCancha.DataTextField = "nombre";
@@ -394,6 +399,8 @@ namespace CapaPresentacion
 
         private void cargarBarrios()
         {
+            cmb_Barrio.Items.Clear();
+            cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
             // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
             cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
             cmb_Barrio.DataValueField = "id";
@@ -402,6 +409,9 @@ namespace CapaPresentacion
         }
         private void cargarZonas()
         {
+            cmb_Zona.Items.Clear();
+            cmb_Zona.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
             cmb_Zona.DataSource = ZonaDao.obtenerZonasEF();
             cmb_Zona.DataValueField = "id";
             cmb_Zona.DataTextField = "nombre";
@@ -418,6 +428,9 @@ namespace CapaPresentacion
 
             int zona = 0;
             int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+
+            cmb_Complejo.Items.Clear();
+            cmb_Complejo.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             if (cmb_Barrio.SelectedIndex == 0 && cmb_Zona.SelectedIndex == 0)
             {
@@ -903,6 +916,7 @@ namespace CapaPresentacion
         protected void chk_Accesibilidad_CheckedChanged(object sender, EventArgs e)
         {
             txt_Clave.Enabled = true;
+            txt_Clave.Text = string.Empty;
         }
 
    
@@ -942,8 +956,10 @@ namespace CapaPresentacion
 
             lbl_PorHora.Enabled = false;
             txt_PorHora.Enabled = false;
+            txt_PorHora.Text = string.Empty;
+
             lbl_TipoCancha.Enabled = false;
-            cmb_TipoCancha.Enabled = false;
+            cmb_TipoCancha.Enabled = false;            
 
             gdv_Agenda.Visible = true;
             gdv_AgendaComplejos.Visible = false;
@@ -956,12 +972,22 @@ namespace CapaPresentacion
         {
             cmb_Zona.Enabled = false;
             cmb_Barrio.Enabled = true;
+
+            txt_PorHora.Text = string.Empty;
+            cmb_TipoCancha.SelectedIndex = 0;
+
+            cmb_Complejo.SelectedIndex = 0;
         }
 
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
         {
             cmb_Zona.Enabled = true;
             cmb_Barrio.Enabled = false;
+
+            txt_PorHora.Text = string.Empty;
+            cmb_TipoCancha.SelectedIndex = 0;
+
+            cmb_Complejo.SelectedIndex = 0;
         }
 
         protected void cmb_TipoCancha_SelectedIndexChanged(object sender, EventArgs e)
@@ -1040,12 +1066,137 @@ namespace CapaPresentacion
 
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (rdb_Publico.Checked) {
+                habilitarEncuentroPublico();
+            }
+            if (rdb_Privado.Checked && rdb_Horario.Checked)
+            {
+                cargarTipoCancha();
+                habilitarPorHorario();
+            }
+            if (rdb_Privado.Checked && rdb_Complejo.Checked)
+            {
+                cargarComplejos();
+                habilitarPorComplejo();
+            }
 
         }
 
         protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (rdb_Publico.Checked)
+            {
+                habilitarEncuentroPublico();
+            }
+            if (rdb_Privado.Checked && rdb_Horario.Checked)
+            {
+                cargarTipoCancha();
+                habilitarPorHorario();
+            }
+            if (rdb_Privado.Checked && rdb_Complejo.Checked)
+            {
+                cargarComplejos();
+                habilitarPorComplejo();
+            }
+        }
 
+        private void deshabilitarEncuentroPublico() {
+
+            txt_HoraInicio.Enabled = false;
+            txt_HoraInicio.Text = string.Empty;
+            txt_HoraFin.Enabled = false;
+            txt_HoraFin.Text = string.Empty;
+            txt_Cantidad.Enabled = false;
+            txt_Cantidad.Text = string.Empty;
+            txt_Direccion.Enabled = false;
+            txt_Direccion.Text = string.Empty;
+            txt_NombreLugar.Enabled = false;
+            txt_NombreLugar.Text = string.Empty;
+
+            btn_Crear.Enabled = false;
+            btn_Cancelar.Enabled = false;
+            lbl_Error.Text = string.Empty;
+
+            lbl_ConsejoMapa.Visible = false;
+
+        }
+        private void habilitarEncuentroPublico()
+        {
+            txt_HoraInicio.Enabled = true;
+            txt_HoraInicio.Text = string.Empty;
+            txt_HoraFin.Enabled = true;
+            txt_HoraFin.Text = string.Empty;
+            txt_Cantidad.Enabled = true;
+            txt_Cantidad.Text = string.Empty;
+            txt_Direccion.Enabled = true;
+            txt_Direccion.Text = string.Empty;
+            txt_NombreLugar.Enabled = true;
+            txt_NombreLugar.Text = string.Empty;
+
+            btn_Crear.Enabled = true;
+            btn_Cancelar.Enabled = true;
+            lbl_Error.Text = string.Empty;
+
+            lbl_ConsejoMapa.Visible = true;
+
+        }
+        private void deshabilitarEncuentroPrivado() {
+            rdb_Complejo.Checked = false;
+            rdb_Horario.Checked = false;
+            deshabilitarPorHorario();
+            deshabilitarPorComplejo();
+
+            btn_Crear.Enabled = false;
+            btn_Cancelar.Enabled = false;
+            lbl_Error.Text = string.Empty;
+
+            lbl_ConsejoMapa.Visible = false;
+
+            btn_Agenda.Visible = false;
+            btn_VerComplejo.Visible = false;
+
+        }
+        private void habilitarEncuentroPrivado()
+        {
+            rdb_Complejo.Checked = true;
+            rdb_Horario.Checked = true;
+
+            habilitarPorHorario();
+            habilitarPorComplejo();
+
+            btn_Crear.Enabled = true;
+            btn_Cancelar.Enabled = true;
+            lbl_Error.Text = string.Empty;
+
+        }
+        private void deshabilitarPorHorario() {
+           // rdb_Horario.Checked = false;
+            txt_PorHora.Enabled = false;
+            txt_PorHora.Text = string.Empty;
+            cmb_TipoCancha.Enabled = false;
+            cmb_TipoCancha.SelectedIndex = 0;
+
+            btn_Agenda.Visible = false;
+            btn_VerComplejo.Visible = false;
+        }
+        private void habilitarPorHorario()
+        {
+           // rdb_Horario.Checked = true;
+            txt_PorHora.Enabled = true;
+            txt_PorHora.Text = string.Empty;
+            cmb_TipoCancha.Enabled = true;
+            cmb_TipoCancha.SelectedIndex = 0;
+        }
+        private void deshabilitarPorComplejo() {
+           // rdb_Complejo.Checked = false;
+            cmb_Complejo.Enabled = false;
+            cmb_Complejo.SelectedIndex = 0;
+        }
+        private void habilitarPorComplejo()
+        {
+           // rdb_Complejo.Checked = true;
+            cmb_Complejo.Enabled = true;
+            cmb_Complejo.SelectedIndex = 0;
         }
     }
 }
