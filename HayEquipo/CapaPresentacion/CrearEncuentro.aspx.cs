@@ -967,28 +967,34 @@ namespace CapaPresentacion
             cmb_TipoCancha.SelectedIndex = 0;
 
         }
+        protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
+        {      
+            rdb_PorBarrio.Checked = false;
+            cmb_Zona.Enabled = true;
+            cmb_Zona.SelectedIndex = 0;
+            cmb_Barrio.Enabled = false;
+            cmb_Barrio.SelectedIndex = 0;
 
+            cargarTipoCancha();
+            cargarComplejos();
+
+            btn_Agenda.Visible = false;
+        }
         protected void rdb_PorBarrio_CheckedChanged(object sender, EventArgs e)
         {
+            rdb_PorZona.Checked = false;
             cmb_Zona.Enabled = false;
+            cmb_Zona.SelectedIndex = 0;
             cmb_Barrio.Enabled = true;
+            cmb_Barrio.SelectedIndex = 0;
 
-            txt_PorHora.Text = string.Empty;
-            cmb_TipoCancha.SelectedIndex = 0;
+            cargarTipoCancha();
+            cargarComplejos();
 
-            cmb_Complejo.SelectedIndex = 0;
+            btn_Agenda.Visible = false;
         }
 
-        protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
-        {
-            cmb_Zona.Enabled = true;
-            cmb_Barrio.Enabled = false;
-
-            txt_PorHora.Text = string.Empty;
-            cmb_TipoCancha.SelectedIndex = 0;
-
-            cmb_Complejo.SelectedIndex = 0;
-        }
+       
 
         protected void cmb_TipoCancha_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1065,7 +1071,7 @@ namespace CapaPresentacion
         }
 
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {            
             if (rdb_Publico.Checked) {
                 habilitarEncuentroPublico();
             }
@@ -1123,15 +1129,15 @@ namespace CapaPresentacion
         private void habilitarEncuentroPublico()
         {
             txt_HoraInicio.Enabled = true;
-            txt_HoraInicio.Text = string.Empty;
+            //txt_HoraInicio.Text = string.Empty;
             txt_HoraFin.Enabled = true;
-            txt_HoraFin.Text = string.Empty;
+            //txt_HoraFin.Text = string.Empty;
             txt_Cantidad.Enabled = true;
-            txt_Cantidad.Text = string.Empty;
+            //txt_Cantidad.Text = string.Empty;
             txt_Direccion.Enabled = true;
-            txt_Direccion.Text = string.Empty;
+            //txt_Direccion.Text = string.Empty;
             txt_NombreLugar.Enabled = true;
-            txt_NombreLugar.Text = string.Empty;
+            //txt_NombreLugar.Text = string.Empty;
 
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
@@ -1183,7 +1189,7 @@ namespace CapaPresentacion
         {
            // rdb_Horario.Checked = true;
             txt_PorHora.Enabled = true;
-            txt_PorHora.Text = string.Empty;
+            //txt_PorHora.Text = string.Empty;
             cmb_TipoCancha.Enabled = true;
             cmb_TipoCancha.SelectedIndex = 0;
         }

@@ -46,7 +46,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_PorZona;
+        protected global::System.Web.UI.WebControls.CheckBox rdb_PorZona;
         
         /// <summary>
         /// Control cmb_Zona.
@@ -64,7 +64,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdb_PorBarrio;
+        protected global::System.Web.UI.WebControls.CheckBox rdb_PorBarrio;
         
         /// <summary>
         /// Control cmb_Barrio.
