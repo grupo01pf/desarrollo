@@ -106,6 +106,18 @@
             transform: scale(2.0);
             margin-left: 20%;
         }
+
+           
+            .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+            }
+
     </style>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -189,7 +201,8 @@
                         <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
                         <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
                         <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
-                        <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
+                        <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge">
+                            <asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
                     <div class="tab-content">

@@ -968,30 +968,62 @@ namespace CapaPresentacion
 
         }
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
-        {      
-            rdb_PorBarrio.Checked = false;
-            cmb_Zona.Enabled = true;
-            cmb_Zona.SelectedIndex = 0;
-            cmb_Barrio.Enabled = false;
-            cmb_Barrio.SelectedIndex = 0;
+        {
+            if (rdb_PorZona.Checked)
+            {
+                rdb_PorBarrio.Checked = false;
+                cmb_Zona.Enabled = true;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
 
-            cargarTipoCancha();
-            cargarComplejos();
+                cargarTipoCancha();
+                cargarComplejos();
 
-            btn_Agenda.Visible = false;
+                btn_Agenda.Visible = false;
+
+            }
+            else {
+                rdb_PorBarrio.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+
+                cargarTipoCancha();
+                cargarComplejos();
+
+                btn_Agenda.Visible = false;
+            }  
         }
         protected void rdb_PorBarrio_CheckedChanged(object sender, EventArgs e)
         {
-            rdb_PorZona.Checked = false;
-            cmb_Zona.Enabled = false;
-            cmb_Zona.SelectedIndex = 0;
-            cmb_Barrio.Enabled = true;
-            cmb_Barrio.SelectedIndex = 0;
+            if (rdb_PorBarrio.Checked)
+            {
+                rdb_PorZona.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = true;
+                cmb_Barrio.SelectedIndex = 0;
 
-            cargarTipoCancha();
-            cargarComplejos();
+                cargarTipoCancha();
+                cargarComplejos();
 
-            btn_Agenda.Visible = false;
+                btn_Agenda.Visible = false;
+            }
+            else {
+                rdb_PorZona.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+
+                cargarTipoCancha();
+                cargarComplejos();
+
+                btn_Agenda.Visible = false;
+
+            }
         }
 
        
@@ -1069,7 +1101,23 @@ namespace CapaPresentacion
 
             // btnPopUp_ModalPopupExtender2.Show();
         }
-
+        protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdb_Publico.Checked)
+            {
+                habilitarEncuentroPublico();
+            }
+            if (rdb_Privado.Checked && rdb_Horario.Checked)
+            {
+                cargarTipoCancha();
+                habilitarPorHorario();
+            }
+            if (rdb_Privado.Checked && rdb_Complejo.Checked)
+            {
+                cargarComplejos();
+                habilitarPorComplejo();
+            }
+        }
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
         {            
             if (rdb_Publico.Checked) {
@@ -1204,6 +1252,8 @@ namespace CapaPresentacion
             cmb_Complejo.Enabled = true;
             cmb_Complejo.SelectedIndex = 0;
         }
+
+       
     }
 }
 
