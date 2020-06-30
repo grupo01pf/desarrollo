@@ -110,13 +110,13 @@ namespace CapaPresentacion
 
                     }
                     RadioButtonList2.Enabled = false;
-                    lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
+                    //lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
 
                 }else
                 {
                     RadioButtonList2.Enabled = false;
                     RadioButtonList2.Visible = false;
-                    lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
+                    //lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
                 }
             lblDeportes.Text = compSelec.Deportes;
             lblDescripcion.Text = compSelec.Descripcion;

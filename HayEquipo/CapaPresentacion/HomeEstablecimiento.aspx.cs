@@ -233,23 +233,23 @@ namespace CapaPresentacion
             gdv_Agenda.Columns[7].Visible = false;
         }
 
-        protected void ddlComp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlDeportes.SelectedIndex != 0 && cld_Fecha.SelectedDate.Date > DateTime.MinValue)
-            {
-                lbl_Reserva.Text = string.Empty;
-                lbl_Capacidad.Text = string.Empty;
-                cargarAgenda();
-                //btn_Agenda.Visible = true;
-            }           
-        }
+        //protected void ddlComp_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlDeportes.SelectedIndex != 0 && cld_Fecha.SelectedDate.Date > DateTime.MinValue)
+        //    {
+        //        lbl_Reserva.Text = string.Empty;
+        //        lbl_Capacidad.Text = string.Empty;
+        //        cargarAgenda();
+        //        //btn_Agenda.Visible = true;
+        //    }           
+        //}
 
         protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cld_Fecha.SelectedDate.Date > DateTime.MinValue)
             {
                 lbl_Reserva.Text = string.Empty;
-                lbl_Capacidad.Text = string.Empty;
+                //lbl_Capacidad.Text = string.Empty;
                 cargarAgenda();
                 //btn_Agenda.Visible = true;
             }
@@ -260,10 +260,10 @@ namespace CapaPresentacion
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             string datos = string.Empty;
-            datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
-            lbl_Reserva.Text = "Reservar en: " + datos;
+            datos = fila.Cells[2].Text + " (" + fila.Cells[3].Text + ") - " + fila.Cells[4].Text + "hs. - $" + fila.Cells[5].Text;
+            lbl_Reserva.Text = "*** Reservado en: " + datos + " ***";
 
-            lbl_Capacidad.Text = fila.Cells[6].Text;
+            //lbl_Capacidad.Text = fila.Cells[6].Text;
             ReservarCancha();
         }
 
@@ -312,6 +312,8 @@ namespace CapaPresentacion
             cph.idCancha = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
 
             AgendaDao.InsertarCanchasPorHorarios(cph);
+
+            gdv_Agenda.Columns[7].Visible = true;
 
             cargarAgenda();
 

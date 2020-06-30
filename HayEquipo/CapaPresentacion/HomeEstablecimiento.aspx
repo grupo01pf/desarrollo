@@ -155,20 +155,42 @@
                              </asp:DropDownList>
                         </div>--%>
 
-                        <div class="form-group">
+              <div class="row alinearAlCentro">
+                        <%--<div class="form-group">--%>
                              <asp:Label ID="lblDep" runat="server" Text="Deporte"></asp:Label>
+              </div>
+              <div class="row alinearAlCentro">
+                  <div class="col-sm-3">
+                             </div>
+                  <div class="col-sm-6">                            
                              <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged" >
                              <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                              </asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
+                      </div>
+                  <div class="col-sm-3">
+                             </div>
+                        <%--</div>--%>
+              </div>
+              <div class="row alinearAlCentro">
+                        <%--<div class="form-group">--%>
                              <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+               </div>
+               <div class="row alinearAlCentro">
+                             <div class="col-sm-4">
+                             </div>
+                             <div class="col-sm-4">
                              <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
-                        </div>
+                             </div>
+                             <div class="col-sm-4">
+                             </div>
+                   <br />
+                   </div>
+                        <%--</div>--%>
 
+              <div class="row alinearAlCentro">
                         <strong><asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong>
                                                          <br />
+                  </div>
                       <%--  <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>       
                                                          <br />--%>
                                          
@@ -188,9 +210,9 @@
                                                 </asp:GridView>
                                            
                                  <br />
-                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lbl_Reserva" runat="server" Text="" ForeColor="#FF9900"></asp:Label>
                                 <br />
-                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+                                <%--<asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>--%>
                         </div>
                     
      </div>

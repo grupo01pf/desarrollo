@@ -77,6 +77,28 @@
             transform: scale(2.0);
             margin-left: 20%;
         }
+        
+        .stroke {
+            text-align: center;
+            color: white;
+            font-size: 40px;
+            letter-spacing: 0;
+            text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
+        }
+
+           .strokeNombre {
+            text-align: center;
+            color: #1e74cb;
+            font-size: 80px;
+            letter-spacing: 0;
+            text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
+            font-family:Verdana;
+        }
+
+           .modal-footer{
+               text-align: -webkit-center;
+           }      
+
   </style>
 
 </asp:Content>
@@ -308,51 +330,74 @@
                 <div class="modal-header">
                      <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
                        onclick="btnClose2_Click"/>
-                    <b><h4 class="modal-title colorLetra" id="myModalLabel2" runat="server"></h4></b>
-                    <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
+                    <div class="row">
+                     <div class="col-sm-3">
+                     </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                        <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
+                        <b><h4 class="modal-title colorLetra strokeNombre" id="myModalLabel2" runat="server"></h4></b>
+                     </div>
+                        </div>                     
+                    <div class="col-sm-3">
+                     </div>
+                    </div>
+                    <%--<asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />--%>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="row">                         
+                                  <div class="form-group">
                         <p class="clasificacion">
-                                    <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
+                            <div class="row"> 
+                                   <div class="col-sm-5">
+                                   </div>
+                                   <div class="col-sm-3">
+                                      <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable">
                                         <asp:ListItem Text="★" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="★" Value="2"></asp:ListItem>
                                         <asp:ListItem Text="★" Value="3"></asp:ListItem>
                                         <asp:ListItem Text="★" Value="4"></asp:ListItem>
                                         <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <b><asp:Label ID="lblValoracion" runat="server" Font-Size="x-large"></asp:Label></b>
-                          </p>
-                       
-                    </div>
+                                      </asp:RadioButtonList>
+                                   </div>                        
+                                   <div class="col-sm-4">
+                                   </div>
+                            </div>
+                                   <%-- <b><asp:Label ID="lblValoracion" runat="server" CssClass="stroke" Font-Size="x-large"></asp:Label></b>--%>
+                            <br />
+                            <br />
+                          </p>     
+                     </div>    
+                    
+
                      <div class="form-group">
-                        <b><asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblDeportes" runat="server" CssClass="stroke" ForeColor="#FF9900" Font-Size="x-large"></asp:Label></b>
                     </div>  
                     <div class="form-group">
-                        <b><asp:Label ID="lblDescripcion" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblDescripcion" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <b><asp:Label ID="lblServicios" text="Servicios: " runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblServicios" text="Servicios: " runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div> 
                     <div class="form-group" id="divListServ" runat="server">
                         <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
                     </div>                 
                     <div class="form-group">
-                        <b><asp:Label ID="lblDireccion" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblDireccion" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <b><asp:Label ID="lblBarrio" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblBarrio" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>    
                      <div class="form-group">
-                        <b><asp:Label ID="lblZona" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblZona" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>
                     <div class="form-group">
-                        <b><asp:Label ID="lblTelefono" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblTelefono" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>
                      <div class="form-group">
-                        <b><asp:Label ID="lblHorarios" runat="server" Font-Size="x-large"></asp:Label></b>
+                        <b><asp:Label ID="lblHorarios" runat="server" CssClass="stroke"  Font-Size="x-large"></asp:Label></b>
                     </div>
-                    <div class="form-group">
+                   <%-- <div class="form-group">
 
 <div class="tamañoCarousel">  
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -390,10 +435,48 @@
     </a>
     </div>
 </div>
-</div>
+</div>--%>
                     </div>
                   <div class="modal-footer">
-                              
+                             <div class="form-group">
+
+<div class="tamañoCarousel">  
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img id="img1"  runat="server" height="50" width="50">
+      </div>
+
+      <div class="item">
+        <img id="img2" runat="server" height="50" width="50">
+      </div>
+    
+      <div class="item">
+        <img id="img3"  runat="server" height="50" width="50">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    </div>
+</div>
+</div>  
                   </div>
                 </div>
                     </ContentTemplate>
