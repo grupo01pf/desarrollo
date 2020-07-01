@@ -27,7 +27,7 @@ namespace CapaPresentacion
                 cargarChat();
                 cargarListaInvitar();
 
-                if (string.IsNullOrEmpty(Session["idClave"].ToString()))
+                if (int.Parse(Session["idClave"].ToString()) == 0)
                 {
                     pnl_MostrarContenido.Visible = true;
                     pnl_Password.Visible = false;
@@ -397,12 +397,9 @@ namespace CapaPresentacion
                 cargarEquipoB();
             }
         }
-
-
-
+        
         private void cargarListaInvitar()
         {
-
             gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
@@ -436,13 +433,11 @@ namespace CapaPresentacion
                     notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
-
-
                 }
                 i++;
             }
 
-            }
+        }
 
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
         {
@@ -473,34 +468,90 @@ namespace CapaPresentacion
 
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
 
-           // myModalLabel2.InnerText = compSelec.nombre;
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
-            //CargarListServicios(compSelec.id);
+            listServicios.Items.Clear();
+            lblServicios.Text = "Servicios: ";
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+            {
+                CargarListServicios(compSelec.id);
+            }
+            else
+            {
+                lblServicios.Text = "Servicios: - ";
+                divListServ.Visible = false;
+            }
             lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
             Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-
-
-            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            if (compSelec.avatar != null)
+            if (compSelec.horaApertura != null && compSelec.horaCierre != null)
             {
-               // imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
+                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+                lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+            }
+            else
+            {
+                lblHorarios.Text = "Horarios: - ";
             }
 
+            if (ComplejoDeportivoDao.existeAvatar(idComplejo.ToString()) != false)
+            {
+                byte[] avtr = ComplejoDeportivoDao.ObtenerAvatar(idComplejo.ToString());
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(avtr);
+                imgAvatar.ImageUrl = ImagenDataURL64;
+            }
+            else
+            {
+                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+            }
 
-            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-
-           // btnPopUp_ModalPopupExtender2.Show();
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 1) != false)
+            {
+                byte[] Img1 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 1);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img1);
+                img1.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img1.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 2) != false)
+            {
+                byte[] Img2 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 2);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img2);
+                img2.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img2.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 3) != false)
+            {
+                byte[] Img3 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 3);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img3);
+                img3.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img3.Src = "~/Imagenes/complejo_logo_default.png";
+            }
         }
 
-      
+        private void CargarListServicios(int idComp)
+        {
+            //listServicios.Items.Clear();
+            //listServicios.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
+            listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);
+            listServicios.DataValueField = "id";
+            listServicios.DataTextField = "nombre";
+            listServicios.DataBind();
+        }
+
 
         protected void btn_Entrar_Click(object sender, EventArgs e)
         {

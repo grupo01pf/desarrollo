@@ -175,6 +175,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_VerComplejo;
         
         /// <summary>
+        /// Control imgAvatar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgAvatar;
+        
+        /// <summary>
         /// Control lbl_ComplejoTitulo.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,33 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lblDescripcion;
         
         /// <summary>
+        /// Control lblServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblServicios;
+        
+        /// <summary>
+        /// Control divListServ.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListServ;
+        
+        /// <summary>
+        /// Control listServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox listServicios;
+        
+        /// <summary>
         /// Control lblDireccion.
         /// </summary>
         /// <remarks>
@@ -245,6 +281,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTelefono;
+        
+        /// <summary>
+        /// Control lblHorarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHorarios;
         
         /// <summary>
         /// Control img1.

@@ -418,6 +418,17 @@ namespace CapaPresentacion
             cmb_Zona.DataBind();
         }
 
+        private void CargarListServicios(int idComp)
+        {
+            //listServicios.Items.Clear();
+            //listServicios.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
+            listServicios.DataSource = ServicioExtraDao.ObtenerServiciosPorComp(idComp);
+            listServicios.DataValueField = "id";
+            listServicios.DataTextField = "nombre";            
+            listServicios.DataBind();
+        }
+
         private void cargarComplejos()
         {
 
@@ -1074,32 +1085,78 @@ namespace CapaPresentacion
         {
 
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
-
-            // myModalLabel2.InnerText = compSelec.nombre;
+            
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;
-            //CargarListServicios(compSelec.id);
+            listServicios.Items.Clear();
+            lblServicios.Text = "Servicios: ";
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+            {
+                CargarListServicios(compSelec.id);
+            }
+            else
+            {
+                lblServicios.Text = "Servicios: - ";
+                divListServ.Visible = false;
+            }
             lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
             Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
             lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-
-
-            //ARREGLAR QUE PASA CUANDO NO HAY IMAGEN
-            if (compSelec.avatar != null)
+            if (compSelec.horaApertura != null && compSelec.horaCierre != null)
             {
-                // imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
+                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
+                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+                lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+            }
+            else
+            {
+                lblHorarios.Text = "Horarios: - ";
             }
 
+            if (ComplejoDeportivoDao.existeAvatar(idComplejo.ToString()) != false)
+            {
+                byte[] avtr = ComplejoDeportivoDao.ObtenerAvatar(idComplejo.ToString());
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(avtr);
+                imgAvatar.ImageUrl = ImagenDataURL64;
+            }
+            else
+            {
+                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+            }
 
-            //img1.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img2.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-            //img3.Src = "~/AvatarComplejo.aspx?id=" + Session["ID"].ToString();
-
-            // btnPopUp_ModalPopupExtender2.Show();
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 1) != false)
+            {
+                byte[] Img1 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 1);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img1);
+                img1.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img1.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 2) != false)
+            {
+                byte[] Img2 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 2);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img2);
+                img2.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img2.Src = "~/Imagenes/complejo_logo_default.png";
+            }
+            if (ComplejoDeportivoDao.existeImagen(idComplejo.ToString(), 3) != false)
+            {
+                byte[] Img3 = ComplejoDeportivoDao.ObtenerImagen(idComplejo.ToString(), 3);
+                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img3);
+                img3.Src = ImagenDataURL64;
+            }
+            else
+            {
+                img3.Src = "~/Imagenes/complejo_logo_default.png";
+            }           
         }
         protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
         {
