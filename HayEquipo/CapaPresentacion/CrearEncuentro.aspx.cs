@@ -520,8 +520,6 @@ namespace CapaPresentacion
 
         }
 
-
-
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -768,9 +766,7 @@ namespace CapaPresentacion
 
         }
 
-        private void cargarAgendaPorHorario() {
-
-           
+        private void cargarAgendaPorHorario() {           
 
             string sport = cmb_Deporte.SelectedItem.Text;
 

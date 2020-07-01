@@ -281,7 +281,7 @@
 
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>
-                                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                             <div class="scroll-container">
 
@@ -325,7 +325,7 @@
 
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <ContentTemplate>
-                                            <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                            <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                             <div class="scroll-container">
 
@@ -370,6 +370,77 @@
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">
                                 Invitar
                             </button>
+
+
+                            
+
+                                            <%-- BUSQUEDA --%>
+
+                             <div class="form-group">
+                                    <asp:CheckBox ID="chk_BusquedaJugador" CssClass="checkbox" runat="server"
+                                        Text="Invitar" OnCheckedChanged="chk_BusquedaJugador_CheckedChanged" AutoPostBack="true" />
+                                   
+                                </div>
+
+                            <asp:Panel ID="pnl_Busqueda" runat="server" Visible="false">
+                                <div class="well">
+                                    <div class="form-group">
+                                        <asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>
+                                        <asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <asp:Label ID="lbl_Sport" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
+                                        <div class="dropdown">
+                                            <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
+                                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                                        <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                            OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                            GroupName="tipoLocalizacion" value="0" />
+                                        <div class="form-group">
+                                            <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                            <div class="dropdown">
+                                                <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                    OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                                        <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                            OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                            GroupName="tipoLocalizacion" value="1" />
+                                        <div class="form-group">
+                                            <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                            <div class="dropdown">
+                                                <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                    OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#exampleModalScrollable" visible="false">
+                                        Buscar
+                                    </button>
+
+
+                                </div>
+                            </asp:Panel>
+
+
+
+
                             <%--MODAL--%>
 
                             <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
@@ -389,11 +460,14 @@
                                                 <strong>
                                                     <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body">                                           
 
+
+                                            <%-- RESULTADOS --%>
                                             <center>
                                                <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    visible ="true" EmptyDataText="...">
                                                     <Columns>
                                                         <asp:TemplateField>
                                                             <HeaderTemplate>
@@ -446,7 +520,7 @@
                         <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                 <div class="scroll-container">
 

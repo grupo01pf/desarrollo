@@ -569,5 +569,124 @@ namespace CapaPresentacion
             }
 
         }
+
+        protected void btn_Buscar_Click(object sender, EventArgs e)
+        {
+
+
+            gdv_Invitar.Visible = true;
+        }
+
+        private void cargarDeportes()
+        {
+            cmb_Deporte.Items.Clear();
+            cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+            cmb_Deporte.DataValueField = "id";
+            cmb_Deporte.DataTextField = "nombre";
+            cmb_Deporte.DataBind();
+        }
+
+        private void cargarBarrios()
+        {
+            cmb_Barrio.Items.Clear();
+            cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
+            cmb_Barrio.DataValueField = "id";
+            cmb_Barrio.DataTextField = "nombre";
+            cmb_Barrio.DataBind();
+        }
+        private void cargarZonas()
+        {
+            cmb_Zona.Items.Clear();
+            cmb_Zona.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
+            cmb_Zona.DataSource = ZonaDao.obtenerZonasEF();
+            cmb_Zona.DataValueField = "id";
+            cmb_Zona.DataTextField = "nombre";
+            cmb_Zona.DataBind();
+        }
+
+        protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdb_PorZona.Checked)
+            {
+                rdb_PorBarrio.Checked = false;
+                cmb_Zona.Enabled = true;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+            }
+            else
+            {
+                rdb_PorBarrio.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+            }
+        }
+        protected void rdb_PorBarrio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdb_PorBarrio.Checked)
+            {
+                rdb_PorZona.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = true;
+                cmb_Barrio.SelectedIndex = 0;
+            }
+            else
+            {
+                rdb_PorZona.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+            }
+        }
+
+        protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void chk_BusquedaJugador_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_BusquedaJugador.Checked)
+            {
+                limpiarCamposBusqueda();
+                pnl_Busqueda.Visible = true;
+                btn_Buscar.Visible = true;
+            }
+            else {                
+                pnl_Busqueda.Visible = false;
+                limpiarCamposBusqueda();
+                btn_Buscar.Visible = false;
+            }
+        }
+
+        private void limpiarCamposBusqueda() {
+
+            txt_NombreJugador.Text = string.Empty;
+            cmb_Deporte.SelectedIndex = 0;
+            cmb_Zona.SelectedIndex = 0;
+            cmb_Barrio.SelectedIndex = 0;
+            rdb_PorZona.Checked = false;
+            rdb_PorBarrio.Checked = false;
+
+            cmb_Zona.Enabled = false;
+            cmb_Barrio.Enabled = false;
+        }
     }
 }
