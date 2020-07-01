@@ -1085,7 +1085,8 @@ namespace CapaPresentacion
         {
 
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
-            
+
+            lbl_ComplejoTitulo.Text = compSelec.nombre;
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
             lblDeportes.Text = compSelec.deportes;
             lblDescripcion.Text = compSelec.descripcion;

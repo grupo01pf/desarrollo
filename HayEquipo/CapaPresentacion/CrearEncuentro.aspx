@@ -193,20 +193,12 @@
 
 
 
-
-
-
-
-
                                     </div>
 
 
                                 </div>
 
                             </div>
-
-
-
 
 
 
@@ -263,7 +255,7 @@
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" 
-                                                    Visible="false">
+                                                    Visible="false" EmptyDataText="000">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
@@ -281,7 +273,7 @@
 
                                                  <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_AgendaComplejos_SelectedIndexChanged"
-                                                    visible="false"  >
+                                                    visible="false" EmptyDataText="..." >
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
@@ -313,8 +305,6 @@
 
                                     </div>
                                 </div>
-
-
 
 
 
@@ -352,9 +342,10 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle2">
-                                                    <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
+                                                    <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                     <strong>
-                                                        <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                        <center>  
+                                                             <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                     </strong>
                                                     <h5></h5>
@@ -410,15 +401,15 @@
                                                             <!-- Wrapper for slides -->
                                                             <div class="carousel-inner">
                                                                 <div class="item active">
-                                                                    <img id="img1" runat="server" height="50" width="50">
+                                                                    <img id="img1" runat="server" height="500" width="700">
                                                                 </div>
 
                                                                 <div class="item">
-                                                                    <img id="img2" runat="server" height="50" width="50">
+                                                                    <img id="img2" runat="server" height="500" width="700">
                                                                 </div>
 
                                                                 <div class="item">
-                                                                    <img id="img3" runat="server" height="50" width="50">
+                                                                    <img id="img3" runat="server" height="500" width="700">
                                                                 </div>
                                                             </div>
 
@@ -433,229 +424,145 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                </div>
-
-                                                    <%-- BODY --%>
-
-                                                    <%--<div class="form-group">
-                                                <asp:Label ID="lblValoracion" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDeportes" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <asp:Label ID="lblDireccion" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblBarrio" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblZona" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label ID="lblTelefono" runat="server"></asp:Label>
-                                            </div>
-                                            <div class="form-group">
-                                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                                    <!-- Indicators -->
-                                                    <ol class="carousel-indicators">
-                                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                    </ol>
-
-                                                    <!-- Wrapper for slides -->
-                                                    <div class="carousel-inner">
-                                                        <div class="item active">
-                                                            <img id="img1" width="1000" height="1500" runat="server">
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <img id="img2" width="1000" height="1500" runat="server">
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <img id="img3" width="1000" height="1500" runat="server">
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Left and right controls -->
-                                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>--%>
-
-                                                    <%-- FIN BODY --%>
 
 
-                                                    <div class="modal-footer">
-                                                        <center>
+                                            <%-- FIN BODY --%>
+
+
+                                            <div class="modal-footer">
+                                                <center>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </center>
-                                                    </div>
-                                                </div>
-
-
                                             </div>
-
-                                            </div>
-
-
-                                            <%--FIN MODAL COMPLEJO  --%>
-
-
-
-
-
-
-
-                                            <br />
-                                            <br />
-                                            <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
-                                            <br />
-                                            <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
-
-
-                                            <div class="form-group">
-                                                <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
-                                                    Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true" />
-                                                <%--<asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>--%>
-                                                <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
-                                                    TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
-                                            </div>
-
                                         </div>
+
+
                                     </div>
 
-
-
-                                    <%--BOTONES--%>
                                 </div>
-                                <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
-                                <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
+
+
+                                <%--FIN MODAL COMPLEJO  --%>
+
+
+
                                 <br />
-                                <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <%-- ****MAPA**** --%>
+                                <br />
+                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                <br />
+                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
 
-                    <div class="container">
-                        <div class="form-group">
-                            <div id="myMap"></div>
-                        </div>
 
-                        <div class="form-inline">
-                            <div id="LatLng">
-                                <label for="lbl_Latitud">Latitud</label>
-                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                                <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                                <div class="form-group">
+                                    <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
+                                        Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true" />
+                                    <%--<asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>--%>
+                                    <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
+                                        TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
+                                </div>
 
-                                <label for="lbl_Longitud">Longitud</label>
-                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                                <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
                             </div>
                         </div>
 
 
+
+                        <%--BOTONES--%>
                     </div>
-
-
-
-
-                    <%--        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
-        </div>--%>
-
-
-
-
-                    <%-- ****MAPA**** --%>
-                    <%--         <iframe id="Iframe1" runat="server" src="" width="550" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>--%>
+                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
+                    <br />
+                    <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </div>
+            </div>
+        </div>
+        <%-- ****MAPA**** --%>
+
+        <div class="container">
+            <div class="form-group">
+                <div id="myMap"></div>
+            </div>
+
+            <div class="form-inline">
+                <div id="LatLng">
+                    <label for="lbl_Latitud">Latitud</label>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+
+                    <label for="lbl_Longitud">Longitud</label>
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
 
 
 
 
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <%--**** CONTROL DEL MAPA ****--%>
+    <%--<script src="scripts/map.js" ></script>--%>
+
+
+    <script type="text/javascript">
+
+
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+
+
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
+
+
+        var layerGroup = L.layerGroup().addTo(myMap)
+
+
+        // CREAR UN MARCADOR
+        // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
 
 
 
-                <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-                    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-                    crossorigin=""></script>
+        // DESACTIVAR ZOOM CON DOBLE CLICK
+        myMap.doubleClickZoom.disable()
 
-                <%--**** CONTROL DEL MAPA ****--%>
-                <%--<script src="scripts/map.js" ></script>--%>
+        // var layerGroup = L.layerGroup().addTo(myMap)
 
-
-                <script type="text/javascript">
-
-
-                    const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+        if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
+                        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+                        myMap.on('dblclick', e => {
+                            // ELIMINAR MARCADOR DEL COMPLEJO
 
 
-                    // CENTRAR LA VISTA DEL MAPA
-                    let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+                            layerGroup.clearLayers();
 
-                    L.tileLayer(tilesProvider, {
-                        maxzoom: 18,
-                    }).addTo(myMap)
+                            let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+                            // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
 
+                            myMap.closePopup();
+                            //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
+                            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+                            // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
+                            // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-                    var layerGroup = L.layerGroup().addTo(myMap)
+                            // ASP.NET
+                            // $('#txt_Latitud').val(marker.getLatLng().lat)
+                            // $('#txt_Longitud').val(marker.getLatLng().lng)
 
-
-
-
-                    // CREAR UN MARCADOR
-                    // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
-
-
-
-                    // DESACTIVAR ZOOM CON DOBLE CLICK
-                    myMap.doubleClickZoom.disable()
-
-                    // var layerGroup = L.layerGroup().addTo(myMap)
-
-                    if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
-            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
-            myMap.on('dblclick', e => {
-                // ELIMINAR MARCADOR DEL COMPLEJO
-
-
-                layerGroup.clearLayers();
-
-                let latLng = myMap.mouseEventToLatLng(e.originalEvent)
-                // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
-
-                myMap.closePopup();
-                //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
-
-                marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
-                // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
-
-                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
-
-                // ASP.NET
-                // $('#txt_Latitud').val(marker.getLatLng().lat)
-                // $('#txt_Longitud').val(marker.getLatLng().lng)
-
-                $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+                            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
                 $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
 
                 // HTML
@@ -672,32 +579,32 @@
 
 
         var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
-                    var indice = cmbCD.options[cmbCD.selectedIndex].value;
+        var indice = cmbCD.options[cmbCD.selectedIndex].value;
 
-                    if (indice > 0) {
-                        // MOSTRAR UN COMPLEJO
-                        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
-
-            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-            if (latitude != "" && longitude != "") {
-                myMap.setView([latitude, longitude], 15)
-            }
-
-        } else {
+        if (indice > 0) {
             // MOSTRAR UN COMPLEJO
             var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-            if (latitude != "" && longitude != "") {
-                myMap.setView([latitude, longitude], 15)
-            }
+                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+                        if (latitude != "" && longitude != "") {
+                            myMap.setView([latitude, longitude], 15)
+                        }
 
-        }
+                    } else {
+                        // MOSTRAR UN COMPLEJO
+                        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+                        if (latitude != "" && longitude != "") {
+                            myMap.setView([latitude, longitude], 15)
+                        }
+
+                    }
 
 
 
-                </script>
+    </script>
 </asp:Content>
 

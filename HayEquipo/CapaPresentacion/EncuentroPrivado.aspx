@@ -131,6 +131,9 @@
 
 
                                     <div class="modal-content">
+
+                                        <center>
+
                                         <div class="modal-header">
 
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -139,7 +142,8 @@
                                             <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                                 <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                 <strong>
-                                                    <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                    <center>   
+                                                         <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                 </strong>
                                                 <h5></h5>
@@ -195,15 +199,15 @@
                                                         <!-- Wrapper for slides -->
                                                         <div class="carousel-inner">
                                                             <div class="item active">
-                                                                <img id="img1" runat="server" height="50" width="50">
+                                                                <img id="img1" runat="server" height="500" width="700">
                                                             </div>
 
                                                             <div class="item">
-                                                                <img id="img2" runat="server" height="50" width="50">
+                                                                <img id="img2" runat="server" height="500" width="700">
                                                             </div>
 
                                                             <div class="item">
-                                                                <img id="img3" runat="server" height="50" width="50">
+                                                                <img id="img3" runat="server" height="500" width="700">
                                                             </div>
                                                         </div>
 
@@ -227,6 +231,7 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </center>
                                         </div>
+                                            </center>
                                     </div>
 
 
@@ -234,6 +239,10 @@
 
 
                                 <%--FIN MODAL COMPLEJO  --%>
+
+
+
+
                             </div>
 
 
@@ -534,7 +543,7 @@
         // MOSTRAR UN COMPLEJO
 
         var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
         var marker = L.marker([latitude, longitude]).addTo(layerGroup)
         if (latitude != "" && longitude != "") {
