@@ -201,7 +201,7 @@
                         <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
                         <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
                         <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
-                        <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge">
+                        <li><a data-toggle="tab" href="#menu6"><span class="glyphicon glyphicon-bell"></span>Notificaciones<span class="badge">
                             <asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>

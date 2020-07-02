@@ -377,18 +377,30 @@
                                             <%-- BUSQUEDA --%>
 
                              <div class="form-group">
-                                    <asp:CheckBox ID="chk_BusquedaJugador" CssClass="checkbox" runat="server"
-                                        Text="Invitar" OnCheckedChanged="chk_BusquedaJugador_CheckedChanged" AutoPostBack="true" />
+                                    <asp:CheckBox ID="chk_BuscarJugadores" CssClass="checkbox" runat="server"
+                                        Text="Buscar Jugadores" OnCheckedChanged="chk_BuscarJugadores_CheckedChanged" AutoPostBack="true" />
                                    
                                 </div>
-
                             <asp:Panel ID="pnl_Busqueda" runat="server" Visible="false">
                                 <div class="well">
+                                    <div class="form-group">
+                                        <asp:RadioButton ID="rdb_PorAmigos" Text="Por Amigos" runat="server" OnCheckedChanged="rdb_PorAmigos_CheckedChanged" 
+                                            AutoPostBack="true" GroupName="tipoLocalizacion" value="0" Checked="false" />
+                                    </div>
+                                    <div class="form-group">
+                                        <asp:RadioButton ID="rdb_MasOpciones" Text="Más Opciones" runat="server" OnCheckedChanged="rdb_MasOpciones_CheckedChanged" 
+                                            AutoPostBack="true" GroupName="tipoLocalizacion" value="1" Checked="false"/>
+                                    </div>
+                                </div>
+                            </asp:Panel>
+
+                            <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
+                                <div class="well">                                     
+
                                     <div class="form-group">
                                         <asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>
                                         <asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>
                                     </div>
-
 
                                     <div class="form-group">
                                         <asp:Label ID="lbl_Sport" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
@@ -429,16 +441,16 @@
                                         </div>
                                     </div>
 
-                                    <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#exampleModalScrollable" visible="false">
-                                        Buscar
-                                    </button>
+                                    
 
 
                                 </div>
                             </asp:Panel>
 
-
+                            <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#exampleModalScrollable" Visible="false">
+                                        Buscar
+                                    </button>
 
 
                             <%--MODAL--%>
@@ -494,7 +506,8 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                        <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
                                             onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
-                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Enviar" OnClick="btn_EnviarInvitacion_Click" />
+                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />
+                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
                                         </center>
                                         </div>
                                     </div>

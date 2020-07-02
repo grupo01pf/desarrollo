@@ -481,13 +481,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_inv;
         
         /// <summary>
-        /// Control chk_BusquedaJugador.
+        /// Control chk_BuscarJugadores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_BusquedaJugador;
+        protected global::System.Web.UI.WebControls.CheckBox chk_BuscarJugadores;
         
         /// <summary>
         /// Control pnl_Busqueda.
@@ -497,6 +497,33 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_Busqueda;
+        
+        /// <summary>
+        /// Control rdb_PorAmigos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_PorAmigos;
+        
+        /// <summary>
+        /// Control rdb_MasOpciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdb_MasOpciones;
+        
+        /// <summary>
+        /// Control pnl_Opciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_Opciones;
         
         /// <summary>
         /// Control lbl_PorJugador.
@@ -605,6 +632,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_EnviarInvitacion;
+        
+        /// <summary>
+        /// Control btn_Solicitud.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Solicitud;
         
         /// <summary>
         /// Control UpdatePanel1.

@@ -225,15 +225,6 @@ namespace CapaPresentacion
         }
 
 
-        protected void btn_Ingresar_Click(object sender, EventArgs e)
-        {
-            //btn_UnirseEquipoA.Enabled = true;
-            //btn_UnirseEquipoA.Visible = true;
-            //btn_UnirseEquipoB.Enabled = true;
-            //btn_UnirseEquipoB.Visible = true;
-        }
-
-
         protected void UnirseEquipoA_Click(object sender, EventArgs e)
         {
             if (validarExistenciaEnEquipoB())
@@ -380,7 +371,6 @@ namespace CapaPresentacion
 
         private void cargarChat()
         {
-
             // gdv_Pantalla.DataSource = MensajeQueryDao.MostrarMensajes(int.Parse(Session["idEncuentro"].ToString()), int.Parse(Session["ID"].ToString()) );
             gdv_Pantalla.DataSource = MensajeQueryDao.MostrarMensajes(int.Parse(Session["idEncuentro"].ToString()));
             gdv_Pantalla.DataKeyNames = new string[] { "idMensaje" };
@@ -442,27 +432,7 @@ namespace CapaPresentacion
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btn_CerrarEncuentro_Click(object sender, EventArgs e)
-        {
-            //btn_UnirseEquipoA.Enabled = false;
-            //btn_UnirseEquipoB.Enabled = false;
-            //btn_CerrarEncuentro.Visible = false;
-            //btn_AbrirEncuentro.Visible = true;
-
-          //  Session["Unirse"] = false;
-        }
-
-        protected void btn_AbrirEncuentro_Click(object sender, EventArgs e)
-        {
-            //btn_AbrirEncuentro.Visible = false;
-            //btn_CerrarEncuentro.Visible = true;
-            //validacionesDeUsuario();
-         //   Session["Unirse"] = true;
-        }
-
-       
+        }    
 
         private void cargarModalComplejo(int idComplejo) {
 
@@ -660,21 +630,7 @@ namespace CapaPresentacion
         {
            
         }
-
-        protected void chk_BusquedaJugador_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk_BusquedaJugador.Checked)
-            {
-                limpiarCamposBusqueda();
-                pnl_Busqueda.Visible = true;
-                btn_Buscar.Visible = true;
-            }
-            else {                
-                pnl_Busqueda.Visible = false;
-                limpiarCamposBusqueda();
-                btn_Buscar.Visible = false;
-            }
-        }
+        
 
         private void limpiarCamposBusqueda() {
 
@@ -687,6 +643,68 @@ namespace CapaPresentacion
 
             cmb_Zona.Enabled = false;
             cmb_Barrio.Enabled = false;
+        }
+
+        protected void chk_BuscarJugadores_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_BuscarJugadores.Checked)
+            {
+                limpiarCamposBusqueda();
+                pnl_Busqueda.Visible = true;
+                pnl_Opciones.Visible = false;
+                btn_Buscar.Visible = false;
+            }
+            else
+            {
+                limpiarCamposBusqueda();
+                pnl_Busqueda.Visible = false;
+                pnl_Opciones.Visible = false;
+                btn_Buscar.Visible = false;
+            }
+        }
+
+        protected void rdb_PorAmigos_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (rdb_PorAmigos.Checked)
+            {
+                limpiarCamposBusqueda();
+                cargarListaInvitar();
+                pnl_Opciones.Visible = false;
+                btn_Buscar.Visible = true;
+                btn_Solicitud.Visible = false;
+            }
+            else
+            {
+                pnl_Opciones.Visible = true;
+                limpiarCamposBusqueda();
+                btn_Buscar.Visible = true;
+                btn_Solicitud.Visible = true;
+            }
+        }
+
+        protected void rdb_MasOpciones_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdb_MasOpciones.Checked)
+            {
+                pnl_Opciones.Visible = true;
+                limpiarCamposBusqueda();
+                btn_Buscar.Visible = true;
+                btn_Solicitud.Visible = true;
+            }
+            else {
+                limpiarCamposBusqueda();
+                cargarListaInvitar();
+                pnl_Opciones.Visible = false;
+                btn_Buscar.Visible = true;
+                btn_Solicitud.Visible = false;
+            }
+        }
+
+        protected void btn_Solicitud_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
