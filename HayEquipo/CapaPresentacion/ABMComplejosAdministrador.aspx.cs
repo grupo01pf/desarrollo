@@ -8,7 +8,7 @@ using CapaEntidades;
 using CapaDao;
 using System.Drawing;
 using System.Net;
-//MEJORAR GRILLA ESTETICAMENTE 
+
 namespace CapaPresentacion
 {
     public partial class ABMComplejosAdministrador : System.Web.UI.Page
