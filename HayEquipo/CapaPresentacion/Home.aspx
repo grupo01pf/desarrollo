@@ -161,10 +161,20 @@
             
             <asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" 
             CssClass="linkButton"  >
-                <span class="glyphicon glyphicon-bell">Notificaciones</span>
+                <span class="glyphicon glyphicon-bell"></span>
             </asp:LinkButton>
             <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
       <%--  </a> --%>
+         </div>
+         <div class="well notification">            
+            <asp:LinkButton ID="btn_Solicitudes" runat="server" Text="Solicitudes" OnClick="btn_Notificacion_Click" 
+            CssClass="linkButton"  >
+               <span class="glyphicon glyphicon-user"></span>
+               <span class="glyphicon glyphicon-user"></span>
+               <span class="glyphicon glyphicon-user"></span>
+            </asp:LinkButton>
+            <span class="badge"><asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span>
+             
          </div>
 
       <div class="well">

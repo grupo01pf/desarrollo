@@ -11,13 +11,14 @@ namespace CapaPresentacion
 {
     public partial class EncuentroPrivado : System.Web.UI.Page
     {
-        private bool flag ;
+        //private bool flag;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
 
                 cargarEquipoA();
                 cargarEquipoB();
@@ -32,7 +33,8 @@ namespace CapaPresentacion
                     pnl_MostrarContenido.Visible = true;
                     pnl_Password.Visible = false;
                 }
-                else {
+                else
+                {
                     pnl_MostrarContenido.Visible = false;
                     pnl_Password.Visible = true;
                 }
@@ -43,7 +45,7 @@ namespace CapaPresentacion
             txt_Longitud.Enabled = false;
         }
 
-    
+
 
         private void cargarEquipoA()
         {
@@ -99,14 +101,15 @@ namespace CapaPresentacion
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
-           // bloquearBotones();
+            // bloquearBotones();
 
             validacionesDeUsuario();
 
 
         }
 
-        private void cargarMapa(int idComplejoDeportivo){
+        private void cargarMapa(int idComplejoDeportivo)
+        {
 
             ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
 
@@ -115,13 +118,14 @@ namespace CapaPresentacion
             txt_Latitud.Text = mapa.latitud;
             txt_Longitud.Text = mapa.longitud;
         }
- 
+
         private void validacionesDeUsuario()
         {
             if (validarOrganizador())
             {
                 // organizador
-                if (validarExistenciaEnEquipoA()) {
+                if (validarExistenciaEnEquipoA())
+                {
                     btn_UnirseEquipoA.Enabled = false;
                     btn_UnirseEquipoB.Enabled = true;
                     btn_Salir.Enabled = false;
@@ -129,7 +133,8 @@ namespace CapaPresentacion
                     ////btn_CerrarEncuentro.Visible = true;
                     ////btn_AbrirEncuentro.Visible = false;
                 }
-                else if(validarExistenciaEnEquipoB()){
+                else if (validarExistenciaEnEquipoB())
+                {
 
                     btn_UnirseEquipoA.Enabled = true;
                     btn_UnirseEquipoB.Enabled = false;
@@ -185,11 +190,12 @@ namespace CapaPresentacion
 
                 btn_UnirseEquipoA.Visible = false;
             }
-            else {
+            else
+            {
                 btn_UnirseEquipoA.Visible = true;
             }
 
-                return equipoA;
+            return equipoA;
         }
 
         private int calcularCapacidadEquipoB()
@@ -216,7 +222,8 @@ namespace CapaPresentacion
 
             total = equipoA + equipoB;
 
-            if (total == int.Parse(Session["CapacidadMaxima"].ToString())) {
+            if (total == int.Parse(Session["CapacidadMaxima"].ToString()))
+            {
                 int estado = 8; // (COMPLETO)
                 EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
@@ -303,7 +310,7 @@ namespace CapaPresentacion
             return flag;
 
         }
-        
+
         protected void btn_Salir_Click(object sender, EventArgs e)
         {
             EncuentroDeportivoDao.SalirDelEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
@@ -336,18 +343,18 @@ namespace CapaPresentacion
             foreach (Usuario u in lista)
             {
                 Notificacion notificacion = null;
-                    notificacion = new Notificacion();
-                    notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-                    // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
-                    notificacion.idReceptor = u.id;
-                    notificacion.nombreReceptor = Session["Usuario"].ToString();
-                    notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                    notificacion.texto = "El encuentro deportivo ha sido Cancelado";
-                    notificacion.idEstado = 10;
+                notificacion = new Notificacion();
+                notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
+                notificacion.idReceptor = u.id;
+                notificacion.nombreReceptor = Session["Usuario"].ToString();
+                notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                notificacion.texto = "El encuentro deportivo ha sido Cancelado";
+                notificacion.idEstado = 10;
 
-                    NotificacionDao.insertarNotificacion(notificacion);
+                NotificacionDao.insertarNotificacion(notificacion);
 
-                }
+            }
 
             Response.Redirect("Home.aspx");
 
@@ -387,18 +394,28 @@ namespace CapaPresentacion
                 cargarEquipoB();
             }
         }
-        
+
         private void cargarListaInvitar()
         {
-            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+            
+            //gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            gdv_Invitar.DataSource = lista;
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
         }
 
-        protected void btn_EnviarInvitacion_Click(object sender, EventArgs e) {
+        protected void btn_EnviarInvitacion_Click(object sender, EventArgs e)
+        {
 
-            List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
-            int[] idUsuarios = new int[lista.Count];
+            // List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString())); //(v. Original)
+
+            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+            
+            int[] idUsuarios = new int[listaUsuarios.Count];
+            //int[] idUsuarios = new int[lista.Count]; //(v. Original)
             int i = 0;
             foreach (Usuario u in lista)
             {
@@ -412,11 +429,11 @@ namespace CapaPresentacion
                 Notificacion notificacion = null;
                 //   bool isChecked = ((CheckBox)fila.FindControl("chk_Invitar")).Checked;
                 if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
-                 //   if (isChecked)
-                    {
+                //   if (isChecked)
+                {
                     notificacion = new Notificacion();
                     notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-                   // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
+                    // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
@@ -427,14 +444,32 @@ namespace CapaPresentacion
                 i++;
             }
 
+            limpiarListaInvitar();
+
+        }
+
+        private void limpiarListaInvitar() {
+            foreach (GridViewRow fila in gdv_Invitar.Rows)
+            {
+                if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
+                {
+                    (fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked = false;
+                }
+            }
+        }
+
+        protected void btn_Solicitud_Click(object sender, EventArgs e)
+        {
+            // TODO
         }
 
         protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
         {
+            // (Revisar) creo que se puede borrar 
+        }
 
-        }    
-
-        private void cargarModalComplejo(int idComplejo) {
+        private void cargarModalComplejo(int idComplejo)
+        {
 
             ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
 
@@ -528,12 +563,13 @@ namespace CapaPresentacion
             string pass = txt_Password.Text;
             string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
             // buscar idEncuentro e idPass
-            if (string.Equals(pass,clave))
+            if (string.Equals(pass, clave))
             {
                 pnl_MostrarContenido.Visible = true;
                 pnl_Password.Visible = false;
             }
-            else {
+            else
+            {
                 pnl_MostrarContenido.Visible = false;
                 pnl_Password.Visible = true;
             }
@@ -542,8 +578,6 @@ namespace CapaPresentacion
 
         protected void btn_Buscar_Click(object sender, EventArgs e)
         {
-
-
             gdv_Invitar.Visible = true;
         }
 
@@ -576,6 +610,44 @@ namespace CapaPresentacion
             cmb_Zona.DataValueField = "id";
             cmb_Zona.DataTextField = "nombre";
             cmb_Zona.DataBind();
+        }
+
+        private void cargarPorJugadores() {
+
+            
+            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+
+            cmb_Jugadores.Items.Clear();
+            cmb_Jugadores.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
+            //cmb_Jugadores.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            cmb_Jugadores.DataSource = lista;
+            cmb_Jugadores.DataValueField = "id";
+            cmb_Jugadores.DataTextField = "nombre";
+            cmb_Jugadores.DataBind();
+        }
+
+        protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdb_PorDeporte.Checked)
+            {
+                cmb_Deporte.Enabled = true;
+
+            }
+            else {
+                cmb_Deporte.Enabled = false;
+                cmb_Deporte.SelectedIndex = 0;
+
+                rdb_PorBarrio.Checked = false;
+                cmb_Barrio.Enabled = false;
+                cmb_Barrio.SelectedIndex = 0;
+
+                rdb_PorZona.Checked = false;
+                cmb_Zona.Enabled = false;
+                cmb_Zona.SelectedIndex = 0;
+                
+            }
         }
 
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
@@ -616,95 +688,144 @@ namespace CapaPresentacion
                 cmb_Barrio.SelectedIndex = 0;
             }
         }
+        protected void cmb_Jugadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btn_CancelarBusqueda.Visible = true;
+            btn_InvitarJugador.Visible = true;
+            btn_SolicitudJugador.Visible = true;
+
+            btn_CancelarBusqueda.Enabled = true;
+            btn_InvitarJugador.Enabled = true;
+            btn_SolicitudJugador.Enabled = true;
+        }
+       
+
+        protected void btn_CancelarBusqueda_Click(object sender, EventArgs e)
+        {
+            cmb_Jugadores.SelectedIndex = 0;
+            btn_CancelarBusqueda.Visible = false;
+            btn_InvitarJugador.Visible = false;
+            btn_SolicitudJugador.Visible = false;
+
+            btn_CancelarBusqueda.Enabled = true;
+            btn_InvitarJugador.Enabled = false;
+            btn_SolicitudJugador.Enabled = false;
+        }
+
+        protected void btn_InvitarJugador_Click(object sender, EventArgs e)
+        {
+            int jugador = 0;
+            int.TryParse(cmb_Jugadores.SelectedItem.Value, out jugador);
+
+            Notificacion notificacion = new Notificacion();
+            notificacion.idEmisor = int.Parse(Session["ID"].ToString());            
+            notificacion.idReceptor = jugador;
+            notificacion.nombreReceptor = cmb_Jugadores.SelectedValue;
+            notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
+            notificacion.idEstado = 10; //(No Check)
+            NotificacionDao.insertarNotificacion(notificacion);
+        }
+
+        protected void btn_SolicitudJugador_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
-        
 
-        private void limpiarCamposBusqueda() {
 
-            txt_NombreJugador.Text = string.Empty;
+        private void limpiarCamposBusqueda()
+        {
+
+            //txt_NombreJugador.Text = string.Empty;
+            cmb_Jugadores.SelectedIndex = 0;
+            cmb_Jugadores.Enabled = false;            
             cmb_Deporte.SelectedIndex = 0;
+            cmb_Deporte.Enabled = false;
             cmb_Zona.SelectedIndex = 0;
+            cmb_Zona.Enabled = false;
             cmb_Barrio.SelectedIndex = 0;
+            cmb_Barrio.Enabled = false;
+
             rdb_PorZona.Checked = false;
             rdb_PorBarrio.Checked = false;
 
-            cmb_Zona.Enabled = false;
-            cmb_Barrio.Enabled = false;
+            cmb_Jugadores.SelectedIndex = 0;
+            btn_CancelarBusqueda.Visible = false;
+            btn_InvitarJugador.Visible = false;
+            btn_SolicitudJugador.Visible = false;
+
         }
 
         protected void chk_BuscarJugadores_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (chk_BuscarJugadores.Checked)
-            {
-                limpiarCamposBusqueda();
-                pnl_Busqueda.Visible = true;
-                pnl_Opciones.Visible = false;
-                btn_Buscar.Visible = false;
-            }
-            else
-            {
-                limpiarCamposBusqueda();
-                pnl_Busqueda.Visible = false;
-                pnl_Opciones.Visible = false;
-                btn_Buscar.Visible = false;
-            }
+            //if (chk_BuscarJugadores.Checked)
+            //{
+            //    limpiarCamposBusqueda();
+            //    pnl_Busqueda.Visible = true;
+            //    pnl_Opciones.Visible = false;
+            //    btn_Buscar.Visible = false;
+            //}
+            //else
+            //{
+            //    limpiarCamposBusqueda();
+            //    pnl_Busqueda.Visible = false;
+            //    pnl_Opciones.Visible = false;
+            //    btn_Buscar.Visible = false;
+            //}
         }
 
         protected void rdb_PorAmigos_CheckedChanged(object sender, EventArgs e)
         {
-            
-            if (rdb_PorAmigos.Checked)
-            {
                 limpiarCamposBusqueda();
                 cargarListaInvitar();
                 pnl_Opciones.Visible = false;
+                pnl_PorJugador.Visible = false;
                 btn_Buscar.Visible = true;
-                btn_Solicitud.Visible = false;
-            }
-            else
-            {
-                pnl_Opciones.Visible = true;
-                limpiarCamposBusqueda();
-                btn_Buscar.Visible = true;
-                btn_Solicitud.Visible = true;
-            }
+                btn_Solicitud.Visible = false;            
         }
+        protected void rdb_PorNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            pnl_PorJugador.Visible = true;
+            pnl_Opciones.Visible = false;
 
+            cargarPorJugadores();
+            cmb_Jugadores.Enabled = true;
+
+            btn_Buscar.Visible = false;
+            btn_Solicitud.Visible = false;
+
+            btn_CancelarBusqueda.Enabled = false;
+            btn_InvitarJugador.Enabled = false;
+            btn_SolicitudJugador.Enabled = false;
+        }
         protected void rdb_MasOpciones_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdb_MasOpciones.Checked)
-            {
+        {          
                 pnl_Opciones.Visible = true;
+                pnl_PorJugador.Visible = false;
                 limpiarCamposBusqueda();
                 btn_Buscar.Visible = true;
                 btn_Solicitud.Visible = true;
-            }
-            else {
-                limpiarCamposBusqueda();
-                cargarListaInvitar();
-                pnl_Opciones.Visible = false;
-                btn_Buscar.Visible = true;
-                btn_Solicitud.Visible = false;
-            }
+          
         }
 
-        protected void btn_Solicitud_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

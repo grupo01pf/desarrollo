@@ -41,9 +41,14 @@
         #myMap {
             /*height: 300px;
             width: 400px;*/
-            width: 100%;
+            height: 50%;
+            width: 65%;
             padding-top: 56.25%;
         }
+        #div_latlng {
+            width: 65%;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -239,10 +244,6 @@
 
 
                                 <%--FIN MODAL COMPLEJO  --%>
-
-
-
-
                             </div>
 
 
@@ -366,157 +367,17 @@
                             <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
 
 
-                            <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                           <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">
                                 Invitar
-                            </button>
-
-
-                            
-
-                                            <%-- BUSQUEDA --%>
-
-                             <div class="form-group">
-                                    <asp:CheckBox ID="chk_BuscarJugadores" CssClass="checkbox" runat="server"
-                                        Text="Buscar Jugadores" OnCheckedChanged="chk_BuscarJugadores_CheckedChanged" AutoPostBack="true" />
-                                   
-                                </div>
-                            <asp:Panel ID="pnl_Busqueda" runat="server" Visible="false">
-                                <div class="well">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdb_PorAmigos" Text="Por Amigos" runat="server" OnCheckedChanged="rdb_PorAmigos_CheckedChanged" 
-                                            AutoPostBack="true" GroupName="tipoLocalizacion" value="0" Checked="false" />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdb_MasOpciones" Text="Más Opciones" runat="server" OnCheckedChanged="rdb_MasOpciones_CheckedChanged" 
-                                            AutoPostBack="true" GroupName="tipoLocalizacion" value="1" Checked="false"/>
-                                    </div>
-                                </div>
-                            </asp:Panel>
-
-                            <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
-                                <div class="well">                                     
-
-                                    <div class="form-group">
-                                        <asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>
-                                        <asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <asp:Label ID="lbl_Sport" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
-                                        <div class="dropdown">
-                                            <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
-                                                OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
-                                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
-                                        <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
-                                            OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
-                                            GroupName="tipoLocalizacion" value="0" />
-                                        <div class="form-group">
-                                            <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
-                                            <div class="dropdown">
-                                                <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
-                                                    OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
-                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                                </asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
-                                        <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
-                                            OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
-                                            GroupName="tipoLocalizacion" value="1" />
-                                        <div class="form-group">
-                                            <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
-                                            <div class="dropdown">
-                                                <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
-                                                    OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
-                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                                </asp:DropDownList>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    
-
-
-                                </div>
-                            </asp:Panel>
-
-                            <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#exampleModalScrollable" Visible="false">
-                                        Buscar
-                                    </button>
-
-
-                            <%--MODAL--%>
-
-                            <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-                                aria-hidden="false">
-                                <%--data-backdrop="static" data-keyboard="false">--%>
-                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            </button>--%>
 
 
 
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                <strong>
-                                                    <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
-                                        </div>
-                                        <div class="modal-body">                                           
 
 
-                                            <%-- RESULTADOS --%>
-                                            <center>
-                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    visible ="true" EmptyDataText="...">
-                                                    <Columns>
-                                                        <asp:TemplateField>
-                                                            <HeaderTemplate>
-                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
-                                                           <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
-                                                                 </HeaderTemplate>                                                        
-                                                            <ItemTemplate>
-                                                                <center>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
-                                                                    AutoPostBack="false"/>
-                                                                 </center>
-                                                                    </ItemTemplate>                                                              
-                                                             
-                                                        </asp:TemplateField> 
-                                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
-                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
-                                                                                                                
-                                                    </Columns>
-                                                </asp:GridView>   
-                                                </center>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
-                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
-                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />
-                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
-                                        </center>
-                                        </div>
-                                    </div>
 
-
-                                </div>
-                            </div>
-
-                            <%--FIN MODAL--%>
+                            <%-- aca estaba la busqueda --%>
                         </div>
                     </div>
                 </div>
@@ -580,23 +441,211 @@
 
 
 
-            <%-- ****MAPA**** --%>
-            <div class="row">
-                <div class="container">
-                    <div class="form-group">
-                        <div id="myMap"></div>
-                    </div>
 
-                    <div class="form-inline">
-                        <div id="LatLng">
-                            <label for="lbl_Latitud">Latitud</label>
-                            <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+            <div class="row">               
 
-                            <label for="lbl_Longitud">Longitud</label>
-                            <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                 <%-- BUSQUEDA --%>
+
+                <div class="col-sm-4">
+                    <div class="well">                       
+
+                        <div class="form-group">
+                            <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
+                           <%-- <asp:CheckBox ID="chk_BuscarJugadores" CssClass="checkbox" runat="server"
+                                Text="Buscar Jugadores" OnCheckedChanged="chk_BuscarJugadores_CheckedChanged" AutoPostBack="true" />--%>
+
                         </div>
+
+                        <asp:Panel ID="pnl_Busqueda" runat="server" Visible="true">
+                            <div class="well">
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_PorAmigos" Text="Por Amigos" runat="server" OnCheckedChanged="rdb_PorAmigos_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="0" Checked="false" />
+                                </div>
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_PorNombre" Text="Por Nombre" runat="server" OnCheckedChanged="rdb_PorNombre_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="1" Checked="false" />
+                                </div>
+                                <asp:Panel ID="pnl_PorJugador" runat="server" Visible="false">
+                                    <div class="well">
+                                        <div class="form-group">
+                                            <asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>
+                                            <%--<asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>--%>
+                                            <asp:DropDownList ID="cmb_Jugadores" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                OnSelectedIndexChanged="cmb_Jugadores_SelectedIndexChanged" AutoPostBack="true">
+                                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" />
+                                            <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" />
+                                            <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" />
+
+                                        </div>
+
+                                    </div>
+                                </asp:Panel>
+
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_MasOpciones" Text="Más Opciones" runat="server" OnCheckedChanged="rdb_MasOpciones_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="2" Checked="false" />
+                                </div>
+                                <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
+                                    <div class="well">
+
+
+
+                                        <div class="form-group">
+                                            <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
+                                                OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
+                                            <div class="dropdown">
+                                                <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                    OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
+                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                                            <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                                OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                                GroupName="tipoLocalizacion" value="0" />
+                                            <div class="form-group">
+                                                <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                                <div class="dropdown">
+                                                    <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                        OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                                            <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                                OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                                GroupName="tipoLocalizacion" value="1" />
+                                            <div class="form-group">
+                                                <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                                <div class="dropdown">
+                                                    <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                        OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+
+
+                                <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#exampleModalScrollable" visible="false">
+                                    Buscar
+                                </button>
+
+                            </div>
+
+
+                        </asp:Panel>
+                                         
+
+
+                        <%--MODAL--%>
+
+                        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                            aria-hidden="false">
+                            <%--data-backdrop="static" data-keyboard="false">--%>
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                            <strong>
+                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                        <%-- RESULTADOS --%>
+                                        <center>
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    visible ="true" EmptyDataText="...">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <HeaderTemplate>
+                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
+                                                           <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
+                                                                 </HeaderTemplate>                                                        
+                                                            <ItemTemplate>
+                                                                <center>
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
+                                                                    AutoPostBack="false"/>
+                                                                 </center>
+                                                                    </ItemTemplate>                                                              
+                                                             
+                                                        </asp:TemplateField> 
+                                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
+                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
+                                                                                                                
+                                                    </Columns>
+                                                </asp:GridView>   
+                                                </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
+                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
+                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />
+                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <%--FIN MODAL--%>
                     </div>
                 </div>
+
+
+                  <%-- ****MAPA**** --%>
+                <div class="col-sm-6">
+                    <div class="container">
+                        <div class="form-group">
+                            <div id="myMap"></div>                           
+
+                        </div>
+                        <div class="form-inline" id="div_latlng">
+                            <div id="LatLng">
+                                <label for="lbl_Latitud">Latitud</label>
+                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+
+                                <label for="lbl_Longitud">Longitud</label>
+                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+               
+
+                <div class="col-me-2"></div>
+
+
+            </div>
+
+
             </div>
     </asp:Panel>
 
