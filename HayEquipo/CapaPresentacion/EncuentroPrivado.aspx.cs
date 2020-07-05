@@ -411,7 +411,25 @@ namespace CapaPresentacion
 
             // List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString())); //(v. Original)
 
-            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            List<Usuario> listaUsuarios = null;
+            if (rdb_PorAmigos.Checked) {
+                listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
+            }
+            if (rdb_MasOpciones.Checked) {
+
+                int idUsuario = int.Parse(Session["ID"].ToString();
+                int sport = 0;
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+                int zona = 0;
+                int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+                int barrio = 0;
+                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(idUsuario,sport,zona,barrio);
+            }
+
+            // List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            
             var lista = listaUsuarios.OrderBy(u => u.nombre);
             
             int[] idUsuarios = new int[listaUsuarios.Count];
@@ -792,10 +810,21 @@ namespace CapaPresentacion
             //}
         }
 
+        private void cargarListaAmigos() {
+
+            List<Usuario> listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+
+            //gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            gdv_Invitar.DataSource = lista;
+            gdv_Invitar.DataKeyNames = new string[] { "id" };
+            gdv_Invitar.DataBind();
+        }
+
         protected void rdb_PorAmigos_CheckedChanged(object sender, EventArgs e)
         {
-                limpiarCamposBusqueda();
-                cargarListaInvitar();
+                limpiarCamposBusqueda();           
+                cargarListaAmigos();
                 pnl_Opciones.Visible = false;
                 pnl_PorJugador.Visible = false;
                 btn_Buscar.Visible = true;

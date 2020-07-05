@@ -374,10 +374,6 @@
 
 
 
-
-
-
-                            <%-- aca estaba la busqueda --%>
                         </div>
                     </div>
                 </div>
