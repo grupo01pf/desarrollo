@@ -203,6 +203,9 @@
                         <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
                         <li><a data-toggle="tab" href="#menu6"><span class="glyphicon glyphicon-bell"></span>Notificaciones<span class="badge">
                             <asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
+                        
+                        <li><a data-toggle="tab" href="#menu7"><span class="glyphicon glyphicon-user"></span>Contactos<span class="badge">
+                            <asp:Label ID="lbl_Contactos" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
                     <div class="tab-content">
@@ -275,10 +278,15 @@
 
                         </div>
                          <%-- NOTIFICACIONES --%>
+
+
+
+
+
                         <div id="menu6" class="tab-pane fade">
                             <div class="table-responsive">
 
-                                <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                              <%--  <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
                                     
                                     <Columns>
@@ -290,11 +298,69 @@
                                         <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
 
                                     </Columns>
-                                </asp:GridView>
+                                </asp:GridView>--%>
+
+
+
+                                <center>
+                                <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                      HeaderStyle-CssClass="header" RowStyle-CssClass="rows" visible ="true" EmptyDataText="..."
+                                    OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
+                                      <Columns>
+                                          <asp:TemplateField>
+                                               <HeaderTemplate>
+                                                  <%-- <asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" />--%>
+                                                     <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
+                                                 </HeaderTemplate>                                                        
+                                                     <ItemTemplate>
+                                                          <center>
+                                                           <asp:CheckBox ID="chk_Invitar" runat="server"  
+                                                                AutoPostBack="false"/>
+                                                           </center>
+                                                     </ItemTemplate>                                                              
+                                                             
+                                          </asp:TemplateField> 
+                                            <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" 
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
+                                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                            <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
+                                            <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                            <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />                                                                   
+                                     </Columns>
+                               </asp:GridView>  
+                                    
+                                    <asp:Button ID="btn_EliminarNotificaciones" Text="Eliminar" runat="server" /> 
+                              </center>
+                                
+
+
 
                             </div>
                         </div>
                         <%-- FIN NOTIFICACIONES --%>
+
+                        <%--CONTACTOS--%>
+
+                        <div id="menu7" class="tab-pane fade">
+                            <div class="table-responsive">
+
+                                <asp:GridView ID="gdv_Contactos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Contactos_SelectedIndexChanged">
+                                    
+                                    <Columns>
+                                        <%--<asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />--%>
+                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
+                                            
+                                    </Columns>
+                                </asp:GridView>
+
+                            </div>
+                        </div>
+
+                        <%-- FIN CONTACTOS --%>
+
                         <div id="menu2" class="tab-pane fade">
                             <div class="table-responsive">
                                 <br />

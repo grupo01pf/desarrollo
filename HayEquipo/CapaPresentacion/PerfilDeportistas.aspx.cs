@@ -45,6 +45,8 @@ namespace CapaPresentacion
 
             actualizarNotificaciones();
             mostrarNotificaciones();
+
+            cargarListaAmigos();
         }
 
         private void cargarTipoDocumento()
@@ -464,6 +466,21 @@ namespace CapaPresentacion
 
         }
 
+        private void cargarListaAmigos()
+        {
 
+            List<Usuario> listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+
+            //gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            gdv_Contactos.DataSource = lista;
+            gdv_Contactos.DataKeyNames = new string[] { "id" };
+            gdv_Contactos.DataBind();
+        }
+
+        protected void gdv_Contactos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

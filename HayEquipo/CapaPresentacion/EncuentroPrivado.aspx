@@ -49,6 +49,8 @@
             width: 65%;
         }
 
+
+       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -408,6 +410,8 @@
 
                                 </div>
 
+                                
+
                                 <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                             </ContentTemplate>
@@ -489,8 +493,6 @@
                                 <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                     <div class="well">
 
-
-
                                         <div class="form-group">
                                             <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
                                                 OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
@@ -501,35 +503,40 @@
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
+                                        <asp:Panel ID="pnl_Lugar" runat="server" Visible="false">
 
-                                        <div class="form-group">
-                                            <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
-                                            <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
-                                                OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
-                                                GroupName="tipoLocalizacion" value="0" />
                                             <div class="form-group">
-                                                <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
-                                                <div class="dropdown">
-                                                    <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
-                                                        OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
-                                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                                    </asp:DropDownList>
+                                                <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                                                <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                                    OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                                    GroupName="tipoLocalizacion" value="0" />
+                                                <div class="form-group">
+                                                    <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                                    <div class="dropdown">
+                                                        <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                            OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                                                <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                                    OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                                    GroupName="tipoLocalizacion" value="1" />
+                                                <div class="form-group">
+                                                    <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                                    <div class="dropdown">
+                                                        <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                            OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
-                                            <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
-                                                OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
-                                                GroupName="tipoLocalizacion" value="1" />
-                                            <div class="form-group">
-                                                <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
-                                                <div class="dropdown">
-                                                    <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
-                                                        OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
-                                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                                        </asp:Panel>
+
                                     </div>
                                 </asp:Panel>
 
@@ -581,7 +588,7 @@
                                                                  </HeaderTemplate>                                                        
                                                             <ItemTemplate>
                                                                 <center>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  
                                                                     AutoPostBack="false"/>
                                                                  </center>
                                                                     </ItemTemplate>                                                              

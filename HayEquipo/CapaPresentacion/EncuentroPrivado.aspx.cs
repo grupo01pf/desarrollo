@@ -417,7 +417,7 @@ namespace CapaPresentacion
             }
             if (rdb_MasOpciones.Checked) {
 
-                int idUsuario = int.Parse(Session["ID"].ToString();
+                int idUsuario = int.Parse(Session["ID"].ToString());
                 int sport = 0;
                 int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int zona = 0;
@@ -481,10 +481,7 @@ namespace CapaPresentacion
             // TODO
         }
 
-        protected void chk_Invitar_CheckedChanged(object sender, EventArgs e)
-        {
-            // (Revisar) creo que se puede borrar 
-        }
+       
 
         private void cargarModalComplejo(int idComplejo)
         {
@@ -651,6 +648,7 @@ namespace CapaPresentacion
             if (rdb_PorDeporte.Checked)
             {
                 cmb_Deporte.Enabled = true;
+                pnl_Lugar.Visible = true;
 
             }
             else {
@@ -664,7 +662,9 @@ namespace CapaPresentacion
                 rdb_PorZona.Checked = false;
                 cmb_Zona.Enabled = false;
                 cmb_Zona.SelectedIndex = 0;
-                
+
+                pnl_Lugar.Visible = false;
+
             }
         }
 

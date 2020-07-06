@@ -94,6 +94,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Notificacion;
         
         /// <summary>
+        /// Control lbl_Contactos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Contactos;
+        
+        /// <summary>
         /// Control lbl_Nombres.
         /// </summary>
         /// <remarks>
@@ -272,6 +281,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdv_Notificaciones;
+        
+        /// <summary>
+        /// Control btn_EliminarNotificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_EliminarNotificaciones;
+        
+        /// <summary>
+        /// Control gdv_Contactos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gdv_Contactos;
         
         /// <summary>
         /// Control RadioButtonList1.
