@@ -455,7 +455,7 @@ namespace CapaPresentacion
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                    notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
+                    notificacion.texto = lbl_Deporte.Text ;
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
                 }

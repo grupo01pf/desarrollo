@@ -435,36 +435,19 @@ namespace CapaPresentacion
 
         }
 
-        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        protected void gdv_Notificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
 
-            List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            int idNotif = int.Parse(gdv_Notificaciones.DataKeys[e.RowIndex].Value.ToString());
 
-            int[] idNotificaciones = new int[lista.Count];
-            int i = 0;
-            foreach (NotificacionQueryEntidad n in lista)
-            {
-                idNotificaciones[i] = n.idNotificacion;
-                i++;
-            }
+            NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
 
-            i = 0;
-
-
-            foreach (GridViewRow fila in gdv_Notificaciones.Rows)
-            {
-
-                if ((fila.Cells[0].FindControl("chk_Eliminar") as CheckBox).Checked)
-                {
-
-                    NotificacionDao.actualizarEstadoNotificacion(11, idNotificaciones[i]);
-
-                }
-                i++;
-            }
-
+            mostrarNotificaciones();
         }
+
+        
+        
 
         private void cargarListaAmigos()
         {
@@ -482,5 +465,7 @@ namespace CapaPresentacion
         {
 
         }
+
+        
     }
 }
