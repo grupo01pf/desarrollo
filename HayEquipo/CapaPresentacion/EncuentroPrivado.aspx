@@ -469,7 +469,7 @@
                                 <asp:Panel ID="pnl_PorJugador" runat="server" Visible="false">
                                     <div class="well">
                                         <div class="form-group">
-                                            <asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>
+                                            <%--<asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>--%>
                                             <%--<asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>--%>
                                             <asp:DropDownList ID="cmb_Jugadores" runat="server" CssClass="form-control" AppendDataBoundItems
                                                 OnSelectedIndexChanged="cmb_Jugadores_SelectedIndexChanged" AutoPostBack="true">

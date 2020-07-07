@@ -455,7 +455,8 @@ namespace CapaPresentacion
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                    notificacion.texto = lbl_Deporte.Text ;
+                    notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                       txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
                 }
@@ -629,8 +630,9 @@ namespace CapaPresentacion
 
         private void cargarPorJugadores() {
 
-            
-            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+
+            //List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            List<Usuario> listaUsuarios = crearListaJugadores();
             var lista = listaUsuarios.OrderBy(u => u.nombre);
 
             cmb_Jugadores.Items.Clear();
@@ -641,6 +643,24 @@ namespace CapaPresentacion
             cmb_Jugadores.DataValueField = "id";
             cmb_Jugadores.DataTextField = "nombre";
             cmb_Jugadores.DataBind();
+        }
+
+        private List<Usuario> crearListaJugadores() {
+
+            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString())); ;
+            List<Usuario> listaAmigos = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString())); ;
+            List<Usuario> listaJugadores = listaUsuarios;
+
+            for(int i = 0; i < listaUsuarios.Count; i++)
+            {
+                for (int j = 0; j < listaAmigos.Count; j++)
+                {
+                    if (listaUsuarios[i].id == listaAmigos[j].id ) {
+                        listaJugadores.Remove(listaUsuarios[i]);                      
+                    }                   
+                }                              
+            }
+            return listaJugadores;
         }
 
         protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
@@ -740,7 +760,8 @@ namespace CapaPresentacion
             notificacion.idReceptor = jugador;
             notificacion.nombreReceptor = cmb_Jugadores.SelectedValue;
             notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            notificacion.texto = "Has sido invitado a participar de un encuentro deportivo";
+            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                       txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
             notificacion.idEstado = 10; //(No Check)
             NotificacionDao.insertarNotificacion(notificacion);
         }
