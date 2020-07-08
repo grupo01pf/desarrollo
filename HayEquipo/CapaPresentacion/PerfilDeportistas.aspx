@@ -5,6 +5,9 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    
+
     <style>
         .mydatagrid {
             width: 80%;
@@ -155,6 +158,9 @@
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
+        
+       
+
     </script>
 
 
@@ -244,6 +250,11 @@
                                 <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
                             </div>
                             <div class="form-group">
+                                <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
+                                 <asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
                                 <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
                                 <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />
                                 <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click" Visible="false" />
@@ -280,9 +291,7 @@
                          <%-- NOTIFICACIONES --%>
 
 
-
-
-
+                        
                         <div id="menu6" class="tab-pane fade">
                             <div class="table-responsive">
 
@@ -336,15 +345,53 @@
                         <%-- FIN NOTIFICACIONES --%>
 
                         <%--CONTACTOS--%>
+                                               
                         
                         <div id="menu7" class="tab-pane fade">
                             <div class="table-responsive">
+
+                                <center>
+                                <asp:GridView ID="gdv_Solicitudes" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                      HeaderStyle-CssClass="header" RowStyle-CssClass="rows" visible ="true" EmptyDataText="Sin Solicitudes"
+                                      OnSelectedIndexChanged="gdv_Solicitudes_SelectedIndexChanged" 
+                                      OnRowDeleting="gdv_Solicitudes_RowDeleting" 
+                                      OnRowCommand="gdv_Solicitudes_RowCommand"
+                                      >
+                                     
+                                      <Columns>                                                        
+                                           <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                               DeleteText='<i class="glyphicon glyphicon-trash"></i>' />                                              
+                                           <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" 
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
+                                          <asp:ButtonField buttontype="button" Text="Aceptar" 
+                                             HeaderText="Aceptar" ShowHeader="True" CommandName="Aceptar" />
+                                                <asp:ButtonField buttontype="button" Text="Cancelar"
+                                              HeaderText="Cancelar" ShowHeader="True" CommandName="Cancelar" />
+                                                  
+                                          
+                                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                            <asp:BoundField DataField="idNotificacion" HeaderText="IdNotif" Visible="false" />
+                                            <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
+                                            <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                            <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />                                                                
+                                     </Columns>
+                               </asp:GridView>  
+                                    
+                                    <asp:Label ID="lbl_Prueba" runat="server" Text="Sin resultados"></asp:Label>
+                                    
+                              </center>
+
+                                 <br />
+
+
                                 <center>
                                 <asp:GridView ID="gdv_Contactos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Contactos_SelectedIndexChanged">
                                     
                                     <Columns>
-                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" 
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
                                         <asp:BoundField DataField="id" HeaderText="" Visible="false" />
                                         <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
                                             

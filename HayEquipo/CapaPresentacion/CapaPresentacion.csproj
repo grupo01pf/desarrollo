@@ -1702,10 +1702,12 @@
     <Content Include="ImagenComplejo1.aspx" />
     <Content Include="ImagenComplejo2.aspx" />
     <Content Include="ImagenComplejo3.aspx" />
+    <Content Include="Imagenes\accept.png" />
     <Content Include="Imagenes\adidas.jpg" />
     <Content Include="Imagenes\avatar.jpg" />
     <Content Include="Imagenes\basket.jpg" />
     <Content Include="Imagenes\boton-ir.png" />
+    <Content Include="Imagenes\cancel.png" />
     <Content Include="Imagenes\cerveza.jpg" />
     <Content Include="Imagenes\complejo_logo_default.png" />
     <Content Include="Imagenes\cesped.jpg" />

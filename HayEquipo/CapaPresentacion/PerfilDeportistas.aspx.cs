@@ -45,8 +45,11 @@ namespace CapaPresentacion
 
             actualizarNotificaciones();
             mostrarNotificaciones();
+            mostrarSolicitudes();
 
             cargarListaAmigos();
+
+            cargarBarrios();
         }
 
         private void cargarTipoDocumento()
@@ -95,6 +98,10 @@ namespace CapaPresentacion
             objDeportista.idUsuario = Convert.ToInt32(Session["id"]) ;
             objDeportista.promedioEstrellas = 0;
             objDeportista.idEstado = 1;
+            int barrio = 0;
+            if (int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio))
+                objDeportista.idBarrio = barrio;
+
             return objDeportista;
         }
 
@@ -115,6 +122,7 @@ namespace CapaPresentacion
             lbl_TipoDocumento.Visible = false;
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
+            cmb_Barrio.SelectedIndex = 0;
             lblmsj.Text = "Datos Guardados Exitosamente";
 
 
@@ -437,8 +445,7 @@ namespace CapaPresentacion
 
         protected void gdv_Notificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
-
+            
             int idNotif = int.Parse(gdv_Notificaciones.DataKeys[e.RowIndex].Value.ToString());
 
             NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
@@ -463,7 +470,98 @@ namespace CapaPresentacion
 
         protected void gdv_Contactos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // ir al perfil del amigo seleccionado
+        }
 
+        protected void gdv_Solicitudes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow fila = gdv_Solicitudes.SelectedRow;
+            //// string idEncuentro = fila.Cells[4].Text;
+            //// int id = int.Parse(fila.Cells[4].Text);
+            //string idEncuentro = Convert.ToString(fila.RowIndex);
+            //int id = fila.RowIndex;
+            //List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            //int[] idEncuentrosDeportivos = new int[lista.Count];
+            //int i = 0;
+            //foreach (NotificacionQueryEntidad n in lista)
+            //{
+            //    idEncuentrosDeportivos[i] = n.idEncuentro;
+            //    i++;
+            //}
+            //idEncuentro = idEncuentrosDeportivos[id].ToString();
+
+            //int idNotif = int.Parse(gdv_Notificaciones.SelectedDataKey.Value.ToString());
+            //NotificacionDao.actualizarEstadoNotificacion(9, idNotif);
+
+            //Session["idEncuentro"] = idEncuentrosDeportivos[id];
+
+            //if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
+            //{
+            //    //  Session["idEncuentro"] = id;
+            //    // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+            //    Response.Redirect("EncuentroPrivado.aspx");
+            //}
+            //if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
+            //{
+            //    //  Session["idEncuentro"] = id;
+            //    // Session["idEncuentro"] = idEncuentrosDeportivos[id];
+            //    Response.Redirect("EncuentroPublico.aspx");
+            //}
+
+        }
+
+        protected void gdv_Solicitudes_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            // ELIMINAR SOLICITUD
+
+            int idNotif = int.Parse(gdv_Solicitudes.DataKeys[e.RowIndex].Value.ToString());
+
+           // NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
+
+            mostrarSolicitudes();
+        }
+        protected void gdv_Solicitudes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Aceptar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                
+                GridViewRow fila = gdv_Solicitudes.Rows[index];
+                string datos = string.Empty;
+                datos = fila.Cells[2].Text;
+                lbl_Prueba.Text = "aceptar " + datos;
+            }
+            if (e.CommandName == "Cancelar")
+            {
+
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow fila = gdv_Solicitudes.Rows[index];
+                string datos = string.Empty;
+                datos = fila.Cells[3].Text;
+
+                lbl_Prueba.Text = "cancelar " + datos;
+            }
+         }
+
+        private void mostrarSolicitudes() {
+
+            gdv_Solicitudes.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            gdv_Solicitudes.DataKeyNames = new string[] { "idNotificacion" };
+            gdv_Solicitudes.DataBind();
+
+        }
+       
+
+        private void cargarBarrios()
+        {
+            cmb_Barrio.Items.Clear();
+            cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
+            cmb_Barrio.DataValueField = "id";
+            cmb_Barrio.DataTextField = "nombre";
+            cmb_Barrio.DataBind();
         }
 
         

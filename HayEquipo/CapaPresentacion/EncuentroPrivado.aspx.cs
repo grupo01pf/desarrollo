@@ -392,6 +392,11 @@ namespace CapaPresentacion
 
                 cargarEquipoA();
                 cargarEquipoB();
+
+                lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+                lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
+                lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
+
             }
         }
 
@@ -455,8 +460,17 @@ namespace CapaPresentacion
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                    notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                       txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
+                    if (int.Parse(Session["idClave"].ToString()) == 0)
+                    {
+                        notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
+                    }
+                    else
+                    {
+                        string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
+                        notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave;
+                    }
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
                 }
@@ -760,8 +774,20 @@ namespace CapaPresentacion
             notificacion.idReceptor = jugador;
             notificacion.nombreReceptor = cmb_Jugadores.SelectedValue;
             notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                       txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
+
+
+            if (int.Parse(Session["idClave"].ToString()) == 0)
+            {
+                notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text ;
+            }
+            else
+            {
+                string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
+                notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave ;
+            }
+           
             notificacion.idEstado = 10; //(No Check)
             NotificacionDao.insertarNotificacion(notificacion);
         }

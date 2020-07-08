@@ -169,8 +169,9 @@
          <div class="well notification">            
             <asp:LinkButton ID="btn_Solicitudes" runat="server" Text="Solicitudes" OnClick="btn_Notificacion_Click" 
             CssClass="linkButton" ToolTip="Solicitudes" >
-               <span class="glyphicon glyphicon-user"></span>
-               <span class="glyphicon glyphicon-user"></span>
+               <i class="fa fa-users" aria-hidden="true"></i>
+               <%--<span class="glyphicon glyphicon-user"></span>
+               <span class="glyphicon glyphicon-user"></span>--%>
                <%--<span class="glyphicon glyphicon-user"></span>--%>
             </asp:LinkButton>
             <span class="badge"><asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span>
