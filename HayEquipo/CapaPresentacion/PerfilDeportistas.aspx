@@ -324,7 +324,7 @@
                                            <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" 
                                                 ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" 
                                               />
-                                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                            
                                             <asp:BoundField DataField="idNotificacion" HeaderText="IdNotif" Visible="false" />
                                             <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
                                             <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
@@ -365,20 +365,21 @@
                                                 ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
                                           <asp:ButtonField buttontype="button" Text="Aceptar" 
                                              HeaderText="Aceptar" ShowHeader="True" CommandName="Aceptar" />
-                                                <asp:ButtonField buttontype="button" Text="Cancelar"
+                                              <%--  <asp:ButtonField buttontype="button" Text="Cancelar"
                                               HeaderText="Cancelar" ShowHeader="True" CommandName="Cancelar" />
-                                                  
-                                          
-                                            <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
+                                                 --%> 
+                                                                                      
                                             <asp:BoundField DataField="idNotificacion" HeaderText="IdNotif" Visible="false" />
                                             <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
                                             <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
                                             <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
-                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />                                                                
+                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+                                          <asp:BoundField DataField="idReceptor" HeaderText="IdReceptor" Visible="false" />
+                                          <asp:BoundField DataField="idEmisor" HeaderText="IdEmisor" Visible="false" />                                                                
                                      </Columns>
                                </asp:GridView>  
                                     
-                                    <asp:Label ID="lbl_Prueba" runat="server" Text="Sin resultados"></asp:Label>
+                                  <%--  <asp:Label ID="lbl_Prueba" runat="server" Text="Sin resultados"></asp:Label>--%>
                                     
                               </center>
 

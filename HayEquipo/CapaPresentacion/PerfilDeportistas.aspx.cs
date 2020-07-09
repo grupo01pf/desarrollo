@@ -422,30 +422,25 @@ namespace CapaPresentacion
                 // Session["idEncuentro"] = idEncuentrosDeportivos[id];
                 Response.Redirect("EncuentroPublico.aspx");
             }
-
-
-
-
+            
         }
 
         private void actualizarNotificaciones()
         {
 
             lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
+            lbl_Contactos.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
         }
 
         private void mostrarNotificaciones()
         {
-
             gdv_Notificaciones.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
             gdv_Notificaciones.DataKeyNames = new string[] { "idNotificacion" };
             gdv_Notificaciones.DataBind();
-
         }
 
         protected void gdv_Notificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            
+        {            
             int idNotif = int.Parse(gdv_Notificaciones.DataKeys[e.RowIndex].Value.ToString());
 
             NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
@@ -453,12 +448,8 @@ namespace CapaPresentacion
             mostrarNotificaciones();
         }
 
-        
-        
-
         private void cargarListaAmigos()
         {
-
             List<Usuario> listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             var lista = listaUsuarios.OrderBy(u => u.nombre);
 
@@ -471,43 +462,15 @@ namespace CapaPresentacion
         protected void gdv_Contactos_SelectedIndexChanged(object sender, EventArgs e)
         {
             // ir al perfil del amigo seleccionado
+            GridViewRow fila = gdv_Solicitudes.SelectedRow;
         }
 
         protected void gdv_Solicitudes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // IR AL PERFIL DEL DEPORTISTA
+
             GridViewRow fila = gdv_Solicitudes.SelectedRow;
-            //// string idEncuentro = fila.Cells[4].Text;
-            //// int id = int.Parse(fila.Cells[4].Text);
-            //string idEncuentro = Convert.ToString(fila.RowIndex);
-            //int id = fila.RowIndex;
-            //List<NotificacionQueryEntidad> lista = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
-            //int[] idEncuentrosDeportivos = new int[lista.Count];
-            //int i = 0;
-            //foreach (NotificacionQueryEntidad n in lista)
-            //{
-            //    idEncuentrosDeportivos[i] = n.idEncuentro;
-            //    i++;
-            //}
-            //idEncuentro = idEncuentrosDeportivos[id].ToString();
-
-            //int idNotif = int.Parse(gdv_Notificaciones.SelectedDataKey.Value.ToString());
-            //NotificacionDao.actualizarEstadoNotificacion(9, idNotif);
-
-            //Session["idEncuentro"] = idEncuentrosDeportivos[id];
-
-            //if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
-            //{
-            //    //  Session["idEncuentro"] = id;
-            //    // Session["idEncuentro"] = idEncuentrosDeportivos[id];
-            //    Response.Redirect("EncuentroPrivado.aspx");
-            //}
-            //if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
-            //{
-            //    //  Session["idEncuentro"] = id;
-            //    // Session["idEncuentro"] = idEncuentrosDeportivos[id];
-            //    Response.Redirect("EncuentroPublico.aspx");
-            //}
-
+            
         }
 
         protected void gdv_Solicitudes_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -516,37 +479,53 @@ namespace CapaPresentacion
 
             int idNotif = int.Parse(gdv_Solicitudes.DataKeys[e.RowIndex].Value.ToString());
 
-           // NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
+            NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
 
             mostrarSolicitudes();
+            actualizarNotificaciones();
         }
+
         protected void gdv_Solicitudes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Aceptar")
             {
+                // ACEPTAR SOLICITUD
                 int index = Convert.ToInt32(e.CommandArgument);
                 
                 GridViewRow fila = gdv_Solicitudes.Rows[index];
-                string datos = string.Empty;
-                datos = fila.Cells[2].Text;
-                lbl_Prueba.Text = "aceptar " + datos;
+                int idNotif = int.Parse(gdv_Solicitudes.DataKeys[index].Value.ToString());
+
+                
+
+               // int idUsuario = int.Parse(fila.Cells[6].Text);
+               // int idAmigo = int.Parse(fila.Cells[7].Text);
+              //  UsuarioDao.aceptarSolicitud(idUsuario,idAmigo);
+
+                NotificacionDao.actualizarEstadoNotificacion(13, idNotif);
+
+                mostrarSolicitudes();
+                actualizarNotificaciones();
+
+                cargarListaAmigos();
+
             }
             if (e.CommandName == "Cancelar")
             {
+                //// ELIMINAR SOLICITUD
+                //int index = Convert.ToInt32(e.CommandArgument);
+                //GridViewRow fila = gdv_Solicitudes.Rows[index];
+                //int idNotif = int.Parse(gdv_Solicitudes.DataKeys[index].Value.ToString());
 
-                int index = Convert.ToInt32(e.CommandArgument);
+                //NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
 
-                GridViewRow fila = gdv_Solicitudes.Rows[index];
-                string datos = string.Empty;
-                datos = fila.Cells[3].Text;
-
-                lbl_Prueba.Text = "cancelar " + datos;
+                //mostrarSolicitudes();
+                //actualizarNotificaciones();
             }
          }
 
         private void mostrarSolicitudes() {
 
-            gdv_Solicitudes.DataSource = NotificacionDao.mostrarNotificaciones(int.Parse(Session["ID"].ToString()));
+            gdv_Solicitudes.DataSource = NotificacionDao.mostrarNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()));
             gdv_Solicitudes.DataKeyNames = new string[] { "idNotificacion" };
             gdv_Solicitudes.DataBind();
 

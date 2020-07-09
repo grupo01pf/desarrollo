@@ -345,9 +345,10 @@ namespace CapaPresentacion
                 Notificacion notificacion = null;
                 notificacion = new Notificacion();
                 notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                notificacion.nombreEmisor = Session["Usuario"].ToString();
                 // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
                 notificacion.idReceptor = u.id;
-                notificacion.nombreReceptor = Session["Usuario"].ToString();
+                //notificacion.nombreReceptor = Session["Usuario"].ToString();
                 notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
                 notificacion.texto = "El encuentro deportivo ha sido Cancelado";
                 notificacion.idEstado = 10;
@@ -413,6 +414,8 @@ namespace CapaPresentacion
 
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e)
         {
+            // MODAL BTN INVITAR
+
 
             // List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString())); //(v. Original)
 
@@ -456,6 +459,7 @@ namespace CapaPresentacion
                 {
                     notificacion = new Notificacion();
                     notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                    notificacion.nombreEmisor = Session["Usuario"].ToString();
                     // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
@@ -479,6 +483,8 @@ namespace CapaPresentacion
 
             limpiarListaInvitar();
 
+            lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
+
         }
 
         private void limpiarListaInvitar() {
@@ -493,7 +499,8 @@ namespace CapaPresentacion
 
         protected void btn_Solicitud_Click(object sender, EventArgs e)
         {
-            // TODO
+            // MODAL BTN SOLICITUD MAS OPCIONES
+            lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
         }
 
        
@@ -770,9 +777,10 @@ namespace CapaPresentacion
             int.TryParse(cmb_Jugadores.SelectedItem.Value, out jugador);
 
             Notificacion notificacion = new Notificacion();
-            notificacion.idEmisor = int.Parse(Session["ID"].ToString());            
+            notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+            notificacion.nombreEmisor = Session["Usuario"].ToString();
             notificacion.idReceptor = jugador;
-            notificacion.nombreReceptor = cmb_Jugadores.SelectedValue;
+            notificacion.nombreReceptor = cmb_Jugadores.SelectedItem.Text;
             notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
 
 
@@ -790,10 +798,32 @@ namespace CapaPresentacion
            
             notificacion.idEstado = 10; //(No Check)
             NotificacionDao.insertarNotificacion(notificacion);
+
+            lbl_ResultadosBusqueda.Text = "La invitación ha sido enviada"; lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
+
         }
 
         protected void btn_SolicitudJugador_Click(object sender, EventArgs e)
         {
+            // SOLICITUD POR JUGADOR
+
+            int jugador = 0;
+            int.TryParse(cmb_Jugadores.SelectedItem.Value, out jugador);
+
+            Notificacion notificacion = new Notificacion();
+            notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+            notificacion.nombreEmisor = Session["Usuario"].ToString();
+            notificacion.idReceptor = jugador;
+            notificacion.nombreReceptor = cmb_Jugadores.SelectedItem.Text;
+            notificacion.idEncuentro = 0; // 0 = Solicitud
+
+            notificacion.texto = "Nuevo Contacto";
+            
+
+            notificacion.idEstado = 10; //(No Check)
+            NotificacionDao.insertarNotificacion(notificacion);
+
+            lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
 
         }
 

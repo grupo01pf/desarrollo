@@ -546,6 +546,8 @@
                                     Buscar
                                 </button>
 
+                                <asp:Label ID="lbl_ResultadosBusqueda" Text="" runat="server" Visible="false"></asp:Label>
+
                             </div>
 
 

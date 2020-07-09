@@ -22,6 +22,7 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand("sp_NotificacionDao_insertarNotificacion", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idEmisor", notificacion.idEmisor);
+            cmd.Parameters.AddWithValue("@nombreEmisor", notificacion.nombreEmisor);
             cmd.Parameters.AddWithValue("@idReceptor", notificacion.idReceptor);
             cmd.Parameters.AddWithValue("@nombreReceptor", notificacion.nombreReceptor);
             cmd.Parameters.AddWithValue("@idEncuentro", notificacion.idEncuentro);
@@ -107,5 +108,93 @@ namespace CapaDao
             cn.Close();
         }
 
+        public static List<NotificacionQueryEntidad> mostrarNotificacionesSolicitudes(int idUsuario)
+        {
+
+            List<NotificacionQueryEntidad> listaNotificacion = new List<NotificacionQueryEntidad>();
+            NotificacionQueryEntidad notificacion = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" 
+                                SELECT DISTINCT n.id, u.nombre as emisor, n.texto, n.idEncuentro, e.nombre as estado,
+                                                n.idReceptor, n.idEmisor
+                                FROM Notificacion n, Usuario u, Estado e
+                                WHERE u.id = n.idEmisor AND e.id = n.idEstado 
+                                AND n.idEstado != 11 AND n.idEncuentro = 0";
+
+
+            if (idUsuario != 0)
+            {
+                cmd.CommandText += @" AND n.idReceptor = @id";
+                cmd.Parameters.AddWithValue("@id", idUsuario);
+            }
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                notificacion = new NotificacionQueryEntidad();
+
+                notificacion.idNotificacion = int.Parse(dr["id"].ToString());
+                notificacion.nombreUsuario = dr["emisor"].ToString();
+                notificacion.texto = dr["texto"].ToString();
+                notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
+                notificacion.nombreEstado = dr["estado"].ToString();
+                notificacion.idReceptor = int.Parse(dr["idReceptor"].ToString());
+                notificacion.idEmisor = int.Parse(dr["idEmisor"].ToString());
+                listaNotificacion.Add(notificacion);
+            }
+
+            dr.Close();
+            cn.Close();
+
+
+            return listaNotificacion;
+        }
+
+        public static int contadorNotificacionesSolicitudes(int idUsuario)
+        {
+            int contador = 0;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" 
+                                SELECT COUNT (texto) as Cantidad
+                                FROM Notificacion n, Usuario u
+                                WHERE  n.idEncuentro = 0 AND n.idReceptor = u.id AND n.idEstado = 10";
+
+
+            if (idUsuario != 0)
+            {
+                cmd.CommandText += @" AND n.idReceptor = @id";
+                cmd.Parameters.AddWithValue("@id", idUsuario);
+            }
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                contador = int.Parse(dr["Cantidad"].ToString());
+            }
+
+
+            dr.Close();
+            cn.Close();
+
+
+            return contador;
+
+        }
+
+
+
     }
+
 }

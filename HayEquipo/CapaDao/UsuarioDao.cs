@@ -698,9 +698,39 @@ namespace CapaDao
             return listaAmigos;
         }
 
+        public static void aceptarSolicitud(int idUsuario, int idAmigo)
+        {
+            List<Usuario> listaAmigos = new List<Usuario>();
+            Usuario u = null;
 
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" INSERT INTO  AmigosPorDeportistas (idUsuario, idAmigo)
+                                 VALUES (@idUsuario, @idAmigo) ";
+
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
+
+            //if (idUsuario != 0)
+            //{
+            //    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            //}
+            //if (idAmigo != 0)
+            //{
+            //    cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
+            //}
+
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
 
     }
+
+
+    
 
 
 }
