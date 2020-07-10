@@ -433,7 +433,8 @@ namespace CapaPresentacion
         {
 
             lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
-            lbl_Contactos.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
+            lbl_Solicitudes.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
+           
         }
 
         private void mostrarNotificaciones()
@@ -462,6 +463,8 @@ namespace CapaPresentacion
             gdv_Contactos.DataSource = lista;
             gdv_Contactos.DataKeyNames = new string[] { "id" };
             gdv_Contactos.DataBind();
+
+            lbl_Contactos.Text = lista.Count().ToString();
         }
 
         protected void gdv_Contactos_SelectedIndexChanged(object sender, EventArgs e)

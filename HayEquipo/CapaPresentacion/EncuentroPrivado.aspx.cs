@@ -866,24 +866,7 @@ namespace CapaPresentacion
 
         }
 
-        protected void chk_BuscarJugadores_CheckedChanged(object sender, EventArgs e)
-        {
-
-            //if (chk_BuscarJugadores.Checked)
-            //{
-            //    limpiarCamposBusqueda();
-            //    pnl_Busqueda.Visible = true;
-            //    pnl_Opciones.Visible = false;
-            //    btn_Buscar.Visible = false;
-            //}
-            //else
-            //{
-            //    limpiarCamposBusqueda();
-            //    pnl_Busqueda.Visible = false;
-            //    pnl_Opciones.Visible = false;
-            //    btn_Buscar.Visible = false;
-            //}
-        }
+       
 
         private void cargarListaAmigos() {
 

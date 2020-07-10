@@ -215,7 +215,10 @@
                         <li><a data-toggle="tab" href="#menu6"><span class="glyphicon glyphicon-bell"></span>Notificaciones<span class="badge">
                             <asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
                         
-                        <li><a data-toggle="tab" href="#menu7"><span class="glyphicon glyphicon-user"></span>Contactos<span class="badge">
+                        <li><a data-toggle="tab" href="#menu7"><span class="glyphicon glyphicon-user"></span>Solicitudes<span class="badge">
+                            <asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span></a></li>
+
+                        <li><a data-toggle="tab" href="#menu8"><i class="fa fa-users" aria-hidden="true"></i>Contactos<span class="badge">
                             <asp:Label ID="lbl_Contactos" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
@@ -335,7 +338,7 @@
                         </div>
                         <%-- FIN NOTIFICACIONES --%>
 
-                        <%--CONTACTOS--%>
+                      
                                                
                         
                         <div id="menu7" class="tab-pane fade">
@@ -378,9 +381,16 @@
                                     
                               </center>
 
-                                 <br />
+
+                                </div>
+                            </div>
 
 
+                         <div id="menu8" class="tab-pane fade">
+                            <div class="table-responsive">
+                                <br />
+
+                                 
                                 <center>
                                 <asp:GridView ID="gdv_Contactos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows" 
@@ -399,8 +409,6 @@
                                 </center>
                             </div>
                         </div>
-
-                        <%-- FIN CONTACTOS --%>
 
 
 
