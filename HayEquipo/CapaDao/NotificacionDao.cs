@@ -53,7 +53,8 @@ namespace CapaDao
                 notificacion = new NotificacionQueryEntidad();
 
                 notificacion.idNotificacion = int.Parse(dr["id"].ToString());
-                notificacion.nombreUsuario = dr["emisor"].ToString();
+                notificacion.nombreEmisor = dr["emisor"].ToString();
+                notificacion.nombreReceptor = dr["receptor"].ToString();
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
@@ -104,6 +105,14 @@ namespace CapaDao
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idEstado", idEstado);
             cmd.Parameters.AddWithValue("@idNotificacion", idNotificacion);
+            //if (!string.IsNullOrEmpty(texto))
+            //{
+            //    cmd.Parameters.AddWithValue("@texto", texto);
+            //}
+            //else
+            //{
+
+            //}
             cmd.ExecuteNonQuery();
             cn.Close();
         }
@@ -120,11 +129,11 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @" 
-                                SELECT DISTINCT n.id, u.nombre as emisor, n.texto, n.idEncuentro, e.nombre as estado,
-                                                n.idReceptor, n.idEmisor
-                                FROM Notificacion n, Usuario u, Estado e
-                                WHERE u.id = n.idEmisor AND e.id = n.idEstado 
-                                AND n.idEstado != 11 AND n.idEncuentro = 0";
+                                SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
+				                                e.nombre as estado, n.nombreReceptor as receptor
+                                FROM Notificacion n, Estado e
+                                WHERE e.id = n.idEstado AND n.idEstado != 11 
+                                      AND n.idEstado != 13 AND n.idEncuentro = 0";
 
 
             if (idUsuario != 0)
@@ -141,12 +150,13 @@ namespace CapaDao
                 notificacion = new NotificacionQueryEntidad();
 
                 notificacion.idNotificacion = int.Parse(dr["id"].ToString());
-                notificacion.nombreUsuario = dr["emisor"].ToString();
+                notificacion.nombreEmisor = dr["emisor"].ToString();
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
                 notificacion.idReceptor = int.Parse(dr["idReceptor"].ToString());
                 notificacion.idEmisor = int.Parse(dr["idEmisor"].ToString());
+                notificacion.nombreReceptor = dr["receptor"].ToString();
                 listaNotificacion.Add(notificacion);
             }
 

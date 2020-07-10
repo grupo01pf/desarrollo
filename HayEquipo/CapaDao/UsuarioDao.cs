@@ -708,7 +708,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @" INSERT INTO  AmigosPorDeportistas (idUsuario, idAmigo)
+            cmd.CommandText = @" INSERT INTO  AmigosPorDeportista (idUsuario, idAmigo)
                                  VALUES (@idUsuario, @idAmigo) ";
 
             cmd.Parameters.AddWithValue("@idUsuario", idUsuario);

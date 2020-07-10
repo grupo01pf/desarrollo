@@ -345,10 +345,9 @@ namespace CapaPresentacion
                 Notificacion notificacion = null;
                 notificacion = new Notificacion();
                 notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-                notificacion.nombreEmisor = Session["Usuario"].ToString();
-                // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
+                notificacion.nombreEmisor = Session["Usuario"].ToString();                
                 notificacion.idReceptor = u.id;
-                //notificacion.nombreReceptor = Session["Usuario"].ToString();
+                notificacion.nombreReceptor = u.nombre;
                 notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
                 notificacion.texto = "El encuentro deportivo ha sido Cancelado";
                 notificacion.idEstado = 10;
@@ -460,7 +459,6 @@ namespace CapaPresentacion
                     notificacion = new Notificacion();
                     notificacion.idEmisor = int.Parse(Session["ID"].ToString());
                     notificacion.nombreEmisor = Session["Usuario"].ToString();
-                    // notificacion.idReceptor = Convert.ToInt32(fila.Cells[1].Text); //NO BORRAR
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
