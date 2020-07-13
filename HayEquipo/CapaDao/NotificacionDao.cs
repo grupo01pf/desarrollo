@@ -130,7 +130,8 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @" 
                                 SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
-				                                e.nombre as estado, n.nombreReceptor as receptor
+				                                e.nombre as estado, n.nombreReceptor as receptor,
+                                                n.idEmisor, n.idReceptor
                                 FROM Notificacion n, Estado e
                                 WHERE e.id = n.idEstado AND n.idEstado != 11 
                                       AND n.idEstado != 13 AND n.idEncuentro = 0";

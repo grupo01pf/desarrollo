@@ -490,65 +490,55 @@ namespace CapaPresentacion
         protected void btn_Solicitud_Click(object sender, EventArgs e)
         {
             // MODAL BTN SOLICITUD MAS OPCIONES
-            //List<Usuario> listaUsuarios = null;
+            List<Usuario> listaUsuarios = null;
 
-            //if (rdb_PorAmigos.Checked)
-            //{
-            //    listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
-            //}
-            //if (rdb_MasOpciones.Checked)
-            //{
+            if (rdb_PorAmigos.Checked)
+            {
+                listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
+            }
+            if (rdb_MasOpciones.Checked)
+            {
 
-            //    int zona = 0;
-            //    int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
-            //    int barrio = 0;
-            //    int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+                int zona = 0;
+                int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+                int barrio = 0;
+                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
 
-            //    listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
-            //}
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+            }
 
-            //var lista = listaUsuarios.OrderBy(u => u.nombre);
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
 
-            //int[] idUsuarios = new int[listaUsuarios.Count];
-            ////int[] idUsuarios = new int[lista.Count]; //(v. Original)
-            //int i = 0;
-            //foreach (Usuario u in lista)
-            //{
-            //    idUsuarios[i] = u.id;
-            //    i++;
-            //}
+            int[] idUsuarios = new int[listaUsuarios.Count];
+            //int[] idUsuarios = new int[lista.Count]; //(v. Original)
+            int i = 0;
+            foreach (Usuario u in lista)
+            {
+                idUsuarios[i] = u.id;
+                i++;
+            }
 
-            //i = 0;
-            //foreach (GridViewRow fila in gdv_Invitar.Rows)
-            //{
-            //    Notificacion notificacion = null;
-            //    if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
-            //    {
-            //        notificacion = new Notificacion();
-            //        notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-            //        notificacion.nombreEmisor = Session["Usuario"].ToString();
-            //        notificacion.idReceptor = idUsuarios[i];
-            //        notificacion.nombreReceptor = fila.Cells[2].Text;
-            //        notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            //        if (int.Parse(Session["idClave"].ToString()) == 0)
-            //        {
-            //            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-            //                txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
-            //        }
-            //        else
-            //        {
-            //            string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
-            //            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-            //                txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave;
-            //        }
-            //        notificacion.idEstado = 10; //(No Check)
-            //        NotificacionDao.insertarNotificacion(notificacion);
-            //    }
-            //    i++;
-            //}
+            i = 0;
+            foreach (GridViewRow fila in gdv_Invitar.Rows)
+            {
+                Notificacion notificacion = null;
+                if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
+                {
+                    notificacion = new Notificacion();
+                    notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                    notificacion.nombreEmisor = Session["Usuario"].ToString();
+                    notificacion.idReceptor = idUsuarios[i];
+                    notificacion.nombreReceptor = fila.Cells[2].Text;
+                    notificacion.idEncuentro = 0;
+                    notificacion.texto = "Nuevo Contacto";
+                    notificacion.idEstado = 10; //(No Check)
+                    NotificacionDao.insertarNotificacion(notificacion);                    
+                }
+                i++;
+            }
 
-            //limpiarListaInvitar();
-            
+            limpiarListaInvitar();
+
 
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
         }
