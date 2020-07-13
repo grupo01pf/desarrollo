@@ -491,7 +491,7 @@
                                 <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                     <div class="well">
 
-                                        <div class="form-group">
+                                       <%-- <div class="form-group">
                                             <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
                                                 OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
                                             <div class="dropdown">
@@ -500,7 +500,7 @@
                                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <asp:Panel ID="pnl_Lugar" runat="server" Visible="false">
 
                                             <div class="form-group">
@@ -579,7 +579,7 @@
                                         <center>
                                                <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    visible ="true" EmptyDataText="...">
+                                                    visible ="true" EmptyDataText="Sin Resultados">
                                                     <Columns>
                                                         <asp:TemplateField>
                                                             <HeaderTemplate>

@@ -645,7 +645,7 @@ namespace CapaDao
         }
 
 
-        public static List<Usuario> getUsuariosPorFiltro(int idUsuario,int sport, int zona, int barrio)
+        public static List<Usuario> getUsuariosPorFiltro(int zona, int barrio)
         {
             List<Usuario> listaAmigos = new List<Usuario>();
             Usuario u = null;
@@ -655,29 +655,21 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @" SELECT  u.id, u.nombre
-                                 FROM Usuario u, AmigosPorDeportista apd
-                                 WHERE apd.idAmigo = u.id ";
+            cmd.CommandText = @" 
+                                SELECT DISTINCT u.id, u.nombre
+                                FROM Usuario u, Deportista d, Barrio b, Zona z
+                                WHERE d.id = u.id AND b.id = d.idBarrio  ";
 
-            if (idUsuario != 0)
-            {
-                cmd.CommandText += @" AND apd.idUsuario = @id";
-                cmd.Parameters.AddWithValue("@id", idUsuario);
-            }
-            if (sport != 0)
-            {
-                cmd.CommandText += @" AND c.idTipoCancha = tc.id and tc.id = @tc";
-                cmd.Parameters.AddWithValue("@tc", sport);
-            }
+            
             if (zona != 0)
             {
-                cmd.CommandText += @" AND z.id = b.idZona AND b.id = cd.idBarrio AND z.id = @z";
+                cmd.CommandText += @" AND z.id = b.idZona AND d.idBarrio = b.id AND z.id = @z";
                 cmd.Parameters.AddWithValue("@z", zona);
             }
             if (barrio != 0)
             {
-                cmd.CommandText += @" AND @hi between cd.horaApertura AND cd.horaCierre";
-                cmd.Parameters.AddWithValue("@hi", barrio);
+                cmd.CommandText += @" AND b.id = @barrio";
+                cmd.Parameters.AddWithValue("@barrio", barrio);
             }
 
             SqlDataReader dr = cmd.ExecuteReader();

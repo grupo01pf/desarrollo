@@ -26,7 +26,6 @@ namespace CapaPresentacion
                 cargarDatosEncuentroPrivado();
 
                 cargarChat();
-                cargarListaInvitar();
 
                 if (int.Parse(Session["idClave"].ToString()) == 0)
                 {
@@ -415,27 +414,22 @@ namespace CapaPresentacion
         {
             // MODAL BTN INVITAR
 
-
             // List<Usuario> lista = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString())); //(v. Original)
 
             List<Usuario> listaUsuarios = null;
+
             if (rdb_PorAmigos.Checked) {
                 listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             }
             if (rdb_MasOpciones.Checked) {
-
-                int idUsuario = int.Parse(Session["ID"].ToString());
-                int sport = 0;
-                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+                
                 int zona = 0;
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 int barrio = 0;
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
 
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(idUsuario,sport,zona,barrio);
+                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona,barrio);
             }
-
-            // List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             
             var lista = listaUsuarios.OrderBy(u => u.nombre);
             
@@ -452,9 +446,7 @@ namespace CapaPresentacion
             foreach (GridViewRow fila in gdv_Invitar.Rows)
             {
                 Notificacion notificacion = null;
-                //   bool isChecked = ((CheckBox)fila.FindControl("chk_Invitar")).Checked;
                 if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
-                //   if (isChecked)
                 {
                     notificacion = new Notificacion();
                     notificacion.idEmisor = int.Parse(Session["ID"].ToString());
@@ -498,6 +490,66 @@ namespace CapaPresentacion
         protected void btn_Solicitud_Click(object sender, EventArgs e)
         {
             // MODAL BTN SOLICITUD MAS OPCIONES
+            //List<Usuario> listaUsuarios = null;
+
+            //if (rdb_PorAmigos.Checked)
+            //{
+            //    listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
+            //}
+            //if (rdb_MasOpciones.Checked)
+            //{
+
+            //    int zona = 0;
+            //    int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+            //    int barrio = 0;
+            //    int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+
+            //    listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+            //}
+
+            //var lista = listaUsuarios.OrderBy(u => u.nombre);
+
+            //int[] idUsuarios = new int[listaUsuarios.Count];
+            ////int[] idUsuarios = new int[lista.Count]; //(v. Original)
+            //int i = 0;
+            //foreach (Usuario u in lista)
+            //{
+            //    idUsuarios[i] = u.id;
+            //    i++;
+            //}
+
+            //i = 0;
+            //foreach (GridViewRow fila in gdv_Invitar.Rows)
+            //{
+            //    Notificacion notificacion = null;
+            //    if ((fila.Cells[0].FindControl("chk_Invitar") as CheckBox).Checked)
+            //    {
+            //        notificacion = new Notificacion();
+            //        notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+            //        notificacion.nombreEmisor = Session["Usuario"].ToString();
+            //        notificacion.idReceptor = idUsuarios[i];
+            //        notificacion.nombreReceptor = fila.Cells[2].Text;
+            //        notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            //        if (int.Parse(Session["idClave"].ToString()) == 0)
+            //        {
+            //            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+            //                txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
+            //        }
+            //        else
+            //        {
+            //            string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
+            //            notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+            //                txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave;
+            //        }
+            //        notificacion.idEstado = 10; //(No Check)
+            //        NotificacionDao.insertarNotificacion(notificacion);
+            //    }
+            //    i++;
+            //}
+
+            //limpiarListaInvitar();
+            
+
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
         }
 
@@ -618,19 +670,19 @@ namespace CapaPresentacion
 
         private void cargarDeportes()
         {
-            cmb_Deporte.Items.Clear();
-            cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-            cmb_Deporte.DataValueField = "id";
-            cmb_Deporte.DataTextField = "nombre";
-            cmb_Deporte.DataBind();
+            //cmb_Deporte.Items.Clear();
+            //cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            //cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+            //cmb_Deporte.DataValueField = "id";
+            //cmb_Deporte.DataTextField = "nombre";
+            //cmb_Deporte.DataBind();
         }
 
         private void cargarBarrios()
         {
             cmb_Barrio.Items.Clear();
             cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-            // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
+         
             cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
             cmb_Barrio.DataValueField = "id";
             cmb_Barrio.DataTextField = "nombre";
@@ -648,16 +700,13 @@ namespace CapaPresentacion
         }
 
         private void cargarPorJugadores() {
-
-
-            //List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+                        
             List<Usuario> listaUsuarios = crearListaJugadores();
             var lista = listaUsuarios.OrderBy(u => u.nombre);
 
             cmb_Jugadores.Items.Clear();
             cmb_Jugadores.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
-            //cmb_Jugadores.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
             cmb_Jugadores.DataSource = lista;
             cmb_Jugadores.DataValueField = "id";
             cmb_Jugadores.DataTextField = "nombre";
@@ -684,27 +733,27 @@ namespace CapaPresentacion
 
         protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdb_PorDeporte.Checked)
-            {
-                cmb_Deporte.Enabled = true;
-                pnl_Lugar.Visible = true;
+            //if (rdb_PorDeporte.Checked)
+            //{
+            //    //cmb_Deporte.Enabled = true;
+            //    pnl_Lugar.Visible = true;
 
-            }
-            else {
-                cmb_Deporte.Enabled = false;
-                cmb_Deporte.SelectedIndex = 0;
+            //}
+            //else {
+                //cmb_Deporte.Enabled = false;
+               // cmb_Deporte.SelectedIndex = 0;
 
-                rdb_PorBarrio.Checked = false;
-                cmb_Barrio.Enabled = false;
-                cmb_Barrio.SelectedIndex = 0;
+                //rdb_PorBarrio.Checked = false;
+                //cmb_Barrio.Enabled = false;
+                //cmb_Barrio.SelectedIndex = 0;
 
-                rdb_PorZona.Checked = false;
-                cmb_Zona.Enabled = false;
-                cmb_Zona.SelectedIndex = 0;
+                //rdb_PorZona.Checked = false;
+                //cmb_Zona.Enabled = false;
+                //cmb_Zona.SelectedIndex = 0;
 
-                pnl_Lugar.Visible = false;
+                //pnl_Lugar.Visible = false;
 
-            }
+          //  }
         }
 
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
@@ -716,6 +765,8 @@ namespace CapaPresentacion
                 cmb_Zona.SelectedIndex = 0;
                 cmb_Barrio.Enabled = false;
                 cmb_Barrio.SelectedIndex = 0;
+
+                // btn_Buscar.Visible = true;
             }
             else
             {
@@ -724,6 +775,8 @@ namespace CapaPresentacion
                 cmb_Zona.SelectedIndex = 0;
                 cmb_Barrio.Enabled = false;
                 cmb_Barrio.SelectedIndex = 0;
+
+                btn_Buscar.Visible = false;
             }
         }
         protected void rdb_PorBarrio_CheckedChanged(object sender, EventArgs e)
@@ -735,6 +788,8 @@ namespace CapaPresentacion
                 cmb_Zona.SelectedIndex = 0;
                 cmb_Barrio.Enabled = true;
                 cmb_Barrio.SelectedIndex = 0;
+
+               // btn_Buscar.Visible = true;
             }
             else
             {
@@ -743,6 +798,8 @@ namespace CapaPresentacion
                 cmb_Zona.SelectedIndex = 0;
                 cmb_Barrio.Enabled = false;
                 cmb_Barrio.SelectedIndex = 0;
+
+                btn_Buscar.Visible = false;
             }
         }
         protected void cmb_Jugadores_SelectedIndexChanged(object sender, EventArgs e)
@@ -824,24 +881,7 @@ namespace CapaPresentacion
             lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
 
         }
-
-
-
-
-        protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+                
 
         private void limpiarCamposBusqueda()
         {
@@ -849,8 +889,8 @@ namespace CapaPresentacion
             //txt_NombreJugador.Text = string.Empty;
             cmb_Jugadores.SelectedIndex = 0;
             cmb_Jugadores.Enabled = false;            
-            cmb_Deporte.SelectedIndex = 0;
-            cmb_Deporte.Enabled = false;
+           // cmb_Deporte.SelectedIndex = 0;
+           // cmb_Deporte.Enabled = false;
             cmb_Zona.SelectedIndex = 0;
             cmb_Zona.Enabled = false;
             cmb_Barrio.SelectedIndex = 0;
@@ -905,14 +945,59 @@ namespace CapaPresentacion
         }
         protected void rdb_MasOpciones_CheckedChanged(object sender, EventArgs e)
         {          
-                pnl_Opciones.Visible = true;
-                pnl_PorJugador.Visible = false;
-                limpiarCamposBusqueda();
-                btn_Buscar.Visible = true;
-                btn_Solicitud.Visible = true;
-          
+            pnl_Opciones.Visible = true;
+            pnl_PorJugador.Visible = false;
+            limpiarCamposBusqueda();
+            btn_Buscar.Visible = false;
+            btn_Solicitud.Visible = true;
+
+            cargarZonas();
+            cargarBarrios();
+
+            pnl_Lugar.Visible = true;         
+
         }
 
-       
+        //protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+
+        //}
+        protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargarListaPorLugar("Zona");
+            btn_Buscar.Visible = true;
+
+        }
+
+        protected void cmb_Barrio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargarListaPorLugar("Barrio");
+            btn_Buscar.Visible = true;
+        }
+
+        private void cargarListaPorLugar(string lugar)
+        {
+            List<Usuario> listaUsuarios = null;
+            int zona = 0;
+            int barrio = 0;
+            if (lugar.Equals("Zona"))
+            {
+                int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+            }
+            else
+            {
+                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+            }
+
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
+            
+            gdv_Invitar.DataSource = lista;
+            gdv_Invitar.DataKeyNames = new string[] { "id" };
+            gdv_Invitar.DataBind();
+        }
+
+
     }
 }

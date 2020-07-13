@@ -634,24 +634,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Panel pnl_Opciones;
         
         /// <summary>
-        /// Control rdb_PorDeporte.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox rdb_PorDeporte;
-        
-        /// <summary>
-        /// Control cmb_Deporte.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
-        
-        /// <summary>
         /// Control pnl_Lugar.
         /// </summary>
         /// <remarks>
