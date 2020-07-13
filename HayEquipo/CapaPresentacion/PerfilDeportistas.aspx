@@ -259,8 +259,9 @@
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
-                                 <asp:DropDownList ID="cmb_Barrio" runat="server" AppendDataBoundItems>
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem></asp:DropDownList>
+                                 <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems >
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />

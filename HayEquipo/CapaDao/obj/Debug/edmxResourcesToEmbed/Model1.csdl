@@ -22,16 +22,6 @@
     <NavigationProperty Name="TipoDocumento" Relationship="Self.FK_Administrador_TipoDocumento" FromRole="Administrador" ToRole="TipoDocumento" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_Administrador_Usuario" FromRole="Administrador" ToRole="Usuario" />
   </EntityType>
-  <EntityType Name="AmigosPorDeportistas">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idDeportista" Type="Int32" />
-    <Property Name="idAmigo" Type="Int32" />
-    <NavigationProperty Name="Deportista" Relationship="Self.FK_AmigosPorDeportistas_Deportista" FromRole="AmigosPorDeportistas" ToRole="Deportista" />
-    <NavigationProperty Name="Deportista1" Relationship="Self.FK_AmigosPorDeportistas_Deportista1" FromRole="AmigosPorDeportistas" ToRole="Deportista" />
-  </EntityType>
   <EntityType Name="Barrio">
     <Key>
       <PropertyRef Name="id" />
@@ -134,8 +124,7 @@
     <Property Name="idUsuario" Type="Int32" />
     <Property Name="promedioEstrellas" Type="Double" />
     <Property Name="idEstado" Type="Int32" />
-    <NavigationProperty Name="AmigosPorDeportistas" Relationship="Self.FK_AmigosPorDeportistas_Deportista" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
-    <NavigationProperty Name="AmigosPorDeportistas1" Relationship="Self.FK_AmigosPorDeportistas_Deportista1" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
+    <Property Name="idBarrio" Type="Int32" />
     <NavigationProperty Name="DeportesPorDeportistas" Relationship="Self.FK_DeportesPorDeportistas_Deportista" FromRole="Deportista" ToRole="DeportesPorDeportistas" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_Deportista_Estado" FromRole="Deportista" ToRole="Estado" />
     <NavigationProperty Name="TipoDocumento" Relationship="Self.FK_Deportista_TipoDocumento" FromRole="Deportista" ToRole="TipoDocumento" />
@@ -564,6 +553,14 @@
     <NavigationProperty Name="Deportista" Relationship="Self.FK_ZonasPorDeportistas_Deportista" FromRole="ZonasPorDeportistas" ToRole="Deportista" />
     <NavigationProperty Name="Zona" Relationship="Self.FK_ZonasPorDeportistas_Zona" FromRole="ZonasPorDeportistas" ToRole="Zona" />
   </EntityType>
+  <EntityType Name="AmigosPorDeportista">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUsuario" Type="Int32" />
+    <Property Name="idAmigo" Type="Int32" />
+  </EntityType>
   <EntityType Name="FotosComplejo">
     <Key>
       <PropertyRef Name="id" />
@@ -663,30 +660,6 @@
       </Principal>
       <Dependent Role="Administrador">
         <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idDeportista" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista1">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idAmigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1412,7 +1385,6 @@
   </Association>
   <EntityContainer Name="HayEquipoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Administrador" EntityType="Self.Administrador" />
-    <EntitySet Name="AmigosPorDeportistas" EntityType="Self.AmigosPorDeportistas" />
     <EntitySet Name="Barrio" EntityType="Self.Barrio" />
     <EntitySet Name="Cancha" EntityType="Self.Cancha" />
     <EntitySet Name="CanchasPorHorarios" EntityType="Self.CanchasPorHorarios" />
@@ -1454,6 +1426,7 @@
     <EntitySet Name="Valoracion" EntityType="Self.Valoracion" />
     <EntitySet Name="Zona" EntityType="Self.Zona" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" />
+    <EntitySet Name="AmigosPorDeportista" EntityType="Self.AmigosPorDeportista" />
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" />
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" />
     <EntitySet Name="Mapa" EntityType="Self.Mapa" />
@@ -1472,14 +1445,6 @@
     <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Administrador" EntitySet="Administrador" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista" Association="Self.FK_AmigosPorDeportistas_Deportista">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista1" Association="Self.FK_AmigosPorDeportistas_Deportista1">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
     </AssociationSet>
     <AssociationSet Name="FK_Barrio_Zona" Association="Self.FK_Barrio_Zona">
       <End Role="Zona" EntitySet="Zona" />
@@ -1832,6 +1797,7 @@
     </FunctionImport>
     <FunctionImport Name="sp_NotificacionDao_insertarNotificacion">
       <Parameter Name="idEmisor" Mode="In" Type="Int32" />
+      <Parameter Name="nombreEmisor" Mode="In" Type="String" />
       <Parameter Name="idReceptor" Mode="In" Type="Int32" />
       <Parameter Name="nombreReceptor" Mode="In" Type="String" />
       <Parameter Name="idEncuentro" Mode="In" Type="Int32" />
@@ -1957,6 +1923,7 @@
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="capacidad" Nullable="true" />
     <Property Type="Int32" Name="idComplejo" Nullable="true" />
+    <Property Type="Int32" Name="idClave" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -1973,6 +1940,7 @@
     <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="capacidad" Nullable="true" />
+    <Property Type="Int32" Name="idMapa" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -2011,6 +1979,7 @@
     <Property Type="String" Name="texto" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="idEncuentro" Nullable="true" />
     <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="receptor" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

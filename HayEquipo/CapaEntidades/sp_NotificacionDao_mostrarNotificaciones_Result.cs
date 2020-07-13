@@ -18,5 +18,6 @@ namespace CapaEntidades
         public string texto { get; set; }
         public Nullable<int> idEncuentro { get; set; }
         public string estado { get; set; }
+        public string receptor { get; set; }
     }
 }

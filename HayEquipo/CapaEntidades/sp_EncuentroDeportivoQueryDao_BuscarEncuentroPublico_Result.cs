@@ -27,5 +27,6 @@ namespace CapaEntidades
         public string accesibilidad { get; set; }
         public string clave { get; set; }
         public Nullable<int> capacidad { get; set; }
+        public Nullable<int> idMapa { get; set; }
     }
 }

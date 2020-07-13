@@ -21,15 +21,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AmigosPorDeportistas">
-      <EntityTypeMapping TypeName="HayEquipoModel.AmigosPorDeportistas">
-        <MappingFragment StoreEntitySet="AmigosPorDeportistas">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
-          <ScalarProperty Name="idAmigo" ColumnName="idAmigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Barrio">
       <EntityTypeMapping TypeName="HayEquipoModel.Barrio">
         <MappingFragment StoreEntitySet="Barrio">
@@ -114,6 +105,7 @@
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -480,6 +472,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AmigosPorDeportista">
+      <EntityTypeMapping TypeName="HayEquipoModel.AmigosPorDeportista">
+        <MappingFragment StoreEntitySet="AmigosPorDeportista">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idAmigo" ColumnName="idAmigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="FotosComplejo">
       <EntityTypeMapping TypeName="HayEquipoModel.FotosComplejo">
         <MappingFragment StoreEntitySet="FotosComplejo">
@@ -634,6 +635,7 @@
           <ScalarProperty Name="clave" ColumnName="clave" />
           <ScalarProperty Name="capacidad" ColumnName="capacidad" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
+          <ScalarProperty Name="idClave" ColumnName="idClave" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -654,6 +656,7 @@
           <ScalarProperty Name="accesibilidad" ColumnName="accesibilidad" />
           <ScalarProperty Name="clave" ColumnName="clave" />
           <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="idMapa" ColumnName="idMapa" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -723,6 +726,7 @@
           <ScalarProperty Name="texto" ColumnName="texto" />
           <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
           <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="receptor" ColumnName="receptor" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -451,9 +451,7 @@
 
                         <div class="form-group">
                             <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
-                           <%-- <asp:CheckBox ID="chk_BuscarJugadores" CssClass="checkbox" runat="server"
-                                Text="Buscar Jugadores" OnCheckedChanged="chk_BuscarJugadores_CheckedChanged" AutoPostBack="true" />--%>
-
+                        
                         </div>
 
                         <asp:Panel ID="pnl_Busqueda" runat="server" Visible="true">

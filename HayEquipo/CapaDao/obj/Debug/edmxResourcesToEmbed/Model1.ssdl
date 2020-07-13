@@ -19,12 +19,14 @@
     <Property Name="fechaIngreso" Type="date" />
     <Property Name="idUsuario" Type="int" />
   </EntityType>
-  <EntityType Name="AmigosPorDeportistas">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="AmigosPorDeportista">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idDeportista" Type="int" />
+    <Property Name="idUsuario" Type="int" />
     <Property Name="idAmigo" Type="int" />
   </EntityType>
   <EntityType Name="Barrio">
@@ -106,6 +108,7 @@
     <Property Name="idUsuario" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="idEstado" Type="int" />
+    <Property Name="idBarrio" Type="int" />
   </EntityType>
   <EntityType Name="DeportistasPorEquipos">
     <Key>
@@ -547,30 +550,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
       </Principal>
       <Dependent Role="Administrador">
         <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idDeportista" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista1">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idAmigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1406,6 +1385,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   </Function>
   <Function Name="sp_NotificacionDao_insertarNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idEmisor" Type="int" Mode="In" />
+    <Parameter Name="nombreEmisor" Type="nvarchar" Mode="In" />
     <Parameter Name="idReceptor" Type="int" Mode="In" />
     <Parameter Name="nombreReceptor" Type="nvarchar" Mode="In" />
     <Parameter Name="idEncuentro" Type="int" Mode="In" />
@@ -1479,7 +1459,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   </Function>
   <EntityContainer Name="HayEquipoModelStoreContainer">
     <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AmigosPorDeportistas" EntityType="Self.AmigosPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Barrio" EntityType="Self.Barrio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cancha" EntityType="Self.Cancha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CanchasPorHorarios" EntityType="Self.CanchasPorHorarios" Schema="dbo" store:Type="Tables" />
@@ -1521,6 +1500,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <EntitySet Name="Valoracion" EntityType="Self.Valoracion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AmigosPorDeportista" EntityType="Self.AmigosPorDeportista" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AmigosPorDeportista].[id] AS [id], 
+    [AmigosPorDeportista].[idUsuario] AS [idUsuario], 
+    [AmigosPorDeportista].[idAmigo] AS [idAmigo]
+    FROM [dbo].[AmigosPorDeportista] AS [AmigosPorDeportista]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [FotosComplejo].[id] AS [id], 
@@ -1589,14 +1575,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Administrador" EntitySet="Administrador" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista" Association="Self.FK_AmigosPorDeportistas_Deportista">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista1" Association="Self.FK_AmigosPorDeportistas_Deportista1">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
     </AssociationSet>
     <AssociationSet Name="FK_Barrio_Zona" Association="Self.FK_Barrio_Zona">
       <End Role="Zona" EntitySet="Zona" />

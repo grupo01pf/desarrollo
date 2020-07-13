@@ -30,5 +30,6 @@ namespace CapaEntidades
         public string clave { get; set; }
         public Nullable<int> capacidad { get; set; }
         public Nullable<int> idComplejo { get; set; }
+        public Nullable<int> idClave { get; set; }
     }
 }

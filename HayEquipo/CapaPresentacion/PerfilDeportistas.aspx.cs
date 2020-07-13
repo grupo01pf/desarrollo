@@ -28,7 +28,9 @@ namespace CapaPresentacion
             {
                 if (btnActualizar.Visible == false)
                 {
+                    cargarBarrios();
                     DatosCargadosDeportista();
+                    
                 }
             }
 
@@ -49,7 +51,7 @@ namespace CapaPresentacion
 
             cargarListaAmigos();
 
-            cargarBarrios();
+            
         }
 
         private void cargarTipoDocumento()
@@ -122,7 +124,7 @@ namespace CapaPresentacion
             lbl_TipoDocumento.Visible = false;
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
-            cmb_Barrio.SelectedIndex = 0;
+            cmb_Barrio.Enabled = false;
             lblmsj.Text = "Datos Guardados Exitosamente";
 
 
@@ -140,6 +142,7 @@ namespace CapaPresentacion
             cargarTipoDocumento();
             btnActualizar.Visible = true;
             btnCambiar.Visible = false;
+            cmb_Barrio.Enabled = true;
         }
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
@@ -152,7 +155,9 @@ namespace CapaPresentacion
             string sexo = txt_Sexo.Text;
             string fc = txt_FechaNacimiento.Text;
             string tel = txt_Telefono.Text;
-            DeportistaDao.ActualizarDeportista(Session["ID"].ToString(),ape,nom,tipoDoc.ToString(),doc,sexo,fc,tel);
+            int barrio = 0;
+            int.TryParse(cmb_Barrio.SelectedItem.Value,  out barrio);
+            DeportistaDao.ActualizarDeportista(Session["ID"].ToString(),ape,nom,tipoDoc.ToString(),doc,sexo,fc,tel,barrio);
             txt_Apellidos.Enabled = false;
             txt_Nombres.Enabled = false;
             txt_FechaNacimiento.Enabled = false;
@@ -163,6 +168,7 @@ namespace CapaPresentacion
             lbl_TipoDocumento.Visible = false;
             btnActualizar.Visible = false;
             btnCambiar.Visible = true;
+            cmb_Barrio.Enabled = false;
             lblmsj.Text = "Datos Actualizados Exitosamente";
         }
 
@@ -220,6 +226,9 @@ namespace CapaPresentacion
             lbl_TipoDocumento.Visible = false;
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
+            cmb_Barrio.Enabled = false;
+            
+            cmb_Barrio.SelectedIndex = deportista.idBarrio.Value;
         }
 
 
@@ -556,13 +565,13 @@ namespace CapaPresentacion
         {
             cmb_Barrio.Items.Clear();
             cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-            // cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
-            cmb_Barrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
+
+            cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
             cmb_Barrio.DataValueField = "id";
             cmb_Barrio.DataTextField = "nombre";
             cmb_Barrio.DataBind();
         }
-
        
+
     }
 }
