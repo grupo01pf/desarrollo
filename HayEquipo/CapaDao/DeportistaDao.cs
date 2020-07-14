@@ -42,7 +42,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        public static bool ActualizarDeportista(string id,string ape,string nom,string tdoc,string doc,string sexo,string fc,string tel)
+        public static bool ActualizarDeportista(string id,string ape,string nom,string tdoc,string doc,string sexo,string fc,string tel,int barrio)
         {
             bool flag = false;
             SqlConnection cn = new SqlConnection();
@@ -53,7 +53,7 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"UPDATE Deportista SET apellido=@ape, nombres=@nombres, idTipoDoc=@idTipoDoc, 
                                                       nroDoc=@nroDoc, sexo=@sex, fechaNacimiento=@fechaNac,
-                                                      nroTelefono=@nroTel
+                                                      nroTelefono=@nroTel, idBarrio=@barrio
                                                 WHERE idUsuario=@idUs;";
             cmd.Parameters.AddWithValue("@idUs",id);
             cmd.Parameters.AddWithValue("@ape",ape);
@@ -63,7 +63,8 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@sex",sexo);
             cmd.Parameters.AddWithValue("@fechaNac",Convert.ToDateTime(fc));
             cmd.Parameters.AddWithValue("@nroTel",tel);
-           
+            cmd.Parameters.AddWithValue("@barrio", barrio);
+
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -179,6 +180,7 @@ namespace CapaDao
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
                 d.idEstado = int.Parse(dr["idEstado"].ToString());
+                d.idBarrio = int.Parse(dr["idBarrio"].ToString());
 
             }
             dr.Close();

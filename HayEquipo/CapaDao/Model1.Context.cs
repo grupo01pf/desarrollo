@@ -28,7 +28,6 @@ namespace CapaEntidades
         }
 
         public virtual DbSet<Administrador> Administrador { get; set; }
-        public virtual DbSet<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }
         public virtual DbSet<Barrio> Barrio { get; set; }
         public virtual DbSet<Cancha> Cancha { get; set; }
         public virtual DbSet<CanchasPorHorarios> CanchasPorHorarios { get; set; }
@@ -69,6 +68,7 @@ namespace CapaEntidades
         public virtual DbSet<Valoracion> Valoracion { get; set; }
         public virtual DbSet<Zona> Zona { get; set; }
         public virtual DbSet<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
+        public virtual DbSet<AmigosPorDeportista> AmigosPorDeportista { get; set; }
         public virtual DbSet<FotosComplejo> FotosComplejo { get; set; }
         public virtual DbSet<FotosDeportista> FotosDeportista { get; set; }
         public virtual DbSet<Mapa> Mapa { get; set; }
@@ -349,11 +349,15 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_NotificacionDao_contadorNotificaciones", idUsuarioParameter);
         }
 
-        public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, Nullable<int> idReceptor, string nombreReceptor, Nullable<int> idEncuentro, string texto, Nullable<int> idEstado)
+        public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, string nombreEmisor, Nullable<int> idReceptor, string nombreReceptor, Nullable<int> idEncuentro, string texto, Nullable<int> idEstado)
         {
             var idEmisorParameter = idEmisor.HasValue ?
                 new ObjectParameter("idEmisor", idEmisor) :
                 new ObjectParameter("idEmisor", typeof(int));
+
+            var nombreEmisorParameter = nombreEmisor != null ?
+                new ObjectParameter("nombreEmisor", nombreEmisor) :
+                new ObjectParameter("nombreEmisor", typeof(string));
 
             var idReceptorParameter = idReceptor.HasValue ?
                 new ObjectParameter("idReceptor", idReceptor) :
@@ -375,7 +379,7 @@ namespace CapaEntidades
                 new ObjectParameter("idEstado", idEstado) :
                 new ObjectParameter("idEstado", typeof(int));
 
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, idReceptorParameter, nombreReceptorParameter, idEncuentroParameter, textoParameter, idEstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, nombreEmisorParameter, idReceptorParameter, nombreReceptorParameter, idEncuentroParameter, textoParameter, idEstadoParameter);
         }
 
         public virtual ObjectResult<sp_NotificacionDao_mostrarNotificaciones_Result> sp_NotificacionDao_mostrarNotificaciones(Nullable<int> idUsuario)

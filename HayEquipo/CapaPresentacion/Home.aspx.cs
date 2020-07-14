@@ -49,6 +49,7 @@ namespace CapaPresentacion
         private void actualizarNotificaciones() {
 
             lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
+            lbl_Solicitudes.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
         }
 
         void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)

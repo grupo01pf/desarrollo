@@ -73,11 +73,7 @@
                     <input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">
                     <br />
 
-                  <%--  <p>
-                        latitude: <span id="lat"></span><br />
-                        longitude: <span id="lon"></span>
-                    </p>--%>
-
+                 
 
                 </div>
                 <br />
@@ -148,6 +144,7 @@
 
        <script type="text/javascript">
 
+           let firstTime = true
 
            const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
 
@@ -160,10 +157,16 @@
                maxzoom: 18,
            }).addTo(myMap)
 
-
-
-
            var layerGroup = L.layerGroup().addTo(myMap)
+
+
+
+           if (firstTime) {
+               getCoords()
+               firstTime = false
+           } else {
+               layerGroup.clearLayers();
+           }
 
            // MOSTRAR UN COMPLEJO
            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
@@ -173,9 +176,6 @@
                myMap.setView([latitude, longitude], 15)
            } 
           
-
-
-       
 
            // CREAR UN MARCADOR
            // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
@@ -187,10 +187,7 @@
 
            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
            myMap.on('dblclick', e => {
-               // ELIMINAR MARCADOR DEL COMPLEJO
-               
-
-
+               // ELIMINAR MARCADOR DEL COMPLEJO     
                layerGroup.clearLayers();
 
                let latLng = myMap.mouseEventToLatLng(e.originalEvent)
@@ -220,10 +217,6 @@
 
              
            })
-
-
-
-
            
            // ARRAY LOCATIONS
            // CREAR UN MARCADOR           
@@ -234,20 +227,19 @@
                var coords = $("#txt_Todos").val();
                console.log(coords)
                var v = coords.split(',');
-
+             
                var j = 1
+               var k = 2
+               for (var i = 0; i < v.length - 1; i=i+3) {
 
-               for (var i = 0; i < v.length - 1; i=i+2) {
-
-                   L.marker([v[i], v[j]]).addTo(layerGroup);
-                   console.log(v[i], v[j])
-                   
-                   j=j+2
+                   L.marker([v[i], v[j]]).bindPopup(v[k]).openPopup().addTo(layerGroup);
+               
+                   j = j + 3
+                   k = k +3
                }
            }
 
-
-
+        
 
            
 

@@ -42,9 +42,11 @@
         #myMap {
             /*height: 300px;
             width: 400px;*/
-            width: 100%;
+            height: 50%;
+            width: 65%;
             padding-top: 56.25%;
         }
+
 
           input[type="radio"] {
             display: none;
@@ -75,12 +77,17 @@
             transform: scale(2.0);
             margin-left: 20%;
         }
+
+        #div_latlng {
+            width: 65%;
+        }
+
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    
-   
+
 
     <asp:Panel ID="pnl_Password" runat="server">
         <div class="well">
@@ -90,7 +97,7 @@
                 <asp:Label ID="lbl_Clave" runat="server" Text=" Clave"></asp:Label>
                 <asp:TextBox ID="txt_Password" Text="" TextMode="Password" runat="server"></asp:TextBox>
                 <asp:Button ID="btn_Entrar" Text="Entrar" runat="server" OnClick="btn_Entrar_Click" />
-                
+
             </div>
         </div>
     </asp:Panel>
@@ -100,7 +107,7 @@
     <asp:Panel ID="pnl_MostrarContenido" runat="server">
 
 
-    
+
 
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
@@ -144,10 +151,6 @@
 
                         </div>
                         <div class="alinearIzquiera elPadding">
-                            <%--<span class="glyphicon glyphicon-search"></span>--%>
-                            <%--<asp:LinkButton ID="LinkButton1" runat="server">Ver Info del Complejo</asp:LinkButton>--%>
-                            <%--Al darle click al linkbutton debería mostrar un modal con los datos del complejo: mapa, reputación, servicios, etc.--%>
-
 
 
                             <%--MODAL COMPLEJO--%>
@@ -168,14 +171,19 @@
 
 
                                     <div class="modal-content">
+
+                                        <center>
+
                                         <div class="modal-header">
 
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             <h5 class="modal-title" id="exampleModalScrollableTitle2">
+                                                <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                 <strong>
-                                                    <center>   <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                    <center>
+                                                         <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                 </strong>
                                                 <h5></h5>
@@ -185,22 +193,22 @@
                                         </div>
                                         <div class="modal-body">
 
-                                            <%-- BODY --%>
 
                                             <div class="form-group">
                                                 <asp:Label ID="lblValoracion" runat="server"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblDeportes" runat="server"></asp:Label>
+                                                <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
                                             </div>
                                             <div class="form-group">
                                                 <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
                                             </div>
-                                            <%-- <div class="form-group">
-                        <asp:Label ID="lblServicios" text="Servicios: " runat="server"></asp:Label>
-                        <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
-                    </div>--%>
-
+                                            <div class="form-group">
+                                                <asp:Label ID="lblServicios" Text="Servicios: " runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group" id="divListServ" runat="server">
+                                                <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
+                                            </div>
                                             <div class="form-group">
                                                 <asp:Label ID="lblDireccion" runat="server"></asp:Label>
                                             </div>
@@ -214,87 +222,63 @@
                                                 <asp:Label ID="lblTelefono" runat="server"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                                    <!-- Indicators -->
-                                                    <ol class="carousel-indicators">
-                                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                    </ol>
+                                                <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="form-group">
 
-                                                    <!-- Wrapper for slides -->
-                                                    <div class="carousel-inner">
-                                                        <div class="item active">
-                                                            <img id="img1" width="1000" height="1500" runat="server">
+                                                <div class="tamañoCarousel">
+                                                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                                                        <!-- Indicators -->
+                                                        <ol class="carousel-indicators">
+                                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                        </ol>
+
+                                                        <!-- Wrapper for slides -->
+                                                        <div class="carousel-inner">
+                                                            <div class="item active">
+                                                                <img id="img1" runat="server" height="500" width="700">
+                                                            </div>
+
+                                                            <div class="item">
+                                                                <img id="img2" runat="server" height="500" width="700">
+                                                            </div>
+
+                                                            <div class="item">
+                                                                <img id="img3" runat="server" height="500" width="700">
+                                                            </div>
                                                         </div>
 
-                                                        <div class="item">
-                                                            <img id="img2" width="1000" height="1500" runat="server">
-                                                        </div>
-
-                                                        <div class="item">
-                                                            <img id="img3" width="1000" height="1500" runat="server">
-                                                        </div>
+                                                        <!-- Left and right controls -->
+                                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
                                                     </div>
-
-                                                    <!-- Left and right controls -->
-                                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
                                                 </div>
-
-                                            </div>
-
-                                        </div>
-
-
-
-                                        <%-- ****MAPA**** --%>
-                                        <%--<div class="row">--%>
-                                        <%--<div class="container">
-                                        <div class="form-group">
-                                            <div id="myMap"></div>
-                                        </div>
-
-                                        <div class="form-inline">
-                                            <div id="LatLng">
-                                                <label for="lbl_Latitud">Latitud</label>
-                                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-
-                                                <label for="lbl_Longitud">Longitud</label>
-                                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>--%>
-                                    </div>
-
-                                    <%--</div>--%>
 
 
-                                    <%-- <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
-                                    </div>--%>
-                                    <%-- ****MAPA**** --%>
-
-                                    <%-- FIN BODY --%>
-
-
-                                    <div class="modal-footer">
-                                        <center>
+                                        <div class="modal-footer">
+                                            <center>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
-                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
-                                            <%--<asp:Button ID="Button1" runat="server" Text="Enviar" OnClick="" />--%>
                                         </center>
+                                        </div>
+                                            </center>
                                     </div>
+
+
                                 </div>
 
 
+                                <%--FIN MODAL COMPLEJO  --%>
                             </div>
 
 
@@ -302,7 +286,7 @@
 
                              <%--MODAL CALIFICACION--%>
 
-                          
+
 
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
@@ -335,12 +319,12 @@
                 </Animations>
             </asp:ModalPopupExtender>
 
-                           
+
             <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
                 <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                     <ContentTemplate>
 
-               
+
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                 <div class="modal-header">
@@ -382,21 +366,21 @@
                                     </asp:RadioButtonList>
                                     <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
 
-   
+
                                         </div>
 
-              
+
                      </div>
 
                   <div class="modal-footer">
-                     
+
                       <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
                        onclick="btnClose_Click"/>
 
                   </div>
                  </div>
-                   
-                   
+
+
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </asp:Panel>
@@ -405,34 +389,27 @@
                         </div>
 
 
-                        
-                            
 
 
 
 
-                        <div class="alinearIzquiera elPadding">
-                            <span class="glyphicon glyphicon-earphone"></span>
-                            <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
+
+                            <div class="alinearIzquiera elPadding">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                                <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
+                            </div>
+                            <div class="alinearIzquiera elPadding">
+                                <span class="glyphicon alert-info"></span>
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                                <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
+                            </div>
+
+
+                            <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
+                            <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
+                            <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
                         </div>
-                        <div class="alinearIzquiera elPadding">
-                            <span class="glyphicon alert-info"></span>
-                            <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
-                            <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
-                        </div>
-
-                        <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
-                        <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
-                        <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
                     </div>
-                   <%-- <div class="well">
-                        <div class="form-group">
-                            <span class="glyphicon glyphicon-eye-close"></span>
-                            <asp:Label ID="lbl_Clave" runat="server" Text=" Clave"></asp:Label>
-                            <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeHolder="Ingrese Clave" TextMode="Password"></asp:TextBox><br />
-                            <asp:Button ID="btn_Ingresar" runat="server" Text="Comprobar" CssClass="btn btn-default" OnClick="btn_Ingresar_Click" />
-                        </div>
-                    </div>--%>
                 </div>
                 <div class="col-sm-4">
                     <%--Union a Equipos--%>
@@ -452,7 +429,7 @@
 
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>
-                                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                            <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                             <div class="scroll-container">
 
@@ -469,16 +446,12 @@
                                                 </div>
 
 
-
-
                                             </div>
 
                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
 
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-
-
 
 
                                     <%-- ************************************ --%>
@@ -500,7 +473,7 @@
 
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <ContentTemplate>
-                                            <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                            <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                             <div class="scroll-container">
 
@@ -541,70 +514,13 @@
                             <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
 
 
-                            <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                           <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">
                                 Invitar
-                            </button>
-                            <%--MODAL--%>
-
-                            <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-                                aria-hidden="false">
-                                <%--data-backdrop="static" data-keyboard="false">--%>
-                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            </button>--%>
 
 
 
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h5 class="modal-title" id="exampleModalScrollableTitle">
-                                                <strong>
-                                                    <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <center>
-                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
-                                                    <Columns>
-                                                        <asp:TemplateField>
-                                                            <HeaderTemplate>
-                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
-                                                           <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
-                                                                 </HeaderTemplate>                                                        
-                                                            <ItemTemplate>
-                                                                <center>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  OnCheckedChanged="chk_Invitar_CheckedChanged" 
-                                                                    AutoPostBack="false"/>
-                                                                 </center>
-                                                                    </ItemTemplate>                                                              
-                                                             
-                                                        </asp:TemplateField> 
-                                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
-                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
-                                                                                                                
-                                                    </Columns>
-                                                </asp:GridView>   
-                                                </center>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
-                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
-                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Enviar" OnClick="btn_EnviarInvitacion_Click" />
-                                        </center>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <%--FIN MODAL--%>
                         </div>
                     </div>
                 </div>
@@ -621,7 +537,7 @@
                         <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
                                 <div class="scroll-container">
 
@@ -638,6 +554,8 @@
 
 
                                 </div>
+
+
 
                                 <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
@@ -658,12 +576,6 @@
                 <div class="col-me-2"></div>
 
 
-
-
-
-
-
-
             </div>
 
             <%-- <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
@@ -674,79 +586,266 @@
 
 
 
-            <%-- ****MAPA**** --%>
+
             <div class="row">
-                <div class="container">
-                    <div class="form-group">
-                        <div id="myMap"></div>
-                    </div>
 
-                    <div class="form-inline">
-                        <div id="LatLng">
-                            <label for="lbl_Latitud">Latitud</label>
-                            <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                 <%-- BUSQUEDA --%>
 
-                            <label for="lbl_Longitud">Longitud</label>
-                            <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                <div class="col-sm-4">
+                    <div class="well">
+
+                        <div class="form-group">
+                            <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
+
                         </div>
+
+                        <asp:Panel ID="pnl_Busqueda" runat="server" Visible="true">
+                            <div class="well">
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_PorAmigos" Text="Por Amigos" runat="server" OnCheckedChanged="rdb_PorAmigos_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="0" Checked="false" />
+                                </div>
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_PorNombre" Text="Por Nombre" runat="server" OnCheckedChanged="rdb_PorNombre_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="1" Checked="false" />
+                                </div>
+                                <asp:Panel ID="pnl_PorJugador" runat="server" Visible="false">
+                                    <div class="well">
+                                        <div class="form-group">
+                                            <%--<asp:Label ID="lbl_PorJugador" Text="Por Jugador" runat="server"></asp:Label>--%>
+                                            <%--<asp:TextBox ID="txt_NombreJugador" Text="" runat="server" placeholder="Nombre Jugador"></asp:TextBox>--%>
+                                            <asp:DropDownList ID="cmb_Jugadores" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                OnSelectedIndexChanged="cmb_Jugadores_SelectedIndexChanged" AutoPostBack="true">
+                                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" />
+                                            <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" />
+                                            <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" />
+
+                                        </div>
+
+                                    </div>
+                                </asp:Panel>
+
+                                <div class="form-group">
+                                    <asp:RadioButton ID="rdb_MasOpciones" Text="Más Opciones" runat="server" OnCheckedChanged="rdb_MasOpciones_CheckedChanged"
+                                        AutoPostBack="true" GroupName="busqueda" value="2" Checked="false" />
+                                </div>
+                                <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
+                                    <div class="well">
+
+                                       <%-- <div class="form-group">
+                                            <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
+                                                OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
+                                            <div class="dropdown">
+                                                <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                    OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
+                                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>--%>
+                                        <asp:Panel ID="pnl_Lugar" runat="server" Visible="false">
+
+                                            <div class="form-group">
+                                                <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                                                <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                                    OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                                    GroupName="tipoLocalizacion" value="0" />
+                                                <div class="form-group">
+                                                    <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                                    <div class="dropdown">
+                                                        <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                            OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                                                <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                                    OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                                    GroupName="tipoLocalizacion" value="1" />
+                                                <div class="form-group">
+                                                    <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                                    <div class="dropdown">
+                                                        <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                                            OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </asp:Panel>
+
+                                    </div>
+                                </asp:Panel>
+
+
+                                <button type="button" id="btn_Buscar" runat="server" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#exampleModalScrollable" visible="false">
+                                    Buscar
+                                </button>
+
+                                <asp:Label ID="lbl_ResultadosBusqueda" Text="" runat="server" Visible="false"></asp:Label>
+
+                            </div>
+
+
+                        </asp:Panel>
+
+
+
+                        <%--MODAL--%>
+
+                        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                            aria-hidden="false">
+                            <%--data-backdrop="static" data-keyboard="false">--%>
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                            <strong>
+                                                <asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong></h5>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                        <%-- RESULTADOS --%>
+                                        <center>
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                                    visible ="true" EmptyDataText="Sin Resultados">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <HeaderTemplate>
+                                                                <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
+                                                           <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
+                                                                 </HeaderTemplate>
+                                                            <ItemTemplate>
+                                                                <center>
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"
+                                                                    AutoPostBack="false"/>
+                                                                 </center>
+                                                                    </ItemTemplate>
+
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
+                                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
+
+                                                    </Columns>
+                                                </asp:GridView>
+                                                </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                       <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
+                                            onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
+                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />
+                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <%--FIN MODAL--%>
                     </div>
                 </div>
+
+
+                  <%-- ****MAPA**** --%>
+                <div class="col-sm-6">
+                    <div class="container">
+                        <div class="form-group">
+                            <div id="myMap"></div>
+
+                        </div>
+                        <div class="form-inline" id="div_latlng">
+                            <div id="LatLng">
+                                <label for="lbl_Latitud">Latitud</label>
+                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+
+                                <label for="lbl_Longitud">Longitud</label>
+                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-me-2"></div>
+
+
             </div>
 
-            </asp:Panel>
+
+            </div>
+    </asp:Panel>
 
 
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
 
-        <%--**** CONTROL DEL MAPA ****--%>
-        <%--<script src="scripts/map.js" ></script>--%>
-
-
-        <script type="text/javascript">
+    <%--**** CONTROL DEL MAPA ****--%>
+    <%--<script src="scripts/map.js" ></script>--%>
 
 
-            const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+    <script type="text/javascript">
 
 
-            // CENTRAR LA VISTA DEL MAPA
-            let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
-
-            L.tileLayer(tilesProvider, {
-                maxzoom: 18,
-            }).addTo(myMap)
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
 
 
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
 
 
-            var layerGroup = L.layerGroup().addTo(myMap)
 
-            // MOSTRAR UN COMPLEJO
 
-            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+        var layerGroup = L.layerGroup().addTo(myMap)
+
+        // MOSTRAR UN COMPLEJO
+
+        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
         var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-            if (latitude != "" && longitude != "") {
-                myMap.setView([latitude, longitude], 15)
-            }
+        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+        if (latitude != "" && longitude != "") {
+            myMap.setView([latitude, longitude], 15)
+        }
 
 
 
-            // CREAR UN MARCADOR
-            // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
+        // CREAR UN MARCADOR
+        // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
 
-            // DESACTIVAR ZOOM CON DOBLE CLICK
-            myMap.doubleClickZoom.disable()
+        // DESACTIVAR ZOOM CON DOBLE CLICK
+        myMap.doubleClickZoom.disable()
 
-            // var layerGroup = L.layerGroup().addTo(myMap)
+        // var layerGroup = L.layerGroup().addTo(myMap)
 
-            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
 
 
-        </script>
+    </script>
 </asp:Content>
-
-
-

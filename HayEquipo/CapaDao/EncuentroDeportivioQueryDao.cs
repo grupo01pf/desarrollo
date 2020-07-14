@@ -51,8 +51,11 @@ namespace CapaDao
                 edq.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
                 edq.idComplejo = int.Parse(dr["idComplejo"].ToString());
-               // edq.idClave = int.Parse(dr["idClave"].ToString());
-                
+                if (!string.IsNullOrEmpty(dr["idClave"].ToString())){
+                    edq.idClave = int.Parse(dr["idClave"].ToString());
+                }
+
+
                 // eq.calle = dr["calle"].ToString();
                 //eq.fechaInicioEncuentro = Convert.ToDateTime( DateTime.Parse(dr["fechaInicioEncuentro"].ToString()));
                 //eq.fechaInicioEncuentro = DateTime.Parse(dr["fechaInicioEncuentro"].ToString());
@@ -392,7 +395,7 @@ namespace CapaDao
         }
         //Modifiqué consulta por elimiación de tabla 'Responsable'
         public static List<EncuentroDeportivoQueryEntidad> ObtenerEncuentrosPorUsResponsable(int idUs)
-        { 
+        {
              List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
 
         EncuentroDeportivoQueryEntidad edq = null;
@@ -448,7 +451,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-           
+
             cmd.CommandText = @"SELECT ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
                                 e.nombre as Estado,ed.horaInicio,ed.horaFin,ed.nombreLP as Lugar ,ed.direccion,
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave ,d.avatar as avatar
@@ -692,7 +695,7 @@ namespace CapaDao
                                 e.nombre as Estado,ed.horaInicio,ed.horaFin,cd.nombre as Complejo ,cd.calle,cd.nroCalle,
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave,d.avatar as avatar
                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e, Barrio b
-                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND cd.idBarrio = b.id 
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND cd.idBarrio = b.id
                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id";
 
             if (idZona != 0)

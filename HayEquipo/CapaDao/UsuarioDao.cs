@@ -605,6 +605,125 @@ namespace CapaDao
 
         }
 
-       
+
+        public static List<Usuario> getAmigos(int idUsuario)
+        {
+            List<Usuario> listaAmigos = new List<Usuario>();
+            Usuario u = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" SELECT  u.id, u.nombre
+                                 FROM Usuario u, AmigosPorDeportista apd
+                                 WHERE apd.idAmigo = u.id ";
+            
+            if (idUsuario != 0)
+            {
+                cmd.CommandText += @" AND apd.idUsuario = @id";
+                cmd.Parameters.AddWithValue("@id", idUsuario);
+            }
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                u = new Usuario();
+
+                u.id = int.Parse(dr["ID"].ToString());
+                u.nombre = dr["Nombre"].ToString();
+
+                listaAmigos.Add(u);
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return listaAmigos;
+        }
+
+
+        public static List<Usuario> getUsuariosPorFiltro(int zona, int barrio)
+        {
+            List<Usuario> listaAmigos = new List<Usuario>();
+            Usuario u = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" 
+                                SELECT DISTINCT u.id, u.nombre
+                                FROM Usuario u, Deportista d, Barrio b, Zona z
+                                WHERE d.id = u.id AND b.id = d.idBarrio  ";
+
+            
+            if (zona != 0)
+            {
+                cmd.CommandText += @" AND z.id = b.idZona AND d.idBarrio = b.id AND z.id = @z";
+                cmd.Parameters.AddWithValue("@z", zona);
+            }
+            if (barrio != 0)
+            {
+                cmd.CommandText += @" AND b.id = @barrio";
+                cmd.Parameters.AddWithValue("@barrio", barrio);
+            }
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                u = new Usuario();
+
+                u.id = int.Parse(dr["ID"].ToString());
+                u.nombre = dr["Nombre"].ToString();
+
+                listaAmigos.Add(u);
+            }
+
+            dr.Close();
+            cn.Close();
+
+            return listaAmigos;
+        }
+
+        public static void aceptarSolicitud(int idUsuario, int idAmigo)
+        {
+            List<Usuario> listaAmigos = new List<Usuario>();
+            Usuario u = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" INSERT INTO  AmigosPorDeportista (idUsuario, idAmigo)
+                                 VALUES (@idUsuario, @idAmigo) ";
+
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
+
+            //if (idUsuario != 0)
+            //{
+            //    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            //}
+            //if (idAmigo != 0)
+            //{
+            //    cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
+            //}
+
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
     }
+
+
+    
+
+
 }
+

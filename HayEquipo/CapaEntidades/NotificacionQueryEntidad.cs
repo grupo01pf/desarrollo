@@ -12,7 +12,9 @@ namespace CapaEntidades
         // Notificacion
         public int idNotificacion { get; set; }
         public int idEmisor { get; set; }
+        public string nombreEmisor { get; set; }
         public int idReceptor { get; set; }
+        public string nombreReceptor { get; set; }
         public string texto { get; set; }
         public int estado { get; set; }
 

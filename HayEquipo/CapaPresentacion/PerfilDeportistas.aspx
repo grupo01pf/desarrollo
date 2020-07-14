@@ -5,6 +5,9 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+
     <style>
         .mydatagrid {
             width: 80%;
@@ -106,6 +109,23 @@
             transform: scale(2.0);
             margin-left: 20%;
         }
+
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+
+        .hiddencol {
+            display: none;
+        }
+
+
     </style>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -143,6 +163,9 @@
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
+
+
+
     </script>
 
 
@@ -175,7 +198,7 @@
                 </div>
 
 
-                
+
 
 
 
@@ -189,7 +212,14 @@
                         <li id="calif" class="" runat="server"><a data-toggle="tab" href="#menu2">Mis Calificaciones</a></li>
                         <li><a data-toggle="tab" href="#menu3">Estadisticas</a></li>
                         <%-- <li><a data-toggle="tab" href="#menu5">Reporte Establecimiento</a></li>--%>
-                        <li><a data-toggle="tab" href="#menu6">Notificaciones<span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
+                        <li><a data-toggle="tab" href="#menu6"><span class="glyphicon glyphicon-bell"></span>Notificaciones<span class="badge">
+                            <asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span></a></li>
+
+                        <li><a data-toggle="tab" href="#menu7"><span class="glyphicon glyphicon-user"></span>Solicitudes<span class="badge">
+                            <asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span></a></li>
+
+                        <li><a data-toggle="tab" href="#menu8"><i class="fa fa-users" aria-hidden="true"></i>Contactos<span class="badge">
+                            <asp:Label ID="lbl_Contactos" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
                     <div class="tab-content">
@@ -228,6 +258,12 @@
                                 <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
                             </div>
                             <div class="form-group">
+                                <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
+                                 <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems >
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
+                            </div>
+                            <div class="form-group">
                                 <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
                                 <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />
                                 <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click" Visible="false" />
@@ -262,26 +298,121 @@
 
                         </div>
                          <%-- NOTIFICACIONES --%>
+
+
+
                         <div id="menu6" class="tab-pane fade">
                             <div class="table-responsive">
 
-                                <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged">
-                                    
-                                    <Columns>
-                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
-                                        <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                        <asp:BoundField DataField="nombreUsuario" HeaderText="Emisor" Visible="true" />
-                                        <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
-                                        <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
-                                        <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
 
-                                    </Columns>
-                                </asp:GridView>
+
+                                <center>
+                                <asp:GridView ID="gdv_Notificaciones" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                      HeaderStyle-CssClass="header" RowStyle-CssClass="rows" visible ="true" EmptyDataText="Sin Notificaciones"
+                                   OnSelectedIndexChanged="gdv_Notificaciones_SelectedIndexChanged" OnRowDeleting="gdv_Notificaciones_RowDeleting">
+
+                                      <Columns>
+
+                                           <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                               DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
+
+                                           <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png"
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir"
+                                              />
+
+                                            <asp:BoundField DataField="idNotificacion" HeaderText="IdNotif" Visible="false" />
+                                            <asp:BoundField DataField="nombreEmisor" HeaderText="Emisor" Visible="true" />
+                                            <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                            <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+
+                                     </Columns>
+                               </asp:GridView>
+
+
+                              </center>
+
+
+
 
                             </div>
                         </div>
                         <%-- FIN NOTIFICACIONES --%>
+
+
+
+
+                        <div id="menu7" class="tab-pane fade">
+                            <div class="table-responsive">
+
+                                <center>
+                                <asp:GridView ID="gdv_Solicitudes" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                      HeaderStyle-CssClass="header" RowStyle-CssClass="rows" visible ="true" EmptyDataText="Sin Solicitudes"
+                                      OnSelectedIndexChanged="gdv_Solicitudes_SelectedIndexChanged"
+                                      OnRowDeleting="gdv_Solicitudes_RowDeleting"
+                                      OnRowCommand="gdv_Solicitudes_RowCommand"
+                                      >
+
+                                      <Columns>
+                                           <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                               DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
+                                           <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png"
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
+                                          <asp:ButtonField buttontype="link" Text="<i class='fa fa-check'></i>"
+                                             HeaderText="Aceptar" ShowHeader="True" CommandName="Aceptar" />
+                                              <%--  <asp:ButtonField buttontype="link" Text="<i class='fa fa-remove'></i>"
+                                              HeaderText="Cancelar" ShowHeader="True" CommandName="Cancelar" />
+                                                 --%>
+
+                                            <asp:BoundField DataField="idNotificacion" HeaderText="IdNotif" Visible="false" />
+                                            <asp:BoundField DataField="nombreEmisor" HeaderText="Emisor" Visible="true" />
+                                            <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
+                                            <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                            <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
+                                            <asp:BoundField DataField="idReceptor" HeaderText="IdReceptor" visible="true"
+                                                ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                            <asp:BoundField DataField="idEmisor" HeaderText="IdEmisor" visible="true"
+                                                ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"  />
+                                          <asp:BoundField DataField="nombreReceptor" HeaderText="Receptor" Visible="true"
+                                              ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"  />
+                                     </Columns>
+                               </asp:GridView>
+
+                                  <%--  <asp:Label ID="lbl_Prueba" runat="server" Text="Sin resultados"></asp:Label>--%>
+
+                              </center>
+
+
+                                </div>
+                            </div>
+
+
+                         <div id="menu8" class="tab-pane fade">
+                            <div class="table-responsive">
+                                <br />
+
+
+                                <center>
+                                <asp:GridView ID="gdv_Contactos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                    OnSelectedIndexChanged="gdv_Contactos_SelectedIndexChanged"
+                                    OnRowDeleting="gdv_Contactos_RowDeleting">
+
+                                    <Columns>
+                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png"
+                                                ShowSelectButton="true" ControlStyle-Width="25px" HeaderText="Ir" />
+                                        <asp:BoundField DataField="id" HeaderText="" Visible="false" />
+                                        <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
+                                        <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                               DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
+                                    </Columns>
+                                </asp:GridView>
+                                </center>
+                            </div>
+                        </div>
+
+
+
                         <div id="menu2" class="tab-pane fade">
                             <div class="table-responsive">
                                 <br />
@@ -372,7 +503,7 @@
                       </div>
 
                 </div>--%>
-                       
+
 
                         <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
                     </div>

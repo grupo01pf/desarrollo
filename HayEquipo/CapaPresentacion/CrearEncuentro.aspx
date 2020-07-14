@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
-     <%--**** MAPA ****--%>
+    <%--**** MAPA ****--%>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
 
-     <%--**** MAPA ****--%>
+    <%--**** MAPA ****--%>
 
 
 
@@ -35,8 +35,9 @@
         }
 
         /*#LatLng {
-            /*display: none;*/
-        }*/
+            display: none;
+        }
+        */
     </style>
 
 
@@ -50,45 +51,65 @@
     </h1>
     <div class="jumbotron text-center fondoPalJumbotron">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="well">
-                    <div class="form-group">
-                        <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems>
-                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                   <%-- <div class="form-group">
-                        <asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems>
-                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems>
-                                <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>--%>
-
-                    <div class="well" style="width: 310px; margin: 0 auto;">
+                    <div class="form-group" class="well">
                         <div class="form-group">
-
-                            <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                            <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
-
+                            <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
+                            <div class="dropdown">
+                                <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
+                                    OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                            <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                GroupName="tipoLocalizacion" value="0" />
+                            <div class="form-group">
+                                <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                        OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <br />
+                            <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                            <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                GroupName="tipoLocalizacion" value="1" />
+                            <div class="form-group">
+                                <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                        OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="well" style="width: 310px; margin: 0 auto;">
+                            <div class="form-group">
+
+                                <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+                                <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
+
+                            </div>
+                        </div>
+
                     </div>
-                    
                 </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-8">
                 <div class="well">
                     <div class="row">
                         <%--  LUGAR PUBLICO--%>
@@ -115,33 +136,70 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
-                            <br />
-                            <asp:Label ID="lbl_ConsejoMapa" runat="server" 
-                                 Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
+                                <br />
+                                <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
+                                    Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
                             </div>
-                            
+
                         </div>
                         <%-- LUGAR PRIVADO --%>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <asp:RadioButton ID="rdb_Privado" runat="server" Text=" Lugar Privado" GroupName="tipoEncuentro" value="1" OnCheckedChanged="rdb_Privado_CheckedChanged" AutoPostBack="true" />
                             </div>
+
+
+
+                            <%-- TIPO DE BUSQUEDA --%>
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <asp:RadioButton ID="rdb_Horario" runat="server" Text=" Por Horario " GroupName="tipoBusqueda" value="0" OnCheckedChanged="rdb_Horario_CheckedChanged" AutoPostBack="true" />
+                                        <br />
+                                        <asp:Label ID="lbl_PorHora" runat="server" Text="Hora Inicio"></asp:Label>
+                                        <asp:TextBox ID="txt_PorHora" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
+                                        <br />
+                                        <asp:Label ID="lbl_TipoCancha" runat="server" Text="Tipo Cancha"></asp:Label>
+                                        <asp:DropDownList ID="cmb_TipoCancha" CssClass="form-control" runat="server" AutoPostBack="true"
+                                            AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_TipoCancha_SelectedIndexChanged">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <br />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:RadioButton ID="rdb_Complejo" runat="server" Text=" Por Complejo" GroupName="tipoBusqueda" value="1" OnCheckedChanged="rdb_Complejo_CheckedChanged" AutoPostBack="true" />
+                                        <br />
+                                        <%--<asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos"
+                                        runat="server" NavigateUrl="~/Complejos.aspx" ForeColor="Blue"></asp:HyperLink>
+                                    <br />--%>
+
+
+                                        <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
+                                        <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
+                                            AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_Complejo_SelectedIndexChanged">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <br />
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+
                             <div class="form-group">
-
-                                <asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos" 
-                                    runat="server" NavigateUrl="~/Complejos.aspx" ForeColor="Blue"></asp:HyperLink>
-                                <br
-
-
-                                <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
-                                <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
-                                    AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_Complejo_SelectedIndexChanged">
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>
-                                <br />
-                               
-                                 
-
 
 
                                 <%--MODAL--%>
@@ -153,16 +211,11 @@
 
 
 
-
-
                                 <button type="button" id="btn_Agenda" runat="server" class="btn btn-primary"
                                     data-toggle="modal" data-target="#exampleModalScrollable"
                                     visible="false">
                                     Ver Agenda del Complejo
                                 </button>
-
-
-
 
 
 
@@ -194,10 +247,12 @@
                         <ContentTemplate>
                             <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick"  Interval="1000"></asp:Timer>--%>
 
+                                                <%-- Agenda de un Complejo --%>
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" >
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" 
+                                                    Visible="false" EmptyDataText="No hay horarios disponibles">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
@@ -211,6 +266,23 @@
                                                     </Columns>
                                                 </asp:GridView>
 
+                                                <%--  Agenda de varios Complejos --%>
+
+                                                 <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
+                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_AgendaComplejos_SelectedIndexChanged"
+                                                    visible="false" EmptyDataText="No hay complejos disponibles para la hora y/o tipo de cancha seleccionados" >
+                                                    <Columns>
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        
+                                                         <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true" />
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
+                                                        <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
+
+                                                    </Columns>
+                                                </asp:GridView>
 
                      <%--       
                               <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
@@ -233,9 +305,146 @@
 
 
 
-
-
                                 <%--FIN MODAL--%>
+
+
+
+
+                                <%-- ***************************************************** --%>
+
+
+                                <br />
+
+
+                                <%--MODAL COMPLEJO--%>
+
+                                <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#exampleModalScrollable2"
+                                    visible="false">
+                                    Ver Complejo
+                                </button>
+
+
+                                <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
+                                    aria-hidden="false">
+                                    <%--data-backdrop="static" data-keyboard="false">--%>
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle2">
+                                                    <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
+                                                    <strong>
+                                                        <center>  
+                                                             <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                  </center>
+                                                    </strong>
+                                                    <h5></h5>
+                                                    <h5></h5>
+                                                    <h5></h5>
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblServicios" Text="Servicios: " runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group" id="divListServ" runat="server">
+                                                    <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblZona" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="tamañoCarousel">
+                                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                                                            <!-- Indicators -->
+                                                            <ol class="carousel-indicators">
+                                                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                            </ol>
+
+                                                            <!-- Wrapper for slides -->
+                                                            <div class="carousel-inner">
+                                                                <div class="item active">
+                                                                    <img id="img1" runat="server" height="500" width="700">
+                                                                </div>
+
+                                                                <div class="item">
+                                                                    <img id="img2" runat="server" height="500" width="700">
+                                                                </div>
+
+                                                                <div class="item">
+                                                                    <img id="img3" runat="server" height="500" width="700">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Left and right controls -->
+                                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                <span class="sr-only">Previous</span>
+                                                            </a>
+                                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                <span class="sr-only">Next</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <%-- FIN BODY --%>
+
+
+                                            <div class="modal-footer">
+                                                <center>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </center>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <%--FIN MODAL COMPLEJO  --%>
+
+
+
                                 <br />
                                 <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
@@ -272,43 +481,27 @@
                 <div id="myMap"></div>
             </div>
 
-               <div class="form-inline">
+            <div class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true" ></asp:TextBox>
+                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                     <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
 
                     <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true" ></asp:TextBox>
-                     <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
-
+                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                    <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
                 </div>
             </div>
-         
-          
+
+
         </div>
 
-
-
-
-        <%--        <div id="contenedorDelMapa" runat="server" class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" id="frm_map" runat="server" src="" allowfullscreen=""></iframe>
-        </div>--%>
-
-
-
-
-        <%-- ****MAPA**** --%>
-        <%--         <iframe id="Iframe1" runat="server" src="" width="550" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>--%>
     </div>
 
 
-          
-    
 
 
-
-     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
 
@@ -316,7 +509,7 @@
     <%--<script src="scripts/map.js" ></script>--%>
 
 
-      <script type="text/javascript">
+    <script type="text/javascript">
 
 
         const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
@@ -330,47 +523,43 @@
         }).addTo(myMap)
 
 
-
-
         var layerGroup = L.layerGroup().addTo(myMap)
-
-        
 
 
         // CREAR UN MARCADOR
         // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
 
 
-      
+
         // DESACTIVAR ZOOM CON DOBLE CLICK
         myMap.doubleClickZoom.disable()
 
         // var layerGroup = L.layerGroup().addTo(myMap)
 
         if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
-            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
-            myMap.on('dblclick', e => {
-                // ELIMINAR MARCADOR DEL COMPLEJO
+                        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+                        myMap.on('dblclick', e => {
+                            // ELIMINAR MARCADOR DEL COMPLEJO
 
 
-                layerGroup.clearLayers();
+                            layerGroup.clearLayers();
 
-                let latLng = myMap.mouseEventToLatLng(e.originalEvent)
-                // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
+                            let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+                            // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
 
-                myMap.closePopup();
-                //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+                            myMap.closePopup();
+                            //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
-                marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
-                // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+                            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+                            // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
 
-                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
+                            // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
 
-                // ASP.NET
-                // $('#txt_Latitud').val(marker.getLatLng().lat)
-                // $('#txt_Longitud').val(marker.getLatLng().lng)
+                            // ASP.NET
+                            // $('#txt_Latitud').val(marker.getLatLng().lat)
+                            // $('#txt_Longitud').val(marker.getLatLng().lng)
 
-                $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+                            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
                 $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
 
                 // HTML
@@ -386,29 +575,33 @@
 
 
 
-          var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
-          var indice = cmbCD.options[cmbCD.selectedIndex].value;
+        var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
+        var indice = cmbCD.options[cmbCD.selectedIndex].value;
 
-          if (indice > 0) {
-              // MOSTRAR UN COMPLEJO
-              var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-              var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+        if (indice > 0) {
+            // MOSTRAR UN COMPLEJO
+            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-              var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-              if (latitude != "" && longitude != "") {
-                  myMap.setView([latitude, longitude], 15)
-              }
+                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+                        if (latitude != "" && longitude != "") {
+                            myMap.setView([latitude, longitude], 15)
+                        }
 
-          }
+                    } else {
+                        // MOSTRAR UN COMPLEJO
+                        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-      </script>
+                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+                        if (latitude != "" && longitude != "") {
+                            myMap.setView([latitude, longitude], 15)
+                        }
 
-    
+                    }
 
 
 
-
-
+    </script>
 </asp:Content>
 
- 

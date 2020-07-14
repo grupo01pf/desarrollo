@@ -119,7 +119,8 @@
                 background: green;
             }
 
-            .notification .badge {
+            .notification            
+            .badge {
                 position: absolute;
                 top: -10px;
                 right: -10px;
@@ -129,6 +130,9 @@
                 color: white;
             }
 
+        .linkButton:hover{
+            color:white;
+        }
 
 
     </style>
@@ -145,7 +149,7 @@
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
       <div class="well">
         <%--<p><a href="#">Ignacio Monetto</a></p>--%>
-         <p> <asp:LinkButton ID="link_nombreUsuario" runat="server" Text="" OnClick="link_nombreUsuario_Click"></asp:LinkButton></p>
+         <p> <asp:LinkButton ID="link_nombreUsuario"  runat="server" Text="" OnClick="link_nombreUsuario_Click" ></asp:LinkButton></p>
         <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
       </div>
 
@@ -153,10 +157,25 @@
         <%-- INVITACIONES --%>
 
          <%--<a href="#" class="notification">--%>
-        <div class="well">
-        <span><asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" /></span>
-         <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
+        <div class="well notification">
+            
+            <asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" 
+            CssClass="linkButton" ToolTip="Notificaciones" >
+                <span class="glyphicon glyphicon-bell"></span>
+            </asp:LinkButton>
+            <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
       <%--  </a> --%>
+         </div>
+         <div class="well notification">            
+            <asp:LinkButton ID="btn_Solicitudes" runat="server" Text="Solicitudes" OnClick="btn_Notificacion_Click" 
+            CssClass="linkButton" ToolTip="Solicitudes" >
+               <i class="fa fa-users" aria-hidden="true"></i>
+               <%--<span class="glyphicon glyphicon-user"></span>
+               <span class="glyphicon glyphicon-user"></span>--%>
+               <%--<span class="glyphicon glyphicon-user"></span>--%>
+            </asp:LinkButton>
+            <span class="badge"><asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span>
+             
          </div>
 
       <div class="well">
