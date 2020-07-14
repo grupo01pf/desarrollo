@@ -37,6 +37,7 @@ namespace CapaDao
                 a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["horaApertura"].ToString(), out ha)) { a.horaApertura = ha; } // ok
                 TimeSpan hc; if (TimeSpan.TryParse(dr["horaCierre"].ToString(), out hc)) { a.horaCierre = hc; } // ok
+
                 agenda.Add(a);
             }
             dr.Close();
@@ -119,9 +120,28 @@ namespace CapaDao
 
         }
 
+        public static void LiberarHorario(int idCancha, DateTime fecha, TimeSpan hora)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
 
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE h 
+                                SET h.idEstado = 2
+                                FROM Horario h
+                                LEFT JOIN CanchasPorHorarios cph ON cph.idHorario = h.id 
+                                WHERE cph.idCancha = @idCan AND h.fecha = @fecha AND h.horaInicio = @hora";
+            //@"DELETE from CanchasPorHorarios WHERE idHorario=@idHor AND idCancha=@idCan";
+            cmd.Parameters.AddWithValue("@idCan", idCancha);
+            cmd.Parameters.AddWithValue("@fecha", fecha);
+            cmd.Parameters.AddWithValue("@hora", hora);
 
+            cmd.ExecuteNonQuery();
 
+            cn.Close();
+        }
 
     }
 }

@@ -158,7 +158,7 @@ namespace CapaPresentacion
                     agenda.nombreTipoCancha = a.nombreTipoCancha;
                     agenda.horaInicioHorario = TimeSpan.FromHours((ha + i));
                     agenda.precioCancha = a.precioCancha;
-                    agenda.capacidadTipoCancha = a.capacidadTipoCancha;
+                    agenda.capacidadTipoCancha = a.capacidadTipoCancha;;
 
                     listaAgendaGenerada.Add(agenda);
                 }
@@ -227,9 +227,10 @@ namespace CapaPresentacion
                 if (row.Cells[7].Text == "1")
                 {
                     row.BackColor = Color.FromName("LightCoral");
-                    row.Enabled = false;
+                    //row.Enabled = false;
                 }
             }
+
             gdv_Agenda.Columns[7].Visible = false;
         }
 
@@ -255,16 +256,25 @@ namespace CapaPresentacion
             }
         }
 
+        //AGREGAR MENSAJE DE LA CANCHA QUE FUE LIBERADA
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
-            string datos = string.Empty;
-            datos = fila.Cells[2].Text + " (" + fila.Cells[3].Text + ") - " + fila.Cells[4].Text + "hs. - $" + fila.Cells[5].Text;
-            lbl_Reserva.Text = "*** Reservado en: " + datos + " ***";
+            if(fila.BackColor == Color.FromName("LightCoral"))
+            {
+                LiberarCancha(fila);
+            }
 
-            //lbl_Capacidad.Text = fila.Cells[6].Text;
-            ReservarCancha();
+            else
+            {
+                //lbl_Capacidad.Text = fila.Cells[6].Text;
+                ReservarCancha(fila);
+
+                string datos = string.Empty;
+                datos = fila.Cells[2].Text + " (" + fila.Cells[3].Text + ") - " + fila.Cells[4].Text + "hs. - $" + fila.Cells[5].Text;
+                lbl_Reserva.Text = "*** Reservado en: " + datos + " ***";
+            }           
         }
 
         //protected void Timer1_Tick(object sender, EventArgs e)
@@ -285,10 +295,10 @@ namespace CapaPresentacion
             }
         }
 
-        private void ReservarCancha()
+        private void ReservarCancha(GridViewRow fila)
         {
 
-            GridViewRow fila = gdv_Agenda.SelectedRow;
+            //GridViewRow fila = gdv_Agenda.SelectedRow;
 
             EncuentroDeportivo ed = new EncuentroDeportivo();
 
@@ -328,6 +338,17 @@ namespace CapaPresentacion
             //reserva.idEstado = 1; //(reservado)
             //ReservaDao.InsertarReserva(reserva);
 
+        }
+       
+        private void LiberarCancha(GridViewRow fila)
+        {           
+            int idCan = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
+            TimeSpan hr = TimeSpan.Parse(fila.Cells[4].Text);
+            DateTime fecha = cld_Fecha.SelectedDate;
+
+            AgendaDao.LiberarHorario(idCan, fecha, hr);
+
+            cargarAgenda();
         }
 
         protected void btnRegComplejo_Click(object sender, EventArgs e)
