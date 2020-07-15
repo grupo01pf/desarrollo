@@ -10,7 +10,7 @@
 namespace CapaEntidades
 {
     using System;
-
+    
     public partial class sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result
     {
         public int id { get; set; }

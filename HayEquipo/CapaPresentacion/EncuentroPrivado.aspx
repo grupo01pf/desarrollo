@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EncuentroPrivado.aspx.cs" Inherits="CapaPresentacion.EncuentroPrivado" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 
@@ -47,42 +46,9 @@
             padding-top: 56.25%;
         }
 
-
-          input[type="radio"] {
-            display: none;
-        }
-
-
-        .clasificacion {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            margin-right: 70%;
-        }
-
-        label:hover,
-        label:hover ~ label {
-            color: orange;
-        }
-
-
-        input[type="radio"]:checked ~ label {
-            color: orange;
-        }
-
-        .estrellalabel {
-            font-size: 20px;
-        }
-
-        .estrella {
-            transform: scale(2.0);
-            margin-left: 20%;
-        }
-
         #div_latlng {
             width: 65%;
         }
-
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -162,7 +128,6 @@
                             </button>
 
 
-
                             <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
                                 aria-hidden="false">
                                 <%--data-backdrop="static" data-keyboard="false">--%>
@@ -182,10 +147,12 @@
                                             <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                                 <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                 <strong>
-                                                    <center>
+                                                    <center>   
                                                          <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                 </strong>
+                                                <h5></h5>
+                                                <h5></h5>
                                                 <h5></h5>
                                                 <h5></h5>
                                                 <h5></h5>
@@ -282,13 +249,11 @@
                             </div>
 
 
-                            <%--FIN MODAL COMPLEJO  --%>
-
-                             <%--MODAL CALIFICACION--%>
+                            <%--MODAL CALIFICACION--%>
 
 
 
-                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                            <%-- <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
                                     <asp:LinkButton ID="btnCalifComplejo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary">
                                Calificar Complejo
@@ -383,15 +348,9 @@
 
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </asp:Panel>
+            </asp:Panel>--%>
 
-                             <%--FIN MODAL CALIFICACION  --%>
-                        </div>
-
-
-
-
-
+                            <%--FIN MODAL CALIFICACION  --%>
 
 
                             <div class="alinearIzquiera elPadding">
@@ -403,7 +362,6 @@
                                 <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
                                 <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
                             </div>
-
 
                             <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
                             <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
@@ -514,13 +472,10 @@
                             <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
 
 
-                           <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                            <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">
                                 Invitar
                             </button>--%>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -589,7 +544,7 @@
 
             <div class="row">
 
-                 <%-- BUSQUEDA --%>
+                <%-- BUSQUEDA --%>
 
                 <div class="col-sm-4">
                     <div class="well">
@@ -636,7 +591,7 @@
                                 <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                     <div class="well">
 
-                                       <%-- <div class="form-group">
+                                        <%-- <div class="form-group">
                                             <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
                                                 OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
                                             <div class="dropdown">
@@ -730,20 +685,20 @@
                                                             <HeaderTemplate>
                                                                 <%--<asp:CheckBox ID="chk_InvitarTodos" runat="server" Text=" Seleccionar Todos" OnCheckedChanged="chk_Invitar_CheckedChanged" />--%>
                                                            <asp:Label id="lbl_Seleccionar" runat="server" Text="Seleccionar"></asp:Label>
-                                                                 </HeaderTemplate>
+                                                                 </HeaderTemplate>                                                        
                                                             <ItemTemplate>
                                                                 <center>
-                                                                <asp:CheckBox ID="chk_Invitar" runat="server"
+                                                                <asp:CheckBox ID="chk_Invitar" runat="server"  
                                                                     AutoPostBack="false"/>
                                                                  </center>
-                                                                    </ItemTemplate>
-
-                                                        </asp:TemplateField>
+                                                                    </ItemTemplate>                                                              
+                                                             
+                                                        </asp:TemplateField> 
                                                         <asp:BoundField DataField="id" HeaderText="" Visible="false" />
                                                         <asp:BoundField DataField="nombre" HeaderText="Usuario" Visible="true" />
-
+                                                                                                                
                                                     </Columns>
-                                                </asp:GridView>
+                                                </asp:GridView>   
                                                 </center>
                                     </div>
                                     <div class="modal-footer">
@@ -766,7 +721,7 @@
                 </div>
 
 
-                  <%-- ****MAPA**** --%>
+                <%-- ****MAPA**** --%>
                 <div class="col-sm-6">
                     <div class="container">
                         <div class="form-group">
@@ -794,7 +749,7 @@
             </div>
 
 
-            </div>
+        </div>
     </asp:Panel>
 
 
@@ -849,3 +804,6 @@
 
     </script>
 </asp:Content>
+
+
+

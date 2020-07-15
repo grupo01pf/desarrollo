@@ -110,10 +110,9 @@ namespace CapaPresentacion
 
         private void cargarMapa(int idComplejoDeportivo)
         {
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
 
-            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejoDeportivo);
-
-            int id = cd.Mapa.Value;
+            int id = cd.mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
             txt_Latitud.Text = mapa.latitud;
             txt_Longitud.Text = mapa.longitud;
@@ -549,7 +548,7 @@ namespace CapaPresentacion
         private void cargarModalComplejo(int idComplejo)
         {
 
-            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
 
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
             lblDeportes.Text = compSelec.deportes;
@@ -655,155 +654,157 @@ namespace CapaPresentacion
         }
         protected void btnPopUp_Click(object sender, EventArgs e)
         {
-
-
-            btnPopUp_ModalPopupExtender.Show();
+            
+            //btnPopUp_ModalPopupExtender.Show();
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            btnPopUp_ModalPopupExtender.Hide();
+            //btnPopUp_ModalPopupExtender.Hide();
         }
 
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
-            int valor=  Convert.ToInt32(RadioButtonList1.SelectedValue);
-            string usuario = Session["ID"].ToString();
-            int usuarioValorador = Convert.ToInt32(usuario);
-            int idcomplejo = edq.idComplejo;
-            RadioButtonList1.Enabled = false;
-            ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador,valor,1);
+            //EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
+            //int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            //edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+            //int valor=  Convert.ToInt32(RadioButtonList1.SelectedValue);
+            //string usuario = Session["ID"].ToString();
+            //int usuarioValorador = Convert.ToInt32(usuario);
+            //int idcomplejo = edq.idComplejo;
+            //RadioButtonList1.Enabled = false;
+            //ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador,valor,1);
 
-            foreach (ListItem item in RadioButtonList1.Items)
-                {
+            //foreach (ListItem item in RadioButtonList1.Items)
+            //{
 
-                    if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
-                    {
-                        item.Attributes.CssStyle.Add("color", "orange");
-                    }
+            //    if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+            //    {
+            //        item.Attributes.CssStyle.Add("color", "orange");
+            //    }
 
-                }
+            //}
 
-            lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
-            cargarValoracion();
+            //lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
+            //cargarValoracion();
 
         }
 
         protected void RadioButtonList2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
-            int valor = Convert.ToInt32(RadioButtonList2.SelectedValue);
-            string usuario = Session["ID"].ToString();
-            int usuarioValorador = Convert.ToInt32(usuario);
-            int idcomplejo = edq.idComplejo;
-            RadioButtonList2.Enabled = false;
-            ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador, valor, 2);
+            //EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
+            //int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            //edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+            //int valor = Convert.ToInt32(RadioButtonList2.SelectedValue);
+            //string usuario = Session["ID"].ToString();
+            //int usuarioValorador = Convert.ToInt32(usuario);
+            //int idcomplejo = edq.idComplejo;
+            //RadioButtonList2.Enabled = false;
+            //ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador, valor, 2);
 
-            foreach (ListItem item in RadioButtonList2.Items)
-            {
+            //foreach (ListItem item in RadioButtonList2.Items)
+            //{
 
-                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
-                {
-                    item.Attributes.CssStyle.Add("color", "orange");
-                }
+            //    if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+            //    {
+            //        item.Attributes.CssStyle.Add("color", "orange");
+            //    }
 
-            }
+            //}
 
-            lblmsjrb2.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
-            cargarValoracion();
+            //lblmsjrb2.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
+            //cargarValoracion();
         }
 
         protected void RadioButtonList3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
-            int valor = Convert.ToInt32(RadioButtonList3.SelectedValue);
-            string usuario = Session["ID"].ToString();
-            int usuarioValorador = Convert.ToInt32(usuario);
-            int idcomplejo = edq.idComplejo;
-            RadioButtonList3.Enabled = false;
-            ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador, valor, 3);
+            //EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
+            //int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            //edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+            //int valor = Convert.ToInt32(RadioButtonList3.SelectedValue);
+            //string usuario = Session["ID"].ToString();
+            //int usuarioValorador = Convert.ToInt32(usuario);
+            //int idcomplejo = edq.idComplejo;
+            //RadioButtonList3.Enabled = false;
+            //ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador, valor, 3);
 
-            foreach (ListItem item in RadioButtonList3.Items)
-            {
+            //foreach (ListItem item in RadioButtonList3.Items)
+            //{
 
-                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
-                {
-                    item.Attributes.CssStyle.Add("color", "orange");
-                }
+            //    if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+            //    {
+            //        item.Attributes.CssStyle.Add("color", "orange");
+            //    }
 
-            }
+            //}
 
-            lblmsjrb3.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
-            cargarValoracion();
+            //lblmsjrb3.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
+            //cargarValoracion();
         }
 
         public void cargarValoracion()
         {
-            EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
-            int idcomplejo = edq.idComplejo;
-            string idcomplejo1 = Convert.ToString(idcomplejo);
-            string usuarioValorador = Session["ID"].ToString();
+
+            //    EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
+            //    int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            //    edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+            //    int idcomplejo = edq.idComplejo;
+            //    string idcomplejo1 = Convert.ToString(idcomplejo);
+            //    string usuarioValorador = Session["ID"].ToString();
 
 
-            if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador) == true)
-            {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador));
-                foreach (ListItem item in RadioButtonList1.Items)
-                {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador) && item.Text == "★")
-                    {
-                        item.Attributes.CssStyle.Add("color", "orange");
-                    }
+            //    if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador) == true)
+            //    {
+            //        RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador));
+            //        foreach (ListItem item in RadioButtonList1.Items)
+            //        {
+            //            if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "1", usuarioValorador) && item.Text == "★")
+            //            {
+            //                item.Attributes.CssStyle.Add("color", "orange");
+            //            }
 
-                }
-                RadioButtonList1.Enabled = false;
-                lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList1.SelectedValue + " Puntos";
-            }
+            //        }
+            //        RadioButtonList1.Enabled = false;
+            //        lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList1.SelectedValue + " Puntos";
 
-            if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador) == true)
-            {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador));
-                foreach (ListItem item in RadioButtonList2.Items)
-                {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador))
-                    {
-                        item.Attributes.CssStyle.Add("color", "orange");
+            //    }
 
-                    }
+            //    if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador) == true)
+            //    {
+            //        RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador));
+            //        foreach (ListItem item in RadioButtonList2.Items)
+            //        {
+            //            if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador))
+            //            {
+            //                item.Attributes.CssStyle.Add("color", "orange");
 
-                }
-                RadioButtonList2.Enabled = false;
-                lblmsjrb2.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList2.SelectedValue + " Puntos";
-            }
+            //            }
 
-            if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador) == true)
-            {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador));
-                foreach (ListItem item in RadioButtonList3.Items)
-                {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador) && item.Text == "★")
-                    {
-                        item.Attributes.CssStyle.Add("color", "orange");
-                    }
+            //        }
+            //        RadioButtonList2.Enabled = false;
+            //        lblmsjrb2.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList2.SelectedValue + " Puntos";
 
-                }
-                RadioButtonList3.Enabled = false;
-                lblmsjrb3.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList3.SelectedValue + " Puntos";
-            }
+            //    }
 
+            //    if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador) == true)
+            //    {
+            //        RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador));
+            //        foreach (ListItem item in RadioButtonList3.Items)
+            //        {
+            //            if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador) && item.Text == "★")
+            //            {
+            //                item.Attributes.CssStyle.Add("color", "orange");
+            //            }
+
+            //        }
+            //        RadioButtonList3.Enabled = false;
+            //        lblmsjrb3.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList3.SelectedValue + " Puntos";
+            //    }
 
 
         }
+        
 
 
         protected void btn_Buscar_Click(object sender, EventArgs e)

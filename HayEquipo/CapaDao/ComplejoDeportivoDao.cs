@@ -271,7 +271,7 @@ namespace CapaDao
 
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
 
-                comp.ValoracionPromedio = int.Parse(dr["ValoracionPromedio"].ToString());
+               // comp.ValoracionPromedio = int.Parse(dr["ValoracionPromedio"].ToString());
 
                 comp.Estado = dr["Estado"].ToString();
                 //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
@@ -289,15 +289,7 @@ namespace CapaDao
 
         }
 
-        //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
-        //{
-        //    using (HayEquipoEntities db = new HayEquipoEntities())
-        //    {
-        //        return db.ComplejoDeportivo.First(c => c.id == id);
-        //    }
-        //}
-
-            //AGREGADO POR AGU:
+        //AGREGADO POR AGU:
         public static spObtenerComplejosJoin_Result ObtenerComplejoPorID(int id)
         {
             spObtenerComplejosJoin_Result comp = null;
@@ -737,7 +729,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        //Modificado por eliminación de tabla Responsable
+        
         public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport) {
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
@@ -749,14 +741,14 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
+                           SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, 
                                 cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
-                                 FROM ComplejoDeportivo cd
+                                 FROM ComplejoDeportivo cd   
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
-
-                            LEFT JOIN Estado e ON e.id=cd.idEstado
-                            LEFT JOIN Zona z ON z.id=b.idZona
+                            LEFT JOIN Zona z ON z.id=b.idZona                        
+                           
+                            LEFT JOIN Estado e ON e.id=cd.idEstado                           
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
                                 WHERE 1 = 1";
@@ -1137,6 +1129,14 @@ namespace CapaDao
             cn.Close();
 
             return listaComplejo;
+        }
+
+        public static ComplejoDeportivo ObtenerComplejosPorID(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.ComplejoDeportivo.First(c => c.id == id);
+            }
         }
 
     }

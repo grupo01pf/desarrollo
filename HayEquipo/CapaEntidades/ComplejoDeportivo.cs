@@ -11,7 +11,7 @@ namespace CapaEntidades
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class ComplejoDeportivo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,7 @@ namespace CapaEntidades
             this.ServiciosPorComplejos = new HashSet<ServiciosPorComplejos>();
             this.Valoracion = new HashSet<Valoracion>();
         }
-
+    
         public int id { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
@@ -41,7 +41,7 @@ namespace CapaEntidades
         public Nullable<int> mapa { get; set; }
         public string responsable { get; set; }
         public Nullable<int> idUsuario { get; set; }
-
+    
         public virtual Barrio Barrio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cancha> Cancha { get; set; }
