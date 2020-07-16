@@ -175,9 +175,7 @@ namespace CapaPresentacion
                 }
             }
         }
-
-
-
+        
 
         private int calcularCapacidadEquipoA()
         {
@@ -357,7 +355,6 @@ namespace CapaPresentacion
 
             Response.Redirect("Home.aspx");
 
-
         }
 
         protected void btn_Enviar_Click(object sender, EventArgs e)
@@ -463,7 +460,7 @@ namespace CapaPresentacion
                     {
                         string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
                         notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave;
+                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " Clave: " + clave;
                     }
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
