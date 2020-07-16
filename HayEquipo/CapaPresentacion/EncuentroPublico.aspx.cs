@@ -269,7 +269,7 @@ namespace CapaPresentacion
             gdv_Invitar.DataBind();
         }
 
-
+        // BUSCAR JUGADORES 
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e)
         {
             // MODAL BTN INVITAR
@@ -727,6 +727,6 @@ namespace CapaPresentacion
             gdv_Invitar.DataBind();
         }
 
-
+        // FIN BUSCAR JUGADORES
     }
 }
