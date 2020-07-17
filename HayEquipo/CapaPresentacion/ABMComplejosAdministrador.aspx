@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="ABMComplejosAdministrador.aspx.cs" Inherits="CapaPresentacion.ABMComplejosAdministrador" %>
+﻿<%@ Page Title="" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="ABMComplejosAdministrador.aspx.cs" Inherits="CapaPresentacion.ABMComplejosAdministrador" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
@@ -423,34 +423,42 @@
 
 
 
-        <%-- ****MAPA**** --%>
-        <div class="well mapa">
-            <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
-                <legend>Ingresar Ubicación</legend>
-                <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
-                <div class="container" style="text-align: left">
-                    <div class="form-group">
-                        <div id="myMap"></div>
-                    </div>
+        <%-- MAPA --%>
 
-                    <div class="form-group">
-                        <div id="LatLng">
-                            <label for="lbl_Latitud">Latitud</label>
-                            <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                            <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
-                            <br />
-                            <label for="lbl_Longitud">Longitud</label>
-                            <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                            <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
-                             <br />
-                            <asp:Button ID="btn_guardarMapa" runat="server" Text="Guardar" OnClick="btn_guardarMapa_Click" />
+        <div class="row">
+            <div class="well mapa">
+                <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
+                    <legend>Ingresar Ubicación</legend>
+                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
+                    <div class="container" style="text-align: left">
+                        <div class="form-group">
+                            <div id="myMap"></div>
+                        </div>
 
+                        <div class="form-group">
+                            <div id="LatLng">
+                                <label for="lbl_Latitud">Latitud</label>
+                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                                <br />
+                                <label for="lbl_Longitud">Longitud</label>
+                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-inline">
+                            <asp:Button ID="btn_Agregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" OnClick="btn_Agregar_Click" />
+                            <asp:Button ID="btn_Modificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="btn_Modificar_Click" />
+                            <asp:Button ID="btn_Eliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false" OnClick="btn_Eliminar_Click" />
+                            <asp:Button ID="btn_Limpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" OnClick="btn_Limpiar_Click" />
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
+                </asp:Panel>
+            </div>
         </div>
 
+        <%-- FIN MAPA --%>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
