@@ -1,7 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="ABMComplejosAdministrador.aspx.cs" Inherits="CapaPresentacion.ABMComplejosAdministrador" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+    
+    
+    <%--**** MAPA ****--%>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <%--**** MAPA ****--%>
+    
+    
     <style>
+
         .alinearIzquiera {
             text-align: left;
         }
@@ -33,6 +46,26 @@
                 background: white;
                 box-shadow: 0px 0px 10px #2b2b2b;
             }
+
+          #myMap {
+            height: 30%;
+            width: 40%;
+            padding-top: 40%;  
+                      
+        }
+          #div_latlng {
+            width: 50%;
+            height: 10%;
+        }
+        .mapa {
+            height: 40%;
+            width: 50%;
+            
+        }
+
+           
+
+
     </style>
 </asp:Content>
 
@@ -385,7 +418,87 @@
                     </ContentTemplate>
                     </asp:UpdatePanel>
                </div>
-                </asp:Panel> 
+                </asp:Panel>
+
+
+
+
+        <%-- ****MAPA**** --%>
+        <div class="well mapa">
+            <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
+                <legend>Ingresar Ubicación</legend>
+                <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
+                <div class="container" style="text-align: left">
+                    <div class="form-group">
+                        <div id="myMap"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="LatLng">
+                            <label for="lbl_Latitud">Latitud</label>
+                            <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                            <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                            <br />
+                            <label for="lbl_Longitud">Longitud</label>
+                            <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                            <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                             <br />
+                            <asp:Button ID="btn_guardarMapa" runat="server" Text="Guardar" OnClick="btn_guardarMapa_Click" />
+
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+        </div>
+
+
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <script type="text/javascript">
+
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+        
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
+        
+        var layerGroup = L.layerGroup().addTo(myMap)
+       
+        myMap.doubleClickZoom.disable()
+        
+        
+        myMap.on('dblclick', e => {
+            
+            layerGroup.clearLayers();
+            let latLng = myMap.mouseEventToLatLng(e.originalEvent)           
+
+            myMap.closePopup();
+            
+            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+           
+            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+            $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
+
+        })
+        // MOSTRAR UN COMPLEJO
+        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+        if (latitude != "" && longitude != "") {
+            myMap.setView([latitude, longitude], 15)
+        }
+
+
+    </script>
+
+
 </asp:Content>

@@ -287,6 +287,8 @@ namespace CapaPresentacion
             btnEliminar.Enabled = true;
             btnCanchas.Enabled = true;
             btnServicios.Enabled = true;
+
+            cargarMapa(idSeleccionado);
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -632,5 +634,40 @@ namespace CapaPresentacion
             }
         }
 
+
+        // MAPA
+        protected void btn_guardarMapa_Click(object sender, EventArgs e)
+        {
+            insertarMapaComplejoDeportivo();
+        }
+
+        private void insertarMapaComplejoDeportivo()
+        {
+            Mapa m = new Mapa();
+            
+            if (string.IsNullOrEmpty(txt_Latitud.Text) || string.IsNullOrEmpty(txt_Longitud.Text))
+            {
+                m.latitud = "-31.416563";
+                m.longitud = "-64.183533";
+            }
+            else
+            {
+                m.latitud = txt_Latitud.Text;
+                m.longitud = txt_Longitud.Text;
+            }
+            int idMapa = MapaDao.insertarMapa(m); 
+        }
+             
+        private void cargarMapa(int idComplejoDeportivo)
+        {
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
+
+            int id = cd.mapa.Value;
+            if (id != null) { 
+            Mapa mapa = MapaDao.obtenerMapaByID(id);
+            txt_Latitud.Text = mapa.latitud;
+            txt_Longitud.Text = mapa.longitud;
+            }
+        }
     }
 }
