@@ -483,10 +483,15 @@ namespace CapaPresentacion
         }
         protected void gdv_Contactos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int idNotif = int.Parse(gdv_Contactos.DataKeys[e.RowIndex].Value.ToString());
+            GridViewRow fila = gdv_Contactos.SelectedRow;
 
+            int idUsuario = int.Parse(Session["ID"].ToString());
+            int idAmigo = int.Parse(gdv_Contactos.DataKeys[e.RowIndex].Value.ToString());
 
-            // TODO
+            UsuarioDao.eliminarContacto(idUsuario, idAmigo);
+            UsuarioDao.eliminarContacto(idAmigo, idUsuario);
+
+            cargarListaContactos();
             
         }
 
