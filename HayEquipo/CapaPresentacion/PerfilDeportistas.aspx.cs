@@ -36,6 +36,7 @@ namespace CapaPresentacion
 
             else
             {
+                cargarBarrios();
                 cargarTipoDocumento();
             }
 
@@ -226,9 +227,10 @@ namespace CapaPresentacion
             lbl_TipoDocumento.Visible = false;
             btnGuardar.Visible = false;
             btnCambiar.Visible = true;
-            cmb_Barrio.Enabled = false;
             
+          
             cmb_Barrio.SelectedIndex = deportista.idBarrio.Value;
+            cmb_Barrio.Enabled = false;
         }
 
 
@@ -479,7 +481,11 @@ namespace CapaPresentacion
         protected void gdv_Contactos_SelectedIndexChanged(object sender, EventArgs e)
         {
             // ir al perfil del amigo seleccionado
-            GridViewRow fila = gdv_Contactos.SelectedRow;
+            //   GridViewRow fila = gdv_Contactos.SelectedRow;
+
+            Session["idOtroPerfil"] = int.Parse(gdv_Contactos.SelectedDataKey.Value.ToString());
+            Response.Redirect("PerfilOtrosDeportistas.aspx");
+            
         }
         protected void gdv_Contactos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -495,7 +501,7 @@ namespace CapaPresentacion
             // IR AL PERFIL DEL DEPORTISTA
 
             GridViewRow fila = gdv_Solicitudes.SelectedRow;
-            
+
         }
 
         protected void gdv_Solicitudes_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -81,11 +81,11 @@ $(window).load(function() {
 
 
 
-        <li><a href="ABMComplejosEstablecimiento.aspx">Mi Complejo</a></li>
+       
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
+        <li><a href="ABMComplejosEstablecimiento.aspx"><span class="glyphicon glyphicon-user"></span> Mi Complejo</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
       </ul>
     </div>

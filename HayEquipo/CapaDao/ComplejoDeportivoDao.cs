@@ -354,7 +354,7 @@ namespace CapaDao
                 //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();
@@ -1138,6 +1138,92 @@ namespace CapaDao
 
             return listaComplejo;
         }
+
+        public static bool ExisteComplejo(string id)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                FROM ComplejoDeportivo where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
+
+        public static ComplejoDeportivo ObtenerComplejoPorID(string id)
+        {
+            ComplejoDeportivo d = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT *
+                                FROM ComplejoDeportivo where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                d = new ComplejoDeportivo();
+
+                d.id = int.Parse(dr["id"].ToString());
+                d.nombre = dr["nombre"].ToString();
+                d.descripcion = dr["descripcion"].ToString();
+                d.calle = dr["calle"].ToString();
+                d.nroCalle = int.Parse(dr["nroCalle"].ToString());
+                d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                d.idUsuario = int.Parse(dr["idUsuario"].ToString());
+                d.responsable = dr["responsable"].ToString();
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+        public static string ObtenerIdComplejo(string id)
+        {
+            string d = "";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT id
+                                FROM ComplejoDeportivo where idUsuario=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+
+                d = dr["id"].ToString();
+
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
 
     }
 

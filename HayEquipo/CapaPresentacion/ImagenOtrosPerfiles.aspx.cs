@@ -12,7 +12,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            byte[] img = UsuarioDao.ObtenerImagen(Request.QueryString["id"].ToString());
+            byte[] img = UsuarioDao.ObtenerImagen(Session["idOtroPerfil"].ToString());
 
             Response.BinaryWrite(img);
         }

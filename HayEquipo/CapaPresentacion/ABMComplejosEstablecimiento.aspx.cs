@@ -35,6 +35,7 @@ namespace CapaPresentacion
                     Panel2.Visible = false;
                 }
             }
+            manejarValoracion();
         }
 
         protected int? ID
@@ -687,6 +688,89 @@ namespace CapaPresentacion
         {
             Panel1.Visible = false;
             Panel2.Visible = true;
+        }
+
+        public void manejarValoracion()
+        {
+            if (ValoracionDao.existePromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "1") == true)
+            {
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "1"));
+                foreach (ListItem item in RadioButtonList1.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "1") && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList1.Enabled = false;
+                lblmsjrb1.Text = "Calificacion Promedio de Canchas es: " + RadioButtonList1.SelectedValue + " Puntos";
+            }
+            else
+            {
+                RadioButtonList1.Enabled = false;
+                lblmsjrb1.Text = "Usted no ha sido calificado en esta seccion";
+
+            }
+            if (ValoracionDao.existePromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "2") == true)
+            {
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "2"));
+                foreach (ListItem item in RadioButtonList2.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "2") && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList2.Enabled = false;
+                lblmsjrb2.Text = "Calificacion Promedio de Atencion es: " + RadioButtonList2.SelectedValue + " Puntos";
+
+            }
+            else
+            {
+                RadioButtonList2.Enabled = false;
+                lblmsjrb2.Text = "Usted no ha sido calificado en esta seccion";
+            }
+            if (ValoracionDao.existePromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "3") == true)
+            {
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "3"));
+                foreach (ListItem item in RadioButtonList3.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioComplejoxid(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString()), "3") && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList3.Enabled = false;
+                lblmsjrb3.Text = "Calificacion Promedio de Servicios es: " + RadioButtonList3.SelectedValue + " Puntos";
+
+            }
+            else
+            {
+                RadioButtonList3.Enabled = false;
+                lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
+            }
+            if (ValoracionDao.existePromedioGeneralComplejo(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString())) == true)
+            {
+                RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString())));
+                foreach (ListItem item in RadioButtonList4.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneralComplejo(ComplejoDeportivoDao.ObtenerIdComplejo(Session["ID"].ToString())) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList4.Enabled = false;
+                lblmsjrb4.Text = "Calificacion General del complejo es: " + RadioButtonList4.SelectedValue + " Puntos";
+            }
+            else
+            {
+                RadioButtonList4.Enabled = false;
+                lblmsjrb4.Text = "Usted no ha sido calificado";
+            }
         }
     }
 }

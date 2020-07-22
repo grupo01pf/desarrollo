@@ -10,21 +10,12 @@
 namespace CapaEntidades
 {
     using System;
+    using System.Collections.Generic;
     
-<<<<<<< HEAD:HayEquipo/CapaEntidades/sp_NotificacionDao_mostrarNotificaciones_Result.cs
-    public partial class sp_NotificacionDao_mostrarNotificaciones_Result
-    {
-        public int id { get; set; }
-        public string emisor { get; set; }
-        public string texto { get; set; }
-        public Nullable<int> idEncuentro { get; set; }
-        public string estado { get; set; }
-=======
     public partial class Mapa
     {
         public int id { get; set; }
         public string latitud { get; set; }
         public string longitud { get; set; }
->>>>>>> Agu_Branch:HayEquipo/CapaEntidades/Mapa.cs
     }
 }

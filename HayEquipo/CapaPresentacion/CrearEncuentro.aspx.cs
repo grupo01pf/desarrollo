@@ -473,7 +473,7 @@ namespace CapaPresentacion
                 int.TryParse(cmb_Complejo.SelectedItem.Value, out idComplejo);
                     //contenedorDelMapa.Visible = true;
                     // frm_map.Visible = true;
-                    ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+                 //   ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
                // frm_map.Src = cd.mapa;
                 btn_Agenda.Visible = true;
@@ -682,9 +682,9 @@ namespace CapaPresentacion
             DateTime horario = DateTime.Parse((cd.Cierre - cd.Apertura).ToString());
 
             // ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
-            DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
-            DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
+         //   ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+          //  DateTime horaApertura = DateTime.Parse((cd.horaApertura).ToString());
+          //  DateTime horario = DateTime.Parse((cd.horaCierre - cd.horaApertura).ToString());
 
             int ha = int.Parse(horaApertura.Hour.ToString());
 
@@ -1092,32 +1092,32 @@ namespace CapaPresentacion
         private void cargarModalComplejo(int idComplejo)
         {
 
-            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
+            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
-            lbl_ComplejoTitulo.Text = compSelec.nombre;
-            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-            lblDeportes.Text = compSelec.deportes;
-            lblDescripcion.Text = compSelec.descripcion;
+            lbl_ComplejoTitulo.Text = compSelec.Nombre;
+            lblValoracion.Text = "Valoración: " + compSelec.ValoracionPromedio.ToString();
+            lblDeportes.Text = compSelec.Deportes;
+            lblDescripcion.Text = compSelec.Descripcion;
             listServicios.Items.Clear();
             lblServicios.Text = "Servicios: ";
-            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
             {
-                CargarListServicios(compSelec.id);
+                CargarListServicios(compSelec.ID);
             }
             else
             {
                 lblServicios.Text = "Servicios: - ";
                 divListServ.Visible = false;
             }
-            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
-            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            if (compSelec.horaApertura != null && compSelec.horaCierre != null)
+            lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
+            if (compSelec.Apertura != null && compSelec.Cierre != null)
             {
-                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
-                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.Apertura, typeof(TimeSpan));
+                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.Cierre, typeof(TimeSpan));
                 lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
             }
             else

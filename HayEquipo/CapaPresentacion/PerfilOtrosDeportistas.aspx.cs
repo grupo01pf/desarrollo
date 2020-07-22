@@ -16,17 +16,25 @@ namespace CapaPresentacion
         {
 
 
-            if (UsuarioDao.existeImagen(DeportistaDao.ObtenerIdUsuario(Request.QueryString["id"].ToString())) != false)
+            if (UsuarioDao.existeImagen(Session["idOtroPerfil"].ToString()) != false)
             {
-                Image1.ImageUrl = "~/imagenOtrosPerfiles.aspx?id=" + DeportistaDao.ObtenerIdUsuario(Request.QueryString["id"].ToString());
+                Image1.ImageUrl = "~/imagenOtrosPerfiles.aspx?id=" + Session["idOtroPerfil"].ToString();
 
+            }else
+            {
+                msjimagennNula.Text = "Sin imagen de Perfil";
             }
+            if (DeportistaDao.ExisteDeportista(Session["idOtroPerfil"].ToString()))
+            {
+                DatosCargadosDeportista();
 
-            DatosCargadosDeportista();
-           
+            }else
+            {
+                DeportistaVacio();
+              
+            } 
 
-
-            gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(DeportistaDao.ObtenerIdUsuario(Request.QueryString["id"].ToString()));
+            gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["idOtroPerfil"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
@@ -52,8 +60,8 @@ namespace CapaPresentacion
 
         public void DatosCargadosDeportista()
         {
-            Deportista deportista = DeportistaDao.ObtenerDeportistaPorID2(Request.QueryString["id"].ToString());
-            link_nombreUsuario2.Text = deportista.nombres;
+            Deportista deportista = DeportistaDao.ObtenerDeportistaPorID2(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()));
+           // link_nombreUsuario2.Text = deportista.nombres;
             Nombres.Text = deportista.nombres;
             Apellidos.Text = deportista.apellido;
             Nrodoc.Text = deportista.nroDoc.ToString();
@@ -64,7 +72,16 @@ namespace CapaPresentacion
            
         }
 
-
+        public void DeportistaVacio()
+        {
+            lbl_Apellidos.Visible = false;
+            lbl_FechaNacimiento.Visible = false;
+            lbl_Nombres.Visible = false;
+            lbl_NumeroDocumento.Visible = false;
+            lbl_Sexo.Visible = false;
+            lbl_Telefono.Visible = false;
+            msjdepcompletar.Text = "No se encuentran actualizados los datos de este deportista";
+        }
         protected void gdv_EncuentrosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -97,12 +114,12 @@ namespace CapaPresentacion
        
         public void manejarValoracion()
         {
-            if (ValoracionDao.existePromedioxid(Request.QueryString["id"].ToString(), "1") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "4") == true)
             {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString(), "1"));
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "4"));
                 foreach (ListItem item in RadioButtonList1.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString(), "1") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "4") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -117,12 +134,12 @@ namespace CapaPresentacion
                 lblmsjrb1.Text = "El usuario no ha sido calificado en esta seccion";
 
             }
-            if (ValoracionDao.existePromedioxid(Request.QueryString["id"].ToString(), "2") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "5") == true)
             {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString(), "2"));
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "5"));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString(), "2") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "5") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -137,12 +154,12 @@ namespace CapaPresentacion
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "El usuario no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioxid(Request.QueryString["id"].ToString(), "3") == true)
+            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "6") == true)
             {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString(), "3"));
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "6"));
                 foreach (ListItem item in RadioButtonList3.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Request.QueryString["id"].ToString() ,"3") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()), "6") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -157,12 +174,12 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "El usuario no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioGeneral(Request.QueryString["id"].ToString()) == true)
+            if (ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString())) == true)
             {
-                RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(Request.QueryString["id"].ToString()));
+                RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString())));
                 foreach (ListItem item in RadioButtonList4.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(Request.QueryString["id"].ToString()) && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString())) && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }

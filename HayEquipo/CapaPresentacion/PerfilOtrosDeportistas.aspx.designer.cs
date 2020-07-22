@@ -31,6 +31,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
+        /// Control msjimagennNula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msjimagennNula;
+        
+        /// <summary>
         /// Control datos.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Tel;
+        
+        /// <summary>
+        /// Control msjdepcompletar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msjdepcompletar;
         
         /// <summary>
         /// Control gdv_EncuentrosDeportista.
