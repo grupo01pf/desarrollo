@@ -59,6 +59,9 @@
             color: #ffffff;
             font-size:xxx-large;
         }
+         .w3-green{
+             background-color:#174f18!important;
+         }
 
   </style>
 
@@ -178,7 +181,7 @@
                <div class="row alinearAlCentro">
                              <div class="col-sm-4">
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-4" style="padding-left: 0px;">
                              <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
                              </div>
                              <div class="col-sm-4">

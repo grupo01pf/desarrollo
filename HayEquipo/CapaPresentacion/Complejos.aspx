@@ -97,7 +97,11 @@
 
            .modal-footer{
                text-align: -webkit-center;
-           }      
+           } 
+           
+           .w3-indigo{
+               background-color:#5674b6!important;
+           }     
 
   </style>
 

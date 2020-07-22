@@ -133,7 +133,6 @@ namespace CapaPresentacion
         //Modificado por eliminar tabla Responsable
         private void cargarAgenda()
         {
-
             lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
@@ -259,11 +258,17 @@ namespace CapaPresentacion
         //AGREGAR MENSAJE DE LA CANCHA QUE FUE LIBERADA
         protected void gdv_Agenda_SelectedIndexChanged(object sender, EventArgs e)
         {
+            gdv_Agenda.Columns[7].Visible = true;
+
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             if(fila.BackColor == Color.FromName("LightCoral"))
             {
                 LiberarCancha(fila);
+
+                string datos = string.Empty;
+                datos = fila.Cells[2].Text + " (" + fila.Cells[3].Text + ") - " + fila.Cells[4].Text + "hs. - $" + fila.Cells[5].Text;
+                lbl_Reserva.Text = "*** Liberado en: " + datos + " ***";
             }
 
             else
@@ -316,14 +321,37 @@ namespace CapaPresentacion
             horario.fecha = cld_Fecha.SelectedDate;
             horario.idEstado = 1; // (REESERVADO)
 
+            DateTime fecha = cld_Fecha.SelectedDate;
+            TimeSpan hora = TimeSpan.Parse(fila.Cells[4].Text);
+            int idCancha = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
+
+            int idHorario = AgendaDao.existeHorario(fecha, hora);
 
             CanchasPorHorarios cph = new CanchasPorHorarios();
-            cph.idHorario = AgendaDao.InsertarHorario(horario);
+            cph.idEstado = 1;            
             cph.idCancha = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
 
-            AgendaDao.InsertarCanchasPorHorarios(cph);
+            if (idHorario > 0)
+            {
+                if (AgendaDao.existeCanchasPorHorarios(idCancha, idHorario))
+                {
+                    AgendaDao.CambiarEstadoCanchasPorHorarios(idCancha, idHorario, 1);
+                }
+                else
+                {
+                    cph.idHorario = idHorario;
+                    AgendaDao.InsertarCanchasPorHorarios(cph);
+                }              
+            }
+            else
+            {
+                cph.idHorario = AgendaDao.InsertarHorario(horario);
+                AgendaDao.InsertarCanchasPorHorarios(cph); //VER ACA POR Q INSERTA IDESTADO=NULL
+            }
+                    
+            
 
-            gdv_Agenda.Columns[7].Visible = true;
+            //gdv_Agenda.Columns[7].Visible = true;
 
             cargarAgenda();
 
@@ -345,9 +373,11 @@ namespace CapaPresentacion
             int idCan = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
             TimeSpan hr = TimeSpan.Parse(fila.Cells[4].Text);
             DateTime fecha = cld_Fecha.SelectedDate;
+            int idHorario = AgendaDao.existeHorario(fecha, hr);
 
-            AgendaDao.LiberarHorario(idCan, fecha, hr);
+            AgendaDao.CambiarEstadoCanchasPorHorarios(idCan, idHorario, 2);
 
+            //gdv_Agenda.Columns[7].Visible = true;
             cargarAgenda();
         }
 
