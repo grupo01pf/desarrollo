@@ -133,6 +133,7 @@ namespace CapaPresentacion
         //Modificado por eliminar tabla Responsable
         private void cargarAgenda()
         {
+            gdv_Agenda.Columns[7].Visible = true;
             lbl_agendaFecha.Text = "Agenda";// + cld_Fecha.SelectedDate; 
             //******************************************
             // Generar Horarios
