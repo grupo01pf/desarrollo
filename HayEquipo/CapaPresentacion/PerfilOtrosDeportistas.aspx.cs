@@ -61,13 +61,33 @@ namespace CapaPresentacion
         public void DatosCargadosDeportista()
         {
             Deportista deportista = DeportistaDao.ObtenerDeportistaPorID2(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()));
+            DeportistaEntidad NombrBarrioDeportista = DeportistaDao.ObtenerBarrioDeportistaPorID(DeportistaDao.ObtenerIdDeportista(Session["idOtroPerfil"].ToString()));
            // link_nombreUsuario2.Text = deportista.nombres;
             Nombres.Text = deportista.nombres;
             Apellidos.Text = deportista.apellido;
             Nrodoc.Text = deportista.nroDoc.ToString();
-            sexo.Text = deportista.sexo.ToString();
-            Fechanac.Text = deportista.fechaNacimiento.ToString();
+            if (deportista.sexo.ToString() == "1")
+            {
+                sexo.Text = "Masculino";
+            }
+            else
+            {
+                sexo.Text = "Femenino";
+            }
+            if (deportista.idDeportePreferido.ToString() == "1") DeportePreferido.Text = "Futbol";
+            if (deportista.idDeportePreferido.ToString() == "2") DeportePreferido.Text = "Tenis";
+            if (deportista.idDeportePreferido.ToString() == "3") DeportePreferido.Text = "Volley";
+            if (deportista.idDeportePreferido.ToString() == "4") DeportePreferido.Text = "Paddle";
+            if (deportista.idDeportePreferido.ToString() == "5") DeportePreferido.Text = "Karate";
+            if (deportista.idDeportePreferido.ToString() == "6") DeportePreferido.Text = "Basquet";
+            if (deportista.idDeportePreferido.ToString() == "7") DeportePreferido.Text = "Running";
+            if (deportista.idDeportePreferido.ToString() == "8") DeportePreferido.Text = "Golf";
+            if (deportista.idDeportePreferido.ToString() == "9") DeportePreferido.Text = "Ping Pong";
+            if (deportista.idDeportePreferido.ToString() == "10") DeportePreferido.Text = "Boxeo";
+            DateTime fecha = Convert.ToDateTime(deportista.fechaNacimiento.ToString());
+            Fechanac.Text = fecha.ToString("dd/MM/yyyy");
             Tel.Text = deportista.nroTelefono.ToString();
+            BarrioDeportista.Text = NombrBarrioDeportista.NombreBarrioDeportista.ToString(); 
            
            
         }

@@ -7,6 +7,7 @@ using CapaEntidades;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace CapaDao
 {
     public class DeportistaDao
@@ -21,9 +22,9 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT into Deportista(apellido, nombres, idTipoDoc, nroDoc, sexo, fechaNacimiento,
-                                                       nroTelefono, idUsuario, promedioEstrellas, idEstado)   
+                                                       nroTelefono, idUsuario, promedioEstrellas, idEstado,idBarrio,idDeportePreferido)   
                                 values(@ape, @nombres, @idTipoDoc, @nroDoc, @sex,
-                                       @fechaNac, @nroTel, @idUs, @promEstr, @idEst);
+                                       @fechaNac, @nroTel, @idUs, @promEstr, @idEst,@idBarr,@idDeportePreferido);
                                 select Scope_Identity() as ID";
 
             cmd.Parameters.AddWithValue("@ape", deportista.apellido);
@@ -36,13 +37,15 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@idUs", deportista.idUsuario);
             cmd.Parameters.AddWithValue("@promEstr", deportista.promedioEstrellas);
             cmd.Parameters.AddWithValue("@idEst", deportista.idEstado);
+            cmd.Parameters.AddWithValue("@idBarr", deportista.idBarrio);
+            cmd.Parameters.AddWithValue("@idDeportePreferido", deportista.idDeportePreferido);
 
             deportista.idDeportista = Convert.ToInt32(cmd.ExecuteScalar());
 
             cn.Close();
         }
 
-        public static bool ActualizarDeportista(string id,string ape,string nom,string tdoc,string doc,string sexo,string fc,string tel,int barrio)
+        public static bool ActualizarDeportista(string id,string ape,string nom,string tdoc,string doc,int sexo,string fc,string tel,int barrio,int idDeportePreferido)
         {
             bool flag = false;
             SqlConnection cn = new SqlConnection();
@@ -53,7 +56,7 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"UPDATE Deportista SET apellido=@ape, nombres=@nombres, idTipoDoc=@idTipoDoc, 
                                                       nroDoc=@nroDoc, sexo=@sex, fechaNacimiento=@fechaNac,
-                                                      nroTelefono=@nroTel, idBarrio=@barrio
+                                                      nroTelefono=@nroTel, idBarrio=@barrio, idDeportePreferido=@idDeportePreferido
                                                 WHERE idUsuario=@idUs;";
             cmd.Parameters.AddWithValue("@idUs",id);
             cmd.Parameters.AddWithValue("@ape",ape);
@@ -64,6 +67,7 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@fechaNac",Convert.ToDateTime(fc));
             cmd.Parameters.AddWithValue("@nroTel",tel);
             cmd.Parameters.AddWithValue("@barrio", barrio);
+            cmd.Parameters.AddWithValue("@idDeportePreferido", idDeportePreferido);
 
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -114,7 +118,7 @@ namespace CapaDao
                 d.nombres = dr["nombres"].ToString();
                 d.idTipoDocumento = int.Parse(dr["idTipoDoc"].ToString());
                 d.numeroDocumento = int.Parse(dr["nroDoc"].ToString());
-                d.sexo = dr["sexo"].ToString();
+                d.sexo = int.Parse(dr["sexo"].ToString());
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
                 d.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
@@ -174,14 +178,14 @@ namespace CapaDao
                 d.nombres = dr["nombres"].ToString();
                 d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
                 d.nroDoc = int.Parse(dr["nroDoc"].ToString());
-                d.sexo = dr["sexo"].ToString();
+                d.sexo = int.Parse(dr["sexo"].ToString());
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
                 d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
                 d.idEstado = int.Parse(dr["idEstado"].ToString());
                 d.idBarrio = int.Parse(dr["idBarrio"].ToString());
-
+                d.idDeportePreferido = int.Parse(dr["idDeportePreferido"].ToString());
             }
             dr.Close();
             cn.Close();
@@ -213,12 +217,40 @@ namespace CapaDao
                 d.nombres = dr["nombres"].ToString();
                 d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
                 d.nroDoc = int.Parse(dr["nroDoc"].ToString());
-                d.sexo = dr["sexo"].ToString();
+                d.sexo = int.Parse(dr["sexo"].ToString());
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
                 d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
                 d.idEstado = int.Parse(dr["idEstado"].ToString());
+                d.idDeportePreferido = int.Parse(dr["idDeportePreferido"].ToString());
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+        public static DeportistaEntidad ObtenerBarrioDeportistaPorID(string id)
+        {
+            DeportistaEntidad d = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT b.nombre as NombreBarrio
+                FROM Deportista de , Barrio b where b.id=de.idBarrio and de.id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                d = new DeportistaEntidad();
+
+                d.NombreBarrioDeportista = dr["NombreBarrio"].ToString();
 
             }
             dr.Close();
@@ -280,6 +312,38 @@ namespace CapaDao
             dr.Close();
             cn.Close();
             return d;
+        }
+
+        public static List<Sexo> obtenerSexo()
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.Sexo.ToList();
+            }
+        }
+        public static List<SexoEntidad> obtenerSexo2()
+        {
+            SexoEntidad Sexo = null;
+            List<SexoEntidad> ListaSexo = new List<SexoEntidad>();
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "SELECT * FROM Sexo";
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+
+                Sexo = new SexoEntidad();
+                Sexo.idSexo = int.Parse(dr["id"].ToString());
+                Sexo.nombre = dr["nombre"].ToString();
+                ListaSexo.Add(Sexo);
+
+            }
+            dr.Close();
+            cn.Close();
+            return ListaSexo;
         }
     }
 }

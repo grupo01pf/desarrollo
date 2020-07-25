@@ -116,13 +116,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           <Property Name="nombres" Type="nvarchar" MaxLength="50" />
           <Property Name="idTipoDoc" Type="int" />
           <Property Name="nroDoc" Type="int" />
-          <Property Name="sexo" Type="nvarchar" MaxLength="50" />
+          <Property Name="sexo" Type="int" />
           <Property Name="fechaNacimiento" Type="date" />
           <Property Name="nroTelefono" Type="int" />
           <Property Name="idUsuario" Type="int" />
           <Property Name="promedioEstrellas" Type="float" />
           <Property Name="idEstado" Type="int" />
           <Property Name="idBarrio" Type="int" />
+          <Property Name="idDeportePreferido" Type="int" />
         </EntityType>
         <EntityType Name="DeportistasPorEquipos">
           <Key>
@@ -435,6 +436,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
           <Property Name="horaInicio" Type="smalldatetime" />
           <Property Name="horaFin" Type="smalldatetime" />
           <Property Name="idEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="Sexo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sponsor">
           <Key>
@@ -1419,6 +1427,9 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <Function Name="sp_UsuarioID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spCambiarEstadoCompleto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prmidEncuentro" Type="int" Mode="In" />
+        </Function>
         <Function Name="spCargarDatosEstadisticaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -1507,6 +1518,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <EntitySet Name="ServicioExtra" EntityType="Self.ServicioExtra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiciosPorComplejos" EntityType="Self.ServiciosPorComplejos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sponsor" EntityType="Self.Sponsor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" Schema="dbo" store:Type="Tables" />
@@ -1963,13 +1975,14 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="idTipoDoc" Type="Int32" />
           <Property Name="nroDoc" Type="Int32" />
-          <Property Name="sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sexo" Type="Int32" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="nroTelefono" Type="Int32" />
           <Property Name="idUsuario" Type="Int32" />
           <Property Name="promedioEstrellas" Type="Double" />
           <Property Name="idEstado" Type="Int32" />
           <Property Name="idBarrio" Type="Int32" />
+          <Property Name="idDeportePreferido" Type="Int32" />
           <NavigationProperty Name="AmigosPorDeportistas" Relationship="Self.FK_AmigosPorDeportistas_Deportista" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
           <NavigationProperty Name="AmigosPorDeportistas1" Relationship="Self.FK_AmigosPorDeportistas_Deportista1" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
           <NavigationProperty Name="DeportesPorDeportistas" Relationship="Self.FK_DeportesPorDeportistas_Deportista" FromRole="Deportista" ToRole="DeportesPorDeportistas" />
@@ -2273,6 +2286,13 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="idEstado" Type="Int32" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_Sesion_Estado" FromRole="Sesion" ToRole="Estado" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Sesion_Usuario" FromRole="Sesion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Sexo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Sponsor">
           <Key>
@@ -3251,6 +3271,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <EntitySet Name="ServicioExtra" EntityType="Self.ServicioExtra" />
           <EntitySet Name="ServiciosPorComplejos" EntityType="Self.ServiciosPorComplejos" />
           <EntitySet Name="Sesion" EntityType="Self.Sesion" />
+          <EntitySet Name="Sexo" EntityType="Self.Sexo" />
           <EntitySet Name="Sponsor" EntityType="Self.Sponsor" />
           <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" />
           <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" />
@@ -3646,6 +3667,9 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <FunctionImport Name="sp_UsuarioID" ReturnType="Collection(Int32)">
             <Parameter Name="usuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spCambiarEstadoCompleto">
+            <Parameter Name="prmidEncuentro" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="spCargarDatosEstadisticaComplejo">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -3995,6 +4019,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
                 <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+                <ScalarProperty Name="idDeportePreferido" ColumnName="idDeportePreferido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4256,6 +4281,14 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
                 <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
                 <ScalarProperty Name="horaFin" ColumnName="horaFin" />
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sexo">
+            <EntityTypeMapping TypeName="HayEquipoModel.Sexo">
+              <MappingFragment StoreEntitySet="Sexo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4631,6 +4664,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_UsuarioID" FunctionName="HayEquipoModel.Store.sp_UsuarioID" />
+          <FunctionImportMapping FunctionImportName="spCambiarEstadoCompleto" FunctionName="HayEquipoModel.Store.spCambiarEstadoCompleto" />
           <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaComplejo" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaComplejo" />
           <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaUsuariosActivos" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaUsuariosActivos" />
           <FunctionImportMapping FunctionImportName="spInsertarImagen" FunctionName="HayEquipoModel.Store.spInsertarImagen" />

@@ -324,8 +324,9 @@
           <div class="row">
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
-                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio", "{0:HH:mm}") %>'></asp:Label>
+                  <asp:Label runat="server" text="Hs"></asp:Label>
                   <br />
                   <br />
               </div>

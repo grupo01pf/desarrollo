@@ -60,6 +60,7 @@ namespace CapaEntidades
         public virtual DbSet<ServicioExtra> ServicioExtra { get; set; }
         public virtual DbSet<ServiciosPorComplejos> ServiciosPorComplejos { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
+        public virtual DbSet<Sexo> Sexo { get; set; }
         public virtual DbSet<Sponsor> Sponsor { get; set; }
         public virtual DbSet<TipoCancha> TipoCancha { get; set; }
         public virtual DbSet<TipoDeporte> TipoDeporte { get; set; }
@@ -492,6 +493,15 @@ namespace CapaEntidades
                 new ObjectParameter("usuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_UsuarioID", usuarioParameter);
+        }
+    
+        public virtual int spCambiarEstadoCompleto(Nullable<int> prmidEncuentro)
+        {
+            var prmidEncuentroParameter = prmidEncuentro.HasValue ?
+                new ObjectParameter("prmidEncuentro", prmidEncuentro) :
+                new ObjectParameter("prmidEncuentro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCambiarEstadoCompleto", prmidEncuentroParameter);
         }
     
         public virtual int spCargarDatosEstadisticaComplejo(Nullable<int> id)

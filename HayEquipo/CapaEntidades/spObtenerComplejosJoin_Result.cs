@@ -28,8 +28,6 @@ namespace CapaEntidades
         public Nullable<System.TimeSpan> Cierre { get; set; }
         public string Responsable { get; set; }
         public Nullable<double> Valoracion { get; set; }
-
-        public Nullable<double> ValoracionPromedio { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public Nullable<int> IDEstado { get; set; }
         public string Estado { get; set; }

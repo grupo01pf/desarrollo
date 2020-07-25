@@ -162,6 +162,14 @@ input[type="radio"]:checked ~ label {
          <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono:"></asp:Label>
         <asp:Label ID="Tel" runat="server"></asp:Label>
              </div>
+        <div class="form-group">
+       <asp:Label ID="lbl_DeportePreferido" runat="server" Text="Deporte Preferido:"></asp:Label>
+        <asp:Label ID="DeportePreferido" runat="server"></asp:Label>
+           </div>
+        <div class="form-group">
+       <asp:Label ID="lbl_BarrioDeportista" runat="server" Text="Barrio:"></asp:Label>
+        <asp:Label ID="BarrioDeportista" runat="server"></asp:Label>
+           </div>
            <asp:Label ID="msjdepcompletar" runat="server" Text=""></asp:Label>
        </div> 
    

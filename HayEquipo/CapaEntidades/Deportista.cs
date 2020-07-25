@@ -34,13 +34,14 @@ namespace CapaEntidades
         public string nombres { get; set; }
         public Nullable<int> idTipoDoc { get; set; }
         public Nullable<int> nroDoc { get; set; }
-        public string sexo { get; set; }
+        public Nullable<int> sexo { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<int> idUsuario { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }
         public Nullable<int> idBarrio { get; set; }
+        public Nullable<int> idDeportePreferido { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }

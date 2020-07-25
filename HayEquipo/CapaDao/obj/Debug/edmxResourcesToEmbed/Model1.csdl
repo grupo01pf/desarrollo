@@ -128,13 +128,14 @@
     <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="idTipoDoc" Type="Int32" />
     <Property Name="nroDoc" Type="Int32" />
-    <Property Name="sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sexo" Type="Int32" />
     <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
     <Property Name="nroTelefono" Type="Int32" />
     <Property Name="idUsuario" Type="Int32" />
     <Property Name="promedioEstrellas" Type="Double" />
     <Property Name="idEstado" Type="Int32" />
     <Property Name="idBarrio" Type="Int32" />
+    <Property Name="idDeportePreferido" Type="Int32" />
     <NavigationProperty Name="AmigosPorDeportistas" Relationship="Self.FK_AmigosPorDeportistas_Deportista" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
     <NavigationProperty Name="AmigosPorDeportistas1" Relationship="Self.FK_AmigosPorDeportistas_Deportista1" FromRole="Deportista" ToRole="AmigosPorDeportistas" />
     <NavigationProperty Name="DeportesPorDeportistas" Relationship="Self.FK_DeportesPorDeportistas_Deportista" FromRole="Deportista" ToRole="DeportesPorDeportistas" />
@@ -438,6 +439,13 @@
     <Property Name="idEstado" Type="Int32" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_Sesion_Estado" FromRole="Sesion" ToRole="Estado" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_Sesion_Usuario" FromRole="Sesion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Sponsor">
     <Key>
@@ -1416,6 +1424,7 @@
     <EntitySet Name="ServicioExtra" EntityType="Self.ServicioExtra" />
     <EntitySet Name="ServiciosPorComplejos" EntityType="Self.ServiciosPorComplejos" />
     <EntitySet Name="Sesion" EntityType="Self.Sesion" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" />
     <EntitySet Name="Sponsor" EntityType="Self.Sponsor" />
     <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" />
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" />
@@ -1810,6 +1819,9 @@
     </FunctionImport>
     <FunctionImport Name="sp_UsuarioID" ReturnType="Collection(Int32)">
       <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spCambiarEstadoCompleto">
+      <Parameter Name="prmidEncuentro" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spCargarDatosEstadisticaComplejo">
       <Parameter Name="id" Mode="In" Type="Int32" />

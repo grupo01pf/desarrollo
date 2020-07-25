@@ -111,13 +111,14 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
     <Property Name="nombres" Type="nvarchar" MaxLength="50" />
     <Property Name="idTipoDoc" Type="int" />
     <Property Name="nroDoc" Type="int" />
-    <Property Name="sexo" Type="nvarchar" MaxLength="50" />
+    <Property Name="sexo" Type="int" />
     <Property Name="fechaNacimiento" Type="date" />
     <Property Name="nroTelefono" Type="int" />
     <Property Name="idUsuario" Type="int" />
     <Property Name="promedioEstrellas" Type="float" />
     <Property Name="idEstado" Type="int" />
     <Property Name="idBarrio" Type="int" />
+    <Property Name="idDeportePreferido" Type="int" />
   </EntityType>
   <EntityType Name="DeportistasPorEquipos">
     <Key>
@@ -430,6 +431,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="horaInicio" Type="smalldatetime" />
     <Property Name="horaFin" Type="smalldatetime" />
     <Property Name="idEstado" Type="int" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Sponsor">
     <Key>
@@ -1414,6 +1422,9 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
   <Function Name="sp_UsuarioID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="usuario" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="spCambiarEstadoCompleto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmidEncuentro" Type="int" Mode="In" />
+  </Function>
   <Function Name="spCargarDatosEstadisticaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -1502,6 +1513,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <EntitySet Name="ServicioExtra" EntityType="Self.ServicioExtra" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServiciosPorComplejos" EntityType="Self.ServiciosPorComplejos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sponsor" EntityType="Self.Sponsor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoCancha" EntityType="Self.TipoCancha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDeporte" EntityType="Self.TipoDeporte" Schema="dbo" store:Type="Tables" />

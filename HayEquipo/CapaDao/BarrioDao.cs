@@ -19,6 +19,32 @@ namespace CapaDao
             }
         }
 
+        public static List<BarrioEntidad> obtenerBarrios2()
+        {
+            BarrioEntidad Barrio = null;
+            List<BarrioEntidad> ListaBarrio = new List<BarrioEntidad>();
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "SELECT * FROM Barrio";
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+
+                Barrio = new BarrioEntidad();
+                Barrio.idBarrio = int.Parse(dr["id"].ToString());
+                Barrio.nombre = dr["nombre"].ToString();
+                Barrio.idZona = int.Parse(dr["idZona"].ToString());
+                ListaBarrio.Add(Barrio);
+
+            }
+            dr.Close();
+            cn.Close();
+            return ListaBarrio;
+        }
+
         public static Barrio ObtenerBarriosPorID(int id)
         {
             using (HayEquipoEntities db = new HayEquipoEntities())

@@ -120,6 +120,7 @@
     <Content Include="Complejos.aspx" />
     <Content Include="CrearEncuentro.aspx" />
     <Content Include="Content\starrr.css" />
+    <Content Include="css\calendar-blue.css" />
     <Content Include="css\Style.css" />
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
@@ -1709,6 +1710,7 @@
     <Content Include="Imagenes\avatar.jpg" />
     <Content Include="Imagenes\basket.jpg" />
     <Content Include="Imagenes\boton-ir.png" />
+    <Content Include="Imagenes\calender.png" />
     <Content Include="Imagenes\cancel.png" />
     <Content Include="Imagenes\cerveza.jpg" />
     <Content Include="Imagenes\complejo_logo_default.png" />
@@ -1740,6 +1742,7 @@
     <Content Include="PerfilOtrosDeportistas.aspx" />
     <Content Include="ReportesEstadisticasAdmin.aspx" />
     <Content Include="Restaurar.aspx" />
+    <Content Include="scripts\calendar-en.min.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="MasterPage.Master" />
     <Content Include="MasterPageEstablecimiento.Master" />
@@ -1829,6 +1832,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery.dynDateTime.min.js" />
     <Content Include="scripts\map.js" />
     <Content Include="scripts\starrr.js" />
     <Content Include="w3\w3.css" />
@@ -1899,21 +1903,19 @@
     <Compile Include="EncuentroPublico.aspx.designer.cs">
       <DependentUpon>EncuentroPublico.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="EstadisticaComplejo.aspx.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EstadisticaComplejo.aspx.designer.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
-    </Compile>  
+    </Compile>
     <Compile Include="GMap.aspx.cs">
       <DependentUpon>GMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GMap.aspx.designer.cs">
       <DependentUpon>GMap.aspx</DependentUpon>
-
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

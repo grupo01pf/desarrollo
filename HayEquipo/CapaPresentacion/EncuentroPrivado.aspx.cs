@@ -551,7 +551,7 @@ namespace CapaPresentacion
 
             spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
-            lblValoracion.Text = "Valoración: " + compSelec.ValoracionPromedio.ToString();
+            lblValoracion.Text = "Valoración: " + compSelec.Valoracion.ToString();
             lblDeportes.Text = compSelec.Deportes;
             lblDescripcion.Text = compSelec.Descripcion;
             listServicios.Items.Clear();

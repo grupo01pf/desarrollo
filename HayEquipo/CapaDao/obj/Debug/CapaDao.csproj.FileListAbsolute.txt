@@ -48,7 +48,6 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFra
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
-C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.dll.config
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.dll
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaDao.pdb
@@ -58,5 +57,6 @@ C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.Sq
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\CapaEntidades.pdb
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.xml
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.csprojResolveAssemblyReference.cache
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.dll
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaDao\obj\Debug\CapaDao.pdb
