@@ -10,33 +10,24 @@
 namespace CapaPresentacion {
     
     
-    public partial class HomeAdministrador {
+    public partial class ABMusuariosAdmin {
         
         /// <summary>
-        /// Control btnMostrarEstadistica.
+        /// Control gdv_Usuarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarEstadistica;
+        protected global::System.Web.UI.WebControls.GridView gdv_Usuarios;
         
         /// <summary>
-        /// Control elDivDelDashboard.
+        /// Control lblmsjusuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl elDivDelDashboard;
-        
-        /// <summary>
-        /// Control btn_Usuarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Usuarios;
+        protected global::System.Web.UI.WebControls.Label lblmsjusuario;
     }
 }

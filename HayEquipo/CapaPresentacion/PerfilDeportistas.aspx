@@ -125,6 +125,11 @@
             display: none;
         }
 
+        .scroll-container {
+            display: block;
+            height: 390px;
+            overflow-y: auto;
+        }
 
     </style>
 
@@ -223,6 +228,7 @@
 
             </div>
             <div class="col-sm-7 well">
+             
                 <div class="well">
                     <ul class="nav nav-tabs">
                         <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
@@ -240,6 +246,7 @@
                             <asp:Label ID="lbl_Contactos" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
+                  <div class="scroll-container">
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active">
                             <br />
@@ -516,28 +523,11 @@
 
                             </div>
 
-                        </div>
-
-                        <%--             <div id="menu5" class=" fade">
-              <div class="table-responsive">
-
-                  <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" DisplayToolbar="False" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" ToolPanelView="None" ReuseParameterValuesOnRefresh="True" />
-
-                      <br />
-                  <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                      <Report FileName="ReporteCantidadDeportesxFecha.rpt">
-                      </Report>
-                  </CR:CrystalReportSource>
-
-                      </div>
-
-                </div>--%>
-
-
-                        <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
-                    </div>
-                </div>
-
+                           </div>
+                          </div>
+                       </div>
+                
+              </div>
             </div>
 
         </div>

@@ -113,6 +113,7 @@
   <ItemGroup>
     <Content Include="ABMComplejosEstablecimiento2.aspx" />
     <Content Include="ABMComplejosEstablecimiento.aspx" />
+    <Content Include="ABMusuariosAdmin.aspx" />
     <Content Include="AvatarComplejo.aspx" />
     <Content Include="avatar\nene.png" />
     <Content Include="ABMComplejosAdministrador.aspx" />
@@ -1859,6 +1860,13 @@
     </Compile>
     <Compile Include="ABMComplejosAdministrador.aspx.designer.cs">
       <DependentUpon>ABMComplejosAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMusuariosAdmin.aspx.cs">
+      <DependentUpon>ABMusuariosAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMusuariosAdmin.aspx.designer.cs">
+      <DependentUpon>ABMusuariosAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="AvatarComplejo.aspx.cs">
       <DependentUpon>AvatarComplejo.aspx</DependentUpon>

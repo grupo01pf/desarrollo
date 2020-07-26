@@ -20,9 +20,13 @@
           <div class="w3-container">
             <h1 style="color:white">Administrador</h1>
           </div>
-          <br /><br /><br /><br /><br /><br />
-
-
+          <br/>
+                <div class="col-sm-1">
+             <asp:Button ID="btn_Usuarios" runat="server" CssClass="btn btn-primary btn-edit" Text="Usuarios" ValidationGroup="E" OnClick="btn_Usuarios_Click"></asp:Button>
+                 </div>
+    
+              <br /><br /><br /><br /><br />
+                     
                   <a href="ABMComplejosAdministrador.aspx"><div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-black">
                         <h1>Complejos deportivos</h1>
@@ -45,6 +49,6 @@
 
 
           <br /><br /><br /><br /><br /><br /><br />
-      </div>
+      
 
     </asp:Content>

@@ -21,5 +21,10 @@ namespace CapaPresentacion
             EstadisticaDao.CargarUsuariosActivos();
             elDivDelDashboard.Visible = true;
         }
+
+        protected void btn_Usuarios_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMusuariosAdmin.aspx");
+        }
     }
 }

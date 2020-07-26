@@ -23,14 +23,14 @@
 
       .scroll-container {
             display: block;
-            height: 540px;
+            height: 610px;
             overflow-y: auto;
         }
 
 
        .scroll-container2 {
             display: block;
-            height: 255px;
+            height: 325px;
             overflow-y: auto;
         }
 
@@ -113,9 +113,11 @@
           <br />
           <div class="row">
               <div class="col-sm-3">
-                  <span class="glyphicon glyphicon-calendar"></span>               
-                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
+                  <span class="glyphicon glyphicon-calendar"></span>              
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio", "{0:HH:mm}") %>'></asp:Label>
+                  <asp:Label runat="server" text="Hs"></asp:Label>
+                   </span> 
                   <br />
               </div>
               <div class="col-sm-3">

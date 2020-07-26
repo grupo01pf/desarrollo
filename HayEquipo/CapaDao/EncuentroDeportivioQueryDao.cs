@@ -456,7 +456,8 @@ namespace CapaDao
                                 e.nombre as Estado,ed.horaInicio,ed.horaFin,ed.nombreLP as Lugar ,ed.direccion,
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave ,d.avatar as avatar
                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, Estado e
-                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND ed.tipoEncuentro = 'Publico'";
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND ed.tipoEncuentro = 'Publico'
+                                 and(ed.idEstado= 7 or ed.idEstado=8)";
 
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -499,7 +500,7 @@ namespace CapaDao
                                 ed.tipoEncuentro, ed.accesibilidad, ed.clave,d.avatar as avatar
                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e
                                 WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
-                                AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id";
+                                AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id and(ed.idEstado= 7 or ed.idEstado=8)";
             // SqlDataReader dr = cmd.ExecuteReader();
             dr = cmd.ExecuteReader();
             while (dr.Read())
