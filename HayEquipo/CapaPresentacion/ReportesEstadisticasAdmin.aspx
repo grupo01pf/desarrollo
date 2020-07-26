@@ -49,6 +49,7 @@
           <br /><br /><br />
              
               <asp:DropDownList ID="ddl_aniosregistros" runat="server" Width="150px" AutoPostBack="true"   >
+                                    <asp:ListItem Text="2020" Value="2020" /> 
                                     <asp:ListItem Text="2019" Value="2019" />
                                     <asp:ListItem Text="2018" Value="2018" />
 

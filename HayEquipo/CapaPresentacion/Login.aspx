@@ -47,6 +47,11 @@
 
       }
 
+      .margenes{
+          padding-top: 10%;
+          padding-bottom: 13%;
+      }
+
 
         @media only screen and (max-width: 700px) {
          .ensanchar{
@@ -93,7 +98,9 @@
         <div class="container text-center">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="well">
+                        <div class="margenes">
+                         <div class="well">
+                          
                         <%--<br />
                         <br />
                         <br />--%>
@@ -110,13 +117,16 @@
                         <br />--%>
                         <br />
                         <br />
+                       
+                      </div>
                     </div>
-                    </div>                                 
+                   </div>                                 
                 <div class="col-sm-6">
+                   <div class="margenes">
                     <div class="well">
+                       
 
-
-                        <h2>Iniciar Sesión</h2>
+                        <h3>Iniciar Sesión</h3>
 
 
                         <div class="form-group">
@@ -145,8 +155,10 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
 
-                        </div>
+                           </div>
+                         </div>
                     </div>
+                   </div>
                 </div>
 
             </div>
