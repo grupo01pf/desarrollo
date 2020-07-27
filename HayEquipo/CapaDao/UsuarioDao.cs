@@ -81,10 +81,7 @@ namespace CapaDao
             dr.Close();
             cn.Close();
             return listaUsuarios;
-            //using (HayEquipoEntities db = new HayEquipoEntities()) {
-
-            //    return db.Usuario.ToList();
-            //}
+            
         }
 
         public static bool Usuario(string usuario, string clave) {

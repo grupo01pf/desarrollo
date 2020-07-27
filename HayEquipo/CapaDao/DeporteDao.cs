@@ -52,5 +52,13 @@ namespace CapaDao
                 return db.Deporte.First(d => d.id == id);
             }
         }
+        public static void EliminarDeporte(int idDep)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.Deporte.RemoveRange(db.Deporte.Where(spc => spc.id == idDep));
+                db.SaveChanges();
+            }
+        }
     }
 }

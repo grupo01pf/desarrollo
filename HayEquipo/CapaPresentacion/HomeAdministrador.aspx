@@ -24,6 +24,10 @@
                 <div class="col-sm-1">
              <asp:Button ID="btn_Usuarios" runat="server" CssClass="btn btn-primary btn-edit" Text="Usuarios" ValidationGroup="E" OnClick="btn_Usuarios_Click"></asp:Button>
                  </div>
+               <div class="col-sm-1">
+             <asp:Button ID="btn_deportes" runat="server" CssClass="btn btn-primary btn-edit" Text="ABM Deportes" ValidationGroup="E" OnClick="btn_deportes_Click"></asp:Button>
+                 </div>
+
     
               <br /><br /><br /><br /><br />
                      

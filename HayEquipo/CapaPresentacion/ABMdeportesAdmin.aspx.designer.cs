@@ -10,42 +10,33 @@
 namespace CapaPresentacion {
     
     
-    public partial class HomeAdministrador {
+    public partial class ABMdeportesAdmin {
         
         /// <summary>
-        /// Control btnMostrarEstadistica.
+        /// Control gdv_deportes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarEstadistica;
+        protected global::System.Web.UI.WebControls.GridView gdv_deportes;
         
         /// <summary>
-        /// Control elDivDelDashboard.
+        /// Control btn_AgregarDeporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl elDivDelDashboard;
+        protected global::System.Web.UI.WebControls.Button btn_AgregarDeporte;
         
         /// <summary>
-        /// Control btn_Usuarios.
+        /// Control lblmsjdeporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Usuarios;
-        
-        /// <summary>
-        /// Control btn_deportes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_deportes;
+        protected global::System.Web.UI.WebControls.Label lblmsjdeporte;
     }
 }
