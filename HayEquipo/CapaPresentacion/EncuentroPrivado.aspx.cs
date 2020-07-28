@@ -66,7 +66,7 @@ namespace CapaPresentacion
             Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
             cargarModalComplejo(edq.idComplejo);
-            cargarMapa(edq.idComplejo);
+            //cargarMapa(edq.idComplejo);
 
             lbl_Deporte.Text = edq.nombreDeporte;
 

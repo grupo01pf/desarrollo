@@ -28,7 +28,7 @@
 }
 
     footer {
-      background-color: #000000;
+      background-color: #222;
       color: white;
       padding: 15px;
     }
@@ -60,8 +60,8 @@
      .moverboton{
          margin-left:490%;
      }
-     .label-success{
-         background-color:#174f18!important;
+     .amarillo{
+         color:#edd108;
      }
 
   </style>
@@ -97,7 +97,7 @@ $(window).load(function() {
         <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
          
           <li><a href="Complejos.aspx">Complejos Deportivos</a></li>
-        <li class="label-success"><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>
+        <li><a href="CrearEncuentro.aspx">Crear Encuentro <span class="glyphicon glyphicon-plus amarillo"></span></a></li>
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
         <%--<ul class="nav navbar-nav moverbuscador">

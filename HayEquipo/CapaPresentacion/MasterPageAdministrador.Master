@@ -23,7 +23,7 @@
     /* Set black background color, white text and some padding */
    
     footer {
-      background-color: #000000;
+      background-color: #222;
       color: white;
       padding: 15px;
     }
@@ -75,7 +75,7 @@ $(window).load(function() {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="HomeAdministrador.aspx">Principal</a></li>
+        <li><a href="HomeAdministrador.aspx">Principal</a></li>
         <li><a href="ABMComplejosAdministrador.aspx">Complejos Deportivos</a></li>
         <li><a href="ReportesEstadisticasAdmin.aspx">Reportes y Estadísticas</a></li>
       </ul>      
