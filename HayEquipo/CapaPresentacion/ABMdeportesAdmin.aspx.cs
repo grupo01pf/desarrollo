@@ -27,11 +27,7 @@ namespace CapaPresentacion
            lblmsjdeporte.Text = "Deporte Agregado Exitosamente";
         }
 
-        protected void deletebtn_Click(object sender, EventArgs e)
-        {
-          
-        }
-      
+       
 
         protected void gdv_deportes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -41,6 +37,15 @@ namespace CapaPresentacion
             this.Page_Load(sender, e);
             lblmsjdeporte.Text = "Deporte Eliminado Exitosamente";
            
+        }
+
+        protected void gdv_deportes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton Lb = (LinkButton)e.Row.FindControl("deletebtn");
+                Lb.Attributes.Add("OnClick", "return confirm('Esta seguro de que desea eliminar el registro con nombre " + DataBinder.Eval(e.Row.DataItem, "nombre") + "?')");
+            }
         }
 
        

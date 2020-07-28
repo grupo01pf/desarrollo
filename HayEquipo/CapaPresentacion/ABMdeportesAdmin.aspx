@@ -21,7 +21,8 @@
                  <div class="scroll-container">
                   <asp:GridView ID="gdv_deportes" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
                                     OnSelectedIndexChanged="gdv_deportes_SelectedIndexChanged"
-                                    onrowdeleting="gdv_deportes_RowDeleting">
+                                    onrowdeleting="gdv_deportes_RowDeleting"
+                                    OnRowDataBound="gdv_deportes_RowDataBound">
                       <Columns>                                     
                           <asp:BoundField DataField="idDeporte" HeaderText="Id" Visible="true"/>
                           <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"/>   
@@ -33,12 +34,12 @@
                         </asp:TemplateField>                                                                          
                           <asp:CommandField showSelectButton="true"
                             SelectText='<button type="button" class="btn btn-primary btn-edit">Actualizar</button>' ItemStyle-Width="50px"/>
-                          <asp:CommandField showDeleteButton="true"
-                            DeleteText='<button type="button" class="btn btn-primary btn-edit">Borrar</button>' ItemStyle-Width="50px"/>                      
-                          <asp:TemplateField ItemStyle-Width="50px" Visible="false">
-                            <ItemTemplate>
-                                  <asp:Button ID="deletebtn" runat="server" OnClick="deletebtn_Click" CssClass="btn btn-primary btn-edit" 
-                                   Text="Borrar" OnClientClick="return confirm('Seguro que desea borrar este deporte?');"/>
+                         <asp:TemplateField ItemStyle-Width="50px">
+                            <ItemTemplate>         
+                                   <asp:LinkButton ID="deletebtn"
+                                    CommandArgument='<%# Eval("idDeporte") %>'                                
+                                    CommandName="Delete" runat="server" CssClass="btn btn-primary btn-edit">
+                                    Borrar</asp:LinkButton>
                             </ItemTemplate>                          
                           </asp:TemplateField>                         
                       </Columns>        
