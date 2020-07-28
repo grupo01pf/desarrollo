@@ -25,9 +25,8 @@
                           <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true"/>  
                           <asp:BoundField DataField="rol" HeaderText="Tipo Usuario" Visible="true" /> 
                           <asp:BoundField DataField="fechaAlta" HeaderText="Fecha Alta" Visible="true" DataFormatString="{0:d}" />                                                
-                          <asp:CommandField showSelectButton="true" HeaderText="Acciones" ShowHeader="True"
-                            SelectText='<i class="glyphicon glyphicon-remove"></i>' showDeleteButton="true" 
-                              DeleteText='<i class="glyphicon glyphicon-refresh"></i>' Visible="false"/>
+                          <asp:CommandField showSelectButton="true"
+                            SelectText='<button type="button" class="btn btn-primary btn-edit">Deshabilitar</button>' ItemStyle-Width="50px"/>
                       </Columns>
                    </asp:GridView>
                  </div>
