@@ -42,5 +42,7 @@ namespace CapaPresentacion
             lblmsjdeporte.Text = "Deporte Eliminado Exitosamente";
            
         }
+
+       
     }
 }

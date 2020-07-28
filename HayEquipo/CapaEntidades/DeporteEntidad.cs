@@ -10,5 +10,6 @@ namespace CapaEntidades
     {
         public int? idDeporte { get; set; }
         public string nombre { get; set; }
+        public byte[] avatar { get; set; }
     }
 }

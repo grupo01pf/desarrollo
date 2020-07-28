@@ -60,5 +60,49 @@ namespace CapaDao
                 db.SaveChanges();
             }
         }
+
+        public static byte[] ObtenerImagen(string id)
+        {
+
+            byte[] imagen = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT d.avatar as avatar FROM Deporte d WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = (byte[])dr["avatar"];
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
+        }
+
+        public static bool existeImagen(string id)
+        {
+
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT d.avatar FROM Deporte d WHERE avatar IS NOT NULL and @id=id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
+        }
     }
 }
