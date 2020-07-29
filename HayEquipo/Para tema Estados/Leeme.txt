@@ -1,0 +1,5 @@
+Para hacer andar el archivo Todos los jobs.sql se debe:
+-Acivar el SQL server agent(Esta abajo de todo en el sql server). click derecho y en pulsar en start.
+-Entrar al sqk management y activarlo para que se active cuando abris el sql server.Explica todo en este link:
+https://www.youtube.com/watch?v=b25r0jDseOQ   (Empieza a explicar a partir del minuto 5:10)
+-Ejecutar el script.
