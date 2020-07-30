@@ -17,6 +17,8 @@ namespace CapaEntidades
         public DateTime fechaBaja { get; set; }
         public string rol { get; set; }
 
+        public bool bloqueado { get; set; }
+
 
         public UsuarioEntidad() { }
 

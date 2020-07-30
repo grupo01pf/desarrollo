@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CapaEntidades;
+using System.Data;
+using System.Configuration;
 
 namespace CapaDao
 {
@@ -82,6 +84,63 @@ namespace CapaDao
             return imagen;
 
         }
+
+        public static bool RegistrarDeporte(DeporteEntidad objDeporte)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarDeporte", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombre", objDeporte.nombre);
+                cmd.Parameters.AddWithValue("@imagen", objDeporte.avatar);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
+
+        public static bool ActualizarDeporte(string id,string nom,byte[] avatar)
+        {
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE Deporte SET nombre=@nombre, avatar=@avatar                                             
+                                                WHERE id=@idDeporte;";
+            cmd.Parameters.AddWithValue("@idDeporte", id);
+            cmd.Parameters.AddWithValue("@nombre", nom);
+            cmd.Parameters.AddWithValue("@avatar", avatar);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+        }
+
 
         public static bool existeImagen(string id)
         {

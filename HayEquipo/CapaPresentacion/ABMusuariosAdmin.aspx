@@ -19,14 +19,27 @@
               <div class="well">
                    <div class="scroll-container">
                    <asp:GridView ID="gdv_Usuarios" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
-                                    OnSelectedIndexChanged="gdv_Usuarios_SelectedIndexChanged">
+                                     onrowdeleting="gdv_Usuarios_RowDeleting"
+                                    OnRowUpdating="gdv_Usuarios_RowUpdating"
+                                    OnRowDataBound="gdv_Usuarios_RowDataBound">
                       <Columns>                                     
-                          <asp:BoundField DataField="idUsuario" HeaderText="Id" Visible="false"/>
+                          <asp:BoundField DataField="idUsuario" HeaderText="Id" Visible="true"/>
                           <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true"/>  
                           <asp:BoundField DataField="rol" HeaderText="Tipo Usuario" Visible="true" /> 
-                          <asp:BoundField DataField="fechaAlta" HeaderText="Fecha Alta" Visible="true" DataFormatString="{0:d}" />                                                
-                          <asp:CommandField showSelectButton="true"
-                            SelectText='<button type="button" class="btn btn-primary btn-edit">Deshabilitar</button>' ItemStyle-Width="50px"/>
+                          <asp:BoundField DataField="fechaAlta" HeaderText="Fecha Alta" Visible="true" DataFormatString="{0:d}" />
+                          <asp:BoundField DataField="bloqueado" HeaderText="Habilitado/Deshabilitado" Visible="false" />                                                
+                           <asp:TemplateField ItemStyle-Width="50px">
+                           <ItemTemplate>           
+                                   <asp:LinkButton ID="Deshabilitarbtn"
+                                    CommandArgument='<%# Eval("idUsuario") %>'                                
+                                    CommandName="Update" runat="server" CssClass="btn btn-primary btn-edit" Visible="true">
+                                    Deshabilitar</asp:LinkButton>
+                                    <asp:LinkButton ID="Habilitarbtn"
+                                    CommandArgument='<%# Eval("idUsuario") %>'                                
+                                    CommandName="Delete" runat="server" CssClass="btn btn-primary btn-edit" Visible="false">
+                                    Habilitar</asp:LinkButton>
+                            </ItemTemplate>                          
+                          </asp:TemplateField>    
                       </Columns>
                    </asp:GridView>
                  </div>
