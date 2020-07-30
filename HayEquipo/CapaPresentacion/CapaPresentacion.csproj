@@ -114,6 +114,9 @@
     <Content Include="ABMComplejosEstablecimiento2.aspx" />
     <Content Include="ABMComplejosEstablecimiento.aspx" />
     <Content Include="ABMdeportesAdmin.aspx" />
+    <Content Include="ABMencuentrosAdmin.aspx" />
+    <Content Include="ABMserviciosextrasAdmin.aspx" />
+    <Content Include="ABMtipocanchaAdmin.aspx" />
     <Content Include="ABMusuariosAdmin.aspx" />
     <Content Include="AvatarComplejo.aspx" />
     <Content Include="avatar\nene.png" />
@@ -1869,6 +1872,27 @@
     </Compile>
     <Compile Include="ABMdeportesAdmin.aspx.designer.cs">
       <DependentUpon>ABMdeportesAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMencuentrosAdmin.aspx.cs">
+      <DependentUpon>ABMencuentrosAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMencuentrosAdmin.aspx.designer.cs">
+      <DependentUpon>ABMencuentrosAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMserviciosextrasAdmin.aspx.cs">
+      <DependentUpon>ABMserviciosextrasAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMserviciosextrasAdmin.aspx.designer.cs">
+      <DependentUpon>ABMserviciosextrasAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMtipocanchaAdmin.aspx.cs">
+      <DependentUpon>ABMtipocanchaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMtipocanchaAdmin.aspx.designer.cs">
+      <DependentUpon>ABMtipocanchaAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABMusuariosAdmin.aspx.cs">
       <DependentUpon>ABMusuariosAdmin.aspx</DependentUpon>

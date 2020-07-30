@@ -31,5 +31,20 @@ namespace CapaPresentacion
         {
             Response.Redirect("ABMdeportesAdmin.aspx");
         }
+
+        protected void btn_encuentros_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMencuentrosAdmin.aspx");
+        }
+
+        protected void btn_serviciosExtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMserviciosextrasAdmin.aspx");
+        }
+
+        protected void btn_tipoCancha_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMtipocanchaAdmin.aspx");
+        }
     }
 }

@@ -84,5 +84,68 @@ namespace CapaDao
             cn.Close();
             return cantServicios;
         }
+
+        public static void EliminarServicioExtra(int idserv)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.ServicioExtra.RemoveRange(db.ServicioExtra.Where(spc => spc.id == idserv));
+                db.SaveChanges();
+            }
+        }
+
+        public static bool RegistrarServicioExtra(ServicioExtra objserv)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = ConnectionString.getInstance().ConexionDB();
+                cmd = new SqlCommand("spRegistrarServicioExtra", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombre", objserv.nombre);
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception e)
+            {
+                response = false;
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return response;
+
+        }
+
+        public static bool ActualizarServicioExtra(string id, string nom)
+        {
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ServicioExtra SET nombre=@nombre                                             
+                                                WHERE id=@idServicio";
+            cmd.Parameters.AddWithValue("@idServicio", id);
+            cmd.Parameters.AddWithValue("@nombre", nom);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+        }
     }
 }

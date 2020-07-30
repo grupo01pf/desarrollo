@@ -40,6 +40,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btn_Usuarios;
         
         /// <summary>
+        /// Control btn_encuentros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_encuentros;
+        
+        /// <summary>
         /// Control btn_deportes.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,23 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_deportes;
+        
+        /// <summary>
+        /// Control btn_serviciosExtras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_serviciosExtras;
+        
+        /// <summary>
+        /// Control btn_tipoCancha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_tipoCancha;
     }
 }
