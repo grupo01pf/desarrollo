@@ -50,5 +50,13 @@ namespace CapaPresentacion
             strDatos = strDatos + "],";
             return strDatos;
         }
+
+        protected void btnMostrarEstadistica_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(Session["ID"].ToString());
+            EstadisticaDao.truncarUsuariosActivos();
+            EstadisticaDao.CargarUsuariosActivos();
+            elDivDelDashboard.Visible = true;
+        }
     }
 }

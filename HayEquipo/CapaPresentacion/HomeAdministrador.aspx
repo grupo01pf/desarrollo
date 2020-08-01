@@ -8,60 +8,70 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <div class="container text-center">
 
-        <div class="well">
-            <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar reporte" OnClick="btnMostrarEstadistica_Click" />
-            <div id="elDivDelDashboard" visible="false" runat="server">
-                <iframe width="933" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiYTBmNzM5NGMtMjVlMy00NDJjLWEwZDEtMTY4ODQwN2NlN2UwIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
-        </div>
-    </div>
-
-          <br />
+         
           <div class="w3-container">
             <h1 style="color:white">Administrador</h1>
           </div>
           <br/>
-                <div class="col-sm-1">
-             <asp:Button ID="btn_Usuarios" runat="server" CssClass="btn btn-primary btn-edit" Text="Usuarios" ValidationGroup="E" OnClick="btn_Usuarios_Click"></asp:Button>
-                 </div>
-                <div class="col-sm-2">
-             <asp:Button ID="btn_encuentros" runat="server" CssClass="btn btn-primary btn-edit" Text="Encuentros Deportivos" ValidationGroup="E" OnClick="btn_encuentros_Click"></asp:Button>
-                 </div>
-               <div class="col-sm-2">
-             <asp:Button ID="btn_deportes" runat="server" CssClass="btn btn-primary btn-edit" Text="ABM Deportes" ValidationGroup="E" OnClick="btn_deportes_Click"></asp:Button>
-                 </div>
-               <div class="col-sm-1">
-             <asp:Button ID="btn_serviciosExtras" runat="server" CssClass="btn btn-primary btn-edit" Text="ABM Servicio Extras" ValidationGroup="E" OnClick="btn_serviciosExtras_Click"></asp:Button>
-                 </div>
-              <div class="col-sm-1">
-             <asp:Button ID="btn_tipoCancha" runat="server" CssClass="btn btn-primary btn-edit" Text="ABM Tipo Cancha" ValidationGroup="E" OnClick="btn_tipoCancha_Click"></asp:Button>
-                 </div>
+            
+             
+                
 
-    
-              <br /><br /><br /><br /><br />
+           <div class="col-sm-6 w3-padding" >
+                  <a href="ABMusuariosAdmin.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>Usuarios</h1>
+                    </header>
+                  </div></a>
+              <br />
+
+           <a href="ABMencuentrosAdmin.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>Encuentros Deportivos</h1>
+                    </header>
+                  </div></a>
+              <br />
                      
-                  <a href="ABMComplejosAdministrador.aspx"><div class="w3-card-4" style="width:100%;">
+              <a href="ABMComplejosAdministrador.aspx"><div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-black">
                         <h1>Complejos deportivos</h1>
                     </header>
                   </div></a>
               <br />
-
-                  <div class="w3-card-4" style="width:100%;">
+                </div>
+            
+           <div class="col-sm-6">
+               <a href="ABMdeportesAdmin.aspx"><div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-black">
-                        <h1>Jugadores</h1>
+                        <h1>ABM Deportes</h1>
                     </header>
-                  </div>
+                  </div></a>
+              <br />
+                  
+           <a href="ABMserviciosextrasAdmin.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>ABM Servicios Extras</h1>
+                    </header>
+                  </div></a>
               <br />
 
+           <a href="ABMtipocanchaAdmin.aspx"><div class="w3-card-4" style="width:100%;">
+                    <header class="w3-container w3-black">
+                        <h1>ABM Tipo de Cancha</h1>
+                    </header>
+                  </div></a>
+                <br />
+               </div>
+             <div class="col-sm-12" >
                   <a href="ReportesEstadisticasAdmin.aspx"><div class="w3-card-4" style="width:100%;">
                     <header class="w3-container w3-black">
                         <h1>Reportes y Estadísticas</h1>
                     </header>
                   </div></a>
 
+             </div>
 
-          <br /><br /><br /><br /><br /><br /><br />
-      
-
+         
+       </div>
+          <br />  <br /> <br /> <br /> <br />
     </asp:Content>
