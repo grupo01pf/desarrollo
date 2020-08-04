@@ -216,7 +216,6 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.dll.config
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.pdb
-C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\AjaxControlToolkit.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaDao.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaEntidades.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CrystalDecisions.CrystalReports.Engine.dll

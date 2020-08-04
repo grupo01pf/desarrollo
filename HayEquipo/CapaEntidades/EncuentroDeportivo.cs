@@ -46,7 +46,6 @@ namespace CapaEntidades
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
         public virtual Deporte Deporte { get; set; }
         public virtual Deportista Deportista { get; set; }
-        public virtual DIM_TIEMPO DIM_TIEMPO { get; set; }
         public virtual Equipo Equipo { get; set; }
         public virtual Estado Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

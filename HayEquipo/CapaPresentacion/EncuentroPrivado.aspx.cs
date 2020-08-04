@@ -110,10 +110,9 @@ namespace CapaPresentacion
 
         private void cargarMapa(int idComplejoDeportivo)
         {
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
 
-            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejoDeportivo);
-
-            int id = cd.Mapa.Value;
+            int id = cd.mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
             txt_Latitud.Text = mapa.latitud;
             txt_Longitud.Text = mapa.longitud;
@@ -176,9 +175,7 @@ namespace CapaPresentacion
                 }
             }
         }
-
-
-
+        
 
         private int calcularCapacidadEquipoA()
         {
@@ -358,7 +355,6 @@ namespace CapaPresentacion
 
             Response.Redirect("Home.aspx");
 
-
         }
 
         protected void btn_Enviar_Click(object sender, EventArgs e)
@@ -464,7 +460,7 @@ namespace CapaPresentacion
                     {
                         string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
                         notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave;
+                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " Clave: " + clave;
                     }
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
@@ -549,7 +545,7 @@ namespace CapaPresentacion
         private void cargarModalComplejo(int idComplejo)
         {
 
-            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
+            ComplejoDeportivo compSelec = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
 
             lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
             lblDeportes.Text = compSelec.deportes;
@@ -656,7 +652,6 @@ namespace CapaPresentacion
         protected void btnPopUp_Click(object sender, EventArgs e)
         {
 
-
             btnPopUp_ModalPopupExtender.Show();
         }
 
@@ -671,22 +666,22 @@ namespace CapaPresentacion
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
             int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
-            int valor=  Convert.ToInt32(RadioButtonList1.SelectedValue);
+            int valor = Convert.ToInt32(RadioButtonList1.SelectedValue);
             string usuario = Session["ID"].ToString();
             int usuarioValorador = Convert.ToInt32(usuario);
             int idcomplejo = edq.idComplejo;
             RadioButtonList1.Enabled = false;
-            ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador,valor,1);
+            ValoracionDao.RegistrarValoracionComplejo(idcomplejo, usuarioValorador, valor, 1);
 
             foreach (ListItem item in RadioButtonList1.Items)
+            {
+
+                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
                 {
-
-                    if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
-                    {
-                        item.Attributes.CssStyle.Add("color", "orange");
-                    }
-
+                    item.Attributes.CssStyle.Add("color", "orange");
                 }
+
+            }
 
             lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de :" + valor + " Puntos";
             cargarValoracion();
@@ -747,6 +742,7 @@ namespace CapaPresentacion
 
         public void cargarValoracion()
         {
+
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
             int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
             edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
@@ -768,6 +764,7 @@ namespace CapaPresentacion
                 }
                 RadioButtonList1.Enabled = false;
                 lblmsjrb1.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList1.SelectedValue + " Puntos";
+
             }
 
             if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "2", usuarioValorador) == true)
@@ -784,6 +781,7 @@ namespace CapaPresentacion
                 }
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList2.SelectedValue + " Puntos";
+
             }
 
             if (ValoracionDao.existeValorParticularComplejoxid(idcomplejo1, "3", usuarioValorador) == true)
@@ -802,8 +800,8 @@ namespace CapaPresentacion
             }
 
 
-
         }
+        
 
 
         protected void btn_Buscar_Click(object sender, EventArgs e)

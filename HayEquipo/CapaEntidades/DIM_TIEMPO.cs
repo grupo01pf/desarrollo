@@ -17,7 +17,7 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DIM_TIEMPO()
         {
-            this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
+            this.estadisticaComplejo = new HashSet<estadisticaComplejo>();
         }
     
         public int FechaSK { get; set; }
@@ -36,6 +36,6 @@ namespace CapaEntidades
         public string NDiaSemana { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EncuentroDeportivo> EncuentroDeportivo { get; set; }
+        public virtual ICollection<estadisticaComplejo> estadisticaComplejo { get; set; }
     }
 }

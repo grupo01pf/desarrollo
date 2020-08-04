@@ -10,12 +10,14 @@
 namespace CapaEntidades
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class ReporteCantidadDeportexFecha_Result
+    public partial class estadisticaComplejo
     {
-        public string Deporte { get; set; }
-        public Nullable<int> año { get; set; }
-        public string mes { get; set; }
-        public Nullable<int> CantidadPartidos { get; set; }
+        public int id { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public string deporte { get; set; }
+    
+        public virtual DIM_TIEMPO DIM_TIEMPO { get; set; }
     }
 }

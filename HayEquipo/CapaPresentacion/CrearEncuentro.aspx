@@ -581,24 +581,24 @@
         if (indice > 0) {
             // MOSTRAR UN COMPLEJO
             var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-                        if (latitude != "" && longitude != "") {
-                            myMap.setView([latitude, longitude], 15)
-                        }
+            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+            if (latitude != "" && longitude != "") {
+                myMap.setView([latitude, longitude], 15)
+            }
 
-                    } else {
-                        // MOSTRAR UN COMPLEJO
-                        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
-                        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+        } else {
+            // MOSTRAR UN COMPLEJO
+            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+            var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
-                        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
-                        if (latitude != "" && longitude != "") {
-                            myMap.setView([latitude, longitude], 15)
-                        }
+            var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+            if (latitude != "" && longitude != "") {
+                myMap.setView([latitude, longitude], 15)
+            }
 
-                    }
+        }
 
 
 

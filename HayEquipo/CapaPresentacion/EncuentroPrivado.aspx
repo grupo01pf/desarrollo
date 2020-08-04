@@ -47,11 +47,9 @@
             padding-top: 56.25%;
         }
 
-
-          input[type="radio"] {
+        input[type="radio"] {
             display: none;
         }
-
 
         .clasificacion {
             direction: rtl;
@@ -63,7 +61,6 @@
         label:hover ~ label {
             color: orange;
         }
-
 
         input[type="radio"]:checked ~ label {
             color: orange;
@@ -81,8 +78,6 @@
         #div_latlng {
             width: 65%;
         }
-
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -277,14 +272,11 @@
 
                                 </div>
 
-
-                                <%--FIN MODAL COMPLEJO  --%>
                             </div>
-
-
                             <%--FIN MODAL COMPLEJO  --%>
 
-                             <%--MODAL CALIFICACION--%>
+
+                            <%--MODAL CALIFICACION--%>
 
 
 
@@ -297,12 +289,12 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
 
-                             <asp:Button ID="btnInicial" runat="server" Text="Button" Style="display: none" />
+                            <asp:Button ID="btnInicial" runat="server" Text="Button" Style="display: none" />
 
-            <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server"
-                Enabled="True" TargetControlID="btnInicial"
-                PopupControlID="PanelModal">
-                <Animations>
+                            <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server"
+                                Enabled="True" TargetControlID="btnInicial"
+                                PopupControlID="PanelModal">
+                                <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
             </OnShowing>
@@ -316,78 +308,75 @@
                 <FadeOut Duration=".5" Fps="30" />
             </OnHidden>
 
-                </Animations>
-            </asp:ModalPopupExtender>
+                                </Animations>
+                            </asp:ModalPopupExtender>
 
 
-            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
-                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
-                    <ContentTemplate>
+                            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%">
+                                <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                    <ContentTemplate>
 
 
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                <div class="modal-header">
-                     <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
-                       onclick="btnClose_Click"/>
-                    <h4 class="modal-title" id="myModalLabel">Calificar Complejo</h4>
-                </div>
-                <div class="modal-body">
-                    <asp:Label CssClass="estrellalabel" runat="server" Text="Canchas"></asp:Label>
-                                <p class="clasificacion">
-                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
-                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
-                                     </p>
-                                <asp:Label CssClass="estrellalabel" runat="server" Text="Atencion"></asp:Label>
-                                <p class="clasificacion">
-                                    <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged">
-                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
-                                </p>
-                                <asp:Label CssClass="estrellalabel" runat="server" Text="Servicios"></asp:Label>
-                                <p class="clasificacion">
-                                    <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList3_SelectedIndexChanged">
-                                        <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
+                                                        OnClick="btnClose_Click" />
+                                                    <h4 class="modal-title" id="myModalLabel">Calificar Complejo</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Canchas"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
+                                                    </p>
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Atencion"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="lblmsjrb2" runat="server" Text=""></asp:Label>
+                                                    </p>
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Servicios"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList3_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
+                                                </div>
 
 
+                                            </div>
+
+                                            <div class="modal-footer">
+
+                                                <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
+                                                    OnClick="btnClose_Click" />
+
+                                            </div>
                                         </div>
 
 
-                     </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </asp:Panel>
 
-                  <div class="modal-footer">
-
-                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
-                       onclick="btnClose_Click"/>
-
-                  </div>
-                 </div>
-
-
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </asp:Panel>
-
-                             <%--FIN MODAL CALIFICACION  --%>
-                        </div>
-
+                            <%--FIN MODAL CALIFICACION  --%>
+                            <%--</div>--%>
 
 
 
@@ -514,13 +503,10 @@
                             <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
 
 
-                           <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
+                            <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">
                                 Invitar
                             </button>--%>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -589,7 +575,7 @@
 
             <div class="row">
 
-                 <%-- BUSQUEDA --%>
+                <%-- BUSQUEDA --%>
 
                 <div class="col-sm-4">
                     <div class="well">
@@ -636,7 +622,7 @@
                                 <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                     <div class="well">
 
-                                       <%-- <div class="form-group">
+                                        <%-- <div class="form-group">
                                             <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
                                                 OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
                                             <div class="dropdown">
@@ -766,7 +752,7 @@
                 </div>
 
 
-                  <%-- ****MAPA**** --%>
+                <%-- ****MAPA**** --%>
                 <div class="col-sm-6">
                     <div class="container">
                         <div class="form-group">
@@ -794,7 +780,7 @@
             </div>
 
 
-            </div>
+        </div>
     </asp:Panel>
 
 
@@ -807,45 +793,25 @@
 
 
     <script type="text/javascript">
-
-
         const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
-
-
         // CENTRAR LA VISTA DEL MAPA
         let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
-
         L.tileLayer(tilesProvider, {
             maxzoom: 18,
         }).addTo(myMap)
-
-
-
-
         var layerGroup = L.layerGroup().addTo(myMap)
-
         // MOSTRAR UN COMPLEJO
-
         var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
         var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
-
         var marker = L.marker([latitude, longitude]).addTo(layerGroup)
         if (latitude != "" && longitude != "") {
             myMap.setView([latitude, longitude], 15)
         }
-
-
-
         // CREAR UN MARCADOR
         // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
-
         // DESACTIVAR ZOOM CON DOBLE CLICK
         myMap.doubleClickZoom.disable()
-
         // var layerGroup = L.layerGroup().addTo(myMap)
-
         // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
-
-
     </script>
 </asp:Content>

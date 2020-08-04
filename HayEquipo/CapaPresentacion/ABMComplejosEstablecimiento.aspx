@@ -1,6 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento" %>
+﻿<%@ Page Title="" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+      
+    <%--**** MAPA ****--%>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <%--**** MAPA ****--%>
+    
+    
     <style>
         .alinearIzquiera {
             text-align: left;
@@ -39,6 +50,24 @@
             color: #ffffff;
             font-size:xxx-large;
         }
+
+                 
+          #myMap {
+            height: 30%;
+            width: 40%;
+            padding-top: 40%;  
+                      
+        }
+          #div_latlng {
+            width: 50%;
+            height: 10%;
+        }
+        .mapa {
+            height: 40%;
+            width: 50%;
+            
+        }
+
 
     </style>
 </asp:Content>
@@ -452,9 +481,18 @@
                </div>
                 </asp:Panel> 
 
+        
+
+       
+
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     </div>
 </asp:Panel>
+
+    <%-- script mapa --%>
+
+      
+
 </asp:Content>

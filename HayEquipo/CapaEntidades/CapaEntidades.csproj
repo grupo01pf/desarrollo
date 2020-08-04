@@ -58,6 +58,9 @@
     <Compile Include="AmigosPorDeportista.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AmigosPorDeportistas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="AmigosPorDeportistasEntidad.cs" />
     <Compile Include="Barrio.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -105,6 +108,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EquipoEntidad.cs" />
+    <Compile Include="estadisticaComplejo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Estado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -252,7 +258,7 @@
     <Compile Include="sp_MapaDao_ObtenerMapas_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_UsuarioDao_ObtenerUsuarios_Result.cs">
+    <Compile Include="sp_MensajeQueryDao_MostrarMensajes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_NotificacionDao_mostrarNotificaciones_Result.cs">
