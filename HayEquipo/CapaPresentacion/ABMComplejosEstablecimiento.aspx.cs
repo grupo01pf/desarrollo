@@ -17,7 +17,7 @@ namespace CapaPresentacion
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {               
+            {
                 ddlTipoCancha.Enabled = false;
                 cargarBarrios();
                 //CargarGrillaComplejos();
@@ -29,7 +29,7 @@ namespace CapaPresentacion
                 ddlServ.AutoPostBack = true;
                 CargarComplejo();
 
-                if(ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString())) == null)
+                if (ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString())) == null)
                 {
                     Panel1.Visible = true;
                     Panel2.Visible = false;
@@ -109,7 +109,7 @@ namespace CapaPresentacion
             lblestado.Text = string.Empty;
             lblestado.Visible = false;
             imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
-        
+
             lblDeportes.Visible = false;
             lblDepResultado.Visible = false;
 
@@ -173,7 +173,7 @@ namespace CapaPresentacion
             {
                 int barrio;
                 if (int.TryParse(ddlBarrio.Text, out barrio))
-                complejo.idBarrio = barrio;
+                    complejo.idBarrio = barrio;
             }
             else
             {
@@ -237,7 +237,7 @@ namespace CapaPresentacion
             }
             else
             {
-               // complejo.fechaRegistro = DateTime.Today;
+                // complejo.fechaRegistro = DateTime.Today;
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
@@ -269,54 +269,54 @@ namespace CapaPresentacion
                 IDCom = compSelec.ID;
                 Session["IDCom"] = compSelec.ID;
 
-            var nombresResp = compSelec.Responsable.Split(' ');
-            txtNomRes.Text = nombresResp[0];
-            txtApeRes.Text = nombresResp[1];
-            txtNomb.Text = compSelec.Nombre;
-            txtDesc.Text = compSelec.Descripcion;
-            if (compSelec.Deportes != string.Empty)
-            {
-                lblDepResultado.Text = compSelec.Deportes;
-            }
-            else
-            {
-                lblDepResultado.Text = "-";
-            }
-            txtCalle.Text = compSelec.Calle;
-            txtNro.Text = compSelec.NroCalle.ToString();
-            ddlBarrio.SelectedValue = (compSelec.IDBarrio).ToString();
-            txtTel.Text = compSelec.Telefono.ToString();
-            txtHoraApe.Text = compSelec.Apertura.ToString();
-            txtHoraCie.Text = compSelec.Cierre.ToString();
+                var nombresResp = compSelec.Responsable.Split(' ');
+                txtNomRes.Text = nombresResp[0];
+                txtApeRes.Text = nombresResp[1];
+                txtNomb.Text = compSelec.Nombre;
+                txtDesc.Text = compSelec.Descripcion;
+                if (compSelec.Deportes != string.Empty)
+                {
+                    lblDepResultado.Text = compSelec.Deportes;
+                }
+                else
+                {
+                    lblDepResultado.Text = "-";
+                }
+                txtCalle.Text = compSelec.Calle;
+                txtNro.Text = compSelec.NroCalle.ToString();
+                ddlBarrio.SelectedValue = (compSelec.IDBarrio).ToString();
+                txtTel.Text = compSelec.Telefono.ToString();
+                txtHoraApe.Text = compSelec.Apertura.ToString();
+                txtHoraCie.Text = compSelec.Cierre.ToString();
 
-            if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
-            {
-                imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
-                CambiarImagen();
-            }
-            else
-            {
-                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
-                btn_guardarImagen.Visible = true;
-            }
-            //if (compSelec.fechaRegistro.ToString() != string.Empty)
-            //{
-            //    DateTime fecha = (DateTime)Convert.ChangeType(compSelec.fechaRegistro, typeof(DateTime));
-            //    lblFecResultado.Text = fecha.ToString(@"dd/MM/yyyy");
-            //}
-            //else
-            //{
-            //    lblFecResultado.Text = "-";
-            //}
+                if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
+                {
+                    imgAvatar.ImageUrl = "~/AvatarComplejo.aspx?id=" + Session["IDCom"].ToString();
+                    CambiarImagen();
+                }
+                else
+                {
+                    imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+                    btn_guardarImagen.Visible = true;
+                }
+                //if (compSelec.fechaRegistro.ToString() != string.Empty)
+                //{
+                //    DateTime fecha = (DateTime)Convert.ChangeType(compSelec.fechaRegistro, typeof(DateTime));
+                //    lblFecResultado.Text = fecha.ToString(@"dd/MM/yyyy");
+                //}
+                //else
+                //{
+                //    lblFecResultado.Text = "-";
+                //}
 
-            CargarRepeaterImagenes();
-            lblFecha.Visible = true;
-            lblFecResultado.Visible = true;
-            lblDeportes.Visible = true;
-            lblDepResultado.Visible = true;
-            btnEliminar.Enabled = true;
-            btnCanchas.Enabled = true;
-            btnServicios.Enabled = true;
+                CargarRepeaterImagenes();
+                lblFecha.Visible = true;
+                lblFecResultado.Visible = true;
+                lblDeportes.Visible = true;
+                lblDepResultado.Visible = true;
+                btnEliminar.Enabled = true;
+                btnCanchas.Enabled = true;
+                btnServicios.Enabled = true;
 
 
                 // Agregado por Nico
@@ -344,7 +344,7 @@ namespace CapaPresentacion
             if (ServicioExtraDao.ExistenServiciosPorComplejo(ID.Value) > 0)
             {
                 ServicioExtraDao.EliminarServiciosPorComplejo(ID.Value);
-            }          
+            }
             ComplejoDeportivoDao.EliminarComplejo(ID.Value);
 
             Limpiar();
@@ -410,7 +410,7 @@ namespace CapaPresentacion
 
         protected void btnGuardarCan_Click(object sender, EventArgs e)
         {
-            if(ddlDep4.SelectedValue != "0" && (ddlTipoCancha.SelectedValue != "0" && ddlTipoCancha.SelectedValue != ""))
+            if (ddlDep4.SelectedValue != "0" && (ddlTipoCancha.SelectedValue != "0" && ddlTipoCancha.SelectedValue != ""))
             {
                 Cancha cancha = new Cancha();
 
@@ -488,8 +488,8 @@ namespace CapaPresentacion
         {
             CanchaDao.EliminarCancha(IDCan.Value);
             CargarGrillaCanchas();
-           
-            if(ComplejoDeportivoDao.CuantasCanchasPorDeporte(IDCom.Value, ddlDep4.SelectedIndex) == 0)
+
+            if (ComplejoDeportivoDao.CuantasCanchasPorDeporte(IDCom.Value, ddlDep4.SelectedIndex) == 0)
             {
                 ComplejoDeportivoDao.EliminarDeporteComplejo(IDCom.Value, ddlDep4.SelectedItem.ToString());
             }
@@ -569,7 +569,7 @@ namespace CapaPresentacion
             {
                 CargarGrillaCanchas();
                 btnPopUp_ModalPopupExtender.Show();
-            }        
+            }
         }
 
         //SERVICIOS
@@ -582,7 +582,7 @@ namespace CapaPresentacion
         protected void btnPopUp2_Click(object sender, EventArgs e)
         {
             if (IDCom.HasValue == true)
-            {            
+            {
                 CargarGrillaServicios();
                 btnPopUp_ModalPopupExtender2.Show();
             }
@@ -697,98 +697,5 @@ namespace CapaPresentacion
 
 
 
-        // MAPA
-
-        private void cargarMapa(int idComplejoDeportivo)
-        {
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
-
-            //int? id = cd.mapa.Value;
-            if (!string.IsNullOrEmpty(cd.mapa.ToString()))
-            {
-                // int idMapa = int.Parse(id.ToString());
-                int idMapa = int.Parse(cd.mapa.Value.ToString());
-                Mapa mapa = MapaDao.obtenerMapaByID(idMapa);
-                txt_Latitud.Text = mapa.latitud;
-                txt_Longitud.Text = mapa.longitud;
-
-                btn_Agregar.Enabled = false;
-                btn_Modificar.Enabled = true;
-                btn_Eliminar.Enabled = true;
-            }
-            else
-            {
-                btn_Agregar.Enabled = true;
-                btn_Modificar.Enabled = false;
-                btn_Eliminar.Enabled = false;
-            }
-        }
-
-        protected void btn_Agregar_Click(object sender, EventArgs e)
-        {
-
-            Mapa m = new Mapa();
-
-            if (string.IsNullOrEmpty(txt_Latitud.Text) || string.IsNullOrEmpty(txt_Longitud.Text))
-            {
-                m.latitud = "-31.416563";
-                m.longitud = "-64.183533";
-            }
-            else
-            {
-                m.latitud = txt_Latitud.Text;
-                m.longitud = txt_Longitud.Text;
-            }
-            int idMapa = MapaDao.insertarMapa(m);
-
-
-            ComplejoDeportivo cd = new ComplejoDeportivo();
-
-            cd.id = int.Parse(Session["IDCom"].ToString());
-            cd.mapa = idMapa;
-            ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
-
-            limpiarCampos();
-
-            cargarMapa(int.Parse(Session["IDCom"].ToString()));
-        }
-
-        protected void btn_Modificar_Click(object sender, EventArgs e)
-        {
-            Mapa m = new Mapa();
-
-            m.id = int.Parse(Session["idMapa"].ToString());
-            m.latitud = txt_Latitud.Text;
-            m.longitud = txt_Longitud.Text;
-            MapaDao.modificarMapa(m);
-
-            limpiarCampos();
-
-            cargarMapa(int.Parse(Session["IDCom"].ToString()));
-        }
-
-        protected void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-            MapaDao.eliminarMapa(int.Parse(Session["idMapa"].ToString()));
-            ComplejoDeportivo cd = new ComplejoDeportivo();
-            cd.id = int.Parse(Session["IDCom"].ToString());
-            cd.mapa = null;
-            ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
-
-            limpiarCampos();
-
-            cargarMapa(int.Parse(Session["IDCom"].ToString()));
-        }
-
-        protected void btn_Limpiar_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-        }
-
-        private void limpiarCampos()
-        {
-            txt_Latitud.Text = string.Empty;
-            txt_Longitud.Text = string.Empty;
-        }
     }
 }
