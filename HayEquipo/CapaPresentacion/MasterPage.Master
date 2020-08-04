@@ -28,7 +28,7 @@
 }
 
     footer {
-      background-color: #000000;
+      background-color: #222;
       color: white;
       padding: 15px;
     }
@@ -59,8 +59,11 @@
      }
      .moverboton{
          margin-left:490%;
-
      }
+     .amarillo{
+         color:#edd108;
+     }
+
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -90,11 +93,11 @@ $(window).load(function() {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="Home.aspx">Principal</a></li>
+        <li><a href="Home.aspx">Principal</a></li>
         <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
          
           <li><a href="Complejos.aspx">Complejos Deportivos</a></li>
-        <li class="label-success"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>
+        <li><a href="CrearEncuentro.aspx">Crear Encuentro <span class="glyphicon glyphicon-plus amarillo"></span></a></li>
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
         <%--<ul class="nav navbar-nav moverbuscador">

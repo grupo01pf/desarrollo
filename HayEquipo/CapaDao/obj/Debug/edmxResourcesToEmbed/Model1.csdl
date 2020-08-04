@@ -147,26 +147,6 @@
     <NavigationProperty Name="Deportista" Relationship="Self.FK_DeportistasPorEquipo_Deportista" FromRole="DeportistasPorEquipos" ToRole="Deportista" />
     <NavigationProperty Name="Equipo" Relationship="Self.FK_DeportistasPorEquipo_Equipo" FromRole="DeportistasPorEquipos" ToRole="Equipo" />
   </EntityType>
-  <EntityType Name="DIM_TIEMPO">
-    <Key>
-      <PropertyRef Name="Fecha" />
-    </Key>
-    <Property Name="FechaSK" Type="Int32" Nullable="false" />
-    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Año" Type="Int16" Nullable="false" />
-    <Property Name="Trimestre" Type="Int16" Nullable="false" />
-    <Property Name="Mes" Type="Int16" Nullable="false" />
-    <Property Name="Semana" Type="Int16" Nullable="false" />
-    <Property Name="Dia" Type="Int16" Nullable="false" />
-    <Property Name="DiaSemana" Type="Int16" Nullable="false" />
-    <Property Name="NTrimestre" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NMes" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NMes3L" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NDia" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="EncuentroDeportivo" Relationship="Self.FK__Encuentro__fecha__7A3223E8" FromRole="DIM_TIEMPO" ToRole="EncuentroDeportivo" />
-  </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
       <PropertyRef Name="id" />
@@ -195,7 +175,6 @@
     <NavigationProperty Name="ComplejoDeportivo" Relationship="Self.FK_EncuentroDeportivo_ComplejoDeportivo" FromRole="EncuentroDeportivo" ToRole="ComplejoDeportivo" />
     <NavigationProperty Name="Deporte" Relationship="Self.FK_EncuentroDeportivo_Deporte" FromRole="EncuentroDeportivo" ToRole="Deporte" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_EncuentroDeportivo_Deportista" FromRole="EncuentroDeportivo" ToRole="Deportista" />
-    <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__Encuentro__fecha__7A3223E8" FromRole="EncuentroDeportivo" ToRole="DIM_TIEMPO" />
     <NavigationProperty Name="Equipo" Relationship="Self.FK_EncuentroDeportivo_Equipo" FromRole="EncuentroDeportivo" ToRole="Equipo" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_EncuentroDeportivo_Estado" FromRole="EncuentroDeportivo" ToRole="Estado" />
     <NavigationProperty Name="InvitacionEncuentro" Relationship="Self.FK_InvitacionEncuentro_EncuentroDeportivo" FromRole="EncuentroDeportivo" ToRole="InvitacionEncuentro" />
@@ -990,18 +969,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Encuentro__fecha__7A3223E8">
-    <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
-    <End Role="EncuentroDeportivo" Type="Self.EncuentroDeportivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DIM_TIEMPO">
-        <PropertyRef Name="Fecha" />
-      </Principal>
-      <Dependent Role="EncuentroDeportivo">
-        <PropertyRef Name="fechaInicioEncuentro" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_EncuentroDeportivo_Equipo">
     <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
     <End Role="EncuentroDeportivo" Type="Self.EncuentroDeportivo" Multiplicity="*" />
@@ -1348,7 +1315,6 @@
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" />
-    <EntitySet Name="DIM_TIEMPO" EntityType="Self.DIM_TIEMPO" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" />
     <EntitySet Name="Estado" EntityType="Self.Estado" />
@@ -1512,10 +1478,6 @@
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Encuentro__fecha__7A3223E8" Association="Self.FK__Encuentro__fecha__7A3223E8">
-      <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
-      <End Role="EncuentroDeportivo" EntitySet="EncuentroDeportivo" />
-    </AssociationSet>
     <AssociationSet Name="FK_EncuentroDeportivo_Equipo" Association="Self.FK_EncuentroDeportivo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="EncuentroDeportivo" EntitySet="EncuentroDeportivo" />
@@ -1628,6 +1590,11 @@
       <End Role="Zona" EntitySet="Zona" />
       <End Role="ZonasPorDeportistas" EntitySet="ZonasPorDeportistas" />
     </AssociationSet>
+    <FunctionImport Name="obtenerValoracionParticularComplejoxTipo" ReturnType="Collection(Int32)">
+      <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
+      <Parameter Name="prmTipo" Mode="In" Type="Int32" />
+      <Parameter Name="prmUsuarioValorador" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ReporteCantidadDeportexFecha" ReturnType="Collection(HayEquipoModel.ReporteCantidadDeportexFecha_Result)">
       <Parameter Name="Complejo" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1774,6 +1741,15 @@
       <Parameter Name="prmEmail" Mode="In" Type="String" />
       <Parameter Name="prmContraseña" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="spRegistrarValoracionComplejo">
+      <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
+      <Parameter Name="prmidUsuarioValorador" Mode="In" Type="Int32" />
+      <Parameter Name="prmValoracion" Mode="In" Type="Int32" />
+      <Parameter Name="prmTipo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spValoracionGeneralComplejo" ReturnType="Collection(Int32)">
+      <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="spValoracionGeneralDeportista" ReturnType="Collection(Int32)">
       <Parameter Name="prmidDeportista" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1917,24 +1893,24 @@
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="NroCalle" Nullable="true" />
+    <Property Type="Int32" Name="IDBarrio" Nullable="true" />
     <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IDZona" Nullable="true" />
     <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="Telefono" Nullable="true" />
+    <Property Type="Time" Name="Apertura" Nullable="true" />
+    <Property Type="Time" Name="Cierre" Nullable="true" />
     <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
     <Property Type="Double" Name="Valoracion" Nullable="true" />
     <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
+    <Property Type="Int32" Name="IDEstado" Nullable="true" />
     <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="Mapa" Nullable="true" />
     <Property Type="Binary" Name="Avatar" Nullable="true" MaxLength="Max" />
-    <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="NroCalle" Nullable="true" />
-    <Property Type="Time" Name="Apertura" Nullable="true" />
-    <Property Type="Time" Name="Cierre" Nullable="true" />
     <Property Type="Int32" Name="IDUsuario" Nullable="true" />
     <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="IDBarrio" Nullable="true" />
-    <Property Type="Int32" Name="IDZona" Nullable="true" />
-    <Property Type="Int32" Name="IDEstado" Nullable="true" />
   </ComplexType>
   <ComplexType Name="spObtenerComplejosOrdenValor_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />

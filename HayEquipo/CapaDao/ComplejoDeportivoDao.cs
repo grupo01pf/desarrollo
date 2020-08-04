@@ -196,15 +196,7 @@ namespace CapaDao
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
                             LEFT JOIN Valoracion v ON cd.id=v.idComplejoValorado
-                                WHERE 1 = 1
-							group by cd.id,cd.nombre,cd.descripcion, cd.deportes, cd.calle, cd.nroCalle,b.id, b.nombre, z.id, z.nombre,
-              cd.nroTelefono, cd.horaApertura, cd.horaCierre, cd.responsable, cd.promedioEstrellas,
-							cd.fechaRegistro, e.id, e.nombre, cd.mapa, cd.idUsuario, u.nombre) T1
-						    FULL OUTER JOIN
-							(SELECT cd.id ,cd.avatar as Avatar
-                                 FROM ComplejoDeportivo cd
-                                WHERE 1 = 1) T2 ON t1.ID=t2.id
-                               ";
+                                WHERE 1 = 1";
 
             if (!string.IsNullOrEmpty(nomb))
             {
@@ -238,6 +230,14 @@ namespace CapaDao
                 cmd.CommandText += @" AND cd.deportes LIKE @d4";
                 cmd.Parameters.AddWithValue("@d4", "%" + d4 + "%");
             }
+
+            cmd.CommandText += @" group by cd.id,cd.nombre,cd.descripcion, cd.deportes, cd.calle, cd.nroCalle,b.id, b.nombre, z.id, z.nombre,
+              cd.nroTelefono, cd.horaApertura, cd.horaCierre, cd.responsable, cd.promedioEstrellas,
+							cd.fechaRegistro, e.id, e.nombre, cd.mapa, cd.idUsuario, u.nombre) T1
+                            FULL OUTER JOIN
+                            (SELECT cd.id, cd.avatar as Avatar
+                                 FROM ComplejoDeportivo cd
+                                WHERE 1 = 1) T2 ON t1.ID = t2.id";
 
             SqlDataReader dr = cmd.ExecuteReader();
 
