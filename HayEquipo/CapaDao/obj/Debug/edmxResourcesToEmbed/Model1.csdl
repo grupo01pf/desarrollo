@@ -180,6 +180,8 @@
     <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__2A164134" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
   </EntityType>
+
+
   <EntityType Name="EncuentroDeportivo">
     <Key>
       <PropertyRef Name="id" />
@@ -1054,6 +1056,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+
   <Association Name="FK_EncuentroDeportivo_Equipo">
     <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
     <End Role="EncuentroDeportivo" Type="Self.EncuentroDeportivo" Multiplicity="*" />
@@ -1401,7 +1404,6 @@
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" />
-    <EntitySet Name="DIM_TIEMPO" EntityType="Self.DIM_TIEMPO" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" />
     <EntitySet Name="estadisticaComplejo" EntityType="Self.estadisticaComplejo" />
@@ -1579,6 +1581,7 @@
       <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
       <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>
+
     <AssociationSet Name="FK_EncuentroDeportivo_Equipo" Association="Self.FK_EncuentroDeportivo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="EncuentroDeportivo" EntitySet="EncuentroDeportivo" />
@@ -1863,192 +1866,4 @@
     </FunctionImport>
     <FunctionImport Name="spTruncarEstadisticaComplejo" />
     <FunctionImport Name="spTruncarEstadisticaUsuariosActivos" />
-    <FunctionImport Name="spValoracionGeneralComplejo" ReturnType="Collection(Int32)">
-      <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spValoracionGeneralDeportista" ReturnType="Collection(Int32)">
-      <Parameter Name="prmidDeportista" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spValorarComplejoxTipo" ReturnType="Collection(Int32)">
-      <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
-      <Parameter Name="prmTipo" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spValorarDeportistaxTipo" ReturnType="Collection(Int32)">
-      <Parameter Name="prmidDeportista" Mode="In" Type="Int32" />
-      <Parameter Name="prmTipo" Mode="In" Type="Int32" />
-    </FunctionImport>
-  </EntityContainer>
-  <ComplexType Name="ReporteCantidadDeportexFecha_Result">
-    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="año" Nullable="true" />
-    <Property Type="String" Name="mes" Nullable="true" MaxLength="30" />
-    <Property Type="Int32" Name="CantidadPartidos" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_AgendaDao_ObtenerAgendaComplejo_Result">
-    <Property Type="Int32" Name="idCancha" Nullable="false" />
-    <Property Type="String" Name="nombreCancha" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="tipoCancha" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="precio" Nullable="true" />
-    <Property Type="Int32" Name="capacidad" Nullable="true" />
-    <Property Type="Time" Name="horaApertura" Nullable="true" />
-    <Property Type="Time" Name="horaCierre" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_AgendaDao_ObtenerHorariosReservados_Result">
-    <Property Type="Int32" Name="idCancha" Nullable="false" />
-    <Property Type="DateTime" Name="fecha" Nullable="true" />
-    <Property Type="Time" Name="horaInicio" Nullable="true" />
-    <Property Type="Int32" Name="idEstado" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_EncuentroDeportivoDao_insertarUsuarioPrivado_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="fechaInicioEncuentro" Nullable="true" Precision="16" />
-    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-    <Property Type="Time" Name="horaInicio" Nullable="true" />
-    <Property Type="Time" Name="horaFin" Nullable="true" />
-    <Property Type="String" Name="Lugar" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_EncuentroDeportivoQUeryDao_BuscarEncuentroPrivado_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="idUsuario" Nullable="false" />
-    <Property Type="DateTime" Name="fechaInicioEncuentro" Nullable="true" Precision="16" />
-    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-    <Property Type="Time" Name="horaInicio" Nullable="true" />
-    <Property Type="Time" Name="horaFin" Nullable="true" />
-    <Property Type="String" Name="Complejo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="nroCalle" Nullable="true" />
-    <Property Type="Int32" Name="nroTelefono" Nullable="true" />
-    <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="capacidad" Nullable="true" />
-    <Property Type="Int32" Name="idComplejo" Nullable="true" />
-    <Property Type="Int32" Name="idClave" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_EncuentroDeportivoQueryDao_BuscarEncuentroPublico_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="idUsuario" Nullable="false" />
-    <Property Type="DateTime" Name="fechaInicioEncuentro" Nullable="true" Precision="16" />
-    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-    <Property Type="Time" Name="horaInicio" Nullable="true" />
-    <Property Type="Time" Name="horaFin" Nullable="true" />
-    <Property Type="String" Name="Lugar" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="capacidad" Nullable="true" />
-    <Property Type="Int32" Name="idMapa" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_MapaDao_ObtenerMapaByID_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-  </ComplexType>
-  <ComplexType Name="sp_MapaDao_ObtenerMapas_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="mapa" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="nroCalle" Nullable="true" />
-    <Property Type="String" Name="latitud" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="longitud" Nullable="true" MaxLength="500" />
-  </ComplexType>
-  <ComplexType Name="sp_MensajeQueryDao_MostrarMensajes_Result">
-    <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="fechaHora" Nullable="true" Precision="16" />
-    <Property Type="String" Name="texto" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="idMensaje" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_NotificacionDao_mostrarNotificaciones_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="emisor" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="texto" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="idEncuentro" Nullable="true" />
-    <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="receptor" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoA_Result">
-    <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="idUsuario" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_UsuarioDao_UsuariosUnidosEncuentroEquipoB_Result">
-    <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="idUsuario" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="spObtenerCanchasPorComplejos_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Deporte" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spObtenerComplejosJoin_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="NroCalle" Nullable="true" />
-    <Property Type="Int32" Name="IDBarrio" Nullable="true" />
-    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="IDZona" Nullable="true" />
-    <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Telefono" Nullable="true" />
-    <Property Type="Time" Name="Apertura" Nullable="true" />
-    <Property Type="Time" Name="Cierre" Nullable="true" />
-    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="Valoracion" Nullable="true" />
-    <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
-    <Property Type="Int32" Name="IDEstado" Nullable="true" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Mapa" Nullable="true" />
-    <Property Type="Binary" Name="Avatar" Nullable="true" MaxLength="Max" />
-    <Property Type="Int32" Name="IDUsuario" Nullable="true" />
-    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spObtenerComplejosOrdenValor_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
-    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Telefono" Nullable="true" />
-    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="Valoracion" Nullable="true" />
-    <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spObtenerComplejosPorNomb_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
-    <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Telefono" Nullable="true" />
-    <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="Valoracion" Nullable="true" />
-    <Property Type="DateTime" Name="fechaRegistro" Nullable="true" />
-    <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="spObtenerServiciosPorComplejos_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Servicio" Nullable="true" MaxLength="50" />
-  </ComplexType>
 </Schema>

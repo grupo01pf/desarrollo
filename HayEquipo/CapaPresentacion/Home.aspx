@@ -124,7 +124,7 @@
                 background: green;
             }
 
-            .notification            
+            .notification
             .badge {
                 position: absolute;
                 top: -10px;
@@ -135,10 +135,9 @@
                 color: white;
             }
 
-        .linkButton:hover{
-            color:white;
-        }
-
+               .w3-green{
+             background-color:#174f18!important;
+         }
 
     </style>
 </asp:Content>
@@ -164,16 +163,16 @@
 
          <%--<a href="#" class="notification">--%>
         <div class="well notification">
-            
-            <asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click" 
+
+            <asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click"
             CssClass="linkButton" ToolTip="Notificaciones" >
                 <span class="glyphicon glyphicon-bell"></span>
             </asp:LinkButton>
             <span class="badge"><asp:Label ID="lbl_Notificacion" runat="server" Text="0"></asp:Label></span>
       <%--  </a> --%>
          </div>
-         <div class="well notification">            
-            <asp:LinkButton ID="btn_Solicitudes" runat="server" Text="Solicitudes" OnClick="btn_Notificacion_Click" 
+         <div class="well notification">
+            <asp:LinkButton ID="btn_Solicitudes" runat="server" Text="Solicitudes" OnClick="btn_Notificacion_Click"
             CssClass="linkButton" ToolTip="Solicitudes" >
                <i class="fa fa-users" aria-hidden="true"></i>
                <%--<span class="glyphicon glyphicon-user"></span>
@@ -181,7 +180,7 @@
                <%--<span class="glyphicon glyphicon-user"></span>--%>
             </asp:LinkButton>
             <span class="badge"><asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span>
-             
+
          </div>
 
       <div class="well">
@@ -420,10 +419,10 @@
             ABRIR ENLACE >
         </div>
       </div></a>
-      </div>  
+      </div>
     </div>
    </div>
-   
+
 
  <%--   <script>
 $(document).ready(function(){

@@ -1,6 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento" %>
+﻿<%@ Page Title="" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="ABMComplejosEstablecimiento.aspx.cs" Inherits="CapaPresentacion.ABMComplejosEstablecimiento" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+    <%--**** MAPA ****--%>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <%--**** MAPA ****--%>
+
+
     <style>
         .alinearIzquiera {
             text-align: left;
@@ -70,6 +81,24 @@
             margin-left: 20%;
         }
 
+
+          #myMap {
+            height: 30%;
+            width: 40%;
+            padding-top: 40%;
+
+        }
+          #div_latlng {
+            width: 50%;
+            height: 10%;
+        }
+        .mapa {
+            height: 40%;
+            width: 50%;
+
+        }
+
+
     </style>
 </asp:Content>
 
@@ -84,7 +113,7 @@
                     <div class="row alinearAlCentro">
                         <h1 class="titulo2">Todavía no registraste tu complejo</h1>
                         <br />
-                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click"/>            
+                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click"/>
                         <br />
                         <h1 class="titulo2"></h1>
                         <br />
@@ -133,7 +162,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblDesc" CssClass="alinearIzquiera" runat="server" Text="Descripcion" ForeColor="black"></asp:Label>
-                        <asp:TextBox ID="txtDesc" placeholder="Ingrese una descripción" CssClass="form-control" runat="server" height="100px" Wrap="true" TextMode="MultiLine"></asp:TextBox>     
+                        <asp:TextBox ID="txtDesc" placeholder="Ingrese una descripción" CssClass="form-control" runat="server" height="100px" Wrap="true" TextMode="MultiLine"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rvfDesc"
                             runat="server"
                             ControlToValidate="txtDesc"
@@ -191,29 +220,29 @@
                             ControlToValidate="txtTel" ValidationExpression="^[0-9]*"
                             CssClass="alert-danger"
                             Display="Dynamic"></asp:RegularExpressionValidator>
-                    </div> 
-                    <div class="form-group"> 
-                            <asp:Label ID="lblHorarios" CssClass="alinearIzquiera" runat="server" Text="Horarios" ForeColor="black"></asp:Label>       
                     </div>
-                    <div class="form-group"> 
+                    <div class="form-group">
+                            <asp:Label ID="lblHorarios" CssClass="alinearIzquiera" runat="server" Text="Horarios" ForeColor="black"></asp:Label>
+                    </div>
+                    <div class="form-group">
                             <asp:Label ID="lblHoraApe" runat="server" Text="Apertura "></asp:Label>
                             <asp:TextBox ID="txtHoraApe" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
-                     
+
                             <asp:Label ID="lblHoraCie" runat="server" Text="Cierre "></asp:Label>
-                            <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>              
+                            <asp:TextBox ID="txtHoraCie" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                     </div>
                     <div class="form-group">
                                  <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
                                  <br />
                                  <br />
                                  <div class="form-group">
-                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="form-control" runat="server" /> 
+                                 <asp:FileUpload ID="FileUploadAvatar" CssClass="form-control" runat="server" />
                                  </div>
-                                 <asp:Label ID="lblestado" runat="server"></asp:Label> 
-                    </div>          
+                                 <asp:Label ID="lblestado" runat="server"></asp:Label>
+                    </div>
            <div class="form-group">
              <asp:Button ID="btn_guardarImagen" runat="server" Text="Guardar avatar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarImagen_Click" Visible="False"/>
-              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar avatar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>            
+              <asp:Button ID="btn_CambiarImagen" runat="server" Text="Cambiar avatar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiarImagen_Click" Visible="false"/>
                 </div>
                     <div class="form-group">
                         <asp:Label ID="lblFecha" CssClass="alinearIzquiera" runat="server" ForeColor="black" Visible="False" Text="Fecha de registro:  "></asp:Label>
@@ -221,7 +250,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label ID="lblDeportes" CssClass="alinearIzquiera" runat="server" Text="Deportes:  " ForeColor="black" Visible="False"></asp:Label>
-                        <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#FF9900" Visible="False"></asp:Label>         
+                        <asp:Label ID="lblDepResultado" CssClass="alinearIzquiera" runat="server" ForeColor="#FF9900" Visible="False"></asp:Label>
                     </div>
                         <div class="alinearAlCentro modal-footer">
                         <%--Botones para ABM complejo--%>
@@ -230,20 +259,20 @@
                         <asp:Button ID="btnEliminar" runat="server" class="btn btn-warning" OnClick="btnEliminar_Click" Text="Eliminar" />
                     </div>
                 </div>
-        
+
             </div>
             <%--ACA--%>
             <div class="col-sm-6">
                             <div class="well">
                     <legend>Imágenes del Complejo</legend>
-                    <div class="form-group">                         
+                    <div class="form-group">
                                     <div class="form-group">
                                     <asp:FileUpload ID="fUploadImagen" runat="server" CssClass="form-control" />
                                     </div>
-                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label> 
+                                    <asp:Label ID="lblEstadoImg" runat="server"></asp:Label>
                                     <br />
                                     <br />
-                                    <asp:Button ID="btnSubir" runat="server" Text="Agregar imágen" CssClass="btn btn-primary btn-edit" OnClick="btnSubir_Click" />                                 
+                                    <asp:Button ID="btnSubir" runat="server" Text="Agregar imágen" CssClass="btn btn-primary btn-edit" OnClick="btnSubir_Click" />
                             <div class="row">
                                  <br />
                                 <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand1">
@@ -260,21 +289,21 @@
                 </div>
                 <div class="well">
                     <%--Botones--%>
-                    <div class="alinearAlCentro">                       
+                    <div class="alinearAlCentro">
                         <asp:LinkButton ID="btnCanchas" runat="server" onclick="btnPopUp_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Canchas
                         </asp:LinkButton>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:LinkButton ID="btnServicios" runat="server" onclick="btnPopUp2_Click" Enabled="false" CssClass="btn btn-primary btn-edit">
                         <i class='fa fa-check-square-o' aria-hidden='true'></i> Servicios
-                        </asp:LinkButton>            
-                        &nbsp;&nbsp;&nbsp;&nbsp;                                                
+                        </asp:LinkButton>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
                 <div class="well">
                     <%--Botones--%>
                        <asp:Label CssClass="estrellalabel" runat="server" Text="Mi Calificacion"></asp:Label>
-                            <br /> 
+                            <br />
                              <asp:Label CssClass="estrellalabel" runat="server" Text="Canchas"></asp:Label>
                                 <p class="clasificacion">
                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true">
@@ -285,7 +314,7 @@
                                         <asp:ListItem Text="★" Value="5"></asp:ListItem>
                                     </asp:RadioButtonList>
                                     <asp:Label ID="lblmsjrb1" runat="server" Text=""></asp:Label>
-                                   
+
                                 </p>
                                 <asp:Label CssClass="estrellalabel" runat="server" Text="Atencion"></asp:Label>
                                 <p class="clasificacion">
@@ -323,15 +352,15 @@
                                 </p>
 
                        </div>
-              
+
             </div>
         </div>
 
-    
+
     <asp:Button ID="btnInicial" runat="server" Text="Button" style="display:none" />
-      
-            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server" 
-                Enabled="True" TargetControlID="btnInicial" 
+
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server"
+                Enabled="True" TargetControlID="btnInicial"
                PopupControlID="PanelModal" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
@@ -348,7 +377,7 @@
             </OnHidden>
 
             </Animations>
-          
+
             </ajaxToolkit:ModalPopupExtender>
 
                <asp:Panel ID="PanelModal" runat="server" style="display:none">
@@ -356,10 +385,10 @@
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-     
-    
+
+
                 <div class="modal-header">
-                     <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"   
+                     <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Canchas</h4>
                 </div>
@@ -417,7 +446,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <div class="alinearAlCentro">  
+                            <div class="alinearAlCentro">
                                 <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
                                 <asp:Button ID="btnNuevoCan" runat="server" class="btn btn-default" OnClick="btnNuevoCan_Click" Text="Nuevo" Width="119px" />
                                 <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
@@ -428,11 +457,11 @@
                     </asp:UpdatePanel>
                        </div>
                 </asp:Panel>
-  
+
     <asp:Button ID="btnInicial2" runat="server" Text="Button" style="display:none" />
-      
-            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender2" runat="server" 
-                Enabled="True" TargetControlID="btnInicial2" 
+
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender2" runat="server"
+                Enabled="True" TargetControlID="btnInicial2"
                PopupControlID="PanelModal2" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
@@ -449,16 +478,16 @@
             </OnHidden>
 
             </Animations>
-          
+
             </ajaxToolkit:ModalPopupExtender>
- 
+
        <asp:Panel ID="PanelModal2" runat="server" style="display:none">
            <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-    
+
                 <div class="modal-header">
-                     <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
+                     <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"
                        onclick="btnClose2_Click"/>
                     <h4 class="modal-title" id="myModalLabel2">Servicios</h4>
                 </div>
@@ -492,12 +521,12 @@
                     </ContentTemplate>
                     </asp:UpdatePanel>
                </div>
-                </asp:Panel> 
+                </asp:Panel>
 
             <asp:Button ID="btnInicial3" runat="server" Text="Button" style="display:none" />
-      
-            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server" 
-                Enabled="True" TargetControlID="btnInicial3" 
+
+            <ajaxToolkit:ModalPopupExtender ID="btnPopUp_ModalPopupExtender3" runat="server"
+                Enabled="True" TargetControlID="btnInicial3"
                PopupControlID="PanelModal3" BackgroundCssClass="ModalPopupBG">
                 <Animations>
             <OnShowing>
@@ -514,30 +543,39 @@
             </OnHidden>
 
             </Animations>
-          
+
             </ajaxToolkit:ModalPopupExtender>
- 
+
        <asp:Panel ID="PanelModal3" runat="server" style="display:none">
            <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                     <ContentTemplate>
-    
+
                 <div class="modal-header">
-                     <asp:Button ID="btnClose3" runat="server" Text="X" CssClass="close"   
+                     <asp:Button ID="btnClose3" runat="server" Text="X" CssClass="close"
                        onclick="btnClose3_Click"/>
                     <h4 class="modal-title" id="myModalLabel3">Imágenes</h4>
                 </div>
                      <div class="modal-body">
- 
+
                     </div>
                     </ContentTemplate>
                     </asp:UpdatePanel>
                </div>
-                </asp:Panel> 
+                </asp:Panel>
+
+
+
+
 
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     </div>
 </asp:Panel>
+
+    <%-- script mapa --%>
+
+
+
 </asp:Content>

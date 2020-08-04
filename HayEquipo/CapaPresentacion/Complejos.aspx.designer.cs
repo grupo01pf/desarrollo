@@ -274,15 +274,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnClose2;
         
         /// <summary>
-        /// Control myModalLabel2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl myModalLabel2;
-        
-        /// <summary>
         /// Control imgAvatar.
         /// </summary>
         /// <remarks>
@@ -292,6 +283,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Image imgAvatar;
         
         /// <summary>
+        /// Control myModalLabel2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl myModalLabel2;
+        
+        /// <summary>
         /// Control RadioButtonList2.
         /// </summary>
         /// <remarks>
@@ -299,15 +299,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
-        
-        /// <summary>
-        /// Control lblValoracion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValoracion;
         
         /// <summary>
         /// Control lblDeportes.

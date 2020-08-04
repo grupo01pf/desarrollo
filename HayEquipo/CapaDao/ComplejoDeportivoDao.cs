@@ -202,34 +202,34 @@ namespace CapaDao
             if (!string.IsNullOrEmpty(nomb))
             {
                 cmd.CommandText += " AND cd.nombre LIKE @nom";
-              
+
             }
 
             if (idUsuario.HasValue)
             {
                 cmd.CommandText += " AND cd.idUsuario = @idUs";
-               
+
             }
 
             if (!string.IsNullOrEmpty(d1))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d1";
-                
+
             }
             if (!string.IsNullOrEmpty(d2))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d2";
-               
+
             }
             if (!string.IsNullOrEmpty(d3))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d3";
-               
+
             }
             if (!string.IsNullOrEmpty(d4))
             {
                 cmd.CommandText += @" AND cd.deportes LIKE @d4";
-                
+
             }
 
 
@@ -276,6 +276,14 @@ namespace CapaDao
                 cmd.Parameters.AddWithValue("@d4", "%" + d4 + "%");
             }
             cmd.CommandText += @") T2 ON t1.ID = t2.id";
+
+            cmd.CommandText += @" group by cd.id,cd.nombre,cd.descripcion, cd.deportes, cd.calle, cd.nroCalle,b.id, b.nombre, z.id, z.nombre,
+              cd.nroTelefono, cd.horaApertura, cd.horaCierre, cd.responsable, cd.promedioEstrellas,
+							cd.fechaRegistro, e.id, e.nombre, cd.mapa, cd.idUsuario, u.nombre) T1
+                            FULL OUTER JOIN
+                            (SELECT cd.id, cd.avatar as Avatar
+                                 FROM ComplejoDeportivo cd
+                                WHERE 1 = 1) T2 ON t1.ID = t2.id";
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -327,7 +335,7 @@ namespace CapaDao
 
         }
 
-      
+
 
         //public static ComplejoDeportivo ObtenerComplejosPorID(int id)
         //{
@@ -394,7 +402,9 @@ namespace CapaDao
                 //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                if (!string.IsNullOrEmpty(dr["Mapa"].ToString())) {
+                    comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                }
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();
@@ -537,7 +547,10 @@ namespace CapaDao
                 //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                if (!string.IsNullOrEmpty(dr["Mapa"].ToString()))
+                {
+                    comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                }
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();
@@ -777,7 +790,7 @@ namespace CapaDao
             cn.Close();
         }
 
-        //Modificado por eliminación de tabla Responsable
+
         public static List<ComplejoDeportivo> obtenerComplejoPorDeporte(string sport) {
 
             List<ComplejoDeportivo> listaComplejo = new List<ComplejoDeportivo>();
@@ -789,14 +802,14 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"
-                            SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
-                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono, r.apellido+', '+r.nombres as Responsable,
+                           SELECT cd.id as ID, cd.nombre as Nombre, cd.descripcion as Descripcion, cd.deportes as Deportes,
+                                cd.calle+' '+CONVERT(char, cd.nroCalle) as Direccion, b.nombre as Barrio, z.nombre as Zona, cd.nroTelefono as Telefono,
                                 cd.promedioEstrellas as Valoracion, cd.fechaRegistro as FechaRegistro, e.nombre as Estado, cd.mapa as Mapa, cd.avatar as Avatar
                                  FROM ComplejoDeportivo cd
                             LEFT JOIN Barrio b ON b.id=cd.idBarrio
+                            LEFT JOIN Zona z ON z.id=b.idZona
 
                             LEFT JOIN Estado e ON e.id=cd.idEstado
-                            LEFT JOIN Zona z ON z.id=b.idZona
 		                    LEFT JOIN ZonasPorDeportistas zpd ON zpd.idZona=z.id
 		                    LEFT JOIN Deportista de ON de.id=zpd.idDeportista
                                 WHERE 1 = 1";
@@ -1179,6 +1192,7 @@ namespace CapaDao
             return listaComplejo;
         }
 
+
         public static bool ExisteComplejo(string id)
         {
 
@@ -1262,6 +1276,16 @@ namespace CapaDao
             dr.Close();
             cn.Close();
             return d;
+        }
+
+
+
+        public static ComplejoDeportivo ObtenerComplejosPorID(int id)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                return db.ComplejoDeportivo.First(c => c.id == id);
+            }
         }
 
 

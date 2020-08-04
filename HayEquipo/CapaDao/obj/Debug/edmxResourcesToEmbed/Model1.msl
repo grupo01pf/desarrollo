@@ -129,26 +129,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DIM_TIEMPO">
-      <EntityTypeMapping TypeName="HayEquipoModel.DIM_TIEMPO">
-        <MappingFragment StoreEntitySet="DIM_TIEMPO">
-          <ScalarProperty Name="FechaSK" ColumnName="FechaSK" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="Año" ColumnName="Año" />
-          <ScalarProperty Name="Trimestre" ColumnName="Trimestre" />
-          <ScalarProperty Name="Mes" ColumnName="Mes" />
-          <ScalarProperty Name="Semana" ColumnName="Semana" />
-          <ScalarProperty Name="Dia" ColumnName="Dia" />
-          <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
-          <ScalarProperty Name="NTrimestre" ColumnName="NTrimestre" />
-          <ScalarProperty Name="NMes" ColumnName="NMes" />
-          <ScalarProperty Name="NMes3L" ColumnName="NMes3L" />
-          <ScalarProperty Name="NSemana" ColumnName="NSemana" />
-          <ScalarProperty Name="NDia" ColumnName="NDia" />
-          <ScalarProperty Name="NDiaSemana" ColumnName="NDiaSemana" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EncuentroDeportivo">
       <EntityTypeMapping TypeName="HayEquipoModel.EncuentroDeportivo">
         <MappingFragment StoreEntitySet="EncuentroDeportivo">

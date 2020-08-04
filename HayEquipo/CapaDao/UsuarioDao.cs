@@ -736,14 +736,25 @@ namespace CapaDao
             cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
             cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
 
-            //if (idUsuario != 0)
-            //{
-            //    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
-            //}
-            //if (idAmigo != 0)
-            //{
-            //    cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
-            //}
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
+        public static void eliminarContacto(int idUsuario, int idAmigo)
+        {
+            List<Usuario> listaAmigos = new List<Usuario>();
+            Usuario u = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @" DELETE FROM AmigosPorDeportista
+                                 WHERE  idUsuario = @idUsuario AND idAmigo = @idAmigo ";
+
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            cmd.Parameters.AddWithValue("@idAmigo", idAmigo);
 
             cmd.ExecuteNonQuery();
             cn.Close();
