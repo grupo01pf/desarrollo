@@ -97,7 +97,11 @@ namespace CapaPresentacion
             Session["IDCom"] = idSeleccionado;
             spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
 
+<<<<<<< HEAD
            // myModalLabel2.InnerText = compSelec.nombre;
+=======
+            myModalLabel2.InnerText = compSelec.Nombre;
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
                 if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
                 {
                     RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
@@ -110,16 +114,21 @@ namespace CapaPresentacion
 
                     }
                     RadioButtonList2.Enabled = false;
-                    lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
+                    //lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
 
                 }else
                 {
                     RadioButtonList2.Enabled = false;
                     RadioButtonList2.Visible = false;
-                    lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
+                    //lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
                 }
+<<<<<<< HEAD
             //lblDeportes.Text = compSelec.deportes;
             //lblDescripcion.Text = compSelec.descripcion;
+=======
+            lblDeportes.Text = compSelec.Deportes;
+            lblDescripcion.Text = compSelec.Descripcion;
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
             listServicios.Items.Clear();
             lblServicios.Text = "Servicios: ";
             if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)

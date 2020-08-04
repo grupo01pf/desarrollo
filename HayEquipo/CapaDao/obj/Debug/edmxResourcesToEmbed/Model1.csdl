@@ -159,6 +159,7 @@
     <NavigationProperty Name="Deportista" Relationship="Self.FK_DeportistasPorEquipo_Deportista" FromRole="DeportistasPorEquipos" ToRole="Deportista" />
     <NavigationProperty Name="Equipo" Relationship="Self.FK_DeportistasPorEquipo_Equipo" FromRole="DeportistasPorEquipos" ToRole="Equipo" />
   </EntityType>
+<<<<<<< HEAD
   <EntityType Name="DIM_TIEMPO">
     <Key>
       <PropertyRef Name="Fecha" />
@@ -179,6 +180,8 @@
     <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
     <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__73BA3083" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
   </EntityType>
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
   <EntityType Name="EncuentroDeportivo">
     <Key>
       <PropertyRef Name="id" />
@@ -1034,6 +1037,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< HEAD
   <Association Name="FK__estadisti__fecha__73BA3083">
     <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
     <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
@@ -1046,6 +1050,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
   <Association Name="FK_EncuentroDeportivo_Equipo">
     <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
     <End Role="EncuentroDeportivo" Type="Self.EncuentroDeportivo" Multiplicity="*" />
@@ -1393,7 +1399,6 @@
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" />
-    <EntitySet Name="DIM_TIEMPO" EntityType="Self.DIM_TIEMPO" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" />
     <EntitySet Name="estadisticaComplejo" EntityType="Self.estadisticaComplejo" />
@@ -1566,10 +1571,13 @@
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
     </AssociationSet>
+<<<<<<< HEAD
     <AssociationSet Name="FK__estadisti__fecha__73BA3083" Association="Self.FK__estadisti__fecha__73BA3083">
       <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
       <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
     <AssociationSet Name="FK_EncuentroDeportivo_Equipo" Association="Self.FK_EncuentroDeportivo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="EncuentroDeportivo" EntitySet="EncuentroDeportivo" />
@@ -1843,8 +1851,11 @@
       <Parameter Name="prmValoracion" Mode="In" Type="Int32" />
       <Parameter Name="prmTipo" Mode="In" Type="Int32" />
     </FunctionImport>
+<<<<<<< HEAD
     <FunctionImport Name="spTruncarEstadisticaComplejo" />
     <FunctionImport Name="spTruncarEstadisticaUsuariosActivos" />
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
     <FunctionImport Name="spValoracionGeneralComplejo" ReturnType="Collection(Int32)">
       <Parameter Name="prmidComplejo" Mode="In" Type="Int32" />
     </FunctionImport>

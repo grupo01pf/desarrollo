@@ -35,5 +35,6 @@ namespace CapaEntidades
         public byte[] Avatar { get; set; }
         public Nullable<int> IDUsuario { get; set; }
         public string Usuario { get; set; }
+        public Nullable<double> ValoracionPromedio { get; set; }
     }
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Nicolas\Desktop\desarrollo\HayEquipo\CapaDao\Model1.edmx'. 
+=======
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaDao\Model1.edmx'. 
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

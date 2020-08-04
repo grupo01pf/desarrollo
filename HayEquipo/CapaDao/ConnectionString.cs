@@ -74,7 +74,7 @@ namespace CapaDao
             //conexion.ConnectionString = @"Data Source=IGNACIOMONETTOP\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de conexion de Agus
-            conexion.ConnectionString = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Integrated Security=True";
+            conexion.ConnectionString = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
             return conexion;
         }
         }

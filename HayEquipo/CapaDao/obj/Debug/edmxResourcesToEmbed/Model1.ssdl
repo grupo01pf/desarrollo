@@ -127,25 +127,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
     <Property Name="idDeportista" Type="int" />
     <Property Name="idEquipo" Type="int" />
   </EntityType>
-  <EntityType Name="DIM_TIEMPO">
-    <Key>
-      <PropertyRef Name="Fecha" />
-    </Key>
-    <Property Name="FechaSK" Type="int" Nullable="false" />
-    <Property Name="Fecha" Type="smalldatetime" Nullable="false" />
-    <Property Name="Año" Type="smallint" Nullable="false" />
-    <Property Name="Trimestre" Type="smallint" Nullable="false" />
-    <Property Name="Mes" Type="smallint" Nullable="false" />
-    <Property Name="Semana" Type="smallint" Nullable="false" />
-    <Property Name="Dia" Type="smallint" Nullable="false" />
-    <Property Name="DiaSemana" Type="smallint" Nullable="false" />
-    <Property Name="NTrimestre" Type="char" MaxLength="7" Nullable="false" />
-    <Property Name="NMes" Type="char" MaxLength="15" Nullable="false" />
-    <Property Name="NMes3L" Type="char" MaxLength="3" Nullable="false" />
-    <Property Name="NSemana" Type="char" MaxLength="10" Nullable="false" />
-    <Property Name="NDia" Type="char" MaxLength="6" Nullable="false" />
-    <Property Name="NDiaSemana" Type="char" MaxLength="10" Nullable="false" />
-  </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
       <PropertyRef Name="id" />
@@ -538,6 +519,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Property Name="idZona" Type="int" />
     <Property Name="idDeportista" Type="int" />
   </EntityType>
+<<<<<<< HEAD
   <Association Name="FK__estadisti__fecha__73BA3083">
     <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
     <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
@@ -553,6 +535,8 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
   <!--Errores durante la generación:
 error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
         <Association Name="FK__Estadisti__Fecha__74AE54BC" />-->
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
   <Association Name="FK_Administrador_Barrio">
     <End Role="Barrio" Type="Self.Barrio" Multiplicity="0..1" />
     <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
@@ -1446,8 +1430,11 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <Parameter Name="prmValoracion" Type="int" Mode="In" />
     <Parameter Name="prmTipo" Type="int" Mode="In" />
   </Function>
+<<<<<<< HEAD
   <Function Name="spTruncarEstadisticaComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="spTruncarEstadisticaUsuariosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
   <Function Name="spValoracionGeneralComplejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="prmidComplejo" Type="int" Mode="In" />
   </Function>
@@ -1469,7 +1456,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DIM_TIEMPO" EntityType="Self.DIM_TIEMPO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estadisticaComplejo" EntityType="Self.estadisticaComplejo" Schema="dbo" store:Type="Tables" />
@@ -1566,10 +1552,13 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
     </EntitySet>
+<<<<<<< HEAD
     <AssociationSet Name="FK__estadisti__fecha__73BA3083" Association="Self.FK__estadisti__fecha__73BA3083">
       <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
       <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>
+=======
+>>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
     <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
       <End Role="Barrio" EntitySet="Barrio" />
       <End Role="Administrador" EntitySet="Administrador" />
