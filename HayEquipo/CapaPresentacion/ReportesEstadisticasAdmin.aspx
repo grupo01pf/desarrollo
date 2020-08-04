@@ -3,7 +3,7 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <%-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
      <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -37,7 +37,7 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
-    </script>
+    </script>--%>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -55,7 +55,7 @@
         </div>
    
           <br /><br /><br />
-             
+           <%--  
               <asp:DropDownList ID="ddl_aniosregistros" runat="server" Width="150px" AutoPostBack="true"   >
                                     <asp:ListItem Text="2020" Value="2020" /> 
                                     <asp:ListItem Text="2019" Value="2019" />
@@ -64,7 +64,7 @@
 
                                 </asp:DropDownList>
                  <div id="columnchart_material" style="width:100%; height: 500px;"></div> 
-          
+          --%>
                
               
           
