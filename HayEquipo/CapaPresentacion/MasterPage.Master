@@ -18,7 +18,7 @@
   <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />--%>
   <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
   <%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
-    <link rel="stylesheet" href="w3/w3.css">
+    <link rel="stylesheet" href="w3/w3.css"> 
   <style>
     /* Set black background color, white text and some padding */
     body {
@@ -97,19 +97,12 @@ $(window).load(function() {
         <li class="label-success"><a class="w3-text-black" href="CrearEncuentro.aspx">Crear Encuentro</a></li>
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
-        <%--<ul class="nav navbar-nav moverbuscador">
-          <li><input type="text" class="form-control tamañobuscador mr-sm-2" id="myInput" placeholder="Buscar Deportistas..."/></li>
-          <li>
-            <button class="btn btn-default moverboton" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </li>
-       </ul>--%>
+        
       <ul class="nav navbar-nav navbar-right">
         <li><a href="PerfilDeportistas.aspx"><span class="glyphicon glyphicon-user"></span> Mi Cuenta</a></li>
           <li><asp:LinkButton ID="btn_Logout" runat="server" Text="Cerrar Sesión" OnClick="btn_Logout_Click" ><span class="glyphicon glyphicon-off"></span> Cerrar Sesión</asp:LinkButton></li>
       </ul>
-        <ul class="navbar-form navbar-right" role="search">
+       <%-- <ul class="navbar-form navbar-right" role="search">
         <div class="form-group input-group">
           <input type="text" class="form-control" placeholder="Buscar jugadores..">
           <span class="input-group-btn">
@@ -118,7 +111,7 @@ $(window).load(function() {
             </button>
           </span>
         </div>
-      </ul>
+      </ul>--%>
     </div>
   </div>
 </nav>

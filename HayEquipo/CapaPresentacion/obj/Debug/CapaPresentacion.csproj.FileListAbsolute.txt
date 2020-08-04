@@ -216,7 +216,6 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.dll.config
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaPresentacion.pdb
-C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\AjaxControlToolkit.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaDao.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CapaEntidades.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\CrystalDecisions.CrystalReports.Engine.dll
@@ -258,6 +257,7 @@ C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Micros
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\linov\Documents\GitHub\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\ApplicationInsights.config
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn\csc.exe
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -314,6 +314,5 @@ C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.AI.We
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.ApplicationInsights.xml
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaPresentacion\obj\Debug\CapaPresentacion.pdb

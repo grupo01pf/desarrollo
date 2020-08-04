@@ -55,6 +55,36 @@ namespace CapaDao
             //}
         }
 
+        public static List<UsuarioEntidad> obtenerTodosUsuarios()
+        {
+            List<UsuarioEntidad> listaUsuarios = new List<UsuarioEntidad>();
+            UsuarioEntidad u = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT u.id,u.nombre,u.fechaAlta,r.nombre as Rol,u.bloqueadoAdmin
+                                FROM Usuario u, RolesPorUsuarios ru, Rol r
+		                        WHERE ru.idUsuario=u.id and r.id=ru.idRol and ru.idRol IN (2,3)
+                                ORDER BY id desc";
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                u = new UsuarioEntidad();
+                u.idUsuario = int.Parse(dr["id"].ToString());
+                u.nombreUsuario = dr["nombre"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaAlta"].ToString(), out fi)) { u.fechaAlta = fi; }
+                u.rol= dr["Rol"].ToString();
+                u.bloqueado =bool.Parse(dr["bloqueadoAdmin"].ToString());
+                listaUsuarios.Add(u);
+            }
+            dr.Close();
+            cn.Close();
+            return listaUsuarios;
+            
+        }
+
         public static bool Usuario(string usuario, string clave) {
 
             bool flag = false;
@@ -719,11 +749,76 @@ namespace CapaDao
             cn.Close();
         }
 
+        public static bool bloqueadoAdmin(string id)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE Usuario SET bloqueadoAdmin = 1 WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
+
+        public static bool desbloqueadoAdmin(string id)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE Usuario SET bloqueadoAdmin = 0 WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
+
+        }
+
+        public static bool obtenerbloqueadoAdmin(string usuario)
+        {
+            bool bloqueado = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT u.bloqueadoAdmin as bloqueadoAdmin
+                                FROM Usuario u
+                                WHERE  u.nombre = @usuario";
+            cmd.Parameters.AddWithValue("@usuario", usuario);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                bloqueado = bool.Parse(dr["bloqueadoAdmin"].ToString());
+            }
+            dr.Close();
+            cn.Close();
+
+            return bloqueado;
+        }
+
     }
 
-
     
-
 
 }
 

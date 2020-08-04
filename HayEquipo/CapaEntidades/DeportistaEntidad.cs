@@ -10,6 +10,10 @@ namespace CapaEntidades
     {
         public int? idDeportista { get; set; }
         public float promedioEstrellas { get; set; }
-        public int idEstado { get; set; }        
+        public int idEstado { get; set; }
+        public int idDeportePreferido { get; set; }
+
+        public string NombreBarrioDeportista { get; set; }
+
     }
 }

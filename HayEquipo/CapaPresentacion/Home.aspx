@@ -100,8 +100,13 @@
 
         .scroll-container {
             display: block;
-            height: 575px;
+            height: 500px;
             overflow-y: scroll;
+        }
+
+        .scroll-container2 {
+            display: block;
+            height: 946px;
         }
 
 
@@ -147,6 +152,7 @@
 
   <div class="row">
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
+     <div class="scroll-container2">
       <div class="well">
         <%--<p><a href="#">Ignacio Monetto</a></p>--%>
          <p> <asp:LinkButton ID="link_nombreUsuario"  runat="server" Text="" OnClick="link_nombreUsuario_Click" ></asp:LinkButton></p>
@@ -181,10 +187,10 @@
       <div class="well">
         <p><a href="#">Algunos links que te pueden interesar...</a></p>
         <p>
-          <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button">Olé</a>
-          <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button">Mundo D</a>
-          <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button">Agencia<br /> Córdoba<br /> Deportes</a>
-          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button">ESPN</a>
+          <a href="https://www.ole.com.ar" class="w3-button w3-small w3-white w3-border w3-border-light-green w3-round-large"" role="button" style="margin-bottom:10%">Olé</a>
+          <a href="https://mundod.lavoz.com.ar" class="w3-button w3-small w3-white w3-border w3-border-green w3-round-large"" role="button" style="margin-bottom:10%">Mundo D</a>
+          <a href="https://www.cba.gov.ar/reparticion/agencia-cordoba-deportes/" class="w3-button w3-small w3-white w3-border w3-border-blue w3-round-large"" role="button"style="margin-bottom:10%">Agencia<br /> Córdoba<br /> Deportes</a>
+          <a href="https://www.espn.com.ar" class="w3-button w3-small w3-white w3-border w3-border-red w3-round-large"" role="button"style="margin-bottom:10%">ESPN</a>
         </p>
       </div>
       <%-- <div class="well">
@@ -200,8 +206,10 @@
        </div>--%>
 
         <%-- FIN INVITACIONES --%>
-
+  </div>
     </div>
+
+
     <div class="col-sm-8" <%--style="background-color:#d7dbd3;"--%>>
 
       <div class="row">
@@ -324,8 +332,9 @@
           <div class="row">
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
-                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio", "{0:HH:mm}") %>'></asp:Label>
+                  <asp:Label runat="server" text="Hs"></asp:Label>
                   <br />
                   <br />
               </div>
@@ -373,6 +382,7 @@
     </div>
   </div>
     <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
+        <div class="scroll-container2">
       <div class="thumbnail">
         <p>Próximo encuentro</p>
         <img src="Imagenes/futbol.jpg" alt="Paris" width="400" height="300">
@@ -410,10 +420,10 @@
             ABRIR ENLACE >
         </div>
       </div></a>
-        
+      </div>  
     </div>
-      </div>
    </div>
+   
 
  <%--   <script>
 $(document).ready(function(){

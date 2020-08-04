@@ -14,7 +14,7 @@ namespace CapaEntidades
         public string apellido { get; set; }
         public string nombres { get; set; }
         public DateTime fechaNacimiento { get; set; }
-        public string sexo { get; set; }
+        public int sexo { get; set; }
         public string calle { get; set; }
         public int idBarrio { get; set; }
         public int numeroCalle { get; set; }

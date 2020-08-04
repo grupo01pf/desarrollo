@@ -125,6 +125,11 @@
             display: none;
         }
 
+        .scroll-container {
+            display: block;
+            height: 390px;
+            overflow-y: auto;
+        }
 
     </style>
 
@@ -167,6 +172,23 @@
 
 
     </script>
+<script src="scripts/jquery.dynDateTime.min.js" type="text/javascript"></script>
+<script src="scripts/calendar-en.min.js" type="text/javascript"></script>
+<link href="css/calendar-blue.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript">
+    $(document).ready(function () {
+        $("#<%=txt_FechaNacimiento.ClientID %>").dynDateTime({
+            showsTime: true,
+            ifFormat: "%d/%m/%Y",
+            daFormat: "%l;%M %p, %e %m,  %Y",
+            align: "BR",
+            electric: false,
+            singleClick: false,
+            displayArea: ".siblings('.dtcDisplayArea')",
+            button: ".next()"
+        });
+    });
+</script>
 
 
 </asp:Content>
@@ -174,6 +196,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container">
         <div class="row">
 
@@ -205,6 +228,7 @@
 
             </div>
             <div class="col-sm-7 well">
+             
                 <div class="well">
                     <ul class="nav nav-tabs">
                         <li id="datos" runat="server" class="active"><a data-toggle="tab" href="#home">Mis Datos</a></li>
@@ -222,6 +246,7 @@
                             <asp:Label ID="lbl_Contactos" runat="server" Text="0"></asp:Label></span></a></li>
 
                     </ul>
+                  <div class="scroll-container">
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active">
                             <br />
@@ -241,21 +266,31 @@
                             </div>
 
                             <div class="form-group">
-                                <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="Numero de Documento"></asp:Label>
+                                <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="N°Documento"></asp:Label>
                                 <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" placeholder="Ingrese Nro Documento"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Sexo" runat="server" Text="Sexo"></asp:Label>
-                                <asp:TextBox ID="txt_Sexo" runat="server" class="form-control" placeholder="Ingrese Sexo"></asp:TextBox>
-
+                                <asp:DropDownList ID="cmb_sexo" runat="server" CssClass="form-control" AppendDataBoundItems >
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento"></asp:Label>
-                                <asp:TextBox ID="txt_FechaNacimiento" runat="server" class="form-control" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
+                                
+                                <asp:TextBox ID="txt_FechaNacimiento" runat="server" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
+                                <asp:Image id="calendario" runat="server" ImageUrl="imagenes/calender.png"  />
+                                
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono"></asp:Label>
                                 <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_DeportePreferido" runat="server" Text="Deporte Preferido"></asp:Label>
+                                 <asp:DropDownList ID="cmb_DeportePrederido" runat="server" CssClass="form-control" AppendDataBoundItems >
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
@@ -477,6 +512,7 @@
                         <div id="menu3" class="fade">
                             <div class="table-responsive">
                                 <asp:DropDownList ID="ddl_anios" runat="server" Width="150px" AutoPostBack="true">
+                                    <asp:ListItem Text="2020" Value="2020" />
                                     <asp:ListItem Text="2019" Value="2019" />
                                     <asp:ListItem Text="2018" Value="2018" />
 
@@ -487,28 +523,11 @@
 
                             </div>
 
-                        </div>
-
-                        <%--             <div id="menu5" class=" fade">
-              <div class="table-responsive">
-
-                  <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" DisplayToolbar="False" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" ToolPanelView="None" ReuseParameterValuesOnRefresh="True" />
-
-                      <br />
-                  <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                      <Report FileName="ReporteCantidadDeportesxFecha.rpt">
-                      </Report>
-                  </CR:CrystalReportSource>
-
-                      </div>
-
-                </div>--%>
-
-
-                        <%--<asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar Notificaciones" OnClick="btn_Eliminar_Click" />--%>
-                    </div>
-                </div>
-
+                           </div>
+                          </div>
+                       </div>
+                
+              </div>
             </div>
 
         </div>

@@ -551,29 +551,29 @@ namespace CapaPresentacion
 
             spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
-            lblValoracion.Text = "Valoración: " + compSelec.promedioEstrellas.ToString();
-            lblDeportes.Text = compSelec.deportes;
-            lblDescripcion.Text = compSelec.descripcion;
+            lblValoracion.Text = "Valoración: " + compSelec.Valoracion.ToString();
+            lblDeportes.Text = compSelec.Deportes;
+            lblDescripcion.Text = compSelec.Descripcion;
             listServicios.Items.Clear();
             lblServicios.Text = "Servicios: ";
-            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.id) > 0)
+            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
             {
-                CargarListServicios(compSelec.id);
+                CargarListServicios(compSelec.ID);
             }
             else
             {
                 lblServicios.Text = "Servicios: - ";
                 divListServ.Visible = false;
             }
-            lblDireccion.Text = "Dirección: " + compSelec.calle + " " + compSelec.nroCalle.ToString();
-            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.idBarrio.ToString()));
+            lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
+            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
             lblBarrio.Text = "Barrio: " + bar.nombre;
             lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-            lblTelefono.Text = "Teléfono: " + compSelec.nroTelefono.ToString();
-            if (compSelec.horaApertura != null && compSelec.horaCierre != null)
+            lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
+            if (compSelec.Apertura != null && compSelec.Cierre != null)
             {
-                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.horaApertura, typeof(TimeSpan));
-                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.horaCierre, typeof(TimeSpan));
+                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.Apertura, typeof(TimeSpan));
+                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.Cierre, typeof(TimeSpan));
                 lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
             }
             else

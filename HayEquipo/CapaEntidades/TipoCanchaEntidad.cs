@@ -11,5 +11,10 @@ namespace CapaEntidades
         public int? idTipoCancha { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
+        public int idDeporte { get; set; }
+        public int capacidad { get; set; }
+
+        public string nombreDeporte { get; set; }
+
     }
 }

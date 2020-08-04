@@ -62,7 +62,7 @@ namespace CapaPresentacion
         protected void CargarRepeaterComplejosPorVal(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
         {
             encuentrosRepeater.DataSource = (from comp in ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3, d4)
-                                             orderby comp.ValoracionPromedio descending
+                                             orderby comp.Valoracion descending
                                              select comp);
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
@@ -97,7 +97,7 @@ namespace CapaPresentacion
             Session["IDCom"] = idSeleccionado;
             spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
 
-            myModalLabel2.InnerText = compSelec.nombre;
+            myModalLabel2.InnerText = compSelec.Nombre;
                 if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
                 {
                     RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
@@ -118,8 +118,8 @@ namespace CapaPresentacion
                     RadioButtonList2.Visible = false;
                     lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
                 }
-            lblDeportes.Text = compSelec.deportes;
-            lblDescripcion.Text = compSelec.descripcion;
+            lblDeportes.Text = compSelec.Deportes;
+            lblDescripcion.Text = compSelec.Descripcion;
             listServicios.Items.Clear();
             lblServicios.Text = "Servicios: ";
             if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)

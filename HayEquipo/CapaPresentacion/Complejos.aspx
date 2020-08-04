@@ -235,7 +235,7 @@
               <div class="alinearAlCentro">
               <div class="col-sm-4">
                   <span class="fas fa-star"></span>
-                  <asp:Label runat="server" text='<%#Eval("ValoracionPromedio") %>'></asp:Label> 
+                  <asp:Label runat="server" text='<%#Eval("Valoracion") %>'></asp:Label> 
                   <br />
               </div>
               </div>

@@ -17,6 +17,8 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Deportista()
         {
+            this.AmigosPorDeportistas = new HashSet<AmigosPorDeportistas>();
+            this.AmigosPorDeportistas1 = new HashSet<AmigosPorDeportistas>();
             this.DeportesPorDeportistas = new HashSet<DeportesPorDeportistas>();
             this.DeportistasPorEquipos = new HashSet<DeportistasPorEquipos>();
             this.EncuentroDeportivo = new HashSet<EncuentroDeportivo>();
@@ -32,14 +34,19 @@ namespace CapaEntidades
         public string nombres { get; set; }
         public Nullable<int> idTipoDoc { get; set; }
         public Nullable<int> nroDoc { get; set; }
-        public string sexo { get; set; }
+        public Nullable<int> sexo { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public Nullable<int> nroTelefono { get; set; }
         public Nullable<int> idUsuario { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }
         public Nullable<int> idBarrio { get; set; }
+        public Nullable<int> idDeportePreferido { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AmigosPorDeportistas> AmigosPorDeportistas1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeportesPorDeportistas> DeportesPorDeportistas { get; set; }
         public virtual Estado Estado { get; set; }

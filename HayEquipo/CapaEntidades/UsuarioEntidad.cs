@@ -15,9 +15,12 @@ namespace CapaEntidades
         public byte[] avatar { get; set; }
         public DateTime fechaAlta{ get; set; }
         public DateTime fechaBaja { get; set; }
+        public string rol { get; set; }
+
+        public bool bloqueado { get; set; }
 
 
-       public UsuarioEntidad() { }
+        public UsuarioEntidad() { }
 
         public UsuarioEntidad(int id,string nombre, string contraseña, string email)
         {

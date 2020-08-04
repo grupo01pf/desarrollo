@@ -121,6 +121,7 @@ input[type="radio"]:checked ~ label {
        <p> <asp:LinkButton ID="link_nombreUsuario2" runat="server" Text=""></asp:LinkButton></p>
        
           <asp:Image ID="Image1" ImageUrl="Imagenes/nene.png" runat="server" CssClass="img-circle" height="100" width="100" />
+           <asp:Label ID="msjimagennNula" runat="server" Text=""></asp:Label>
           <br />
           <br />
          
@@ -158,11 +159,18 @@ input[type="radio"]:checked ~ label {
 
            </div>
              <div class="form-group">
-       <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono:"></asp:Label>
-     <asp:Label ID="Tel" runat="server"></asp:Label>
-
+         <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono:"></asp:Label>
+        <asp:Label ID="Tel" runat="server"></asp:Label>
              </div>
-           
+        <div class="form-group">
+       <asp:Label ID="lbl_DeportePreferido" runat="server" Text="Deporte Preferido:"></asp:Label>
+        <asp:Label ID="DeportePreferido" runat="server"></asp:Label>
+           </div>
+        <div class="form-group">
+       <asp:Label ID="lbl_BarrioDeportista" runat="server" Text="Barrio:"></asp:Label>
+        <asp:Label ID="BarrioDeportista" runat="server"></asp:Label>
+           </div>
+           <asp:Label ID="msjdepcompletar" runat="server" Text=""></asp:Label>
        </div> 
    
 

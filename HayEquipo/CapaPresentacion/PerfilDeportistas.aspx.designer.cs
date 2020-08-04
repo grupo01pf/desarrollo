@@ -193,13 +193,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_Sexo;
         
         /// <summary>
-        /// Control txt_Sexo.
+        /// Control cmb_sexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Sexo;
+        protected global::System.Web.UI.WebControls.DropDownList cmb_sexo;
         
         /// <summary>
         /// Control lbl_FechaNacimiento.
@@ -220,6 +220,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txt_FechaNacimiento;
         
         /// <summary>
+        /// Control calendario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image calendario;
+        
+        /// <summary>
         /// Control lbl_Telefono.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Telefono;
+        
+        /// <summary>
+        /// Control lbl_DeportePreferido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_DeportePreferido;
+        
+        /// <summary>
+        /// Control cmb_DeportePrederido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_DeportePrederido;
         
         /// <summary>
         /// Control lbl_Barrio.
