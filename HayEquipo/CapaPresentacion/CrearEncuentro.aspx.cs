@@ -464,8 +464,10 @@ namespace CapaPresentacion
 
             if (cmb_Complejo.SelectedIndex != 0)
             {
-                // agus
-                //spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
+
+                //contenedorDelMapa.Visible = true;
+               // frm_map.Visible = true;
+                spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
 
                 int idComplejo = 0;
                 int.TryParse(cmb_Complejo.SelectedItem.Value, out idComplejo);
@@ -474,18 +476,15 @@ namespace CapaPresentacion
                  //   ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejo);
 
                // frm_map.Src = cd.mapa;
-
-                ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
-                
                 btn_Agenda.Visible = true;
                 btn_VerComplejo.Visible = true;
                 cargarModalComplejo(idComplejo);
             }
-            //if (cmb_Complejo.SelectedIndex == 0)
-            //{
-            //   // contenedorDelMapa.Visible = false;
-            //   // frm_map.Visible = false;
-            //}
+            if (cmb_Complejo.SelectedIndex == 0)
+            {
+               // contenedorDelMapa.Visible = false;
+               // frm_map.Visible = false;
+            }
 
         }
 
@@ -678,7 +677,9 @@ namespace CapaPresentacion
             //******************************************
             // Generar Horarios
 
-            //spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(cmb_Complejo.SelectedIndex);
+            DateTime horaApertura = DateTime.Parse((cd.Apertura).ToString());
+            DateTime horario = DateTime.Parse((cd.Cierre - cd.Apertura).ToString());
 
             // ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(cmb_Complejo.SelectedIndex);
          //   ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejo);
@@ -863,8 +864,8 @@ namespace CapaPresentacion
 
         private void mostrarUbicacion(int idMapa){
 
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idMapa);
-            int id = cd.mapa.Value;
+            spObtenerComplejosJoin_Result cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idMapa);
+            int id = cd.Mapa.Value;
             Mapa mapa = MapaDao.obtenerMapaByID(id);
 
             txt_Latitud.Text = mapa.latitud;

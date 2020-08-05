@@ -65,26 +65,7 @@
   background-image: url("Imagenes/fondo2.jpg");
   background-repeat: no-repeat;
         background-attachment: fixed;
-        }
-
-            .login-well{
-                height: 360px;
-            }
-
-            .divisor {
-                border-left: 1px solid rgba(0, 0, 0, 0.15);
-            }
-
-              footer {
-      background-color: #222;
-      color: white;
-      padding: 15px;
-    }
-
-              .blanco{
-                  color: white;
-              }
-
+}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -119,31 +100,31 @@
                     <div class="col-sm-6">
                         <div class="margenes">
                          <div class="well">
-
+                          
                         <%--<br />
                         <br />
                         <br />--%>
-<%--                        <br />
                         <br />
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   --%>
+                        <br />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   
 
               <%--          <h1>HAY EQUIPO !</h1>
-
+                
                 <p class="agrandarLetra">Unidos por el deporte</p>--%>
-
+                            
                    <%--     <br />
                         <br />
                         <br />--%>
-                <%--        <br />
                         <br />
-
+                        <br />
+                       
                       </div>
                     </div>
-                   </div>
+                   </div>                                 
                 <div class="col-sm-6">
                    <div class="margenes">
                     <div class="well">
-
+                       
 
                         <h3>Iniciar Sesión</h3>
 
@@ -167,7 +148,7 @@
                             <br />
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <asp:LinkButton ID="btnUsuarioo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary btn-edit" BackColor="Black" BorderColor="Black">
+                                    <asp:LinkButton ID="btnUsuarioo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary btn-edit">
                <i class='fa fa-check-square-o' aria-hidden='true'></i> Registrarme
                                     </asp:LinkButton>
 
@@ -266,10 +247,10 @@
 
                   <div class="modal-footer">
                       <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
-                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-default"
+                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
                        onclick="btnClose_Click"/>
 
-                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" BackColor="Black" />
+                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" />
 
                   </div>
                  </div>
@@ -366,7 +347,7 @@ se hacer responsable por posibles daños ni traumas psicologicos.
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
 
                                     </div>
                                 </div>
@@ -386,27 +367,27 @@ se hacer responsable por posibles daños ni traumas psicologicos.
             <!-- Social buttons -->
             <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-fb mx-1 blanco">
+                    <a class="btn-floating btn-fb mx-1">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1 blanco">
+                    <a class="btn-floating btn-tw mx-1">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-gplus mx-1 blanco">
+                    <a class="btn-floating btn-gplus mx-1">
                         <i class="fab fa-google-plus-g"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-li mx-1 blanco">
+                    <a class="btn-floating btn-li mx-1">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-dribbble mx-1 blanco">
+                    <a class="btn-floating btn-dribbble mx-1">
                         <i class="fab fa-dribbble"></i>
                     </a>
                 </li>
@@ -419,7 +400,7 @@ se hacer responsable por posibles daños ni traumas psicologicos.
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
             © 2019 Copyright:
-    <a class="blanco" href="#">HayEquipo.com.ar</a>
+    <a href="#">HayEquipo.com.ar</a>
         </div>
         <!-- Copyright -->
 
