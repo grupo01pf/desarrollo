@@ -73,7 +73,7 @@ namespace CapaPresentacion
             Session["IdOrganizadorEncuentro"] = edq.idUsuario;
 
             cargarModalComplejo(edq.idComplejo);
-            //cargarMapa(edq.idComplejo);
+            cargarMapa(edq.idComplejo);
 
             lbl_Deporte.Text = edq.nombreDeporte;
 
@@ -744,8 +744,8 @@ namespace CapaPresentacion
         {
 
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+           // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+           // edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
             int idcomplejo = edq.idComplejo;
             string idcomplejo1 = Convert.ToString(idcomplejo);
             string usuarioValorador = Session["ID"].ToString();

@@ -321,7 +321,7 @@ namespace CapaPresentacion
 
                 // Agregado por Nico
                 Session["idMapa"] = compSelec.Mapa;
-               // cargarMapa(int.Parse(Session["IDCom"].ToString()));
+                cargarMapa(int.Parse(Session["IDCom"].ToString()));
             }
 
             //else
@@ -694,6 +694,104 @@ namespace CapaPresentacion
             Panel2.Visible = true;
         }
 
+
+
+
+
+
+        // MAPA
+
+        private void cargarMapa(int idComplejoDeportivo)
+        {
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
+
+            //int? id = cd.mapa.Value;
+            if (!string.IsNullOrEmpty(cd.mapa.ToString()))
+            {
+                // int idMapa = int.Parse(id.ToString());
+                int idMapa = int.Parse(cd.mapa.Value.ToString());
+                Mapa mapa = MapaDao.obtenerMapaByID(idMapa);
+                txt_Latitud.Text = mapa.latitud;
+                txt_Longitud.Text = mapa.longitud;
+
+                btn_Agregar.Enabled = false;
+                btn_Modificar.Enabled = true;
+                btn_Eliminar.Enabled = true;
+            }
+            else
+            {
+                btn_Agregar.Enabled = true;
+                btn_Modificar.Enabled = false;
+                btn_Eliminar.Enabled = false;
+            }
+        }
+
+        protected void btn_Agregar_Click(object sender, EventArgs e)
+        {
+
+            Mapa m = new Mapa();
+
+            if (string.IsNullOrEmpty(txt_Latitud.Text) || string.IsNullOrEmpty(txt_Longitud.Text))
+            {
+                m.latitud = "-31.416563";
+                m.longitud = "-64.183533";
+            }
+            else
+            {
+                m.latitud = txt_Latitud.Text;
+                m.longitud = txt_Longitud.Text;
+            }
+            int idMapa = MapaDao.insertarMapa(m);
+
+
+            ComplejoDeportivo cd = new ComplejoDeportivo();
+
+            cd.id = int.Parse(Session["IDCom"].ToString());
+            cd.mapa = idMapa;
+            ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
+
+            limpiarCampos();
+
+            cargarMapa(int.Parse(Session["IDCom"].ToString()));
+        }
+
+        protected void btn_Modificar_Click(object sender, EventArgs e)
+        {
+            Mapa m = new Mapa();
+
+            m.id = int.Parse(Session["idMapa"].ToString());
+            m.latitud = txt_Latitud.Text;
+            m.longitud = txt_Longitud.Text;
+            MapaDao.modificarMapa(m);
+
+            limpiarCampos();
+
+            cargarMapa(int.Parse(Session["IDCom"].ToString()));
+        }
+
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            MapaDao.eliminarMapa(int.Parse(Session["idMapa"].ToString()));
+            ComplejoDeportivo cd = new ComplejoDeportivo();
+            cd.id = int.Parse(Session["IDCom"].ToString());
+            cd.mapa = null;
+            ComplejoDeportivoDao.ActualizarMapaComplejo(cd);
+
+            limpiarCampos();
+
+            cargarMapa(int.Parse(Session["IDCom"].ToString()));
+        }
+
+        protected void btn_Limpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+        }
+
+        private void limpiarCampos()
+        {
+            txt_Latitud.Text = string.Empty;
+            txt_Longitud.Text = string.Empty;
+        }
 
 
 

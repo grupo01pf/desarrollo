@@ -482,7 +482,42 @@
                 </asp:Panel> 
 
         
+        <%-- MAPA --%>
 
+        <div class="row">
+            <div class="well mapa">
+                <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
+                    <legend>Ingresar Ubicación</legend>
+                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
+                    <div class="container" style="text-align: left">
+                        <div class="form-group">
+                            <div id="myMap"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="LatLng">
+                                <label for="lbl_Latitud">Latitud</label>
+                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                                <br />
+                                <label for="lbl_Longitud">Longitud</label>
+                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-inline">
+                            <asp:Button ID="btn_Agregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" OnClick="btn_Agregar_Click" />
+                            <asp:Button ID="btn_Modificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="btn_Modificar_Click" />
+                            <asp:Button ID="btn_Eliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false" OnClick="btn_Eliminar_Click" />
+                            <asp:Button ID="btn_Limpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" OnClick="btn_Limpiar_Click" />
+                        </div>
+                    </div>
+                </asp:Panel>
+            </div>
+        </div>
+
+        <%-- FIN MAPA --%>
        
 
 
@@ -494,5 +529,51 @@
     <%-- script mapa --%>
 
       
+          <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <script type="text/javascript">
+
+        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+        
+        // CENTRAR LA VISTA DEL MAPA
+        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+        L.tileLayer(tilesProvider, {
+            maxzoom: 18,
+        }).addTo(myMap)
+        
+        var layerGroup = L.layerGroup().addTo(myMap)
+       
+        myMap.doubleClickZoom.disable()
+        
+        
+        myMap.on('dblclick', e => {
+            
+            layerGroup.clearLayers();
+            let latLng = myMap.mouseEventToLatLng(e.originalEvent)           
+
+            myMap.closePopup();
+            
+            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+           
+            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+            $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
+
+        })
+        // MOSTRAR UN COMPLEJO
+        var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+        var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
+
+        var marker = L.marker([latitude, longitude]).addTo(layerGroup)
+        if (latitude != "" && longitude != "") {
+            myMap.setView([latitude, longitude], 15)
+        }
+
+
+    </script>
+
+
 
 </asp:Content>
