@@ -256,7 +256,8 @@ namespace CapaPresentacion
             cph.idHorario = AgendaDao.InsertarHorario(horario);
             cph.idCancha = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
 
-            AgendaDao.InsertarCanchasPorHorarios(cph);
+            //AgendaDao.InsertarCanchasPorHorarios(cph);
+            AgendaDao.InsertarCrearCanchasPorHorarios(cph);
 
             Reserva reserva = new Reserva();
             reserva.fechaReserva = DateTime.Now;
@@ -349,7 +350,8 @@ namespace CapaPresentacion
             cph.idHorario = AgendaDao.InsertarHorario(horario);
             cph.idCancha = int.Parse(gdv_AgendaComplejos.SelectedDataKey.Value.ToString());
 
-            AgendaDao.InsertarCanchasPorHorarios(cph);
+            //AgendaDao.InsertarCanchasPorHorarios(cph);
+            AgendaDao.InsertarCrearCanchasPorHorarios(cph);
 
             Reserva reserva = new Reserva();
             reserva.fechaReserva = DateTime.Now;

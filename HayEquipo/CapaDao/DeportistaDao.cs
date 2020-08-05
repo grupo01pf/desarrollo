@@ -174,7 +174,7 @@ namespace CapaDao
                 d.nombres = dr["nombres"].ToString();
                 d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
                 d.nroDoc = int.Parse(dr["nroDoc"].ToString());
-                d.sexo = dr["sexo"].ToString();
+               // d.sexo = dr["sexo"].ToString();
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
                 d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
@@ -213,7 +213,7 @@ namespace CapaDao
                 d.nombres = dr["nombres"].ToString();
                 d.idTipoDoc = int.Parse(dr["idTipoDoc"].ToString());
                 d.nroDoc = int.Parse(dr["nroDoc"].ToString());
-                d.sexo = dr["sexo"].ToString();
+               // d.sexo = dr["sexo"].ToString();
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
                 d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());

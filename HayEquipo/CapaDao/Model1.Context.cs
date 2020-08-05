@@ -27,8 +27,6 @@ namespace CapaEntidades
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrador> Administrador { get; set; }
-        public virtual DbSet<AmigosPorDeportistas> AmigosPorDeportistas { get; set; }
         public virtual DbSet<Barrio> Barrio { get; set; }
         public virtual DbSet<Cancha> Cancha { get; set; }
         public virtual DbSet<CanchasPorHorarios> CanchasPorHorarios { get; set; }
@@ -37,6 +35,7 @@ namespace CapaEntidades
         public virtual DbSet<DeportesPorDeportistas> DeportesPorDeportistas { get; set; }
         public virtual DbSet<Deportista> Deportista { get; set; }
         public virtual DbSet<DeportistasPorEquipos> DeportistasPorEquipos { get; set; }
+        public virtual DbSet<DIM_TIEMPO> DIM_TIEMPO { get; set; }
         public virtual DbSet<EncuentroDeportivo> EncuentroDeportivo { get; set; }
         public virtual DbSet<Equipo> Equipo { get; set; }
         public virtual DbSet<estadisticaComplejo> estadisticaComplejo { get; set; }
@@ -59,6 +58,7 @@ namespace CapaEntidades
         public virtual DbSet<ServicioExtra> ServicioExtra { get; set; }
         public virtual DbSet<ServiciosPorComplejos> ServiciosPorComplejos { get; set; }
         public virtual DbSet<Sesion> Sesion { get; set; }
+        public virtual DbSet<Sexo> Sexo { get; set; }
         public virtual DbSet<Sponsor> Sponsor { get; set; }
         public virtual DbSet<TipoCancha> TipoCancha { get; set; }
         public virtual DbSet<TipoDeporte> TipoDeporte { get; set; }
@@ -77,17 +77,12 @@ namespace CapaEntidades
         public virtual DbSet<Password> Password { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<UsuariosPorEncuentroDeportivo> UsuariosPorEncuentroDeportivo { get; set; }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         public virtual ObjectResult<Nullable<int>> obtenerValoracionParticularComplejoxTipo(Nullable<int> prmidComplejo, Nullable<int> prmTipo, Nullable<int> prmUsuarioValorador)
         {
             var prmidComplejoParameter = prmidComplejo.HasValue ?
                 new ObjectParameter("prmidComplejo", prmidComplejo) :
                 new ObjectParameter("prmidComplejo", typeof(int));
-<<<<<<< HEAD
     
             var prmTipoParameter = prmTipo.HasValue ?
                 new ObjectParameter("prmTipo", prmTipo) :
@@ -100,20 +95,6 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("obtenerValoracionParticularComplejoxTipo", prmidComplejoParameter, prmTipoParameter, prmUsuarioValoradorParameter);
         }
     
-=======
-
-            var prmTipoParameter = prmTipo.HasValue ?
-                new ObjectParameter("prmTipo", prmTipo) :
-                new ObjectParameter("prmTipo", typeof(int));
-
-            var prmUsuarioValoradorParameter = prmUsuarioValorador.HasValue ?
-                new ObjectParameter("prmUsuarioValorador", prmUsuarioValorador) :
-                new ObjectParameter("prmUsuarioValorador", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("obtenerValoracionParticularComplejoxTipo", prmidComplejoParameter, prmTipoParameter, prmUsuarioValoradorParameter);
-        }
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         public virtual ObjectResult<ReporteCantidadDeportexFecha_Result> ReporteCantidadDeportexFecha(Nullable<int> complejo)
         {
             var complejoParameter = complejo.HasValue ?
@@ -385,26 +366,17 @@ namespace CapaEntidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_NotificacionDao_contadorNotificaciones", idUsuarioParameter);
         }
-<<<<<<< HEAD
     
         public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, string nombreEmisor, Nullable<int> idReceptor, string nombreReceptor, Nullable<int> idEncuentro, string texto, Nullable<int> idEstado)
-=======
-
-        public virtual int sp_NotificacionDao_insertarNotificacion(Nullable<int> idEmisor, Nullable<int> idReceptor, string nombreReceptor, Nullable<int> idEncuentro, string texto, Nullable<int> idEstado)
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         {
             var idEmisorParameter = idEmisor.HasValue ?
                 new ObjectParameter("idEmisor", idEmisor) :
                 new ObjectParameter("idEmisor", typeof(int));
-<<<<<<< HEAD
     
             var nombreEmisorParameter = nombreEmisor != null ?
                 new ObjectParameter("nombreEmisor", nombreEmisor) :
                 new ObjectParameter("nombreEmisor", typeof(string));
     
-=======
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
             var idReceptorParameter = idReceptor.HasValue ?
                 new ObjectParameter("idReceptor", idReceptor) :
                 new ObjectParameter("idReceptor", typeof(int));
@@ -424,13 +396,8 @@ namespace CapaEntidades
             var idEstadoParameter = idEstado.HasValue ?
                 new ObjectParameter("idEstado", idEstado) :
                 new ObjectParameter("idEstado", typeof(int));
-<<<<<<< HEAD
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, nombreEmisorParameter, idReceptorParameter, nombreReceptorParameter, idEncuentroParameter, textoParameter, idEstadoParameter);
-=======
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NotificacionDao_insertarNotificacion", idEmisorParameter, idReceptorParameter, nombreReceptorParameter, idEncuentroParameter, textoParameter, idEstadoParameter);
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         }
     
         public virtual ObjectResult<sp_NotificacionDao_mostrarNotificaciones_Result> sp_NotificacionDao_mostrarNotificaciones(Nullable<int> idUsuario)
@@ -526,6 +493,15 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_UsuarioID", usuarioParameter);
         }
     
+        public virtual int spCambiarEstadoCompleto(Nullable<int> prmidEncuentro)
+        {
+            var prmidEncuentroParameter = prmidEncuentro.HasValue ?
+                new ObjectParameter("prmidEncuentro", prmidEncuentro) :
+                new ObjectParameter("prmidEncuentro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCambiarEstadoCompleto", prmidEncuentroParameter);
+        }
+    
         public virtual int spCargarDatosEstadisticaComplejo(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -582,6 +558,45 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerServiciosPorComplejos_Result>("spObtenerServiciosPorComplejos", idCompParameter);
         }
     
+        public virtual int spRegistrarDeporte(string prmNombre, byte[] imagen)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("imagen", imagen) :
+                new ObjectParameter("imagen", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarDeporte", prmNombreParameter, imagenParameter);
+        }
+    
+        public virtual int spRegistrarServicioExtra(string prmNombre)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarServicioExtra", prmNombreParameter);
+        }
+    
+        public virtual int spRegistrarTipoCancha(string prmNombre, Nullable<int> prmidDeporte, Nullable<int> prmCapacidad)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var prmidDeporteParameter = prmidDeporte.HasValue ?
+                new ObjectParameter("prmidDeporte", prmidDeporte) :
+                new ObjectParameter("prmidDeporte", typeof(int));
+    
+            var prmCapacidadParameter = prmCapacidad.HasValue ?
+                new ObjectParameter("prmCapacidad", prmCapacidad) :
+                new ObjectParameter("prmCapacidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarTipoCancha", prmNombreParameter, prmidDeporteParameter, prmCapacidadParameter);
+        }
+    
         public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)
         {
             var prmNombreParameter = prmNombre != null ?
@@ -615,17 +630,12 @@ namespace CapaEntidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarUsuarioEstablecimiento", prmNombreParameter, prmEmailParameter, prmContraseñaParameter);
         }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         public virtual int spRegistrarValoracionComplejo(Nullable<int> prmidComplejo, Nullable<int> prmidUsuarioValorador, Nullable<int> prmValoracion, Nullable<int> prmTipo)
         {
             var prmidComplejoParameter = prmidComplejo.HasValue ?
                 new ObjectParameter("prmidComplejo", prmidComplejo) :
                 new ObjectParameter("prmidComplejo", typeof(int));
-<<<<<<< HEAD
     
             var prmidUsuarioValoradorParameter = prmidUsuarioValorador.HasValue ?
                 new ObjectParameter("prmidUsuarioValorador", prmidUsuarioValorador) :
@@ -640,6 +650,27 @@ namespace CapaEntidades
                 new ObjectParameter("prmTipo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarValoracionComplejo", prmidComplejoParameter, prmidUsuarioValoradorParameter, prmValoracionParameter, prmTipoParameter);
+        }
+    
+        public virtual int spRegistrarValoracionDeportista(Nullable<int> prmidDeportista, Nullable<int> prmidUsuarioValorador, Nullable<int> prmValoracion, Nullable<int> prmTipo)
+        {
+            var prmidDeportistaParameter = prmidDeportista.HasValue ?
+                new ObjectParameter("prmidDeportista", prmidDeportista) :
+                new ObjectParameter("prmidDeportista", typeof(int));
+    
+            var prmidUsuarioValoradorParameter = prmidUsuarioValorador.HasValue ?
+                new ObjectParameter("prmidUsuarioValorador", prmidUsuarioValorador) :
+                new ObjectParameter("prmidUsuarioValorador", typeof(int));
+    
+            var prmValoracionParameter = prmValoracion.HasValue ?
+                new ObjectParameter("prmValoracion", prmValoracion) :
+                new ObjectParameter("prmValoracion", typeof(int));
+    
+            var prmTipoParameter = prmTipo.HasValue ?
+                new ObjectParameter("prmTipo", prmTipo) :
+                new ObjectParameter("prmTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarValoracionDeportista", prmidDeportistaParameter, prmidUsuarioValoradorParameter, prmValoracionParameter, prmTipoParameter);
         }
     
         public virtual int spTruncarEstadisticaComplejo()
@@ -652,40 +683,15 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTruncarEstadisticaUsuariosActivos");
         }
     
-=======
-
-            var prmidUsuarioValoradorParameter = prmidUsuarioValorador.HasValue ?
-                new ObjectParameter("prmidUsuarioValorador", prmidUsuarioValorador) :
-                new ObjectParameter("prmidUsuarioValorador", typeof(int));
-
-            var prmValoracionParameter = prmValoracion.HasValue ?
-                new ObjectParameter("prmValoracion", prmValoracion) :
-                new ObjectParameter("prmValoracion", typeof(int));
-
-            var prmTipoParameter = prmTipo.HasValue ?
-                new ObjectParameter("prmTipo", prmTipo) :
-                new ObjectParameter("prmTipo", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarValoracionComplejo", prmidComplejoParameter, prmidUsuarioValoradorParameter, prmValoracionParameter, prmTipoParameter);
-        }
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         public virtual ObjectResult<Nullable<int>> spValoracionGeneralComplejo(Nullable<int> prmidComplejo)
         {
             var prmidComplejoParameter = prmidComplejo.HasValue ?
                 new ObjectParameter("prmidComplejo", prmidComplejo) :
                 new ObjectParameter("prmidComplejo", typeof(int));
-<<<<<<< HEAD
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValoracionGeneralComplejo", prmidComplejoParameter);
         }
     
-=======
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValoracionGeneralComplejo", prmidComplejoParameter);
-        }
-
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
         public virtual ObjectResult<Nullable<int>> spValoracionGeneralDeportista(Nullable<int> prmidDeportista)
         {
             var prmidDeportistaParameter = prmidDeportista.HasValue ?
@@ -693,6 +699,19 @@ namespace CapaEntidades
                 new ObjectParameter("prmidDeportista", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValoracionGeneralDeportista", prmidDeportistaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spValorarComplejoxTipo(Nullable<int> prmidComplejo, Nullable<int> prmTipo)
+        {
+            var prmidComplejoParameter = prmidComplejo.HasValue ?
+                new ObjectParameter("prmidComplejo", prmidComplejo) :
+                new ObjectParameter("prmidComplejo", typeof(int));
+    
+            var prmTipoParameter = prmTipo.HasValue ?
+                new ObjectParameter("prmTipo", prmTipo) :
+                new ObjectParameter("prmTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spValorarComplejoxTipo", prmidComplejoParameter, prmTipoParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> spValorarDeportistaxTipo(Nullable<int> prmidDeportista, Nullable<int> prmTipo)

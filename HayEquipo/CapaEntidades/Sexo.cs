@@ -12,13 +12,9 @@ namespace CapaEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class AmigosPorDeportistas
+    public partial class Sexo
     {
         public int id { get; set; }
-        public Nullable<int> idDeportista { get; set; }
-        public Nullable<int> idAmigo { get; set; }
-    
-        public virtual Deportista Deportista { get; set; }
-        public virtual Deportista Deportista1 { get; set; }
+        public string nombre { get; set; }
     }
 }

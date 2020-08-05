@@ -1,35 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HayEquipoModelStoreContainer" CdmEntityContainer="HayEquipoEntities">
-    <EntitySetMapping Name="Administrador">
-      <EntityTypeMapping TypeName="HayEquipoModel.Administrador">
-        <MappingFragment StoreEntitySet="Administrador">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nroLegajo" ColumnName="nroLegajo" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="nombres" ColumnName="nombres" />
-          <ScalarProperty Name="idTipoDoc" ColumnName="idTipoDoc" />
-          <ScalarProperty Name="nroDoc" ColumnName="nroDoc" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
-          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-          <ScalarProperty Name="calle" ColumnName="calle" />
-          <ScalarProperty Name="nroCalle" ColumnName="nroCalle" />
-          <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
-          <ScalarProperty Name="nroTelefono" ColumnName="nroTelefono" />
-          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AmigosPorDeportistas">
-      <EntityTypeMapping TypeName="HayEquipoModel.AmigosPorDeportistas">
-        <MappingFragment StoreEntitySet="AmigosPorDeportistas">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
-          <ScalarProperty Name="idAmigo" ColumnName="idAmigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Barrio">
       <EntityTypeMapping TypeName="HayEquipoModel.Barrio">
         <MappingFragment StoreEntitySet="Barrio">
@@ -57,6 +28,7 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idHorario" ColumnName="idHorario" />
           <ScalarProperty Name="idCancha" ColumnName="idCancha" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -116,6 +88,7 @@
           <ScalarProperty Name="promedioEstrellas" ColumnName="promedioEstrellas" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
           <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+          <ScalarProperty Name="idDeportePreferido" ColumnName="idDeportePreferido" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -125,6 +98,26 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idDeportista" ColumnName="idDeportista" />
           <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIM_TIEMPO">
+      <EntityTypeMapping TypeName="HayEquipoModel.DIM_TIEMPO">
+        <MappingFragment StoreEntitySet="DIM_TIEMPO">
+          <ScalarProperty Name="FechaSK" ColumnName="FechaSK" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="Trimestre" ColumnName="Trimestre" />
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+          <ScalarProperty Name="Semana" ColumnName="Semana" />
+          <ScalarProperty Name="Dia" ColumnName="Dia" />
+          <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+          <ScalarProperty Name="NTrimestre" ColumnName="NTrimestre" />
+          <ScalarProperty Name="NMes" ColumnName="NMes" />
+          <ScalarProperty Name="NMes3L" ColumnName="NMes3L" />
+          <ScalarProperty Name="NSemana" ColumnName="NSemana" />
+          <ScalarProperty Name="NDia" ColumnName="NDia" />
+          <ScalarProperty Name="NDiaSemana" ColumnName="NDiaSemana" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -360,6 +353,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sexo">
+      <EntityTypeMapping TypeName="HayEquipoModel.Sexo">
+        <MappingFragment StoreEntitySet="Sexo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Sponsor">
       <EntityTypeMapping TypeName="HayEquipoModel.Sponsor">
         <MappingFragment StoreEntitySet="Sponsor">
@@ -433,6 +434,7 @@
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
           <ScalarProperty Name="intentos" ColumnName="intentos" />
           <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+          <ScalarProperty Name="bloqueadoAdmin" ColumnName="bloqueadoAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -732,6 +734,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_UsuarioID" FunctionName="HayEquipoModel.Store.sp_UsuarioID" />
+    <FunctionImportMapping FunctionImportName="spCambiarEstadoCompleto" FunctionName="HayEquipoModel.Store.spCambiarEstadoCompleto" />
     <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaComplejo" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaComplejo" />
     <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaUsuariosActivos" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaUsuariosActivos" />
     <FunctionImportMapping FunctionImportName="spInsertarImagen" FunctionName="HayEquipoModel.Store.spInsertarImagen" />
@@ -816,16 +819,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRegistrarDeporte" FunctionName="HayEquipoModel.Store.spRegistrarDeporte" />
+    <FunctionImportMapping FunctionImportName="spRegistrarServicioExtra" FunctionName="HayEquipoModel.Store.spRegistrarServicioExtra" />
+    <FunctionImportMapping FunctionImportName="spRegistrarTipoCancha" FunctionName="HayEquipoModel.Store.spRegistrarTipoCancha" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuario" FunctionName="HayEquipoModel.Store.spRegistrarUsuario" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuarioEstablecimiento" FunctionName="HayEquipoModel.Store.spRegistrarUsuarioEstablecimiento" />
     <FunctionImportMapping FunctionImportName="spRegistrarValoracionComplejo" FunctionName="HayEquipoModel.Store.spRegistrarValoracionComplejo" />
-<<<<<<< HEAD
+    <FunctionImportMapping FunctionImportName="spRegistrarValoracionDeportista" FunctionName="HayEquipoModel.Store.spRegistrarValoracionDeportista" />
     <FunctionImportMapping FunctionImportName="spTruncarEstadisticaComplejo" FunctionName="HayEquipoModel.Store.spTruncarEstadisticaComplejo" />
     <FunctionImportMapping FunctionImportName="spTruncarEstadisticaUsuariosActivos" FunctionName="HayEquipoModel.Store.spTruncarEstadisticaUsuariosActivos" />
-=======
->>>>>>> e31137414fc9b35ff9b21bded38b65be8e20be81
     <FunctionImportMapping FunctionImportName="spValoracionGeneralComplejo" FunctionName="HayEquipoModel.Store.spValoracionGeneralComplejo" />
     <FunctionImportMapping FunctionImportName="spValoracionGeneralDeportista" FunctionName="HayEquipoModel.Store.spValoracionGeneralDeportista" />
+    <FunctionImportMapping FunctionImportName="spValorarComplejoxTipo" FunctionName="HayEquipoModel.Store.spValorarComplejoxTipo" />
     <FunctionImportMapping FunctionImportName="spValorarDeportistaxTipo" FunctionName="HayEquipoModel.Store.spValorarDeportistaxTipo" />
   </EntityContainerMapping>
 </Mapping>
