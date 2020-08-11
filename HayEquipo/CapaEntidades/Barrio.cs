@@ -17,7 +17,6 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Barrio()
         {
-            this.Administrador = new HashSet<Administrador>();
             this.ComplejoDeportivo = new HashSet<ComplejoDeportivo>();
         }
     
@@ -25,8 +24,6 @@ namespace CapaEntidades
         public string nombre { get; set; }
         public Nullable<int> idZona { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Administrador> Administrador { get; set; }
         public virtual Zona Zona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComplejoDeportivo> ComplejoDeportivo { get; set; }

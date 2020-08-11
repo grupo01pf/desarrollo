@@ -18,7 +18,7 @@ namespace CapaEntidades
         public Nullable<int> idHorario { get; set; }
         public Nullable<int> idCancha { get; set; }
         public Nullable<int> idEstado { get; set; }
-
+    
         public virtual Cancha Cancha { get; set; }
         public virtual Horario Horario { get; set; }
     }

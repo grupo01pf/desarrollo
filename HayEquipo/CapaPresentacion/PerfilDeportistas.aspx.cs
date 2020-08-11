@@ -765,15 +765,15 @@ namespace CapaPresentacion
             gdv_Invitar.Visible = true;
         }
 
-        private void cargarDeportes()
-        {
-            //cmb_Deporte.Items.Clear();
-            //cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-            //cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-            //cmb_Deporte.DataValueField = "id";
-            //cmb_Deporte.DataTextField = "nombre";
-            //cmb_Deporte.DataBind();
-        }
+        //private void cargarDeportes()
+        //{
+        //    //cmb_Deporte.Items.Clear();
+        //    //cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+        //    //cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+        //    //cmb_Deporte.DataValueField = "id";
+        //    //cmb_Deporte.DataTextField = "nombre";
+        //    //cmb_Deporte.DataBind();
+        //}
 
 
 

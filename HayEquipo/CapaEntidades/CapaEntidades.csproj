@@ -50,15 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accesibilidad.cs" />
-    <Compile Include="Administrador.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="AdministradorEntidad.cs" />
     <Compile Include="AgendaEntidad.cs" />
     <Compile Include="AmigosPorDeportista.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AmigosPorDeportistas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="AmigosPorDeportistasEntidad.cs" />
@@ -96,6 +90,9 @@
     </Compile>
     <Compile Include="DeportistasPorEquiposEntidad.cs" />
     <Compile Include="DetalleValoracionEntidad.cs" />
+    <Compile Include="DIM_TIEMPO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EncuentroDeportivo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

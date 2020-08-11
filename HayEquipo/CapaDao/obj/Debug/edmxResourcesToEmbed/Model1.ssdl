@@ -1,24 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Administrador">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nroLegajo" Type="int" />
-    <Property Name="apellido" Type="nvarchar" MaxLength="50" />
-    <Property Name="nombres" Type="nvarchar" MaxLength="50" />
-    <Property Name="idTipoDoc" Type="int" />
-    <Property Name="nroDoc" Type="int" />
-    <Property Name="sexo" Type="nvarchar" MaxLength="50" />
-    <Property Name="fechaNacimiento" Type="date" />
-    <Property Name="calle" Type="nvarchar" MaxLength="50" />
-    <Property Name="nroCalle" Type="int" />
-    <Property Name="idBarrio" Type="int" />
-    <Property Name="nroTelefono" Type="int" />
-    <Property Name="fechaIngreso" Type="date" />
-    <Property Name="idUsuario" Type="int" />
-  </EntityType>
+<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="AmigosPorDeportista">
@@ -27,14 +8,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idUsuario" Type="int" />
-    <Property Name="idAmigo" Type="int" />
-  </EntityType>
-  <EntityType Name="AmigosPorDeportistas">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idDeportista" Type="int" />
     <Property Name="idAmigo" Type="int" />
   </EntityType>
   <EntityType Name="Barrio">
@@ -63,6 +36,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idHorario" Type="int" />
     <Property Name="idCancha" Type="int" />
+    <Property Name="idEstado" Type="int" />
   </EntityType>
   <EntityType Name="ComplejoDeportivo">
     <Key>
@@ -128,6 +102,25 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
     <Property Name="idDeportista" Type="int" />
     <Property Name="idEquipo" Type="int" />
   </EntityType>
+  <EntityType Name="DIM_TIEMPO">
+    <Key>
+      <PropertyRef Name="Fecha" />
+    </Key>
+    <Property Name="FechaSK" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Año" Type="smallint" Nullable="false" />
+    <Property Name="Trimestre" Type="smallint" Nullable="false" />
+    <Property Name="Mes" Type="smallint" Nullable="false" />
+    <Property Name="Semana" Type="smallint" Nullable="false" />
+    <Property Name="Dia" Type="smallint" Nullable="false" />
+    <Property Name="DiaSemana" Type="smallint" Nullable="false" />
+    <Property Name="NTrimestre" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="NMes" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="NMes3L" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="NSemana" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="NDia" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="NDiaSemana" Type="char" MaxLength="10" Nullable="false" />
+  </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
       <PropertyRef Name="id" />
@@ -170,13 +163,13 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="fecha" Type="smalldatetime" />
+    <Property Name="fecha" Type="date" />
     <Property Name="deporte" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6013: La tabla o vista 'HayEquipo.dbo.EstadisticaUsuariosActivos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="EstadisticaUsuariosActivos">
-          <Property Name="Fecha" Type="smalldatetime" />
+          <Property Name="Fecha" Type="date" />
           <Property Name="Año" Type="smallint" />
           <Property Name="Mes" Type="smallint" />
           <Property Name="Activos" Type="int" />
@@ -488,6 +481,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.Reserva' no tiene definida nin
     <Property Name="fechaBaja" Type="smalldatetime" />
     <Property Name="intentos" Type="int" />
     <Property Name="bloqueado" Type="bit" />
+    <Property Name="bloqueadoAdmin" Type="bit" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -527,81 +521,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Property Name="idZona" Type="int" />
     <Property Name="idDeportista" Type="int" />
   </EntityType>
-  <Association Name="FK__estadisti__fecha__2A164134">
-    <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
-    <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DIM_TIEMPO">
-        <PropertyRef Name="Fecha" />
-      </Principal>
-      <Dependent Role="estadisticaComplejo">
-        <PropertyRef Name="fecha" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
-        <Association Name="FK__Estadisti__Fecha__2B0A656D" />-->
-  <Association Name="FK_Administrador_Barrio">
-    <End Role="Barrio" Type="Self.Barrio" Multiplicity="0..1" />
-    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Barrio">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Administrador">
-        <PropertyRef Name="idBarrio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Administrador_TipoDocumento">
-    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
-    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoDocumento">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Administrador">
-        <PropertyRef Name="idTipoDoc" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Administrador_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Administrador">
-        <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idDeportista" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AmigosPorDeportistas_Deportista1">
-    <End Role="Deportista" Type="Self.Deportista" Multiplicity="0..1" />
-    <End Role="AmigosPorDeportistas" Type="Self.AmigosPorDeportistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deportista">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="AmigosPorDeportistas">
-        <PropertyRef Name="idAmigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Barrio_Zona">
     <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
     <End Role="Barrio" Type="Self.Barrio" Multiplicity="*" />
@@ -770,6 +689,21 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DIMTiempo">
+    <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
+    <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIM_TIEMPO">
+        <PropertyRef Name="Fecha" />
+      </Principal>
+      <Dependent Role="estadisticaComplejo">
+        <PropertyRef Name="fecha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
+        <Association Name="FK_DIMTiempo1" />-->
   <Association Name="FK_EncuentroDeportivo_ComplejoDeportivo">
     <End Role="ComplejoDeportivo" Type="Self.ComplejoDeportivo" Multiplicity="0..1" />
     <End Role="EncuentroDeportivo" Type="Self.EncuentroDeportivo" Multiplicity="*" />
@@ -1422,6 +1356,18 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
   <Function Name="spObtenerServiciosPorComplejos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idComp" Type="int" Mode="In" />
   </Function>
+  <Function Name="spRegistrarDeporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+    <Parameter Name="imagen" Type="image" Mode="In" />
+  </Function>
+  <Function Name="spRegistrarServicioExtra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spRegistrarTipoCancha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmNombre" Type="varchar" Mode="In" />
+    <Parameter Name="prmidDeporte" Type="int" Mode="In" />
+    <Parameter Name="prmCapacidad" Type="int" Mode="In" />
+  </Function>
   <Function Name="spRegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="prmNombre" Type="varchar" Mode="In" />
     <Parameter Name="prmEmail" Type="varchar" Mode="In" />
@@ -1461,8 +1407,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <Parameter Name="prmTipo" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="HayEquipoModelStoreContainer">
-    <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AmigosPorDeportistas" EntityType="Self.AmigosPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Barrio" EntityType="Self.Barrio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cancha" EntityType="Self.Cancha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CanchasPorHorarios" EntityType="Self.CanchasPorHorarios" Schema="dbo" store:Type="Tables" />
@@ -1471,6 +1415,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <EntitySet Name="DeportesPorDeportistas" EntityType="Self.DeportesPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deportista" EntityType="Self.Deportista" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeportistasPorEquipos" EntityType="Self.DeportistasPorEquipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DIM_TIEMPO" EntityType="Self.DIM_TIEMPO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EncuentroDeportivo" EntityType="Self.EncuentroDeportivo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estadisticaComplejo" EntityType="Self.estadisticaComplejo" Schema="dbo" store:Type="Tables" />
@@ -1505,94 +1450,69 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AmigosPorDeportista" EntityType="Self.AmigosPorDeportista" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [AmigosPorDeportista].[id] AS [id],
-    [AmigosPorDeportista].[idUsuario] AS [idUsuario],
+      <DefiningQuery>SELECT 
+    [AmigosPorDeportista].[id] AS [id], 
+    [AmigosPorDeportista].[idUsuario] AS [idUsuario], 
     [AmigosPorDeportista].[idAmigo] AS [idAmigo]
     FROM [dbo].[AmigosPorDeportista] AS [AmigosPorDeportista]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [FotosComplejo].[id] AS [id],
-    [FotosComplejo].[imagen] AS [imagen],
+      <DefiningQuery>SELECT 
+    [FotosComplejo].[id] AS [id], 
+    [FotosComplejo].[imagen] AS [imagen], 
     [FotosComplejo].[idComplejo] AS [idComplejo]
     FROM [dbo].[FotosComplejo] AS [FotosComplejo]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [FotosDeportista].[id] AS [id],
-    [FotosDeportista].[imagen] AS [imagen],
+      <DefiningQuery>SELECT 
+    [FotosDeportista].[id] AS [id], 
+    [FotosDeportista].[imagen] AS [imagen], 
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Mapa" EntityType="Self.Mapa" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [Mapa].[id] AS [id],
-    [Mapa].[latitud] AS [latitud],
+      <DefiningQuery>SELECT 
+    [Mapa].[id] AS [id], 
+    [Mapa].[latitud] AS [latitud], 
     [Mapa].[longitud] AS [longitud]
     FROM [dbo].[Mapa] AS [Mapa]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Notificacion" EntityType="Self.Notificacion" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [Notificacion].[id] AS [id],
-    [Notificacion].[idEmisor] AS [idEmisor],
-    [Notificacion].[nombreEmisor] AS [nombreEmisor],
-    [Notificacion].[idReceptor] AS [idReceptor],
-    [Notificacion].[nombreReceptor] AS [nombreReceptor],
-    [Notificacion].[idEncuentro] AS [idEncuentro],
-    [Notificacion].[texto] AS [texto],
+      <DefiningQuery>SELECT 
+    [Notificacion].[id] AS [id], 
+    [Notificacion].[idEmisor] AS [idEmisor], 
+    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
+    [Notificacion].[idReceptor] AS [idReceptor], 
+    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
+    [Notificacion].[idEncuentro] AS [idEncuentro], 
+    [Notificacion].[texto] AS [texto], 
     [Notificacion].[idEstado] AS [idEstado]
     FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Password" EntityType="Self.Password" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [Password].[id] AS [id],
-    [Password].[pwdUsuario] AS [pwdUsuario],
+      <DefiningQuery>SELECT 
+    [Password].[id] AS [id], 
+    [Password].[pwdUsuario] AS [pwdUsuario], 
     [Password].[pwdEncuentro] AS [pwdEncuentro]
     FROM [dbo].[Password] AS [Password]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [Reserva].[id] AS [id],
-    [Reserva].[fechaReserva] AS [fechaReserva],
-    [Reserva].[horaReserva] AS [horaReserva],
-    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo],
+      <DefiningQuery>SELECT 
+    [Reserva].[id] AS [id], 
+    [Reserva].[fechaReserva] AS [fechaReserva], 
+    [Reserva].[horaReserva] AS [horaReserva], 
+    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo], 
     [Reserva].[idEstado] AS [idEstado]
     FROM [dbo].[Reserva] AS [Reserva]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT
-    [UsuariosPorEncuentroDeportivo].[id] AS [id],
-    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA],
-    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro],
+      <DefiningQuery>SELECT 
+    [UsuariosPorEncuentroDeportivo].[id] AS [id], 
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA], 
+    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro], 
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__estadisti__fecha__2A164134" Association="Self.FK__estadisti__fecha__2A164134">
-      <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
-      <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
-    </AssociationSet>
-
-    <AssociationSet Name="FK_Administrador_Barrio" Association="Self.FK_Administrador_Barrio">
-      <End Role="Barrio" EntitySet="Barrio" />
-      <End Role="Administrador" EntitySet="Administrador" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Administrador_TipoDocumento" Association="Self.FK_Administrador_TipoDocumento">
-      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-      <End Role="Administrador" EntitySet="Administrador" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Administrador" EntitySet="Administrador" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista" Association="Self.FK_AmigosPorDeportistas_Deportista">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AmigosPorDeportistas_Deportista1" Association="Self.FK_AmigosPorDeportistas_Deportista1">
-      <End Role="Deportista" EntitySet="Deportista" />
-      <End Role="AmigosPorDeportistas" EntitySet="AmigosPorDeportistas" />
-    </AssociationSet>
     <AssociationSet Name="FK_Barrio_Zona" Association="Self.FK_Barrio_Zona">
       <End Role="Zona" EntitySet="Zona" />
       <End Role="Barrio" EntitySet="Barrio" />
@@ -1648,6 +1568,10 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <AssociationSet Name="FK_DeportistasPorEquipo_Equipo" Association="Self.FK_DeportistasPorEquipo_Equipo">
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DIMTiempo" Association="Self.FK_DIMTiempo">
+      <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
+      <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>
     <AssociationSet Name="FK_EncuentroDeportivo_ComplejoDeportivo" Association="Self.FK_EncuentroDeportivo_ComplejoDeportivo">
       <End Role="ComplejoDeportivo" EntitySet="ComplejoDeportivo" />

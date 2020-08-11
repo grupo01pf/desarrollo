@@ -17,7 +17,6 @@ namespace CapaEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Administrador = new HashSet<Administrador>();
             this.Deportista = new HashSet<Deportista>();
             this.Mensaje = new HashSet<Mensaje>();
             this.ReseñaComplejo = new HashSet<ReseñaComplejo>();
@@ -35,9 +34,8 @@ namespace CapaEntidades
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> intentos { get; set; }
         public Nullable<bool> bloqueado { get; set; }
+        public Nullable<bool> bloqueadoAdmin { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Administrador> Administrador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deportista> Deportista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
