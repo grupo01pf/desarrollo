@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAdministrador.Master" AutoEventWireup="true" CodeBehind="ReportesEstadisticasAdmin.aspx.cs" Inherits="CapaPresentacion.ReportesEstadisticasAdmin" %>
-<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -48,9 +48,15 @@
           </div>
               <br /><br />
           <div class="well">
-            <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar reporte" OnClick="btnMostrarEstadistica_Click" />
+            <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar estadística de usuarios activos" OnClick="btnMostrarEstadistica_Click" />
             <div id="elDivDelDashboard" visible="false" runat="server">
-                <iframe width="933" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiYTBmNzM5NGMtMjVlMy00NDJjLWEwZDEtMTY4ODQwN2NlN2UwIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+                <iframe width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiMTYzZDcxMDItZWVhMy00MWY3LWEzNmYtZjYyMjY3NzBjMDliIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+        </div>
+              <div class="well">
+            <asp:Button ID="btnMostrarEstadisticaSegunda" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar estadística de encuentros" OnClick="btnMostrarEstadisticaSegunda_Click" />
+            <div id="Div1" visible="false" runat="server">
+                <iframe width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiYmMwNTM4YmMtNDhiMy00ZWFiLTkxOWYtY2NiMmY1NDk3ZmJkIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
             </div>
         </div>
    

@@ -641,7 +641,7 @@ namespace CapaPresentacion
                      
         private void cargarMapa(int idComplejoDeportivo)
         {
-            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejoPorID(idComplejoDeportivo);
+            ComplejoDeportivo cd = ComplejoDeportivoDao.ObtenerComplejosPorID(idComplejoDeportivo);
 
             //int? id = cd.mapa.Value;
             if (! string.IsNullOrEmpty(cd.mapa.ToString()))            
