@@ -1734,6 +1734,7 @@
     <Content Include="Imagenes\tenisdobles.jpg" />
     <Content Include="ImagenOtrosPerfiles.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Login.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -16,69 +16,83 @@
     <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="css/Style.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="Login.css" />
+
 
     <style>
-       .alinearIzq { text-align: left; }
-       .fondoDeImagen {background-image: url("Imagenes/sports.jpg");}
-       .centrar{margin-left:180px; }
-      h1 {
-  text-shadow: 2px 2px 5px green;
-  font-size: 45px;
-}
-      .loader {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
-    opacity: .8;
-}
-      .agrandarLetra{
-          font-size: 25px;
-      }
+        .alinearIzq {
+            text-align: left;
+        }
+
+        .fondoDeImagen {
+            background-image: url("Imagenes/sports.jpg");
+        }
+
+        .centrar {
+            margin-left: 180px;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 5px green;
+            font-size: 45px;
+        }
+
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('Imagenes/loadingGif1.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .8;
+        }
+
+        .agrandarLetra {
+            font-size: 25px;
+        }
 
         .margenWell {
             margin: 20px;
         }
-      .error{
-          color:red;
 
-      }
+        .error {
+            color: red;
+        }
 
 
         @media only screen and (max-width: 700px) {
-         .ensanchar{
-             width: 200px;
-             height: 400px;
-         }
-
-
-        }
-            body {
-  background-image: url("Imagenes/fondo2.jpg");
-  background-repeat: no-repeat;
-        background-attachment: fixed;
+            .ensanchar {
+                width: 200px;
+                height: 400px;
+            }
         }
 
-            .login-well{
-                height: 360px;
-            }
-        
-            .divisor {
-                border-left: 1px solid rgba(0, 0, 0, 0.15);
-            }
+        body {
+            background-image: url("Imagenes/fondo2.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-              footer {
-      background-color: #222;
-      color: white;
-      padding: 15px;
-    }
+        .login-well {
+            height: 360px;
+        }
 
-              .blanco{
-                  color: white;
-              }
+        .divisor {
+            border-left: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 15px;
+        }
+
+        .blanco {
+            color: white;
+        }
+
+
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -103,41 +117,68 @@
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100">
+                    <%--<img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100">--%>
+
+                    <div class="boxNavbar">
+                        <div class="logoNavbar "></div>
+
+                        <div id="divLogoNavbar">
+                            <img id="logoNavbar02" src="Imagenes/logo01_ok.png" alt="" />
+                            <img id="letrasNavbar" src="Imagenes/letras_ok.png" alt="" />
+                        </div>
+                    </div>
+
+
+
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 </div>
-            </nav>
-  <%--<div class="jumbotron text-center" style="background-color:black">--%>
+        </nav>
+        <%--<div class="jumbotron text-center" style="background-color:black">--%>
         <div class="container text-center">
-                <div class="row">
-<%--                    <div class="col-sm-6">
+            <div class="row">
+                <%--                    <div class="col-sm-6">
                         <div class="well">--%>
-                        <%--<br />
+                <%--<br />
                         <br />
                         <br />--%>
-<%--                        <br />
+                <%--                        <br />
                         <br />
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />   --%>
 
-              <%--          <h1>HAY EQUIPO !</h1>
+                <%--          <h1>HAY EQUIPO !</h1>
                 
                 <p class="agrandarLetra">Unidos por el deporte</p>--%>
-                            
-                   <%--     <br />
+
+                <%--     <br />
                         <br />
                         <br />--%>
                 <%--        <br />
                         <br />
                     </div>
-                    </div>  --%>                               
-               <%-- <div class="col-sm-6">--%>
-                    <div class="well login-well">
-                        <div class="col-sm-6">
-                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />  
+                    </div>  --%>
+                <%-- <div class="col-sm-6">--%>
+                <div class="well login-well">
+                    <div class="col-sm-6 boxLogo">
+                        <%--<asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />--%>
+
+
+
+                        <div class="logo"></div>
+
+                        <div id="divImgLogo">
+                            <div class="bounce">
+                                <img id="logo07" src="Imagenes/logo01_ok.png" alt="" />
+
+                                <div class="shadow"></div>
+
+                            </div>
                         </div>
 
-                        <div class="col-sm-6 divisor"> 
+
+                    </div>
+
+                    <div class="col-sm-6 divisor">
                         <h2>Iniciar Sesión</h2>
 
 
@@ -168,10 +209,9 @@
                             </asp:UpdatePanel>
 
                         </div>
-                      </div>
                     </div>
-               <%-- </div>--%>
-
+                </div>
+                <%-- </div>--%>
             </div>
 
 
@@ -204,104 +244,118 @@
 
 
 
-            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%" >
+            <asp:Panel ID="PanelModal" runat="server" Style="display: none; background: white; height: 0%">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-               <div class="ensanchar">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                <div class="modal-header">
-                     <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
-                       onclick="btnClose_Click"/>
-                    <h4 class="modal-title" id="myModalLabel">Registrarme</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nombre de usuario</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtNombre" runat="server" Text="" placeholder="Ingrese Nombre" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtEmail" runat="server" Text="" placeholder="Ingrese Email" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                    </div>
-                    <div class="form-group">
-                  <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese Contraseña" TextMode="Password"  Columns="20" CssClass="form-control"></asp:TextBox>
-                    </div>
-                     <div class="form-group">
-                        <label>Repetir Contraseña</label>
-                    </div>
-                    <div class="form-group">
-                  <asp:TextBox ID="txtRPassword" runat="server" placeholder="Repetir Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                       <asp:CheckBox runat="server" ID="checkPrivacidad"/><a data-dismiss="imodal" data-toggle="modal" href="#imodal2" > Acepto Terminos y condiciones</a>
+                        <div class="ensanchar">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
+                                            OnClick="btnClose_Click" />
+                                        <h4 class="modal-title" id="myModalLabel">Registrarme</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Nombre de usuario</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="txtNombre" runat="server" Text="" placeholder="Ingrese Nombre" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="txtEmail" runat="server" Text="" placeholder="Ingrese Email" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Repetir Contraseña</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="txtRPassword" runat="server" placeholder="Repetir Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="checkPrivacidad" /><a data-dismiss="imodal" data-toggle="modal" href="#imodal2"> Acepto Terminos y condiciones</a>
 
-                 </div>
+                                        </div>
 
-               <div class="form-group">
-                <label>Deportista o Establecimiento ? </label>
-                   <asp:RadioButtonList ID="radioLogin" runat="server" CssClass="alinearIzq centrar">
-                       <asp:ListItem Text ="Deportista" Value="2" Selected="True"/>
-                       <asp:ListItem Text ="Establecimiento" Value="3" />
-                   </asp:RadioButtonList>
+                                        <div class="form-group">
+                                            <label>Deportista o Establecimiento ? </label>
+                                            <asp:RadioButtonList ID="radioLogin" runat="server" CssClass="alinearIzq centrar">
+                                                <asp:ListItem Text="Deportista" Value="2" Selected="True" />
+                                                <asp:ListItem Text="Establecimiento" Value="3" />
+                                            </asp:RadioButtonList>
 
-                    </div>
-                     </div>
+                                        </div>
+                                    </div>
 
-                  <div class="modal-footer">
-                      <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
-                      <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-default"
-                       onclick="btnClose_Click"/>
+                                    <div class="modal-footer">
+                                        <asp:Label ID="lblerror2" runat="server" CssClass="error"></asp:Label>
+                                        <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-default"
+                                            OnClick="btnClose_Click" />
 
-                   <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" BackColor="Black" />
+                                        <asp:Button ID="btnRegistrar" runat="server" Text="Guardar" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btn_Registrar_Click" BackColor="Black" />
 
-                  </div>
-                 </div>
-                    </div>
-                   </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 
-      <div class="modal fade" id="imodal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel2">Terminos y Condiciones de uso de HayEquipo</h4>
-                </div>
-                  <div class="modal-body">
-                 <div class="form-group">
+                        <div class="modal fade" id="imodal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel2">Terminos y Condiciones de uso de HayEquipo</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            1. Tienes que tener 13 o más años.
+                                            <br />
+                                            2. No publiques nada que muestre violencia, que pueda asustar a otras personas o que contenga
+imágenes con desnudos. 
+                                            <br />
+                                            3. No uses la cuenta de nadie sin permiso, ni intentes descubrir sus datos de login. 
+                                            <br />
+                                            4. No permitas que nadie use tu cuenta. 
+                                            <br />
+                                            5. Mantén tu contraseña en secreto. 
+                                            <br />
+                                            6. No acoses a nadie ni publiques nada feo sobre ninguna persona. 
+                                            <br />
+                                            7. No publiques información privada de otra persona. 
+                                            <br />
+                                            8. No uses HayEquipo para hacer nada ilegal ni nada que nosotros hayamos prohibido. 
+                                            <br />
+                                            9. Si quieres añadir un sitio web a tu nombre de usuario, asegúrate primero de que tienes permiso de
+HayEquipo. 
+                                            <br />
+                                            10. No cambies nada de nuestro sitio web o de nuestras aplicaciones, ni subas ningún tipo de virus, ni
+hagas nada que pueda interferir con la forma en que HayEquipo funciona. 
+                                            <br />
+                                            11. No utilices ningún tipo de software o robot para crear cuentas de acceso a HayEquipo, ni envíes
+spam o emails no deseados. 
+                                            <br />
+                                            12. Lee nuestras normas de uso y obedécelas cuando uses HayEquipo. 
+                                            <br />
+                                            13. No hagas nada que pueda afectar al modo en que otras personas usan y disfrutan de HayEquipo. 
+                                            <br />
+                                            14. No incites a nadie a saltarse estas reglas. 
+                                            <br />
 
-1. Tienes que tener 13 o más años. <br />
-2. No publiques nada que muestre violencia, que pueda asustar a otras personas o que contenga
-imágenes con desnudos.  <br />
-3. No uses la cuenta de nadie sin permiso, ni intentes descubrir sus datos de login.  <br />
-4. No permitas que nadie use tu cuenta.  <br />
-5. Mantén tu contraseña en secreto.  <br />
-6. No acoses a nadie ni publiques nada feo sobre ninguna persona.  <br />
-7. No publiques información privada de otra persona.  <br />
-8. No uses HayEquipo para hacer nada ilegal ni nada que nosotros hayamos prohibido.  <br />
-9. Si quieres añadir un sitio web a tu nombre de usuario, asegúrate primero de que tienes permiso de
-HayEquipo.  <br />
-10. No cambies nada de nuestro sitio web o de nuestras aplicaciones, ni subas ningún tipo de virus, ni
-hagas nada que pueda interferir con la forma en que HayEquipo funciona.  <br />
-11. No utilices ningún tipo de software o robot para crear cuentas de acceso a HayEquipo, ni envíes
-spam o emails no deseados.  <br />
-12. Lee nuestras normas de uso y obedécelas cuando uses HayEquipo.  <br />
-13. No hagas nada que pueda afectar al modo en que otras personas usan y disfrutan de HayEquipo.  <br />
-14. No incites a nadie a saltarse estas reglas.  <br />
-
-<h4>Tus derechos y nuestros derechos: </h4>
-1. Tienes derecho a sentirte seguro usando HayEquipo. <br />
-2. Oficialmente eres el dueño de cualquier imagen o vídeo original que publiques, pero nosotros tenemos permiso para usarlos,
+                                            <h4>Tus derechos y nuestros derechos: </h4>
+                                            1. Tienes derecho a sentirte seguro usando HayEquipo.
+                                            <br />
+                                            2. Oficialmente eres el dueño de cualquier imagen o vídeo original que publiques, pero nosotros tenemos permiso para usarlos,
 así como para permitir que otros los usen en cualquier parte del mundo.
 Aunque otros nos paguen por ese uso nosotros no tenemos que pagarte a tí por eso.
                                             <br />
