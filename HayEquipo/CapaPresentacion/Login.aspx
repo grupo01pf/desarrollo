@@ -120,7 +120,7 @@
                     <%--<img class="img-responsive" src="Imagenes/HEbarra.png" width="135" height="100">--%>
 
                     <div class="boxNavbar">
-                        <div class="logoNavbar "></div>
+                       <%-- <div class="logoNavbar "></div>--%>
 
                         <div id="divLogoNavbar">
                             <img id="logoNavbar02" src="Imagenes/logo01_ok.png" alt="" />
@@ -163,17 +163,18 @@
                         <%--<asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />--%>
 
 
-
+                        <br />
+                        <br />
                         <div class="logo"></div>
 
-                        <div id="divImgLogo">
+                        <%--<div id="divImgLogo">
                             <div class="bounce">
                                 <img id="logo07" src="Imagenes/logo01_ok.png" alt="" />
 
                                 <div class="shadow"></div>
 
                             </div>
-                        </div>
+                        </div>--%>
 
 
                     </div>
