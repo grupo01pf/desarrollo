@@ -159,7 +159,8 @@ namespace CapaDao
 
         }
 
-        //public static void InsertarCanchasPorHorarios(CanchasPorHorarios cph) {
+        //public static void InsertarCanchasPorHorarios(CanchasPorHorarios cph)
+        //{
         //    using (HayEquipoEntities db = new HayEquipoEntities())
         //    {
         //        db.CanchasPorHorarios.Add(cph);
@@ -263,6 +264,19 @@ namespace CapaDao
             dr.Close();
             cn.Close();
             return existeCPH;
+        }
+
+
+        public static void InsertarCrearCanchasPorHorarios(CanchasPorHorarios cph)
+        {
+            using (HayEquipoEntities db = new HayEquipoEntities())
+            {
+                db.CanchasPorHorarios.Add(cph);
+                db.SaveChanges();
+
+            }
+
+
         }
     }
 }

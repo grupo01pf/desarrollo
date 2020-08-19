@@ -144,7 +144,11 @@
     <Property Name="NSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="NDia" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+
     <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK_DIMTiempo" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
+
+    <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__6D0D32F4" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
+
   </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
@@ -201,6 +205,8 @@
     <Property Name="fecha" Type="DateTime" Precision="0" />
     <Property Name="deporte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK_DIMTiempo" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
+
+    <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__6D0D32F4" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
   </EntityType>
   <EntityType Name="Estado">
     <Key>
@@ -948,6 +954,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DIMTiempo">
+
+  <Association Name="FK__estadisti__fecha__6D0D32F4">
     <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
     <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1459,6 +1467,8 @@
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
     </AssociationSet>
     <AssociationSet Name="FK_DIMTiempo" Association="Self.FK_DIMTiempo">
+
+    <AssociationSet Name="FK__estadisti__fecha__6D0D32F4" Association="Self.FK__estadisti__fecha__6D0D32F4">
       <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
       <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>

@@ -12,7 +12,7 @@ namespace CapaDao
 {
     public class DeportistaDao
     {
-      
+
         public static void InsertarDeportista(DeportistaEntidad deportista)
         {
             SqlConnection cn = new SqlConnection();
@@ -22,7 +22,7 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT into Deportista(apellido, nombres, idTipoDoc, nroDoc, sexo, fechaNacimiento,
-                                                       nroTelefono, idUsuario, promedioEstrellas, idEstado,idBarrio,idDeportePreferido)   
+                                                       nroTelefono, idUsuario, promedioEstrellas, idEstado,idBarrio,idDeportePreferido)
                                 values(@ape, @nombres, @idTipoDoc, @nroDoc, @sex,
                                        @fechaNac, @nroTel, @idUs, @promEstr, @idEst,@idBarr,@idDeportePreferido);
                                 select Scope_Identity() as ID";
@@ -54,7 +54,7 @@ namespace CapaDao
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"UPDATE Deportista SET apellido=@ape, nombres=@nombres, idTipoDoc=@idTipoDoc, 
+            cmd.CommandText = @"UPDATE Deportista SET apellido=@ape, nombres=@nombres, idTipoDoc=@idTipoDoc,
                                                       nroDoc=@nroDoc, sexo=@sex, fechaNacimiento=@fechaNac,
                                                       nroTelefono=@nroTel, idBarrio=@barrio, idDeportePreferido=@idDeportePreferido
                                                 WHERE idUsuario=@idUs;";
@@ -275,10 +275,10 @@ namespace CapaDao
 
             if (dr.Read())
             {
-               
+
 
                 d= dr["id"].ToString();
-               
+
 
             }
             dr.Close();

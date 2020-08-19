@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="AmigosPorDeportista">
@@ -107,7 +107,10 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
       <PropertyRef Name="Fecha" />
     </Key>
     <Property Name="FechaSK" Type="int" Nullable="false" />
+ 
     <Property Name="Fecha" Type="date" Nullable="false" />
+
+    <Property Name="Fecha" Type="smalldatetime" Nullable="false" />
     <Property Name="Año" Type="smallint" Nullable="false" />
     <Property Name="Trimestre" Type="smallint" Nullable="false" />
     <Property Name="Mes" Type="smallint" Nullable="false" />
@@ -521,6 +524,21 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
     <Property Name="idZona" Type="int" />
     <Property Name="idDeportista" Type="int" />
   </EntityType>
+  <Association Name="FK__estadisti__fecha__6D0D32F4">
+    <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
+    <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIM_TIEMPO">
+        <PropertyRef Name="Fecha" />
+      </Principal>
+      <Dependent Role="estadisticaComplejo">
+        <PropertyRef Name="fecha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
+        <Association Name="FK__Estadisti__Fecha__6E01572D" />-->
   <Association Name="FK_Barrio_Zona">
     <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
     <End Role="Barrio" Type="Self.Barrio" Multiplicity="*" />
@@ -1450,69 +1468,73 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AmigosPorDeportista" EntityType="Self.AmigosPorDeportista" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [AmigosPorDeportista].[id] AS [id], 
-    [AmigosPorDeportista].[idUsuario] AS [idUsuario], 
+      <DefiningQuery>SELECT
+    [AmigosPorDeportista].[id] AS [id],
+    [AmigosPorDeportista].[idUsuario] AS [idUsuario],
     [AmigosPorDeportista].[idAmigo] AS [idAmigo]
     FROM [dbo].[AmigosPorDeportista] AS [AmigosPorDeportista]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [FotosComplejo].[id] AS [id], 
-    [FotosComplejo].[imagen] AS [imagen], 
+      <DefiningQuery>SELECT
+    [FotosComplejo].[id] AS [id],
+    [FotosComplejo].[imagen] AS [imagen],
     [FotosComplejo].[idComplejo] AS [idComplejo]
     FROM [dbo].[FotosComplejo] AS [FotosComplejo]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [FotosDeportista].[id] AS [id], 
-    [FotosDeportista].[imagen] AS [imagen], 
+      <DefiningQuery>SELECT
+    [FotosDeportista].[id] AS [id],
+    [FotosDeportista].[imagen] AS [imagen],
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Mapa" EntityType="Self.Mapa" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Mapa].[id] AS [id], 
-    [Mapa].[latitud] AS [latitud], 
+      <DefiningQuery>SELECT
+    [Mapa].[id] AS [id],
+    [Mapa].[latitud] AS [latitud],
     [Mapa].[longitud] AS [longitud]
     FROM [dbo].[Mapa] AS [Mapa]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Notificacion" EntityType="Self.Notificacion" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Notificacion].[id] AS [id], 
-    [Notificacion].[idEmisor] AS [idEmisor], 
-    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
-    [Notificacion].[idReceptor] AS [idReceptor], 
-    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
-    [Notificacion].[idEncuentro] AS [idEncuentro], 
-    [Notificacion].[texto] AS [texto], 
+      <DefiningQuery>SELECT
+    [Notificacion].[id] AS [id],
+    [Notificacion].[idEmisor] AS [idEmisor],
+    [Notificacion].[nombreEmisor] AS [nombreEmisor],
+    [Notificacion].[idReceptor] AS [idReceptor],
+    [Notificacion].[nombreReceptor] AS [nombreReceptor],
+    [Notificacion].[idEncuentro] AS [idEncuentro],
+    [Notificacion].[texto] AS [texto],
     [Notificacion].[idEstado] AS [idEstado]
     FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Password" EntityType="Self.Password" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Password].[id] AS [id], 
-    [Password].[pwdUsuario] AS [pwdUsuario], 
+      <DefiningQuery>SELECT
+    [Password].[id] AS [id],
+    [Password].[pwdUsuario] AS [pwdUsuario],
     [Password].[pwdEncuentro] AS [pwdEncuentro]
     FROM [dbo].[Password] AS [Password]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Reserva].[id] AS [id], 
-    [Reserva].[fechaReserva] AS [fechaReserva], 
-    [Reserva].[horaReserva] AS [horaReserva], 
-    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo], 
+      <DefiningQuery>SELECT
+    [Reserva].[id] AS [id],
+    [Reserva].[fechaReserva] AS [fechaReserva],
+    [Reserva].[horaReserva] AS [horaReserva],
+    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo],
     [Reserva].[idEstado] AS [idEstado]
     FROM [dbo].[Reserva] AS [Reserva]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [UsuariosPorEncuentroDeportivo].[id] AS [id], 
-    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA], 
-    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro], 
+      <DefiningQuery>SELECT
+    [UsuariosPorEncuentroDeportivo].[id] AS [id],
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA],
+    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro],
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK__estadisti__fecha__6D0D32F4" Association="Self.FK__estadisti__fecha__6D0D32F4">
+      <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
+      <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Barrio_Zona" Association="Self.FK_Barrio_Zona">
       <End Role="Zona" EntitySet="Zona" />
       <End Role="Barrio" EntitySet="Barrio" />
