@@ -419,13 +419,14 @@ namespace CapaPresentacion
                 listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             }
             if (rdb_MasOpciones.Checked) {
-
+                int sport = 0;
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int zona = 0;
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 int barrio = 0;
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
 
-                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona,barrio);
+                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport,zona,barrio);
             }
 
             var lista = listaUsuarios.OrderBy(u => u.nombre);
@@ -495,13 +496,14 @@ namespace CapaPresentacion
             }
             if (rdb_MasOpciones.Checked)
             {
-
+                int sport = 0;
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int zona = 0;
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 int barrio = 0;
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
 
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport,zona, barrio);
             }
 
             var lista = listaUsuarios.OrderBy(u => u.nombre);
@@ -1103,6 +1105,7 @@ namespace CapaPresentacion
         protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnl_Lugar.Visible = true;
+            cargarListaPorLugar("Deporte");
             btn_Buscar.Visible = true;
         }
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
@@ -1123,15 +1126,22 @@ namespace CapaPresentacion
             List<Usuario> listaUsuarios = null;
             int zona = 0;
             int barrio = 0;
+            int sport = 0;
+            if (lugar.Equals("Deporte"))
+            {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
+
+            }
             if (lugar.Equals("Zona"))
             {
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
             else
             {
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
 
             var lista = listaUsuarios.OrderBy(u => u.nombre);

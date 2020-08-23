@@ -714,13 +714,14 @@ namespace CapaPresentacion
             }
             if (rdb_MasOpciones.Checked)
             {
-
+                int sport = 0;
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int zona = 0;
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 int barrio = 0;
-                int.TryParse(cmb_BuscarBarrio.SelectedItem.Value, out barrio);
+                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
 
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
 
             var lista = listaUsuarios.OrderBy(u => u.nombre);
@@ -765,15 +766,14 @@ namespace CapaPresentacion
             gdv_Invitar.Visible = true;
         }
 
-        //private void cargarDeportes()
-        //{
-        //    //cmb_Deporte.Items.Clear();
-        //    //cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-        //    //cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-        //    //cmb_Deporte.DataValueField = "id";
-        //    //cmb_Deporte.DataTextField = "nombre";
-        //    //cmb_Deporte.DataBind();
-        //}
+        private void cargarSports() {   
+            cmb_Deporte.Items.Clear();
+            cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+            cmb_Deporte.DataValueField = "id";
+            cmb_Deporte.DataTextField = "nombre";
+            cmb_Deporte.DataBind();
+        }
 
 
 
@@ -1014,16 +1014,20 @@ namespace CapaPresentacion
             btn_Solicitud.Visible = true;
 
             cargarZonas();
-            cargarBuscarBarrios();
+            cargarBarrios();
+            cargarSports();
 
-            pnl_Lugar.Visible = true;
+            //pnl_Lugar.Visible = true;
 
         }
 
-        //protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
-        //{
+        protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnl_Lugar.Visible = true;
+            cargarListaPorLugar("Deporte");
+            btn_Buscar.Visible = true;
+        }
 
-        //}
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarListaPorLugar("Zona");
@@ -1053,15 +1057,22 @@ namespace CapaPresentacion
             List<Usuario> listaUsuarios = null;
             int zona = 0;
             int barrio = 0;
+            int sport = 0;
+            if (lugar.Equals("Deporte"))
+            {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
+
+            }
             if (lugar.Equals("Zona"))
             {
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
             else
             {
-                int.TryParse(cmb_BuscarBarrio.SelectedItem.Value, out barrio);
-                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(zona, barrio);
+                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+                listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
 
             var lista = listaUsuarios.OrderBy(u => u.nombre);
