@@ -811,12 +811,12 @@ namespace CapaPresentacion
 
         private void cargarDeportes()
         {
-            //cmb_Deporte.Items.Clear();
-            //cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
-            //cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
-            //cmb_Deporte.DataValueField = "id";
-            //cmb_Deporte.DataTextField = "nombre";
-            //cmb_Deporte.DataBind();
+            cmb_Deporte.Items.Clear();
+            cmb_Deporte.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+            cmb_Deporte.DataSource = DeporteDao.ObtenerDeportes();
+            cmb_Deporte.DataValueField = "id";
+            cmb_Deporte.DataTextField = "nombre";
+            cmb_Deporte.DataBind();
         }
 
         private void cargarBarrios()
@@ -1094,15 +1094,17 @@ namespace CapaPresentacion
 
             cargarZonas();
             cargarBarrios();
+            cargarDeportes();
 
-            pnl_Lugar.Visible = true;
+            //pnl_Lugar.Visible = true;
 
         }
 
-        //protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
+        protected void cmb_Deporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnl_Lugar.Visible = true;
+            btn_Buscar.Visible = true;
+        }
         protected void cmb_Zona_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargarListaPorLugar("Zona");
