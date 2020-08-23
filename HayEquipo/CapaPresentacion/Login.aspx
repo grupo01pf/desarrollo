@@ -16,7 +16,7 @@
     <link href="fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="css/Style.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="Login.css" />
+    <link rel="stylesheet" type="text/css" href="Login.css" />
 
 
     <style>

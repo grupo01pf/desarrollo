@@ -1,7 +1,5 @@
 ﻿
 
-body {
-}
 
 
 
@@ -13,10 +11,7 @@ body {
         border: 2px solid green;
     }
 
-input:focus {
-    background-color: greenyellow;
-    border: 2px solid green;
-}
+
 
 #btn_Login {
     background-color: green;
@@ -90,77 +85,4 @@ input:focus {
     display: flex;
     align-content: flex-start;
 }
-
-
-/*BOUNCE*/
-
-#divImgLogo {
-  height: 500px;
-  width: 500px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-#logo07 {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    top: 100px;
-    left: 220px;
-    animation: bounce 0.9s infinite;
-    margin:0;
-    z-index: 2;
-}
-
-@keyframes bounce {
-    10% {
-        height: 100px;
-        width: 100px;
-    }
-    30% {
-        height: 100px;
-        width: 100px;
-    }
-    50% {
-        height: 75px;
-        width: 120px;
-        transform: translateY(200px);
-    }
-    75% {
-        height: 100px;
-        width: 120px;
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.bounce {
-    width: 150px;
-    height: 500px;
-}
-
-.shadow {    
-    background-color: grey;
-    height: 20px;
-    width: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 260px;
-    left: 22px;
-    z-index: 1;
-    animation: shrink 0.9s infinite;
-   
-}
-
-@keyframes shrink {
-    50% {
-        transform: scaleX(0.5);
-    }
-}
-
 
