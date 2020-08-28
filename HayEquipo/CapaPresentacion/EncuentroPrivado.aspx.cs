@@ -27,16 +27,25 @@ namespace CapaPresentacion
 
                 cargarChat();
 
-                if (int.Parse(Session["idClave"].ToString()) == 0)
+                if (string.Equals(Session["Estado"].ToString(),"Finalizado"))
                 {
+                    encuentrFinalizadoDesactivarBotones();
                     pnl_MostrarContenido.Visible = true;
                     pnl_Password.Visible = false;
                 }
                 else
                 {
-                    pnl_MostrarContenido.Visible = false;
-                    pnl_Password.Visible = true;
-                }
+                    if (int.Parse(Session["idClave"].ToString()) == 0)
+                    {
+                        pnl_MostrarContenido.Visible = true;
+                        pnl_Password.Visible = false;
+                    }
+                    else
+                    {
+                        pnl_MostrarContenido.Visible = false;
+                        pnl_Password.Visible = true;
+                    }
+                }               
 
             }
 
@@ -86,6 +95,8 @@ namespace CapaPresentacion
             //txt_HoraFin.Text = edq.horaFinHorario.ToShortTimeString();
 
             Session["idClave"] = edq.idClave;
+
+            Session["Estado"] = edq.nombreEstado;
 
             txt_calle.Text = edq.calleComplejo;
             txt_nroCalle.Text = edq.numeroCalleComplejo.ToString();
@@ -874,30 +885,30 @@ namespace CapaPresentacion
             return listaJugadores;
         }
 
-        protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (rdb_PorDeporte.Checked)
-            //{
-            //    //cmb_Deporte.Enabled = true;
-            //    pnl_Lugar.Visible = true;
+        //protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    //if (rdb_PorDeporte.Checked)
+        //    //{
+        //    //    //cmb_Deporte.Enabled = true;
+        //    //    pnl_Lugar.Visible = true;
 
-            //}
-            //else {
-                //cmb_Deporte.Enabled = false;
-               // cmb_Deporte.SelectedIndex = 0;
+        //    //}
+        //    //else {
+        //        //cmb_Deporte.Enabled = false;
+        //       // cmb_Deporte.SelectedIndex = 0;
 
-                //rdb_PorBarrio.Checked = false;
-                //cmb_Barrio.Enabled = false;
-                //cmb_Barrio.SelectedIndex = 0;
+        //        //rdb_PorBarrio.Checked = false;
+        //        //cmb_Barrio.Enabled = false;
+        //        //cmb_Barrio.SelectedIndex = 0;
 
-                //rdb_PorZona.Checked = false;
-                //cmb_Zona.Enabled = false;
-                //cmb_Zona.SelectedIndex = 0;
+        //        //rdb_PorZona.Checked = false;
+        //        //cmb_Zona.Enabled = false;
+        //        //cmb_Zona.SelectedIndex = 0;
 
-                //pnl_Lugar.Visible = false;
+        //        //pnl_Lugar.Visible = false;
 
-          //  }
-        }
+        //  //  }
+        //}
 
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
         {
@@ -1151,6 +1162,24 @@ namespace CapaPresentacion
             gdv_Invitar.DataBind();
         }
 
+        private void encuentrFinalizadoDesactivarBotones()
+        {
+            btn_UnirseEquipoA.Enabled = false;
+            btn_UnirseEquipoB.Enabled = false;
+            btn_Salir.Enabled = false;
+            btn_Entrar.Enabled = false;
+            btn_CancelarEncuentro.Enabled = false;
+            btn_Enviar.Enabled = false;
+            btn_EnviarInvitacion.Enabled = false;
+            btn_InvitarJugador.Enabled = false;
+            btn_CancelarBusqueda.Enabled = false;
+            btn_Solicitud.Enabled = false;
+            btn_SolicitudJugador.Enabled = false;
+            btn_CancelarBusqueda.Enabled = false;
+            btn_Buscar.Visible = false;
 
-    }
+            btn_EncuentroFinalizado.Visible = true;
+        }
+
+    }  
 }

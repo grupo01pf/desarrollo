@@ -823,30 +823,30 @@ namespace CapaPresentacion
             return listaJugadores;
         }
 
-        protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (rdb_PorDeporte.Checked)
-            //{
-            //    //cmb_Deporte.Enabled = true;
-            //    pnl_Lugar.Visible = true;
+        //protected void rdb_PorDeporte_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    //if (rdb_PorDeporte.Checked)
+        //    //{
+        //    //    //cmb_Deporte.Enabled = true;
+        //    //    pnl_Lugar.Visible = true;
 
-            //}
-            //else {
-            //cmb_Deporte.Enabled = false;
-            // cmb_Deporte.SelectedIndex = 0;
+        //    //}
+        //    //else {
+        //    //cmb_Deporte.Enabled = false;
+        //    // cmb_Deporte.SelectedIndex = 0;
 
-            //rdb_PorBarrio.Checked = false;
-            //cmb_Barrio.Enabled = false;
-            //cmb_Barrio.SelectedIndex = 0;
+        //    //rdb_PorBarrio.Checked = false;
+        //    //cmb_Barrio.Enabled = false;
+        //    //cmb_Barrio.SelectedIndex = 0;
 
-            //rdb_PorZona.Checked = false;
-            //cmb_Zona.Enabled = false;
-            //cmb_Zona.SelectedIndex = 0;
+        //    //rdb_PorZona.Checked = false;
+        //    //cmb_Zona.Enabled = false;
+        //    //cmb_Zona.SelectedIndex = 0;
 
-            //pnl_Lugar.Visible = false;
+        //    //pnl_Lugar.Visible = false;
 
-            //  }
-        }
+        //    //  }
+        //}
 
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
         {
