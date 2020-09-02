@@ -67,6 +67,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// Control btn_EncuentroFinalizado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_EncuentroFinalizado;
+        
+        /// <summary>
+        /// Control lbl_Calificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Calificar;
+        
+        /// <summary>
         /// Control cld_Fecha.
         /// </summary>
         /// <remarks>
@@ -758,6 +776,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_Opciones;
+        
+        /// <summary>
+        /// Control lbl_PorDeporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_PorDeporte;
+        
+        /// <summary>
+        /// Control cmb_Deporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmb_Deporte;
         
         /// <summary>
         /// Control pnl_Lugar.

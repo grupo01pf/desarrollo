@@ -86,6 +86,27 @@
           }
       }
 
+      #fab{
+          width:50px;
+          height:50px;
+          border-radius:50%;
+          font-size:30px;
+          background:green;
+          display:flex;
+          justify-content:center;
+
+      }
+      #btnCrear{
+          margin-top:0;
+          text-decoration:none;
+          font-weight:bold;
+          color:white;
+      }
+      #btnCrear:hover {
+          color:blue;
+      }
+      
+
 
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -122,8 +143,22 @@ $(window).load(function() {
         <li><a href="Home.aspx">Principal</a></li>
         <%--<li><a href="CrearEncuentro.aspx">Crear Encuentro</a></li>--%>
          
-          <li><a href="Complejos.aspx">Complejos Deportivos</a></li>
-        <li><a href="CrearEncuentro.aspx">Crear Encuentro <span class="glyphicon glyphicon-plus amarillo"></span></a></li>
+         <li>
+             <a href="Complejos.aspx">Complejos Deportivos</a>
+
+         </li>
+          
+          <li>  
+              <div id="fab">            
+                  <a id="btnCrear" href="CrearEncuentro.aspx"
+                      data-toggle="tooltip" data-placement="bottom" 
+                      title="Crear Encuentro">
+                             + 
+                  </a>
+
+               </div>
+          </li>
+             
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
         
@@ -199,8 +234,12 @@ $(window).load(function() {
 
 </footer>
 <!-- Footer -->
- <script>
 
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
+
 </body>
 </html>

@@ -108,6 +108,56 @@
 
 
         <h1 class="titulo">Encuentro</h1>
+
+        <%-- MODAL ENCUENTRO FINALIZADO --%>
+        <center>
+        <button type="button" id="btn_EncuentroFinalizado" runat="server" class="btn btn-danger"
+            data-toggle="modal" data-target="#exampleModalScrollable3"
+            visible="false">
+            CALIFICAR
+        </button>
+        </center>
+
+        <div class="modal fade" id="exampleModalScrollable3" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle2" aria-hidden="false">
+
+            <%--data-backdrop="static" data-keyboard="false">--%>
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle3">
+                            <center>  
+                              <asp:Label ID="lbl_Calificar" runat="server" Text="Calificacion"></asp:Label>
+                            </center>
+                    </div>
+                    <div class="modal-body">
+
+                       <%-- CONTENIDO --%>
+                         Encuentro finalizado             
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <center>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                       </center>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <%-- FIN MODAL ENCUENTRO FINALIZADO --%>
+
         <div class="container text-center">
             <div class="row">
 
@@ -622,16 +672,15 @@
                                 <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                     <div class="well">
 
-                                        <%-- <div class="form-group">
-                                            <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
-                                                OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
+                                         <div class="form-group">
+                                            <asp:label ID="lbl_PorDeporte" runat="server" Text="Por Deporte"  />
                                             <div class="dropdown">
                                                 <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
                                                     OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
                                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                        </div>--%>
+                                        </div>
                                         <asp:Panel ID="pnl_Lugar" runat="server" Visible="false">
 
                                             <div class="form-group">

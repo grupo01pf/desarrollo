@@ -272,16 +272,15 @@
                             <asp:Panel ID="pnl_Opciones" runat="server" Visible="false">
                                 <div class="well">
 
-                                    <%-- <div class="form-group">
-                                            <asp:CheckBox ID="rdb_PorDeporte" runat="server" Text="Por Deporte" CssClass="checkbox"
-                                                OnCheckedChanged="rdb_PorDeporte_CheckedChanged" AutoPostBack="true" />
+                                      <div class="form-group">
+                                            <asp:label ID="lbl_PorDeporte" runat="server" Text="Por Deporte"  />
                                             <div class="dropdown">
                                                 <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
                                                     OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
                                                     <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                        </div>--%>
+                                        </div>
                                     <asp:Panel ID="pnl_Lugar" runat="server" Visible="false">
 
                                         <div class="form-group">

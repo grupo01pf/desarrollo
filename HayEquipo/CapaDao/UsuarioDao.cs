@@ -675,7 +675,53 @@ namespace CapaDao
         }
 
 
-        public static List<Usuario> getUsuariosPorFiltro(int zona, int barrio)
+        //public static List<Usuario> getUsuariosPorFiltro(int zona, int barrio)
+        
+        //{
+        //    List<Usuario> listaAmigos = new List<Usuario>();
+        //    Usuario u = null;
+
+        //    SqlConnection cn = new SqlConnection();
+        //    cn.ConnectionString = ConnectionString.Cadena();
+        //    cn.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = cn;
+        //    cmd.CommandText = @" 
+        //                        SELECT DISTINCT u.id, u.nombre
+        //                        FROM Usuario u, Deportista d, Barrio b, Zona z
+        //                        WHERE d.id = u.id AND b.id = d.idBarrio  ";
+
+        //    if (zona != 0)
+        //    {
+        //        cmd.CommandText += @" AND z.id = b.idZona AND d.idBarrio = b.id AND z.id = @z";
+        //        cmd.Parameters.AddWithValue("@z", zona);
+        //    }
+        //    if (barrio != 0)
+        //    {
+        //        cmd.CommandText += @" AND b.id = @barrio";
+        //        cmd.Parameters.AddWithValue("@barrio", barrio);
+        //    }
+
+        //    SqlDataReader dr = cmd.ExecuteReader();
+
+        //    while (dr.Read())
+        //    {
+        //        u = new Usuario();
+
+        //        u.id = int.Parse(dr["ID"].ToString());
+        //        u.nombre = dr["Nombre"].ToString();
+
+        //        listaAmigos.Add(u);
+        //    }
+
+        //    dr.Close();
+        //    cn.Close();
+
+        //    return listaAmigos;
+        //}
+
+        // sobrecarga del metodo
+        public static List<Usuario> getUsuariosPorFiltro(int sport, int zona, int barrio)
         {
             List<Usuario> listaAmigos = new List<Usuario>();
             Usuario u = null;
@@ -687,10 +733,14 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @" 
                                 SELECT DISTINCT u.id, u.nombre
-                                FROM Usuario u, Deportista d, Barrio b, Zona z
+                                FROM Usuario u, Deportista d, Barrio b, Zona z, Deporte s
                                 WHERE d.id = u.id AND b.id = d.idBarrio  ";
 
-            
+            if (sport != 0)
+            {
+                cmd.CommandText += @" AND s.id = d.idDeportePreferido AND s.id = @s";
+                cmd.Parameters.AddWithValue("@s", sport);
+            }
             if (zona != 0)
             {
                 cmd.CommandText += @" AND z.id = b.idZona AND d.idBarrio = b.id AND z.id = @z";
@@ -719,7 +769,6 @@ namespace CapaDao
 
             return listaAmigos;
         }
-
         public static void aceptarSolicitud(int idUsuario, int idAmigo)
         {
             List<Usuario> listaAmigos = new List<Usuario>();
