@@ -167,7 +167,7 @@ namespace CapaPresentacion
             //**************************************************
             // Quitar Horarios Reservados
 
-            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados(cd.ID, cld_Fecha.SelectedDate);
+            List<AgendaEntidad> listaHorariosReservados = AgendaDao.ObtenerHorariosReservados2(cd.ID, cld_Fecha.SelectedDate);
             List<AgendaEntidad> listaHorariosDisponibles = new List<AgendaEntidad>();
             if (listaHorariosReservados.Count != 0)
             {
