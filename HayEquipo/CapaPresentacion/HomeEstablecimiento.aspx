@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageEstablecimiento.Master" AutoEventWireup="true" CodeBehind="HomeEstablecimiento.aspx.cs" Inherits="CapaPresentacion.HomeEstablecimiento" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .colorLetra
@@ -23,14 +22,7 @@
 
       .scroll-container {
             display: block;
-            height: 610px;
-            overflow-y: auto;
-        }
-
-
-       .scroll-container2 {
-            display: block;
-            height: 325px;
+            /*height: 600px;*/
             overflow-y: auto;
         }
 
@@ -49,7 +41,7 @@
      .tamanoLetra {
             font-size: 20px;
         }
-
+  
          .ModalPopupBG
             {
                 background-color: #000000;
@@ -83,7 +75,7 @@
                     <div class="row alinearAlCentro">
                         <h1 class="titulo2">Todavía no registraste tu complejo</h1>
                         <br />
-                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click" />
+                        <asp:Button ID="btnRegComplejo" runat="server" Text="Registralo ahora!" BackColor="Black" BorderColor="Black" ForeColor="White" CssClass="w3-xxlarge" OnClick="btnRegComplejo_Click" />            
                         <br />
                         <h1 class="titulo2"></h1>
                         <br />
@@ -96,7 +88,7 @@
  <div class="row">
      <div class="col-sm-6">
           <div class="well">
-
+            
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
                      <b>Próximos Encuentros</b></h1>
@@ -116,18 +108,16 @@
           <br />
           <div class="row">
               <div class="col-sm-3">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro", "{0:dd/MM/yyyy}") %>'></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("horaInicio", "{0:HH:mm}") %>'></asp:Label>
-                  <asp:Label runat="server" text="Hs"></asp:Label>
-                   </span>
+                  <span class="glyphicon glyphicon-calendar"></span>               
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
                   <br />
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-map-marker"></span>
                   <asp:Label runat="server" text='<%#Eval("nombreComplejo") %>'></asp:Label> <asp:Label ID="Label1" runat="server" Text=" &#183 "></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>
-                  <br />
+                  <asp:Label runat="server" text='<%#Eval("calleComplejo") %> '></asp:Label> <asp:Label runat="server" text=' <%#Eval("numeroCalleComplejo") %>'></asp:Label>         
+                  <br />               
               </div>
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-eye-open"></span>
@@ -140,18 +130,18 @@
                   <i class="fa fa-male"></i>
                   <asp:Label runat="server" text='<%#Eval("nombreEstado") %>'></asp:Label>
               </div>
-          </div>
+          </div>         
       </p>
-      <br />
-    </div>
+      <br />  
+    </div>   
       <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Ver encuentro" Class="w3-button w3-block w3-black" ></asp:LinkButton>
-      </div>
+      </div>   
            </div><br />
             </ItemTemplate>
-     </asp:Repeater>
+     </asp:Repeater>    
 
  </div>
-    </div>
+    </div>  
      </div>
      <div class="col-sm-6">
           <div class="well">
@@ -167,13 +157,14 @@
                              </asp:DropDownList>
                         </div>--%>
 
-                        <div class="form-group">
+              <div class="row alinearAlCentro">
+                        <%--<div class="form-group">--%>
                              <asp:Label ID="lblDep" runat="server" Text="Deporte"></asp:Label>
               </div>
               <div class="row alinearAlCentro">
                   <div class="col-sm-3">
                              </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-6">                            
                              <asp:DropDownList ID="ddlDeportes" CssClass="form-control" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlDeportes_SelectedIndexChanged" >
                              <asp:ListItem Value="0">Seleccione..</asp:ListItem>
                              </asp:DropDownList>
@@ -191,14 +182,20 @@
                              </div>
                              <div class="col-sm-4" style="padding-left: 0px;">
                              <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
-                        </div>
-                        <div class="scroll-container2">
+                             </div>
+                             <div class="col-sm-4">
+                             </div>
+                   <br />
+                   </div>
+                        <%--</div>--%>
+
+              <div class="row alinearAlCentro">
                         <strong><asp:Label ID="lbl_agendaFecha" runat="server"></asp:Label></strong>
                                                          <br />
                   </div>
-                      <%--  <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>
+                      <%--  <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="1000"></asp:Timer>       
                                                          <br />--%>
-
+                                         
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged">
@@ -213,23 +210,22 @@
                                                         <asp:BoundField DataField="idEstadoHorario" HeaderText="Estado" Visible="true"/>
                                                     </Columns>
                                                 </asp:GridView>
-
+                                           
                                  <br />
                                 <asp:Label ID="lbl_Reserva" runat="server" Text="" ForeColor="#FF9900"></asp:Label>
                                 <br />
-                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
-                          </div>
+                                <%--<asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>--%>
                         </div>
-
+                    
      </div>
  </div>
-
-
-
+      
+            
+                         
         </div>
-
-
-
+           
+                   
+      
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  </asp:Panel>
 </asp:Content>

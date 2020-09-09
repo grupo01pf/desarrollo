@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="54b1f85b8fd9432ea3ed071f5821d1cb" Name="Diagram1">
+      <Diagram DiagramId="7ec9bf9d26d6404596081a9912f0f22e" Name="Diagram1">
         <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Cancha" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.CanchasPorHorarios" Width="1.5" PointX="10.5" PointY="35.5" IsExpanded="true" />
@@ -40,10 +40,10 @@
         <EntityTypeShape EntityType="HayEquipoModel.Sponsor" Width="1.5" PointX="9" PointY="26.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TipoCancha" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TipoDeporte" Width="1.5" PointX="3.75" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TiposPorDeportes" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracion" Width="1.5" PointX="9" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracion" Width="1.5" PointX="9" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Valoracion" Width="1.5" PointX="11.25" PointY="26.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Zona" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.ZonasPorDeportistas" Width="1.5" PointX="14.25" PointY="24.375" IsExpanded="true" />
@@ -83,7 +83,7 @@
         <AssociationConnector Association="HayEquipoModel.FK_Valoracion_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ZonasPorDeportistas_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_DeportistasPorEquipo_Equipo" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK_DIMTiempo" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK__estadisti__fecha__236943A5" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Equipo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Estado" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_InvitacionEncuentro_EncuentroDeportivo" ManuallyRouted="false" />
