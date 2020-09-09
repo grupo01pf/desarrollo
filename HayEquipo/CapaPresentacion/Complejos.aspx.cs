@@ -17,7 +17,7 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 ddlOrdenar.AutoPostBack = true;
-            }
+            
 
             string nomb = string.Empty;
             int? idUs = null;
@@ -26,7 +26,8 @@ namespace CapaPresentacion
             string d3 = string.Empty;
             string d4 = string.Empty;
 
-            CargarRepeaterComplejos(nomb, idUs, d1, d2, d3, d4);
+            CargarRepeaterComplejosPorNom(nomb, idUs, d1, d2, d3, d4);
+            }
         }
 
         protected int? IDCom
@@ -47,7 +48,7 @@ namespace CapaPresentacion
         {
             encuentrosRepeater.DataSource = ComplejoDeportivoDao.ObtenerComplejosFiltros(nomb, idUsuario, d1, d2, d3, d4);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         protected void CargarRepeaterComplejosPorNom(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
@@ -56,7 +57,7 @@ namespace CapaPresentacion
                                              orderby comp.Nombre ascending
                                              select comp);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         protected void CargarRepeaterComplejosPorVal(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
@@ -65,7 +66,7 @@ namespace CapaPresentacion
                                              orderby comp.Valoracion descending
                                              select comp);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         protected void CargarRepeaterComplejosPorFecha(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
@@ -74,7 +75,7 @@ namespace CapaPresentacion
                                            //  orderby comp.FechaRegistro descending
                                              select comp);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         protected void CargarRepeaterComplejosBuscar(string nomb, int? idUsuario, string d1, string d2, string d3, string d4)
@@ -83,21 +84,125 @@ namespace CapaPresentacion
                                              orderby comp.Nombre
                                              select comp);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-        if (e.CommandName == "btnUnirseEncuentro")
-        {
-            string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+    //    void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+    //    {
+    //    if (e.CommandName == "btnUnirseEncuentro")
+    //    {
+    //        string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
 
-            int idSeleccionado = int.Parse(((LinkButton)e.CommandSource).CommandArgument);
-            IDCom = idSeleccionado;
-            Session["IDCom"] = idSeleccionado;
-            spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
+    //        int idSeleccionado = int.Parse(((LinkButton)e.CommandSource).CommandArgument);
+    //        IDCom = idSeleccionado;
+    //        Session["IDCom"] = idSeleccionado;
+    //        spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
 
-            myModalLabel2.InnerText = compSelec.Nombre;
+    //        myModalLabel2.InnerText = compSelec.Nombre;
+    //            if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
+    //            {
+    //                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
+    //                foreach (ListItem item in RadioButtonList2.Items)
+    //                {
+    //                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()) && item.Text == "★")
+    //                    {
+    //                        item.Attributes.CssStyle.Add("color", "orange");
+    //                    }
+
+    //                }
+    //                RadioButtonList2.Enabled = false;
+    //                //lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
+
+    //            }else
+    //            {
+    //                RadioButtonList2.Enabled = false;
+    //                RadioButtonList2.Visible = false;
+    //                //lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
+    //            }
+    //        lblDeportes.Text = compSelec.Deportes;
+    //        lblDescripcion.Text = compSelec.Descripcion;
+    //        listServicios.Items.Clear();
+    //        lblServicios.Text = "Servicios: ";
+    //        if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
+    //        {
+    //            CargarListServicios(compSelec.ID);
+    //        }
+    //        else
+    //        {
+    //            lblServicios.Text = "Servicios: - ";
+    //            divListServ.Visible = false;
+    //        }
+    //        lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
+    //        Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
+    //        lblBarrio.Text = "Barrio: " + bar.nombre;
+    //        lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+    //        lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
+    //        if (compSelec.Apertura != null && compSelec.Cierre != null)
+    //        {
+    //            TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.Apertura, typeof(TimeSpan));
+    //            TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.Cierre, typeof(TimeSpan));
+    //            lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+    //        }
+    //        else
+    //        {
+    //            lblHorarios.Text = "Horarios: - ";
+    //        }
+
+    //        if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
+    //        {
+    //                byte[] avtr = ComplejoDeportivoDao.ObtenerAvatar(Session["IDCom"].ToString());
+    //                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(avtr);
+    //                imgAvatar.ImageUrl = ImagenDataURL64;
+    //        }
+    //        else
+    //        {
+    //            imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+    //        }
+
+    //        if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 1) != false)
+    //        {
+    //                byte[] Img1 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 1);
+    //                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img1);
+    //                img1.Src = ImagenDataURL64;
+    //            }
+    //        else
+    //        {
+    //            img1.Src = "~/Imagenes/complejo_logo_default.png";
+    //        }
+    //        if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 2) != false)
+    //        {
+    //                byte[] Img2 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 2);
+    //                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img2);
+    //                img2.Src = ImagenDataURL64;
+    //            }
+    //        else
+    //        {
+    //            img2.Src = "~/Imagenes/complejo_logo_default.png";
+    //        }
+    //        if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 3) != false)
+    //        {
+    //                byte[] Img3 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 3);
+    //                string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img3);
+    //                img3.Src = ImagenDataURL64;
+    //            }
+    //        else
+    //        {
+    //            img3.Src = "~/Imagenes/complejo_logo_default.png";
+    //        }
+
+    //        btnPopUp_ModalPopupExtender2.Show();
+    //    }
+    //}
+
+        protected void explorar_Click(object sender, EventArgs e)
+        {
+
+                int idSeleccionado = int.Parse((sender as LinkButton).CommandArgument);
+                IDCom = idSeleccionado;
+                Session["IDCom"] = idSeleccionado;
+                spObtenerComplejosJoin_Result compSelec = ComplejoDeportivoDao.ObtenerComplejoPorID(idSeleccionado);
+
+                myModalLabel2.InnerText = compSelec.Nombre;
                 if (ValoracionDao.existePromedioGeneralComplejo(idSeleccionado.ToString()))
                 {
                     RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneralComplejo(idSeleccionado.ToString()));
@@ -112,87 +217,87 @@ namespace CapaPresentacion
                     RadioButtonList2.Enabled = false;
                     //lblValoracion.Text = "Calificacion Promedio General es: " + RadioButtonList2.SelectedValue + " Puntos";
 
-                }else
+                }
+                else
                 {
                     RadioButtonList2.Enabled = false;
                     RadioButtonList2.Visible = false;
                     //lblValoracion.Text = "nua odarolav odis ah on ojelpmoC etsE";
                 }
-            lblDeportes.Text = compSelec.Deportes;
-            lblDescripcion.Text = compSelec.Descripcion;
-            listServicios.Items.Clear();
-            lblServicios.Text = "Servicios: ";
-            if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
-            {
-                CargarListServicios(compSelec.ID);
-            }
-            else
-            {
-                lblServicios.Text = "Servicios: - ";
-                divListServ.Visible = false;
-            }
-            lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
-            Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
-            lblBarrio.Text = "Barrio: " + bar.nombre;
-            lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
-            lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
-            if (compSelec.Apertura != null && compSelec.Cierre != null)
-            {
-                TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.Apertura, typeof(TimeSpan));
-                TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.Cierre, typeof(TimeSpan));
-                lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
-            }
-            else
-            {
-                lblHorarios.Text = "Horarios: - ";
-            }
+                lblDeportes.Text = compSelec.Deportes;
+                lblDescripcion.Text = compSelec.Descripcion;
+                listServicios.Items.Clear();
+                lblServicios.Text = "Servicios: ";
+                if (ServicioExtraDao.ExistenServiciosPorComplejo(compSelec.ID) > 0)
+                {
+                    CargarListServicios(compSelec.ID);
+                }
+                else
+                {
+                    lblServicios.Text = "Servicios: - ";
+                    divListServ.Visible = false;
+                }
+                lblDireccion.Text = "Dirección: " + compSelec.Calle + " " + compSelec.NroCalle.ToString();
+                Barrio bar = BarrioDao.ObtenerBarriosPorID(int.Parse(compSelec.IDBarrio.ToString()));
+                lblBarrio.Text = "Barrio: " + bar.nombre;
+                lblZona.Text = "Zona: " + ZonaDao.ObtenerZonasPorID(int.Parse(bar.idZona.ToString())).nombre;
+                lblTelefono.Text = "Teléfono: " + compSelec.Telefono.ToString();
+                if (compSelec.Apertura != null && compSelec.Cierre != null)
+                {
+                    TimeSpan hA = (TimeSpan)Convert.ChangeType(compSelec.Apertura, typeof(TimeSpan));
+                    TimeSpan hC = (TimeSpan)Convert.ChangeType(compSelec.Cierre, typeof(TimeSpan));
+                    lblHorarios.Text = "Horarios: " + hA.ToString(@"hh\:mm") + " a " + hC.ToString(@"hh\:mm");
+                }
+                else
+                {
+                    lblHorarios.Text = "Horarios: - ";
+                }
 
-            if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
-            {
+                if (ComplejoDeportivoDao.existeAvatar(Session["IDCom"].ToString()) != false)
+                {
                     byte[] avtr = ComplejoDeportivoDao.ObtenerAvatar(Session["IDCom"].ToString());
                     string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(avtr);
                     imgAvatar.ImageUrl = ImagenDataURL64;
-            }
-            else
-            {
-                imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
-            }
+                }
+                else
+                {
+                    imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
+                }
 
-            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 1) != false)
-            {
+                if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 1) != false)
+                {
                     byte[] Img1 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 1);
                     string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img1);
                     img1.Src = ImagenDataURL64;
                 }
-            else
-            {
-                img1.Src = "~/Imagenes/complejo_logo_default.png";
-            }
-            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 2) != false)
-            {
+                else
+                {
+                    img1.Src = "~/Imagenes/complejo_logo_default.png";
+                }
+                if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 2) != false)
+                {
                     byte[] Img2 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 2);
                     string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img2);
                     img2.Src = ImagenDataURL64;
                 }
-            else
-            {
-                img2.Src = "~/Imagenes/complejo_logo_default.png";
-            }
-            if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 3) != false)
-            {
+                else
+                {
+                    img2.Src = "~/Imagenes/complejo_logo_default.png";
+                }
+                if (ComplejoDeportivoDao.existeImagen(Session["IDCom"].ToString(), 3) != false)
+                {
                     byte[] Img3 = ComplejoDeportivoDao.ObtenerImagen(Session["IDCom"].ToString(), 3);
                     string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(Img3);
                     img3.Src = ImagenDataURL64;
                 }
-            else
-            {
-                img3.Src = "~/Imagenes/complejo_logo_default.png";
-            }
+                else
+                {
+                    img3.Src = "~/Imagenes/complejo_logo_default.png";
+                }
 
-            btnPopUp_ModalPopupExtender2.Show();
+                btnPopUp_ModalPopupExtender2.Show();
+            
         }
-    }
-
         protected void encuentrosRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (encuentrosRepeater.Items.Count < 1)

@@ -493,7 +493,6 @@
     <Property Name="fechaBaja" Type="DateTime" Precision="0" />
     <Property Name="intentos" Type="Int32" />
     <Property Name="bloqueado" Type="Boolean" />
-    <Property Name="bloqueadoAdmin" Type="Boolean" />
     <NavigationProperty Name="Deportista" Relationship="Self.FK_Deportista_Usuario" FromRole="Usuario" ToRole="Deportista" />
     <NavigationProperty Name="Mensaje" Relationship="Self.FK_Mensaje_Usuario" FromRole="Usuario" ToRole="Mensaje" />
     <NavigationProperty Name="ReseñaComplejo" Relationship="Self.FK_ReseñaComplejo_Usuario" FromRole="Usuario" ToRole="ReseñaComplejo" />
@@ -1725,18 +1724,6 @@
     </FunctionImport>
     <FunctionImport Name="spObtenerServiciosPorComplejos" ReturnType="Collection(HayEquipoModel.spObtenerServiciosPorComplejos_Result)">
       <Parameter Name="idComp" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spRegistrarDeporte">
-      <Parameter Name="prmNombre" Mode="In" Type="String" />
-      <Parameter Name="imagen" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="spRegistrarServicioExtra">
-      <Parameter Name="prmNombre" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="spRegistrarTipoCancha">
-      <Parameter Name="prmNombre" Mode="In" Type="String" />
-      <Parameter Name="prmidDeporte" Mode="In" Type="Int32" />
-      <Parameter Name="prmCapacidad" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spRegistrarUsuario">
       <Parameter Name="prmNombre" Mode="In" Type="String" />

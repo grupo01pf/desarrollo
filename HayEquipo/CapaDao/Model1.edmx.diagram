@@ -40,10 +40,10 @@
         <EntityTypeShape EntityType="HayEquipoModel.Sponsor" Width="1.5" PointX="9" PointY="26.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TipoCancha" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TipoDeporte" Width="1.5" PointX="3.75" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoDocumento" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.TiposPorDeportes" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracion" Width="1.5" PointX="9" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.TipoValoracion" Width="1.5" PointX="9" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HayEquipoModel.Usuario" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Valoracion" Width="1.5" PointX="11.25" PointY="26.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Zona" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.ZonasPorDeportistas" Width="1.5" PointX="14.25" PointY="24.375" IsExpanded="true" />

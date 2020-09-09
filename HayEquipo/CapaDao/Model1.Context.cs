@@ -571,45 +571,6 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerServiciosPorComplejos_Result>("spObtenerServiciosPorComplejos", idCompParameter);
         }
     
-        public virtual int spRegistrarDeporte(string prmNombre, byte[] imagen)
-        {
-            var prmNombreParameter = prmNombre != null ?
-                new ObjectParameter("prmNombre", prmNombre) :
-                new ObjectParameter("prmNombre", typeof(string));
-    
-            var imagenParameter = imagen != null ?
-                new ObjectParameter("imagen", imagen) :
-                new ObjectParameter("imagen", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarDeporte", prmNombreParameter, imagenParameter);
-        }
-    
-        public virtual int spRegistrarServicioExtra(string prmNombre)
-        {
-            var prmNombreParameter = prmNombre != null ?
-                new ObjectParameter("prmNombre", prmNombre) :
-                new ObjectParameter("prmNombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarServicioExtra", prmNombreParameter);
-        }
-    
-        public virtual int spRegistrarTipoCancha(string prmNombre, Nullable<int> prmidDeporte, Nullable<int> prmCapacidad)
-        {
-            var prmNombreParameter = prmNombre != null ?
-                new ObjectParameter("prmNombre", prmNombre) :
-                new ObjectParameter("prmNombre", typeof(string));
-    
-            var prmidDeporteParameter = prmidDeporte.HasValue ?
-                new ObjectParameter("prmidDeporte", prmidDeporte) :
-                new ObjectParameter("prmidDeporte", typeof(int));
-    
-            var prmCapacidadParameter = prmCapacidad.HasValue ?
-                new ObjectParameter("prmCapacidad", prmCapacidad) :
-                new ObjectParameter("prmCapacidad", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarTipoCancha", prmNombreParameter, prmidDeporteParameter, prmCapacidadParameter);
-        }
-    
         public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)
         {
             var prmNombreParameter = prmNombre != null ?

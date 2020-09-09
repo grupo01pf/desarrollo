@@ -275,7 +275,8 @@
       </p>
       <br />  
     </div>   
-      <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("ID") %>' text="Explorar Complejo" Class="w3-button w3-block w3-black" ></asp:LinkButton>
+      <%--<asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("ID") %>' text="Explorar Complejo" Class="w3-button w3-block w3-black" ></asp:LinkButton>--%>
+      <asp:LinkButton ID="explorar"  Class="w3-button w3-block w3-black" runat="server" CommandArgument='<%#Eval("ID") %>' OnClick="explorar_Click">Explorar Complejo</asp:LinkButton>
       </div>   
            </div><br />
             </ItemTemplate>
