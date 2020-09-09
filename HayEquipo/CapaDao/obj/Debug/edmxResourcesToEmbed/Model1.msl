@@ -434,7 +434,6 @@
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
           <ScalarProperty Name="intentos" ColumnName="intentos" />
           <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
-          <ScalarProperty Name="bloqueadoAdmin" ColumnName="bloqueadoAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -819,9 +818,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spRegistrarDeporte" FunctionName="HayEquipoModel.Store.spRegistrarDeporte" />
-    <FunctionImportMapping FunctionImportName="spRegistrarServicioExtra" FunctionName="HayEquipoModel.Store.spRegistrarServicioExtra" />
-    <FunctionImportMapping FunctionImportName="spRegistrarTipoCancha" FunctionName="HayEquipoModel.Store.spRegistrarTipoCancha" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuario" FunctionName="HayEquipoModel.Store.spRegistrarUsuario" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuarioEstablecimiento" FunctionName="HayEquipoModel.Store.spRegistrarUsuarioEstablecimiento" />
     <FunctionImportMapping FunctionImportName="spRegistrarValoracionComplejo" FunctionName="HayEquipoModel.Store.spRegistrarValoracionComplejo" />

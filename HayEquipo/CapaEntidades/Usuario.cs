@@ -34,7 +34,6 @@ namespace CapaEntidades
         public Nullable<System.DateTime> fechaBaja { get; set; }
         public Nullable<int> intentos { get; set; }
         public Nullable<bool> bloqueado { get; set; }
-        public Nullable<bool> bloqueadoAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deportista> Deportista { get; set; }
