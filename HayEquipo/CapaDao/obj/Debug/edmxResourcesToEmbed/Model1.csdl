@@ -144,7 +144,7 @@
     <Property Name="NSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="NDia" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK_DIMTiempo" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
+    <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__2A164134" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
   </EntityType>
   <EntityType Name="EncuentroDeportivo">
     <Key>
@@ -200,7 +200,7 @@
     <Property Name="id" Type="Int32" Nullable="false" />
     <Property Name="fecha" Type="DateTime" Precision="0" />
     <Property Name="deporte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK_DIMTiempo" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
+    <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__2A164134" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
   </EntityType>
   <EntityType Name="Estado">
     <Key>
@@ -947,7 +947,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DIMTiempo">
+  <Association Name="FK__estadisti__fecha__2A164134">
     <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
     <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1458,7 +1458,7 @@
       <End Role="Equipo" EntitySet="Equipo" />
       <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
     </AssociationSet>
-    <AssociationSet Name="FK_DIMTiempo" Association="Self.FK_DIMTiempo">
+    <AssociationSet Name="FK__estadisti__fecha__2A164134" Association="Self.FK__estadisti__fecha__2A164134">
       <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
       <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
     </AssociationSet>
@@ -1587,6 +1587,10 @@
       <Parameter Name="idDeporte" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_AgendaDao_ObtenerHorariosReservados" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerHorariosReservados_Result)">
+      <Parameter Name="idComplejo" Mode="In" Type="Int32" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AgendaDao_ObtenerHorariosReservados2" ReturnType="Collection(HayEquipoModel.sp_AgendaDao_ObtenerHorariosReservados2_Result)">
       <Parameter Name="idComplejo" Mode="In" Type="Int32" />
       <Parameter Name="fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -1789,6 +1793,12 @@
     <Property Type="Time" Name="horaCierre" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_AgendaDao_ObtenerHorariosReservados_Result">
+    <Property Type="Int32" Name="idCancha" Nullable="false" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Time" Name="horaInicio" Nullable="true" />
+    <Property Type="Int32" Name="idEstado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_AgendaDao_ObtenerHorariosReservados2_Result">
     <Property Type="Int32" Name="idCancha" Nullable="false" />
     <Property Type="DateTime" Name="fecha" Nullable="true" />
     <Property Type="Time" Name="horaInicio" Nullable="true" />

@@ -27,7 +27,7 @@ namespace CapaPresentacion
 
                 cargarChat();
 
-                if (string.Equals(Session["Estado"].ToString(),"Finalizado"))
+                if (string.Equals(Session["Estado"].ToString(),"Finalizado") || estadoencuentro.Text == "Cancelado")
                 {
                     encuentrFinalizadoDesactivarBotones();
                     pnl_MostrarContenido.Visible = true;
@@ -113,7 +113,7 @@ namespace CapaPresentacion
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
             // bloquearBotones();
-
+            estadoencuentro.Text = Session["Estado"].ToString();
             validacionesDeUsuario();
 
 
@@ -757,8 +757,8 @@ namespace CapaPresentacion
         {
 
             EncuentroDeportivoQueryEntidad edq = new EncuentroDeportivoQueryEntidad();
-           // int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-           // edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
+            int idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+            edq = EncuentroDeportivioQueryDao.datosEncuentroPrivado(idEncuentro);
             int idcomplejo = edq.idComplejo;
             string idcomplejo1 = Convert.ToString(idcomplejo);
             string usuarioValorador = Session["ID"].ToString();
@@ -1178,7 +1178,230 @@ namespace CapaPresentacion
             btn_CancelarBusqueda.Enabled = false;
             btn_Buscar.Visible = false;
 
-            btn_EncuentroFinalizado.Visible = true;
+           // btn_EncuentroFinalizado.Visible = true;
+        }
+
+        protected void gdv_Equipo_B_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            
+            string nombrej = ((GridView)sender).Rows[e.RowIndex].Cells[1].Text;
+            string idjugador = DeportistaDao.ObtenerIdDeportistaXNombre(nombrej);
+          //  int iddep = int.Parse(idjugador);
+            txtIdjugador.Text = idjugador;
+            nombreJ.Text = nombrej;
+            string usuario = Session["ID"].ToString();
+
+
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "4", usuario) == true)
+            {
+                RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "4", usuario));
+                foreach (ListItem item in RadioButtonList4.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "4", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+              //  RadioButtonList4.Enabled = false;
+                Label4.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList4.SelectedValue + " Puntos";
+
+            }
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "5", usuario) == true)
+            {
+                RadioButtonList5.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "5", usuario));
+                foreach (ListItem item in RadioButtonList5.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "5", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList5.Enabled = false;
+                Label6.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList5.SelectedValue + " Puntos";
+
+            }
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "6", usuario) == true)
+            {
+                RadioButtonList6.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "6", usuario));
+                foreach (ListItem item in RadioButtonList6.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "6", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList6.Enabled = false;
+                Label7.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList6.SelectedValue + " Puntos";
+
+            }
+            ModalPopupExtender1.Show();
+        }
+
+        protected void gdv_Equipo_A_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            
+            string nombrej = ((GridView)sender).Rows[e.RowIndex].Cells[1].Text;
+            string idjugador = DeportistaDao.ObtenerIdDeportistaXNombre(nombrej);
+           // int idjug = int.Parse(idjugador);
+            txtIdjugador.Text = idjugador;
+            nombreJ.Text = nombrej;
+            string usuario = Session["ID"].ToString();
+            
+
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "4", usuario) == true)
+            {
+                RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "4", usuario));
+                foreach (ListItem item in RadioButtonList4.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "4", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList4.Enabled = false;
+                Label4.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList4.SelectedValue + " Puntos";
+
+            }
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "5", usuario) == true)
+            {
+                RadioButtonList5.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "5", usuario));
+                foreach (ListItem item in RadioButtonList5.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "5", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList5.Enabled = false;
+                Label6.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList5.SelectedValue + " Puntos";
+
+            }
+            if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "6", usuario) == true)
+            {
+                RadioButtonList6.SelectedValue = Convert.ToString(ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "6", usuario));
+                foreach (ListItem item in RadioButtonList6.Items)
+                {
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerValorParticularJugadorxid(idjugador, "6", usuario) && item.Text == "★")
+                    {
+                        item.Attributes.CssStyle.Add("color", "orange");
+                    }
+
+                }
+                RadioButtonList6.Enabled = false;
+                Label7.Text = "Usted califico este Complejo con un puntuacion de : " + RadioButtonList6.SelectedValue + " Puntos";
+
+            }
+            ModalPopupExtender1.Show();
+        }
+
+        protected void gdv_Equipo_A_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (estadoencuentro.Text == "Finalizado" || estadoencuentro.Text == "Cancelado")
+                {
+                    LinkButton Lb = (LinkButton)e.Row.FindControl("updatebtn");
+                    Lb.Visible = true;
+                }
+                }
+            
+        }
+
+        protected void gdv_Equipo_B_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (estadoencuentro.Text == "Finalizado" || estadoencuentro.Text == "Cancelado")
+                {
+                    LinkButton Lb2 = (LinkButton)e.Row.FindControl("updatebtn2");
+                    Lb2.Visible = true;
+                }
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            
+            Response.Redirect("EncuentroPrivado.aspx");
+            ModalPopupExtender1.Hide();
+        }
+
+        protected void RadioButtonList4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int valor = Convert.ToInt32(RadioButtonList4.SelectedValue);
+            string usuario = Session["ID"].ToString();
+            int usuarioValorador = Convert.ToInt32(usuario);
+            int idjugador = Convert.ToInt32(txtIdjugador.Text);
+            RadioButtonList4.Enabled = false;
+            ValoracionDao.RegistrarValoracionDeportista(idjugador, usuarioValorador, valor, 4);
+
+            foreach (ListItem item in RadioButtonList4.Items)
+            {
+
+                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+                {
+                    item.Attributes.CssStyle.Add("color", "orange");
+                }
+
+            }
+
+            Label4.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
+         
+            //cargarValoracion();
+
+        }
+        protected void RadioButtonList5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int valor = Convert.ToInt32(RadioButtonList5.SelectedValue);
+            string usuario = Session["ID"].ToString();
+            int usuarioValorador = Convert.ToInt32(usuario);
+            int idjugador = Convert.ToInt32(txtIdjugador.Text);
+            RadioButtonList5.Enabled = false;
+            ValoracionDao.RegistrarValoracionDeportista(idjugador, usuarioValorador, valor, 5);
+
+            foreach (ListItem item in RadioButtonList5.Items)
+            {
+
+                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+                {
+                    item.Attributes.CssStyle.Add("color", "orange");
+                }
+
+            }
+
+            Label6.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
+         
+            //cargarValoracion();
+        }
+        protected void RadioButtonList6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int valor = Convert.ToInt32(RadioButtonList6.SelectedValue);
+            string usuario = Session["ID"].ToString();
+            int usuarioValorador = Convert.ToInt32(usuario);
+            int idjugador = Convert.ToInt32(txtIdjugador.Text);
+            RadioButtonList6.Enabled = false;
+            ValoracionDao.RegistrarValoracionDeportista(idjugador, usuarioValorador, valor, 6);
+
+            foreach (ListItem item in RadioButtonList6.Items)
+            {
+
+                if (Convert.ToInt32(item.Value) < valor && item.Text == "★")
+                {
+                    item.Attributes.CssStyle.Add("color", "orange");
+                }
+
+            }
+
+            Label7.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
+          
+            //cargarValoracion();
         }
 
     }  

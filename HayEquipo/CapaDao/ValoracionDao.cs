@@ -46,7 +46,7 @@ namespace CapaDao
 
         }
 
-        public bool RegistrarValoracionDeportista(int idDeportista, int idUsuarioValorador,
+        public static bool RegistrarValoracionDeportista(int idDeportista, int idUsuarioValorador,
             int valoracion, int tipo)
         {
             SqlConnection con = null;
@@ -300,6 +300,55 @@ namespace CapaDao
             if (dr.Read())
             {
                 valoracion = true;
+            }
+            dr.Close();
+            cn.Close();
+
+            return valoracion;
+        }
+
+
+        public static bool existeValorParticularJugadorxid(string idJugador, string tipo, string idUsuarioValorador)
+        {
+            bool valoracion = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd = new SqlCommand("obtenerValoracionParticularJugadorxTipo", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@prmTipo", tipo);
+            cmd.Parameters.AddWithValue("@prmidJugador", idJugador);
+            cmd.Parameters.AddWithValue("@prmUsuarioValorador", idUsuarioValorador);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                valoracion = true;
+            }
+            dr.Close();
+            cn.Close();
+
+            return valoracion;
+        }
+
+        public static int obtenerValorParticularJugadorxid(string idJugador, string tipo, string idUsuarioValorador)
+        {
+            int valoracion = 0;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd = new SqlCommand("obtenerValoracionParticularJugadorxTipo", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@prmTipo", tipo);
+            cmd.Parameters.AddWithValue("@prmidJugador", idJugador);
+            cmd.Parameters.AddWithValue("@prmUsuarioValorador", idUsuarioValorador);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                valoracion = int.Parse(dr["valoracion"].ToString());
             }
             dr.Close();
             cn.Close();

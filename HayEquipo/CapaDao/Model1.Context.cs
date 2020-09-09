@@ -130,6 +130,19 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaDao_ObtenerHorariosReservados_Result>("sp_AgendaDao_ObtenerHorariosReservados", idComplejoParameter, fechaParameter);
         }
     
+        public virtual ObjectResult<sp_AgendaDao_ObtenerHorariosReservados2_Result> sp_AgendaDao_ObtenerHorariosReservados2(Nullable<int> idComplejo, Nullable<System.DateTime> fecha)
+        {
+            var idComplejoParameter = idComplejo.HasValue ?
+                new ObjectParameter("idComplejo", idComplejo) :
+                new ObjectParameter("idComplejo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaDao_ObtenerHorariosReservados2_Result>("sp_AgendaDao_ObtenerHorariosReservados2", idComplejoParameter, fechaParameter);
+        }
+    
         public virtual ObjectResult<string> sp_CriptografiaDao_Desencriptar(Nullable<int> idPass)
         {
             var idPassParameter = idPass.HasValue ?

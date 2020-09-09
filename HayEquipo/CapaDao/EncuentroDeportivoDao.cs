@@ -162,5 +162,59 @@ namespace CapaDao
             cn.Close();
         }
 
+        public static string ObtenerEstadoXNombre(string nombre)
+        {
+            string d = "";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"select nombre from Estado where nombre= @nombre";
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+
+                d = dr["nombre"].ToString();
+
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+        public static List<EncuentroDeportivoQueryEntidad> obtenerEstadosEncuentrosDeportivosPrivados()
+        {
+
+            EncuentroDeportivoQueryEntidad edq = null;
+            List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT  ed.id,ed.idEstado
+                                 FROM EncuentroDeportivo ed
+                                 WHERE ed.idEstado = 14";
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+
+                edq = new EncuentroDeportivoQueryEntidad();
+                edq.idEncuentroDeportivo2 = int.Parse(dr["id"].ToString());
+                edq.idEstado = int.Parse(dr["idEstado"].ToString());
+                ListaEDQ.Add(edq);
+            }
+            dr.Close();
+            cn.Close();
+            return ListaEDQ;
+        }
+
     }
 }

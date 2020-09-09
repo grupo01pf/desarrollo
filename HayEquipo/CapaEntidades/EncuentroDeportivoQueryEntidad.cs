@@ -14,6 +14,7 @@ namespace CapaEntidades
         // Encuentro Deportivo
 
         public int? idEncuentroDeportivo { get; set; }
+        public int idEncuentroDeportivo2 { get; set; }
         public int idUsuario { get; set; }
         public DateTime fechaCreacionEncuentro { get; set; }
         public DateTime fechaDestruccionEncuentro { get; set; }
