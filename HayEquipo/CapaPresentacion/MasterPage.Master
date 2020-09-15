@@ -148,7 +148,7 @@ $(window).load(function() {
 
          </li>
           
-          <li>  
+          <%--<li>  
               <div id="fab">            
                   <a id="btnCrear" href="CrearEncuentro.aspx"
                       data-toggle="tooltip" data-placement="bottom" 
@@ -157,7 +157,8 @@ $(window).load(function() {
                   </a>
 
                </div>
-          </li>
+          </li>--%>
+          <li><a href="CrearEncuentro.aspx">Crear Encuentro <span class="glyphicon glyphicon-plus amarillo"></span></a></li>
              
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>

@@ -97,6 +97,10 @@
             color: white;
         }
 
+         .verde {
+            background-color: #216c22!important;
+        }
+        
 
 
     </style>
@@ -201,7 +205,7 @@
                             <asp:TextBox ID="txt_Password" runat="server" class="form-control" placeholder="Ingrese Contraseña" TextMode="Password"></asp:TextBox>
 
                         </div>
-                        <asp:Button ID="btn_Login" runat="server" class="btn btn-default" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
+                        <asp:Button ID="btn_Login" runat="server" class="btn btn-default verde" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
                         <br />
                         <div class="alinearIzq">
                             <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
@@ -441,27 +445,27 @@ se hacer responsable por posibles daños ni traumas psicologicos.
             <!-- Social buttons -->
             <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-fb mx-1">
+                    <a class="btn-floating btn-fb mx-1 blanco">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1">
+                    <a class="btn-floating btn-tw mx-1 blanco">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-gplus mx-1">
+                    <a class="btn-floating btn-gplus mx-1 blanco">
                         <i class="fab fa-google-plus-g"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-li mx-1">
+                    <a class="btn-floating btn-li mx-1 blanco">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-dribbble mx-1">
+                    <a class="btn-floating btn-dribbble mx-1 blanco">
                         <i class="fab fa-dribbble"></i>
                     </a>
                 </li>
@@ -474,7 +478,7 @@ se hacer responsable por posibles daños ni traumas psicologicos.
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
             © 2019 Copyright:
-    <a href="#">HayEquipo.com.ar</a>
+    <a class="blanco" href="#">HayEquipo.com.ar</a>
         </div>
         <!-- Copyright -->
 
