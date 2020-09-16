@@ -59,6 +59,17 @@
           border: 1px solid black;
           box-shadow: -5px -5px 5px inset;
       }
+
+           @keyframes rotacion {
+          0% {
+              background-position: 0%;
+          }
+
+          100% {
+              background-position: 100%;
+          }
+      }
+
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -85,16 +96,13 @@ $(window).load(function() {
       </button>
        <%--<img class="img-responsive" src="Imagenes/HEbarra.png"  width="135" height="100"/>--%>
         <a href="HomeEstablecimiento.aspx"><div class="logoNavbar "></div></a>
+
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="HomeEstablecimiento.aspx">Principal</a></li>
 
         <li ><a href="EstadisticaComplejo.aspx">Estadísticas</a></li>
-
-
-
-       
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

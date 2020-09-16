@@ -322,7 +322,7 @@ namespace CapaPresentacion
 
                 // Agregado por Nico
                 Session["idMapa"] = compSelec.Mapa;
-                //cargarMapa(int.Parse(Session["IDCom"].ToString()));
+                cargarMapa(int.Parse(Session["IDCom"].ToString()));
             }
 
             //else
