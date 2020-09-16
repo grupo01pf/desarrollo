@@ -268,7 +268,7 @@ namespace CapaPresentacion
                     notificacion.idReceptor = u.id;
                     notificacion.nombreReceptor = u.nombre;
                     notificacion.idEncuentro = e.idEncuentroDeportivo2;
-                    notificacion.texto = "Encuentro deportivo Finalizado";
+                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores";
                     notificacion.idEstado = 10;
 
 

@@ -60,6 +60,8 @@ namespace CapaDao
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { notificacion.fecha = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { notificacion.horainicio = hi; } // ok
                 listaNotificacion.Add(notificacion);
             }
 
@@ -69,6 +71,8 @@ namespace CapaDao
 
             return listaNotificacion;
       }
+
+       
 
         public static int contadorNotificaciones(int idUsuario) {
             int contador = 0;
@@ -134,7 +138,7 @@ namespace CapaDao
                                 SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
 				                                e.nombre as estado, n.nombreReceptor as receptor,
                                                 n.idEmisor, n.idReceptor
-                                FROM Notificacion n, Estado e
+                                FROM Notificacion n, Estado e 
                                 WHERE e.id = n.idEstado AND n.idEstado != 11 
                                       AND n.idEstado != 13 AND n.idEncuentro = 0";
 
@@ -169,6 +173,8 @@ namespace CapaDao
 
             return listaNotificacion;
         }
+
+       
 
         public static int contadorNotificacionesSolicitudes(int idUsuario)
         {
