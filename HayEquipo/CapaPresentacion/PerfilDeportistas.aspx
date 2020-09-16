@@ -530,7 +530,7 @@
 
                                       <Columns>
 
-                                           <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                           <asp:CommandField showDeleteButton="true" HeaderText="" ShowHeader="True"
                                                DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
 
                                            <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png"
