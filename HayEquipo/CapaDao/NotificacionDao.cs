@@ -33,6 +33,8 @@ namespace CapaDao
             cn.Close();
         }
 
+      
+
         // public static List<Notificacion> mostrarNotificaciones() {
         public static List<NotificacionQueryEntidad> mostrarNotificaciones(int idUsuario) {
 
@@ -201,6 +203,35 @@ namespace CapaDao
 
 
             return contador;
+
+        }
+
+        
+
+        public static bool ExistePartidoFinalizado(int idReceptor, int idEncuentro)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
+				                                n.nombreReceptor as receptor,
+                                                n.idEmisor, n.idReceptor
+                                FROM Notificacion n
+                                WHERE (n.idEstado = 10 or n.idEstado = 9) AND n.idReceptor = @id and n.idEncuentro = @ide ";
+            cmd.Parameters.AddWithValue("@id", idReceptor);
+            cmd.Parameters.AddWithValue("@ide", idEncuentro);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
 
         }
 
