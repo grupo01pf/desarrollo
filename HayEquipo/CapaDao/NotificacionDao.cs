@@ -33,6 +33,8 @@ namespace CapaDao
             cn.Close();
         }
 
+      
+
         // public static List<Notificacion> mostrarNotificaciones() {
         public static List<NotificacionQueryEntidad> mostrarNotificaciones(int idUsuario) {
 
@@ -58,6 +60,8 @@ namespace CapaDao
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { notificacion.fecha = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { notificacion.horainicio = hi; } // ok
                 listaNotificacion.Add(notificacion);
             }
 
@@ -67,6 +71,8 @@ namespace CapaDao
 
             return listaNotificacion;
       }
+
+       
 
         public static int contadorNotificaciones(int idUsuario) {
             int contador = 0;
@@ -132,7 +138,7 @@ namespace CapaDao
                                 SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
 				                                e.nombre as estado, n.nombreReceptor as receptor,
                                                 n.idEmisor, n.idReceptor
-                                FROM Notificacion n, Estado e
+                                FROM Notificacion n, Estado e 
                                 WHERE e.id = n.idEstado AND n.idEstado != 11 
                                       AND n.idEstado != 13 AND n.idEncuentro = 0";
 
@@ -168,6 +174,8 @@ namespace CapaDao
             return listaNotificacion;
         }
 
+       
+
         public static int contadorNotificacionesSolicitudes(int idUsuario)
         {
             int contador = 0;
@@ -201,6 +209,35 @@ namespace CapaDao
 
 
             return contador;
+
+        }
+
+        
+
+        public static bool ExistePartidoFinalizado(int idReceptor, int idEncuentro)
+        {
+
+            bool flag = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
+				                                n.nombreReceptor as receptor,
+                                                n.idEmisor, n.idReceptor
+                                FROM Notificacion n
+                                WHERE (n.idEstado = 10 or n.idEstado = 9) AND n.idReceptor = @id and n.idEncuentro = @ide ";
+            cmd.Parameters.AddWithValue("@id", idReceptor);
+            cmd.Parameters.AddWithValue("@ide", idEncuentro);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                flag = true;
+            }
+            dr.Close();
+            cn.Close();
+            return flag;
 
         }
 

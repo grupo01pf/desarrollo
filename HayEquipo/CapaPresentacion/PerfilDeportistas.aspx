@@ -530,7 +530,7 @@
 
                                       <Columns>
 
-                                           <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
+                                           <asp:CommandField showDeleteButton="true" HeaderText="" ShowHeader="True"
                                                DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
 
                                            <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png"
@@ -541,6 +541,8 @@
                                             <asp:BoundField DataField="nombreEmisor" HeaderText="Emisor" Visible="true" />
                                             <asp:BoundField DataField="texto" HeaderText="Notificacion" Visible="true" />
                                             <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
+                                            <asp:BoundField DataField="fecha" HeaderText="Fecha" Visible="true" DataFormatString="{0:d}"/>
+                                            <asp:BoundField DataField="horainicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}" />
                                             <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
 
                                      </Columns>

@@ -30,5 +30,9 @@ namespace CapaEntidades
         public string nombreEstado { get; set; }
         public string descripcionEstado { get; set; }
 
+        public DateTime fecha { get; set; }
+
+        public DateTime horainicio { get; set; }
+
     }
 }

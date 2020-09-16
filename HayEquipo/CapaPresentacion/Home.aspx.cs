@@ -26,6 +26,7 @@ namespace CapaPresentacion
             }
             if (!IsPostBack)
             {
+               
                 CargarDdlDeportes();
                 ddlDeportes.AutoPostBack = true;
                 CargarDdlZonas();
@@ -41,7 +42,7 @@ namespace CapaPresentacion
                 ;
             encuentrosRepeater.DataBind();
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
-
+            enviarnotifFinalizadas();
             actualizarNotificaciones();
 
         }
@@ -233,48 +234,53 @@ namespace CapaPresentacion
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        //protected void enviarnotifFinalizadas()
-        //{
+       
+        protected void enviarnotifFinalizadas()
+        {
 
-        //    List<EncuentroDeportivoQueryEntidad> EncDepFinalizados = EncuentroDeportivoDao.obtenerEstadosEncuentrosDeportivosPrivados(); //cargar lista con enc dep finalizados
+            List<EncuentroDeportivoQueryEntidad> EncDepFinalizados = EncuentroDeportivoDao.obtenerEstadosEncuentrosDeportivosPrivados(); //cargar lista con enc dep finalizados
 
-        //    foreach (EncuentroDeportivoQueryEntidad e in EncDepFinalizados)
-        //    {
+            foreach (EncuentroDeportivoQueryEntidad e in EncDepFinalizados)
+            {
 
-        //        int estado = 14; // (FINALIZADO)
+                int estado = 14; // (FINALIZADO)
 
-        //   // ReservaDao.acutalizarReserva(int.Parse(Session["idEncuentro"].ToString()), estado);
-        //   // EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                // ReservaDao.acutalizarReserva(int.Parse(Session["idEncuentro"].ToString()), estado);
+                // EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
-        //        ReservaDao.acutalizarReserva(e.idEncuentroDeportivo2, estado);
-        //        EncuentroDeportivoDao.actualizarEncuentroDeportivo(e.idEncuentroDeportivo2, estado);
+                ReservaDao.acutalizarReserva(e.idEncuentroDeportivo2, estado);
+                EncuentroDeportivoDao.actualizarEncuentroDeportivo(e.idEncuentroDeportivo2, estado);
 
-        //        // Enviar notificacion
+                // Enviar notificacion
 
-        //        //List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
-        //        //lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+                //List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+                //lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
 
-        //        List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(e.idEncuentroDeportivo2);
-        //        lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(e.idEncuentroDeportivo2));
+                List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(e.idEncuentroDeportivo2);
+                lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(e.idEncuentroDeportivo2));
 
-        //        foreach (Usuario u in lista)
-        //        {
-        //            Notificacion notificacion = null;
-        //            notificacion = new Notificacion();
-        //            //notificacion.idEmisor = int.Parse(Session["ID"].ToString());
-        //            //notificacion.nombreEmisor = Session["Usuario"].ToString();
-        //            notificacion.idReceptor = u.id;
-        //            notificacion.nombreReceptor = u.nombre;
-        //            //notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-        //            notificacion.texto = "Encuentro deportivo Finalizado";
-        //            notificacion.idEstado = 14;
+                foreach (Usuario u in lista)
+                {
+                    Notificacion notificacion = null;
+                    notificacion = new Notificacion();
+                    notificacion.idEmisor = 1;
+                    notificacion.nombreEmisor ="Admin";
+                    notificacion.idReceptor = u.id;
+                    notificacion.nombreReceptor = u.nombre;
+                    notificacion.idEncuentro = e.idEncuentroDeportivo2;
+                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores";
+                    notificacion.idEstado = 10;
 
-        //            NotificacionDao.insertarNotificacion(notificacion);
-        //        }
 
-        //    }
+                    if (NotificacionDao.ExistePartidoFinalizado(u.id, e.idEncuentroDeportivo2) == false)
+                    {
+                        NotificacionDao.insertarNotificacion(notificacion);
+                    }
+                }
 
-        //}
+            }
+
+        }
 
 
     }
