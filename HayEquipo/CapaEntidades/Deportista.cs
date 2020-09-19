@@ -23,7 +23,6 @@ namespace CapaEntidades
             this.FotosDeportista = new HashSet<FotosDeportista>();
             this.InvitacionEncuentro = new HashSet<InvitacionEncuentro>();
             this.PosicionesPorDeportistas = new HashSet<PosicionesPorDeportistas>();
-            this.Valoracion = new HashSet<Valoracion>();
             this.ZonasPorDeportistas = new HashSet<ZonasPorDeportistas>();
         }
     
@@ -56,8 +55,6 @@ namespace CapaEntidades
         public virtual ICollection<InvitacionEncuentro> InvitacionEncuentro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PosicionesPorDeportistas> PosicionesPorDeportistas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Valoracion> Valoracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ZonasPorDeportistas> ZonasPorDeportistas { get; set; }
     }
