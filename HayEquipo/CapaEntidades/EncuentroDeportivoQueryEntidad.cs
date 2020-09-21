@@ -45,7 +45,7 @@ namespace CapaEntidades
         public string calleComplejo { get; set; }
         public int numeroCalleComplejo { get; set; }
         public int idBarrio { get; set; }
-        public int numeroTelefono { get; set; }
+        public long numeroTelefono { get; set; }
         public int idResponsable { get; set; }
         public int idUsuarioComplejo { get; set; }
         public float promedioEstrellas { get; set; }
@@ -107,7 +107,7 @@ namespace CapaEntidades
         int idDeporte, int idComplejo, string calle, int numeroCalle, int idEquipo, DateTime fechaInicioEncuentro, DateTime fechaFinEncuentro,
         int idEstado, DateTime horaInicio, DateTime horaFIn, int tipoEncuentro, int accesibilidad, string clave,
         int? idComplejoDeportivo, string nombreComplejo, string descripcion, int idTipoComplejo, string calleComplejo, int numeroCalleComplejo,
-        int idBarrio, int numeroTelefono, int idResponsable, int idUsuario, float promedioEstrellas, int idEstadoComplejo,
+        int idBarrio, long numeroTelefono, int idResponsable, int idUsuario, float promedioEstrellas, int idEstadoComplejo,
         int? idDeporteDeporte, string nombreDeporte,
         int? idEstadoEstado, string nombreEstado, string descripcionEstado,
         int? idHorario, DateTime fecha, DateTime horaInicioHorario, DateTime horaFinHorario, int idEstadoHorario,

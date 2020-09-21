@@ -48,7 +48,7 @@ namespace CapaDao
                 //  eq.nombreComplejo = dr["nombreComplejo"].ToString();
                 //   eq.calleComplejo = dr["calleComplejo"].ToString();
                 edq.numeroCalleComplejo = int.Parse(dr["nroCalle"].ToString());
-                edq.numeroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                edq.numeroTelefono = long.Parse(dr["nroTelefono"].ToString());
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
                 edq.idComplejo = int.Parse(dr["idComplejo"].ToString());
                 if (!string.IsNullOrEmpty(dr["idClave"].ToString()))

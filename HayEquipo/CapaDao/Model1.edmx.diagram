@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b20677e5b80a483d88dd76de331fb4a7" Name="Diagram1">
+      <Diagram DiagramId="d1bc08a94c554493878764c5ada625f2" Name="Diagram1">
         <EntityTypeShape EntityType="HayEquipoModel.Barrio" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.Cancha" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
         <EntityTypeShape EntityType="HayEquipoModel.CanchasPorHorarios" Width="1.5" PointX="10.5" PointY="35.375" IsExpanded="true" />
@@ -82,7 +82,7 @@
         <AssociationConnector Association="HayEquipoModel.FK_PosicionesPorDeportistas_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_ZonasPorDeportistas_Deportista" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_DeportistasPorEquipo_Equipo" ManuallyRouted="false" />
-        <AssociationConnector Association="HayEquipoModel.FK__estadisti__fecha__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="HayEquipoModel.FK__estadisti__fecha__25518C17" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Equipo" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_EncuentroDeportivo_Estado" ManuallyRouted="false" />
         <AssociationConnector Association="HayEquipoModel.FK_InvitacionEncuentro_EncuentroDeportivo" ManuallyRouted="false" />

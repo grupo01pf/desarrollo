@@ -49,12 +49,12 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
           <Property Name="deportes" Type="nvarchar" MaxLength="50" />
           <Property Name="calle" Type="nvarchar" MaxLength="50" />
           <Property Name="nroCalle" Type="int" />
           <Property Name="idBarrio" Type="int" />
-          <Property Name="nroTelefono" Type="int" />
+          <Property Name="nroTelefono" Type="bigint" />
           <Property Name="horaApertura" Type="time" Precision="0" />
           <Property Name="horaCierre" Type="time" Precision="0" />
           <Property Name="promedioEstrellas" Type="float" />
@@ -92,7 +92,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           <Property Name="nroDoc" Type="int" />
           <Property Name="sexo" Type="int" />
           <Property Name="fechaNacimiento" Type="date" />
-          <Property Name="nroTelefono" Type="int" />
+          <Property Name="nroTelefono" Type="bigint" />
           <Property Name="idUsuario" Type="int" />
           <Property Name="promedioEstrellas" Type="float" />
           <Property Name="idEstado" Type="int" />
@@ -526,7 +526,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="idZona" Type="int" />
           <Property Name="idDeportista" Type="int" />
         </EntityType>
-        <Association Name="FK__estadisti__fecha__6D0D32F4">
+        <Association Name="FK__estadisti__fecha__25518C17">
           <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
           <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -540,7 +540,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         </Association>
         <!--Errores durante la generación:
 error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
-        <Association Name="FK__Estadisti__Fecha__6E01572D" />-->
+        <Association Name="FK__Estadisti__Fecha__2645B050" />-->
         <Association Name="FK_Barrio_Zona">
           <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
           <End Role="Barrio" Type="Self.Barrio" Multiplicity="*" />
@@ -1527,7 +1527,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__estadisti__fecha__6D0D32F4" Association="Self.FK__estadisti__fecha__6D0D32F4">
+          <AssociationSet Name="FK__estadisti__fecha__25518C17" Association="Self.FK__estadisti__fecha__25518C17">
             <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
             <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
           </AssociationSet>
@@ -1802,12 +1802,12 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deportes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="nroCalle" Type="Int32" />
           <Property Name="idBarrio" Type="Int32" />
-          <Property Name="nroTelefono" Type="Int32" />
+          <Property Name="nroTelefono" Type="Int64" />
           <Property Name="horaApertura" Type="Time" Precision="0" />
           <Property Name="horaCierre" Type="Time" Precision="0" />
           <Property Name="promedioEstrellas" Type="Double" />
@@ -1859,7 +1859,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="nroDoc" Type="Int32" />
           <Property Name="sexo" Type="Int32" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="nroTelefono" Type="Int32" />
+          <Property Name="nroTelefono" Type="Int64" />
           <Property Name="idUsuario" Type="Int32" />
           <Property Name="promedioEstrellas" Type="Double" />
           <Property Name="idEstado" Type="Int32" />
@@ -1904,7 +1904,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="NSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NDia" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__6D0D32F4" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
+          <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__25518C17" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
         </EntityType>
         <EntityType Name="EncuentroDeportivo">
           <Key>
@@ -1960,7 +1960,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="deporte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__6D0D32F4" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
+          <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__25518C17" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -2696,7 +2696,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__estadisti__fecha__6D0D32F4">
+        <Association Name="FK__estadisti__fecha__25518C17">
           <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
           <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3215,7 +3215,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             <End Role="Equipo" EntitySet="Equipo" />
             <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
           </AssociationSet>
-          <AssociationSet Name="FK__estadisti__fecha__6D0D32F4" Association="Self.FK__estadisti__fecha__6D0D32F4">
+          <AssociationSet Name="FK__estadisti__fecha__25518C17" Association="Self.FK__estadisti__fecha__25518C17">
             <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
             <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
           </AssociationSet>
@@ -3596,7 +3596,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Type="String" Name="Complejo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="nroCalle" Nullable="true" />
-          <Property Type="Int32" Name="nroTelefono" Nullable="true" />
+          <Property Type="Int64" Name="nroTelefono" Nullable="true" />
           <Property Type="String" Name="tipoEncuentro" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="accesibilidad" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="clave" Nullable="true" MaxLength="50" />
@@ -3673,7 +3673,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosJoin_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="NroCalle" Nullable="true" />
@@ -3681,7 +3681,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="IDZona" Nullable="true" />
           <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Telefono" Nullable="true" />
+          <Property Type="Int64" Name="Telefono" Nullable="true" />
           <Property Type="Time" Name="Apertura" Nullable="true" />
           <Property Type="Time" Name="Cierre" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
@@ -3697,11 +3697,11 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosOrdenValor_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
           <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Telefono" Nullable="true" />
+          <Property Type="Int64" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
           <Property Type="DateTime" Name="FechaRegistro" Nullable="true" />
@@ -3710,11 +3710,11 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosPorNomb_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
           <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Telefono" Nullable="true" />
+          <Property Type="Int64" Name="Telefono" Nullable="true" />
           <Property Type="String" Name="Responsable" Nullable="true" MaxLength="50" />
           <Property Type="Double" Name="Valoracion" Nullable="true" />
           <Property Type="DateTime" Name="fechaRegistro" Nullable="true" />

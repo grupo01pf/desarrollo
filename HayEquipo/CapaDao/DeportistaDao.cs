@@ -180,7 +180,7 @@ namespace CapaDao
                 d.nroDoc = int.Parse(dr["nroDoc"].ToString());
                 d.sexo = int.Parse(dr["sexo"].ToString());
                 d.fechaNacimiento = DateTime.Parse(dr["fechaNacimiento"].ToString());
-                d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                d.nroTelefono = long.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.promedioEstrellas = float.Parse(dr["promedioEstrellas"].ToString());
                 d.idEstado = int.Parse(dr["idEstado"].ToString());
