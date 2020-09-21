@@ -181,8 +181,8 @@ namespace CapaPresentacion
                 complejo.idBarrio = null;
             }
 
-            int tel;
-            if (int.TryParse(txtTel.Text, out tel))
+            long tel;
+            if (long.TryParse(txtTel.Text, out tel))
                 complejo.nroTelefono = tel;
 
             TimeSpan horaApe;
@@ -238,7 +238,7 @@ namespace CapaPresentacion
             }
             else
             {
-                // complejo.fechaRegistro = DateTime.Today;
+                complejo.fechaRegistro = DateTime.Today;
                 ComplejoDeportivoDao.InsertarComplejo(complejo);
             }
 
@@ -300,15 +300,15 @@ namespace CapaPresentacion
                     imgAvatar.ImageUrl = "~/Imagenes/complejo_logo_default.png";
                     btn_guardarImagen.Visible = true;
                 }
-                //if (compSelec.fechaRegistro.ToString() != string.Empty)
-                //{
-                //    DateTime fecha = (DateTime)Convert.ChangeType(compSelec.fechaRegistro, typeof(DateTime));
-                //    lblFecResultado.Text = fecha.ToString(@"dd/MM/yyyy");
-                //}
-                //else
-                //{
-                //    lblFecResultado.Text = "-";
-                //}
+                if (compSelec.FechaRegistro.ToString() != string.Empty)
+                {
+                    DateTime fecha = (DateTime)Convert.ChangeType(compSelec.FechaRegistro, typeof(DateTime));
+                    lblFecResultado.Text = fecha.ToString(@"dd/MM/yyyy");
+                }
+                else
+                {
+                    lblFecResultado.Text = "-";
+                }
 
                 CargarRepeaterImagenes();
                 lblFecha.Visible = true;

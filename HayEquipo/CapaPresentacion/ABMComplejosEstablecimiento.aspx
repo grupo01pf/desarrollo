@@ -300,7 +300,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
-                <div class="well">
+                <div class="well" style="padding-bottom: 127px;">
                     <%--Botones--%>
                        <asp:Label CssClass="estrellalabel" runat="server" Text="Mi Calificacion"></asp:Label>
                             <br />
@@ -569,14 +569,14 @@
 
         <%-- MAPA --%>
 
-        <div class="row">
+        <div class="row" style="margin-left: 0px; margin-right: 0px; width: 2280px;">
             <div class="well mapa">
                 <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
-                    <legend>Ingresar Ubicación</legend>
+                    <legend style="padding-left: 10px; padding-right: 0px; border-left-width: 200px; width: 1100px;">Ingresar Ubicación</legend>
                     <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
                     <div class="container" style="text-align: left">
                         <div class="form-group">
-                            <div id="myMap"></div>
+                            <div id="myMap" style="position: relative;height: 456px;width: 1060px;outline: none;"></div>
                         </div>
 
                         <div class="form-group">

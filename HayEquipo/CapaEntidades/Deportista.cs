@@ -34,7 +34,7 @@ namespace CapaEntidades
         public Nullable<int> nroDoc { get; set; }
         public Nullable<int> sexo { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public Nullable<int> nroTelefono { get; set; }
+        public Nullable<long> nroTelefono { get; set; }
         public Nullable<int> idUsuario { get; set; }
         public Nullable<double> promedioEstrellas { get; set; }
         public Nullable<int> idEstado { get; set; }
