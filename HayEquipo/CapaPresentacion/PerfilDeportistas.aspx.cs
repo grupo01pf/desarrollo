@@ -1066,11 +1066,13 @@ namespace CapaPresentacion
             }
             if (lugar.Equals("Zona"))
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
             else
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }

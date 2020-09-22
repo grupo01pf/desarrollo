@@ -429,6 +429,8 @@ namespace CapaPresentacion
             if (rdb_PorAmigos.Checked) {
                 listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             }
+            
+
             if (rdb_MasOpciones.Checked) {
                 int sport = 0;
                 int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
@@ -472,7 +474,7 @@ namespace CapaPresentacion
                     {
                         string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
                         notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " Clave: " + clave;
+                            txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " - Clave: " + clave;
                     }
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
@@ -1146,11 +1148,13 @@ namespace CapaPresentacion
             }
             if (lugar.Equals("Zona"))
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
             else
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
