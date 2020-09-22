@@ -384,10 +384,14 @@
         <div class="scroll-container2">
       <div class="thumbnail">
         <p>Próximo encuentro</p>
-        <img src="Imagenes/futbol.jpg" alt="Paris" width="400" height="300">
-        <p><strong>Fútbol 7 en Don Balón</strong></p>
-        <p>Viernes 30 de Agosto a las 20 hs. </p>
-        <button class="btn btn-primary">Info</button>
+        <asp:Image ID="imagenProxEnc" ImageUrl="Imagenes/nene.png" runat="server" height="100" width="100" CssClass="img-circle"/>
+        <strong><asp:Label ID="deporte" runat="server" text=''></asp:Label><asp:Label ID="Label2" runat="server" text=' en '></asp:Label><asp:Label ID="lugar" runat="server" text=''></asp:Label></strong>
+          <br />
+        <asp:Label ID="fecha" runat="server" text=''></asp:Label><asp:Label ID="Label3" runat="server" text=' a las  '></asp:Label><asp:Label ID="hora" runat="server" text=''></asp:Label><asp:Label ID="Label4" runat="server" text=' Hs. '></asp:Label>
+         <br />
+        <asp:LinkButton ID="ir" runat="server" Text="Ir" OnClick="ir_Click"
+            CssClass="btn btn-primary">
+            </asp:LinkButton>
       </div>
         <a href="https://www.latam.com/es_ar/">
       <div class="well">

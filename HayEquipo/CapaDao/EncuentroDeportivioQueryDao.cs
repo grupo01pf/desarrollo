@@ -783,5 +783,88 @@ namespace CapaDao
             cn.Close();
             return ListaEDQ;
         }
+
+        public static EncuentroDeportivoQueryEntidad obtenerProximoEncuentroPorId(string id)
+        {
+            EncuentroDeportivoQueryEntidad edq = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT TOP 1 ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,
+                                 ed.horaInicio,d.nombre as Deporte,cd.nombre as Complejo
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
+                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+            cmd.Parameters.AddWithValue("@idUsuario", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                edq = new EncuentroDeportivoQueryEntidad();
+
+                edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreDeporte = dr["Deporte"].ToString();            
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok             
+                edq.nombreComplejo = dr["Complejo"].ToString();
+            }
+            dr.Close();
+            cn.Close();
+            return edq;
+        }
+
+        public static byte[] ObtenerImagenComplejo(string id)
+        {
+            byte[] imagen = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT TOP 1 cd.avatar
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
+                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+            cmd.Parameters.AddWithValue("@idUsuario", id);     
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = (byte[])dr["avatar"];
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+        }
+
+        public static bool existeImagenComplejo(string id)
+        {
+
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT TOP 1 cd.avatar
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
+                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+            cmd.Parameters.AddWithValue("@idUsuario", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
+        }
     }
 }

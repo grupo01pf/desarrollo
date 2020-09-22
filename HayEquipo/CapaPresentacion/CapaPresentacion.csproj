@@ -1710,6 +1710,7 @@
     <Content Include="ImagenComplejo1.aspx" />
     <Content Include="ImagenComplejo2.aspx" />
     <Content Include="ImagenComplejo3.aspx" />
+    <Content Include="imagenComplejoProx.aspx" />
     <Content Include="ImagenDeporteAdmin.aspx" />
     <Content Include="Imagenes\accept.png" />
     <Content Include="Imagenes\adidas.jpg" />
@@ -2009,6 +2010,13 @@
     </Compile>
     <Compile Include="ImagenComplejo3.aspx.designer.cs">
       <DependentUpon>ImagenComplejo3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="imagenComplejoProx.aspx.cs">
+      <DependentUpon>imagenComplejoProx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagenComplejoProx.aspx.designer.cs">
+      <DependentUpon>imagenComplejoProx.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImagenDeporteAdmin.aspx.cs">
       <DependentUpon>ImagenDeporteAdmin.aspx</DependentUpon>
