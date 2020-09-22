@@ -549,6 +549,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="obtenerValoracionParticularComplejoxTipo" FunctionName="HayEquipoModel.Store.obtenerValoracionParticularComplejoxTipo" />
+    <FunctionImportMapping FunctionImportName="obtenerValoracionParticularJugadorxTipo" FunctionName="HayEquipoModel.Store.obtenerValoracionParticularJugadorxTipo" />
     <FunctionImportMapping FunctionImportName="ReporteCantidadDeportexFecha" FunctionName="HayEquipoModel.Store.ReporteCantidadDeportexFecha">
       <ResultMapping>
         <ComplexTypeMapping TypeName="HayEquipoModel.ReporteCantidadDeportexFecha_Result">
@@ -712,6 +713,8 @@
           <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="receptor" ColumnName="receptor" />
+          <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
+          <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -829,6 +832,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRegistrarDeporte" FunctionName="HayEquipoModel.Store.spRegistrarDeporte" />
+    <FunctionImportMapping FunctionImportName="spRegistrarServicioExtra" FunctionName="HayEquipoModel.Store.spRegistrarServicioExtra" />
+    <FunctionImportMapping FunctionImportName="spRegistrarTipoCancha" FunctionName="HayEquipoModel.Store.spRegistrarTipoCancha" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuario" FunctionName="HayEquipoModel.Store.spRegistrarUsuario" />
     <FunctionImportMapping FunctionImportName="spRegistrarUsuarioEstablecimiento" FunctionName="HayEquipoModel.Store.spRegistrarUsuarioEstablecimiento" />
     <FunctionImportMapping FunctionImportName="spRegistrarValoracionComplejo" FunctionName="HayEquipoModel.Store.spRegistrarValoracionComplejo" />

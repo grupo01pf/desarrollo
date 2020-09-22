@@ -38,7 +38,7 @@ namespace CapaDao
 
 
             //FrancoR BD
-            //String cadena = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
+            String cadena = "Data Source=LAPTOP-N4V2H3NE;Initial Catalog=HayEquipo;User ID=alumnosa;Password=abcd123";
 
             //string cadena = @"Data Source=DESKTOP-A9A7OVR\SQLEXPRESS;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 
@@ -52,7 +52,7 @@ namespace CapaDao
 
             //*****Agu_BD
 
-            string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
+            //string cadena = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
 
 
             return cadena;
@@ -62,7 +62,7 @@ namespace CapaDao
         {
             SqlConnection conexion = new SqlConnection();
             //Cadena de Conexion de Franco R
-            //conexion.ConnectionString = "Data Source=LAPTOP-N4V2H3NE; Initial Catalog=HayEquipo; User ID=alumnosa; Password=abcd123";
+            conexion.ConnectionString = "Data Source=LAPTOP-N4V2H3NE; Initial Catalog=HayEquipo; User ID=alumnosa; Password=abcd123";
 
             //Cadena de conescion de nico
            //  conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
@@ -72,7 +72,7 @@ namespace CapaDao
 
 
             //Cadena de conexion de Agus
-            conexion.ConnectionString = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
+           // conexion.ConnectionString = @"Data Source=DESKTOP-23N56UG\SQLEXPRESS;Initial Catalog=HayEquipo;Persist Security Info=True;User ID=ajretamozo;Password=mestalla;MultipleActiveResultSets=True;Application Name=EntityFramework";
             return conexion;
         }
         }
