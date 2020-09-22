@@ -44,6 +44,7 @@ namespace CapaPresentacion
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
             enviarnotifFinalizadas();
             actualizarNotificaciones();
+            cargarProxEncuentro();
 
         }
 
@@ -282,6 +283,27 @@ namespace CapaPresentacion
 
         }
 
+        protected void cargarProxEncuentro()
+        {
+            EncuentroDeportivoQueryEntidad encuentroProximo = new EncuentroDeportivoQueryEntidad();
+            encuentroProximo = EncuentroDeportivioQueryDao.obtenerProximoEncuentroPorId(Session["ID"].ToString());
+            if (EncuentroDeportivioQueryDao.existeImagenComplejo(Session["ID"].ToString()) != false)
+            {
+                imagenProxEnc.ImageUrl = "~/imagenComplejoProx.aspx?id=" + Session["ID"].ToString();
+            }
+            deporte.Text = encuentroProximo.nombreDeporte.ToString();
+            lugar.Text = encuentroProximo.nombreComplejo.ToString();
+            fecha.Text = encuentroProximo.fechaInicioEncuentro.ToString("dd MMMM ");
+            hora.Text = encuentroProximo.horaInicio.ToString("HH");  
 
+        }
+
+        protected void ir_Click(object sender, EventArgs e)
+        {
+            EncuentroDeportivoQueryEntidad encuentroProximo = new EncuentroDeportivoQueryEntidad();
+            encuentroProximo = EncuentroDeportivioQueryDao.obtenerProximoEncuentroPorId(Session["ID"].ToString());
+            Session["idEncuentro"] = encuentroProximo.idEncuentroDeportivo;
+            Response.Redirect("EncuentroPrivado.aspx");
+        }
     }
 }
