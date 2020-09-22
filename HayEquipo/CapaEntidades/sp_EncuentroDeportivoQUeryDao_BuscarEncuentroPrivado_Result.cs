@@ -24,7 +24,7 @@ namespace CapaEntidades
         public string Complejo { get; set; }
         public string calle { get; set; }
         public Nullable<int> nroCalle { get; set; }
-        public Nullable<int> nroTelefono { get; set; }
+        public Nullable<long> nroTelefono { get; set; }
         public string tipoEncuentro { get; set; }
         public string accesibilidad { get; set; }
         public string clave { get; set; }

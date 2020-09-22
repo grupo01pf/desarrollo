@@ -18,7 +18,7 @@ namespace CapaEntidades
         public string calle { get; set; }
         public int idBarrio { get; set; }
         public int numeroCalle { get; set; }
-        public int numeroTelefono { get; set; }
+        public long numeroTelefono { get; set; }
         public int idUsuario { get; set; }
     }
 }

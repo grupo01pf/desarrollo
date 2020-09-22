@@ -23,7 +23,7 @@ namespace CapaEntidades
         public string Barrio { get; set; }
         public Nullable<int> IDZona { get; set; }
         public string Zona { get; set; }
-        public Nullable<int> Telefono { get; set; }
+        public Nullable<long> Telefono { get; set; }
         public Nullable<System.TimeSpan> Apertura { get; set; }
         public Nullable<System.TimeSpan> Cierre { get; set; }
         public string Responsable { get; set; }

@@ -13,66 +13,186 @@ namespace CapaDao
     public class ComplejoDeportivoDao
     {
 
+        //public static void InsertarComplejo(ComplejoDeportivo complejo)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        db.ComplejoDeportivo.Add(complejo);
+        //        db.SaveChanges();
+        //    }
+        //}
+
         public static void InsertarComplejo(ComplejoDeportivo complejo)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                db.ComplejoDeportivo.Add(complejo);
-                db.SaveChanges();
-            }
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"INSERT INTO ComplejoDeportivo (nombre, descripcion, deportes, calle, nroCalle,
+                                                                idBarrio, nroTelefono, horaApertura, horaCierre, responsable,
+                                                                idUsuario, promedioEstrellas, idEstado, avatar, fechaRegistro)
+                                     VALUES(@nom, @des, @dep, @cal, @nro, @idb, @tel, @ape, @cie, @res, @idu, @pes, @ide, @ava, @fre)";
+
+            cmd.Parameters.AddWithValue("@nom", complejo.nombre);
+            cmd.Parameters.AddWithValue("@des", complejo.descripcion);
+            cmd.Parameters.AddWithValue("@dep", complejo.deportes);
+            cmd.Parameters.AddWithValue("@cal", complejo.calle);
+            cmd.Parameters.AddWithValue("@nro", complejo.nroCalle);
+            cmd.Parameters.AddWithValue("@idb", complejo.idBarrio);
+            cmd.Parameters.AddWithValue("@tel", complejo.nroTelefono);
+            cmd.Parameters.AddWithValue("@ape", complejo.horaApertura);
+            cmd.Parameters.AddWithValue("@cie", complejo.horaCierre);
+            cmd.Parameters.AddWithValue("@res", complejo.responsable);
+            cmd.Parameters.AddWithValue("@idu", complejo.idUsuario);
+            cmd.Parameters.AddWithValue("@pes", complejo.promedioEstrellas);
+            cmd.Parameters.AddWithValue("@ide", complejo.idEstado);
+            cmd.Parameters.AddWithValue("@ava", complejo.avatar);
+            cmd.Parameters.AddWithValue("@fre", complejo.fechaRegistro);
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
 
         //Modificado por eliminación de tabla Responsable
+        //public static void ActualizarComplejo(ComplejoDeportivo complejo)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+        //        comp.id = complejo.id;
+        //        comp.nombre = complejo.nombre;
+        //        comp.descripcion = complejo.descripcion;
+        //        comp.deportes = complejo.deportes;
+        //        comp.calle = complejo.calle;
+        //        comp.nroCalle = complejo.nroCalle;
+        //        comp.idBarrio = complejo.idBarrio;
+        //        comp.nroTelefono = complejo.nroTelefono;
+        //        comp.horaApertura = complejo.horaApertura;
+        //        comp.horaCierre = complejo.horaCierre;
+        //        comp.responsable = complejo.responsable;
+        //        comp.idUsuario = complejo.idUsuario;
+        //        comp.promedioEstrellas = complejo.promedioEstrellas;
+        //        comp.idEstado = complejo.idEstado;
+        //        comp.avatar = complejo.avatar;
+
+        //        db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+        //}
+
         public static void ActualizarComplejo(ComplejoDeportivo complejo)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
-                comp.id = complejo.id;
-                comp.nombre = complejo.nombre;
-                comp.descripcion = complejo.descripcion;
-                comp.deportes = complejo.deportes;
-                comp.calle = complejo.calle;
-                comp.nroCalle = complejo.nroCalle;
-                comp.idBarrio = complejo.idBarrio;
-                comp.nroTelefono = complejo.nroTelefono;
-                comp.horaApertura = complejo.horaApertura;
-                comp.horaCierre = complejo.horaCierre;
-                comp.responsable = complejo.responsable;
-                comp.idUsuario = complejo.idUsuario;
-                comp.promedioEstrellas = complejo.promedioEstrellas;
-                comp.idEstado = complejo.idEstado;
-                comp.avatar = complejo.avatar;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ComplejoDeportivo SET nombre=@nom, descripcion=@des, deportes=@dep, calle=@cal, nroCalle=@nro,
+                                                                idBarrio=@idb, nroTelefono=@tel, horaApertura=@ape, horaCierre=@cie, responsable=@res,
+                                                                idUsuario=@idu, promedioEstrellas=@pes, idEstado=@ide, avatar=@ava
+							    WHERE id = @id";
 
-                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
+            cmd.Parameters.AddWithValue("@id", complejo.id);
+            cmd.Parameters.AddWithValue("@nom", complejo.nombre);
+            cmd.Parameters.AddWithValue("@des", complejo.descripcion);
+            cmd.Parameters.AddWithValue("@dep", complejo.deportes);
+            cmd.Parameters.AddWithValue("@cal", complejo.calle);
+            cmd.Parameters.AddWithValue("@nro", complejo.nroCalle);
+            cmd.Parameters.AddWithValue("@idb", complejo.idBarrio);
+            cmd.Parameters.AddWithValue("@tel", complejo.nroTelefono);
+            cmd.Parameters.AddWithValue("@ape", complejo.horaApertura);
+            cmd.Parameters.AddWithValue("@cie", complejo.horaCierre);
+            cmd.Parameters.AddWithValue("@res", complejo.responsable);
+            cmd.Parameters.AddWithValue("@idu", complejo.idUsuario);
+            cmd.Parameters.AddWithValue("@pes", complejo.promedioEstrellas);
+            cmd.Parameters.AddWithValue("@ide", complejo.idEstado);
+            cmd.Parameters.AddWithValue("@ava", complejo.avatar);
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
+
+        //public static void ActualizarDeportesComplejo(ComplejoDeportivo complejo)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+
+        //        comp.deportes = complejo.deportes + " " + comp.deportes;
+
+        //        db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+        //}
 
         public static void ActualizarDeportesComplejo(ComplejoDeportivo complejo)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
+            SqlConnection cn2 = new SqlConnection();
+            cn2.ConnectionString = ConnectionString.Cadena();
+            cn2.Open();
+            SqlCommand cmd2 = new SqlCommand();
+            cmd2.Connection = cn2;
+
+            cmd2.CommandText = @"SELECT deportes
+                                FROM ComplejoDeportivo
+                                WHERE id =  @id";
+
+            cmd2.Parameters.AddWithValue("@id", complejo.id);
+
+            SqlDataReader dr = cmd2.ExecuteReader();
+
+            ComplejoDeportivo cd = new ComplejoDeportivo();
+            while (dr.Read())
             {
-                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
-
-                comp.deportes = complejo.deportes + " " + comp.deportes;
-
-                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                cd.deportes = dr["deportes"].ToString();
             }
+            dr.Close();
+            cmd2.ExecuteNonQuery();
+            cn2.Close();
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+
+            cmd.CommandText = @"UPDATE ComplejoDeportivo SET deportes=@dep 
+							    WHERE id = @id";
+
+            cmd.Parameters.AddWithValue("@id", complejo.id);
+            cmd.Parameters.AddWithValue("@dep", complejo.deportes + " " + cd.deportes);
+
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
+
+        //public static void ActualizarMapaComplejo(ComplejoDeportivo complejo)
+        //{
+        //    using (HayEquipoEntities db = new HayEquipoEntities())
+        //    {
+        //        ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+
+        //        comp.mapa = complejo.mapa;
+
+        //        db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+        //}
 
         public static void ActualizarMapaComplejo(ComplejoDeportivo complejo)
         {
-            using (HayEquipoEntities db = new HayEquipoEntities())
-            {
-                ComplejoDeportivo comp = db.ComplejoDeportivo.Find(complejo.id);
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ComplejoDeportivo SET mapa=@map 
+							    WHERE id = @id";
 
-                comp.mapa = complejo.mapa;
-
-                db.Entry(comp).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
+            cmd.Parameters.AddWithValue("@id", complejo.id);
+            cmd.Parameters.AddWithValue("@map", complejo.mapa);
+ 
+            cmd.ExecuteNonQuery();
+            cn.Close();
         }
 
         public static void EliminarComplejo(int id)
@@ -146,15 +266,15 @@ namespace CapaDao
                 }
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
-                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Telefono = long.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
                 TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
-                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();
@@ -301,19 +421,19 @@ namespace CapaDao
                 }
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
-                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Telefono = long.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
                 TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
 
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
 
                 comp.Valoracion = int.Parse(dr["ValoracionPromedio"].ToString());
 
                 comp.Estado = dr["Estado"].ToString();
-                //  comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();
@@ -389,12 +509,12 @@ namespace CapaDao
                 }
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
-                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Telefono = long.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
                 TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 if (!string.IsNullOrEmpty(dr["Mapa"].ToString())) {
@@ -534,12 +654,12 @@ namespace CapaDao
                 }
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
-                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Telefono = long.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
                 TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
                 comp.Responsable = dr["Responsable"].ToString();
                 comp.Valoracion = double.Parse(dr["Valoracion"].ToString());
-                //  comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
+                comp.FechaRegistro = DateTime.Parse(dr["FechaRegistro"].ToString());
                 comp.IDEstado = int.Parse(dr["IDEstado"].ToString());
                 comp.Estado = dr["Estado"].ToString();
                 if (!string.IsNullOrEmpty(dr["Mapa"].ToString()))
@@ -1235,7 +1355,7 @@ namespace CapaDao
                 d.descripcion = dr["descripcion"].ToString();
                 d.calle = dr["calle"].ToString();
                 d.nroCalle = int.Parse(dr["nroCalle"].ToString());
-                d.nroTelefono = int.Parse(dr["nroTelefono"].ToString());
+                d.nroTelefono = long.Parse(dr["nroTelefono"].ToString());
                 d.idUsuario = int.Parse(dr["idUsuario"].ToString());
                 d.responsable = dr["responsable"].ToString();
 

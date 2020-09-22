@@ -434,6 +434,7 @@
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
           <ScalarProperty Name="intentos" ColumnName="intentos" />
           <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+          <ScalarProperty Name="bloqueadoAdmin" ColumnName="bloqueadoAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
