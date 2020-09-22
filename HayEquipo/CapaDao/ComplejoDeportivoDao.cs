@@ -534,7 +534,7 @@ namespace CapaDao
                 }
                 comp.Barrio = dr["Barrio"].ToString();
                 comp.Zona = dr["Zona"].ToString();
-                comp.Telefono = int.Parse(dr["Telefono"].ToString());
+                comp.Telefono = long.Parse(dr["Telefono"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["Apertura"].ToString(), out ha)) { comp.Apertura = ha; }
                 TimeSpan hc; if (TimeSpan.TryParse(dr["Cierre"].ToString(), out hc)) { comp.Cierre = hc; }
                 comp.Responsable = dr["Responsable"].ToString();

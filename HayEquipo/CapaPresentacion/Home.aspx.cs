@@ -104,7 +104,7 @@ namespace CapaPresentacion
         {
             //****NO BORRAR****
             // redireccionar a MiCuenta o Perfil
-            //  Response.Redirect("");
+            Response.Redirect("PerfilDeportistas.aspx");
         }
 
         //protected void btn_CrearEncuentro_Click(object sender, EventArgs e)

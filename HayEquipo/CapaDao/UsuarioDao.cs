@@ -734,7 +734,7 @@ namespace CapaDao
             cmd.CommandText = @" 
                                 SELECT DISTINCT u.id, u.nombre
                                 FROM Usuario u, Deportista d, Barrio b, Zona z, Deporte s
-                                WHERE d.id = u.id AND b.id = d.idBarrio  ";
+                                WHERE d.idUsuario = u.id AND b.id = d.idBarrio  ";
 
             if (sport != 0)
             {
