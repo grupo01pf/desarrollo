@@ -31,9 +31,12 @@ namespace CapaDao
                 a.idCancha = int.Parse(dr["idCancha"].ToString());
                 a.nombreCancha = dr["nombreCancha"].ToString();
                 a.nombreTipoCancha = dr["tipoCancha"].ToString();
-               //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
+                //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
-                a.precioCancha = float.Parse(dr["precio"].ToString());
+                if (!string.IsNullOrEmpty(dr["precio"].ToString())) {
+                    a.precioCancha = float.Parse(dr["precio"].ToString());
+                }
+                    
                 a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["horaApertura"].ToString(), out ha)) { a.horaApertura = ha; } // ok
                 TimeSpan hc; if (TimeSpan.TryParse(dr["horaCierre"].ToString(), out hc)) { a.horaCierre = hc; } // ok
@@ -85,7 +88,12 @@ namespace CapaDao
                 a.nombreComplejoDeportivo = dr["nombreComplejo"].ToString();
                 //  TimeSpan hi; if (TimeSpan.TryParse(dr["horaInicio"].ToString(), out hi)) { a.horaInicioHorario = hi; } // ok
                 //a.horaInicioHorario = TimeSpan.Parse(dr["horaIncio"].ToString());
-                a.precioCancha = float.Parse(dr["precio"].ToString());
+
+                if (!string.IsNullOrEmpty(dr["precio"].ToString()))
+                {
+                    a.precioCancha = float.Parse(dr["precio"].ToString());
+                }
+                    
                 a.capacidadTipoCancha = int.Parse(dr["capacidad"].ToString());
                 TimeSpan ha; if (TimeSpan.TryParse(dr["horaApertura"].ToString(), out ha)) { a.horaApertura = ha; } // ok
                 TimeSpan hc; if (TimeSpan.TryParse(dr["horaCierre"].ToString(), out hc)) { a.horaCierre = hc; } // ok
