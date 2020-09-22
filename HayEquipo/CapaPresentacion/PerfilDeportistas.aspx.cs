@@ -601,8 +601,11 @@ namespace CapaPresentacion
 
             NotificacionDao.actualizarEstadoNotificacion(11, idNotif);
 
-            mostrarSolicitudes();
             actualizarNotificaciones();
+            mostrarNotificaciones();
+            mostrarSolicitudes();
+
+            cargarListaContactos();
         }
 
         protected void gdv_Solicitudes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -626,10 +629,12 @@ namespace CapaPresentacion
 
                 NotificacionDao.actualizarEstadoNotificacion(13, idNotif);
 
-                mostrarSolicitudes();
+                
                 actualizarNotificaciones();
+                mostrarNotificaciones();
+                mostrarSolicitudes();
 
-                cargarListaAmigos();
+                cargarListaContactos();
 
             }
             if (e.CommandName == "Cancelar")
