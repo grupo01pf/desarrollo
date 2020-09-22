@@ -696,7 +696,6 @@ namespace CapaPresentacion
             cmb_sexo.DataBind();
         }
 
-
         private void limpiarListaInvitar()
         {
             foreach (GridViewRow fila in gdv_Invitar.Rows)
@@ -724,7 +723,7 @@ namespace CapaPresentacion
                 int zona = 0;
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 int barrio = 0;
-                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+                int.TryParse(cmb_BuscarBarrio.SelectedItem.Value, out barrio);
 
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
@@ -765,6 +764,8 @@ namespace CapaPresentacion
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
         }
 
+      
+
 
         protected void btn_Buscar_Click(object sender, EventArgs e)
         {
@@ -779,7 +780,16 @@ namespace CapaPresentacion
             cmb_Deporte.DataTextField = "nombre";
             cmb_Deporte.DataBind();
         }
+        private void loadBarrios()
+        {
+            cmb_BuscarBarrio.Items.Clear();
+            cmb_BuscarBarrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
+            cmb_BuscarBarrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
+            cmb_BuscarBarrio.DataValueField = "id";
+            cmb_BuscarBarrio.DataTextField = "nombre";
+            cmb_BuscarBarrio.DataBind();
+        }
 
 
         private void cargarZonas()
@@ -1019,7 +1029,7 @@ namespace CapaPresentacion
             btn_Solicitud.Visible = true;
 
             cargarZonas();
-            cargarBarrios();
+            loadBarrios();
             cargarSports();
 
             //pnl_Lugar.Visible = true;
@@ -1046,16 +1056,16 @@ namespace CapaPresentacion
             btn_Buscar.Visible = true;
         }
 
-        private void cargarBuscarBarrios()
-        {
-            cmb_BuscarBarrio.Items.Clear();
-            cmb_BuscarBarrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+        //private void cargarBuscarBarrios()
+        //{
+        //    cmb_BuscarBarrio.Items.Clear();
+        //    cmb_BuscarBarrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
-            cmb_BuscarBarrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
-            cmb_BuscarBarrio.DataValueField = "id";
-            cmb_BuscarBarrio.DataTextField = "nombre";
-            cmb_BuscarBarrio.DataBind();
-        }
+        //    cmb_BuscarBarrio.DataSource = BarrioDao.obtenerBarriosOrdenados();
+        //    cmb_BuscarBarrio.DataValueField = "id";
+        //    cmb_BuscarBarrio.DataTextField = "nombre";
+        //    cmb_BuscarBarrio.DataBind();
+        //}
 
         private void cargarListaPorLugar(string lugar)
         {
@@ -1078,7 +1088,7 @@ namespace CapaPresentacion
             else
             {
                 int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
-                int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
+                int.TryParse(cmb_BuscarBarrio.SelectedItem.Value, out barrio);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
 
