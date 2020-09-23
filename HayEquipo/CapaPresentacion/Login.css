@@ -22,7 +22,8 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-image: url(Imagenes/logo_rotate02.jpeg);
+    background: white;
+    background-image: url(Imagenes/HEbarra.png);
     position: relative;
     top: 0;
     left: 0;

@@ -68,9 +68,10 @@
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          background-image: url(Imagenes/logo_rotate02.jpeg);
+          background: white;
+          background-image: url(Imagenes/HEbarra.png);
           position: relative;
-          animation: rotacion 5s linear infinite;
+          animation: rotacion 5s cubic-bezier(0.21, -0.4, 0.47, 1.31) infinite;
           background-size: cover;
           border: 1px solid black;
           box-shadow: -5px -5px 5px inset;
