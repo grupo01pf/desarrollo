@@ -95,6 +95,23 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("obtenerValoracionParticularComplejoxTipo", prmidComplejoParameter, prmTipoParameter, prmUsuarioValoradorParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> obtenerValoracionParticularJugadorxTipo(Nullable<int> prmidJugador, Nullable<int> prmTipo, Nullable<int> prmUsuarioValorador)
+        {
+            var prmidJugadorParameter = prmidJugador.HasValue ?
+                new ObjectParameter("prmidJugador", prmidJugador) :
+                new ObjectParameter("prmidJugador", typeof(int));
+    
+            var prmTipoParameter = prmTipo.HasValue ?
+                new ObjectParameter("prmTipo", prmTipo) :
+                new ObjectParameter("prmTipo", typeof(int));
+    
+            var prmUsuarioValoradorParameter = prmUsuarioValorador.HasValue ?
+                new ObjectParameter("prmUsuarioValorador", prmUsuarioValorador) :
+                new ObjectParameter("prmUsuarioValorador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("obtenerValoracionParticularJugadorxTipo", prmidJugadorParameter, prmTipoParameter, prmUsuarioValoradorParameter);
+        }
+    
         public virtual ObjectResult<ReporteCantidadDeportexFecha_Result> ReporteCantidadDeportexFecha(Nullable<int> complejo)
         {
             var complejoParameter = complejo.HasValue ?
@@ -569,6 +586,45 @@ namespace CapaEntidades
                 new ObjectParameter("idComp", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spObtenerServiciosPorComplejos_Result>("spObtenerServiciosPorComplejos", idCompParameter);
+        }
+    
+        public virtual int spRegistrarDeporte(string prmNombre, byte[] imagen)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("imagen", imagen) :
+                new ObjectParameter("imagen", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarDeporte", prmNombreParameter, imagenParameter);
+        }
+    
+        public virtual int spRegistrarServicioExtra(string prmNombre)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarServicioExtra", prmNombreParameter);
+        }
+    
+        public virtual int spRegistrarTipoCancha(string prmNombre, Nullable<int> prmidDeporte, Nullable<int> prmCapacidad)
+        {
+            var prmNombreParameter = prmNombre != null ?
+                new ObjectParameter("prmNombre", prmNombre) :
+                new ObjectParameter("prmNombre", typeof(string));
+    
+            var prmidDeporteParameter = prmidDeporte.HasValue ?
+                new ObjectParameter("prmidDeporte", prmidDeporte) :
+                new ObjectParameter("prmidDeporte", typeof(int));
+    
+            var prmCapacidadParameter = prmCapacidad.HasValue ?
+                new ObjectParameter("prmCapacidad", prmCapacidad) :
+                new ObjectParameter("prmCapacidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRegistrarTipoCancha", prmNombreParameter, prmidDeporteParameter, prmCapacidadParameter);
         }
     
         public virtual int spRegistrarUsuario(string prmNombre, string prmEmail, string prmContraseña)

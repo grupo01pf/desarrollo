@@ -100,6 +100,10 @@
          .verde {
             background-color: #216c22!important;
         }
+         .elPadding {
+            padding-left: 150px;
+        }
+         
         
 
 
@@ -139,45 +143,21 @@
 
 
 
-                </div>
+                </div></div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 </div>
         </nav>
         <%--<div class="jumbotron text-center" style="background-color:black">--%>
         <div class="container text-center">
-            <div class="row">
-                <%--                    <div class="col-sm-6">
-                        <div class="well">--%>
-                <%--<br />
+            <div class="row well">
+                
+                    <div class="col-sm-6">
                         <br />
-                        <br />--%>
-                <%--                        <br />
-                        <br />
-                        <br />
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />
-
-                <%--          <h1>HAY EQUIPO !</h1>
-
-                <p class="agrandarLetra">Unidos por el deporte</p>--%>
-
-                <%--     <br />
-                        <br />
-                        <br />--%>
-                        <br />
-                        <br />
-
-                      </div>
-                    </div>
-                    </div>  --%>
-                <%-- <div class="col-sm-6">--%>
-                <div class="well login-well">
-                    <div class="col-sm-6 boxLogo">
-                        <%--<asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />--%>
-
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />
 
                         <br />
-                        <br />
-                        <div class="logo"></div>
+                      <br />
+                        <%--<div class="logo"></div>--%>
 
                         <%--<div id="divImgLogo">
                             <div class="bounce">
@@ -187,7 +167,7 @@
 
                             </div>
                         </div>--%>
-
+                        
 
                     </div>
 
@@ -209,7 +189,7 @@
                         <br />
                         <div class="alinearIzq">
                             <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
-                            <br />
+                            
                             <label>¿No tenés una cuenta?</label>
                             <br />
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -223,9 +203,33 @@
 
                         </div>
                     </div>
-                </div>
+                <%--                    <div class="col-sm-6">
+                        <div class="well">--%>
+                <%--<br />
+                        <br />
+                        <br />--%>
+                <%--                        <br />
+                        <br />
+                        <br />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/complejo_logo_default.png" Width="50%" />
+
+                <%--          <h1>HAY EQUIPO !</h1>
+
+                <p class="agrandarLetra">Unidos por el deporte</p>--%>
+
+                <%--     <br />
+                        <br />
+                        <br />--%>
+                        
+
+                      </div>
+                    </div>
+                      
+                <%-- <div class="col-sm-6">--%>
+                
+                
                 <%-- </div>--%>
-            </div>
+            
 
 
 

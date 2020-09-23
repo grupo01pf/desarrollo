@@ -22,8 +22,8 @@ namespace CapaEntidades
         public Nullable<int> idTipoValoracion { get; set; }
     
         public virtual ComplejoDeportivo ComplejoDeportivo { get; set; }
-        public virtual Deportista Deportista { get; set; }
         public virtual TipoValoracion TipoValoracion { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario1 { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace CapaEntidades
             this.RolesPorUsuarios = new HashSet<RolesPorUsuarios>();
             this.Sesion = new HashSet<Sesion>();
             this.Valoracion = new HashSet<Valoracion>();
+            this.Valoracion1 = new HashSet<Valoracion>();
         }
     
         public int id { get; set; }
@@ -48,5 +49,7 @@ namespace CapaEntidades
         public virtual ICollection<Sesion> Sesion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Valoracion> Valoracion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Valoracion> Valoracion1 { get; set; }
     }
 }
