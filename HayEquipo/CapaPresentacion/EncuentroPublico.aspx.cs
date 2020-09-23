@@ -127,7 +127,30 @@ namespace CapaPresentacion
         {
             int estado = 6; // (CANCELADO)
             EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-            // Pedir confirmacion de cancelacion
+
+            // Enviar notificacion
+
+            List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+            //lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+
+
+            foreach (Usuario u in lista)
+            {
+                Notificacion notificacion = null;
+                notificacion = new Notificacion();
+                notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                notificacion.nombreEmisor = Session["Usuario"].ToString();
+                notificacion.idReceptor = u.id;
+                notificacion.nombreReceptor = u.nombre;
+                notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                notificacion.texto = "Encuentro deportivo Cancelado" + " - " +
+                    cld_Fecha.Text + " - " + txt_HoraInicio.Text + " - " + txt_NombreLugar.Text;
+                notificacion.idEstado = 10;
+
+                NotificacionDao.insertarNotificacion(notificacion);
+
+            }
+
             Response.Redirect("Home.aspx");
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
