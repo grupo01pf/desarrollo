@@ -32,7 +32,7 @@
         }
 
         .elPadding {
-            padding: 8px;
+            padding: 10px;
         }
 
          .elPadding2 {
@@ -80,6 +80,14 @@
         #div_latlng {
             width: 100%;
         }
+        .imagen{
+            background-image:url('../Imagenes/complejo_imagen_clara.jpg');
+            
+        }
+        .colorsito{
+            color:white;
+        }
+       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -166,20 +174,23 @@
                 <div class="col-sm-4">
                     <div class="well">
                         <legend>Datos del Encuentro</legend>
-                        <div class="row">
-                            <div class="col-sm-4 alinearIzquiera">
+                       
+                             
+                            <div class="col-sm-5 alinearIzquiera">
                                 <span class="glyphicon glyphicon-calendar tamanoLetra"></span>
                                 <strong>
                                     <asp:Label ID="cld_Fecha" CssClass="tamanoLetra" runat="server" Text=""></asp:Label></strong>
                             </div>
-                            <div class="col-sm-8 alinearIzquiera">
+                            <div class="col-sm-7 alinearIzquiera">
                                 <strong>
                                     <asp:Label ID="lbl_Deporte" CssClass="tamanoLetra" Style="color: #11398a" runat="server" Text=""></asp:Label></strong><br />
                                 <asp:Label ID="Label2" Style="color: #808080" runat="server" Text="Privado &#183; Organizado por "></asp:Label>
                                 <strong>
                                     <asp:Label ID="txt_Organizador" runat="server" Text=""></asp:Label></strong>
                             </div>
-                        </div>
+                                
+                       
+                        
                         <hr class="colorLineaHorizontal" />
                         <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-time"></span>
@@ -188,6 +199,7 @@
                             <%--<asp:Label ID="Label4" runat="server" Text=" a "></asp:Label>--%>
                             <%--<asp:Label ID="txt_HoraFin" runat="server" Text="0"></asp:Label>--%>
                         </div>
+                        
                         <div class="alinearIzquiera elPadding">
                             <span class="glyphicon glyphicon-map-marker"></span>
                             <asp:Label ID="lbl_Complejo" runat="server" Text="Lugar"></asp:Label>
@@ -197,19 +209,51 @@
                             <asp:Label ID="txt_nroCalle" runat="server" Text="Nro Calle"></asp:Label>
 
                         </div>
-                        <div class="alinearIzquiera elPadding">
+                              <div class="alinearIzquiera elPadding">
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                                <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
+                                 </div>
+                            <div class="alinearIzquiera elPadding">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                                <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
+                            
+                            </div>
+                        
+                          <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
+                            <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
+                            <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
+                        
+                         </div> 
+                            
 
+                      <div class="well">
 
-                            <%--MODAL COMPLEJO--%>
-
+                           <div class="col-sm-6">
                             <button type="button" id="btn_VerComplejo" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable2"
                                 visible="true">
                                 Ver Complejo
                             </button>
+                            </div>
+                          
+                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                <ContentTemplate>
+                                    <asp:LinkButton ID="btnCalifComplejo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary">
+                               Calificar Complejo
+                                    </asp:LinkButton>
 
+                                </ContentTemplate>
+                            </asp:UpdatePanel> 
+                              <asp:Button ID="btnInicial" runat="server" Text="Button" Style="display: none" />
+                            
 
+                             
+                      
+                    </div>
+                </div>
 
+                        
+                            <%--MODAL COMPLEJO--%>
                             <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle2"
                                 aria-hidden="false">
                                 <%--data-backdrop="static" data-keyboard="false">--%>
@@ -217,20 +261,20 @@
 
 
 
-                                    <div class="modal-content">
+                                    <div class="modal-content imagen">
 
                                         <center>
 
                                         <div class="modal-header">
 
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close colorsito" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                                 <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                 <strong>
                                                     <center>
-                                                         <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                         <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar" CssClass="colorsito"></asp:Label>
                                                   </center>
                                                 </strong>
                                                 <h5></h5>
@@ -242,34 +286,34 @@
 
 
                                             <div class="form-group">
-                                                <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                                <asp:Label ID="lblValoracion" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
                                                 <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                                                <asp:Label ID="lblDescripcion" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblServicios" Text="Servicios: " runat="server"></asp:Label>
+                                                <asp:Label ID="lblServicios" Text="Servicios: " runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group" id="divListServ" runat="server">
                                                 <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                                                <asp:Label ID="lblDireccion" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                                                <asp:Label ID="lblBarrio" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblZona" runat="server"></asp:Label>
+                                                <asp:Label ID="lblZona" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                                <asp:Label ID="lblTelefono" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                                                <asp:Label ID="lblHorarios" runat="server" CssClass="colorsito"></asp:Label>
                                             </div>
                                             <div class="form-group">
 
@@ -315,7 +359,7 @@
 
                                         <div class="modal-footer">
                                             <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                         </center>
                                         </div>
                                             </center>
@@ -331,18 +375,9 @@
                             <%--MODAL CALIFICACION--%>
 
 
-
-                            <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                <ContentTemplate>
-                                    <asp:LinkButton ID="btnCalifComplejo" runat="server" OnClick="btnPopUp_Click" CssClass="btn btn-primary">
-                               Calificar Complejo
-                                    </asp:LinkButton>
-
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-
-                            <asp:Button ID="btnInicial" runat="server" Text="Button" Style="display: none" />
-
+                         
+                           
+                            
                             <asp:ModalPopupExtender ID="btnPopUp_ModalPopupExtender" runat="server"
                                 Enabled="True" TargetControlID="btnInicial"
                                 PopupControlID="PanelModal">
@@ -432,26 +467,14 @@
 
 
 
+                        
 
+                           
+                            
+                          
 
-
-                            <div class="alinearIzquiera elPadding">
-                                <span class="glyphicon glyphicon-earphone"></span>
-                                <asp:Label ID="txt_Telefono" runat="server" Text="Telefono"></asp:Label>
-                            </div>
-                            <div class="alinearIzquiera elPadding">
-                                <span class="glyphicon alert-info"></span>
-                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
-                                <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
-                            </div>
-
-
-                            <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
-                            <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
-                            <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
-                        </div>
-                    </div>
-                </div>
+                          
+            
                 <div class="col-sm-8">
                     <%--Union a Equipos--%>
                     <div class="well">

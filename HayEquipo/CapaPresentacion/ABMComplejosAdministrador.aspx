@@ -92,7 +92,32 @@
             transform: scale(2.0);
             margin-left: 20%;
         }
-           
+             #myMap {
+          
+            width: 95%;
+            padding-top: 55.25%;
+        }
+         .ajustelegend{
+             padding-left: 10px; 
+             padding-right: 0px;
+              border-left-width: 200px; 
+              width: 1100px;"
+         }
+         .ajustetextmapa{
+             padding-left:40px;
+         }
+
+           @media screen and (max-width: 800px) {
+              #myMap {
+          
+            width: 103%;
+            padding-top: 120%;
+                   }
+            .ajustelegend{
+             
+              width: 400px;"
+         }
+                 }
 
 
     </style>
@@ -508,14 +533,14 @@
 
         <%-- MAPA --%>
 
-        <div class="row" style="margin-left: 0px; margin-right: 0px; width: 2280px;">
-            <div class="well mapa">
-                <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
-                    <legend style="padding-left: 10px; padding-right: 0px; border-left-width: 200px; width: 1100px;">Ingresar Ubicación</legend>
-                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
+        
+            <div class="well">
+                <asp:Panel ID="pnl_Mapa" runat="server">
+                    <legend class="ajustelegend">Ingresar Ubicación</legend>
+                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)" CssClass="ajustetextmapa"></asp:Label>
                     <div class="container" style="text-align: left">
                         <div class="form-group">
-                            <div id="myMap" style="position: relative;height: 456px;width: 1060px;outline: none;"></div>
+                            <div id="myMap"></div>
                         </div>
 
                         <div class="form-group">
@@ -543,8 +568,7 @@
 
         <%-- FIN MAPA --%>
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
+    
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="

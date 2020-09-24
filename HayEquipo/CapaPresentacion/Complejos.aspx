@@ -11,13 +11,13 @@
   /* Make the image fully responsive */
   .carousel-inner img {
       width: 100%;
-      height: 100%;
+      
   }
 
   /* Make the image fully responsive */
   .tamañoCarousel {
-      width: 1000px;
-      height: 800px;
+      width: 70%;
+     
   }
 
       .scroll-container {
@@ -101,7 +101,15 @@
            
            .w3-indigo{
                background-color:#5674b6!important;
-           }     
+           } 
+           @media screen and (max-width: 800px) {
+             .tamañoCarousel {
+              width: 100%;
+             
+                   }
+            
+                 }
+           
           
   </style>
 
@@ -328,25 +336,22 @@
           
             </ajaxToolkit:ModalPopupExtender>
  
-       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical" BackImageUrl="~/Imagenes/complejo_imagen clara.jpg">
+       <asp:Panel ID="PanelModal2" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical" BackImageUrl="~/Imagenes/complejo_imagen_clara.jpg">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-    <div class="container text-center">
+             <div class="text-center">
                 <div class="modal-header">
-                     <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"   
+                     
+                    
+                    
+                    <div class="col-sm-12">
+                        <asp:Button ID="btnClose2" runat="server" Text="X" CssClass="close"
                        onclick="btnClose2_Click"/>
-                    <div class="row">
-                     <div class="col-sm-3">
-                     </div>
-                    <div class="col-sm-6">
-                        <div class="row">
-                        <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />
+                        <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100"/>
                         <b><h4 class="modal-title colorLetra strokeNombre" id="myModalLabel2" runat="server"></h4></b>
-                     </div>
-                        </div>                     
-                    <div class="col-sm-3">
-                     </div>
+                
                     </div>
+                    
                     <%--<asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" height="100" width="100" />--%>
                 </div>
                 <div class="modal-body">
@@ -442,6 +447,7 @@
 </div>
 </div>--%>
                     </div>
+                     </div>
                   <div class="modal-footer">
                              <div class="form-group">
 
@@ -483,13 +489,12 @@
 </div>
 </div>  
                   </div>
-                </div>
+           </div>    
                     </ContentTemplate>
                     </asp:UpdatePanel>
                 </asp:Panel> 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</asp:Content>
+   </asp:Content>
 
 
 

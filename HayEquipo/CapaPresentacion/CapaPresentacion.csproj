@@ -1721,7 +1721,7 @@
     <Content Include="Imagenes\calender.png" />
     <Content Include="Imagenes\cancel.png" />
     <Content Include="Imagenes\cerveza.jpg" />
-    <Content Include="Imagenes\complejo_imagen clara.jpg" />
+    <Content Include="Imagenes\complejo_imagen_clara.jpg" />
     <Content Include="Imagenes\complejo_imagen_transp.jpg" />
     <Content Include="Imagenes\complejo_logo_default.png" />
     <Content Include="Imagenes\cesped.jpg" />
