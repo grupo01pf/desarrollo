@@ -22,7 +22,7 @@
 
       .scroll-container {
             display: block;
-            /*height: 600px;*/
+            height: 600px;
             overflow-y: auto;
         }
 
@@ -102,7 +102,7 @@
            .w3-indigo{
                background-color:#5674b6!important;
            }     
-
+          
   </style>
 
 </asp:Content>

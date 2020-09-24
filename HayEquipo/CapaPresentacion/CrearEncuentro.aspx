@@ -467,8 +467,8 @@
 
                         <%--BOTONES--%>
                     </div>
-                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
+                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" CssClass="btn btn-success" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" CssClass="btn btn-danger" />
                     <br />
                     <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </div>
@@ -476,17 +476,17 @@
         </div>
         <%-- ****MAPA**** --%>
 
-        <div class="container">
+        <div class="well">
             <div class="form-group">
                 <div id="myMap"></div>
             </div>
 
-            <div class="form-inline">
+            <div class="well">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
                     <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                     <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
-
+                    <br />
                     <label for="lbl_Longitud">Longitud</label>
                     <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                     <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>

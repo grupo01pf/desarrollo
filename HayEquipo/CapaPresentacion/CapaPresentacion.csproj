@@ -130,6 +130,7 @@
     <Content Include="EncuentroPrivado.aspx" />
     <Content Include="EncuentroPublico.aspx" />
     <Content Include="EstadisticaComplejo.aspx" />
+    <Content Include="EstadisticaJugador.aspx" />
     <Content Include="fontawesome\css\all.css" />
     <Content Include="fontawesome\css\all.min.css" />
     <Content Include="fontawesome\css\brands.css" />
@@ -1954,6 +1955,13 @@
     </Compile>
     <Compile Include="EstadisticaComplejo.aspx.designer.cs">
       <DependentUpon>EstadisticaComplejo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadisticaJugador.aspx.cs">
+      <DependentUpon>EstadisticaJugador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadisticaJugador.aspx.designer.cs">
+      <DependentUpon>EstadisticaJugador.aspx</DependentUpon>
     </Compile>
     <Compile Include="GMap.aspx.cs">
       <DependentUpon>GMap.aspx</DependentUpon>

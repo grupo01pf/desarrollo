@@ -45,16 +45,14 @@
         }
 
          #myMap {
-            /*height: 300px;
-            width: 400px;*/
-            height: 50%;
-            width: 65%;
+         
+            width: 100%;
             padding-top: 56.25%;
         }
 
         
         #div_latlng {
-            width: 65%;
+            width: 100%;
         }
     </style>
 </asp:Content>
@@ -416,17 +414,17 @@
 
 
             <%-- ****MAPA**** --%>
-            <div class="col-sm-6">
-                <div class="container">
+            <div class="col-sm-8">
+                <div class="well">
                     <div class="form-group">
                         <div id="myMap"></div>
 
                     </div>
-                    <div class="form-inline" id="div_latlng">
+                    <div class="well" id="div_latlng">
                         <div id="LatLng">
                             <label for="lbl_Latitud">Latitud</label>
                             <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-
+                            <br />
                             <label for="lbl_Longitud">Longitud</label>
                             <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
                         </div>

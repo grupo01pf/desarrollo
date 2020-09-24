@@ -159,6 +159,8 @@ $(window).load(function() {
                </div>
           </li>--%>
           <li><a href="CrearEncuentro.aspx">Crear Encuentro <span class="glyphicon glyphicon-plus amarillo"></span></a></li>
+
+          <li><a href="EstadisticaJugador.aspx">Estadistica</a></li>
              
       </ul>
        <%-- <asp:Button ID="btn_CrearEncuentro" runat="server" Text="Crear Encuentro" CssClass="btn btn-warning navbar-btn" OnClick="btn_CrearEncuentro_Click"/>--%>
@@ -228,7 +230,7 @@ $(window).load(function() {
   <!-- Footer Elements -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+  <div class="footer-copyright text-center py-3">© 2019-2020 Copyright:
     <a href="#"> HayEquipo.com.ar</a>
   </div>
   <!-- Copyright -->

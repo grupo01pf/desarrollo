@@ -35,15 +35,17 @@
             padding: 8px;
         }
 
+         .elPadding2 {
+            padding-left: 50%;
+        }
+
         .Estilotable {
             border-collapse: collapse;
         }
 
         #myMap {
-            /*height: 300px;
-            width: 400px;*/
-            height: 50%;
-            width: 65%;
+          
+            width: 100%;
             padding-top: 56.25%;
         }
 
@@ -76,7 +78,7 @@
         }
 
         #div_latlng {
-            width: 65%;
+            width: 100%;
         }
     </style>
 </asp:Content>
@@ -450,7 +452,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-8">
                     <%--Union a Equipos--%>
                     <div class="well">
                         <legend>Lista de Participantes</legend>
@@ -476,12 +478,12 @@
 
                                                 <div class="panel-body">
                                                     <%--Equipo A--%>
-                                                    <asp:GridView ID="gdv_Equipo_A" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large"
+                                                    <asp:GridView ID="gdv_Equipo_A" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..."  BorderWidth="0"  BorderColor="#ffffff" Font-Size="Large"
                                                          OnRowUpdating="gdv_Equipo_A_RowUpdating"
                                                         OnRowDataBound="gdv_Equipo_A_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" ItemStyle-Width="300" />
                                                               <asp:TemplateField>
                                                                 <ItemTemplate>  
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -489,7 +491,7 @@
                                                                         <asp:LinkButton ID="updatebtn"
                                                                          CommandArgument='<%# Eval("id") %>'                                
                                                                          CommandName="Update" runat="server" CssClass="btn btn-primary btn-edit" Visible="false">
-                                                                         ★★★</asp:LinkButton>
+                                                                         Calificar</asp:LinkButton>
                                                                       </ContentTemplate>
                                                                     </asp:UpdatePanel>
                                                                  </ItemTemplate>                          
@@ -534,12 +536,12 @@
 
                                                 <div class="panel-body">
                                                     <%--Equipo B --%>
-                                                    <asp:GridView ID="gdv_Equipo_B" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large"
+                                                    <asp:GridView ID="gdv_Equipo_B" runat="server" AutoGenerateColumns="false" ShowHeader="false" EmptyDataText="Sin participantes aún..." BorderWidth="0" BorderColor="#ffffff" Font-Size="Large"
                                                         OnRowUpdating="gdv_Equipo_B_RowUpdating"
                                                          OnRowDataBound="gdv_Equipo_B_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"  ItemStyle-Width="300"  />
                                                              <asp:TemplateField>
                                                                 <ItemTemplate>  
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -547,7 +549,7 @@
                                                                         <asp:LinkButton ID="updatebtn2"
                                                                          CommandArgument='<%# Eval("id") %>'                                
                                                                          CommandName="Update" runat="server" CssClass="btn btn-primary btn-edit" Visible="false">
-                                                                        ★★★</asp:LinkButton>
+                                                                        Calificar</asp:LinkButton>
                                                                       </ContentTemplate>
                                                                     </asp:UpdatePanel>
                                                                  </ItemTemplate>                          
@@ -672,56 +674,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="well">
-
-
-                        <%--CHAT--%>
-                        <legend>Chat</legend>
-
-                        <%--AJAX--%>
-
-
-                        <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
-                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                            <ContentTemplate>
-                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
-
-                                <div class="scroll-container">
-
-
-                                    <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
-                                        HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
-                                        EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
-                                        <Columns>
-                                            <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
-                                            <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
-                                            <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
-                                        </Columns>
-                                    </asp:GridView>
-
-
-                                </div>
-
-
-
-                                <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
-
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-
-
-                        <%--BOTONES CHAT--%>
-                        <div class="form-group alinearIzquiera">
-                            <label for="comment">Mensaje:</label>
-                            <asp:Panel ID="pnl_PanelChat" runat="server" DefaultButton="btn_Enviar">
-                                <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control"></asp:TextBox><br />
-                                <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block" />
-                            </asp:Panel>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-me-2"></div>
+               
+                
 
 
             </div>
@@ -739,7 +693,7 @@
 
                 <%-- BUSQUEDA --%>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="well">
 
                         <div class="form-group">
@@ -768,9 +722,9 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" />
-                                            <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" />
-                                            <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" />
+                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-primary" />
+                                            <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" CssClass="btn btn-primary"/>
+                                            <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" CssClass="btn btn-primary"/>
 
                                         </div>
 
@@ -898,8 +852,8 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                        <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
                                             onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
-                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />
-                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
+                                            <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" CssClass="btn btn-primary" />
+                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" CssClass="btn btn-primary"/>
                                         </center>
                                     </div>
                                 </div>
@@ -914,34 +868,87 @@
 
 
                 <%-- ****MAPA**** --%>
-                <div class="col-sm-6">
-                    <div class="container">
+                <div class="col-sm-5">
+                   <div class="well">
+                      
                         <div class="form-group">
                             <div id="myMap"></div>
 
                         </div>
-                        <div class="form-inline" id="div_latlng">
+                        <div class="well" id="div_latlng">
                             <div id="LatLng">
                                 <label for="lbl_Latitud">Latitud</label>
-                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-
+                                <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true" Width="235"></asp:TextBox>
+                                <br />
                                 <label for="lbl_Longitud">Longitud</label>
-                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"  Width="220"></asp:TextBox>
                             </div>
                         </div>
 
-                    </div>
+                   </div>
+                    
+                </div>
 
+                 <div class="col-sm-4">
+                    <div class="well">
+
+
+                        <%--CHAT--%>
+                        <legend>Chat</legend>
+
+                        <%--AJAX--%>
+
+
+                        <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+
+                                <div class="scroll-container">
+
+
+                                    <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
+                                        HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
+                                        EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
+                                        <Columns>
+                                            <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
+                                            <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
+                                            <asp:BoundField DataField="textoMensaje" HeaderText="Mensaje" Visible="true" HeaderStyle-Width="70%" />
+                                        </Columns>
+                                    </asp:GridView>
+
+
+                                </div>
+
+
+
+                                <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
+
+                        <%--BOTONES CHAT--%>
+                        <div class="form-group alinearIzquiera">
+                            <label for="comment">Mensaje:</label>
+                            <asp:Panel ID="pnl_PanelChat" runat="server" DefaultButton="btn_Enviar">
+                                <asp:TextBox ID="txt_Mensaje" runat="server" Text="" placeholder="Escriba un mensaje" Class="form-control"></asp:TextBox><br />
+                                <asp:Button ID="btn_Enviar" runat="server" Text="Enviar" OnClick="btn_Enviar_Click" CssClass="btn btn-primary btn-block" />
+                            </asp:Panel>
+                        </div>
+                    </div>
                 </div>
 
 
-                <div class="col-me-2"></div>
+               
 
 
             </div>
 
 
+
         </div>
+        
     </asp:Panel>
 
 

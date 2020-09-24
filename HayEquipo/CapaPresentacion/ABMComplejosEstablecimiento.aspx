@@ -570,6 +570,7 @@
         <%-- MAPA --%>
 
         <div class="row" style="margin-left: 0px; margin-right: 0px; width: 2280px;">
+           
             <div class="well mapa">
                 <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
                     <legend style="padding-left: 10px; padding-right: 0px; border-left-width: 200px; width: 1100px;">Ingresar Ubicación</legend>
@@ -599,7 +600,8 @@
                         </div>
                     </div>
                 </asp:Panel>
-            </div>
+            
+          
         </div>
 
         <%-- FIN MAPA --%>

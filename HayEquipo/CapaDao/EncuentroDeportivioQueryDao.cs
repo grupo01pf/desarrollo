@@ -105,7 +105,7 @@ namespace CapaDao
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
-                edq.idMapa = int.Parse(dr["idMapa"].ToString());
+              //  edq.idMapa = int.Parse(dr["idMapa"].ToString());
 
             }
             dr.Close();
@@ -851,6 +851,32 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT TOP 1 cd.avatar
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
+                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+            cmd.Parameters.AddWithValue("@idUsuario", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                imagen = true;
+            }
+            dr.Close();
+            cn.Close();
+            return imagen;
+
+        }
+        public static bool existeProximoEncuentro(string id)
+        {
+
+            bool imagen = false;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT TOP 1 ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,
+                                 ed.horaInicio,d.nombre as Deporte,cd.nombre as Complejo
                                  FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario

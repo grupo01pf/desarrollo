@@ -433,7 +433,7 @@ namespace CapaDao
                 comp.Valoracion = int.Parse(dr["ValoracionPromedio"].ToString());
 
                 comp.Estado = dr["Estado"].ToString();
-                comp.Mapa = int.Parse(dr["Mapa"].ToString());
+                //comp.Mapa = int.Parse(dr["Mapa"].ToString());
                 comp.Avatar = (byte[])dr["Avatar"];
                 comp.IDUsuario = int.Parse(dr["IDUsuario"].ToString());
                 comp.Usuario = dr["Usuario"].ToString();

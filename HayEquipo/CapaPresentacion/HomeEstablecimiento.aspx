@@ -22,7 +22,7 @@
 
       .scroll-container {
             display: block;
-            /*height: 600px;*/
+            height: 885px;
             overflow-y: auto;
         }
 
