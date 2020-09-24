@@ -101,6 +101,7 @@
             padding-left: 150px;
         }
 
+
                           .logoNavbar {
           width: 50px;
           height: 50px;
@@ -130,6 +131,13 @@
             color:white;
           }
 
+         .elPadding {
+            padding-left: 150px;
+        }
+
+
+
+
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -155,6 +163,17 @@
                 <div class="navbar-header">
 
                  <a href="Login.aspx"><div class="logoNavbar "></div></a>
+
+                    <div class="boxNavbar">
+                       <%-- <div class="logoNavbar "></div>--%>
+
+                        <div id="divLogoNavbar">
+                            <img id="logoNavbar02" src="Imagenes/logo01_ok.png" alt="" />
+                            <img id="letrasNavbar" src="Imagenes/letras_ok.png" alt="" />
+                        </div>
+                    </div>
+
+
 
                 </div></div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -494,7 +513,7 @@ se hacer responsable por posibles daños ni traumas psicologicos.
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
-            © 2019 Copyright:
+            © 2019-2020 Copyright:
     <a class="blanco" href="#">HayEquipo.com.ar</a>
         </div>
         <!-- Copyright -->

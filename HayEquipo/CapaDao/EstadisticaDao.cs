@@ -55,5 +55,16 @@ namespace CapaDao
             cmd.ExecuteNonQuery();
             cn.Close();
         }
+        public static void CargarTablaEstadisticaJugador(int id)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spCargarEstadisticaJugador", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
     }
 }

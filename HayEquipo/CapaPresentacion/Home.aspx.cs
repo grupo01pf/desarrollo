@@ -44,7 +44,25 @@ namespace CapaPresentacion
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
             enviarnotifFinalizadas();
             actualizarNotificaciones();
-            cargarProxEncuentro();
+            if(EncuentroDeportivioQueryDao.existeProximoEncuentro(Session["ID"].ToString())== true)
+            {
+                cargarProxEncuentro();
+                ir.Visible = true;
+                imagenProxEnc.Visible = true;
+                Label2.Visible = true;
+                Label3.Visible = true;
+                Label4.Visible = true;
+            }
+            else
+            {
+                proxenc.Text = "No cuentas con un encuentro proximo";
+                imagenProxEnc.Visible = false;
+                Label2.Visible = false;
+                Label3.Visible = false;
+                Label4.Visible = false;
+                ir.Visible = false;
+            }
+           
 
         }
 
@@ -269,7 +287,7 @@ namespace CapaPresentacion
                     notificacion.idReceptor = u.id;
                     notificacion.nombreReceptor = u.nombre;
                     notificacion.idEncuentro = e.idEncuentroDeportivo2;
-                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores";
+                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores.Fecha Encuentro: "+e.fechaInicioEncuentro.ToString("dd-MMMM-yyyy")+" - "+e.horaInicio.ToString("HH")+" Hs";
                     notificacion.idEstado = 10;
 
 

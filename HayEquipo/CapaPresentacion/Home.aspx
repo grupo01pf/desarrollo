@@ -150,8 +150,8 @@
 <div class="container text-center">
 
   <div class="row">
-    <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
-     <div class="scroll-container2">
+    <div class="col-sm-2" <%--style="background-color:#d7dbd3;"--%>>
+     <div class="well">
       <div class="well">
         <%--<p><a href="#">Ignacio Monetto</a></p>--%>
          <p> <asp:LinkButton ID="link_nombreUsuario"  runat="server" Text="" OnClick="link_nombreUsuario_Click" ></asp:LinkButton></p>
@@ -162,6 +162,7 @@
         <%-- INVITACIONES --%>
 
          <%--<a href="#" class="notification">--%>
+        <div class="well">
         <div class="well notification">
 
             <asp:LinkButton ID="btn_Notificacion" runat="server" Text="Notificaciones" OnClick="btn_Notificacion_Click"
@@ -182,7 +183,7 @@
             <span class="badge"><asp:Label ID="lbl_Solicitudes" runat="server" Text="0"></asp:Label></span>
 
          </div>
-
+            </div>
       <div class="well">
         <p><a href="#">Algunos links que te pueden interesar...</a></p>
         <p>
@@ -205,7 +206,7 @@
        </div>--%>
 
         <%-- FIN INVITACIONES --%>
-  </div>
+       </div>
     </div>
 
 
@@ -380,10 +381,10 @@
  </div>
     </div>
   </div>
-    <div class="col-sm-2 well" <%--style="background-color:#d7dbd3;"--%>>
-        <div class="scroll-container2">
+    <div class="col-sm-2" <%--style="background-color:#d7dbd3;"--%>>
+      <div class="well">
       <div class="thumbnail">
-        <p>Próximo encuentro</p>
+       <strong> <asp:Label ID="proxenc" runat="server" text='Próximo encuentro'></asp:Label> </strong>
         <asp:Image ID="imagenProxEnc" ImageUrl="Imagenes/nene.png" runat="server" height="100" width="100" CssClass="img-circle"/>
         <strong><asp:Label ID="deporte" runat="server" text=''></asp:Label><asp:Label ID="Label2" runat="server" text=' en '></asp:Label><asp:Label ID="lugar" runat="server" text=''></asp:Label></strong>
           <br />
@@ -396,7 +397,7 @@
         <a href="https://www.latam.com/es_ar/">
       <div class="well">
         <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>
-          <img src="Imagenes/publicidadLatam.png" class="img-responsive" width="460" height="460">
+          <img src="Imagenes/publicidadLatam.png" class="img-responsive">
           <hr />
         <p style="font-size:12px;">
             <strong>¡40% extra en acumulación de millas!</strong>
@@ -409,9 +410,9 @@
         </div>
       </div></a>
         <a href="https://www.newbalance.com.ar">
-      <div class="well">
+      <div class="well text-center">
         <div><span style="text-align:center; color:#808080; font-size:10px">PUBLICIDAD</span></div>
-          <img src="Imagenes/publicidadNewBalance.jpg" class="img-responsive" width="460" height="345">
+          <img src="Imagenes/publicidadNewBalance.jpg" class="img-responsive" width="380">
           <hr />
         <p style="font-size:12px;">
             <strong>Descuento del 40% ingresando a través de este enlace</strong>
@@ -423,10 +424,11 @@
             ABRIR ENLACE >
         </div>
       </div></a>
+        </div>
       </div>
-    </div>
+   
    </div>
-
+</div>
 
  <%--   <script>
 $(document).ready(function(){

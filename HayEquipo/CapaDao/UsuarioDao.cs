@@ -64,7 +64,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT u.id,u.nombre,u.fechaAlta,r.nombre as Rol,u.bloqueadoAdmin
+            cmd.CommandText = @"SELECT u.id,u.nombre,u.fechaAlta,r.nombre as Rol,u.bloqueadoAdmin as bloqueado
                                 FROM Usuario u, RolesPorUsuarios ru, Rol r
 		                        WHERE ru.idUsuario=u.id and r.id=ru.idRol and ru.idRol IN (2,3)
                                 ORDER BY id desc";
@@ -76,7 +76,7 @@ namespace CapaDao
                 u.nombreUsuario = dr["nombre"].ToString();
                 DateTime fi; if (DateTime.TryParse(dr["fechaAlta"].ToString(), out fi)) { u.fechaAlta = fi; }
                 u.rol= dr["Rol"].ToString();
-                u.bloqueado =bool.Parse(dr["bloqueadoAdmin"].ToString());
+                u.bloqueado = bool.Parse(dr["bloqueado"].ToString());
                 listaUsuarios.Add(u);
             }
             dr.Close();

@@ -98,6 +98,33 @@
 
         }
 
+         #myMap {
+          
+            width: 95%;
+            padding-top: 55.25%;
+        }
+         .ajustelegend{
+             padding-left: 10px; 
+             padding-right: 0px;
+              border-left-width: 200px; 
+              width: 1100px;"
+         }
+         .ajustetextmapa{
+             padding-left:40px;
+         }
+
+           @media screen and (max-width: 800px) {
+              #myMap {
+          
+            width: 103%;
+            padding-top: 120%;
+                   }
+            .ajustelegend{
+             
+              width: 400px;"
+         }
+                 }
+
 
     </style>
 </asp:Content>
@@ -300,7 +327,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
-                <div class="well" style="padding-bottom: 127px;">
+                <div class="well" style="padding-bottom: 115px;">
                     <%--Botones--%>
                        <asp:Label CssClass="estrellalabel" runat="server" Text="Mi Calificacion"></asp:Label>
                             <br />
@@ -569,14 +596,15 @@
 
         <%-- MAPA --%>
 
-        <div class="row" style="margin-left: 0px; margin-right: 0px; width: 2280px;">
-            <div class="well mapa">
-                <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
-                    <legend style="padding-left: 10px; padding-right: 0px; border-left-width: 200px; width: 1100px;">Ingresar Ubicación</legend>
-                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
+        
+           
+            <div class="well">
+                <asp:Panel ID="pnl_Mapa" runat="server">
+                    <legend class="ajustelegend">Ingresar Ubicación</legend>
+                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)" CssClass="ajustetextmapa"></asp:Label>
                     <div class="container" style="text-align: left">
                         <div class="form-group">
-                            <div id="myMap" style="position: relative;height: 456px;width: 1060px;outline: none;"></div>
+                            <div id="myMap"></div>
                         </div>
 
                         <div class="form-group">
@@ -599,16 +627,15 @@
                         </div>
                     </div>
                 </asp:Panel>
-            </div>
+            
+          
         </div>
 
         <%-- FIN MAPA --%>
 
 
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    </div>
+      
 </asp:Panel>
 
     <%-- script mapa --%>

@@ -199,7 +199,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT  ed.id,ed.idEstado
+            cmd.CommandText = @"SELECT  ed.id,ed.idEstado,ed.fechaInicioEncuentro,ed.horaInicio
                                  FROM EncuentroDeportivo ed
                                  WHERE ed.idEstado = 14";
             SqlDataReader dr = cmd.ExecuteReader();
@@ -209,6 +209,8 @@ namespace CapaDao
                 edq = new EncuentroDeportivoQueryEntidad();
                 edq.idEncuentroDeportivo2 = int.Parse(dr["id"].ToString());
                 edq.idEstado = int.Parse(dr["idEstado"].ToString());
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
                 ListaEDQ.Add(edq);
             }
             dr.Close();
