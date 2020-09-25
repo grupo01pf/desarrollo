@@ -1,4 +1,4 @@
-ï»¿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
+<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CapaPresentacion.Login" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%--le agregue la propiedad EnableEventValidation="false" porque me tiraba un bronca con el postback. Soy Nacho--%>
@@ -164,14 +164,14 @@
 
                  <a href="Login.aspx"><div class="logoNavbar "></div></a>
 
-                    <div class="boxNavbar">
-                       <%-- <div class="logoNavbar "></div>--%>
+              <%--      <div class="boxNavbar">
+                        <div class="logoNavbar "></div>
 
                         <div id="divLogoNavbar">
                             <img id="logoNavbar02" src="Imagenes/logo01_ok.png" alt="" />
                             <img id="letrasNavbar" src="Imagenes/letras_ok.png" alt="" />
                         </div>
-                    </div>
+                    </div>--%>
 
 
 
@@ -204,7 +204,7 @@
                     </div>
 
                     <div class="col-sm-6 divisor">
-                        <h2>Iniciar SesiÃ³n</h2>
+                        <h2>Iniciar Sesión</h2>
 
 
                         <div class="form-group">
@@ -213,16 +213,16 @@
 
                         </div>
                         <div class="form-group">
-                            <label>ContraseÃ±a</label>
-                            <asp:TextBox ID="txt_Password" runat="server" class="form-control" placeholder="Ingrese ContraseÃ±a" TextMode="Password"></asp:TextBox>
+                            <label>Contraseña</label>
+                            <asp:TextBox ID="txt_Password" runat="server" class="form-control" placeholder="Ingrese Contraseña" TextMode="Password"></asp:TextBox>
 
                         </div>
-                        <asp:Button ID="btn_Login" runat="server" class="btn btn-default verde" Text="Iniciar SesiÃ³n" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
+                        <asp:Button ID="btn_Login" runat="server" class="btn btn-default verde" Text="Iniciar Sesión" ValidationGroup="E" OnClick="btn_Login_Click"></asp:Button>
                         <br />
                         <div class="alinearIzq">
                             <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
 
-                            <label>Â¿No tenÃ©s una cuenta?</label>
+                            <label>¿No tenés una cuenta?</label>
                             <br />
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
@@ -319,16 +319,16 @@
                                             <asp:TextBox ID="txtEmail" runat="server" Text="" placeholder="Ingrese Email" CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
-                                            <label>ContraseÃ±a</label>
+                                            <label>Contraseña</label>
                                         </div>
                                         <div class="form-group">
-                                            <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese ContraseÃ±a" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
-                                            <label>Repetir ContraseÃ±a</label>
+                                            <label>Repetir Contraseña</label>
                                         </div>
                                         <div class="form-group">
-                                            <asp:TextBox ID="txtRPassword" runat="server" placeholder="Repetir ContraseÃ±a" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtRPassword" runat="server" placeholder="Repetir Contraseña" TextMode="Password" Columns="20" CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
                                             <asp:CheckBox runat="server" ID="checkPrivacidad" /><a data-dismiss="imodal" data-toggle="modal" href="#imodal2"> Acepto Terminos y condiciones</a>
@@ -368,33 +368,33 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            1. Tienes que tener 13 o mÃ¡s aÃ±os.
+                                            1. Tienes que tener 13 o más años.
                                             <br />
                                             2. No publiques nada que muestre violencia, que pueda asustar a otras personas o que contenga
-imÃ¡genes con desnudos.
+imágenes con desnudos.
                                             <br />
                                             3. No uses la cuenta de nadie sin permiso, ni intentes descubrir sus datos de login.
                                             <br />
                                             4. No permitas que nadie use tu cuenta.
                                             <br />
-                                            5. MantÃ©n tu contraseÃ±a en secreto.
+                                            5. Mantén tu contraseña en secreto.
                                             <br />
                                             6. No acoses a nadie ni publiques nada feo sobre ninguna persona.
                                             <br />
-                                            7. No publiques informaciÃ³n privada de otra persona.
+                                            7. No publiques información privada de otra persona.
                                             <br />
                                             8. No uses HayEquipo para hacer nada ilegal ni nada que nosotros hayamos prohibido.
                                             <br />
-                                            9. Si quieres aÃ±adir un sitio web a tu nombre de usuario, asegÃºrate primero de que tienes permiso de
+                                            9. Si quieres añadir un sitio web a tu nombre de usuario, asegúrate primero de que tienes permiso de
 HayEquipo.
                                             <br />
-                                            10. No cambies nada de nuestro sitio web o de nuestras aplicaciones, ni subas ningÃºn tipo de virus, ni
+                                            10. No cambies nada de nuestro sitio web o de nuestras aplicaciones, ni subas ningún tipo de virus, ni
 hagas nada que pueda interferir con la forma en que HayEquipo funciona.
                                             <br />
-                                            11. No utilices ningÃºn tipo de software o robot para crear cuentas de acceso a HayEquipo, ni envÃ­es
+                                            11. No utilices ningún tipo de software o robot para crear cuentas de acceso a HayEquipo, ni envíes
 spam o emails no deseados.
                                             <br />
-                                            12. Lee nuestras normas de uso y obedÃ©celas cuando uses HayEquipo.
+                                            12. Lee nuestras normas de uso y obedécelas cuando uses HayEquipo.
                                             <br />
                                             13. No hagas nada que pueda afectar al modo en que otras personas usan y disfrutan de HayEquipo.
                                             <br />
@@ -404,57 +404,57 @@ spam o emails no deseados.
                                             <h4>Tus derechos y nuestros derechos: </h4>
                                             1. Tienes derecho a sentirte seguro usando HayEquipo.
                                             <br />
-                                            2. Oficialmente eres el dueÃ±o de cualquier imagen o vÃ­deo original que publiques, pero nosotros tenemos permiso para usarlos,
-asÃ­ como para permitir que otros los usen en cualquier parte del mundo.
-Aunque otros nos paguen por ese uso nosotros no tenemos que pagarte a tÃ­ por eso.
+                                            2. Oficialmente eres el dueño de cualquier imagen o vídeo original que publiques, pero nosotros tenemos permiso para usarlos,
+así como para permitir que otros los usen en cualquier parte del mundo.
+Aunque otros nos paguen por ese uso nosotros no tenemos que pagarte a tí por eso.
                                             <br />
-                                            3. TÃº eres el responsable de todo lo que hagas en HayEquipo y de todo lo que publiques, incluyendo
-cosas inesperadas como nombres de usuario, datos y mÃºsica de otra gente.
+                                            3. Tú eres el responsable de todo lo que hagas en HayEquipo y de todo lo que publiques, incluyendo
+cosas inesperadas como nombres de usuario, datos y música de otra gente.
                                             <br />
-                                            4. Se asumirÃ¡ que eres el propietario de lo que publicas, y que lo que publicas no incumple la ley. Si
-incumples la ley y te multan, tendrÃ¡s que pagar la multa.
+                                            4. Se asumirá que eres el propietario de lo que publicas, y que lo que publicas no incumple la ley. Si
+incumples la ley y te multan, tendrás que pagar la multa.
                                             <br />
-                                            5. Aunque eres el responsable de la informaciÃ³n que pones en HayEquipo,
-nosotros podemos almacenar, usar y compartir tu informaciÃ³n personal con compaÃ±Ã­as conectadas a HayEquipo.
-Esta informaciÃ³n incluye tu nombre, tu email,dÃ³nde vives, tus imÃ¡genes, tu nÃºmero de telÃ©fono,
-los sitios que visitas y cualquier otra informaciÃ³n personal que encontremos, como tu fecha cumpleaÃ±os o con quien chateas en los foros
-No somos responsables de lo que otras empresas hagan con esta informaciÃ³n.
-No venderemos o alquilaremos tu informaciÃ³n a nadie mÃ¡s sin tu permiso.
-Cuando borres tu cuenta mantendremos esta informaciÃ³n personal sobre tÃ­,
-asÃ­ como tus fotos tanto tiempo como sea necesario para nuestros intereses.
+                                            5. Aunque eres el responsable de la información que pones en HayEquipo,
+nosotros podemos almacenar, usar y compartir tu información personal con compañías conectadas a HayEquipo.
+Esta información incluye tu nombre, tu email,dónde vives, tus imágenes, tu número de teléfono,
+los sitios que visitas y cualquier otra información personal que encontremos, como tu fecha cumpleaños o con quien chateas en los foros
+No somos responsables de lo que otras empresas hagan con esta información.
+No venderemos o alquilaremos tu información a nadie más sin tu permiso.
+Cuando borres tu cuenta mantendremos esta información personal sobre tí,
+así como tus fotos tanto tiempo como sea necesario para nuestros intereses.
                                             <br />
                                             6. HayEquipo tampoco es responsable de:
                                             <br />
-                                            a. Los links que aparezcan en Instagram de otras compaÃ±Ã­as o personas que no controlamos,
+                                            a. Los links que aparezcan en Instagram de otras compañías o personas que no controlamos,
 incluso si esos links te los hemos enviado nosotros mismos.
                                             <br />
-                                            b. Lo que ocurra si te conectas a tu cuenta de Instagram desde otra aplicaciÃ³n o sitio Web,
+                                            b. Lo que ocurra si te conectas a tu cuenta de Instagram desde otra aplicación o sitio Web,
 por ejemplo para compartir una imagen, y la otra app hace algo con ella o se queda con tus datos personales.
                                             <br />
                                             7. Aunque HayEquipo no es responsable de lo que ocurra contigo o con tus datos mientras los usas,
 tenemos muchos poderes:
                                             <br />
                                             a. Podemos enviarte publicidad que coincida con tus intereses (que previamente habremos investigado).
-No puedes evitar que hagamos esto y no siempre serÃ¡ obvio que lo que te mostremos sea publicidad.
+No puedes evitar que hagamos esto y no siempre será obvio que lo que te mostremos sea publicidad.
                                             <br />
                                             b. Podemos cambiar o cerrar HayEquipo, o cerrar tu acceso al mismo en cualquier momento,
-por cualquier razÃ³n y sin previo aviso. TambiÃ©n podemos borrar posts y comentarios de forma aleatoria,
-por cualquier razÃ³n y sin decÃ­rtelo. Si lo hacemos no seremos responsables de pagar nada
-y tÃº no tendrÃ¡s derecho a quejarte.
+por cualquier razón y sin previo aviso. También podemos borrar posts y comentarios de forma aleatoria,
+por cualquier razón y sin decírtelo. Si lo hacemos no seremos responsables de pagar nada
+y tú no tendrás derecho a quejarte.
                                             <br />
-                                            c. Podemos obligarte a cambiar de nombre de usuario por cualquier razÃ³n.
+                                            c. Podemos obligarte a cambiar de nombre de usuario por cualquier razón.
                                             <br />
                                             d. Podemos, pero no tenemos que, eliminar, editar, bloquear y / o supervisar cualquier cosa publicada
 o cualquier cuenta que creamos que incumple cualquiera de estas reglas.
-No somos responsables si alguien infringe la ley o estas reglas, pero tÃº sÃ­ serÃ¡s responsable si lo haces.
-Debes utilizar el sentido comÃºn y tu mejor juicio cuando utilizas HayEquipo.
+No somos responsables si alguien infringe la ley o estas reglas, pero tú sí serás responsable si lo haces.
+Debes utilizar el sentido común y tu mejor juicio cuando utilizas HayEquipo.
                                             <br />
-                                            8. Aunque tÃº no seas propietario de tus datos, nosotros sÃ­ lo somos de los nuestros.
+                                            8. Aunque tú no seas propietario de tus datos, nosotros sí lo somos de los nuestros.
 No puedes copiar y pegar los logos de HayEquipo o cualquier otra cosa que hayamos creado,
 ni eliminarlos ni intentar cambiarlos.
                                             <br />
                                             9. En caso de realizar deportes extremos y se realizen encuentros a travez de la platarforma, HayEquipo no se
-se hacer responsable por posibles daÃ±os ni traumas psicologicos.
+se hacer responsable por posibles daños ni traumas psicologicos.
                                             <br />
 
                                         </div>
@@ -513,7 +513,7 @@ se hacer responsable por posibles daÃ±os ni traumas psicologicos.
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
-            Â© 2019-2020 Copyright:
+            © 2019-2020 Copyright:
     <a class="blanco" href="#">HayEquipo.com.ar</a>
         </div>
         <!-- Copyright -->

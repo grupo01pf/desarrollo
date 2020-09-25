@@ -178,11 +178,11 @@ input[type="radio"]:checked ~ label {
     <div id="menu1" class="tab-pane fade">
           <div class="table-responsive">
                <br />
-                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                 HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
+                  <asp:GridView ID="gdv_EncuentrosDeportista" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
+                       OnSelectedIndexChanged="gdv_EncuentrosDisponibles_SelectedIndexChanged" >
                              
                                 <Columns>
-                                    <asp:CommandField buttontype="Image" selectimageurl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px"/>                          
+                                    <asp:CommandField buttontype="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px"/>                          
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
                                     <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
