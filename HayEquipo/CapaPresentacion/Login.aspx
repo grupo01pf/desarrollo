@@ -66,12 +66,7 @@
       }
 
 
-        @media only screen and (max-width: 700px) {
-            .ensanchar {
-                width: 200px;
-                height: 400px;
-            }
-        }
+      
 
         body {
             background-image: url("Imagenes/fondo2.jpg");
@@ -136,7 +131,12 @@
         }
 
 
-
+           @media only screen and (max-width: 800px) {
+            .ensanchar {
+                width: 200px;
+                height: 400px;
+            }
+        }
 
 
     </style>
@@ -297,9 +297,9 @@
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-                        <div class="ensanchar">
+                        
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                                <div class="modal-content col-sm-12">
                                     <div class="modal-header">
                                         <asp:Button ID="btnclose2" runat="server" Text="X" CssClass="close"
                                             OnClick="btnClose_Click" />
@@ -334,10 +334,10 @@
                                             <asp:CheckBox runat="server" ID="checkPrivacidad" /><a data-dismiss="imodal" data-toggle="modal" href="#imodal2"> Acepto Terminos y condiciones</a>
 
                                         </div>
-
+                                        <label>Deportista o Establecimiento ? </label>
                                         <div class="form-group">
-                                            <label>Deportista o Establecimiento ? </label>
-                                            <asp:RadioButtonList ID="radioLogin" runat="server" CssClass="alinearIzq centrar">
+                                            
+                                            <asp:RadioButtonList ID="radioLogin" runat="server">
                                                 <asp:ListItem Text="Deportista" Value="2" Selected="True" />
                                                 <asp:ListItem Text="Establecimiento" Value="3" />
                                             </asp:RadioButtonList>
@@ -354,7 +354,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                           
                         </div>
 
 
