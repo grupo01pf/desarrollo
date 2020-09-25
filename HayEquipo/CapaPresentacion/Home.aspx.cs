@@ -62,7 +62,7 @@ namespace CapaPresentacion
                 Label4.Visible = false;
                 ir.Visible = false;
             }
-           
+
 
         }
 
@@ -123,7 +123,7 @@ namespace CapaPresentacion
         {
             //****NO BORRAR****
             // redireccionar a MiCuenta o Perfil
-            //  Response.Redirect("");
+            Response.Redirect("PerfilDeportistas.aspx");
         }
 
         //protected void btn_CrearEncuentro_Click(object sender, EventArgs e)
@@ -283,11 +283,11 @@ namespace CapaPresentacion
                     Notificacion notificacion = null;
                     notificacion = new Notificacion();
                     notificacion.idEmisor = 1;
-                    notificacion.nombreEmisor ="Admin";
+                    notificacion.nombreEmisor = "Admin";
                     notificacion.idReceptor = u.id;
                     notificacion.nombreReceptor = u.nombre;
                     notificacion.idEncuentro = e.idEncuentroDeportivo2;
-                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores.Fecha Encuentro: "+e.fechaInicioEncuentro.ToString("dd-MMMM-yyyy")+" - "+e.horaInicio.ToString("HH")+" Hs";
+                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores.Fecha Encuentro: " + e.fechaInicioEncuentro.ToString("dd-MMMM-yyyy") + " - " + e.horaInicio.ToString("HH") + " Hs";
                     notificacion.idEstado = 10;
 
 

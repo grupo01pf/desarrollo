@@ -127,7 +127,30 @@ namespace CapaPresentacion
         {
             int estado = 6; // (CANCELADO)
             EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-            // Pedir confirmacion de cancelacion
+
+            // Enviar notificacion
+
+            List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));
+            //lista.AddRange(UsuarioDao.UsuariosUnidosEncuentroEquipoB(int.Parse(Session["idEncuentro"].ToString())));
+
+
+            foreach (Usuario u in lista)
+            {
+                Notificacion notificacion = null;
+                notificacion = new Notificacion();
+                notificacion.idEmisor = int.Parse(Session["ID"].ToString());
+                notificacion.nombreEmisor = Session["Usuario"].ToString();
+                notificacion.idReceptor = u.id;
+                notificacion.nombreReceptor = u.nombre;
+                notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                notificacion.texto = "Encuentro deportivo Cancelado" + " - " +
+                    cld_Fecha.Text + " - " + txt_HoraInicio.Text + " - " + txt_NombreLugar.Text;
+                notificacion.idEstado = 10;
+
+                NotificacionDao.insertarNotificacion(notificacion);
+
+            }
+
             Response.Redirect("Home.aspx");
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
@@ -262,14 +285,17 @@ namespace CapaPresentacion
         }
 
 
-        private void cargarListaInvitar() {
+        private void cargarListaInvitar()
+        {
+            List<Usuario> listaUsuarios = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            var lista = listaUsuarios.OrderBy(u => u.nombre);
 
-            gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            //gdv_Invitar.DataSource = UsuarioDao.obtenerUsuarios(int.Parse(Session["ID"].ToString()));
+            gdv_Invitar.DataSource = lista;
             gdv_Invitar.DataKeyNames = new string[] { "id" };
             gdv_Invitar.DataBind();
         }
 
-        // BUSCAR JUGADORES 
         protected void btn_EnviarInvitacion_Click(object sender, EventArgs e)
         {
             // MODAL BTN INVITAR
@@ -282,6 +308,8 @@ namespace CapaPresentacion
             {
                 listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             }
+
+
             if (rdb_MasOpciones.Checked)
             {
                 int sport = 0;
@@ -317,9 +345,19 @@ namespace CapaPresentacion
                     notificacion.idReceptor = idUsuarios[i];
                     notificacion.nombreReceptor = fila.Cells[2].Text;
                     notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
+                    //if (int.Parse(Session["idClave"].ToString()) == 0)
+                    //{
+                    //    notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                    //        txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text;
+                    //}
+                    //else
+                    //{
+                    //    string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
+                    //    notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
+                    //        txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " - Clave: " + clave;
+                    //}
                     notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                                         txt_HoraInicio.Text + " hs ";
-                    
+                          txt_HoraInicio.Text + " hs - ";
                     notificacion.idEstado = 10; //(No Check)
                     NotificacionDao.insertarNotificacion(notificacion);
                 }
@@ -723,14 +761,17 @@ namespace CapaPresentacion
             }
             if (lugar.Equals("Zona"))
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Zona.SelectedItem.Value, out zona);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
             else
             {
+                int.TryParse(cmb_Deporte.SelectedItem.Value, out sport);
                 int.TryParse(cmb_Barrio.SelectedItem.Value, out barrio);
                 listaUsuarios = UsuarioDao.getUsuariosPorFiltro(sport, zona, barrio);
             }
+
             var lista = listaUsuarios.OrderBy(u => u.nombre);
 
             gdv_Invitar.DataSource = lista;

@@ -19,7 +19,7 @@ namespace CapaEntidades
         public string Deportes { get; set; }
         public string Direccion { get; set; }
         public string Barrio { get; set; }
-        public Nullable<int> Telefono { get; set; }
+        public Nullable<long> Telefono { get; set; }
         public string Responsable { get; set; }
         public Nullable<double> Valoracion { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
