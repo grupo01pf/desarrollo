@@ -164,14 +164,14 @@
 
                  <a href="Login.aspx"><div class="logoNavbar "></div></a>
 
-                    <div class="boxNavbar">
-                       <%-- <div class="logoNavbar "></div>--%>
+                 <%--   <div class="boxNavbar">
+                       <%-- <div class="logoNavbar "></div>
 
                         <div id="divLogoNavbar">
                             <img id="logoNavbar02" src="Imagenes/logo01_ok.png" alt="" />
                             <img id="letrasNavbar" src="Imagenes/letras_ok.png" alt="" />
                         </div>
-                    </div>
+                    </div>--%>
 
 
 
