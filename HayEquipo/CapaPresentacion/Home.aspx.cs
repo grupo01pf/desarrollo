@@ -234,7 +234,7 @@ namespace CapaPresentacion
             encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-       
+
         protected void enviarnotifFinalizadas()
         {
 
@@ -264,11 +264,11 @@ namespace CapaPresentacion
                     Notificacion notificacion = null;
                     notificacion = new Notificacion();
                     notificacion.idEmisor = 1;
-                    notificacion.nombreEmisor ="Admin";
+                    notificacion.nombreEmisor = "Admin";
                     notificacion.idReceptor = u.id;
                     notificacion.nombreReceptor = u.nombre;
                     notificacion.idEncuentro = e.idEncuentroDeportivo2;
-                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores";
+                    notificacion.texto = "Encuentro Finalizado. Listo para calificar jugadores.Fecha Encuentro: " + e.fechaInicioEncuentro.ToString("dd-MMMM-yyyy") + " - " + e.horaInicio.ToString("HH") + " Hs";
                     notificacion.idEstado = 10;
 
 

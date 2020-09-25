@@ -357,7 +357,7 @@ namespace CapaPresentacion
                 notificacion.idReceptor = u.id;
                 notificacion.nombreReceptor = u.nombre;
                 notificacion.idEncuentro = int.Parse(Session["idEncuentro"].ToString());
-                notificacion.texto = "Encuentro deportivo Cancelado" + " - " +
+                notificacion.texto = "Encuentro deportivo Cancelado: " + " - " + lbl_Deporte.Text + " - " +
                     cld_Fecha.Text + " - " + txt_HoraInicio.Text + " - " + lbl_Complejo.Text;
                 notificacion.idEstado = 10;
 
