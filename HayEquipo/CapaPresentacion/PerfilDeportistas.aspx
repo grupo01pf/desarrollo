@@ -131,7 +131,10 @@
             height: 390px;
             overflow-y: auto;
         }
-
+         
+         .error {
+            color: red;
+        }
     </style>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -435,7 +438,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Nombres" runat="server" Text="Nombres"></asp:Label>
                                 <asp:TextBox ID="txt_Nombres" class="form-control" runat="server" placeholder="Ingrese Nombres"></asp:TextBox>
-
+                               
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Apellidos" runat="server" Text="Apellido"></asp:Label>
@@ -449,42 +452,47 @@
 
                             <div class="form-group">
                                 <asp:Label ID="lbl_NumeroDocumento" runat="server" Text="N°Documento"></asp:Label>
-                                <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" placeholder="Ingrese Nro Documento"></asp:TextBox>
+                                <asp:TextBox ID="txt_NumeroDocumento" runat="server" class="form-control" type="number" min="10000000" max="99999999" CausesValidation="true" ValidationGroup="okButton" placeholder="Ingrese Nro Documento"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Sexo" runat="server" Text="Sexo"></asp:Label>
                                 <asp:DropDownList ID="cmb_sexo" runat="server" CssClass="form-control" AppendDataBoundItems >
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        
                                     </asp:DropDownList>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento"></asp:Label>
+                                <asp:Label ID="lbl_FechaNacimiento" runat="server" Text="Fecha de nacimiento" ></asp:Label>
 
                                 <asp:TextBox ID="txt_FechaNacimiento" runat="server" placeholder="Ingrese Fecha Nacimiento"></asp:TextBox>
                                 <asp:Image id="calendario" runat="server" ImageUrl="imagenes/calender.png"  />
+                                <asp:RangeValidator runat="server" id="rngDate" controltovalidate="txt_FechaNacimiento" type="Date" minimumvalue="01-01-1960" maximumvalue="31-12-2005" errormessage="Coloque una Fecha Valida" />
+
+                                
 
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Telefono" runat="server" Text="Telefono"></asp:Label>
-                                <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" placeholder="Ingrese Telefono"></asp:TextBox>
+                                <asp:TextBox ID="txt_Telefono" runat="server" class="form-control" type="number" min="1000000000" max="9999999999" CausesValidation="true" ValidationGroup="okButton" placeholder="Ingrese Telefono"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_DeportePreferido" runat="server" Text="Deporte Preferido"></asp:Label>
                                  <asp:DropDownList ID="cmb_DeportePrederido" runat="server" CssClass="form-control" AppendDataBoundItems >
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                       
                                     </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_Barrio" runat="server" Text="Barrio"></asp:Label>
                                 <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems>
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                   
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
+                                <asp:Label ID="lblmsj" runat="server" CssClass="error"></asp:Label>
+                                <br />
                                 <asp:Button ID="btnGuardar" runat="server" Text="Registrar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnGuardar_Click" Visible="true" />
                                 <asp:Button ID="btnCambiar" runat="server" Text="Cambiar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnCambiar_Click" Visible="false" />
                                 <asp:Button ID="btnActualizar" runat="server" Text="Actualizar Datos Deportista" ValidationGroup="E" CssClass="btn btn-primary btn-edit" OnClick="btnActualizar_Click" Visible="false" />
-                                <asp:Label ID="lblmsj" runat="server"></asp:Label>
+                                
                             </div>
                         </div>
 

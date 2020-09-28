@@ -24,26 +24,28 @@ namespace CapaPresentacion
                 Image1.ImageUrl = "~/imagen.aspx?id=" + Session["ID"].ToString();
                 cambiarImagen();
             }
-            if (DeportistaDao.ExisteDeportista(Session["ID"].ToString()))
+            if (!IsPostBack)
             {
-                if (btnActualizar.Visible == false)
+                if (DeportistaDao.ExisteDeportista(Session["ID"].ToString()))
                 {
-                    cargarSexo();
-                    cargarBarrios();
-                    cargarDeportes();
-                    DatosCargadosDeportista();
+                    if (btnActualizar.Visible == false)
+                    {
+                        cargarSexo();
+                        cargarBarrios();
+                        cargarDeportes();
+                        DatosCargadosDeportista();
 
+                    }
+                }
+
+                else
+                {
+                    cargarSexo2();
+                    cargarBarrios2();
+                    cargarDeportes2();
+                    cargarTipoDocumento();
                 }
             }
-
-            else
-            {
-                cargarSexo2();
-                cargarBarrios2();
-                cargarDeportes2();
-                cargarTipoDocumento();
-            }
-
             gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["ID"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
@@ -152,7 +154,7 @@ namespace CapaPresentacion
             if (int.TryParse(cmb_sexo.Text, out sexo))
                 objDeportista.sexo = sexo;
             objDeportista.fechaNacimiento = Convert.ToDateTime(txt_FechaNacimiento.Text);
-            objDeportista.numeroTelefono = Convert.ToInt32(txt_Telefono.Text);
+            objDeportista.numeroTelefono = Convert.ToInt64(txt_Telefono.Text);
             objDeportista.idUsuario = Convert.ToInt32(Session["id"]) ;
             objDeportista.promedioEstrellas = 0;
             objDeportista.idEstado = 1;
@@ -172,9 +174,13 @@ namespace CapaPresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            DeportistaEntidad deportista = GetEntity();
+          
+            if (txt_Apellidos.Text != "" && txt_Nombres.Text != "" && txt_FechaNacimiento.Text != "" && txt_NumeroDocumento.Text != ""
+                 && txt_Telefono.Text != "" 
+               ) {
+                DeportistaEntidad deportista = GetEntity();
 
-            DeportistaDao.InsertarDeportista(deportista);
+                DeportistaDao.InsertarDeportista(deportista);
             txt_Apellidos.Enabled = false;
             txt_Nombres.Enabled = false;
             txt_FechaNacimiento.Enabled = false;
@@ -192,7 +198,11 @@ namespace CapaPresentacion
             cmb_DeportePrederido.CssClass = "";
             cmb_sexo.CssClass = "";
             lblmsj.Text = "Datos Guardados Exitosamente";
-
+            }else
+            {
+                Page_Load(sender, e);
+                lblmsj.Text = "Todos los campos deben ser completados";
+            }
 
         }
         protected void btnCambiar_Click(object sender, EventArgs e)
@@ -206,6 +216,9 @@ namespace CapaPresentacion
             ddl_TipoDocumento.Visible = true;
             lbl_TipoDocumento.Visible = true;
             cargarTipoDocumento();
+            cargarSexo();
+            cargarBarrios();
+            cargarDeportes();
             btnActualizar.Visible = true;
             btnCambiar.Visible = false;
             cmb_Barrio.Enabled = true;
@@ -666,7 +679,7 @@ namespace CapaPresentacion
         private void cargarBarrios()
         {
             cmb_Barrio.Items.Clear();
-            cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+          //  cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
             cmb_Barrio.DataValueField = "id";
@@ -677,7 +690,7 @@ namespace CapaPresentacion
         private void cargarDeportes()
         {
             cmb_DeportePrederido.Items.Clear();
-            cmb_DeportePrederido.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+           // cmb_DeportePrederido.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_DeportePrederido.DataSource = DeporteDao.ObtenerDeportes();
             cmb_DeportePrederido.DataValueField = "id";
@@ -688,7 +701,7 @@ namespace CapaPresentacion
         private void cargarSexo()
         {
             cmb_sexo.Items.Clear();
-            cmb_sexo.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+           // cmb_sexo.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_sexo.DataSource = DeportistaDao.obtenerSexo();
             cmb_sexo.DataValueField = "id";
