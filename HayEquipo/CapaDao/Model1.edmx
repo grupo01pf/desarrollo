@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HayEquipoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AmigosPorDeportista">
@@ -526,7 +526,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
           <Property Name="idZona" Type="int" />
           <Property Name="idDeportista" Type="int" />
         </EntityType>
-        <Association Name="FK__estadisti__fecha__25518C17">
+        <Association Name="FK__estadisti__fecha__3493CFA7">
           <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
           <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -540,7 +540,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.UsuariosPorEncuentroDeportivo'
         </Association>
         <!--Errores durante la generación:
 error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaUsuariosActivos', pero no se encuentra la tabla.
-        <Association Name="FK__Estadisti__Fecha__2645B050" />-->
+        <Association Name="FK__Estadisti__Fecha__3587F3E0" />-->
         <Association Name="FK_Barrio_Zona">
           <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
           <End Role="Barrio" Type="Self.Barrio" Multiplicity="*" />
@@ -1527,7 +1527,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__estadisti__fecha__25518C17" Association="Self.FK__estadisti__fecha__25518C17">
+          <AssociationSet Name="FK__estadisti__fecha__3493CFA7" Association="Self.FK__estadisti__fecha__3493CFA7">
             <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
             <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
           </AssociationSet>
@@ -1904,7 +1904,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="NSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NDia" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="NDiaSemana" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__25518C17" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
+          <NavigationProperty Name="estadisticaComplejo" Relationship="Self.FK__estadisti__fecha__3493CFA7" FromRole="DIM_TIEMPO" ToRole="estadisticaComplejo" />
         </EntityType>
         <EntityType Name="EncuentroDeportivo">
           <Key>
@@ -1960,7 +1960,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="deporte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__25518C17" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
+          <NavigationProperty Name="DIM_TIEMPO" Relationship="Self.FK__estadisti__fecha__3493CFA7" FromRole="estadisticaComplejo" ToRole="DIM_TIEMPO" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -2696,7 +2696,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__estadisti__fecha__25518C17">
+        <Association Name="FK__estadisti__fecha__3493CFA7">
           <End Role="DIM_TIEMPO" Type="Self.DIM_TIEMPO" Multiplicity="0..1" />
           <End Role="estadisticaComplejo" Type="Self.estadisticaComplejo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3215,7 +3215,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             <End Role="Equipo" EntitySet="Equipo" />
             <End Role="DeportistasPorEquipos" EntitySet="DeportistasPorEquipos" />
           </AssociationSet>
-          <AssociationSet Name="FK__estadisti__fecha__25518C17" Association="Self.FK__estadisti__fecha__25518C17">
+          <AssociationSet Name="FK__estadisti__fecha__3493CFA7" Association="Self.FK__estadisti__fecha__3493CFA7">
             <End Role="DIM_TIEMPO" EntitySet="DIM_TIEMPO" />
             <End Role="estadisticaComplejo" EntitySet="estadisticaComplejo" />
           </AssociationSet>
@@ -3648,8 +3648,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Type="Int32" Name="idEncuentro" Nullable="true" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="receptor" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="fechaInicioEncuentro" Nullable="true" Precision="16" />
-          <Property Type="Time" Name="horaInicio" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_UsuarioDao_ObtenerUsuarios_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -4442,8 +4440,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
                 <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="receptor" ColumnName="receptor" />
-                <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
-                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

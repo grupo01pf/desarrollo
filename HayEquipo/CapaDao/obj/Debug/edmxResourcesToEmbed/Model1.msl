@@ -713,8 +713,6 @@
           <ScalarProperty Name="idEncuentro" ColumnName="idEncuentro" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="receptor" ColumnName="receptor" />
-          <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
-          <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
