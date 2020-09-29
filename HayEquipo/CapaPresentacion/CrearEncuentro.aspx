@@ -447,10 +447,17 @@
 
                                 <br />
                                 <br />
-                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
-                                <br />
-                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+                                <%-- ALERTA --%>
+                                <div id="infoReserva" class="alert alert-info" role="alert" 
+                                    runat="server" visible="false">
+                                    <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
+                                    <strong>Info!</strong>
 
+                                    <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                    <br />
+                                    <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+
+                                </div>
 
                                 <div class="form-group">
                                     <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
@@ -470,7 +477,15 @@
                     <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
                     <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
                     <br />
-                    <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
+
+                    <%-- ALERTA --%>
+                    <div class="alert alert-danger" ID="alertaErrores" 
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> 
+                         <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label> 
+                    </div>
+                   
                 </div>
             </div>
         </div>

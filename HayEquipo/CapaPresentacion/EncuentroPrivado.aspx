@@ -445,6 +445,16 @@
 
 
                             <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
+                            
+                            <div class="alert alert-danger alert-dismissible" ID="alertaCancelacion" 
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Cancel!</strong> El encuentro ha sido cancelado.
+                            
+                        </div>
+                            
+                            
+                            
                             <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
                             <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
                         </div>
@@ -808,6 +818,13 @@
                             <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
 
                         </div>
+                        <%-- ALERTA --%>
+                        <div class="alert alert-success alert-dismissible" ID="alertaNotificacion" 
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> La/s notificaciones/es ha/n sido enviada/s.
+                            
+                        </div>
 
                         <asp:Panel ID="pnl_Busqueda" runat="server" Visible="true">
                             <div class="well">
@@ -1036,5 +1053,15 @@
         myMap.doubleClickZoom.disable()
         // var layerGroup = L.layerGroup().addTo(myMap)
         // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+
+
+
+        // Alertas
+
+        
+        //$("#alert").fadeTo(3000, 500).slideUp(500, function () {
+        //    $("#alert").slideUp(500);
+        //});
+       
     </script>
 </asp:Content>

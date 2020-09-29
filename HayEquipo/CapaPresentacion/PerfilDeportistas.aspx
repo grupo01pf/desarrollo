@@ -237,6 +237,13 @@
                                 <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
                             </div>
 
+                            <div class="alert alert-success alert-dismissible" ID="alertaNotificacion" 
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> La/s notificaciones/es ha/n sido enviada/s.
+                            
+                        </div>
+
                             <div class="form-group">
                                 <asp:RadioButton ID="rdb_PorAmigos" Text="Por Amigos" runat="server" OnCheckedChanged="rdb_PorAmigos_CheckedChanged"
                                     AutoPostBack="true" GroupName="busqueda" value="0" Checked="false" />

@@ -61,6 +61,7 @@ namespace CapaPresentacion
                         && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
                     {
                         lbl_Error.Visible = false;
+                        alertaErrores.Visible = false;
                         crearEventoPrivado();
                         Response.Redirect("EncuentroPrivado.aspx");
                     }
@@ -68,10 +69,12 @@ namespace CapaPresentacion
                     {
                         lbl_Error.Visible = true;
                         lbl_Error.Text = "Debe reservar una cahcha de la agenda";
+                        alertaErrores.Visible = true;
                     }
 
                 } else if (rdb_Horario.Checked) {
                         lbl_Error.Visible = false;
+                        alertaErrores.Visible = false;
                         crearEventoPrivadoPorHorario();
                         Response.Redirect("EncuentroPrivado.aspx");
                 }
@@ -537,6 +540,7 @@ namespace CapaPresentacion
                 rdb_Publico.Checked = false;
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
+                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
             }
@@ -575,6 +579,7 @@ namespace CapaPresentacion
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
                 lbl_ConsejoMapa.Visible = true;
 
             }
@@ -591,6 +596,7 @@ namespace CapaPresentacion
                 rdb_Privado.Checked = false;
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
+                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
             }
@@ -607,6 +613,7 @@ namespace CapaPresentacion
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
 
                 rdb_Horario.Enabled = true;
                 rdb_Horario.Checked = false;
@@ -629,6 +636,7 @@ namespace CapaPresentacion
             {
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
+                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
                 flag = false;
@@ -636,6 +644,7 @@ namespace CapaPresentacion
             else {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
                 flag = true;
             }
@@ -649,6 +658,7 @@ namespace CapaPresentacion
             {
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Complejo Deportivo";
+                alertaErrores.Visible = true;
                 cmb_Complejo.BorderColor = System.Drawing.Color.Red;
                 cmb_Complejo.Focus();
 
@@ -658,6 +668,7 @@ namespace CapaPresentacion
             {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
                 cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
                 flag = true;
             }
@@ -769,9 +780,11 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
+                infoReserva.Visible = false;
 
             }
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             int cd = 0;
             if (int.TryParse(cmb_Complejo.SelectedItem.Value, out cd))
@@ -888,10 +901,12 @@ namespace CapaPresentacion
             datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
+            infoReserva.Visible = true;
 
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
         }
 
@@ -908,6 +923,7 @@ namespace CapaPresentacion
                 if (lbl_Reserva.Text != null && lbl_Capacidad.Text != null) {
                     lbl_Reserva.Visible = true;
                     lbl_Capacidad.Visible = true;
+                    infoReserva.Visible = true;
                 }
 
             }
@@ -915,11 +931,11 @@ namespace CapaPresentacion
 
         protected void cld_Fecha_DayRender(object sender, DayRenderEventArgs e)
         {
-            //if (e.Day.Date < DateTime.Now.Date)
-            //{
-            //    e.Day.IsSelectable = false;
+            if (e.Day.Date < DateTime.Now.Date)
+            {
+                e.Day.IsSelectable = false;
 
-            //}
+            }
         }
 
         protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)
@@ -931,6 +947,7 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
+                infoReserva.Visible = false;
             }
         }
 
@@ -1060,6 +1077,7 @@ namespace CapaPresentacion
                 btn_VerComplejo.Visible = false;
 
                 lbl_Error.Visible = false;
+                alertaErrores.Visible = false;
                 cmb_TipoCancha.SelectedIndex = 0;
             }
             else {
@@ -1078,10 +1096,12 @@ namespace CapaPresentacion
             datos = fila.Cells[3].Text + " , " + fila.Cells[4].Text + " , " + txt_PorHora.Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
+            infoReserva.Visible = true;
 
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             Session["idComplejo"] = fila.Cells[2].Text;
 
@@ -1238,6 +1258,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             lbl_ConsejoMapa.Visible = false;
 
@@ -1258,6 +1279,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             lbl_ConsejoMapa.Visible = true;
 
@@ -1271,6 +1293,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             lbl_ConsejoMapa.Visible = false;
 
@@ -1289,6 +1312,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
         }
         private void deshabilitarPorHorario() {

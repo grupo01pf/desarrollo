@@ -472,6 +472,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlImage img3;
         
         /// <summary>
+        /// Control infoReserva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl infoReserva;
+        
+        /// <summary>
         /// Control lbl_Reserva.
         /// </summary>
         /// <remarks>
@@ -524,6 +533,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        
+        /// <summary>
+        /// Control alertaErrores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaErrores;
         
         /// <summary>
         /// Control lbl_Error.
