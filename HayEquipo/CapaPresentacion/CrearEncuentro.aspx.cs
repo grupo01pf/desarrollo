@@ -915,11 +915,11 @@ namespace CapaPresentacion
 
         protected void cld_Fecha_DayRender(object sender, DayRenderEventArgs e)
         {
-            if (e.Day.Date < DateTime.Now.Date)
-            {
-                e.Day.IsSelectable = false;
+            //if (e.Day.Date < DateTime.Now.Date)
+            //{
+            //    e.Day.IsSelectable = false;
 
-            }
+            //}
         }
 
         protected void cld_Fecha_SelectionChanged(object sender, EventArgs e)

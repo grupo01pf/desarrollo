@@ -456,12 +456,23 @@
                         <legend>Lista de Participantes</legend>
                         <div class="row">
                             <div class="col-sm-6">
+
+
                                 <div class="panel panel-primary">
 
-                                    <div class="panel-heading">
-                                        Equipo A
+                                    <asp:UpdatePanel ID="UpdatePanel11" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Timer ID="Timer8" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading">
+                                                    Equipo A
                                 <asp:Label ID="lbl_CantidadEquipoA" runat="server" Text="0"></asp:Label>
-                                    </div>
+                                                </div>
+                                            </div>
+                                            <asp:SqlDataSource ID="SqlDataSource7" runat="server"></asp:SqlDataSource>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
 
                                     <%-- ********* Equipo A *********** --%>
 
@@ -470,6 +481,7 @@
                                         <ContentTemplate>
                                             <asp:Timer ID="Timer2" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
+                                            
                                             <div class="scroll-container">
 
 
@@ -502,7 +514,6 @@
                                             </div>
 
                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
 
@@ -510,16 +521,41 @@
                                     <%-- ************************************ --%>
                                 </div>
 
+                                 <asp:UpdatePanel ID="UpdatePanel7" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Timer ID="Timer4" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+                                            
 
                                 <asp:Button ID="btn_UnirseEquipoA" runat="server" Text="Unirse" OnClick="UnirseEquipoA_Click" class="btn btn-success" />
+                            
+                                            <asp:SqlDataSource ID="SqlDataSource3" runat="server"></asp:SqlDataSource>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                            
                             </div>
+
+
                             <div class="col-sm-6">
                                 <div class="panel panel-primary">
 
-                                    <div class="panel-heading">
-                                        Equipo B
-                                <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text="0"></asp:Label>
-                                    </div>
+                                    <asp:UpdatePanel ID="UpdatePanel10" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Timer ID="Timer7" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+
+
+                                            <div class="panel panel-primary">
+
+
+
+                                                <div class="panel-heading">
+                                                    Equipo B
+                                        <asp:Label ID="lbl_CantidadEquipoB" runat="server" Text="0"></asp:Label>
+                                                </div>
+                                            </div>
+
+                                            <asp:SqlDataSource ID="SqlDataSource6" runat="server"></asp:SqlDataSource>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
 
                                     <%-- ************** Equipo B ************* --%>
 
@@ -527,6 +563,7 @@
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <ContentTemplate>
                                             <asp:Timer ID="Timer3" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+
 
                                             <div class="scroll-container">
 
@@ -559,17 +596,21 @@
 
                                             </div>
 
+
                                             <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
 
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                      <%-- MODAL Calificacion Jugadores --%>
-                                       <asp:Button ID="btnInicial2" runat="server" Text="Button" Style="display: none" />
 
-                            <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
-                                Enabled="True" TargetControlID="btnInicial2"
-                                PopupControlID="Panel1">
-                                <Animations>
+
+
+                                    <%-- MODAL Calificacion Jugadores --%>
+                                    <asp:Button ID="btnInicial2" runat="server" Text="Button" Style="display: none" />
+
+                                    <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
+                                        Enabled="True" TargetControlID="btnInicial2"
+                                        PopupControlID="Panel1">
+                                        <Animations>
             <OnShowing>
                 <FadeIn Duration=".5" Fps="30" />
             </OnShowing>
@@ -583,87 +624,108 @@
                 <FadeOut Duration=".5" Fps="30" />
             </OnHidden>
 
-                                </Animations>
-                            </asp:ModalPopupExtender>
+                                        </Animations>
+                                    </asp:ModalPopupExtender>
 
 
-                            <asp:Panel ID="Panel1" runat="server" Style="display: none; background: white; height: 0%">
-                                <asp:UpdatePanel ID="UpdatePanel6" runat="server">
-                                    <ContentTemplate>
+                                    <asp:Panel ID="Panel1" runat="server" Style="display: none; background: white; height: 0%">
+                                        <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                            <ContentTemplate>
 
 
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <asp:Button ID="Button2" runat="server" Text="X" CssClass="close"
-                                                        OnClick="Button3_Click" />
-                                                    <h4 class="modal-title" id="califJugador">Calificar Jugador:  <asp:Label  id="nombreJ" runat="server" Text=""></asp:Label></h4>
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <asp:Button ID="Button2" runat="server" Text="X" CssClass="close"
+                                                                OnClick="Button3_Click" />
+                                                            <h4 class="modal-title" id="califJugador">Calificar Jugador: 
+                                                                <asp:Label ID="nombreJ" runat="server" Text=""></asp:Label></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <asp:TextBox ID="txtIdjugador" runat="server" Text="" Visible="false"></asp:TextBox>
+                                                            </div>
+                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
+                                                            <p class="clasificacion">
+                                                                <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList4_SelectedIndexChanged">
+                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                                </asp:RadioButtonList>
+                                                                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+                                                            </p>
+                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
+                                                            <p class="clasificacion">
+                                                                <asp:RadioButtonList ID="RadioButtonList5" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList5_SelectedIndexChanged">
+                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                                </asp:RadioButtonList>
+                                                                <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
+                                                            </p>
+                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad"></asp:Label>
+                                                            <p class="clasificacion">
+                                                                <asp:RadioButtonList ID="RadioButtonList6" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList6_SelectedIndexChanged">
+                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                                </asp:RadioButtonList>
+                                                                <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
+                                                        </div>
+
+
+                                                    </div>
+
+
                                                 </div>
-                                                <div class="modal-body">
-                                                      <div class="form-group">
-                                                       <asp:TextBox ID="txtIdjugador" runat="server" Text="" Visible="false"></asp:TextBox>
-                                                      </div>  
-                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
-                                                    <p class="clasificacion">
-                                                        <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList4_SelectedIndexChanged">
-                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                        </asp:RadioButtonList>
-                                                        <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
-                                                    </p>
-                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
-                                                    <p class="clasificacion">
-                                                        <asp:RadioButtonList ID="RadioButtonList5" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList5_SelectedIndexChanged">
-                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                        </asp:RadioButtonList>
-                                                        <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
-                                                    </p>
-                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad"></asp:Label>
-                                                    <p class="clasificacion">
-                                                        <asp:RadioButtonList ID="RadioButtonList6" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList6_SelectedIndexChanged">
-                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                        </asp:RadioButtonList>
-                                                        <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
-                                                </div>
 
 
-                                            </div>
-
-                                           
-                                        </div>
-
-
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </asp:Panel>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </asp:Panel>
                                     <%-- FIN  MODAL Calificacion Jugadores --%>
 
 
                                     <%-- ************************* --%>
 
 
-                                    <%--    </div>--%>
                                 </div>
 
-                                <asp:Button ID="btn_UnirseEquipoB" runat="server" Text="Unirse" OnClick="btn_UnirseEquipoB_Click" class="btn btn-success" />
+
+                                <asp:UpdatePanel ID="UpdatePanel8" runat="server">
+                                    <ContentTemplate>
+                                        <asp:Timer ID="Timer5" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
+
+                                        <asp:Button ID="btn_UnirseEquipoB" runat="server" Text="Unirse" OnClick="btn_UnirseEquipoB_Click" class="btn btn-success" />
+
+                                        <asp:SqlDataSource ID="SqlDataSource4" runat="server"></asp:SqlDataSource>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
+
+
                             </div>
                         </div>
                         <br />
                         <div class="form-group">
                             <%--<asp:Button ID="btn_Invitar" runat="server" Text="Invitar" OnClick="btn_Invitar_Click" class="btn btn-info" />--%>
-                            <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
+                           
+                            <asp:UpdatePanel ID="UpdatePanel9" runat="server">
+                                    <ContentTemplate>
+                                        <asp:Timer ID="Timer6" runat="server" OnTick="Timer1_Tick" Interval="2000"></asp:Timer>
 
+                            
+                             <asp:Button ID="btn_Salir" runat="server" Text="Salir" OnClick="btn_Salir_Click" class="btn btn-danger" />
+
+                                         <asp:SqlDataSource ID="SqlDataSource5" runat="server"></asp:SqlDataSource>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
 
                             <%-- <button type="button" id="btn_inv" runat="server" class="btn btn-primary"
                                 data-toggle="modal" data-target="#exampleModalScrollable" visible="true">

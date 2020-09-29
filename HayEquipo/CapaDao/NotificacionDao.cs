@@ -60,8 +60,8 @@ namespace CapaDao
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
-                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { notificacion.fecha = fi; }
-                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { notificacion.horainicio = hi; } // ok
+               // DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { notificacion.fecha = fi; }
+               // DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { notificacion.horainicio = hi; } // ok
                 listaNotificacion.Add(notificacion);
             }
 
