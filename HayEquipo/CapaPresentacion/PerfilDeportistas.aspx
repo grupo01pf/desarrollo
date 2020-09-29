@@ -128,7 +128,7 @@
 
         .scroll-container {
             display: block;
-            height: 390px;
+            height: 450px;
             overflow-y: auto;
         }
          
@@ -259,9 +259,9 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group">
-                                        <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" />
+                                        <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-danger"/>
                                         <%--<asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" />--%>
-                                        <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" />
+                                        <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" CssClass="btn btn-primary"/>
 
                                     </div>
 
@@ -360,8 +360,7 @@
 
                                     <%-- RESULTADOS --%>
                                     <center>
-                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
                                                     visible ="true" EmptyDataText="Sin Resultados">
                                                     <Columns>
                                                         <asp:TemplateField>
@@ -386,12 +385,12 @@
                                 </div>
                                 <div class="modal-footer">
                                     <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger"  data-dismiss="modal">Cancelar</button>
                                        <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
                                             onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
 
                                             <%--<asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" />--%>
-                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" />
+                                            <asp:Button ID="btn_Solicitud" runat="server" Text="Solicitud" OnClick="btn_Solicitud_Click" Visible="false" CssClass="btn btn-primary"  />
                                         </center>
                                 </div>
                             </div>

@@ -372,12 +372,12 @@ namespace CapaPresentacion
         //}
         public void manejarValoracion()
         {
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "4") == true)
             {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4"));
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "4"));
                 foreach (ListItem item in RadioButtonList1.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "4") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -392,12 +392,12 @@ namespace CapaPresentacion
                 lblmsjrb1.Text = "Usted no ha sido calificado en esta seccion";
 
             }
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "5") == true)
             {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5"));
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "5"));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "5") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -412,12 +412,12 @@ namespace CapaPresentacion
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "6") == true)
             {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6"));
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "6"));
                 foreach (ListItem item in RadioButtonList3.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "6") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -432,11 +432,11 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){
-            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())));
+            if(ValoracionDao.existePromedioGeneral(Session["ID"].ToString()) == true){
+            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(Session["ID"].ToString()));
             foreach (ListItem item in RadioButtonList4.Items)
             {
-                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) && item.Text == "★")
+                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(Session["ID"].ToString()) && item.Text == "★")
                 {
                     item.Attributes.CssStyle.Add("color", "orange");
                 }
