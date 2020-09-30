@@ -118,7 +118,7 @@
                                 <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
+                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio (*)"></asp:Label>
                                 <asp:TextBox ID="txt_HoraInicio" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                                 <%--</div>
                             <div class="form-group">--%>
@@ -126,15 +126,16 @@
                                 <asp:TextBox ID="txt_HoraFin" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes"></asp:Label>
-                                <asp:TextBox ID="txt_Cantidad" CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"></asp:TextBox>
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes (*)"></asp:Label>
+                                <asp:TextBox ID="txt_Cantidad" CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"
+                                     onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);" min="2"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>
+                                <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar (*)"></asp:Label>
                                 <asp:TextBox ID="txt_NombreLugar" CssClass="form-control" runat="server" placeHolder="Lugar" Columns="50" MaxLength="45"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
+                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion (*)"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
                                 <br />
                                 <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
@@ -429,7 +430,8 @@
 
 
                                             <div class="modal-footer">
-                                                <center>
+                                                <center>                                                                               
+
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </center>
                                             </div>
@@ -447,7 +449,7 @@
 
                                 <br />
                                 <br />
-                                <%-- ALERTA --%>
+                                     <%-- ALERTA --%>
                                 <div id="infoReserva" class="alert alert-info" role="alert" 
                                     runat="server" visible="false">
                                     <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
@@ -474,18 +476,22 @@
 
                         <%--BOTONES--%>
                     </div>
-                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
-                    <br />
 
+                    
                     <%-- ALERTA --%>
                     <div class="alert alert-danger" ID="alertaErrores" 
                             runat="server" visible="false" >
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
                             <strong>Error!</strong> 
                          <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label> 
                     </div>
                    
+
+
+                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
+                    <br />
+
                 </div>
             </div>
         </div>

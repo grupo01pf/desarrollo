@@ -50,7 +50,7 @@ namespace CapaPresentacion
                     crearEventoPublico();
                     Response.Redirect("EncuentroPublico.aspx");
                 }
-                else { rdb_Publico.Checked = false; }
+                //else { rdb_Publico.Checked = false; }
 
             }
             else
@@ -375,7 +375,34 @@ namespace CapaPresentacion
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            cmb_Deporte.SelectedIndex = 0;
+            rdb_PorZona.Checked = false;
+            cmb_Zona.SelectedIndex = 0;
+            rdb_PorBarrio.Checked = false;
+            cmb_Barrio.SelectedIndex = 0;
+
+
+            rdb_Publico.Checked = false;
+            limpiarErroresPublicos();
+            deshabilitarEncuentroPublico();
+
+            rdb_Privado.Checked = false;
+            deshabilitarEncuentroPrivado();
+
+
+            //Response.Redirect("Home.aspx");
+        }
+
+        private void limpiarErroresPublicos()
+        {
+            cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            txt_HoraInicio.BorderColor = System.Drawing.Color.Transparent;
+            txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
+            txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
+            txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+            lbl_Error.Visible = false;
+            lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
         }
 
 
@@ -632,22 +659,77 @@ namespace CapaPresentacion
         private bool controlDatosObligatoriosEncuentroPublico() {
 
             bool flag = false;
+            string error = string.Empty;
+            
+
             if (cmb_Deporte.SelectedIndex == 0)
             {
-                lbl_Error.Visible = true;
-                lbl_Error.Text = "Debe seleccionar un Deporte";
-                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
-                flag = false;
+                error += "Debe seleccionar un Deporte \n";
+
             }
             else {
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
+            {
+                txt_HoraInicio.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar una hora de inicio \n";
+
+            }
+            else
+            {
+                txt_HoraInicio.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (string.IsNullOrEmpty(txt_Cantidad.Text))
+            {
+                txt_Cantidad.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar la cantidad de participantes \n";
+            }
+            else
+            {
+                txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
+            }
+            if (string.IsNullOrEmpty(txt_NombreLugar.Text) )
+            {
+                txt_NombreLugar.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingrear un lugar";
+            }
+            else
+            {
+                txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
+            }
+            if (string.IsNullOrEmpty(txt_Direccion.Text))
+            {
+                txt_Direccion.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar una direccion";
+            }
+            else
+            {
+                txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+
+
+            if ( !(string.IsNullOrEmpty(error)) )
+            {
+                lbl_Error.Visible = true;
+                lbl_Error.Text = error;
+                alertaErrores.Visible = true;
+                flag = false;
+
+            }
+            else
+            {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
                 alertaErrores.Visible = false;
-                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
                 flag = true;
             }
+
             return flag;
         }
 
@@ -1259,7 +1341,7 @@ namespace CapaPresentacion
             btn_Cancelar.Enabled = false;
             lbl_Error.Text = string.Empty;
             alertaErrores.Visible = false;
-
+            alertaErrores.Visible = false;
             lbl_ConsejoMapa.Visible = false;
 
         }
