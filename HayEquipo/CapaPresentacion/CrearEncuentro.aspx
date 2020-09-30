@@ -38,6 +38,12 @@
             display: none;
         }
         */
+
+        /*.hiddencol {
+            display: none;
+        }*/
+
+
     </style>
 
 
