@@ -214,7 +214,7 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group">
-                                        <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click"  CssClass="btn btn-danger" Visible="false"  />
+                                        <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click"  CssClass="btn btn-danger" />
                                         <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click"  CssClass="btn btn-primary"  />
                                         <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click"  CssClass="btn btn-primary"  />
 
