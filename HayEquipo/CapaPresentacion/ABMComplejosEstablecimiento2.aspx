@@ -421,9 +421,12 @@
                             <asp:TextBox ID="txtDesCan" placeholder="Ingrese una descripción" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="True" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                            <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
+                                    <asp:BoundField DataField="Deporte" HeaderText="Deporte" />
+                                    <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
+                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                                 </Columns>
                             </asp:GridView>
                         </div>

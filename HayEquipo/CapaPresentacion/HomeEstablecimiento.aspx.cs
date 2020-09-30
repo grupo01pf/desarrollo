@@ -60,14 +60,18 @@ namespace CapaPresentacion
             if (e.CommandName == "btnUnirseEncuentro")
             {
                 string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+                int id = int.Parse(idEncuentro);
 
+                Session["idEncuentro"] = id;
+
+                Session["idEncuentro"] = id;
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
                 {
-                    Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
+                    Response.Redirect("EncuentroPrivado.aspx");
                 }
 
             }

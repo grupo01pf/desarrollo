@@ -109,8 +109,8 @@
           <div class="row">
               <div class="col-sm-3">
                   <span class="glyphicon glyphicon-calendar"></span>               
-                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro") %>'></asp:Label>
-                  <asp:Label runat="server" text='<%#Eval("horaInicio") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("fechaInicioEncuentro", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                  <asp:Label runat="server" text='<%#Eval("horaInicio", "{0:HH:mm}") %>'></asp:Label>
                   <br />
               </div>
               <div class="col-sm-3">
@@ -134,7 +134,7 @@
       </p>
       <br />  
     </div>   
-      <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Ver encuentro" Class="w3-button w3-block w3-black" ></asp:LinkButton>
+<%--      <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Ver encuentro" Class="w3-button w3-block w3-black" ></asp:LinkButton>--%>
       </div>   
            </div><br />
             </ItemTemplate>
