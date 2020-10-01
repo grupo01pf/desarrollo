@@ -37,7 +37,8 @@ namespace CapaPresentacion
             }
 
             encuentrosRepeater.DataSource = (from encuentro in ObtenerEncuentros()
-                 orderby encuentro.fechaInicioEncuentro ascending
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today
+                                             orderby encuentro.fechaInicioEncuentro ascending
                  select encuentro)
                 ;
             encuentrosRepeater.DataBind();
@@ -225,6 +226,7 @@ namespace CapaPresentacion
         private void CargarRepeaterPorDeporte()
         {
             encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()))
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
                                              orderby encuentro.fechaInicioEncuentro ascending
                                              select encuentro);
             encuentrosRepeater.DataBind();
@@ -247,6 +249,7 @@ namespace CapaPresentacion
         private void CargarRepeaterPorZona()
         {
             encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorZona(int.Parse(ddlZonas.SelectedValue.ToString()))
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
                                              orderby encuentro.fechaInicioEncuentro ascending
                                              select encuentro);
             encuentrosRepeater.DataBind();

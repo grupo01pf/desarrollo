@@ -280,8 +280,8 @@
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
                                                         
-                                                         <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true" />
-                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />                                                       
+                                                         <asp:BoundField DataField="idCancha" HeaderText="" Visible="true" />
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="" Visible="true" />                                                       
                                                         <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />                                                       
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />                                                       
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
