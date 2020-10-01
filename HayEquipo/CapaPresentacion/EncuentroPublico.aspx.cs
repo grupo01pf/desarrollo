@@ -44,6 +44,7 @@ namespace CapaPresentacion
 
             cargarMapa(edq.idMapa);
 
+            Session["Estado"] = edq.nombreEstado;
             
             lbl_Deporte.Text = edq.nombreDeporte;
 
@@ -92,9 +93,13 @@ namespace CapaPresentacion
             {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
-                int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
+                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
+                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
+                {
+                    int estado = 8; // (COMPLETO)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                }
             }
         }
 

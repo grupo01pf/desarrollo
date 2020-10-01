@@ -245,10 +245,16 @@ namespace CapaPresentacion
 
             if (total == int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
+                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
+                {
+                    int estado = 8; // (COMPLETO)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
+                }
             }
+
+       
             return total;
         }
 
