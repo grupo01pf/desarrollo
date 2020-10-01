@@ -1,4 +1,4 @@
-ï»¿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CrearEncuentro.aspx.cs" Inherits="CapaPresentacion.CrearEncuentro" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CrearEncuentro.aspx.cs" Inherits="CapaPresentacion.CrearEncuentro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -44,7 +44,7 @@
             position: absolute;
             z-index: -100;
         }
-        */
+        
           .imagen{
             background-image:url('../Imagenes/complejo_imagen_clara.jpg');
 
@@ -129,7 +129,7 @@
                         <%--  LUGAR PUBLICO--%>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar PÃºblico" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
+                                <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio (*)"></asp:Label>
@@ -401,7 +401,7 @@
                                                 </div>
                                                 <div class="form-group">
 
-                                                    <div class="tamaÃ±oCarousel">
+                                                    <div class="tamañoCarousel">
                                                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
                                                             <!-- Indicators -->
@@ -479,7 +479,7 @@
                                     <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
                                         Text=" Clave" OnCheckedChanged="chk_Accesibilidad_CheckedChanged" AutoPostBack="true" />
                                     <%--<asp:Label ID="lbl_Clave" runat="server" Text="Clave"></asp:Label>--%>
-                                    <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese ContraseÃ±a" Text=""
+                                    <asp:TextBox ID="txt_Clave" CssClass="form-control" runat="server" placeHolder="Ingrese Contraseña" Text=""
                                         TextMode="Password" Columns="20" MaxLength="20"></asp:TextBox>
                                 </div>
 
