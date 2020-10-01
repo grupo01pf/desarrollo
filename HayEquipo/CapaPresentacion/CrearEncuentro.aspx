@@ -44,7 +44,14 @@
             position: absolute;
             z-index: -100;
         }
+        */
+          .imagen{
+            background-image:url('../Imagenes/complejo_imagen_clara.jpg');
 
+        }
+          .colorsito{
+              color:white;
+          }
     </style>
 
 
@@ -257,12 +264,11 @@
 
                                                 <%-- Agenda de un Complejo --%>
 
-                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                               <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
                                                     OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged"
                                                     Visible="false" EmptyDataText="No hay horarios disponibles">
                                                     <Columns>
-                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
 
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="false" />
@@ -276,16 +282,16 @@
 
                                                 <%--  Agenda de varios Complejos --%>
 
-                                                 <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows" OnSelectedIndexChanged="gdv_AgendaComplejos_SelectedIndexChanged"
+                                                 <asp:GridView ID="gdv_AgendaComplejos" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
+                                                     OnSelectedIndexChanged="gdv_AgendaComplejos_SelectedIndexChanged"
                                                     visible="false" EmptyDataText="No hay complejos disponibles para la hora y/o tipo de cancha seleccionados" >
                                                     <Columns>
-                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
+                                                        <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png" ShowSelectButton="true" ControlStyle-Width="60px" />
 
-                                                         <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true"
-                                                             ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>
-                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true"
-                                                            ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>
+                                                         <asp:BoundField DataField="idCancha" HeaderText="" Visible="true"
+                                                          ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="" Visible="true"  
+                                                         ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                                         <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
@@ -342,17 +348,17 @@
 
 
 
-                                        <div class="modal-content">
+                                        <div class="modal-content imagen">
                                             <div class="modal-header">
 
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close colorsito" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                                     <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                     <strong>
                                                         <center>
-                                                             <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
+                                                             <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar" CssClass="colorsito"></asp:Label>
                                                   </center>
                                                     </strong>
                                                     <h5></h5>
@@ -364,34 +370,34 @@
 
 
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblValoracion" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblValoracion" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900"></asp:Label>
+                                                    <asp:Label ID="lblDeportes" runat="server" ForeColor="#FF9900" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblDescripcion" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblDescripcion" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblServicios" Text="Servicios: " runat="server"></asp:Label>
+                                                    <asp:Label ID="lblServicios" Text="Servicios: " runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group" id="divListServ" runat="server">
                                                     <asp:ListBox ID="listServicios" Enabled="false" runat="server"></asp:ListBox>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblDireccion" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblDireccion" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblBarrio" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblBarrio" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblZona" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblZona" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblTelefono" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label ID="lblHorarios" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblHorarios" runat="server" CssClass="colorsito"></asp:Label>
                                                 </div>
                                                 <div class="form-group">
 
@@ -440,8 +446,7 @@
 
                                             <div class="modal-footer">
                                                 <center>
-
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                         </center>
                                             </div>
                                         </div>

@@ -28,7 +28,7 @@ namespace CapaPresentacion
 
                 cargarChat();
 
-                if (string.Equals(Session["Estado"].ToString(),"Finalizado") || estadoencuentro.Text == "Cancelado")
+                if (string.Equals(Session["Estado"].ToString(),"Finalizado") || string.Equals(Session["Estado"].ToString(), "Cancelado"))
                 {
                     encuentrFinalizadoDesactivarBotones();
                     pnl_MostrarContenido.Visible = true;
@@ -1451,5 +1451,10 @@ namespace CapaPresentacion
             //cargarValoracion();
         }
 
+        protected void SalirJugador_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EncuentroPrivado.aspx");
+            ModalPopupExtender1.Hide();
+        }
     }  
 }

@@ -850,6 +850,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.Timer Timer5;
 
         /// <summary>
+        /// Control SalirJugador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SalirJugador;
+        
+        /// <summary>
         /// Control btn_UnirseEquipoB.
         /// </summary>
         /// <remarks>

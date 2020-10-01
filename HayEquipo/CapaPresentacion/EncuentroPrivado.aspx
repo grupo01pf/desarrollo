@@ -446,15 +446,15 @@
                                                         <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
                                                 </div>
 
-
-                                            </div>
-
-                                            <div class="modal-footer">
+                                                <div class="modal-footer">
 
                                                 <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
                                                     OnClick="btnClose_Click" />
 
+                                              </div>
                                             </div>
+
+
                                         </div>
 
 
@@ -547,7 +547,7 @@
                                                         OnRowDataBound="gdv_Equipo_A_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" ItemStyle-Width="300" />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" ItemStyle-Width="360" />
                                                               <asp:TemplateField>
                                                                 <ItemTemplate>
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -630,7 +630,7 @@
                                                          OnRowDataBound="gdv_Equipo_B_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"  ItemStyle-Width="300"  />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"  ItemStyle-Width="360"  />
                                                              <asp:TemplateField>
                                                                 <ItemTemplate>
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -687,52 +687,56 @@
                                             <ContentTemplate>
 
 
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <asp:Button ID="Button2" runat="server" Text="X" CssClass="close"
-                                                                OnClick="Button3_Click" />
-                                                            <h4 class="modal-title" id="califJugador">Calificar Jugador:
-                                                                <asp:Label ID="nombreJ" runat="server" Text=""></asp:Label></h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <asp:TextBox ID="txtIdjugador" runat="server" Text="" Visible="false"></asp:TextBox>
-                                                            </div>
-                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
-                                                            <p class="clasificacion">
-                                                                <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList4_SelectedIndexChanged">
-                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                                </asp:RadioButtonList>
-                                                                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
-                                                            </p>
-                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
-                                                            <p class="clasificacion">
-                                                                <asp:RadioButtonList ID="RadioButtonList5" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList5_SelectedIndexChanged">
-                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                                </asp:RadioButtonList>
-                                                                <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
-                                                            </p>
-                                                            <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad"></asp:Label>
-                                                            <p class="clasificacion">
-                                                                <asp:RadioButtonList ID="RadioButtonList6" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList6_SelectedIndexChanged">
-                                                                    <asp:ListItem Text="★" Value="1"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="2"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="3"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="4"></asp:ListItem>
-                                                                    <asp:ListItem Text="★" Value="5"></asp:ListItem>
-                                                                </asp:RadioButtonList>
-                                                                <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
-                                                        </div>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <asp:Button ID="Button2" runat="server" Text="X" CssClass="close"
+                                                        OnClick="Button3_Click" />
+                                                    <h4 class="modal-title" id="califJugador">Calificar Jugador:  <asp:Label  id="nombreJ" runat="server" Text=""></asp:Label></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                      <div class="form-group">
+                                                       <asp:TextBox ID="txtIdjugador" runat="server" Text="" Visible="false"></asp:TextBox>
+                                                      </div>
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Comportamiento"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList4_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+                                                    </p>
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Puntualidad"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList5" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" ClientIDMode="Predictable" OnSelectedIndexChanged="RadioButtonList5_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
+                                                    </p>
+                                                    <asp:Label CssClass="estrellalabel" runat="server" Text="Habilidad"></asp:Label>
+                                                    <p class="clasificacion">
+                                                        <asp:RadioButtonList ID="RadioButtonList6" runat="server" RepeatDirection="Horizontal" CssClass="estrella" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList6_SelectedIndexChanged">
+                                                            <asp:ListItem Text="★" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="★" Value="5"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                        <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
+                                                </div>
+                                                  <div class="modal-footer">
 
+                                                <asp:Button ID="SalirJugador" runat="server" Text="Cerrar" class="btn btn-danger"
+                                                    OnClick="SalirJugador_Click" />
+
+                                              </div>
 
                                                     </div>
 
@@ -807,7 +811,7 @@
 
                 <%-- BUSQUEDA --%>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="well">
 
                         <div class="form-group">
@@ -843,7 +847,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-primary" />
+                                           <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-danger"/>
                                             <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" CssClass="btn btn-primary"/>
                                             <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" CssClass="btn btn-primary"/>
 
@@ -944,8 +948,7 @@
 
                                         <%-- RESULTADOS --%>
                                         <center>
-                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
                                                     visible ="true" EmptyDataText="Sin Resultados">
                                                     <Columns>
                                                         <asp:TemplateField>
@@ -970,7 +973,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                        <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
                                             onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
                                             <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" CssClass="btn btn-primary" />
@@ -989,7 +992,7 @@
 
 
                 <%-- ****MAPA**** --%>
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                    <div class="well">
 
                         <div class="form-group">

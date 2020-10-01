@@ -798,7 +798,7 @@ namespace CapaDao
                                  FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -880,7 +880,7 @@ namespace CapaDao
                                  FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())

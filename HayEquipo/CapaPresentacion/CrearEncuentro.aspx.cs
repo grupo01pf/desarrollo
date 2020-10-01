@@ -1280,6 +1280,7 @@ namespace CapaPresentacion
             alertaErrores.Visible = false;
 
             Session["idComplejo"] = fila.Cells[2].Text;
+        //  Session["idComplejo"] = ComplejoDeportivoDao.ObtenerIdXnombreComplejo(fila.Cells[3].Text);
 
             mostrarUbicacion(int.Parse(Session["idComplejo"].ToString()));
 

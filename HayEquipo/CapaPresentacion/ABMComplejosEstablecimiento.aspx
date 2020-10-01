@@ -39,8 +39,8 @@
 
          .ModalTamaño
             {
-                min-width: 200px;
-                min-height: 150px;
+                /*min-width: 200px;
+                min-height: 150px;*/
                 background: white;
                 box-shadow: 0px 0px 10px #2b2b2b;
             }
@@ -407,19 +407,19 @@
 
             </ajaxToolkit:ModalPopupExtender>
 
-               <asp:Panel ID="PanelModal" runat="server" style="display:none">
+               <asp:Panel ID="PanelModal" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical">
                    <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-
+             <div class="modal-content">
 
                 <div class="modal-header">
                      <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Canchas</h4>
                 </div>
-      <div class="modal-body">
+              <div class="modal-body">
                         <div class="form-group">
                             <label>Deporte</label>
                         </div>
@@ -471,7 +471,7 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-
+                         </div>
                         <div class="modal-footer">
                             <div class="alinearAlCentro">
                                 <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
@@ -479,6 +479,7 @@
                                 <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
                             </div>
                         </div>
+                      </div>
                     </div>
    </ContentTemplate>
                     </asp:UpdatePanel>

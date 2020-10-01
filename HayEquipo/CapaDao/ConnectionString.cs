@@ -31,10 +31,10 @@ namespace CapaDao
 
 
             // ***** Nico_BD *****
-            string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+            //string cadena = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
-            string cadena = @"Data Source=NOTEBOOK-10;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
+            //string cadena = @"Data Source=NOTEBOOK-10;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 
 
             //FrancoR BD
@@ -65,10 +65,10 @@ namespace CapaDao
             conexion.ConnectionString = "Data Source=LAPTOP-N4V2H3NE; Initial Catalog=HayEquipo; User ID=alumnosa; Password=abcd123";
 
             //Cadena de conescion de nico
-            conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
+           // conexion.ConnectionString = "Data Source=DESKTOP-H7ESUE9;Initial Catalog=HayEquipo;Integrated Security=True";
 
             //Cadena de Conexión de Nacho.
-            conexion.ConnectionString = @"Data Source=NOTEBOOK-10;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
+            //conexion.ConnectionString = @"Data Source=NOTEBOOK-10;Initial Catalog=HayEquipo;User ID=SA;Password=taninga1643";
 
 
             //Cadena de conexion de Agus

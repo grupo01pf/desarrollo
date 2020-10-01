@@ -221,7 +221,7 @@
                         <br />
                         <div class="alinearIzq">
                             <asp:Label ID="lblerror" runat="server" CssClass="error"></asp:Label>
-
+                            <br />
                             <label>¿No tenés una cuenta?</label>
                             <br />
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
