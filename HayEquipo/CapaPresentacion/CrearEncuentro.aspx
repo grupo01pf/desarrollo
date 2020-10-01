@@ -34,14 +34,11 @@
             padding-top: 56.25%;
         }
 
-        /*#LatLng {
-            display: none;
+        
+        #LatLng{
+            position: absolute;
+            z-index:-100;
         }
-        */
-
-        /*.hiddencol {
-            display: none;
-        }*/
 
 
     </style>
@@ -508,7 +505,7 @@
                 <div id="myMap"></div>
             </div>
 
-            <div class="form-inline">
+            <div id="txt_latlng" class="form-inline">
                 <div id="LatLng">
                     <label for="lbl_Latitud">Latitud</label>
                     <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
