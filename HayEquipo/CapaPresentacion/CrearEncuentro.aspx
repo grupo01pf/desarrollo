@@ -34,12 +34,16 @@
             padding-top: 56.25%;
         }
 
-        
-        #LatLng{
+
+        #LatLng {
             position: absolute;
-            z-index:-100;
+            z-index: -100;
         }
 
+        .hiddencol {
+            position: absolute;
+            z-index: -100;
+        }
 
     </style>
 
@@ -278,8 +282,10 @@
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
                                                         
-                                                         <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true" />
-                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />                                                       
+                                                         <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true" 
+                                                             ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" 
+                                                            ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>                                                       
                                                         <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />                                                       
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />                                                       
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
