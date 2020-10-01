@@ -461,7 +461,7 @@
                                     <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
                                     <strong>Info!</strong>
 
-                                    <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                    <%--<asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>--%>
                                     <br />
                                     <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
 
