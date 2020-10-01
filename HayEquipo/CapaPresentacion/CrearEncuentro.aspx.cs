@@ -90,6 +90,7 @@ namespace CapaPresentacion
             }
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             //if (string.IsNullOrEmpty(lbl_Reserva.Text) || cmb_Complejo.SelectedIndex == 0)
             //{ lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
         }
@@ -452,6 +453,7 @@ namespace CapaPresentacion
 
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             //Response.Redirect("Home.aspx");
         }
 
@@ -675,6 +677,7 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Text = string.Empty;
                 lbl_Capacidad.Text = string.Empty;
+                infoReserva.Visible = false;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
                 txt_PorHora.BorderColor = System.Drawing.Color.Transparent;
                 cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
@@ -932,6 +935,7 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
 
             if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null
                  && cmb_Complejo.SelectedIndex != 0)
@@ -1124,6 +1128,7 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
 
@@ -1151,6 +1156,7 @@ namespace CapaPresentacion
         {
             lbl_Reserva.Text = string.Empty;
             lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
 
