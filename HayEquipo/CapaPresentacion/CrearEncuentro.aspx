@@ -38,6 +38,12 @@
             display: none;
         }
         */
+
+        /*.hiddencol {
+            display: none;
+        }*/
+
+
     </style>
 
 
@@ -118,7 +124,7 @@
                                 <asp:RadioButton ID="rdb_Publico" runat="server" Text=" Lugar Público" GroupName="tipoEncuentro" value="0" OnCheckedChanged="rdb_Publico_CheckedChanged" AutoPostBack="true" />
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio"></asp:Label>
+                                <asp:Label ID="lbl_HoraInicio" runat="server" Text="Hora Inicio (*)"></asp:Label>
                                 <asp:TextBox ID="txt_HoraInicio" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                                 <%--</div>
                             <div class="form-group">--%>
@@ -126,15 +132,16 @@
                                 <asp:TextBox ID="txt_HoraFin" runat="server" Columns="5" MaxLength="5" TextMode="Time"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes"></asp:Label>
-                                <asp:TextBox ID="txt_Cantidad" CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"></asp:TextBox>
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes (*)"></asp:Label>
+                                <asp:TextBox ID="txt_Cantidad" CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"
+                                     onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);" min="2"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar"></asp:Label>
+                                <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar (*)"></asp:Label>
                                 <asp:TextBox ID="txt_NombreLugar" CssClass="form-control" runat="server" placeHolder="Lugar" Columns="50" MaxLength="45"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion"></asp:Label>
+                                <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion (*)"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
                                 <br />
                                 <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
@@ -241,7 +248,7 @@
                                                 <center>
 
 
-                  <%--                                      
+                  <%--
                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
@@ -251,11 +258,11 @@
 
                                                <asp:GridView ID="gdv_Agenda" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
                                                     HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
-                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged" 
+                                                    OnSelectedIndexChanged="gdv_Agenda_SelectedIndexChanged"
                                                     Visible="false" EmptyDataText="No hay horarios disponibles">
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                                        
+
                                                         <asp:BoundField DataField="idCancha" HeaderText="Id" Visible="false" />
                                                         <asp:BoundField DataField="nombreCancha" HeaderText="Cancha" Visible="false" />
                                                         <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
@@ -273,18 +280,18 @@
                                                     visible="false" EmptyDataText="No hay complejos disponibles para la hora y/o tipo de cancha seleccionados" >
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~\Imagenes\boton-ir.png" ShowSelectButton="true" ControlStyle-Width="25px" />
-                                                        
+
                                                          <asp:BoundField DataField="idCancha" HeaderText="IdCancha" Visible="true" />
-                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />                                                       
-                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />                                                       
-                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />                                                       
+                                                        <asp:BoundField DataField="idComplejoDeportivo" HeaderText="idComplejo" Visible="true" />
+                                                        <asp:BoundField DataField="nombreComplejoDeportivo" HeaderText="Complejo" Visible="true" />
+                                                        <asp:BoundField DataField="nombreTipoCancha" HeaderText="Tipo" Visible="true" />
                                                         <asp:BoundField DataField="precioCancha" HeaderText="Precio" Visible="true" />
                                                         <asp:BoundField DataField="capacidadTipoCancha" HeaderText="Capacidad" Visible="true" />
 
                                                     </Columns>
                                                 </asp:GridView>
 
-                     <%--       
+                     <%--
                               <asp:SqlDataSource ID="sqlData" runat="server"></asp:SqlDataSource>
 
                         </ContentTemplate>
@@ -341,7 +348,7 @@
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle2">
                                                     <asp:Image ID="imgAvatar" ImageUrl="~/Imagenes/complejo_logo_default.png" runat="server" CssClass="img-circle" Height="100" Width="100" />
                                                     <strong>
-                                                        <center>  
+                                                        <center>
                                                              <asp:Label ID="lbl_ComplejoTitulo" runat="server" Text="Lugar"></asp:Label>
                                                   </center>
                                                     </strong>
@@ -430,6 +437,7 @@
 
                                             <div class="modal-footer">
                                                 <center>
+
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </center>
                                             </div>
@@ -447,10 +455,17 @@
 
                                 <br />
                                 <br />
-                                <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
-                                <br />
-                                <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+                                     <%-- ALERTA --%>
+                                <div id="infoReserva" class="alert alert-info" role="alert"
+                                    runat="server" visible="false">
+                                    <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
+                                    <strong>Info!</strong>
 
+                                    <asp:Label ID="lbl_Reserva" runat="server" Text=""></asp:Label>
+                                    <br />
+                                    <asp:Label ID="lbl_Capacidad" runat="server" Text=""></asp:Label>
+
+                                </div>
 
                                 <div class="form-group">
                                     <asp:CheckBox ID="chk_Accesibilidad" CssClass="checkbox" runat="server"
@@ -467,10 +482,22 @@
 
                         <%--BOTONES--%>
                     </div>
-                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" CssClass="btn btn-success" />
-                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" CssClass="btn btn-danger" />
+
+
+                    <%-- ALERTA --%>
+                    <div class="alert alert-danger" ID="alertaErrores"
+                            runat="server" visible="false" >
+                            <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
+                            <strong>Error!</strong>
+                         <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
+                    </div>
+
+
+
+                    <asp:Button ID="btn_Crear" runat="server" Text="Crear" OnClick="btn_Crear_Click" Type="button" Class="btn btn-success" />
+                    <asp:Button ID="btn_Cancelar" runat="server" Text="Cancelar" OnClick="btn_Cancelar_Click" Type="button" Class="btn btn-danger" />
                     <br />
-                    <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
+
                 </div>
             </div>
         </div>
@@ -604,4 +631,3 @@
 
     </script>
 </asp:Content>
-

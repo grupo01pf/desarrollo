@@ -152,6 +152,7 @@ namespace CapaPresentacion
             }
 
             Response.Redirect("Home.aspx");
+            alertaCancelacion.Visible = true;
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
         {
@@ -368,6 +369,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         private void limpiarListaInvitar()
@@ -436,6 +438,8 @@ namespace CapaPresentacion
 
 
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
+
+            alertaNotificacion.Visible = true;
         }
 
 
@@ -625,6 +629,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La invitación ha sido enviada"; lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         protected void btn_SolicitudJugador_Click(object sender, EventArgs e)
@@ -649,6 +654,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
 
+            alertaNotificacion.Visible = true;
         }
 
 

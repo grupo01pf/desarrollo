@@ -114,6 +114,12 @@
                         </strong>
                     </div>
                     <asp:Button ID="btn_CancelarEncuentro" runat="server" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click" class="btn btn-danger"></asp:Button>
+                     <div class="alert alert-danger alert-dismissible" ID="alertaCancelacion" 
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Cancel!</strong> El encuentro ha sido cancelado.
+                            
+                        </div>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -244,6 +250,13 @@
                     <div class="form-group">
                         <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
 
+                    </div>
+
+                    <div class="alert alert-success alert-dismissible" id="alertaNotificacion"
+                        runat="server" visible="false">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> La/s notificaciones/es ha/n sido enviada/s.
+                            
                     </div>
 
                     <asp:Panel ID="pnl_Busqueda" runat="server" Visible="true">
