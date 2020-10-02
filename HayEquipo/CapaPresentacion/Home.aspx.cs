@@ -213,12 +213,12 @@ namespace CapaPresentacion
 
         protected void ddlDeportes_SelectedIndexChanged(object sender, EventArgs e)
         {
-                CargarRepeaterPorDeporte();
+                CargarRepeaterFiltros();
         }
 
-        private void CargarRepeaterPorDeporte()
+        private void CargarRepeaterFiltros()
         {
-            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()))
+            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosFiltros(int.Parse(ddlDeportes.SelectedValue.ToString()), int.Parse(ddlZonas.SelectedValue.ToString()))
                                              where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
                                              orderby encuentro.fechaInicioEncuentro ascending
                                              select encuentro);
@@ -236,19 +236,9 @@ namespace CapaPresentacion
 
         protected void ddlZonas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarRepeaterPorZona();
+            //CargarRepeaterPorZona();
+            CargarRepeaterFiltros();
         }
-
-        private void CargarRepeaterPorZona()
-        {
-            encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorZona(int.Parse(ddlZonas.SelectedValue.ToString()))
-                                             where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
-                                             orderby encuentro.fechaInicioEncuentro ascending
-                                             select encuentro);
-            encuentrosRepeater.DataBind();
-            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
-        }
-
 
         protected void enviarnotifFinalizadas()
         {

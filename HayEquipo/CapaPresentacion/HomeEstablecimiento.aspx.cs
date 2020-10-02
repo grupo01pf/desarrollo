@@ -50,32 +50,33 @@ namespace CapaPresentacion
         {
             encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.ObtenerEncuentrosPorUsResponsable(int.Parse(Session["ID"].ToString()))
                                              orderby encuentro.fechaInicioEncuentro ascending
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today
                                              select encuentro);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
-        void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "btnUnirseEncuentro")
-            {
-                string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
-                int id = int.Parse(idEncuentro);
+        //void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "btnUnirseEncuentro")
+        //    {
+        //        string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
+        //        int id = int.Parse(idEncuentro);
 
-                Session["idEncuentro"] = id;
+        //        Session["idEncuentro"] = id;
 
-                Session["idEncuentro"] = id;
-                if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
-                {
-                    Response.Redirect("EncuentroPublico.aspx");
-                }
-                if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
-                {
-                    Response.Redirect("EncuentroPrivado.aspx");
-                }
+        //        Session["idEncuentro"] = id;
+        //        if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
+        //        {
+        //            Response.Redirect("EncuentroPublico.aspx");
+        //        }
+        //        if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
+        //        {
+        //            Response.Redirect("EncuentroPrivado.aspx");
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         //Modificado por eliminar tabla Responsable
 

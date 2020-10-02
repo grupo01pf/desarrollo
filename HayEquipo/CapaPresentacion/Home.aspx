@@ -262,8 +262,9 @@
           </div>
         </div>
       </div>
-        <div><button type="button" class="btn btn-primary btn-block" >Filtrar encuentros</button>
-
+        <div>
+           <%-- <button type="button" class="btn btn-primary btn-block" disabled="disabled">Filtrar encuentros</button>--%>
+            <asp:Label ID="Label5" runat="server" Text="Filtrar encuentros" style="color: #edd108;-webkit-text-stroke: thin;" Font-Size="Large"></asp:Label>
         </div>
           <%--<input type="text" class="form-control" id="myInput" placeholder="Buscar encuentros..."/>--%>
        <%--   <span class="input-group-btn">
@@ -285,7 +286,7 @@
 
               <div class="w3-panel w3-black">
                     <h1 class="w3-opacity">
-                     <b>Encuentros Vigentes</b></h1>
+                     <b>Próximos Encuentros</b></h1>
                     </div>
            <%--<h3 class="round3">Encuentros Vigentes</h3>--%>
           <%-- <img src="Imagenes/futbol.jpg" class="img-circle" height="55" width="55" alt="Avatar">--%>
