@@ -151,10 +151,23 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion (*)"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
+                                
+                            </div>
+                             <div class="form-group">
+                            <asp:Label ID="lbl_ZonaPublico" runat="server" CssClass="alinearIzq" Text="Zona (*)"></asp:Label>
+                            <div class="dropdown">
+                                <asp:DropDownList ID="cmb_ZonaPublico" runat="server" CssClass="form-control" AppendDataBoundItems
+                                    OnSelectedIndexChanged="cmb_ZonaPublico_SelectedIndexChanged" AutoPostBack="false">
+                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                </asp:DropDownList>
+
                                 <br />
                                 <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
                                     Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
                             </div>
+                        </div>
+
+
 
                         </div>
                         <%-- LUGAR PRIVADO --%>

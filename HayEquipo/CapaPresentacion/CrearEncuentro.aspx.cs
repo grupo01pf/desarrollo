@@ -26,6 +26,7 @@ namespace CapaPresentacion
                 cargarDeportes();
                 cargarBarrios();
                 cargarZonas();
+                cargarZonaPublico();
 
                 cld_Fecha.SelectedDate = DateTime.Today;
 
@@ -200,6 +201,11 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Cantidad.Text))
                 ed.capacidad = 100; // (POR DEFECTO 100 USUARIOS)
             else { ed.capacidad = int.Parse(txt_Cantidad.Text); }
+
+            int zonaLP = 0;
+            if (int.TryParse(cmb_ZonaPublico.SelectedItem.Value, out zonaLP))
+                ed.zonaLP = zonaLP;
+
 
             Session["idEncuentro"] = EncuentroDeportivoDao.InsertarEncuentroPublico(ed);
             int id = int.Parse(Session["idEncuentro"].ToString());
@@ -464,6 +470,7 @@ namespace CapaPresentacion
             txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
             txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
             txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+            cmb_ZonaPublico.BorderColor = System.Drawing.Color.Transparent;
             lbl_Error.Visible = false;
             lbl_Error.Text = string.Empty;
             alertaErrores.Visible = false;
@@ -512,6 +519,17 @@ namespace CapaPresentacion
             cmb_Zona.DataValueField = "id";
             cmb_Zona.DataTextField = "nombre";
             cmb_Zona.DataBind();
+        }
+
+        private void cargarZonaPublico()
+        {
+            cmb_ZonaPublico.Items.Clear();
+            cmb_ZonaPublico.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+
+            cmb_ZonaPublico.DataSource = ZonaDao.obtenerZonasEF();
+            cmb_ZonaPublico.DataValueField = "id";
+            cmb_ZonaPublico.DataTextField = "nombre";
+            cmb_ZonaPublico.DataBind();
         }
 
         private void CargarListServicios(int idComp)
@@ -595,6 +613,7 @@ namespace CapaPresentacion
             txt_NombreLugar.Enabled = false;
             txt_HoraInicio.Enabled = false;
             txt_HoraFin.Enabled = false;
+            cmb_ZonaPublico.Enabled = false;
 
            // link_ComplejosInfo.Enabled = false;
             lbl_Complejo.Enabled = false;
@@ -642,6 +661,7 @@ namespace CapaPresentacion
                 txt_HoraInicio.Enabled = true;
                 txt_HoraFin.Enabled = true;
                 txt_Cantidad.Enabled = true;
+                cmb_ZonaPublico.Enabled = true;
 
                 rdb_Horario.Enabled = false;
                 rdb_Complejo.Enabled = false;
@@ -707,7 +727,9 @@ namespace CapaPresentacion
                 txt_HoraInicio.Enabled = false;
                 txt_HoraFin.Enabled = false;
                 txt_Cantidad.Enabled = false;
-                cmb_Complejo.Enabled = false;
+                cmb_ZonaPublico.Enabled = false;
+
+                cmb_Complejo.Enabled = false;               
 
 
                 btn_Crear.Enabled = true;
@@ -731,7 +753,7 @@ namespace CapaPresentacion
                 txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
                 txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
                 txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
-               
+                cmb_ZonaPublico.BorderColor = System.Drawing.Color.Transparent;
 
             }
         }
@@ -785,13 +807,23 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Direccion.Text))
             {
                 txt_Direccion.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingresar una direccion";
+                error += "Debe ingresar una direccion \n";
             }
             else
             {
                 txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
             }
+            if (cmb_ZonaPublico.SelectedIndex == 0)
+            {
+                cmb_ZonaPublico.BorderColor = System.Drawing.Color.Red;
+                cmb_ZonaPublico.Focus();
+                error += "Debe seleccionar una zona ";
 
+            }
+            else
+            {
+                cmb_ZonaPublico.BorderColor = System.Drawing.Color.Transparent;
+            }
 
 
             if ( !(string.IsNullOrEmpty(error)) )
@@ -1451,6 +1483,7 @@ namespace CapaPresentacion
             //txt_Direccion.Text = string.Empty;
             txt_NombreLugar.Enabled = true;
             //txt_NombreLugar.Text = string.Empty;
+            cmb_ZonaPublico.Enabled = true;
 
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
@@ -1527,6 +1560,9 @@ namespace CapaPresentacion
             cmb_Complejo.SelectedIndex = 0;
         }
 
+        protected void cmb_ZonaPublico_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
