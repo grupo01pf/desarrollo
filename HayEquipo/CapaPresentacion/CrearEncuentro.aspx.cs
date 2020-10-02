@@ -72,7 +72,7 @@ namespace CapaPresentacion
                     else
                     {
                         lbl_Error.Visible = true;
-                        lbl_Error.Text = "Debe reservar una cahcha de la agenda";
+                        lbl_Error.Text = "Debe reservar una cancha de la agenda";
                         alertaErrores.Visible = true;
                     }
 
@@ -104,7 +104,7 @@ namespace CapaPresentacion
             {
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
-                error += "Debe seleccionar un Deporte \n";
+                error += "Debe seleccionar un Deporte.<br />";
 
             }
             else
@@ -115,7 +115,7 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_PorHora.Text))
             {
                 txt_PorHora.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingresar una hora de inicio \n";
+                error += "Debe ingresar una hora de inicio.<br />";
             }
             else
             {
@@ -125,7 +125,7 @@ namespace CapaPresentacion
             {
                 cmb_TipoCancha.BorderColor = System.Drawing.Color.Red;
                 cmb_TipoCancha.Focus();
-                error += "Debe seleccionar un tipo de cancha";
+                error += "Debe seleccionar un tipo de cancha.<br />";
             }
             else
             {
@@ -773,7 +773,7 @@ namespace CapaPresentacion
             {
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
-                error += "Debe seleccionar un Deporte \n";
+                error += "Debe seleccionar un Deporte.<br />";
 
             }
             else {
@@ -783,7 +783,7 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_HoraInicio.Text))
             {
                 txt_HoraInicio.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingresar una hora de inicio \n";
+                error += "Debe ingresar una hora de inicio.<br />";
 
             }
             else
@@ -794,7 +794,7 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Cantidad.Text))
             {
                 txt_Cantidad.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingresar la cantidad de participantes \n";
+                error += "Debe ingresar la cantidad de participantes.<br />";
             }
             else
             {
@@ -803,7 +803,7 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_NombreLugar.Text) )
             {
                 txt_NombreLugar.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingrear un lugar";
+                error += "Debe ingresar un lugar.<br />";
             }
             else
             {
@@ -812,7 +812,7 @@ namespace CapaPresentacion
             if (string.IsNullOrEmpty(txt_Direccion.Text))
             {
                 txt_Direccion.BorderColor = System.Drawing.Color.Red;
-                error += "Debe ingresar una direccion \n";
+                error += "Debe ingresar una direccion.<br />";
             }
             else
             {
@@ -822,7 +822,7 @@ namespace CapaPresentacion
             {
                 cmb_ZonaPublico.BorderColor = System.Drawing.Color.Red;
                 cmb_ZonaPublico.Focus();
-                error += "Debe seleccionar una zona ";
+                error += "Debe seleccionar una zona.<br />";
 
             }
             else

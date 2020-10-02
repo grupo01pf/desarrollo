@@ -65,11 +65,11 @@
     </h1>
     <div class="jumbotron text-center fondoPalJumbotron">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <div class="well">
                     <div class="row">
                         <div class="form-group" class="well">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
                                     <div class="dropdown">
@@ -79,9 +79,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-md-6">
+                            
                                 <%--<div class="well" style="width: 310px; height:250px; margin: 0 auto;">--%>
                                     <div class="form-group" style="width: 310px; height:200px; margin: 0 auto;">
 
@@ -97,9 +95,8 @@
                 </div>
             </div>
 
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+       
+            <div class="col-md-9">
                 <div class="well">
                     <div class="row">
                         <%--  LUGAR PUBLICO--%>
