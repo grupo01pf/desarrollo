@@ -605,7 +605,8 @@ namespace CapaPresentacion
 
         private void deshabilitarControles()
         {
-
+            rdb_PorBarrio.Enabled = false;
+            rdb_PorZona.Enabled = false;
             cmb_Zona.Enabled = false;
             cmb_Barrio.Enabled = false;
 
@@ -643,8 +644,6 @@ namespace CapaPresentacion
 
         protected void rdb_Publico_CheckedChanged(object sender, EventArgs e)
         {
-
-
             if (cmb_Deporte.SelectedIndex == 0)
             {
                 rdb_Publico.Checked = false;
@@ -662,6 +661,9 @@ namespace CapaPresentacion
                 txt_HoraFin.Enabled = true;
                 txt_Cantidad.Enabled = true;
                 cmb_ZonaPublico.Enabled = true;
+
+                rdb_PorBarrio.Enabled = false;
+                rdb_PorZona.Enabled = false;
 
                 rdb_Horario.Enabled = false;
                 rdb_Complejo.Enabled = false;
@@ -736,6 +738,9 @@ namespace CapaPresentacion
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
                 alertaErrores.Visible = false;
+
+                rdb_PorBarrio.Enabled = true;
+                rdb_PorZona.Enabled = true;
 
                 rdb_Horario.Enabled = true;
                 rdb_Horario.Checked = false;
