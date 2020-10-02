@@ -370,9 +370,8 @@
       <br />
     </div>
 
+      <asp:LinkButton ID="unirse"  Class="w3-button w3-block w3-black" runat="server" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' OnClick="unirse_Click">Unirse al encuentro</asp:LinkButton>
 
-      <%--<asp:LinkButton runat="server" CommandName="evaluartipo" CommandArgument='<%#Eval("tipoEncuentro") %>' Visible="false"></asp:LinkButton>--%>
-      <asp:LinkButton runat="server" CommandName="btnUnirseEncuentro" CommandArgument='<%#Eval("idEncuentroDeportivo") %>' text="Unirse al encuentro" Class="w3-button w3-block w3-black" ></asp:LinkButton>
       </div>
            </div><br />
             </ItemTemplate>

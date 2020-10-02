@@ -34,14 +34,13 @@ namespace CapaPresentacion
                 //cargarEventosDisponibles();
                 // cargarLugaresPublicos();
                 // cargarLugaresPrivados();
+                encuentrosRepeater.DataSource = (from encuentro in ObtenerEncuentros()
+                                             orderby encuentro.fechaInicioEncuentro ascending
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today
+                                             select encuentro);
+                encuentrosRepeater.DataBind();
             }
-
-            encuentrosRepeater.DataSource = (from encuentro in ObtenerEncuentros()
-                 orderby encuentro.fechaInicioEncuentro ascending
-                 select encuentro)
-                ;
-            encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            
             enviarnotifFinalizadas();
             actualizarNotificaciones();
             if(EncuentroDeportivioQueryDao.existeProximoEncuentro(Session["ID"].ToString())== true)
@@ -71,32 +70,27 @@ namespace CapaPresentacion
             lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
             lbl_Solicitudes.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
         }
-
-        void encuentroRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+     
+        protected void unirse_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "btnUnirseEncuentro")
-            {
-                string idEncuentro = ((LinkButton)e.CommandSource).CommandArgument;
-                int id = int.Parse(idEncuentro);
+                string idEncuentro = (sender as LinkButton).CommandArgument;
+                int id = int.Parse((sender as LinkButton).CommandArgument);
 
                 Session["idEncuentro"] = id;
 
                 Session["idEncuentro"] = id;
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Publico")
                 {
-                    //  Response.Redirect("EncuentroPublico.aspx?Id=" + idEncuentro);
                     Response.Redirect("EncuentroPublico.aspx");
                 }
                 if (EncuentroDeportivioQueryDao.obtenerTipoEncuentroPorId(idEncuentro) == "Privado")
                 {
-                    // Response.Redirect("EncuentroPrivado.aspx?Id=" + idEncuentro);
                     Response.Redirect("EncuentroPrivado.aspx");
                 }
 
-            }
         }
 
-        void DeportistasRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+            void DeportistasRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "btnVerPerfil")
             {
@@ -225,10 +219,11 @@ namespace CapaPresentacion
         private void CargarRepeaterPorDeporte()
         {
             encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorDeporte(int.Parse(ddlDeportes.SelectedValue.ToString()))
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
                                              orderby encuentro.fechaInicioEncuentro ascending
                                              select encuentro);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
         private void CargarDdlZonas()
@@ -247,10 +242,11 @@ namespace CapaPresentacion
         private void CargarRepeaterPorZona()
         {
             encuentrosRepeater.DataSource = (from encuentro in EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorZona(int.Parse(ddlZonas.SelectedValue.ToString()))
+                                             where encuentro.fechaInicioEncuentro >= DateTime.Today && (encuentro.nombreEstado == "Habilitado" || encuentro.nombreEstado == "Completo")
                                              orderby encuentro.fechaInicioEncuentro ascending
                                              select encuentro);
             encuentrosRepeater.DataBind();
-            encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
+            //encuentrosRepeater.ItemCommand += new RepeaterCommandEventHandler(encuentroRepeater_ItemCommand);
         }
 
 
