@@ -131,6 +131,7 @@
           <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
           <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
           <ScalarProperty Name="nombreLP" ColumnName="nombreLP" />
+          <ScalarProperty Name="zonaLP" ColumnName="zonaLP" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
           <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
@@ -748,7 +749,6 @@
     <FunctionImportMapping FunctionImportName="spCambiarEstadoCompleto" FunctionName="HayEquipoModel.Store.spCambiarEstadoCompleto" />
     <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaComplejo" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaComplejo" />
     <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaUsuariosActivos" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaUsuariosActivos" />
-    <FunctionImportMapping FunctionImportName="spCargarEstadisticaJugador" FunctionName="HayEquipoModel.Store.spCargarEstadisticaJugador" />
     <FunctionImportMapping FunctionImportName="spInsertarImagen" FunctionName="HayEquipoModel.Store.spInsertarImagen" />
     <FunctionImportMapping FunctionImportName="spObtenerCanchasPorComplejos" FunctionName="HayEquipoModel.Store.spObtenerCanchasPorComplejos">
       <ResultMapping>

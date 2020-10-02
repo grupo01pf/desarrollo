@@ -28,6 +28,7 @@ namespace CapaEntidades
         public Nullable<int> idDeporte { get; set; }
         public Nullable<int> idComplejo { get; set; }
         public string nombreLP { get; set; }
+        public Nullable<int> zonaLP { get; set; }
         public string direccion { get; set; }
         public Nullable<int> idEquipo { get; set; }
         public Nullable<System.DateTime> fechaInicioEncuentro { get; set; }

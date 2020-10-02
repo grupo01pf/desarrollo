@@ -49,7 +49,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
           <Property Name="deportes" Type="nvarchar" MaxLength="50" />
           <Property Name="calle" Type="nvarchar" MaxLength="50" />
           <Property Name="nroCalle" Type="int" />
@@ -137,6 +137,7 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           <Property Name="idDeporte" Type="int" />
           <Property Name="idComplejo" Type="int" />
           <Property Name="nombreLP" Type="nvarchar" MaxLength="50" />
+          <Property Name="zonaLP" Type="int" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" />
           <Property Name="idEquipo" Type="int" />
           <Property Name="fechaInicioEncuentro" Type="smalldatetime" />
@@ -171,14 +172,6 @@ advertencia 6002: La tabla o vista 'HayEquipo.dbo.AmigosPorDeportista' no tiene 
           <Property Name="fecha" Type="smalldatetime" />
           <Property Name="deporte" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'HayEquipo.dbo.EstadisticaJugador' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="EstadisticaJugador">
-          <Property Name="FechaDeEncuentro" Type="date" />
-          <Property Name="Año" Type="int" />
-          <Property Name="Mes" Type="int" />
-          <Property Name="Flag" Type="varchar" MaxLength="20" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6013: La tabla o vista 'HayEquipo.dbo.EstadisticaUsuariosActivos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="EstadisticaUsuariosActivos">
@@ -1366,9 +1359,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="spCargarDatosEstadisticaUsuariosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="spCargarEstadisticaJugador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
         <Function Name="spInsertarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spObtenerCanchasPorComplejos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idComp" Type="int" Mode="In" />
@@ -1475,66 +1465,66 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZonasPorDeportistas" EntityType="Self.ZonasPorDeportistas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AmigosPorDeportista" EntityType="Self.AmigosPorDeportista" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [AmigosPorDeportista].[id] AS [id],
-    [AmigosPorDeportista].[idUsuario] AS [idUsuario],
+            <DefiningQuery>SELECT 
+    [AmigosPorDeportista].[id] AS [id], 
+    [AmigosPorDeportista].[idUsuario] AS [idUsuario], 
     [AmigosPorDeportista].[idAmigo] AS [idAmigo]
     FROM [dbo].[AmigosPorDeportista] AS [AmigosPorDeportista]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="FotosComplejo" EntityType="Self.FotosComplejo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [FotosComplejo].[id] AS [id],
-    [FotosComplejo].[imagen] AS [imagen],
+            <DefiningQuery>SELECT 
+    [FotosComplejo].[id] AS [id], 
+    [FotosComplejo].[imagen] AS [imagen], 
     [FotosComplejo].[idComplejo] AS [idComplejo]
     FROM [dbo].[FotosComplejo] AS [FotosComplejo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="FotosDeportista" EntityType="Self.FotosDeportista" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [FotosDeportista].[id] AS [id],
-    [FotosDeportista].[imagen] AS [imagen],
+            <DefiningQuery>SELECT 
+    [FotosDeportista].[id] AS [id], 
+    [FotosDeportista].[imagen] AS [imagen], 
     [FotosDeportista].[idDeportista] AS [idDeportista]
     FROM [dbo].[FotosDeportista] AS [FotosDeportista]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Mapa" EntityType="Self.Mapa" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [Mapa].[id] AS [id],
-    [Mapa].[latitud] AS [latitud],
+            <DefiningQuery>SELECT 
+    [Mapa].[id] AS [id], 
+    [Mapa].[latitud] AS [latitud], 
     [Mapa].[longitud] AS [longitud]
     FROM [dbo].[Mapa] AS [Mapa]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Notificacion" EntityType="Self.Notificacion" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [Notificacion].[id] AS [id],
-    [Notificacion].[idEmisor] AS [idEmisor],
-    [Notificacion].[nombreEmisor] AS [nombreEmisor],
-    [Notificacion].[idReceptor] AS [idReceptor],
-    [Notificacion].[nombreReceptor] AS [nombreReceptor],
-    [Notificacion].[idEncuentro] AS [idEncuentro],
-    [Notificacion].[texto] AS [texto],
+            <DefiningQuery>SELECT 
+    [Notificacion].[id] AS [id], 
+    [Notificacion].[idEmisor] AS [idEmisor], 
+    [Notificacion].[nombreEmisor] AS [nombreEmisor], 
+    [Notificacion].[idReceptor] AS [idReceptor], 
+    [Notificacion].[nombreReceptor] AS [nombreReceptor], 
+    [Notificacion].[idEncuentro] AS [idEncuentro], 
+    [Notificacion].[texto] AS [texto], 
     [Notificacion].[idEstado] AS [idEstado]
     FROM [dbo].[Notificacion] AS [Notificacion]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Password" EntityType="Self.Password" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [Password].[id] AS [id],
-    [Password].[pwdUsuario] AS [pwdUsuario],
+            <DefiningQuery>SELECT 
+    [Password].[id] AS [id], 
+    [Password].[pwdUsuario] AS [pwdUsuario], 
     [Password].[pwdEncuentro] AS [pwdEncuentro]
     FROM [dbo].[Password] AS [Password]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Reserva" EntityType="Self.Reserva" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [Reserva].[id] AS [id],
-    [Reserva].[fechaReserva] AS [fechaReserva],
-    [Reserva].[horaReserva] AS [horaReserva],
-    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo],
+            <DefiningQuery>SELECT 
+    [Reserva].[id] AS [id], 
+    [Reserva].[fechaReserva] AS [fechaReserva], 
+    [Reserva].[horaReserva] AS [horaReserva], 
+    [Reserva].[idEncuentroDeportivo] AS [idEncuentroDeportivo], 
     [Reserva].[idEstado] AS [idEstado]
     FROM [dbo].[Reserva] AS [Reserva]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UsuariosPorEncuentroDeportivo" EntityType="Self.UsuariosPorEncuentroDeportivo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT
-    [UsuariosPorEncuentroDeportivo].[id] AS [id],
-    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA],
-    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro],
+            <DefiningQuery>SELECT 
+    [UsuariosPorEncuentroDeportivo].[id] AS [id], 
+    [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoA] AS [idUsuarioEquipoA], 
+    [UsuariosPorEncuentroDeportivo].[idEncuentro] AS [idEncuentro], 
     [UsuariosPorEncuentroDeportivo].[idUsuarioEquipoB] AS [idUsuarioEquipoB]
     FROM [dbo].[UsuariosPorEncuentroDeportivo] AS [UsuariosPorEncuentroDeportivo]</DefiningQuery>
           </EntitySet>
@@ -1813,7 +1803,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deportes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="nroCalle" Type="Int32" />
@@ -1928,6 +1918,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <Property Name="idDeporte" Type="Int32" />
           <Property Name="idComplejo" Type="Int32" />
           <Property Name="nombreLP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="zonaLP" Type="Int32" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="idEquipo" Type="Int32" />
           <Property Name="fechaInicioEncuentro" Type="DateTime" Precision="0" />
@@ -3491,9 +3482,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spCargarDatosEstadisticaUsuariosActivos" />
-          <FunctionImport Name="spCargarEstadisticaJugador">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spInsertarImagen" />
           <FunctionImport Name="spObtenerCanchasPorComplejos" ReturnType="Collection(HayEquipoModel.spObtenerCanchasPorComplejos_Result)">
             <Parameter Name="idComp" Mode="In" Type="Int32" />
@@ -3685,7 +3673,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosJoin_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="NroCalle" Nullable="true" />
@@ -3709,7 +3697,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosOrdenValor_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
           <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
@@ -3722,7 +3710,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
         <ComplexType Name="spObtenerComplejosPorNomb_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
           <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
@@ -3872,6 +3860,7 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
                 <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
                 <ScalarProperty Name="idComplejo" ColumnName="idComplejo" />
                 <ScalarProperty Name="nombreLP" ColumnName="nombreLP" />
+                <ScalarProperty Name="zonaLP" ColumnName="zonaLP" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
                 <ScalarProperty Name="fechaInicioEncuentro" ColumnName="fechaInicioEncuentro" />
@@ -4489,7 +4478,6 @@ error 6004: Una relación hace referencia a la tabla 'HayEquipo.dbo.EstadisticaU
           <FunctionImportMapping FunctionImportName="spCambiarEstadoCompleto" FunctionName="HayEquipoModel.Store.spCambiarEstadoCompleto" />
           <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaComplejo" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaComplejo" />
           <FunctionImportMapping FunctionImportName="spCargarDatosEstadisticaUsuariosActivos" FunctionName="HayEquipoModel.Store.spCargarDatosEstadisticaUsuariosActivos" />
-          <FunctionImportMapping FunctionImportName="spCargarEstadisticaJugador" FunctionName="HayEquipoModel.Store.spCargarEstadisticaJugador" />
           <FunctionImportMapping FunctionImportName="spInsertarImagen" FunctionName="HayEquipoModel.Store.spInsertarImagen" />
           <FunctionImportMapping FunctionImportName="spObtenerCanchasPorComplejos" FunctionName="HayEquipoModel.Store.spObtenerCanchasPorComplejos">
             <ResultMapping>
