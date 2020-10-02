@@ -33,7 +33,7 @@ namespace CapaDao
             cn.Close();
         }
 
-      
+
 
         // public static List<Notificacion> mostrarNotificaciones() {
         public static List<NotificacionQueryEntidad> mostrarNotificaciones(int idUsuario) {
@@ -60,7 +60,8 @@ namespace CapaDao
                 notificacion.texto = dr["texto"].ToString();
                 notificacion.idEncuentro = int.Parse(dr["idEncuentro"].ToString());
                 notificacion.nombreEstado = dr["estado"].ToString();
-               
+               // DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { notificacion.fecha = fi; }
+               // DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { notificacion.horainicio = hi; } // ok
                 listaNotificacion.Add(notificacion);
             }
 
@@ -71,11 +72,11 @@ namespace CapaDao
             return listaNotificacion;
       }
 
-       
+
 
         public static int contadorNotificaciones(int idUsuario) {
             int contador = 0;
-            
+
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
             cn.Open();
@@ -88,12 +89,12 @@ namespace CapaDao
             if (dr.Read()) {
                 contador = int.Parse(dr["Cantidad"].ToString());
             }
-            
+
 
             dr.Close();
             cn.Close();
 
-            
+
             return contador;
 
         }
@@ -133,12 +134,12 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @" 
-                                SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
+            cmd.CommandText = @"
+                                SELECT DISTINCT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro,
 				                                e.nombre as estado, n.nombreReceptor as receptor,
                                                 n.idEmisor, n.idReceptor
-                                FROM Notificacion n, Estado e 
-                                WHERE e.id = n.idEstado AND n.idEstado != 11 
+                                FROM Notificacion n, Estado e
+                                WHERE e.id = n.idEstado AND n.idEstado != 11
                                       AND n.idEstado != 13 AND n.idEncuentro = 0";
 
 
@@ -173,7 +174,7 @@ namespace CapaDao
             return listaNotificacion;
         }
 
-       
+
 
         public static int contadorNotificacionesSolicitudes(int idUsuario)
         {
@@ -184,7 +185,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @" 
+            cmd.CommandText = @"
                                 SELECT COUNT (texto) as Cantidad
                                 FROM Notificacion n, Usuario u
                                 WHERE  n.idEncuentro = 0 AND n.idReceptor = u.id AND n.idEstado = 10";
@@ -211,7 +212,7 @@ namespace CapaDao
 
         }
 
-        
+
 
         public static bool ExistePartidoFinalizado(int idReceptor, int idEncuentro)
         {
@@ -222,7 +223,7 @@ namespace CapaDao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro, 
+            cmd.CommandText = @"SELECT n.id, n.nombreEmisor as emisor, n.texto, n.idEncuentro,
 				                                n.nombreReceptor as receptor,
                                                 n.idEmisor, n.idReceptor
                                 FROM Notificacion n

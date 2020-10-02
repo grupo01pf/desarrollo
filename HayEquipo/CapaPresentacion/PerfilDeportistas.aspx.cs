@@ -24,26 +24,28 @@ namespace CapaPresentacion
                 Image1.ImageUrl = "~/imagen.aspx?id=" + Session["ID"].ToString();
                 cambiarImagen();
             }
-            if (DeportistaDao.ExisteDeportista(Session["ID"].ToString()))
+            if (!IsPostBack)
             {
-                if (btnActualizar.Visible == false)
+                if (DeportistaDao.ExisteDeportista(Session["ID"].ToString()))
                 {
-                    cargarSexo();
-                    cargarBarrios();
-                    cargarDeportes();
-                    DatosCargadosDeportista();
+                    if (btnActualizar.Visible == false)
+                    {
+                        cargarSexo();
+                        cargarBarrios();
+                        cargarDeportes();
+                        DatosCargadosDeportista();
 
+                    }
+                }
+
+                else
+                {
+                    cargarSexo2();
+                    cargarBarrios2();
+                    cargarDeportes2();
+                    cargarTipoDocumento();
                 }
             }
-
-            else
-            {
-                cargarSexo2();
-                cargarBarrios2();
-                cargarDeportes2();
-                cargarTipoDocumento();
-            }
-
             gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["ID"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
@@ -152,7 +154,7 @@ namespace CapaPresentacion
             if (int.TryParse(cmb_sexo.Text, out sexo))
                 objDeportista.sexo = sexo;
             objDeportista.fechaNacimiento = Convert.ToDateTime(txt_FechaNacimiento.Text);
-            objDeportista.numeroTelefono = Convert.ToInt32(txt_Telefono.Text);
+            objDeportista.numeroTelefono = Convert.ToInt64(txt_Telefono.Text);
             objDeportista.idUsuario = Convert.ToInt32(Session["id"]) ;
             objDeportista.promedioEstrellas = 0;
             objDeportista.idEstado = 1;
@@ -172,9 +174,13 @@ namespace CapaPresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            DeportistaEntidad deportista = GetEntity();
+          
+            if (txt_Apellidos.Text != "" && txt_Nombres.Text != "" && txt_FechaNacimiento.Text != "" && txt_NumeroDocumento.Text != ""
+                 && txt_Telefono.Text != "" 
+               ) {
+                DeportistaEntidad deportista = GetEntity();
 
-            DeportistaDao.InsertarDeportista(deportista);
+                DeportistaDao.InsertarDeportista(deportista);
             txt_Apellidos.Enabled = false;
             txt_Nombres.Enabled = false;
             txt_FechaNacimiento.Enabled = false;
@@ -192,7 +198,11 @@ namespace CapaPresentacion
             cmb_DeportePrederido.CssClass = "";
             cmb_sexo.CssClass = "";
             lblmsj.Text = "Datos Guardados Exitosamente";
-
+            }else
+            {
+                Page_Load(sender, e);
+                lblmsj.Text = "Todos los campos deben ser completados";
+            }
 
         }
         protected void btnCambiar_Click(object sender, EventArgs e)
@@ -206,6 +216,9 @@ namespace CapaPresentacion
             ddl_TipoDocumento.Visible = true;
             lbl_TipoDocumento.Visible = true;
             cargarTipoDocumento();
+            cargarSexo();
+            cargarBarrios();
+            cargarDeportes();
             btnActualizar.Visible = true;
             btnCambiar.Visible = false;
             cmb_Barrio.Enabled = true;
@@ -359,12 +372,12 @@ namespace CapaPresentacion
         //}
         public void manejarValoracion()
         {
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "4") == true)
             {
-                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4"));
+                RadioButtonList1.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "4"));
                 foreach (ListItem item in RadioButtonList1.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "4") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "4") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -379,12 +392,12 @@ namespace CapaPresentacion
                 lblmsjrb1.Text = "Usted no ha sido calificado en esta seccion";
 
             }
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "5") == true)
             {
-                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5"));
+                RadioButtonList2.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "5"));
                 foreach (ListItem item in RadioButtonList2.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "5") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "5") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -399,12 +412,12 @@ namespace CapaPresentacion
                 RadioButtonList2.Enabled = false;
                 lblmsjrb2.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if (ValoracionDao.existePromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") == true)
+            if (ValoracionDao.existePromedioxid(Session["ID"].ToString(), "6") == true)
             {
-                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6"));
+                RadioButtonList3.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "6"));
                 foreach (ListItem item in RadioButtonList3.Items)
                 {
-                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString()), "6") && item.Text == "★")
+                    if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromedioxid(Session["ID"].ToString(), "6") && item.Text == "★")
                     {
                         item.Attributes.CssStyle.Add("color", "orange");
                     }
@@ -419,11 +432,11 @@ namespace CapaPresentacion
                 RadioButtonList3.Enabled = false;
                 lblmsjrb3.Text = "Usted no ha sido calificado en esta seccion";
             }
-            if(ValoracionDao.existePromedioGeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) == true){
-            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())));
+            if(ValoracionDao.existePromedioGeneral(Session["ID"].ToString()) == true){
+            RadioButtonList4.SelectedValue = Convert.ToString(ValoracionDao.obtenerPromediogeneral(Session["ID"].ToString()));
             foreach (ListItem item in RadioButtonList4.Items)
             {
-                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(DeportistaDao.ObtenerIdDeportista(Session["ID"].ToString())) && item.Text == "★")
+                if (Convert.ToInt32(item.Value) < ValoracionDao.obtenerPromediogeneral(Session["ID"].ToString()) && item.Text == "★")
                 {
                     item.Attributes.CssStyle.Add("color", "orange");
                 }
@@ -666,7 +679,7 @@ namespace CapaPresentacion
         private void cargarBarrios()
         {
             cmb_Barrio.Items.Clear();
-            cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+          //  cmb_Barrio.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_Barrio.DataSource = BarrioDao.obtenerBarrios();
             cmb_Barrio.DataValueField = "id";
@@ -677,7 +690,7 @@ namespace CapaPresentacion
         private void cargarDeportes()
         {
             cmb_DeportePrederido.Items.Clear();
-            cmb_DeportePrederido.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+           // cmb_DeportePrederido.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_DeportePrederido.DataSource = DeporteDao.ObtenerDeportes();
             cmb_DeportePrederido.DataValueField = "id";
@@ -688,7 +701,7 @@ namespace CapaPresentacion
         private void cargarSexo()
         {
             cmb_sexo.Items.Clear();
-            cmb_sexo.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
+           // cmb_sexo.Items.Insert(0, new ListItem("Sin Seleccionar", ""));
 
             cmb_sexo.DataSource = DeportistaDao.obtenerSexo();
             cmb_sexo.DataValueField = "id";
@@ -762,6 +775,8 @@ namespace CapaPresentacion
 
 
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
+
+            alertaNotificacion.Visible = true;
         }
 
       
@@ -956,6 +971,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
 
+            alertaNotificacion.Visible = true;
         }
 
 

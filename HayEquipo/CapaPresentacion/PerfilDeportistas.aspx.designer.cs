@@ -85,6 +85,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label lbl_BuscarJugadores;
         
         /// <summary>
+        /// Control alertaNotificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaNotificacion;
+        
+        /// <summary>
         /// Control rdb_PorAmigos.
         /// </summary>
         /// <remarks>
@@ -427,6 +436,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Image calendario;
         
         /// <summary>
+        /// Control rngDate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rngDate;
+        
+        /// <summary>
         /// Control lbl_Telefono.
         /// </summary>
         /// <remarks>
@@ -481,6 +499,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cmb_Barrio;
         
         /// <summary>
+        /// Control lblmsj.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsj;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -506,15 +533,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnActualizar;
-        
-        /// <summary>
-        /// Control lblmsj.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsj;
         
         /// <summary>
         /// Control gdv_EncuentrosDeportista.

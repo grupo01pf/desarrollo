@@ -40,7 +40,7 @@ namespace CapaPresentacion
                                              select encuentro);
                 encuentrosRepeater.DataBind();
             }
-            
+
             enviarnotifFinalizadas();
             actualizarNotificaciones();
             if(EncuentroDeportivioQueryDao.existeProximoEncuentro(Session["ID"].ToString())== true)
@@ -70,7 +70,7 @@ namespace CapaPresentacion
             lbl_Notificacion.Text = (NotificacionDao.contadorNotificaciones(int.Parse(Session["ID"].ToString()))).ToString();
             lbl_Solicitudes.Text = (NotificacionDao.contadorNotificacionesSolicitudes(int.Parse(Session["ID"].ToString()))).ToString();
         }
-     
+
         protected void unirse_Click(object sender, EventArgs e)
         {
                 string idEncuentro = (sender as LinkButton).CommandArgument;

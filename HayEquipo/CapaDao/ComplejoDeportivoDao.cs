@@ -1403,7 +1403,36 @@ namespace CapaDao
             }
         }
 
-        
+        public static string ObtenerIdXnombreComplejo(string nombre)
+        {
+            string d = "";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"select id
+                                 from ComplejoDeportivo
+                                 where nombre = @nombre";
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+
+                d = dr["id"].ToString();
+
+
+            }
+            dr.Close();
+            cn.Close();
+            return d;
+        }
+
+
 
 
     }

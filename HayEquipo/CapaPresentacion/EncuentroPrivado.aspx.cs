@@ -23,11 +23,12 @@ namespace CapaPresentacion
                 cargarEquipoA();
                 cargarEquipoB();
 
+
                 cargarDatosEncuentroPrivado();
 
                 cargarChat();
 
-                if (string.Equals(Session["Estado"].ToString(),"Finalizado") || estadoencuentro.Text == "Cancelado")
+                if (string.Equals(Session["Estado"].ToString(),"Finalizado") || string.Equals(Session["Estado"].ToString(), "Cancelado"))
                 {
                     encuentrFinalizadoDesactivarBotones();
                     pnl_MostrarContenido.Visible = true;
@@ -52,6 +53,10 @@ namespace CapaPresentacion
             txt_Latitud.Enabled = false;
             txt_Longitud.Enabled = false;
             cargarValoracion();
+
+            calcularCapacidadEquipoA();
+            calcularCapacidadEquipoB();            
+            capacidad();
         }
 
 
@@ -104,10 +109,10 @@ namespace CapaPresentacion
 
             Session["CapacidadMaxima"] = edq.capacidad;
 
-            lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
-            lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (edq.capacidad / 2) + ")";
-            lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (edq.capacidad / 2) + ")";
-
+            //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+            //lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (edq.capacidad / 2) + ")";
+            //lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (edq.capacidad / 2) + ")";
+            capacidad();
 
 
             txt_Organizador.Text = edq.nombreUsuario.ToString();
@@ -116,6 +121,14 @@ namespace CapaPresentacion
             estadoencuentro.Text = Session["Estado"].ToString();
             validacionesDeUsuario();
 
+
+        }
+
+        private void capacidad()
+        {
+            lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+            lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
+            lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
 
         }
 
@@ -232,10 +245,16 @@ namespace CapaPresentacion
 
             if (total == int.Parse(Session["CapacidadMaxima"].ToString()))
             {
-                int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
+                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
+                {
+                    int estado = 8; // (COMPLETO)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
+                }
             }
+
+       
             return total;
         }
 
@@ -249,12 +268,17 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
-            btn_UnirseEquipoA.Enabled = false;
-            btn_UnirseEquipoA.Visible = false;
-            btn_UnirseEquipoB.Enabled = true;
-            btn_UnirseEquipoB.Visible = true;
+
+            calcularCapacidadEquipoA();
+            calcularCapacidadEquipoB();
+            //btn_UnirseEquipoA.Enabled = false;
+            //btn_UnirseEquipoA.Visible = false;
+            //btn_UnirseEquipoB.Enabled = true;
+            //btn_UnirseEquipoB.Visible = true;
+
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            capacidad();
         }
         protected void btn_UnirseEquipoB_Click(object sender, EventArgs e)
         {
@@ -265,12 +289,16 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoB(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
-            btn_UnirseEquipoA.Enabled = true;
-            btn_UnirseEquipoA.Visible = true;
-            btn_UnirseEquipoB.Visible = false;
-            btn_UnirseEquipoB.Enabled = false;
+            calcularCapacidadEquipoB();
+            calcularCapacidadEquipoA();
+            //btn_UnirseEquipoA.Enabled = true;
+            //btn_UnirseEquipoA.Visible = true;
+            //btn_UnirseEquipoB.Visible = false;
+            //btn_UnirseEquipoB.Enabled = false;
+
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            capacidad();
 
         }
 
@@ -326,11 +354,17 @@ namespace CapaPresentacion
             cargarEquipoA();
             cargarEquipoB();
             // calcularCapacidad();
+
+
             btn_UnirseEquipoA.Visible = true;
             btn_UnirseEquipoA.Enabled = true;
             btn_UnirseEquipoB.Visible = true;
             btn_UnirseEquipoB.Enabled = true;
+            calcularCapacidadEquipoA();
+            calcularCapacidadEquipoB();
             btn_Salir.Enabled = false;
+            capacidad();
+
         }
 
 
@@ -364,6 +398,8 @@ namespace CapaPresentacion
                 NotificacionDao.insertarNotificacion(notificacion);
 
             }
+
+            alertaCancelacion.Visible = true;
 
             Response.Redirect("Home.aspx");
 
@@ -400,11 +436,13 @@ namespace CapaPresentacion
 
                 cargarEquipoA();
                 cargarEquipoB();
+                calcularCapacidadEquipoA();
+                calcularCapacidadEquipoB();
 
-                lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
-                lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
-                lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
-
+                //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+                //lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
+                //lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
+                capacidad();
             }
         }
 
@@ -487,6 +525,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         private void limpiarListaInvitar() {
@@ -554,6 +593,7 @@ namespace CapaPresentacion
 
 
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
+            alertaNotificacion.Visible = true;
         }
 
 
@@ -1013,6 +1053,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La invitación ha sido enviada"; lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         protected void btn_SolicitudJugador_Click(object sender, EventArgs e)
@@ -1036,6 +1077,7 @@ namespace CapaPresentacion
             NotificacionDao.insertarNotificacion(notificacion);
 
             lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
+            alertaNotificacion.Visible = true;
 
         }
 
@@ -1409,5 +1451,10 @@ namespace CapaPresentacion
             //cargarValoracion();
         }
 
+        protected void SalirJugador_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EncuentroPrivado.aspx");
+            ModalPopupExtender1.Hide();
+        }
     }  
 }

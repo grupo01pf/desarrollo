@@ -50,17 +50,21 @@ namespace CapaPresentacion
                     crearEventoPublico();
                     Response.Redirect("EncuentroPublico.aspx");
                 }
-                else { rdb_Publico.Checked = false; }
+                //else { rdb_Publico.Checked = false; }
 
             }
             else
             {
                 if (rdb_Complejo.Checked){
 
-                    if (controlDatosObligatoriosEncuentroPublico() && controlDatosObligatoriosEncuentroPrivado()
+                    //if (controlDatosObligatoriosEncuentroPublico() && controlDatosObligatoriosEncuentroPrivado()
+                    //    && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
+
+                    if (controlDatosObligatoriosEncuentroPrivado()
                         && !(string.IsNullOrEmpty(lbl_Reserva.Text)))
                     {
                         lbl_Error.Visible = false;
+                        alertaErrores.Visible = false;
                         crearEventoPrivado();
                         Response.Redirect("EncuentroPrivado.aspx");
                     }
@@ -68,21 +72,82 @@ namespace CapaPresentacion
                     {
                         lbl_Error.Visible = true;
                         lbl_Error.Text = "Debe reservar una cahcha de la agenda";
+                        alertaErrores.Visible = true;
                     }
 
                 } else if (rdb_Horario.Checked) {
+
+                    if (validarPorHorario() || !string.IsNullOrEmpty(lbl_Reserva.Text)) {
                         lbl_Error.Visible = false;
+                        alertaErrores.Visible = false;
                         crearEventoPrivadoPorHorario();
                         Response.Redirect("EncuentroPrivado.aspx");
+                    }
+
                 }
 
 
             }
+            lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             //if (string.IsNullOrEmpty(lbl_Reserva.Text) || cmb_Complejo.SelectedIndex == 0)
             //{ lbl_Error.Text = "* Debe reservar una cahcha de la agenda"; }
         }
 
+        private bool validarPorHorario() {
+            bool flag = false;
+            string error = string.Empty;
 
+            if (cmb_Deporte.SelectedIndex == 0)
+            {
+                cmb_Deporte.BorderColor = System.Drawing.Color.Red;
+                cmb_Deporte.Focus();
+                error += "Debe seleccionar un Deporte \n";
+
+            }
+            else
+            {
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (string.IsNullOrEmpty(txt_PorHora.Text))
+            {
+                txt_PorHora.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar una hora de inicio \n";
+            }
+            else
+            {
+                txt_PorHora.BorderColor = System.Drawing.Color.Transparent;
+            }
+            if (cmb_TipoCancha.SelectedIndex == 0)
+            {
+                cmb_TipoCancha.BorderColor = System.Drawing.Color.Red;
+                cmb_TipoCancha.Focus();
+                error += "Debe seleccionar un tipo de cancha";
+            }
+            else
+            {
+                cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (!(string.IsNullOrEmpty(error)))
+            {
+                lbl_Error.Visible = true;
+                lbl_Error.Text = error;
+                alertaErrores.Visible = true;
+                flag = false;
+            }
+            else
+            {
+                lbl_Error.Visible = false;
+                lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
+                flag = true;
+            }
+
+            return flag;
+        }
 
         private void crearEventoPublico()
         {
@@ -372,7 +437,36 @@ namespace CapaPresentacion
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            cmb_Deporte.SelectedIndex = 0;
+            rdb_PorZona.Checked = false;
+            cmb_Zona.SelectedIndex = 0;
+            rdb_PorBarrio.Checked = false;
+            cmb_Barrio.SelectedIndex = 0;
+
+
+            rdb_Publico.Checked = false;
+            limpiarErroresPublicos();
+            deshabilitarEncuentroPublico();
+
+            rdb_Privado.Checked = false;
+            deshabilitarEncuentroPrivado();
+
+            lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
+            //Response.Redirect("Home.aspx");
+        }
+
+        private void limpiarErroresPublicos()
+        {
+            cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            txt_HoraInicio.BorderColor = System.Drawing.Color.Transparent;
+            txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
+            txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
+            txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+            lbl_Error.Visible = false;
+            lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
         }
 
 
@@ -537,6 +631,7 @@ namespace CapaPresentacion
                 rdb_Publico.Checked = false;
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
+                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
             }
@@ -547,7 +642,6 @@ namespace CapaPresentacion
                 txt_HoraInicio.Enabled = true;
                 txt_HoraFin.Enabled = true;
                 txt_Cantidad.Enabled = true;
-                cmb_Complejo.Enabled = false;
 
                 rdb_Horario.Enabled = false;
                 rdb_Complejo.Enabled = false;
@@ -555,11 +649,14 @@ namespace CapaPresentacion
                 // link_ComplejosInfo.Enabled = false;
                 lbl_Complejo.Enabled = false;
                 cmb_Complejo.Enabled = false;
+                cmb_Complejo.SelectedIndex = 0;
 
                 lbl_PorHora.Enabled = false;
                 txt_PorHora.Enabled = false;
+                txt_PorHora.Text = string.Empty;
                 lbl_TipoCancha.Enabled = false;
                 cmb_TipoCancha.Enabled = false;
+                cmb_TipoCancha.SelectedIndex = 0;
                 rdb_Horario.Checked = false;
                 rdb_Complejo.Checked = false;
 
@@ -575,8 +672,16 @@ namespace CapaPresentacion
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
                 lbl_ConsejoMapa.Visible = true;
 
+                lbl_Reserva.Text = string.Empty;
+                lbl_Capacidad.Text = string.Empty;
+                infoReserva.Visible = false;
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+                txt_PorHora.BorderColor = System.Drawing.Color.Transparent;
+                cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
+                cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
             }
 
 
@@ -591,6 +696,7 @@ namespace CapaPresentacion
                 rdb_Privado.Checked = false;
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Deporte";
+                alertaErrores.Visible = true;
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
             }
@@ -607,6 +713,7 @@ namespace CapaPresentacion
                 btn_Crear.Enabled = true;
                 btn_Cancelar.Enabled = true;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
 
                 rdb_Horario.Enabled = true;
                 rdb_Horario.Checked = false;
@@ -618,6 +725,13 @@ namespace CapaPresentacion
 
                 lbl_ConsejoMapa.Visible = false;
 
+                
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+                txt_HoraInicio.BorderColor = System.Drawing.Color.Transparent;
+                txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
+                txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
+                txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+               
 
             }
         }
@@ -625,20 +739,77 @@ namespace CapaPresentacion
         private bool controlDatosObligatoriosEncuentroPublico() {
 
             bool flag = false;
+            string error = string.Empty;
+            
+
             if (cmb_Deporte.SelectedIndex == 0)
             {
-                lbl_Error.Visible = true;
-                lbl_Error.Text = "Debe seleccionar un Deporte";
                 cmb_Deporte.BorderColor = System.Drawing.Color.Red;
                 cmb_Deporte.Focus();
-                flag = false;
+                error += "Debe seleccionar un Deporte \n";
+
             }
             else {
+                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (string.IsNullOrEmpty(txt_HoraInicio.Text))
+            {
+                txt_HoraInicio.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar una hora de inicio \n";
+
+            }
+            else
+            {
+                txt_HoraInicio.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+            if (string.IsNullOrEmpty(txt_Cantidad.Text))
+            {
+                txt_Cantidad.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar la cantidad de participantes \n";
+            }
+            else
+            {
+                txt_Cantidad.BorderColor = System.Drawing.Color.Transparent;
+            }
+            if (string.IsNullOrEmpty(txt_NombreLugar.Text) )
+            {
+                txt_NombreLugar.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingrear un lugar";
+            }
+            else
+            {
+                txt_NombreLugar.BorderColor = System.Drawing.Color.Transparent;
+            }
+            if (string.IsNullOrEmpty(txt_Direccion.Text))
+            {
+                txt_Direccion.BorderColor = System.Drawing.Color.Red;
+                error += "Debe ingresar una direccion";
+            }
+            else
+            {
+                txt_Direccion.BorderColor = System.Drawing.Color.Transparent;
+            }
+
+
+
+            if ( !(string.IsNullOrEmpty(error)) )
+            {
+                lbl_Error.Visible = true;
+                lbl_Error.Text = error;
+                alertaErrores.Visible = true;
+                flag = false;
+
+            }
+            else
+            {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
-                cmb_Deporte.BorderColor = System.Drawing.Color.Transparent;
+                alertaErrores.Visible = false;
                 flag = true;
             }
+
             return flag;
         }
 
@@ -649,6 +820,7 @@ namespace CapaPresentacion
             {
                 lbl_Error.Visible = true;
                 lbl_Error.Text = "Debe seleccionar un Complejo Deportivo";
+                alertaErrores.Visible = true;
                 cmb_Complejo.BorderColor = System.Drawing.Color.Red;
                 cmb_Complejo.Focus();
 
@@ -658,6 +830,7 @@ namespace CapaPresentacion
             {
                 lbl_Error.Visible = false;
                 lbl_Error.Text = string.Empty;
+                alertaErrores.Visible = false;
                 cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
                 flag = true;
             }
@@ -761,6 +934,8 @@ namespace CapaPresentacion
         protected void cmb_Complejo_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
 
             if (cmb_Deporte.SelectedIndex != 0 && cld_Fecha.SelectedDate != null
                  && cmb_Complejo.SelectedIndex != 0)
@@ -769,9 +944,12 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
+                infoReserva.Visible = false;
 
             }
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
+            
 
             int cd = 0;
             if (int.TryParse(cmb_Complejo.SelectedItem.Value, out cd))
@@ -888,10 +1066,12 @@ namespace CapaPresentacion
             datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
+            infoReserva.Visible = true;
 
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
         }
 
@@ -908,6 +1088,7 @@ namespace CapaPresentacion
                 if (lbl_Reserva.Text != null && lbl_Capacidad.Text != null) {
                     lbl_Reserva.Visible = true;
                     lbl_Capacidad.Visible = true;
+                    infoReserva.Visible = true;
                 }
 
             }
@@ -931,6 +1112,7 @@ namespace CapaPresentacion
 
                 lbl_Reserva.Visible = false;
                 lbl_Capacidad.Visible = false;
+                infoReserva.Visible = false;
             }
         }
 
@@ -944,6 +1126,9 @@ namespace CapaPresentacion
 
         protected void rdb_Horario_CheckedChanged(object sender, EventArgs e)
         {
+            lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
 
@@ -957,16 +1142,21 @@ namespace CapaPresentacion
             btn_VerComplejo.Visible = false;
             lbl_Complejo.Enabled = false;
             cmb_Complejo.Enabled = false;
+            cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
 
             gdv_Agenda.Visible = false;
             gdv_AgendaComplejos.Visible = true;
 
             cmb_Complejo.SelectedIndex = 0;
 
+            alertaErrores.Visible = false;
         }
 
         protected void rdb_Complejo_CheckedChanged(object sender, EventArgs e)
         {
+            lbl_Reserva.Text = string.Empty;
+            lbl_Capacidad.Text = string.Empty;
+            infoReserva.Visible = false;
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
 
@@ -974,18 +1164,20 @@ namespace CapaPresentacion
             lbl_Complejo.Enabled = true;
             cmb_Complejo.Enabled = true;
             cargarComplejos();
-
-            lbl_PorHora.Enabled = false;
+            
             txt_PorHora.Enabled = false;
             txt_PorHora.Text = string.Empty;
+            txt_PorHora.BorderColor = System.Drawing.Color.Transparent;
 
             lbl_TipoCancha.Enabled = false;
             cmb_TipoCancha.Enabled = false;
+            cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
 
             gdv_Agenda.Visible = true;
             gdv_AgendaComplejos.Visible = false;
 
             cmb_TipoCancha.SelectedIndex = 0;
+            alertaErrores.Visible = false;
 
         }
         protected void rdb_PorZona_CheckedChanged(object sender, EventArgs e)
@@ -1060,7 +1252,9 @@ namespace CapaPresentacion
                 btn_VerComplejo.Visible = false;
 
                 lbl_Error.Visible = false;
+                alertaErrores.Visible = false;
                 cmb_TipoCancha.SelectedIndex = 0;
+                cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
             }
             else {
                 lbl_Error.Text = "Falta ingresar hora de inicio";
@@ -1078,12 +1272,15 @@ namespace CapaPresentacion
             datos = fila.Cells[3].Text + " , " + fila.Cells[4].Text + " , " + txt_PorHora.Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
+            infoReserva.Visible = true;
 
             lbl_Reserva.Visible = true;
             lbl_Capacidad.Visible = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             Session["idComplejo"] = fila.Cells[2].Text;
+        //  Session["idComplejo"] = ComplejoDeportivoDao.ObtenerIdXnombreComplejo(fila.Cells[3].Text);
 
             mostrarUbicacion(int.Parse(Session["idComplejo"].ToString()));
 
@@ -1238,7 +1435,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
             lbl_Error.Text = string.Empty;
-
+            alertaErrores.Visible = false;
             lbl_ConsejoMapa.Visible = false;
 
         }
@@ -1258,6 +1455,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             lbl_ConsejoMapa.Visible = true;
 
@@ -1271,11 +1469,13 @@ namespace CapaPresentacion
             btn_Crear.Enabled = false;
             btn_Cancelar.Enabled = false;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
             lbl_ConsejoMapa.Visible = false;
 
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
+
 
         }
         private void habilitarEncuentroPrivado()
@@ -1289,6 +1489,7 @@ namespace CapaPresentacion
             btn_Crear.Enabled = true;
             btn_Cancelar.Enabled = true;
             lbl_Error.Text = string.Empty;
+            alertaErrores.Visible = false;
 
         }
         private void deshabilitarPorHorario() {
@@ -1300,6 +1501,10 @@ namespace CapaPresentacion
 
             btn_Agenda.Visible = false;
             btn_VerComplejo.Visible = false;
+
+            txt_PorHora.BorderColor = System.Drawing.Color.Transparent;
+            cmb_TipoCancha.BorderColor = System.Drawing.Color.Transparent;
+           
         }
         private void habilitarPorHorario()
         {
@@ -1313,6 +1518,7 @@ namespace CapaPresentacion
            // rdb_Complejo.Checked = false;
             cmb_Complejo.Enabled = false;
             cmb_Complejo.SelectedIndex = 0;
+            cmb_Complejo.BorderColor = System.Drawing.Color.Transparent;
         }
         private void habilitarPorComplejo()
         {

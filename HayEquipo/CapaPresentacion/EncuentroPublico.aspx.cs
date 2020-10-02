@@ -44,6 +44,7 @@ namespace CapaPresentacion
 
             cargarMapa(edq.idMapa);
 
+            Session["Estado"] = edq.nombreEstado;
             
             lbl_Deporte.Text = edq.nombreDeporte;
 
@@ -92,9 +93,13 @@ namespace CapaPresentacion
             {
                 lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
                 btn_Unirse.Enabled = false;
-                int estado = 8; // (COMPLETO)
-                EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
+                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
+                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
+                {
+                    int estado = 8; // (COMPLETO)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
+                }
             }
         }
 
@@ -152,6 +157,7 @@ namespace CapaPresentacion
             }
 
             Response.Redirect("Home.aspx");
+            alertaCancelacion.Visible = true;
         }
         protected void btn_Invitar_Click(object sender, EventArgs e)
         {
@@ -368,6 +374,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         private void limpiarListaInvitar()
@@ -436,6 +443,8 @@ namespace CapaPresentacion
 
 
             lbl_ResultadosBusqueda.Text = "La/s solicitud/es ha/n sido enviada/s";
+
+            alertaNotificacion.Visible = true;
         }
 
 
@@ -625,6 +634,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La invitación ha sido enviada"; lbl_ResultadosBusqueda.Text = "La/s invitación/es ha/n sido enviada/s";
 
+            alertaNotificacion.Visible = true;
         }
 
         protected void btn_SolicitudJugador_Click(object sender, EventArgs e)
@@ -649,6 +659,7 @@ namespace CapaPresentacion
 
             lbl_ResultadosBusqueda.Text = "La solicitud ha sido enviada";
 
+            alertaNotificacion.Visible = true;
         }
 
 

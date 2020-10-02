@@ -220,7 +220,16 @@
                             </div>
                         
                           <asp:Button ID="btn_CancelarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cancelar Encuentro" OnClick="btn_CancelarEncuentro_Click"></asp:Button>
-                            <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
+     
+  <div class="alert alert-danger alert-dismissible" ID="alertaCancelacion"
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Cancel!</strong> El encuentro ha sido cancelado.
+
+                        </div>                      
+
+
+  <%--<asp:Button ID="btn_CerrarEncuentro" runat="server" CssClass="btn btn-danger" Text="Cerrar Encuentro" OnClick="btn_CerrarEncuentro_Click"></asp:Button>--%>
                             <%--<asp:Button ID="btn_AbrirEncuentro" runat="server" CssClass="btn btn-success" Text="Abrir Encuentro" OnClick="btn_AbrirEncuentro_Click"></asp:Button>--%>
                         
                          </div> 
@@ -446,15 +455,15 @@
                                                         <asp:Label ID="lblmsjrb3" runat="server" Text=""></asp:Label>
                                                 </div>
 
-
-                                            </div>
-
-                                            <div class="modal-footer">
-
+                                                <div class="modal-footer">
+                                                 
                                                 <asp:Button ID="btnClose" runat="server" Text="Cerrar" class="btn btn-danger"
                                                     OnClick="btnClose_Click" />
-
+                                                    
+                                              </div>
                                             </div>
+
+                                            
                                         </div>
 
 
@@ -506,7 +515,7 @@
                                                         OnRowDataBound="gdv_Equipo_A_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" ItemStyle-Width="300" />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true" ItemStyle-Width="360" />
                                                               <asp:TemplateField>
                                                                 <ItemTemplate>  
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -564,7 +573,7 @@
                                                          OnRowDataBound="gdv_Equipo_B_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="id" HeaderText="Id" Visible="false" />
-                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"  ItemStyle-Width="300"  />
+                                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" Visible="true"  ItemStyle-Width="360"  />
                                                              <asp:TemplateField>
                                                                 <ItemTemplate>  
                                                                   <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -661,7 +670,12 @@
                                                         </asp:RadioButtonList>
                                                         <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
                                                 </div>
-
+                                                  <div class="modal-footer">
+                                                 
+                                                <asp:Button ID="SalirJugador" runat="server" Text="Cerrar" class="btn btn-danger"
+                                                    OnClick="SalirJugador_Click" />
+                                                    
+                                              </div>
 
                                             </div>
 
@@ -716,11 +730,19 @@
 
                 <%-- BUSQUEDA --%>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="well">
 
                         <div class="form-group">
                             <asp:Label ID="lbl_BuscarJugadores" Text="Buscar Jugadores" runat="server"></asp:Label>
+
+                        </div>
+
+  <%-- ALERTA --%>
+                        <div class="alert alert-success alert-dismissible" ID="alertaNotificacion"
+                            runat="server" visible="false" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> La/s notificaciones/es ha/n sido enviada/s.
 
                         </div>
 
@@ -745,7 +767,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-primary" />
+                                           <asp:Button ID="btn_CancelarBusqueda" Text="Cancelar" runat="server" OnClick="btn_CancelarBusqueda_Click" CssClass="btn btn-danger"/>
                                             <asp:Button ID="btn_InvitarJugador" Text="Invitar" runat="server" OnClick="btn_InvitarJugador_Click" CssClass="btn btn-primary"/>
                                             <asp:Button ID="btn_SolicitudJugador" Text="Solicitud" runat="server" OnClick="btn_SolicitudJugador_Click" CssClass="btn btn-primary"/>
 
@@ -846,8 +868,7 @@
 
                                         <%-- RESULTADOS --%>
                                         <center>
-                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="mydatagrid" PagerStyle-CssClass="pager"
-                                                    HeaderStyle-CssClass="header" RowStyle-CssClass="rows"
+                                               <asp:GridView ID="gdv_Invitar" runat="server" AutoGenerateColumns="false" CssClass="w3-table-all w3-card-4"
                                                     visible ="true" EmptyDataText="Sin Resultados">
                                                     <Columns>
                                                         <asp:TemplateField>
@@ -872,7 +893,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <center>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                        <%-- <button type="button" class="btn btn-primary" id="btn_EnviarInvitacion" runat="server"
                                             onserverclick="btn_EnviarInvitacion_Click">Invitar</button>--%>
                                             <asp:Button ID="btn_EnviarInvitacion" runat="server" Text="Invitación" OnClick="btn_EnviarInvitacion_Click" CssClass="btn btn-primary" />
@@ -891,7 +912,7 @@
 
 
                 <%-- ****MAPA**** --%>
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                    <div class="well">
                       
                         <div class="form-group">

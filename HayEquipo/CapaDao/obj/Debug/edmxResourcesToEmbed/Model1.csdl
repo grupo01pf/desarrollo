@@ -41,7 +41,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="deportes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="nroCalle" Type="Int32" />
@@ -1719,6 +1719,9 @@
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spCargarDatosEstadisticaUsuariosActivos" />
+    <FunctionImport Name="spCargarEstadisticaJugador">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="spInsertarImagen" />
     <FunctionImport Name="spObtenerCanchasPorComplejos" ReturnType="Collection(HayEquipoModel.spObtenerCanchasPorComplejos_Result)">
       <Parameter Name="idComp" Mode="In" Type="Int32" />
@@ -1910,7 +1913,7 @@
   <ComplexType Name="spObtenerComplejosJoin_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Calle" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="NroCalle" Nullable="true" />
@@ -1934,7 +1937,7 @@
   <ComplexType Name="spObtenerComplejosOrdenValor_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
     <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
@@ -1947,7 +1950,7 @@
   <ComplexType Name="spObtenerComplejosPorNomb_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Descripcion" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Deportes" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="Direccion" Nullable="true" MaxLength="81" />
     <Property Type="String" Name="Barrio" Nullable="true" MaxLength="50" />
