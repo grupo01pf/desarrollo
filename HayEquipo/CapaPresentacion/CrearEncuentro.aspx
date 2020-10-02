@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CrearEncuentro.aspx.cs" Inherits="CapaPresentacion.CrearEncuentro" %>
+<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CrearEncuentro.aspx.cs" Inherits="CapaPresentacion.CrearEncuentro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -44,14 +44,14 @@
             position: absolute;
             z-index: -100;
         }
-        
-          .imagen{
-            background-image:url('../Imagenes/complejo_imagen_clara.jpg');
 
+        .imagen {
+            background-image: url('../Imagenes/complejo_imagen_clara.jpg');
         }
-          .colorsito{
-              color:white;
-          }
+
+        .colorsito {
+            color: white;
+        }
     </style>
 
 
@@ -65,65 +65,41 @@
     </h1>
     <div class="jumbotron text-center fondoPalJumbotron">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="well">
-                    <div class="form-group" class="well">
-                        <div class="form-group">
-                            <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
-                            <div class="dropdown">
-                                <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
-                                    OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
-                            <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
-                                OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
-                                GroupName="tipoLocalizacion" value="0" />
-                            <div class="form-group">
-                                <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
-                                <div class="dropdown">
-                                    <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
-                                        OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                    </asp:DropDownList>
+                    <div class="row">
+                        <div class="form-group" class="well">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <asp:Label ID="lbl_Deporte" runat="server" CssClass="alinearIzq" Text="Deporte"></asp:Label>
+                                    <div class="dropdown">
+                                        <asp:DropDownList ID="cmb_Deporte" runat="server" CssClass="form-control" AppendDataBoundItems
+                                            OnSelectedIndexChanged="cmb_Deporte_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
                                 </div>
                             </div>
-                            <br />
-                            <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
-                            <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
-                                OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
-                                GroupName="tipoLocalizacion" value="1" />
-                            <div class="form-group">
-                                <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
-                                <div class="dropdown">
-                                    <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
-                                        OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
-                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+
+                            <div class="col-md-6">
+                                <%--<div class="well" style="width: 310px; height:250px; margin: 0 auto;">--%>
+                                    <div class="form-group" style="width: 310px; height:200px; margin: 0 auto;">
+
+                                        <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
+                                        <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" height="100px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
+
+                                    </div>
+                                <%--</div>--%>
                             </div>
+
                         </div>
-
-
-
-                        <div class="well" style="width: 310px; margin: 0 auto;">
-                            <div class="form-group">
-
-                                <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
-                                <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnDayRender="cld_Fecha_DayRender" OnSelectionChanged="cld_Fecha_SelectionChanged"></asp:Calendar>
-
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-8">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="well">
                     <div class="row">
                         <%--  LUGAR PUBLICO--%>
@@ -142,7 +118,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad de Participantes (*)"></asp:Label>
                                 <asp:TextBox ID="txt_Cantidad" CssClass="form-control" runat="server" placeHolder="Cantidad de Participantes" TextMode="Number"
-                                     onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);" min="2"></asp:TextBox>
+                                    onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);" min="2"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="lbl_NombreLugar" runat="server" Text="Lugar (*)"></asp:Label>
@@ -151,21 +127,21 @@
                             <div class="form-group">
                                 <asp:Label ID="lbl_Direccion" runat="server" Text="Direccion (*)"></asp:Label>
                                 <asp:TextBox ID="txt_Direccion" CssClass="form-control" runat="server" placeHolder="Ingrese una direccion" Columns="50" MaxLength="45"></asp:TextBox>
-                                
-                            </div>
-                             <div class="form-group">
-                            <asp:Label ID="lbl_ZonaPublico" runat="server" CssClass="alinearIzq" Text="Zona (*)"></asp:Label>
-                            <div class="dropdown">
-                                <asp:DropDownList ID="cmb_ZonaPublico" runat="server" CssClass="form-control" AppendDataBoundItems
-                                    OnSelectedIndexChanged="cmb_ZonaPublico_SelectedIndexChanged" AutoPostBack="false">
-                                    <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                </asp:DropDownList>
 
-                                <br />
-                                <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
-                                    Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <asp:Label ID="lbl_ZonaPublico" runat="server" CssClass="alinearIzq" Text="Zona (*)"></asp:Label>
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="cmb_ZonaPublico" runat="server" CssClass="form-control" AppendDataBoundItems
+                                        OnSelectedIndexChanged="cmb_ZonaPublico_SelectedIndexChanged" AutoPostBack="false">
+                                        <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                    </asp:DropDownList>
+
+                                    <br />
+                                    <asp:Label ID="lbl_ConsejoMapa" runat="server" Visible="false"
+                                        Text="Haz doble click en el mapa para seleccionar un lugar"></asp:Label>
+                                </div>
+                            </div>
 
 
 
@@ -228,7 +204,41 @@
 
 
                             <div class="form-group">
+                                <br />
+                                <br />
 
+                                <div class="form-group">
+                                    <%--<asp:RadioButton ID="rdb_PorZona" runat="server" Text=" Por Zona " GroupName="tipoLocalizacion" value="0" OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true" />--%>
+                                    <asp:CheckBox ID="rdb_PorZona" runat="server" Text="Por Zona" CssClass="checkbox"
+                                        OnCheckedChanged="rdb_PorZona_CheckedChanged" AutoPostBack="true"
+                                        GroupName="tipoLocalizacion" value="0" />
+                                    <%-- <div class="form-group">--%>
+                                    <%--<asp:Label ID="lbl_Zona" runat="server" CssClass="alinearIzq" Text="Zona"></asp:Label>--%>
+                                    <div class="dropdown">
+                                        <asp:DropDownList ID="cmb_Zona" runat="server" CssClass="form-control" AppendDataBoundItems
+                                            OnSelectedIndexChanged="cmb_Zona_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <%--</div>--%>
+                                    <%--<br />--%>
+                                    <%--<asp:RadioButton ID="rdb_PorBarrio" runat="server" Text=" Por Barrio" GroupName="tipoLocalizacion" value="1" OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true" />--%>
+                                    <asp:CheckBox ID="rdb_PorBarrio" runat="server" Text="Por Barrio" CssClass="checkbox"
+                                        OnCheckedChanged="rdb_PorBarrio_CheckedChanged" AutoPostBack="true"
+                                        GroupName="tipoLocalizacion" value="1" />
+                                    <%--<div class="form-group">--%>
+                                    <%--<asp:Label ID="lbl_Barrio" runat="server" CssClass="alinearIzq" Text="Barrio"></asp:Label>--%>
+                                    <div class="dropdown">
+                                        <asp:DropDownList ID="cmb_Barrio" runat="server" CssClass="form-control" AppendDataBoundItems
+                                            OnSelectedIndexChanged="cmb_Barrio_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <%--</div>--%>
+                                </div>
+
+                                <br />
+                                <br />
 
                                 <%--MODAL--%>
 
@@ -476,7 +486,7 @@
 
                                 <br />
                                 <br />
-                                     <%-- ALERTA --%>
+                                <%-- ALERTA --%>
                                 <div id="infoReserva" class="alert alert-info" role="alert"
                                     runat="server" visible="false">
                                     <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
@@ -506,11 +516,11 @@
 
 
                     <%-- ALERTA --%>
-                    <div class="alert alert-danger" ID="alertaErrores"
-                            runat="server" visible="false" >
-                            <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
-                            <strong>Error!</strong>
-                         <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
+                    <div class="alert alert-danger" id="alertaErrores"
+                        runat="server" visible="false">
+                        <%--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--%>
+                        <strong>Error!</strong>
+                        <asp:Label ID="lbl_Error" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </div>
 
 
@@ -530,106 +540,106 @@
             </div>
 
             <div class="well">
-            <div id="txt_latlng" class="form-inline">
-                <div id="LatLng">
-                    <label for="lbl_Latitud">Latitud</label>
-                    <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                    <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
-                    <br />
-                    <label for="lbl_Longitud">Longitud</label>
-                    <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
-                    <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                <div id="txt_latlng" class="form-inline">
+                    <div id="LatLng">
+                        <label for="lbl_Latitud">Latitud</label>
+                        <asp:TextBox ID="txt_Latitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                        <%--<input type="text" id="txt_Latitud" name="txt_Latitud" runat="server">--%>
+                        <br />
+                        <label for="lbl_Longitud">Longitud</label>
+                        <asp:TextBox ID="txt_Longitud" Text="" MaxLength="500" runat="server" Visible="true"></asp:TextBox>
+                        <%--<input type="text" id="txt_Longitud" name="txt_Longitud" runat="server">--%>
+                    </div>
                 </div>
-            </div>
 
+
+            </div>
 
         </div>
 
-    </div>
 
 
 
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
 
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-
-    <%--**** CONTROL DEL MAPA ****--%>
-    <%--<script src="scripts/map.js" ></script>--%>
-
-
-    <script type="text/javascript">
+        <%--**** CONTROL DEL MAPA ****--%>
+        <%--<script src="scripts/map.js" ></script>--%>
 
 
-        const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
+        <script type="text/javascript">
 
 
-        // CENTRAR LA VISTA DEL MAPA
-        let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
-
-        L.tileLayer(tilesProvider, {
-            maxzoom: 18,
-        }).addTo(myMap)
+            const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png '
 
 
-        var layerGroup = L.layerGroup().addTo(myMap)
+            // CENTRAR LA VISTA DEL MAPA
+            let myMap = L.map('myMap').setView([-31.416563, -64.183533], 12)
+
+            L.tileLayer(tilesProvider, {
+                maxzoom: 18,
+            }).addTo(myMap)
 
 
-        // CREAR UN MARCADOR
-        // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
+            var layerGroup = L.layerGroup().addTo(myMap)
 
 
-
-        // DESACTIVAR ZOOM CON DOBLE CLICK
-        myMap.doubleClickZoom.disable()
-
-        // var layerGroup = L.layerGroup().addTo(myMap)
-
-        if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
-                        // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
-                        myMap.on('dblclick', e => {
-                            // ELIMINAR MARCADOR DEL COMPLEJO
-
-
-                            layerGroup.clearLayers();
-
-                            let latLng = myMap.mouseEventToLatLng(e.originalEvent)
-                            // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
-
-                            myMap.closePopup();
-                            //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
-
-                            marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
-                            // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
-
-                            // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
-
-                            // ASP.NET
-                            // $('#txt_Latitud').val(marker.getLatLng().lat)
-                            // $('#txt_Longitud').val(marker.getLatLng().lng)
-
-                            $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
-                $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
-
-                // HTML
-                //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
-                //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
+            // CREAR UN MARCADOR
+            // let marker = L.marker([-31.416563, -64.183533]).addTo(myMap)
 
 
 
-                // PONER UN POPUP
-                // marker.bindPopup('CBA').openPopup(); // ok
-            })
-        }
+            // DESACTIVAR ZOOM CON DOBLE CLICK
+            myMap.doubleClickZoom.disable()
+
+            // var layerGroup = L.layerGroup().addTo(myMap)
+
+            if (document.getElementById('<%= rdb_Publico.ClientID %>').checked) {
+            // PONER UN MARCADOR CON EL EVENTO DOBLECLICK
+            myMap.on('dblclick', e => {
+                // ELIMINAR MARCADOR DEL COMPLEJO
+
+
+                layerGroup.clearLayers();
+
+                let latLng = myMap.mouseEventToLatLng(e.originalEvent)
+                // L.marker([latLng.lat, latLng.lng]).addTo(myMap)
+
+                myMap.closePopup();
+                //var marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+                marker = L.marker([latLng.lat, latLng.lng], { draggable: false }).addTo(layerGroup)
+                // marker = L.marker([latLng.lat, latLng.lng]).addTo(layerGroup)
+
+                // $('#txt_Latitud').val(myMap.getCenter().lat + ',' + myMap.getCenter().lng); //ok
+
+                // ASP.NET
+                // $('#txt_Latitud').val(marker.getLatLng().lat)
+                // $('#txt_Longitud').val(marker.getLatLng().lng)
+
+                $('#<%= txt_Latitud.ClientID %>').val(marker.getLatLng().lat);
+                            $('#<%= txt_Longitud.ClientID %>').val(marker.getLatLng().lng);
+
+                            // HTML
+                            //document.getElementById("txt_Latitud").value = marker.getLatLng().lat
+                            //document.getElementById("txt_Longitud").value = marker.getLatLng().lng
 
 
 
-        var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
-        var indice = cmbCD.options[cmbCD.selectedIndex].value;
+                            // PONER UN POPUP
+                            // marker.bindPopup('CBA').openPopup(); // ok
+                        })
+                    }
 
-        if (indice > 0) {
-            // MOSTRAR UN COMPLEJO
-            var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
+
+
+                    var cmbCD = document.getElementById("<%= cmb_Complejo.ClientID%>");
+            var indice = cmbCD.options[cmbCD.selectedIndex].value;
+
+            if (indice > 0) {
+                // MOSTRAR UN COMPLEJO
+                var latitude = document.getElementById('<%= txt_Latitud.ClientID %>').value;
             var longitude = document.getElementById('<%= txt_Longitud.ClientID %>').value;
 
             var marker = L.marker([latitude, longitude]).addTo(layerGroup)
@@ -651,5 +661,5 @@
 
 
 
-    </script>
+        </script>
 </asp:Content>
