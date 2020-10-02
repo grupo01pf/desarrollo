@@ -363,7 +363,7 @@
 
             </ajaxToolkit:ModalPopupExtender>
 
-               <asp:Panel ID="PanelModal" runat="server" style="display:none">
+               <asp:Panel ID="PanelModal" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical">
                    <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
@@ -421,7 +421,7 @@
                             <asp:TextBox ID="txtDesCan" placeholder="Ingrese una descripción" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                               <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
                                     <asp:BoundField DataField="Deporte" HeaderText="Deporte" />

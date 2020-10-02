@@ -62,6 +62,11 @@
              background-color:#174f18!important;
          }
 
+             .titulo {
+            text-align: center;
+            color: #ffffff;
+        }
+
   </style>
 
 </asp:Content>
@@ -84,6 +89,8 @@
                 </div>
             </asp:Panel>
     <asp:Panel ID="Panel2"  runat="server" Visible="True">
+        <h1 class="titulo" id="tituloComp" runat="server"></h1>
+        <br />
     <div class="losmargenes">
  <div class="row">
      <div class="col-sm-6">

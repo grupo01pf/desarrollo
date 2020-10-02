@@ -101,7 +101,7 @@
              padding-left: 10px; 
              padding-right: 0px;
               border-left-width: 200px; 
-              width: 1100px;"
+              width: 1100px;
          }
          .ajustetextmapa{
              padding-left:40px;
@@ -115,7 +115,7 @@
                    }
             .ajustelegend{
              
-              width: 400px;"
+              width: 400px;
          }
                  }
 
@@ -385,15 +385,15 @@
           
             </ajaxToolkit:ModalPopupExtender>
 
-               <asp:Panel ID="PanelModal" runat="server" style="display:none">
+               <asp:Panel ID="PanelModal" runat="server" style="display:none; width:80%; height:80%" ScrollBars="Vertical">
                    <div class="ModalTamaño">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-     
-    
+
+
                 <div class="modal-header">
-                     <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"   
+                     <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Canchas</h4>
                 </div>
@@ -443,7 +443,7 @@
                             <asp:TextBox ID="txtDesCan" placeholder="Ingrese una descripción" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                               <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
                                     <asp:BoundField DataField="Deporte" HeaderText="Deporte" />
@@ -454,7 +454,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <div class="alinearAlCentro">  
+                            <div class="alinearAlCentro">
                                 <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
                                 <asp:Button ID="btnNuevoCan" runat="server" class="btn btn-default" OnClick="btnNuevoCan_Click" Text="Nuevo" Width="119px" />
                                 <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
