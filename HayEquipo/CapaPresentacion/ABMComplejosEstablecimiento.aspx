@@ -39,8 +39,8 @@
 
          .ModalTamaño
             {
-                /*min-width: 200px;
-                min-height: 150px;*/
+                min-width: 200px;
+                min-height: 150px;
                 background: white;
                 box-shadow: 0px 0px 10px #2b2b2b;
             }
@@ -97,33 +97,6 @@
             width: 50%;
 
         }
-
-         #myMap {
-          
-            width: 95%;
-            padding-top: 55.25%;
-        }
-         .ajustelegend{
-             padding-left: 10px; 
-             padding-right: 0px;
-              border-left-width: 200px; 
-              width: 1100px;"
-         }
-         .ajustetextmapa{
-             padding-left:40px;
-         }
-
-           @media screen and (max-width: 800px) {
-              #myMap {
-          
-            width: 103%;
-            padding-top: 120%;
-                   }
-            .ajustelegend{
-             
-              width: 400px;"
-         }
-                 }
 
 
     </style>
@@ -327,7 +300,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
-                <div class="well" style="padding-bottom: 115px;">
+                <div class="well" style="padding-bottom: 127px;">
                     <%--Botones--%>
                        <asp:Label CssClass="estrellalabel" runat="server" Text="Mi Calificacion"></asp:Label>
                             <br />
@@ -412,14 +385,14 @@
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 
-             <div class="modal-content">
+
 
                 <div class="modal-header">
                      <asp:Button ID="btnClose" runat="server" Text="X" CssClass="close"
                        onclick="btnClose_Click"/>
                     <h4 class="modal-title" id="myModalLabel">Canchas</h4>
                 </div>
-              <div class="modal-body">
+      <div class="modal-body">
                         <div class="form-group">
                             <label>Deporte</label>
                         </div>
@@ -465,7 +438,7 @@
                             <asp:TextBox ID="txtDesCan" placeholder="Ingrese una descripción" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
+                               <asp:GridView ID="gvCanchas" runat="server" AutoGenerateColumns="False" BackColor="White" CssClass="table table-hover table-striped" ForeColor="Black" OnSelectedIndexChanged="gvCanchas_SelectedIndexChanged">
                                 <Columns>
                                     <asp:CommandField HeaderText="Seleccionar" ItemStyle-CssClass="col-lg-3 text-center" ItemStyle-ForeColor="#3366CC" ShowSelectButton="True" />
                                     <asp:BoundField DataField="Deporte" HeaderText="Deporte" />
@@ -474,7 +447,7 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                         </div>
+
                         <div class="modal-footer">
                             <div class="alinearAlCentro">
                                 <asp:Button ID="btnGuardarCan" runat="server" CssClass="btn btn-primary btn-edit" OnClick="btnGuardarCan_Click" Text="Guardar" ValidationGroup="A" Width="140px" />
@@ -482,7 +455,6 @@
                                 <asp:Button ID="btnEliminarCan" runat="server" class="btn btn-warning" OnClick="btnEliminarCan_Click" Text="Eliminar" Width="116px" />
                             </div>
                         </div>
-                      </div>
                     </div>
    </ContentTemplate>
                     </asp:UpdatePanel>
@@ -600,15 +572,14 @@
 
         <%-- MAPA --%>
 
-        
-           
-            <div class="well">
-                <asp:Panel ID="pnl_Mapa" runat="server">
-                    <legend class="ajustelegend">Ingresar Ubicación</legend>
-                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)" CssClass="ajustetextmapa"></asp:Label>
+        <div class="row" style="margin-left: 0px; margin-right: 0px; width: 2280px;">
+            <div class="well mapa">
+                <asp:Panel ID="pnl_Mapa" runat="server" CssClass="mapa">
+                    <legend style="padding-left: 10px; padding-right: 0px; border-left-width: 200px; width: 1100px;">Ingresar Ubicación</legend>
+                    <asp:Label ID="lbl_Mapa" runat="server" Text="(Hacer doble click en el mapa para marcar la ubicación)"></asp:Label>
                     <div class="container" style="text-align: left">
                         <div class="form-group">
-                            <div id="myMap"></div>
+                            <div id="myMap" style="position: relative;height: 456px;width: 1060px;outline: none;"></div>
                         </div>
 
                         <div class="form-group">
@@ -631,15 +602,16 @@
                         </div>
                     </div>
                 </asp:Panel>
-            
-          
+            </div>
         </div>
 
         <%-- FIN MAPA --%>
 
 
 
-      
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </div>
 </asp:Panel>
 
     <%-- script mapa --%>

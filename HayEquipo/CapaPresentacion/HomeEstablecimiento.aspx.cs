@@ -14,6 +14,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CargarTitulo();
             CargarRepeaterEncuentros();
 
             if (!IsPostBack)
@@ -44,6 +45,13 @@ namespace CapaPresentacion
                 }
             }
             set { ViewState["IDRes"] = value; }
+        }
+
+        protected void CargarTitulo()
+        {
+            spObtenerComplejosJoin_Result comp = new spObtenerComplejosJoin_Result();
+            comp = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString()));
+            tituloComp.InnerText = comp.Nombre;
         }
 
         protected void CargarRepeaterEncuentros()
