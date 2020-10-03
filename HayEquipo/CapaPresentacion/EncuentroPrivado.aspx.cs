@@ -57,6 +57,7 @@ namespace CapaPresentacion
             calcularCapacidadEquipoA();
             calcularCapacidadEquipoB();            
             capacidad();
+           
         }
 
 
@@ -246,11 +247,11 @@ namespace CapaPresentacion
             if (total == int.Parse(Session["CapacidadMaxima"].ToString()))
             {
                 if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
-                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
+                    || string.Equals(Session["Estado"].ToString(), "Cancelado") || string.Equals(Session["Estado"].ToString(), "Completo")))
                 {
                     int estado = 8; // (COMPLETO)
                     EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-
+                   
                 }
             }
 
@@ -364,6 +365,7 @@ namespace CapaPresentacion
             calcularCapacidadEquipoB();
             btn_Salir.Enabled = false;
             capacidad();
+           
 
         }
 
