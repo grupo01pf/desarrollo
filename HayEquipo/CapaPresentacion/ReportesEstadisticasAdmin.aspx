@@ -63,16 +63,10 @@
           <div class="well">
             <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar estadística de usuarios activos" OnClick="btnMostrarEstadistica_Click" />
             <div id="elDivDelDashboard" visible="false" runat="server">
-                <iframe  class="tamanioframe" src="https://app.powerbi.com/view?r=eyJrIjoiMTYzZDcxMDItZWVhMy00MWY3LWEzNmYtZjYyMjY3NzBjMDliIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
+               <iframe class="tamanioframe" src="https://app.powerbi.com/view?r=eyJrIjoiN2MxZWMwNDAtZWE3ZS00OTZlLWJiMjktZjVjYjRjYTJhMmQ0IiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+                 </div>
         </div>
-              <div class="well">
-            <asp:Button ID="btnMostrarEstadisticaSegunda" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar estadística de encuentros" OnClick="btnMostrarEstadisticaSegunda_Click" />
-            <div id="Div1" visible="false" runat="server">
-                <iframe class="tamanioframe" src="https://app.powerbi.com/view?r=eyJrIjoiYmMwNTM4YmMtNDhiMy00ZWFiLTkxOWYtY2NiMmY1NDk3ZmJkIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
-        </div>
-   
+            
           <br /><br /><br />
            <%--  
               <asp:DropDownList ID="ddl_aniosregistros" runat="server" Width="150px" AutoPostBack="true"   >

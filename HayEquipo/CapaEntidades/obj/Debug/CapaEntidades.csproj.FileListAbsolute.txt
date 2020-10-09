@@ -56,3 +56,4 @@ C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramew
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\frugi\Desktop\desarrollo\HayEquipo\CapaEntidades\obj\Debug\CapaEntidades.csprojResolveAssemblyReference.cache

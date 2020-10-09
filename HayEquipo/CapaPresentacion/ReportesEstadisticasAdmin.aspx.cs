@@ -58,9 +58,6 @@ namespace CapaPresentacion
             EstadisticaDao.CargarUsuariosActivos();
             elDivDelDashboard.Visible = true;
         }
-        protected void btnMostrarEstadisticaSegunda_Click(object sender, EventArgs e)
-        {
-            Div1.Visible = true;
-        }
+       
     }
 }

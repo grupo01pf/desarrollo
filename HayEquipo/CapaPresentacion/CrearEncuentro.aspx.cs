@@ -326,7 +326,7 @@ namespace CapaPresentacion
             CanchasPorHorarios cph = new CanchasPorHorarios();
             cph.idHorario = AgendaDao.InsertarHorario(horario);
             cph.idCancha = int.Parse(gdv_Agenda.SelectedDataKey.Value.ToString());
-
+            cph.idEstado = 1;
             //AgendaDao.InsertarCanchasPorHorarios(cph);
             AgendaDao.InsertarCrearCanchasPorHorarios(cph);
 
@@ -1100,7 +1100,7 @@ namespace CapaPresentacion
             GridViewRow fila = gdv_Agenda.SelectedRow;
 
             string datos = string.Empty;
-            datos = fila.Cells[2].Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
+            datos = cmb_Complejo.SelectedItem.Text + " , " + fila.Cells[3].Text + " , " + fila.Cells[4].Text + "hs. , $" + fila.Cells[5].Text;
             lbl_Reserva.Text = "Reservar en: " + datos;
             lbl_Capacidad.Text = "Capacidad: " + fila.Cells[6].Text;
             infoReserva.Visible = true;

@@ -376,8 +376,7 @@ namespace CapaPresentacion
 
             ReservaDao.acutalizarReserva(int.Parse(Session["idEncuentro"].ToString()), estado);
             EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-
-
+           
             // Enviar notificacion
 
             List<Usuario> lista = UsuarioDao.UsuariosUnidosEncuentroEquipoA(int.Parse(Session["idEncuentro"].ToString()));

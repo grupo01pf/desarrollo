@@ -253,7 +253,7 @@ namespace CapaPresentacion
             string from = "hayequipoteam2019@gmail.com";
             string pass = "hayequipo123..";
             string to = txtEmail.Text;
-            string mensaje = "Usted se ha logueado en el sistema HayEquipo con exito";
+            string mensaje = "Usted se ha Registrado en el sistema HayEquipo con éxito.";
             new Email().enviarcorreo(from,pass,to,mensaje);
         }
         public bool validar(string correo)

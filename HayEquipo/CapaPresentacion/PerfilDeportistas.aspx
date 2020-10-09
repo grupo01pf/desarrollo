@@ -124,6 +124,8 @@
 
         .hiddencol {
             display: none;
+            position: absolute;
+            z-index: -100;
         }
 
         .scroll-container {
@@ -135,6 +137,7 @@
          .error {
             color: red;
         }
+
     </style>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

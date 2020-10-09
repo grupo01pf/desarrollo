@@ -105,7 +105,7 @@ namespace CapaDao
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
-              //  edq.idMapa = int.Parse(dr["idMapa"].ToString());
+                edq.idMapa = int.Parse(dr["idMapa"].ToString());
 
             }
             dr.Close();
