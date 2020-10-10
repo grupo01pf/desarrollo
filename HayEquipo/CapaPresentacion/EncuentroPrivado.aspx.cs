@@ -36,17 +36,10 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    if (int.Parse(Session["idClave"].ToString()) == 0)
-                    {
-                        pnl_MostrarContenido.Visible = true;
-                        pnl_Password.Visible = false;
-                    }
-                    else
-                    {
-                        pnl_MostrarContenido.Visible = false;
-                        pnl_Password.Visible = true;
-                    }
-                }               
+                    if (int.Parse(Session["idClave"].ToString()) == 0
+                  || Session["IdOrganizadorEncuentro"].ToString() == Session["ID"].ToString())                    {                        pnl_MostrarContenido.Visible = true;                        pnl_Password.Visible = false;                    }                    else                    {                        pnl_MostrarContenido.Visible = false;                        pnl_Password.Visible = true;                    }
+
+                }
 
             }
 
@@ -119,7 +112,15 @@ namespace CapaPresentacion
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
             // bloquearBotones();
-            estadoencuentro.Text = Session["Estado"].ToString();
+            if (string.Equals(Session["Estado"].ToString(), "Finalizado") || string.Equals(Session["Estado"].ToString(), "Cancelado"))
+            {
+                estadoencuentro.Visible = true;
+                estadoencuentro.Text = Session["Estado"].ToString();
+            }
+            else
+            {
+                estadoencuentro.Visible = false;
+            }
             validacionesDeUsuario();
 
 
@@ -251,11 +252,21 @@ namespace CapaPresentacion
                 {
                     int estado = 8; // (COMPLETO)
                     EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-                   
+
                 }
             }
+            else
+            {
+                if (total < int.Parse(Session["CapacidadMaxima"].ToString())
+                      && string.Equals(Session["Estado"].ToString(), "Completo"))
+                {                    int estado = 7; // (Habilitado)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
-       
+                }
+
+            }
+
+
             return total;
         }
 
@@ -1046,7 +1057,7 @@ namespace CapaPresentacion
             {
                 string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
                 notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave ;
+                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " - Clave: " + clave ;
             }
 
             notificacion.idEstado = 10; //(No Check)

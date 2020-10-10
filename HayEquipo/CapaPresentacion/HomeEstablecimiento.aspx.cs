@@ -400,5 +400,14 @@ namespace CapaPresentacion
             Response.Redirect("ABMComplejosEstablecimiento2.aspx");
         }
 
+        protected void cld_Fecha_DayRender(object sender, DayRenderEventArgs e)
+        {
+        
+            if (e.Day.Date < DateTime.Now.Date)
+            {
+                e.Day.IsSelectable = false;
+            
+          }
+      }
     }
 }

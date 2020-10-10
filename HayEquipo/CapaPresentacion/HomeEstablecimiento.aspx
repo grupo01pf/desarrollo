@@ -185,10 +185,10 @@
                              <asp:Label ID="lbl_Fecha" runat="server" Text="Fecha"></asp:Label>
                </div>
                <div class="row alinearAlCentro">
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                              </div>
-                             <div class="col-sm-4" style="padding-left: 0px;">
-                             <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged" ></asp:Calendar>
+                             <div class="col-sm-5" style="padding-left: 19px;">
+                             <asp:Calendar ID="cld_Fecha" runat="server" Width="270px" OnSelectionChanged="cld_Fecha_SelectionChanged"  OnDayRender="cld_Fecha_DayRender"></asp:Calendar>
                              </div>
                              <div class="col-sm-4">
                              </div>

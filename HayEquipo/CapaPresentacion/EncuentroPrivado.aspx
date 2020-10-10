@@ -87,6 +87,8 @@
         .colorsito{
             color:white;
         }
+        table.table_class tbody  tr th                  {                 text-align:center !important;                }
+
        
     </style>
 </asp:Content>
@@ -117,7 +119,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
 
-        <h1 class="titulo">Encuentro   <asp:Label ID="estadoencuentro" CssClass="titulo" runat="server" Text=""></asp:Label></h1>
+        <h1 class="titulo">Encuentro Privado <asp:Label ID="estadoencuentro" CssClass="titulo" runat="server" Text="" Visible="false"></asp:Label></h1>
 
       <%-- MODAL ENCUENTRO FINALIZADO 
         <center>
@@ -951,9 +953,9 @@
                                 <div class="scroll-container">
 
 
-                                    <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#0066ff"
-                                        HeaderStyle-ForeColor="White" BorderColor="Black" ForeColor="Black" BorderStyle="Groove"
-                                        EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Large">
+                                    <asp:GridView ID="gdv_Pantalla" runat="server" AutoGenerateColumns="false" BackColor="#e8e8e8" HeaderStyle-BackColor="#337ab7"
+                                        HeaderStyle-ForeColor="White" BorderColor="#337ab7" ForeColor="Black" BorderStyle="Groove"
+                                        EmptyDataText="Sin participantes aún..." BorderWidth="0" Font-Size="Small" CssClass="table_class">
                                         <Columns>
                                             <asp:BoundField DataField="fechaHoraMensaje" HeaderText="Fecha y Hora" Visible="true" HeaderStyle-Width="10%" />
                                             <asp:BoundField DataField="nombreUsuario" HeaderText="Usuario" Visible="true" HeaderStyle-Width="20%" />
