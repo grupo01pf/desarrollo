@@ -546,15 +546,6 @@ namespace CapaEntidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCargarDatosEstadisticaUsuariosActivos");
         }
     
-        public virtual int spCargarEstadisticaJugador(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCargarEstadisticaJugador", idParameter);
-        }
-    
         public virtual int spInsertarImagen()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertarImagen");
