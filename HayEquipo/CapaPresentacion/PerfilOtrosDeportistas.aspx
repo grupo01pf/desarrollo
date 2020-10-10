@@ -186,8 +186,8 @@ input[type="radio"]:checked ~ label {
                                     <asp:BoundField DataField="idEncuentroDeportivo" HeaderText="Id" Visible="false" />
                                     <asp:BoundField DataField="tipoEncuentro" HeaderText="Tipo" Visible="true" />
                                     <asp:BoundField DataField="nombreDeporte" HeaderText="Deporte" Visible="true" />                                      
-                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Complejo" Visible="true" />
-                                    <asp:BoundField DataField="nombreLP" HeaderText="LugarPublico" Visible="true" />
+                                    <asp:BoundField DataField="nombreComplejo" HeaderText="Lugar/Complejo" Visible="true" />
+                                    <asp:BoundField DataField="calleComplejo" HeaderText="Direccion" Visible="false" />
                                     <asp:BoundField DataField="fechaInicioEncuentro" HeaderText="Fecha Inicio" Visible="true" DataFormatString="{0:d}"/>  
                                     <asp:BoundField DataField="horaInicio" HeaderText="Hora Inicio" Visible="true" DataFormatString="{0:t}"/>
                                     <asp:BoundField DataField="accesibilidad" HeaderText="Accesibilidad" Visible="true" />  

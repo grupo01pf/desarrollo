@@ -34,7 +34,7 @@ namespace CapaPresentacion
               
             } 
 
-            gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId(Session["idOtroPerfil"].ToString());
+            gdv_EncuentrosDeportista.DataSource = EncuentroDeportivioQueryDao.obtenerEncuentrosDeportivosPorId2(Session["idOtroPerfil"].ToString());
             gdv_EncuentrosDeportista.DataKeyNames = new string[] { "idEncuentroDeportivo" };
             gdv_EncuentrosDeportista.DataBind();
             manejarValoracion();
@@ -100,6 +100,8 @@ namespace CapaPresentacion
             lbl_NumeroDocumento.Visible = false;
             lbl_Sexo.Visible = false;
             lbl_Telefono.Visible = false;
+            lbl_BarrioDeportista.Visible = false;
+            lbl_DeportePreferido.Visible = false;
             msjdepcompletar.Text = "No se encuentran actualizados los datos de este deportista";
         }
         protected void gdv_EncuentrosDisponibles_SelectedIndexChanged(object sender, EventArgs e)
