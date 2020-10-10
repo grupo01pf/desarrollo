@@ -280,7 +280,7 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
-            validacionesDeUsuario();
+            
             calcularCapacidadEquipoA();
             calcularCapacidadEquipoB();
             //btn_UnirseEquipoA.Enabled = false;
@@ -290,6 +290,7 @@ namespace CapaPresentacion
 
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            validacionesDeUsuario();
             capacidad();
         }
         protected void btn_UnirseEquipoB_Click(object sender, EventArgs e)
@@ -301,7 +302,7 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoB(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
-            validacionesDeUsuario();
+           
             calcularCapacidadEquipoB();
             calcularCapacidadEquipoA();
             //btn_UnirseEquipoA.Enabled = true;
@@ -311,6 +312,7 @@ namespace CapaPresentacion
 
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            validacionesDeUsuario();
             capacidad();
 
         }
