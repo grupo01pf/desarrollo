@@ -280,7 +280,7 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoA(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
-
+            validacionesDeUsuario();
             calcularCapacidadEquipoA();
             calcularCapacidadEquipoB();
             //btn_UnirseEquipoA.Enabled = false;
@@ -301,6 +301,7 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoB(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
+            validacionesDeUsuario();
             calcularCapacidadEquipoB();
             calcularCapacidadEquipoA();
             //btn_UnirseEquipoA.Enabled = true;

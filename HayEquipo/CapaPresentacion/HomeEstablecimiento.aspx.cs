@@ -51,7 +51,10 @@ namespace CapaPresentacion
         {
             spObtenerComplejosJoin_Result comp = new spObtenerComplejosJoin_Result();
             comp = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString()));
-            tituloComp.InnerText = comp.Nombre;
+            if (comp != null)
+            {              
+                tituloComp.InnerText = comp.Nombre;
+            }
         }
 
         protected void CargarRepeaterEncuentros()
