@@ -711,7 +711,7 @@ namespace CapaDao
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id 
 								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
-                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and(e.nombre='Habilitado' or e.nombre='Completo')
                                  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -744,7 +744,7 @@ namespace CapaDao
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id  
 								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
-                                 and ed.fechaInicioEncuentro >= GETDATE() and (e.nombre='Habilitado' or e.nombre='Completo')
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and (e.nombre='Habilitado' or e.nombre='Completo')
 								  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);     
             SqlDataReader dr = cmd.ExecuteReader();
@@ -771,7 +771,7 @@ namespace CapaDao
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id  
 								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
-                                 and ed.fechaInicioEncuentro >= GETDATE() and (e.nombre='Habilitado' or e.nombre='Completo')
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE())  and (e.nombre='Habilitado' or e.nombre='Completo')
 								  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -799,7 +799,7 @@ namespace CapaDao
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
                                  AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id 
 								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
-                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and(e.nombre='Habilitado' or e.nombre='Completo')
                                  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
