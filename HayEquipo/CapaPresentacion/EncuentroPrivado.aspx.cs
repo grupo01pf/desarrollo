@@ -102,6 +102,7 @@ namespace CapaPresentacion
             txt_Telefono.Text = edq.numeroTelefono.ToString();
 
             Session["CapacidadMaxima"] = edq.capacidad;
+            lbl_CantidadTotal.Text = edq.capacidad.ToString();
 
             //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
             //lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (edq.capacidad / 2) + ")";
@@ -128,7 +129,7 @@ namespace CapaPresentacion
 
         private void capacidad()
         {
-            lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+            //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
             lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
             lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
 
