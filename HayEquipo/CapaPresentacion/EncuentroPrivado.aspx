@@ -212,7 +212,7 @@
 
                         </div>
                               <div class="alinearIzquiera elPadding">
-                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad"></asp:Label>
+                                <asp:Label ID="lbl_Cantidad" runat="server" Text="Cantidad: "></asp:Label>
                                 <asp:Label ID="lbl_CantidadTotal" runat="server" Text="0"></asp:Label>
                                  </div>
                             <div class="alinearIzquiera elPadding">

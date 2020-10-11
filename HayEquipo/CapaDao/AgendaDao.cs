@@ -49,7 +49,7 @@ namespace CapaDao
             return agenda;
         }
 
-        public static AgendaEntidad ObtenerAgendaComplejoPorHorario(int idComplejo, int idDeporte)
+        public static AgendaEntidad ObtenerAgendaComplejoPorHorario(int idComplejo, int idDeporte,int idTipoCancha)
         {
 
             AgendaEntidad a = a = new AgendaEntidad();
@@ -77,6 +77,8 @@ namespace CapaDao
                 cmd.CommandText += @" AND d.id = @idDeporte";
                 cmd.Parameters.AddWithValue("@idDeporte", idDeporte);
             }
+            if (idTipoCancha > 0)            {                cmd.CommandText += @" AND tc.id = @idTipoCancha";                cmd.Parameters.AddWithValue("@idTipoCancha", idTipoCancha);            }
+
 
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())

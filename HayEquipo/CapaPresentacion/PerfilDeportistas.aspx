@@ -126,6 +126,8 @@
             display: none;
             position: absolute;
             z-index: -100;
+            border:none;
+            color: transparent;
         }
 
         .scroll-container {
@@ -590,7 +592,7 @@
                                            <asp:CommandField showDeleteButton="true" HeaderText="Eliminar" ShowHeader="True"
                                                DeleteText='<i class="glyphicon glyphicon-trash"></i>' />
                                            <asp:CommandField ButtonType="Image"  SelectImageUrl="~\Imagenes\flecha_png_by_saloeditions_d4t9zl2-200h.png"
-                                                ShowSelectButton="true" ControlStyle-Width="60px" HeaderText="Ir" />
+                                                ShowSelectButton="true" ControlStyle-Width="60px" HeaderText="Ir" visible="false"/>
                                           <asp:ButtonField buttontype="link" Text="<i class='fa fa-check'></i>"
                                              HeaderText="Aceptar" ShowHeader="True" CommandName="Aceptar" />
                                               <%--  <asp:ButtonField buttontype="link" Text="<i class='fa fa-remove'></i>"
@@ -603,7 +605,7 @@
                                             <asp:BoundField DataField="idEncuentro" HeaderText="IdEncuentro" Visible="false" />
                                             <asp:BoundField DataField="nombreEstado" HeaderText="Estado" Visible="true" />
                                             <asp:BoundField DataField="idReceptor" HeaderText="IdReceptor" visible="true"
-                                                ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                                ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/>
                                             <asp:BoundField DataField="idEmisor" HeaderText="IdEmisor" visible="true"
                                                 ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"  />
                                           <asp:BoundField DataField="nombreReceptor" HeaderText="Receptor" Visible="true"

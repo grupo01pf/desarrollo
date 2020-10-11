@@ -195,6 +195,23 @@
                             <%-- TIPO DE BUSQUEDA --%>
 
                             <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:RadioButton ID="rdb_Complejo" runat="server" Text=" Por Complejo" GroupName="tipoBusqueda" value="1" OnCheckedChanged="rdb_Complejo_CheckedChanged" AutoPostBack="true" />
+                                        <br />
+                                        <%--<asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos"
+                                        runat="server" NavigateUrl="~/Complejos.aspx" ForeColor="Blue"></asp:HyperLink>
+                                    <br />--%>
+
+
+                                        <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
+                                        <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
+                                            AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_Complejo_SelectedIndexChanged">
+                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
+                                        </asp:DropDownList>
+                                 
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
 
                                     <div class="form-group">
@@ -214,23 +231,7 @@
 
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdb_Complejo" runat="server" Text=" Por Complejo" GroupName="tipoBusqueda" value="1" OnCheckedChanged="rdb_Complejo_CheckedChanged" AutoPostBack="true" />
-                                        <br />
-                                        <%--<asp:HyperLink ID="link_ComplejosInfo" Text="Ver Complejos"
-                                        runat="server" NavigateUrl="~/Complejos.aspx" ForeColor="Blue"></asp:HyperLink>
-                                    <br />--%>
-
-
-                                        <asp:Label ID="lbl_Complejo" runat="server" Text="Complejos"></asp:Label>
-                                        <asp:DropDownList ID="cmb_Complejo" CssClass="form-control" runat="server" AutoPostBack="true"
-                                            AppendDataBoundItems="true" OnSelectedIndexChanged="cmb_Complejo_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">&lt;Sin Seleccionar&gt;</asp:ListItem>
-                                        </asp:DropDownList>
-                                 
-                                    </div>
-                                </div>
+                               
                             </div>
 
 

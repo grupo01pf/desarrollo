@@ -1068,7 +1068,8 @@ namespace CapaPresentacion
 
             foreach (ComplejoDeportivo lcd in listaComplejosDisponibles) {
 
-                listaDatosAgenda.Add(AgendaDao.ObtenerAgendaComplejoPorHorario(lcd.id, cmb_Deporte.SelectedIndex));
+                listaDatosAgenda.Add(AgendaDao.ObtenerAgendaComplejoPorHorario(lcd.id, cmb_Deporte.SelectedIndex,tipoCancha));
+
             }
 
             gdv_AgendaComplejos.DataSource = listaDatosAgenda;
