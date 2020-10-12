@@ -51,7 +51,10 @@ namespace CapaPresentacion
         {
             spObtenerComplejosJoin_Result comp = new spObtenerComplejosJoin_Result();
             comp = ComplejoDeportivoDao.ObtenerComplejoPorUsuario(int.Parse(Session["ID"].ToString()));
-            tituloComp.InnerText = comp.Nombre;
+            if (comp != null)
+            {              
+                tituloComp.InnerText = comp.Nombre;
+            }
         }
 
         protected void CargarRepeaterEncuentros()
@@ -400,5 +403,14 @@ namespace CapaPresentacion
             Response.Redirect("ABMComplejosEstablecimiento2.aspx");
         }
 
+        protected void cld_Fecha_DayRender(object sender, DayRenderEventArgs e)
+        {
+        
+            if (e.Day.Date < DateTime.Now.Date)
+            {
+                e.Day.IsSelectable = false;
+            
+          }
+      }
     }
 }

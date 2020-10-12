@@ -22,7 +22,7 @@
         <div class="well">
             <asp:Button ID="btnMostrarEstadistica" type="button" class="btn btn-primary btn-block" runat="server" Text="Mostrar/Refrescar Reporte y Estadística" OnClick="btnMostrarEstadistica_Click" />
             <div id="elDivDelDashboard" visible="false" runat="server">
-                 <iframe class="tamanioframe" src="https://app.powerbi.com/view?r=eyJrIjoiN2Y1NmZiMjAtYWJkNy00MmU4LWExM2YtODUyZDllOGExZGE5IiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
+            <iframe class="tamanioframe" src="https://app.powerbi.com/view?r=eyJrIjoiYjRhZWI4NjYtNzIxYS00YTRhLThlZTEtNmVlMTg0YTMyMmZlIiwidCI6ImVkZDNjZTA0LWY0MjgtNGJmNC1iY2E2LTY5MGIyNmI1ODBmZSJ9" frameborder="0" allowFullScreen="true"></iframe>
             </div>
         </div>      
 </div>

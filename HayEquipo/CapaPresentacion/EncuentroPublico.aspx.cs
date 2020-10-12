@@ -28,7 +28,7 @@ namespace CapaPresentacion
             
             txt_Latitud.Enabled = false;
             txt_Longitud.Enabled = false;
-
+            
         }
         private void cargarDatosEncuentroPublico()
         {
@@ -85,21 +85,13 @@ namespace CapaPresentacion
             //bool completo = false;
             List<Usuario> listaUsuarios = UsuarioDao.UsuariosUnidosEncuentroPublico(int.Parse(Session["idEncuentro"].ToString()));
             // Session["CantidadActual"] = listaUsuarios.Count();
-            if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))
-            {
-                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-            }
-            else
-            {
-                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());
-                btn_Unirse.Enabled = false;
-
-                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")
-                    || string.Equals(Session["Estado"].ToString(), "Cancelado")))
-                {
-                    int estado = 8; // (COMPLETO)
+            if (listaUsuarios.Count < int.Parse(Session["CapacidadMaxima"].ToString()))            {                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());                if (string.Equals(Session["Estado"].ToString(), "Completo"))                {                    int estado = 7; // (Habilitado)
                     EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-                }
+
+                }            }            else            {                lbl_Cantidad.Text = listaUsuarios.Count + "/" + int.Parse(Session["CapacidadMaxima"].ToString());                btn_Unirse.Enabled = false;                if (!(string.Equals(Session["Estado"].ToString(), "Finalizado")                    || string.Equals(Session["Estado"].ToString(), "Cancelado") || string.Equals(Session["Estado"].ToString(), "Completo")))                {                    int estado = 8; // (COMPLETO)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);                }
+
+
             }
         }
 

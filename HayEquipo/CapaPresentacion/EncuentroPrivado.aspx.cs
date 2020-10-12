@@ -36,17 +36,10 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    if (int.Parse(Session["idClave"].ToString()) == 0)
-                    {
-                        pnl_MostrarContenido.Visible = true;
-                        pnl_Password.Visible = false;
-                    }
-                    else
-                    {
-                        pnl_MostrarContenido.Visible = false;
-                        pnl_Password.Visible = true;
-                    }
-                }               
+                    if (int.Parse(Session["idClave"].ToString()) == 0
+                  || Session["IdOrganizadorEncuentro"].ToString() == Session["ID"].ToString())                    {                        pnl_MostrarContenido.Visible = true;                        pnl_Password.Visible = false;                    }                    else                    {                        pnl_MostrarContenido.Visible = false;                        pnl_Password.Visible = true;                    }
+
+                }
 
             }
 
@@ -55,9 +48,9 @@ namespace CapaPresentacion
             cargarValoracion();
 
             calcularCapacidadEquipoA();
-            calcularCapacidadEquipoB();            
+            calcularCapacidadEquipoB();
             capacidad();
-           
+
         }
 
 
@@ -109,7 +102,7 @@ namespace CapaPresentacion
             txt_Telefono.Text = edq.numeroTelefono.ToString();
 
             Session["CapacidadMaxima"] = edq.capacidad;
-
+            lbl_CantidadTotal.Text = edq.capacidad.ToString();
             //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
             //lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (edq.capacidad / 2) + ")";
             //lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (edq.capacidad / 2) + ")";
@@ -119,7 +112,15 @@ namespace CapaPresentacion
             txt_Organizador.Text = edq.nombreUsuario.ToString();
 
             // bloquearBotones();
-            estadoencuentro.Text = Session["Estado"].ToString();
+            if (string.Equals(Session["Estado"].ToString(), "Finalizado") || string.Equals(Session["Estado"].ToString(), "Cancelado"))
+            {
+                estadoencuentro.Visible = true;
+                estadoencuentro.Text = Session["Estado"].ToString();
+            }
+            else
+            {
+                estadoencuentro.Visible = false;
+            }
             validacionesDeUsuario();
 
 
@@ -127,7 +128,7 @@ namespace CapaPresentacion
 
         private void capacidad()
         {
-            lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
+            //lbl_CantidadTotal.Text = ": " + calcularCapacidadTotal(calcularCapacidadEquipoA(), calcularCapacidadEquipoB()).ToString();
             lbl_CantidadEquipoA.Text = "(" + calcularCapacidadEquipoA() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
             lbl_CantidadEquipoB.Text = "(" + calcularCapacidadEquipoB() + "/" + (int.Parse(Session["CapacidadMaxima"].ToString()) / 2) + ")";
 
@@ -200,7 +201,7 @@ namespace CapaPresentacion
                 }
             }
         }
-        
+
 
         private int calcularCapacidadEquipoA()
         {
@@ -251,11 +252,21 @@ namespace CapaPresentacion
                 {
                     int estado = 8; // (COMPLETO)
                     EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-                   
+
                 }
             }
+            else
+            {
+                if (total < int.Parse(Session["CapacidadMaxima"].ToString())
+                      && string.Equals(Session["Estado"].ToString(), "Completo"))
+                {                    int estado = 7; // (Habilitado)
+                    EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
 
-       
+                }
+
+            }
+
+
             return total;
         }
 
@@ -279,6 +290,7 @@ namespace CapaPresentacion
 
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            validacionesDeUsuario();
             capacidad();
         }
         protected void btn_UnirseEquipoB_Click(object sender, EventArgs e)
@@ -290,6 +302,7 @@ namespace CapaPresentacion
             EncuentroDeportivoDao.insertarUsuarioPorEncuentroEquipoB(int.Parse(Session["ID"].ToString()), int.Parse(Session["idEncuentro"].ToString()));
             cargarEquipoA();
             cargarEquipoB();
+
             calcularCapacidadEquipoB();
             calcularCapacidadEquipoA();
             //btn_UnirseEquipoA.Enabled = true;
@@ -299,6 +312,7 @@ namespace CapaPresentacion
 
             btn_Salir.Enabled = true;
             btn_Salir.Visible = true;
+            validacionesDeUsuario();
             capacidad();
 
         }
@@ -365,7 +379,7 @@ namespace CapaPresentacion
             calcularCapacidadEquipoB();
             btn_Salir.Enabled = false;
             capacidad();
-           
+
 
         }
 
@@ -376,7 +390,6 @@ namespace CapaPresentacion
 
             ReservaDao.acutalizarReserva(int.Parse(Session["idEncuentro"].ToString()), estado);
             EncuentroDeportivoDao.actualizarEncuentroDeportivo(int.Parse(Session["idEncuentro"].ToString()), estado);
-
 
             // Enviar notificacion
 
@@ -470,7 +483,7 @@ namespace CapaPresentacion
             if (rdb_PorAmigos.Checked) {
                 listaUsuarios = UsuarioDao.getAmigos(int.Parse(Session["ID"].ToString()));
             }
-            
+
 
             if (rdb_MasOpciones.Checked) {
                 int sport = 0;
@@ -859,7 +872,7 @@ namespace CapaPresentacion
 
 
         }
-        
+
 
 
         protected void btn_Buscar_Click(object sender, EventArgs e)
@@ -1047,7 +1060,7 @@ namespace CapaPresentacion
             {
                 string clave = CriptografiaDao.desencriptar(int.Parse(Session["idClave"].ToString()));
                 notificacion.texto = lbl_Deporte.Text + " - " + cld_Fecha.Text + " - " +
-                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + "Clave: " + clave ;
+                    txt_HoraInicio.Text + " hs - " + lbl_Complejo.Text + " - Clave: " + clave ;
             }
 
             notificacion.idEstado = 10; //(No Check)
@@ -1233,7 +1246,7 @@ namespace CapaPresentacion
         protected void gdv_Equipo_B_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
-            
+
             string nombrej = ((GridView)sender).Rows[e.RowIndex].Cells[1].Text;
             string idjugador = DeportistaDao.ObtenerIdDeportistaXNombre(nombrej);
           //  int iddep = int.Parse(idjugador);
@@ -1292,14 +1305,14 @@ namespace CapaPresentacion
 
         protected void gdv_Equipo_A_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            
+
             string nombrej = ((GridView)sender).Rows[e.RowIndex].Cells[1].Text;
             string idjugador = DeportistaDao.ObtenerIdDeportistaXNombre(nombrej);
            // int idjug = int.Parse(idjugador);
             txtIdjugador.Text = idjugador;
             nombreJ.Text = nombrej;
             string usuario = Session["ID"].ToString();
-            
+
 
             if (ValoracionDao.existeValorParticularJugadorxid(idjugador, "4", usuario) == true)
             {
@@ -1359,7 +1372,7 @@ namespace CapaPresentacion
                     Lb.Visible = true;
                 }
                 }
-            
+
         }
 
         protected void gdv_Equipo_B_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1376,7 +1389,7 @@ namespace CapaPresentacion
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            
+
             Response.Redirect("EncuentroPrivado.aspx");
             ModalPopupExtender1.Hide();
         }
@@ -1402,7 +1415,7 @@ namespace CapaPresentacion
             }
 
             Label4.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
-         
+
             //cargarValoracion();
 
         }
@@ -1426,7 +1439,7 @@ namespace CapaPresentacion
             }
 
             Label6.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
-         
+
             //cargarValoracion();
         }
         protected void RadioButtonList6_SelectedIndexChanged(object sender, EventArgs e)
@@ -1449,7 +1462,7 @@ namespace CapaPresentacion
             }
 
             Label7.Text = "Usted califico a este jugador con una puntuacion de " + valor + " Puntos";
-          
+
             //cargarValoracion();
         }
 
@@ -1458,5 +1471,5 @@ namespace CapaPresentacion
             Response.Redirect("EncuentroPrivado.aspx");
             ModalPopupExtender1.Hide();
         }
-    }  
+    }
 }

@@ -105,7 +105,7 @@ namespace CapaDao
                 edq.accesibilidad = dr["accesibilidad"].ToString();
                 edq.clave = dr["clave"].ToString();
                 edq.capacidad = int.Parse(dr["capacidad"].ToString());
-              //  edq.idMapa = int.Parse(dr["idMapa"].ToString());
+                edq.idMapa = int.Parse(dr["idMapa"].ToString());
 
             }
             dr.Close();
@@ -707,10 +707,12 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT TOP 1 ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,
                                  ed.horaInicio,d.nombre as Deporte,cd.nombre as Complejo
-                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e,UsuariosPorEncuentroDeportivo upe 
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
-                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')";
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id 
+								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and(e.nombre='Habilitado' or e.nombre='Completo')
+                                 order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -738,10 +740,12 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT TOP 1 cd.avatar
-                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e, UsuariosPorEncuentroDeportivo upe
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
-                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id  
+								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and (e.nombre='Habilitado' or e.nombre='Completo')
+								  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);     
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -763,10 +767,12 @@ namespace CapaDao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT TOP 1 cd.avatar
-                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e, UsuariosPorEncuentroDeportivo upe
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
-                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() ";
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id  
+								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE())  and (e.nombre='Habilitado' or e.nombre='Completo')
+								  order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -789,10 +795,12 @@ namespace CapaDao
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT TOP 1 ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,
                                  ed.horaInicio,d.nombre as Deporte,cd.nombre as Complejo
-                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e 
+                                 FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e,UsuariosPorEncuentroDeportivo upe 
                                  WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
-                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND ed.idUsuario=@idUsuario
-                                 and ed.fechaInicioEncuentro >= GETDATE() and(e.nombre='Habilitado' or e.nombre='Completo')";
+                                 AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id AND upe.idEncuentro=ed.id 
+								 AND (ed.idUsuario= @idUsuario or upe.idUsuarioEquipoA= @idUsuario or upe.idUsuarioEquipoB = @idUsuario) 
+                                 and ed.fechaInicioEncuentro >= CONVERT (date, GETDATE()) and ed.horaInicio >= CONVERT (time, GETDATE()) and(e.nombre='Habilitado' or e.nombre='Completo')
+                                 order by fechaInicioEncuentro ";
             cmd.Parameters.AddWithValue("@idUsuario", id);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -803,6 +811,63 @@ namespace CapaDao
             cn.Close();
             return imagen;
 
+        }
+
+        public static List<EncuentroDeportivoQueryEntidad> obtenerEncuentrosDeportivosPorId2(string id)
+        {
+            List<EncuentroDeportivoQueryEntidad> ListaEDQ = new List<EncuentroDeportivoQueryEntidad>();
+
+            EncuentroDeportivoQueryEntidad edq = null;
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT DISTINCT ed.id , u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
+                                e.nombre as Estado,ed.horaInicio,ed.horaFin,ed.nombreLP as Lugar ,ed.direccion,
+                                ed.tipoEncuentro, ed.accesibilidad, ed.clave
+                                FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e, UsuariosPorEncuentroDeportivo upe
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id AND upe.idEncuentro=ed.id AND ed.tipoEncuentro = 'Publico'
+                                 AND (ed.idUsuario= @idUsuario2 or upe.idUsuarioEquipoA = @idUsuario2 or upe.idUsuarioEquipoB = @idUsuario2) AND fechaInicioEncuentro <= GETDATE()
+                                UNION
+                                SELECT DISTINCT ed.id, u.nombre as Usuario, ed.fechaInicioEncuentro,d.nombre as Deporte,
+                                e.nombre as Estado,ed.horaInicio,ed.horaFin,cd.nombre as Complejo ,cd.calle,
+                                ed.tipoEncuentro, ed.accesibilidad, ed.clave
+                                FROM EncuentroDeportivo ed, Usuario u, Deporte d, ComplejoDeportivo cd,Estado e, UsuariosPorEncuentroDeportivo upe 
+                                WHERE ed.idUsuario = u.id AND ed.idDeporte = d.id AND ed.idEstado = e.id
+                                AND ed.tipoEncuentro = 'Privado' AND ed.idComplejo = cd.id  AND upe.idEncuentro=ed.id
+                                AND (ed.idUsuario= @idUsuario2 or upe.idUsuarioEquipoA = @idUsuario2 or upe.idUsuarioEquipoB =@idUsuario2) 
+                                AND fechaInicioEncuentro <= GETDATE()
+                                order by fechaInicioEncuentro desc";
+            
+            cmd.Parameters.AddWithValue("@idUsuario2", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+
+                edq = new EncuentroDeportivoQueryEntidad();
+
+                edq.idEncuentroDeportivo = int.Parse(dr["id"].ToString());
+                edq.nombreUsuario = dr["Usuario"].ToString();
+                edq.nombreDeporte = dr["Deporte"].ToString();
+                edq.nombreEstado = dr["Estado"].ToString();
+                DateTime fi; if (DateTime.TryParse(dr["fechaInicioEncuentro"].ToString(), out fi)) { edq.fechaInicioEncuentro = fi; }
+                DateTime hi; if (DateTime.TryParse(dr["horaInicio"].ToString(), out hi)) { edq.horaInicio = hi; } // ok
+                DateTime hf; if (DateTime.TryParse(dr["horaFin"].ToString(), out hf)) { edq.horaFin = hf; } // ok
+                edq.nombreComplejo = dr["Lugar"].ToString();
+                edq.calleComplejo = dr["direccion"].ToString();
+                edq.tipoEncuentro = dr["tipoEncuentro"].ToString();
+                edq.accesibilidad = dr["accesibilidad"].ToString();
+                edq.clave = dr["clave"].ToString();
+                ListaEDQ.Add(edq);
+
+              
+            }
+            dr.Close();
+            cn.Close();
+
+            return ListaEDQ;
         }
     }
 }
